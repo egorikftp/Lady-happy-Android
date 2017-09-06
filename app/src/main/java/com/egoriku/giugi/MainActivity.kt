@@ -6,8 +6,11 @@ import android.support.design.widget.NavigationView
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
+import android.support.v7.widget.LinearLayoutManager
 import android.view.MenuItem
 import android.widget.Toast
+import com.egoriku.giugi.adapter.ToysAdapter
+import com.egoriku.giugi.data.Toy
 import egoriku.com.guigiu.R
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -28,6 +31,21 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         nav_view.apply {
             setNavigationItemSelectedListener(this@MainActivity)
             setCheckedItem(R.id.nav_all_toys)
+        }
+
+        val list = mutableListOf<Toy>()
+        list.add(Toy("1", R.drawable.ic1))
+        list.add(Toy("2", R.drawable.ic2))
+        list.add(Toy("3", R.drawable.ic3))
+        list.add(Toy("4", R.drawable.ic4))
+        list.add(Toy("5", R.drawable.ic5))
+
+        val adapterToy = ToysAdapter(this, list)
+
+        recycler.apply {
+            setHasFixedSize(true)
+            layoutManager = LinearLayoutManager(this@MainActivity)
+            adapter = adapterToy
         }
     }
 
