@@ -1,6 +1,14 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply from: 'keys.gradle'
+
+def versionProp = loadProperties('version.properties')
+def version = versionProp['VERSION'] as int
+def sub_version = versionProp['SUB_VERSION'] as int
+def build_version = versionProp['BUILD_VERSION'] as int
+def verCode = version * 100000 + sub_version * 1000 + build_version
+def verName = "$version.$sub_version.$build_version"
 
 android {
     compileSdkVersion 26
@@ -9,15 +17,37 @@ android {
         applicationId "egoriku.com.giugi"
         minSdkVersion 16
         targetSdkVersion 26
-        versionCode 1
-        versionName "1.0"
+        versionCode verCode
+        versionName verName
+        multiDexEnabled true
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
     }
+
     buildTypes {
         release {
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+
+            resValue "string", "app_name", "GiuGi Toys"
+            resValue("string", "hockey_app_id", "\"$hockey_app_id_debug\"")
+        }
+
+        debug{
+            resValue "string", "app_name", "GiuGi Toys Beta"
+            resValue("string", "hockey_app_id", "\"$hockey_app_id_debug\"")
+        }
+    }
+
+    gradle.taskGraph.whenReady { taskGraph ->
+        if (taskGraph.hasTask(assembleDebug) || taskGraph.hasTask(assembleRelease)) {
+            autoIncrementBuildVersionNumber()
+        }
+    }
+
+    applicationVariants.all { variant ->
+        variant.outputs.all {
+            outputFileName = "${"GiuGi Toys"}.${variant.name}_${variant.versionName}.apk"
         }
     }
 }
@@ -37,6 +67,26 @@ dependencies {
     implementation 'com.github.bumptech.glide:glide:3.7.0'
     implementation 'com.android.support:palette-v7:26.0.2'
     implementation 'com.android.support:cardview-v7:26.0.2'
+    implementation 'net.hockeyapp.android:HockeySDK:4.1.4'
+    implementation 'com.android.support:multidex:1.0.2'
 }
 
 apply plugin: 'com.google.gms.google-services'
+
+Properties loadProperties(String path) {
+    def file = file(path)
+    if (file.canRead() && file.canWrite()) {
+        Properties properties = new Properties()
+        properties.load(new FileInputStream(file))
+        return properties
+    } else {
+        throw new GradleException("Could not read version.properties!")
+    }
+}
+
+def autoIncrementBuildVersionNumber() {
+    def prop = loadProperties('version.properties')
+    def newVersion = (prop['BUILD_VERSION'] as int) + 1
+    prop['BUILD_VERSION'] = newVersion as String
+    prop.store(file('version.properties').newWriter(), null)
+}

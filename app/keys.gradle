@@ -1,0 +1,4 @@
+ext{
+    hockey_app_id_debug = "5054f9fa1ba14748aa1b505eb0d23b2f"
+    hockey_app_id_release = "5054f9fa1ba14748aa1b505eb0d23b2f"
+}

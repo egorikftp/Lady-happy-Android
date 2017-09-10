@@ -1,8 +1,8 @@
-package com.egoriku.giugi
+package com.egoriku.giugi.activity
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import egoriku.com.guigiu.R
+import com.egoriku.giugi.R
 
 class OrderActivity : AppCompatActivity() {
 
