@@ -11,12 +11,13 @@ def verCode = version * 100000 + sub_version * 1000 + build_version
 def verName = "$version.$sub_version.$build_version"
 
 android {
-    compileSdkVersion 26
-    buildToolsVersion "26.0.1"
+    compileSdkVersion versions.compileSdkVersion
+    buildToolsVersion versions.buildToolsVersion
+
     defaultConfig {
         applicationId "egoriku.com.giugi"
-        minSdkVersion 16
-        targetSdkVersion 26
+        minSdkVersion versions.minSdkVersion
+        targetSdkVersion versions.compileSdkVersion
         versionCode verCode
         versionName verName
         multiDexEnabled true
@@ -54,21 +55,24 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'com.android.support:appcompat-v7:26.0.2'
-    implementation 'com.android.support:design:26.0.2'
-    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
-    implementation 'com.google.firebase:firebase-storage:11.0.4'
-    implementation 'com.google.firebase:firebase-auth:11.0.4'
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation('com.android.support.test.espresso:espresso-core:3.0.1', {
+    androidTestImplementation(libs.espresso, {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
-    implementation 'com.github.bumptech.glide:glide:3.7.0'
-    implementation 'com.android.support:palette-v7:26.0.2'
-    implementation 'com.android.support:cardview-v7:26.0.2'
-    implementation 'net.hockeyapp.android:HockeySDK:4.1.4'
-    implementation 'com.android.support:multidex:1.0.2'
+    testImplementation libs.junit
+
+    implementation libs.appcompat
+    implementation libs.design
+    implementation libs.constraint
+    implementation libs.firebaseStorage
+    implementation libs.firebaseAuth
+    implementation libs.kotlin
+    implementation libs.glide
+    implementation libs.palette
+    implementation libs.cardview
+    implementation libs.hockeyApp
+    implementation libs.multidex
+
+  //  implementation 'com.egoriku.corelib_kt:corelib_kt:1.0.0'
 }
 
 apply plugin: 'com.google.gms.google-services'

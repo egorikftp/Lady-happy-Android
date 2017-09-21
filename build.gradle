@@ -1,15 +1,16 @@
-// Top-level build file where you can add configuration options common to all sub-projects/modules.
+apply from: 'version_dependencies.gradle'
 
 buildscript {
-    ext.kotlin_version = '1.1.3-2'
+    apply from: 'version_dependencies.gradle'
+
     repositories {
         google()
         jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.0.0-beta5'
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-        classpath 'com.google.gms:google-services:3.1.0'
+        classpath gradlePlugins.gradle
+        classpath gradlePlugins.kotlin
+        classpath gradlePlugins.googleservices
     }
 }
 
@@ -17,9 +18,14 @@ allprojects {
     repositories {
         google()
         jcenter()
+        maven {
+            url "https://dl.bintray.com/egorikftp/maven"
+        }
     }
 }
 
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
+
+

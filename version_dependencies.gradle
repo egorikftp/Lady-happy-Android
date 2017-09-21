@@ -1,0 +1,54 @@
+ext.versions = [
+        minSdkVersion     : 16,
+        compileSdkVersion : 26,
+        buildToolsVersion : "26.0.1",
+        gradleAlpha       : "3.0.0-beta6",
+        googleServices    : "3.1.0",
+
+        supportVersion    : "26.1.0",
+        constraintVersion : "1.0.2",
+        kotlinVersion     : "1.1.3-2",
+        ciceroneVersion   : "1.1",
+        moxyVersion       : "1.4.6",
+        junitVersion      : "4.12",
+        espressoVersion   : "3.0.1",
+        firebaseVersion   : "11.2.2",
+        multidexVersion   : "1.0.2",
+        glideVersion      : "3.7.0",
+        hockeyAppVersion  : "4.1.4"
+]
+
+ext.gradlePlugins = [
+        gradle: "com.android.tools.build:gradle:$versions.gradleAlpha",
+        kotlin: "org.jetbrains.kotlin:kotlin-gradle-plugin:$versions.kotlinVersion",
+        googleservices: "com.google.gms:google-services:$versions.googleServices"
+]
+
+ext.libs = [
+        appcompat       : "com.android.support:appcompat-v7:$versions.supportVersion",
+        recyclerview    : "com.android.support:recyclerview-v7:$versions.supportVersion",
+        design          : "com.android.support:design:$versions.supportVersion",
+        palette         : "com.android.support:palette-v7:$versions.supportVersion",
+        cardview        : "com.android.support:cardview-v7:$versions.supportVersion",
+        constraint      : "com.android.support.constraint:constraint-layout:$versions.constraintVersion",
+
+        firebaseStorage : "com.google.firebase:firebase-storage:$versions.firebaseVersion",
+        firebaseAuth    : "com.google.firebase:firebase-auth:$versions.firebaseVersion",
+
+        cicerone        : "ru.terrakok.cicerone:cicerone:$versions.ciceroneVersion",
+        moxy            : "com.arello-mobile:moxy:$versions.moxyVersion",
+        moxyCompiler    : "com.arello-mobile:moxy-compiler:$versions.moxyVersion",
+        glide           : "com.github.bumptech.glide:glide:$versions.glideVersion",
+        hockeyApp       : "net.hockeyapp.android:HockeySDK:$versions.hockeyAppVersion",
+
+        junit           : "junit:junit:$versions.junitVersion",
+        espresso        : "com.android.support.test.espresso:espresso-core:$versions.espressoVersion",
+        kotlin          : "org.jetbrains.kotlin:kotlin-stdlib-jre7:$versions.kotlinVersion",
+        multidex        : "com.android.support:multidex:$versions.multidexVersion"
+]
+
+allprojects {
+    repositories {
+        jcenter()
+    }
+}
