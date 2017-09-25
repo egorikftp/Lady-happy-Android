@@ -72,7 +72,11 @@ dependencies {
     implementation libs.hockeyApp
     implementation libs.multidex
 
-  //  implementation 'com.egoriku.corelib_kt:corelib_kt:1.0.0'
+    implementation libs.moxy
+    implementation libs.moxyCompiler
+    implementation libs.cicerone
+
+    implementation libs.coreLibKt
 }
 
 apply plugin: 'com.google.gms.google-services'

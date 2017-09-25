@@ -15,13 +15,17 @@ import android.support.design.widget.NavigationView
 import android.support.v4.content.ContextCompat
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
-import android.support.v7.app.AppCompatActivity
 import android.support.v7.graphics.Palette
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.MenuItem
 import android.widget.Toast
+import com.arellomobile.mvp.MvpAppCompatActivity
+import com.arellomobile.mvp.presenter.InjectPresenter
+import com.egoriku.corelib_kt.listeners.SimpleAnimatorListener
+import com.egoriku.giugi.HelloWorldPresenter
+import com.egoriku.giugi.HelloWorldView
 import com.egoriku.giugi.R
 import com.egoriku.giugi.adapter.ToysAdapter
 import com.egoriku.giugi.data.Toy
@@ -29,7 +33,14 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.layout_images.view.*
 
 
-class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+class MainActivity : MvpAppCompatActivity(), NavigationView.OnNavigationItemSelectedListener, HelloWorldView {
+
+    override fun showMessage(message: Int) {
+        test_view.text = message.toString()
+    }
+
+    @InjectPresenter
+    lateinit var presenter: HelloWorldPresenter
 
     @ColorInt
     private var previousContainerColor = 0
@@ -145,18 +156,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 root_layout.setBackgroundColor(blendedColorRootLayout)
             }
 
-            addListener(object : Animator.AnimatorListener {
+            addListener(object : SimpleAnimatorListener() {
                 override fun onAnimationEnd(p0: Animator?) {
                     previousContainerColor = rootLayoutColor
-                }
-
-                override fun onAnimationCancel(p0: Animator?) {
-                }
-
-                override fun onAnimationStart(p0: Animator?) {
-                }
-
-                override fun onAnimationRepeat(p0: Animator?) {
                 }
             })
             duration = 1000
@@ -173,18 +175,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 supportActionBar?.setBackgroundDrawable(ColorDrawable(blendedColor))
             }
 
-            addListener(object : Animator.AnimatorListener {
+            addListener(object : SimpleAnimatorListener() {
                 override fun onAnimationEnd(p0: Animator?) {
                     previousToolbarColor = newColor
-                }
-
-                override fun onAnimationCancel(p0: Animator?) {
-                }
-
-                override fun onAnimationStart(p0: Animator?) {
-                }
-
-                override fun onAnimationRepeat(p0: Animator?) {
                 }
             })
 
@@ -203,18 +196,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                     window.statusBarColor = blendedColor
                 }
 
-                addListener(object : Animator.AnimatorListener {
+                addListener(object : SimpleAnimatorListener() {
                     override fun onAnimationEnd(p0: Animator?) {
                         previousStatusBarColor = newColor
-                    }
-
-                    override fun onAnimationCancel(p0: Animator?) {
-                    }
-
-                    override fun onAnimationStart(p0: Animator?) {
-                    }
-
-                    override fun onAnimationRepeat(p0: Animator?) {
                     }
                 })
 
