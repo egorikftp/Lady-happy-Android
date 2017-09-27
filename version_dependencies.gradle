@@ -1,53 +1,61 @@
 ext.versions = [
-        minSdkVersion     : 16,
-        compileSdkVersion : 26,
-        buildToolsVersion : "26.0.1",
-        gradleAlpha       : "3.0.0-beta6",
-        googleServices    : "3.1.0",
+        minSdkVersion    : 16,
+        compileSdkVersion: 26,
+        buildToolsVersion: "26.0.1",
+        gradleAlpha      : "3.0.0-beta6",
+        googleServices   : "3.1.0",
 
-        supportVersion    : "26.1.0",
-        constraintVersion : "1.0.2",
-        kotlinVersion     : "1.1.4",
-        ciceroneVersion   : "2.1.0",
-        moxyVersion       : "1.5.3",
-        junitVersion      : "4.12",
-        espressoVersion   : "3.0.1",
-        firebaseVersion   : "11.2.2",
-        multidexVersion   : "1.0.2",
-        glideVersion      : "3.7.0",
-        hockeyAppVersion  : "4.1.4",
-        coreLibKotlin     : "0.0.1"
+        supportVersion   : "26.1.0",
+        constraintVersion: "1.0.2",
+        kotlinVersion    : "1.1.4",
+        ciceroneVersion  : "2.1.0",
+        moxyVersion      : "1.5.3",
+        junitVersion     : "4.12",
+        espressoVersion  : "3.0.1",
+        firebaseVersion  : "11.4.0",
+        multidexVersion  : "1.0.2",
+        glideVersion     : "3.7.0",
+        hockeyAppVersion : "4.1.4",
+        coreLibKotlin    : "0.0.1",
+        daggerVersion    : "2.10",
+        ankoVersion      : "0.10.1",
 ]
 
 ext.gradlePlugins = [
-        gradle: "com.android.tools.build:gradle:$versions.gradleAlpha",
-        kotlin: "org.jetbrains.kotlin:kotlin-gradle-plugin:$versions.kotlinVersion",
+        gradle        : "com.android.tools.build:gradle:$versions.gradleAlpha",
+        kotlin        : "org.jetbrains.kotlin:kotlin-gradle-plugin:$versions.kotlinVersion",
         googleservices: "com.google.gms:google-services:$versions.googleServices"
 ]
 
+
 ext.libs = [
-        appcompat       : "com.android.support:appcompat-v7:$versions.supportVersion",
-        recyclerview    : "com.android.support:recyclerview-v7:$versions.supportVersion",
-        design          : "com.android.support:design:$versions.supportVersion",
-        palette         : "com.android.support:palette-v7:$versions.supportVersion",
-        cardview        : "com.android.support:cardview-v7:$versions.supportVersion",
-        constraint      : "com.android.support.constraint:constraint-layout:$versions.constraintVersion",
+        appcompat         : "com.android.support:appcompat-v7:$versions.supportVersion",
+        recyclerview      : "com.android.support:recyclerview-v7:$versions.supportVersion",
+        design            : "com.android.support:design:$versions.supportVersion",
+        palette           : "com.android.support:palette-v7:$versions.supportVersion",
+        cardview          : "com.android.support:cardview-v7:$versions.supportVersion",
+        constraint        : "com.android.support.constraint:constraint-layout:$versions.constraintVersion",
 
-        firebaseStorage : "com.google.firebase:firebase-storage:$versions.firebaseVersion",
-        firebaseAuth    : "com.google.firebase:firebase-auth:$versions.firebaseVersion",
+        firebaseStorage   : "com.google.firebase:firebase-storage:$versions.firebaseVersion",
+        firebaseAuth      : "com.google.firebase:firebase-auth:$versions.firebaseVersion",
+        googlePlayServices: "com.google.android.gms:play-services-plus:$versions.firebaseVersion",
 
-        cicerone        : "ru.terrakok.cicerone:cicerone:$versions.ciceroneVersion",
-        moxy            : "com.arello-mobile:moxy-app-compat:$versions.moxyVersion",
-        moxyCompiler    : "com.arello-mobile:moxy-compiler:$versions.moxyVersion",
-        glide           : "com.github.bumptech.glide:glide:$versions.glideVersion",
-        hockeyApp       : "net.hockeyapp.android:HockeySDK:$versions.hockeyAppVersion",
+        cicerone          : "ru.terrakok.cicerone:cicerone:$versions.ciceroneVersion",
+        moxy              : "com.arello-mobile:moxy-app-compat:$versions.moxyVersion",
+        moxyCompiler      : "com.arello-mobile:moxy-compiler:$versions.moxyVersion",
+        glide             : "com.github.bumptech.glide:glide:$versions.glideVersion",
+        hockeyApp         : "net.hockeyapp.android:HockeySDK:$versions.hockeyAppVersion",
+        dagger            : "com.google.dagger:dagger:$versions.daggerVersion",
+        daggerCompiler    : "com.google.dagger:dagger-compiler:$versions.daggerVersion",
 
-        junit           : "junit:junit:$versions.junitVersion",
-        espresso        : "com.android.support.test.espresso:espresso-core:$versions.espressoVersion",
-        kotlin          : "org.jetbrains.kotlin:kotlin-stdlib-jre7:$versions.kotlinVersion",
-        multidex        : "com.android.support:multidex:$versions.multidexVersion",
+        junit             : "junit:junit:$versions.junitVersion",
+        espresso          : "com.android.support.test.espresso:espresso-core:$versions.espressoVersion",
+        multidex          : "com.android.support:multidex:$versions.multidexVersion",
 
-        coreLibKt       : "com.egoriku:CoreLib_Kotlin:$versions.coreLibKotlin"
+        kotlin            : "org.jetbrains.kotlin:kotlin-stdlib-jre7:$versions.kotlinVersion",
+        anko_v4           : "org.jetbrains.anko:anko-appcompat-v7:$versions.ankoVersion",
+        anko_v7           : "org.jetbrains.anko:anko-support-v4-commons:$versions.ankoVersion",
+        coreLibKt         : "com.egoriku:CoreLib_Kotlin:$versions.coreLibKotlin"
 ]
 
 allprojects {

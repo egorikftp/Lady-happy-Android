@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-kapt'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply from: 'keys.gradle'
@@ -34,7 +35,7 @@ android {
             resValue("string", "hockey_app_id", "\"$hockey_app_id_debug\"")
         }
 
-        debug{
+        debug {
             resValue "string", "app_name", "GiuGi Toys Beta"
             resValue("string", "hockey_app_id", "\"$hockey_app_id_debug\"")
         }
@@ -60,6 +61,7 @@ dependencies {
     })
     testImplementation libs.junit
 
+    implementation libs.googlePlayServices
     implementation libs.appcompat
     implementation libs.design
     implementation libs.constraint
@@ -73,9 +75,14 @@ dependencies {
     implementation libs.multidex
 
     implementation libs.moxy
-    implementation libs.moxyCompiler
+    kapt libs.moxyCompiler
     implementation libs.cicerone
 
+    implementation libs.dagger
+    kapt libs.daggerCompiler
+
+    implementation libs.anko_v4
+    implementation libs.anko_v7
     implementation libs.coreLibKt
 }
 

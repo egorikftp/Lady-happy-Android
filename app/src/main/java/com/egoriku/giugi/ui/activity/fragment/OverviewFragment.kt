@@ -1,8 +1,8 @@
-package com.egoriku.giugi.activity
+package com.egoriku.giugi.ui.activity.fragment
+
 
 import android.animation.Animator
 import android.animation.ValueAnimator
-import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.graphics.Color
@@ -11,36 +11,26 @@ import android.graphics.drawable.ColorDrawable
 import android.os.Build
 import android.os.Bundle
 import android.support.annotation.ColorInt
-import android.support.design.widget.NavigationView
+import android.support.v4.app.Fragment
 import android.support.v4.content.ContextCompat
-import android.support.v4.view.GravityCompat
-import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.graphics.Palette
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
-import android.util.Log
-import android.view.MenuItem
-import android.widget.Toast
-import com.arellomobile.mvp.MvpAppCompatActivity
-import com.arellomobile.mvp.presenter.InjectPresenter
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import com.egoriku.corelib_kt.extensions.d
+import com.egoriku.corelib_kt.extensions.e
 import com.egoriku.corelib_kt.listeners.SimpleAnimatorListener
-import com.egoriku.giugi.HelloWorldPresenter
-import com.egoriku.giugi.HelloWorldView
 import com.egoriku.giugi.R
+import com.egoriku.giugi.ui.activity.MainActivity
 import com.egoriku.giugi.adapter.ToysAdapter
 import com.egoriku.giugi.data.Toy
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.fragment_overview.*
 import kotlinx.android.synthetic.main.layout_images.view.*
 
-
-class MainActivity : MvpAppCompatActivity(), NavigationView.OnNavigationItemSelectedListener, HelloWorldView {
-
-    override fun showMessage(message: Int) {
-        test_view.text = message.toString()
-    }
-
-    @InjectPresenter
-    lateinit var presenter: HelloWorldPresenter
+class OverviewFragment : Fragment() {
 
     @ColorInt
     private var previousContainerColor = 0
@@ -51,25 +41,11 @@ class MainActivity : MvpAppCompatActivity(), NavigationView.OnNavigationItemSele
     @ColorInt
     private var previousStatusBarColor = 0
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        setSupportActionBar(toolbar)
+    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        val view = inflater?.inflate(R.layout.fragment_overview, container, false)
 
-        supportActionBar?.title = "All toys"
-
-        val toggle = ActionBarDrawerToggle(
-                this, drawer_layout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
-        drawer_layout.addDrawerListener(toggle)
-        toggle.syncState()
-
-        previousToolbarColor = ContextCompat.getColor(this, R.color.colorPrimary)
-        previousStatusBarColor = ContextCompat.getColor(this, R.color.colorPrimaryDark)
-
-        nav_view.apply {
-            setNavigationItemSelectedListener(this@MainActivity)
-            setCheckedItem(R.id.nav_all_toys)
-        }
+        previousToolbarColor = ContextCompat.getColor(context, R.color.colorPrimary)
+        previousStatusBarColor = ContextCompat.getColor(context, R.color.colorPrimaryDark)
 
         val list = mutableListOf<Toy>()
         list.add(Toy("1", R.drawable.ic1))
@@ -81,11 +57,11 @@ class MainActivity : MvpAppCompatActivity(), NavigationView.OnNavigationItemSele
         list.add(Toy("7", R.drawable.ic7))
         list.add(Toy("8", R.drawable.ic8))
 
-        val adapterToy = ToysAdapter(this, list)
+        val adapterToy = ToysAdapter(context, list)
 
         recycler.apply {
             setHasFixedSize(true)
-            layoutManager = LinearLayoutManager(this@MainActivity)
+            layoutManager = LinearLayoutManager(context)
             adapter = adapterToy
             addOnScrollListener(object : RecyclerView.OnScrollListener() {
 
@@ -96,38 +72,38 @@ class MainActivity : MvpAppCompatActivity(), NavigationView.OnNavigationItemSele
                         var firstVisiblePosition = linearLayoutManager.findFirstVisibleItemPosition()
                         val lastVisiblePosition = linearLayoutManager.findLastVisibleItemPosition()
 
-                        Log.d("egor", " $firstVisiblePosition $lastVisiblePosition")
+                        d("egor $firstVisiblePosition $lastVisiblePosition")
 
                         if (firstVisiblePosition == -1 || lastVisiblePosition == -1) {
                             return
                         }
 
                         val countVisibleItems = lastVisiblePosition - firstVisiblePosition
-                        Log.e("egor", countVisibleItems.toString())
+                        e("egor $countVisibleItems")
 
                         var overlayDrawable: Bitmap? = null
 
                         while (firstVisiblePosition <= countVisibleItems) {
-                            val view = layoutManager.findViewByPosition(firstVisiblePosition)
-                            val drawable = view.image_item.drawable
+                            val visibleView = layoutManager.findViewByPosition(firstVisiblePosition)
+                            val drawable = visibleView.image_item.drawable
 
                             if (drawable != null) {
                                 val bitmap = Bitmap.createScaledBitmap((drawable as BitmapDrawable).bitmap, 120, 120, false)
 
-                                if (overlayDrawable == null) {
-                                    Log.e("egor", "initial")
-                                    overlayDrawable = bitmap
+                                overlayDrawable = if (overlayDrawable == null) {
+                                    e("egor initial")
+                                    bitmap
                                 } else {
-                                    Log.e("egor", "add new bitmap")
-                                    overlayDrawable = mergeBitmap(overlayDrawable, bitmap)
+                                    e("egor add new bitmap")
+                                    mergeBitmap(overlayDrawable, bitmap)
                                 }
                             }
-                            Log.e("egor", "inc")
+
                             firstVisiblePosition++
                         }
 
                         overlayDrawable?.let {
-                            Log.e("egor", "pallete")
+                            e("egor pallete")
 
                             Palette.from(it).generate { palette ->
                                 palette.mutedSwatch?.rgb?.let {
@@ -145,6 +121,7 @@ class MainActivity : MvpAppCompatActivity(), NavigationView.OnNavigationItemSele
                 }
             })
         }
+        return view
     }
 
     private fun changeColorRootLayout(@ColorInt rootLayoutColor: Int) {
@@ -172,7 +149,7 @@ class MainActivity : MvpAppCompatActivity(), NavigationView.OnNavigationItemSele
                 val position = it.animatedFraction
                 val blendedColor = blendColors(previousToolbarColor, newColor, position)
 
-                supportActionBar?.setBackgroundDrawable(ColorDrawable(blendedColor))
+                (activity as MainActivity).supportActionBar?.setBackgroundDrawable(ColorDrawable(blendedColor))
             }
 
             addListener(object : SimpleAnimatorListener() {
@@ -193,7 +170,7 @@ class MainActivity : MvpAppCompatActivity(), NavigationView.OnNavigationItemSele
                     val position = it.animatedFraction
                     val blendedColor = blendColors(previousStatusBarColor, newColor, position)
 
-                    window.statusBarColor = blendedColor
+                    activity.window.statusBarColor = blendedColor
                 }
 
                 addListener(object : SimpleAnimatorListener() {
@@ -242,24 +219,14 @@ class MainActivity : MvpAppCompatActivity(), NavigationView.OnNavigationItemSele
         return mergedBitmap
     }
 
-    override fun onBackPressed() {
-        if (drawer_layout.isDrawerOpen(GravityCompat.START)) {
-            drawer_layout.closeDrawer(GravityCompat.START)
-        } else if (supportFragmentManager.backStackEntryCount == 1) {
-            finish()
+
+    companion object {
+
+        fun newInstance(): OverviewFragment {
+            val fragment = OverviewFragment()
+            val args = Bundle()
+            fragment.arguments = args
+            return fragment
         }
-
-        super.onBackPressed()
-    }
-
-    override fun onNavigationItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
-            R.id.nav_order -> startActivity(Intent(this, OrderActivity::class.java))
-            R.id.nav_share -> Toast.makeText(this, "Will share application link", Toast.LENGTH_SHORT).show()
-            R.id.nav_send -> Toast.makeText(this, "Will share feedback in Google Play", Toast.LENGTH_SHORT).show()
-        }
-
-        drawer_layout.closeDrawer(GravityCompat.START)
-        return true
     }
 }

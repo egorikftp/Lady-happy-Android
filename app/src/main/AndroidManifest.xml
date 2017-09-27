@@ -2,16 +2,26 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.egoriku.giugi">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
+        android:name=".App"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity
+            android:name=".ui.activity.MainActivity"
+            android:theme="@style/StartScreenStyle" />
 
         <activity
-            android:name="com.egoriku.giugi.activity.MainActivity"
+            android:name=".ui.activity.OrderActivity"
+            android:label="Order" />
+
+        <activity
+            android:name=".ui.activity.start.StartActivity"
             android:theme="@style/StartScreenStyle">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -20,9 +30,8 @@
             </intent-filter>
         </activity>
 
-        <activity
-            android:name="com.egoriku.giugi.activity.OrderActivity"
-            android:label="Order" />
+        <meta-data
+            android:name="net.hockeyapp.android.appIdentifier"
+            android:value="@string/hockey_app_id" />
     </application>
-
 </manifest>

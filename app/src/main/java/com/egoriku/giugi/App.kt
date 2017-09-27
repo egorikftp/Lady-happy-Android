@@ -1,25 +1,25 @@
 package com.egoriku.giugi
 
 import com.egoriku.corelib_kt.extensions.DelegatesExt
-import ru.terrakok.cicerone.Cicerone
-import ru.terrakok.cicerone.Router
+import com.egoriku.giugi.dagger.AppComponent
+import com.egoriku.giugi.dagger.DaggerAppComponent
 
 
 class App : DebugApplication() {
+
     companion object {
         @JvmStatic
         var instance: App by DelegatesExt.notNullSingleValue()
             private set
-        private lateinit var cicerone: Cicerone<Router>
+    }
+
+    val appComponent: AppComponent by lazy {
+        DaggerAppComponent.builder().build()
     }
 
     override fun onCreate() {
         super.onCreate()
         instance = this
-        cicerone = Cicerone.create()
     }
-
-    fun getNavigationHolder() = cicerone.navigatorHolder
-
-    fun getRouter() = cicerone.router
 }
+
