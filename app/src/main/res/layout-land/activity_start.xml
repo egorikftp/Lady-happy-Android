@@ -35,7 +35,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:lottie_fileName="start_screen_phone.json"
+        app:lottie_fileName="start_screen_tablet.json"
         app:lottie_loop="false" />
 
 </android.support.constraint.ConstraintLayout>

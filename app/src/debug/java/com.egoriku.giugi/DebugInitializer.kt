@@ -5,7 +5,6 @@ import android.app.Application
 import android.os.Bundle
 import com.egoriku.corelib_kt.listeners.SimpleActivityLifecycleCallback
 import com.egoriku.giugi.ui.activity.MainActivity
-import com.egoriku.giugi.ui.activity.start.StartActivity
 import net.hockeyapp.android.CrashManager
 import net.hockeyapp.android.CrashManagerListener
 import net.hockeyapp.android.UpdateManager
@@ -16,7 +15,7 @@ object DebugInitializer {
         application.registerActivityLifecycleCallbacks(object : SimpleActivityLifecycleCallback() {
 
             override fun onActivityCreated(activity: Activity?, bundle: Bundle?) {
-                if (activity is StartActivity) {
+                if (activity is MainActivity) {
                     if (BuildConfig.DEBUG) {
                         CrashManager.register(activity, crashListener)
                         UpdateManager.register(activity)
