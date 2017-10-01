@@ -19,6 +19,7 @@ ext.versions = [
         coreLibKotlin    : "0.0.1",
         daggerVersion    : "2.10",
         ankoVersion      : "0.10.1",
+        lottieVerion     : "2.2.5"
 ]
 
 ext.gradlePlugins = [
@@ -26,7 +27,6 @@ ext.gradlePlugins = [
         kotlin        : "org.jetbrains.kotlin:kotlin-gradle-plugin:$versions.kotlinVersion",
         googleservices: "com.google.gms:google-services:$versions.googleServices"
 ]
-
 
 ext.libs = [
         appcompat         : "com.android.support:appcompat-v7:$versions.supportVersion",
@@ -55,7 +55,9 @@ ext.libs = [
         kotlin            : "org.jetbrains.kotlin:kotlin-stdlib-jre7:$versions.kotlinVersion",
         anko_v4           : "org.jetbrains.anko:anko-appcompat-v7:$versions.ankoVersion",
         anko_v7           : "org.jetbrains.anko:anko-support-v4-commons:$versions.ankoVersion",
-        coreLibKt         : "com.egoriku:CoreLib_Kotlin:$versions.coreLibKotlin"
+        coreLibKt         : "com.egoriku:CoreLib_Kotlin:$versions.coreLibKotlin",
+
+        lottie            : "com.airbnb.android:lottie:$versions.lottieVersion"
 ]
 
 allprojects {

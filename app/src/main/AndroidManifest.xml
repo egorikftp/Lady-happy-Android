@@ -14,7 +14,7 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".ui.activity.MainActivity"
-            android:theme="@style/StartScreenStyle" />
+            android:theme="@style/AppTheme" />
 
         <activity
             android:name=".ui.activity.OrderActivity"
@@ -22,7 +22,8 @@
 
         <activity
             android:name=".ui.activity.start.StartActivity"
-            android:theme="@style/StartScreenStyle">
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -1,11 +1,13 @@
 package com.egoriku.giugi.ui.activity.start
 
+import android.animation.Animator
 import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import com.arellomobile.mvp.MvpAppCompatActivity
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
+import com.egoriku.corelib_kt.listeners.SimpleAnimatorListener
 import com.egoriku.giugi.App
 import com.egoriku.giugi.R
 import com.egoriku.giugi.common.Screens
@@ -47,19 +49,25 @@ class StartActivity : MvpAppCompatActivity(), StartActivityView {
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.activity_start)
-
-        imageView.setOnClickListener {
-            presenter.openMainActivity()
-        }
     }
 
     override fun onResume() {
         super.onResume()
         navigatorHolder.setNavigator(navigator)
+
+        startActivityImageView.apply {
+            addAnimatorListener(object : SimpleAnimatorListener() {
+                override fun onAnimationEnd(p0: Animator?) {
+                    presenter.openMainActivity()
+                }
+            })
+            playAnimation()
+        }
     }
 
     override fun onPause() {
         navigatorHolder.removeNavigator()
+        overridePendingTransition(0, 0)
         super.onPause()
     }
 

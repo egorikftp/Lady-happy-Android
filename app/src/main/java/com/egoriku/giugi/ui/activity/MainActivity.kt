@@ -8,6 +8,7 @@ import android.support.v7.app.ActionBarDrawerToggle
 import android.view.MenuItem
 import android.widget.Toast
 import com.arellomobile.mvp.MvpAppCompatActivity
+import com.egoriku.corelib_kt.extensions.consume
 import com.egoriku.giugi.R
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -43,13 +44,14 @@ class MainActivity : MvpAppCompatActivity(), NavigationView.OnNavigationItemSele
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
-            R.id.nav_order -> startActivity(Intent(this, OrderActivity::class.java))
-            R.id.nav_share -> Toast.makeText(this, "Will share application link", Toast.LENGTH_SHORT).show()
-            R.id.nav_send -> Toast.makeText(this, "Will share feedback in Google Play", Toast.LENGTH_SHORT).show()
-        }
+        return consume {
+            when (item.itemId) {
+                R.id.nav_order -> startActivity(Intent(this, OrderActivity::class.java))
+                R.id.nav_share -> Toast.makeText(this, "Will share application link", Toast.LENGTH_SHORT).show()
+                R.id.nav_send -> Toast.makeText(this, "Will share feedback in Google Play", Toast.LENGTH_SHORT).show()
+            }
 
-        drawer_layout.closeDrawer(GravityCompat.START)
-        return true
+            drawer_layout.closeDrawer(GravityCompat.START)
+        }
     }
 }

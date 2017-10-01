@@ -84,6 +84,8 @@ dependencies {
     implementation libs.anko_v4
     implementation libs.anko_v7
     implementation libs.coreLibKt
+
+    implementation libs.lottie
 }
 
 apply plugin: 'com.google.gms.google-services'

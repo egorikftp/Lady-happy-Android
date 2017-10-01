@@ -3,4 +3,5 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="action_settings">Settings</string>
+    <string name="activity_start_app_name">Lady\'s Happy</string>
 </resources>
