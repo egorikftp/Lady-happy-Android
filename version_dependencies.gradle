@@ -19,7 +19,7 @@ ext.versions = [
         coreLibKotlin    : "0.0.1",
         daggerVersion    : "2.10",
         ankoVersion      : "0.10.1",
-        lottieVerion     : "2.2.5"
+        lottieVersion     : "2.2.5"
 ]
 
 ext.gradlePlugins = [
