@@ -33,6 +33,7 @@ class MainActivity : MvpAppCompatActivity(), RouterProvider, DrawerNavigationVie
     private lateinit var navigationDrawer: Drawer
 
     private var allGoodsContainer: ContainerFragment? = null
+    private var orderContainer: ContainerFragment? = null
 
     @Inject
     lateinit var router: Router
@@ -54,6 +55,10 @@ class MainActivity : MvpAppCompatActivity(), RouterProvider, DrawerNavigationVie
             when (command.screenKey) {
                 Fragments.ALL_GOODS -> fragmentManager.beginTransaction()
                         .attach(allGoodsContainer)
+                        .commitNow()
+
+                Fragments.ORDER -> fragmentManager.beginTransaction()
+                        .attach(orderContainer)
                         .commitNow()
             }
         }
@@ -124,12 +129,21 @@ class MainActivity : MvpAppCompatActivity(), RouterProvider, DrawerNavigationVie
         val fragmentManager = supportFragmentManager
 
         allGoodsContainer = fragmentManager.findFragmentByTag(Fragments.ALL_GOODS) as ContainerFragment?
+        orderContainer = fragmentManager.findFragmentByTag(Fragments.ORDER) as ContainerFragment?
 
         if (allGoodsContainer == null) {
             allGoodsContainer = ContainerFragment.newInstance(Fragments.ALL_GOODS)
             fragmentManager.beginTransaction()
-                    .add(R.id.container, allGoodsContainer, Fragments.ALL_GOODS)
+                    .add(R.id.mainActivityContainer, allGoodsContainer, Fragments.ALL_GOODS)
                     .detach(allGoodsContainer)
+                    .commitNow()
+        }
+
+        if (orderContainer == null) {
+            orderContainer = ContainerFragment.newInstance(Fragments.ORDER)
+            fragmentManager.beginTransaction()
+                    .add(R.id.mainActivityContainer, orderContainer)
+                    .detach(orderContainer)
                     .commitNow()
         }
     }
@@ -145,7 +159,7 @@ class MainActivity : MvpAppCompatActivity(), RouterProvider, DrawerNavigationVie
     }
 
     override fun onBackPressed() {
-        val fragment = supportFragmentManager.findFragmentById(R.id.container)
+        val fragment = supportFragmentManager.findFragmentById(R.id.mainActivityContainer)
         if (fragment != null && fragment is BackButtonListener && fragment.onBackPressed()) {
             return
         } else {

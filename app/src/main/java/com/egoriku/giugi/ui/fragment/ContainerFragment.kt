@@ -15,6 +15,7 @@ import com.egoriku.giugi.navigation.BackButtonListener
 import com.egoriku.giugi.navigation.LocalCiceroneHolder
 import com.egoriku.giugi.navigation.RouterProvider
 import com.egoriku.giugi.ui.fragment.allgoods.AllGoodsFragment
+import com.egoriku.giugi.ui.fragment.order.OrderFragment
 import ru.terrakok.cicerone.Cicerone
 import ru.terrakok.cicerone.Navigator
 import ru.terrakok.cicerone.Router
@@ -88,6 +89,7 @@ class ContainerFragment : Fragment(), RouterProvider, BackButtonListener {
                 override fun createFragment(screenKey: String?, data: Any?): Fragment? {
                     return when (screenKey) {
                         Fragments.ALL_GOODS -> AllGoodsFragment.newInstance()
+                        Fragments.ORDER -> OrderFragment.newInstance()
                         else -> null
                     }
                 }

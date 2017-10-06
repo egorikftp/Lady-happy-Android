@@ -1,13 +1,13 @@
-package com.egoriku.giugi.mvp.main.fragment
+package com.egoriku.giugi.mvp.main.fragment.order
 
 import com.arellomobile.mvp.InjectViewState
 import com.arellomobile.mvp.MvpPresenter
 import ru.terrakok.cicerone.Router
 
 @InjectViewState
-class AllGoodsPresenter(private val router: Router?) : MvpPresenter<AllGoodsView>() {
+class OrderPresenter(private val router: Router?) : MvpPresenter<OrderView>(){
 
-    fun onBackPressed() {
+    fun onBackPressed(){
         router?.exit()
     }
 }

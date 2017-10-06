@@ -25,8 +25,8 @@ import com.egoriku.corelib_kt.listeners.SimpleAnimatorListener
 import com.egoriku.giugi.R
 import com.egoriku.giugi.adapter.ToysAdapter
 import com.egoriku.giugi.data.Toy
-import com.egoriku.giugi.mvp.main.fragment.AllGoodsPresenter
-import com.egoriku.giugi.mvp.main.fragment.AllGoodsView
+import com.egoriku.giugi.mvp.main.fragment.allgoods.AllGoodsPresenter
+import com.egoriku.giugi.mvp.main.fragment.allgoods.AllGoodsView
 import com.egoriku.giugi.navigation.BackButtonListener
 import com.egoriku.giugi.navigation.RouterProvider
 import com.egoriku.giugi.ui.activity.MainActivity
