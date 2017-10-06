@@ -1,4 +1,4 @@
-package com.egoriku.giugi.ui.activity.fragment
+package com.egoriku.giugi.ui.fragment.allgoods
 
 
 import android.animation.Animator
@@ -6,31 +6,52 @@ import android.animation.ValueAnimator
 import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.graphics.Color
-import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.ColorDrawable
 import android.os.Build
 import android.os.Bundle
 import android.support.annotation.ColorInt
-import android.support.v4.app.Fragment
 import android.support.v4.content.ContextCompat
-import android.support.v7.graphics.Palette
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.egoriku.corelib_kt.extensions.d
-import com.egoriku.corelib_kt.extensions.e
+import com.arellomobile.mvp.MvpAppCompatFragment
+import com.arellomobile.mvp.presenter.InjectPresenter
+import com.arellomobile.mvp.presenter.ProvidePresenter
+import com.egoriku.corelib_kt.extensions.consume
+import com.egoriku.corelib_kt.extensions.inflate
 import com.egoriku.corelib_kt.listeners.SimpleAnimatorListener
 import com.egoriku.giugi.R
-import com.egoriku.giugi.ui.activity.MainActivity
 import com.egoriku.giugi.adapter.ToysAdapter
 import com.egoriku.giugi.data.Toy
-import kotlinx.android.synthetic.main.activity_main.*
+import com.egoriku.giugi.mvp.main.fragment.AllGoodsPresenter
+import com.egoriku.giugi.mvp.main.fragment.AllGoodsView
+import com.egoriku.giugi.navigation.BackButtonListener
+import com.egoriku.giugi.navigation.RouterProvider
+import com.egoriku.giugi.ui.activity.MainActivity
 import kotlinx.android.synthetic.main.fragment_overview.*
-import kotlinx.android.synthetic.main.layout_images.view.*
 
-class OverviewFragment : Fragment() {
+
+class AllGoodsFragment : MvpAppCompatFragment(), AllGoodsView, BackButtonListener {
+
+    @InjectPresenter
+    lateinit var presenter: AllGoodsPresenter
+
+    @ProvidePresenter
+    fun provideAllGoodsPresenter(): AllGoodsPresenter {
+        return AllGoodsPresenter((parentFragment as RouterProvider).getNavigationRouter())
+    }
+
+    companion object {
+
+        fun newInstance(): AllGoodsFragment {
+            val fragment = AllGoodsFragment()
+            val args = Bundle()
+            fragment.arguments = args
+            return fragment
+        }
+    }
 
     @ColorInt
     private var previousContainerColor = 0
@@ -42,8 +63,11 @@ class OverviewFragment : Fragment() {
     private var previousStatusBarColor = 0
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val view = inflater?.inflate(R.layout.fragment_overview, container, false)
+        return container?.inflate(R.layout.fragment_overview, false)
+    }
 
+    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         previousToolbarColor = ContextCompat.getColor(context, R.color.colorPrimary)
         previousStatusBarColor = ContextCompat.getColor(context, R.color.colorPrimaryDark)
 
@@ -67,7 +91,7 @@ class OverviewFragment : Fragment() {
 
                 override fun onScrolled(recyclerView: RecyclerView?, dx: Int, dy: Int) {
                     super.onScrolled(recyclerView, dx, dy)
-                    recyclerView.let {
+                  /*  recyclerView.let {
                         val linearLayoutManager = layoutManager as LinearLayoutManager
                         var firstVisiblePosition = linearLayoutManager.findFirstVisibleItemPosition()
                         val lastVisiblePosition = linearLayoutManager.findLastVisibleItemPosition()
@@ -117,11 +141,10 @@ class OverviewFragment : Fragment() {
                                 }
                             }
                         }
-                    }
+                    }*/
                 }
             })
         }
-        return view
     }
 
     private fun changeColorRootLayout(@ColorInt rootLayoutColor: Int) {
@@ -130,7 +153,7 @@ class OverviewFragment : Fragment() {
                 val position = it.animatedFraction
                 val blendedColorRootLayout = blendColors(previousContainerColor, rootLayoutColor, position)
 
-                root_layout.setBackgroundColor(blendedColorRootLayout)
+                fragmentAllGoodsRoot.setBackgroundColor(blendedColorRootLayout)
             }
 
             addListener(object : SimpleAnimatorListener() {
@@ -219,14 +242,9 @@ class OverviewFragment : Fragment() {
         return mergedBitmap
     }
 
-
-    companion object {
-
-        fun newInstance(): OverviewFragment {
-            val fragment = OverviewFragment()
-            val args = Bundle()
-            fragment.arguments = args
-            return fragment
+    override fun onBackPressed(): Boolean {
+        return consume {
+            presenter.onBackPressed()
         }
     }
 }

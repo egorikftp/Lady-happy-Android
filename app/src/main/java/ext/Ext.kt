@@ -12,3 +12,7 @@ inline fun ImageView.animateAvd() {
         animatedDrawable.start()
     }
 }
+
+object Constants{
+    const val EMPTY = ""
+}

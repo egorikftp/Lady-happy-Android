@@ -86,6 +86,9 @@ dependencies {
     implementation libs.coreLibKt
 
     implementation libs.lottie
+    implementation (libs.materialDrawer) {
+        transitive = true
+    }
 }
 
 apply plugin: 'com.google.gms.google-services'

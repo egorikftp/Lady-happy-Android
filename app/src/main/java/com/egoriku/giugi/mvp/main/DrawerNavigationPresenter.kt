@@ -2,30 +2,30 @@ package com.egoriku.giugi.mvp.main
 
 import com.arellomobile.mvp.InjectViewState
 import com.arellomobile.mvp.MvpPresenter
-import com.egoriku.giugi.common.Screens
+import com.egoriku.giugi.common.Fragments
 import ru.terrakok.cicerone.Router
 
 @InjectViewState
 class DrawerNavigationPresenter(private val router: Router): MvpPresenter<DrawerNavigationView>() {
 
     fun onAllGoodsDrawerItemClick(){
-        viewState.selectDrawerItem(DrawerNavigationView.ALL_GOODS_POSITION)
-        router.replaceScreen(Screens.ALL_GOODS_SCREEN)
+       // viewState.selectDrawerItem(DrawerNavigationView.OVERVIEW_POSITION)
+        router.replaceScreen(Fragments.ALL_GOODS)
     }
 
     fun onOrderDrawerItemClick(){
         viewState.selectDrawerItem(DrawerNavigationView.ORDER_POSITION)
-        router.replaceScreen(Screens.ORDER_SCREEN)
+        router.replaceScreen(Fragments.ORDER)
     }
 
     fun onShareDrawerItemClick(){
         viewState.selectDrawerItem(DrawerNavigationView.SHARE_POSITION)
-        router.replaceScreen(Screens.SHARE_SCREEN)
+        router.replaceScreen(Fragments.SHARE)
     }
 
     fun onFeedbackDrawerItemClick(){
         viewState.selectDrawerItem(DrawerNavigationView.FEEDBACK_POSITION)
-        router.replaceScreen(Screens.FEEDBACK_SCREEN)
+        router.replaceScreen(Fragments.FEEDBACK)
     }
 
     fun onBackPressed(){

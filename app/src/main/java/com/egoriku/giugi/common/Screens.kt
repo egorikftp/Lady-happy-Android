@@ -3,9 +3,15 @@ package com.egoriku.giugi.common
 object Screens {
     const val START_ACTIVITY = "START_ACTIVITY"
     const val MAIN_ACTIVITY = "MAIN_ACTIVITY"
+}
 
-    const val ALL_GOODS_SCREEN = "ALL_GOODS_SCREEN"
-    const val ORDER_SCREEN = "ORDER_SCREEN"
-    const val SHARE_SCREEN = "SHARE_SCREEN"
-    const val FEEDBACK_SCREEN = "FEEDBACK_SCREEN"
+object Fragments {
+    const val ALL_GOODS = "ALL_GOODS"
+    const val ORDER = "ORDER"
+    const val SHARE = "SHARE"
+    const val FEEDBACK = "FEEDBACK"
+}
+
+object ExtraConstants {
+    const val EXTRA_FRAGMENT_CONTAINER_NAME = "EXTRA_FRAGMENT_CONTAINER_NAME"
 }
