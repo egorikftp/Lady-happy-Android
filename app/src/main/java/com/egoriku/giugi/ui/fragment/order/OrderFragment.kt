@@ -9,29 +9,36 @@ import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
 import com.egoriku.corelib_kt.extensions.consume
 import com.egoriku.corelib_kt.extensions.inflate
+import com.egoriku.giugi.App
 import com.egoriku.giugi.R
 import com.egoriku.giugi.mvp.main.fragment.order.OrderPresenter
 import com.egoriku.giugi.mvp.main.fragment.order.OrderView
 import com.egoriku.giugi.navigation.BackButtonListener
-import com.egoriku.giugi.navigation.RouterProvider
+import ru.terrakok.cicerone.Router
+import javax.inject.Inject
 
 class OrderFragment : MvpAppCompatFragment(), OrderView, BackButtonListener {
 
     companion object {
         fun newInstance(): OrderFragment {
-            val fragment = OrderFragment()
-            val args = Bundle()
-            fragment.arguments = args
-            return fragment
+            return OrderFragment()
         }
     }
+
+    @Inject
+    lateinit var router: Router
 
     @InjectPresenter
     lateinit var presenter: OrderPresenter
 
     @ProvidePresenter
     fun provideOrderPresenter(): OrderPresenter {
-        return OrderPresenter((parentFragment as RouterProvider).getNavigationRouter())
+        return OrderPresenter(router)
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        App.instance.appComponent.inject(this)
+        super.onCreate(savedInstanceState)
     }
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {

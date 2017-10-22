@@ -20,7 +20,7 @@
         <ImageView
             android:id="@+id/image_item"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="240dp"
             android:adjustViewBounds="true"
             android:scaleType="fitCenter"
             tools:src="@drawable/ic1" />

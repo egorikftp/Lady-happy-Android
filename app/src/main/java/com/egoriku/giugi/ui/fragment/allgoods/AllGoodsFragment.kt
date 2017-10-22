@@ -22,34 +22,40 @@ import com.arellomobile.mvp.presenter.ProvidePresenter
 import com.egoriku.corelib_kt.extensions.consume
 import com.egoriku.corelib_kt.extensions.inflate
 import com.egoriku.corelib_kt.listeners.SimpleAnimatorListener
+import com.egoriku.giugi.App
 import com.egoriku.giugi.R
 import com.egoriku.giugi.adapter.ToysAdapter
 import com.egoriku.giugi.data.Toy
 import com.egoriku.giugi.mvp.main.fragment.allgoods.AllGoodsPresenter
 import com.egoriku.giugi.mvp.main.fragment.allgoods.AllGoodsView
 import com.egoriku.giugi.navigation.BackButtonListener
-import com.egoriku.giugi.navigation.RouterProvider
 import com.egoriku.giugi.ui.activity.MainActivity
-import kotlinx.android.synthetic.main.fragment_overview.*
+import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.fragment_all_goods.*
+import ru.terrakok.cicerone.Router
+import javax.inject.Inject
 
 
 class AllGoodsFragment : MvpAppCompatFragment(), AllGoodsView, BackButtonListener {
+
+    override fun setTitle(title: String) {
+        activity.toolbarMainActivity.title = title
+    }
+
+    @Inject
+    lateinit var router: Router
 
     @InjectPresenter
     lateinit var presenter: AllGoodsPresenter
 
     @ProvidePresenter
     fun provideAllGoodsPresenter(): AllGoodsPresenter {
-        return AllGoodsPresenter((parentFragment as RouterProvider).getNavigationRouter())
+        return AllGoodsPresenter(router, getString(R.string.navigation_drawer_all_goods))
     }
 
     companion object {
-
         fun newInstance(): AllGoodsFragment {
-            val fragment = AllGoodsFragment()
-            val args = Bundle()
-            fragment.arguments = args
-            return fragment
+            return AllGoodsFragment()
         }
     }
 
@@ -62,8 +68,13 @@ class AllGoodsFragment : MvpAppCompatFragment(), AllGoodsView, BackButtonListene
     @ColorInt
     private var previousStatusBarColor = 0
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        App.instance.appComponent.inject(this)
+        super.onCreate(savedInstanceState)
+    }
+
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return container?.inflate(R.layout.fragment_overview, false)
+        return container?.inflate(R.layout.fragment_all_goods, false)
     }
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
@@ -91,57 +102,57 @@ class AllGoodsFragment : MvpAppCompatFragment(), AllGoodsView, BackButtonListene
 
                 override fun onScrolled(recyclerView: RecyclerView?, dx: Int, dy: Int) {
                     super.onScrolled(recyclerView, dx, dy)
-                  /*  recyclerView.let {
-                        val linearLayoutManager = layoutManager as LinearLayoutManager
-                        var firstVisiblePosition = linearLayoutManager.findFirstVisibleItemPosition()
-                        val lastVisiblePosition = linearLayoutManager.findLastVisibleItemPosition()
+                    /*  recyclerView.let {
+                          val linearLayoutManager = layoutManager as LinearLayoutManager
+                          var firstVisiblePosition = linearLayoutManager.findFirstVisibleItemPosition()
+                          val lastVisiblePosition = linearLayoutManager.findLastVisibleItemPosition()
 
-                        d("egor $firstVisiblePosition $lastVisiblePosition")
+                          d("egor $firstVisiblePosition $lastVisiblePosition")
 
-                        if (firstVisiblePosition == -1 || lastVisiblePosition == -1) {
-                            return
-                        }
+                          if (firstVisiblePosition == -1 || lastVisiblePosition == -1) {
+                              return
+                          }
 
-                        val countVisibleItems = lastVisiblePosition - firstVisiblePosition
-                        e("egor $countVisibleItems")
+                          val countVisibleItems = lastVisiblePosition - firstVisiblePosition
+                          e("egor $countVisibleItems")
 
-                        var overlayDrawable: Bitmap? = null
+                          var overlayDrawable: Bitmap? = null
 
-                        while (firstVisiblePosition <= countVisibleItems) {
-                            val visibleView = layoutManager.findViewByPosition(firstVisiblePosition)
-                            val drawable = visibleView.image_item.drawable
+                          while (firstVisiblePosition <= countVisibleItems) {
+                              val visibleView = layoutManager.findViewByPosition(firstVisiblePosition)
+                              val drawable = visibleView.image_item.drawable
 
-                            if (drawable != null) {
-                                val bitmap = Bitmap.createScaledBitmap((drawable as BitmapDrawable).bitmap, 120, 120, false)
+                              if (drawable != null) {
+                                  val bitmap = Bitmap.createScaledBitmap((drawable as BitmapDrawable).bitmap, 120, 120, false)
 
-                                overlayDrawable = if (overlayDrawable == null) {
-                                    e("egor initial")
-                                    bitmap
-                                } else {
-                                    e("egor add new bitmap")
-                                    mergeBitmap(overlayDrawable, bitmap)
-                                }
-                            }
+                                  overlayDrawable = if (overlayDrawable == null) {
+                                      e("egor initial")
+                                      bitmap
+                                  } else {
+                                      e("egor add new bitmap")
+                                      mergeBitmap(overlayDrawable, bitmap)
+                                  }
+                              }
 
-                            firstVisiblePosition++
-                        }
+                              firstVisiblePosition++
+                          }
 
-                        overlayDrawable?.let {
-                            e("egor pallete")
+                          overlayDrawable?.let {
+                              e("egor pallete")
 
-                            Palette.from(it).generate { palette ->
-                                palette.mutedSwatch?.rgb?.let {
-                                    changeColorRootLayout(it)
+                              Palette.from(it).generate { palette ->
+                                  palette.mutedSwatch?.rgb?.let {
+                                      changeColorRootLayout(it)
 
-                                    val colorActionBar = darken(it, 0.9)
-                                    changeActionBarColor(colorActionBar)
+                                      val colorActionBar = darken(it, 0.9)
+                                      changeActionBarColor(colorActionBar)
 
-                                    val colorStatusBar = darken(it, 0.7)
-                                    changeStatusBarColor(colorStatusBar)
-                                }
-                            }
-                        }
-                    }*/
+                                      val colorStatusBar = darken(it, 0.7)
+                                      changeStatusBarColor(colorStatusBar)
+                                  }
+                              }
+                          }
+                      }*/
                 }
             })
         }

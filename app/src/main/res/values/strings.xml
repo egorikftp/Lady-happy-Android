@@ -8,4 +8,5 @@
     <string name="navigation_drawer_order">Order</string>
     <string name="navigation_drawer_share">Share</string>
     <string name="navigation_drawer_feedback">Feedback</string>
+    <string name="navigation_drawer_create_new_post">Create new post</string>
 </resources>

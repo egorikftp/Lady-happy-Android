@@ -8,7 +8,7 @@ class LocalCiceroneHolder {
 
     private var container: ArrayMap<String, Cicerone<Router>> = ArrayMap()
 
-    fun getCicirone(containerTag: String): Cicerone<Router>? {
+    fun getCicerone(containerTag: String): Cicerone<Router>? {
 
         if (!container.containsKey(containerTag)) {
             container.put(containerTag, Cicerone.create())

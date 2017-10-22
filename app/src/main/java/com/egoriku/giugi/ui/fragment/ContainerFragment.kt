@@ -11,9 +11,11 @@ import com.egoriku.giugi.App
 import com.egoriku.giugi.R
 import com.egoriku.giugi.common.ExtraConstants
 import com.egoriku.giugi.common.Fragments
+import com.egoriku.giugi.common.Screens
 import com.egoriku.giugi.navigation.BackButtonListener
 import com.egoriku.giugi.navigation.LocalCiceroneHolder
 import com.egoriku.giugi.navigation.RouterProvider
+import com.egoriku.giugi.ui.activity.CreateNewPostActivity
 import com.egoriku.giugi.ui.fragment.allgoods.AllGoodsFragment
 import com.egoriku.giugi.ui.fragment.order.OrderFragment
 import ru.terrakok.cicerone.Cicerone
@@ -48,7 +50,7 @@ class ContainerFragment : Fragment(), RouterProvider, BackButtonListener {
     }
 
     private fun getCicerone(): Cicerone<Router>? {
-        return ciceroneHolder.getCicirone(getContainerName())
+        return ciceroneHolder.getCicerone(getContainerName())
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -64,7 +66,7 @@ class ContainerFragment : Fragment(), RouterProvider, BackButtonListener {
         super.onActivityCreated(savedInstanceState)
 
         if (childFragmentManager.findFragmentById(R.id.fragment_container) == null) {
-            getNavigationRouter()?.replaceScreen(Fragments.ALL_GOODS)
+            getCicerone()?.router?.replaceScreen(Fragments.ALL_GOODS)
         }
     }
 
@@ -83,7 +85,10 @@ class ContainerFragment : Fragment(), RouterProvider, BackButtonListener {
             navigator = object : SupportAppNavigator(activity, childFragmentManager, R.id.fragment_container) {
 
                 override fun createActivityIntent(screenKey: String?, data: Any?): Intent? {
-                    return null
+                    return when (screenKey) {
+                        Screens.CREATE_POST_ACTIVITY -> Intent(context, CreateNewPostActivity::class.java)
+                        else -> null
+                    }
                 }
 
                 override fun createFragment(screenKey: String?, data: Any?): Fragment? {
@@ -92,6 +97,10 @@ class ContainerFragment : Fragment(), RouterProvider, BackButtonListener {
                         Fragments.ORDER -> OrderFragment.newInstance()
                         else -> null
                     }
+                }
+
+                override fun exit() {
+                    (activity as RouterProvider).getNavigationRouter()?.exit()
                 }
             }
         }

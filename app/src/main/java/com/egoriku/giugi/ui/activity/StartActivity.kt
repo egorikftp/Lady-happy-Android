@@ -1,4 +1,4 @@
-package com.egoriku.giugi.ui.activity.start
+package com.egoriku.giugi.ui.activity
 
 import android.animation.Animator
 import android.content.Intent
@@ -7,13 +7,13 @@ import android.support.v4.app.Fragment
 import com.arellomobile.mvp.MvpAppCompatActivity
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
+import com.egoriku.corelib_kt.extensions.show
 import com.egoriku.corelib_kt.listeners.SimpleAnimatorListener
 import com.egoriku.giugi.App
 import com.egoriku.giugi.R
 import com.egoriku.giugi.common.Screens
 import com.egoriku.giugi.mvp.start.StartActivityPresenter
 import com.egoriku.giugi.mvp.start.StartActivityView
-import com.egoriku.giugi.ui.activity.MainActivity
 import kotlinx.android.synthetic.main.activity_start.*
 import org.jetbrains.anko.intentFor
 import ru.terrakok.cicerone.NavigatorHolder
@@ -57,6 +57,10 @@ class StartActivity : MvpAppCompatActivity(), StartActivityView {
 
         startActivityImageView.apply {
             addAnimatorListener(object : SimpleAnimatorListener() {
+                override fun onAnimationStart(p0: Animator?) {
+                    startActivityLogoText.show()
+
+                }
                 override fun onAnimationEnd(p0: Animator?) {
                     presenter.openMainActivity()
                 }

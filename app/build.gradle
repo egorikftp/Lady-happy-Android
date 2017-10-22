@@ -31,12 +31,12 @@ android {
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
 
-            resValue "string", "app_name", "GiuGi Toys"
+            resValue "string", "app_name", "Lady Happy"
             resValue("string", "hockey_app_id", "\"$hockey_app_id_debug\"")
         }
 
         debug {
-            resValue "string", "app_name", "GiuGi Toys Beta"
+            resValue "string", "app_name", "Lady Happy Beta"
             resValue("string", "hockey_app_id", "\"$hockey_app_id_debug\"")
         }
     }
@@ -86,9 +86,7 @@ dependencies {
     implementation libs.coreLibKt
 
     implementation libs.lottie
-    implementation (libs.materialDrawer) {
-        transitive = true
-    }
+    implementation libs.materialDrawerKt
 }
 
 apply plugin: 'com.google.gms.google-services'

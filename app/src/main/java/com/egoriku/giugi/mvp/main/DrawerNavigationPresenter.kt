@@ -3,32 +3,43 @@ package com.egoriku.giugi.mvp.main
 import com.arellomobile.mvp.InjectViewState
 import com.arellomobile.mvp.MvpPresenter
 import com.egoriku.giugi.common.Fragments
+import com.egoriku.giugi.common.Screens
 import ru.terrakok.cicerone.Router
 
 @InjectViewState
-class DrawerNavigationPresenter(private val router: Router): MvpPresenter<DrawerNavigationView>() {
+class DrawerNavigationPresenter(private val router: Router) : MvpPresenter<DrawerNavigationView>() {
 
-    fun onAllGoodsDrawerItemClick(){
-       // viewState.selectDrawerItem(DrawerNavigationView.OVERVIEW_POSITION)
+    override fun onFirstViewAttach() {
+        super.onFirstViewAttach()
+        openAllGoodsCategory()
+    }
+
+    fun openAllGoodsCategory() {
         router.replaceScreen(Fragments.ALL_GOODS)
+        viewState.selectDrawerItem(DrawerNavigationView.ALL_GOODS_POSITION)
     }
 
-    fun onOrderDrawerItemClick(){
-        viewState.selectDrawerItem(DrawerNavigationView.ORDER_POSITION)
+    fun openOrderCategory() {
         router.replaceScreen(Fragments.ORDER)
+        viewState.selectDrawerItem(DrawerNavigationView.ORDER_POSITION)
     }
 
-    fun onShareDrawerItemClick(){
+    fun openShareCategory() {
+        router.navigateTo(Fragments.SHARE)
         viewState.selectDrawerItem(DrawerNavigationView.SHARE_POSITION)
-        router.replaceScreen(Fragments.SHARE)
     }
 
-    fun onFeedbackDrawerItemClick(){
+    fun openFeedbackCategory() {
+        router.navigateTo(Fragments.FEEDBACK)
         viewState.selectDrawerItem(DrawerNavigationView.FEEDBACK_POSITION)
-        router.replaceScreen(Fragments.FEEDBACK)
     }
 
-    fun onBackPressed(){
+    fun openCreateNewPostScreen() {
+        router.navigateTo(Screens.CREATE_POST_ACTIVITY)
+        viewState.selectDrawerItem(DrawerNavigationView.CREATE_NEW_POST_POSITION)
+    }
+
+    fun onBackPressed() {
         router.exit()
     }
 }

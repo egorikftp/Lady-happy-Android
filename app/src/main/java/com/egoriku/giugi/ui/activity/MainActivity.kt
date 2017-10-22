@@ -2,7 +2,13 @@ package com.egoriku.giugi.ui.activity
 
 import android.content.res.Configuration
 import android.os.Bundle
+import android.support.v4.app.Fragment
 import android.view.MenuItem
+import co.zsmb.materialdrawerkt.builders.drawer
+import co.zsmb.materialdrawerkt.builders.footer
+import co.zsmb.materialdrawerkt.draweritems.badgeable.primaryItem
+import co.zsmb.materialdrawerkt.draweritems.badgeable.secondaryItem
+import co.zsmb.materialdrawerkt.draweritems.divider
 import com.arellomobile.mvp.MvpAppCompatActivity
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
@@ -10,30 +16,29 @@ import com.egoriku.corelib_kt.extensions.drawableCompat
 import com.egoriku.giugi.App
 import com.egoriku.giugi.R
 import com.egoriku.giugi.common.Fragments
+import com.egoriku.giugi.common.Screens
 import com.egoriku.giugi.mvp.main.DrawerNavigationPresenter
 import com.egoriku.giugi.mvp.main.DrawerNavigationView
-import com.egoriku.giugi.navigation.BackButtonListener
-import com.egoriku.giugi.navigation.RouterProvider
-import com.egoriku.giugi.ui.fragment.ContainerFragment
+import com.egoriku.giugi.ui.fragment.allgoods.AllGoodsFragment
+import com.egoriku.giugi.ui.fragment.order.OrderFragment
 import com.mikepenz.materialdrawer.Drawer
-import com.mikepenz.materialdrawer.DrawerBuilder
-import com.mikepenz.materialdrawer.model.DividerDrawerItem
-import com.mikepenz.materialdrawer.model.PrimaryDrawerItem
-import com.mikepenz.materialdrawer.model.SecondaryDrawerItem
 import kotlinx.android.synthetic.main.activity_main.*
+import org.jetbrains.anko.intentFor
 import ru.terrakok.cicerone.Navigator
 import ru.terrakok.cicerone.NavigatorHolder
 import ru.terrakok.cicerone.Router
 import ru.terrakok.cicerone.commands.Back
+import ru.terrakok.cicerone.commands.Forward
 import ru.terrakok.cicerone.commands.Replace
 import javax.inject.Inject
 
 
-class MainActivity : MvpAppCompatActivity(), RouterProvider, DrawerNavigationView {
-    private lateinit var navigationDrawer: Drawer
+class MainActivity : MvpAppCompatActivity(), DrawerNavigationView {
 
-    private var allGoodsContainer: ContainerFragment? = null
-    private var orderContainer: ContainerFragment? = null
+    private var allGoodsFragment: Fragment? = null
+    private var orderFragment: Fragment? = null
+
+    private lateinit var navigationDrawer: Drawer
 
     @Inject
     lateinit var router: Router
@@ -47,20 +52,25 @@ class MainActivity : MvpAppCompatActivity(), RouterProvider, DrawerNavigationVie
     @ProvidePresenter
     fun createDrawerNavigationPresenter() = DrawerNavigationPresenter(router)
 
+    @Suppress("UNUSED_EXPRESSION")
     private val navigator = Navigator { command ->
-        if (command is Back) {
-            finish()
-        } else if (command is Replace) {
-            val fragmentManager = supportFragmentManager
-            when (command.screenKey) {
-                Fragments.ALL_GOODS -> fragmentManager.beginTransaction()
-                        .attach(allGoodsContainer)
+        when (command) {
+            is Replace -> when (command.screenKey) {
+                Fragments.ALL_GOODS -> supportFragmentManager.beginTransaction()
+                        .detach(orderFragment)
+                        .attach(allGoodsFragment)
                         .commitNow()
-
-                Fragments.ORDER -> fragmentManager.beginTransaction()
-                        .attach(orderContainer)
+                Fragments.ORDER -> supportFragmentManager.beginTransaction()
+                        .detach(allGoodsFragment)
+                        .attach(orderFragment)
                         .commitNow()
+                else -> null
             }
+            is Forward -> when (command.screenKey) {
+                Screens.CREATE_POST_ACTIVITY -> intentFor<CreateNewPostActivity>()
+                else -> null
+            }
+            is Back -> finish()
         }
     }
 
@@ -69,7 +79,7 @@ class MainActivity : MvpAppCompatActivity(), RouterProvider, DrawerNavigationVie
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.activity_main)
-        setSupportActionBar(toolbar)
+        setSupportActionBar(toolbarMainActivity)
 
         supportActionBar?.let {
             supportActionBar?.setDisplayHomeAsUpEnabled(true)
@@ -77,10 +87,26 @@ class MainActivity : MvpAppCompatActivity(), RouterProvider, DrawerNavigationVie
 
         initNavigationDrawer(savedInstanceState)
         initContainers()
+    }
 
-        if (savedInstanceState == null) {
-            //navigationDrawer.setSelectionAtPosition(1, true)
-            presenter.onAllGoodsDrawerItemClick()
+    @Suppress("SENSELESS_COMPARISON")
+    private fun initContainers() {
+        val fm = supportFragmentManager
+        allGoodsFragment = fm.findFragmentByTag(Fragments.ALL_GOODS)
+
+        if (allGoodsFragment == null) {
+            allGoodsFragment = AllGoodsFragment.newInstance()
+            fm.beginTransaction()
+                    .add(R.id.mainActivityContainer, allGoodsFragment, Fragments.ALL_GOODS)
+                    .detach(allGoodsFragment).commitNow()
+        }
+
+        orderFragment = fm.findFragmentByTag(Fragments.ORDER)
+        if (orderFragment == null) {
+            orderFragment = OrderFragment.newInstance()
+            fm.beginTransaction()
+                    .add(R.id.mainActivityContainer, orderFragment, Fragments.ORDER)
+                    .detach(orderFragment).commitNow()
         }
     }
 
@@ -90,61 +116,50 @@ class MainActivity : MvpAppCompatActivity(), RouterProvider, DrawerNavigationVie
     }
 
     private fun initNavigationDrawer(savedInstanceState: Bundle?) {
-        navigationDrawer = DrawerBuilder()
-                .withActivity(this)
-                .withToolbar(toolbar)
-                .addDrawerItems(
-                        PrimaryDrawerItem()
-                                .withName(R.string.navigation_drawer_all_goods)
-                                .withIcon(drawableCompat(this, R.drawable.ic_toys))
-                                .withTag(Fragments.ALL_GOODS),
-                        PrimaryDrawerItem()
-                                .withName(R.string.navigation_drawer_order)
-                                .withIcon(drawableCompat(this, R.drawable.ic_payment))
-                                .withTag(Fragments.ORDER),
-                        DividerDrawerItem(),
-                        SecondaryDrawerItem()
-                                .withName(R.string.navigation_drawer_share)
-                                .withIcon(drawableCompat(this, R.drawable.ic_tag_faces))
-                                .withTag(Fragments.SHARE),
-                        SecondaryDrawerItem()
-                                .withName(R.string.navigation_drawer_feedback)
-                                .withIcon(drawableCompat(this, R.drawable.ic_favorite))
-                                .withTag(Fragments.FEEDBACK))
-                .withOnDrawerItemClickListener { _, _, drawerItem ->
-                    when (drawerItem.tag.toString()) {
-                        Fragments.ALL_GOODS -> presenter.onAllGoodsDrawerItemClick()
-                        Fragments.ORDER -> presenter.onOrderDrawerItemClick()
-                        Fragments.SHARE -> presenter.onShareDrawerItemClick()
-                        Fragments.FEEDBACK -> presenter.onFeedbackDrawerItemClick()
-                    }
+        navigationDrawer = drawer {
+            savedInstance = savedInstanceState
+            toolbar = this@MainActivity.toolbarMainActivity
 
-                    true
+            primaryItem(R.string.navigation_drawer_all_goods) {
+                iconDrawable = drawableCompat(this@MainActivity, R.drawable.ic_toys)!!
+                tag = Fragments.ALL_GOODS
+            }
+
+            primaryItem(R.string.navigation_drawer_order) {
+                iconDrawable = drawableCompat(this@MainActivity, R.drawable.ic_payment)!!
+                tag = Fragments.ORDER
+            }
+
+            divider()
+
+            secondaryItem(R.string.navigation_drawer_share) {
+                iconDrawable = drawableCompat(this@MainActivity, R.drawable.ic_tag_faces)!!
+                tag = Fragments.SHARE
+            }
+
+            secondaryItem(R.string.navigation_drawer_feedback) {
+                iconDrawable = drawableCompat(this@MainActivity, R.drawable.ic_favorite)!!
+                tag = Fragments.FEEDBACK
+            }
+
+            footer {
+                secondaryItem(R.string.navigation_drawer_create_new_post) {
+                    iconDrawable = drawableCompat(this@MainActivity, R.drawable.ic_create_new_post)!!
+                    tag = Screens.CREATE_POST_ACTIVITY
                 }
-                //.withSavedInstance(savedInstanceState)
-                .build()
-    }
+            }
 
-    private fun initContainers() {
-        val fragmentManager = supportFragmentManager
+            onItemClick { _, _, drawerItem ->
+                when (drawerItem.tag.toString()) {
+                    Fragments.ALL_GOODS -> presenter.openAllGoodsCategory()
+                    Fragments.ORDER -> presenter.openOrderCategory()
+                    Fragments.SHARE -> presenter.openShareCategory()
+                    Fragments.FEEDBACK -> presenter.openFeedbackCategory()
+                    Screens.CREATE_POST_ACTIVITY -> presenter.openCreateNewPostScreen()
+                }
 
-        allGoodsContainer = fragmentManager.findFragmentByTag(Fragments.ALL_GOODS) as ContainerFragment?
-        orderContainer = fragmentManager.findFragmentByTag(Fragments.ORDER) as ContainerFragment?
-
-        if (allGoodsContainer == null) {
-            allGoodsContainer = ContainerFragment.newInstance(Fragments.ALL_GOODS)
-            fragmentManager.beginTransaction()
-                    .add(R.id.mainActivityContainer, allGoodsContainer, Fragments.ALL_GOODS)
-                    .detach(allGoodsContainer)
-                    .commitNow()
-        }
-
-        if (orderContainer == null) {
-            orderContainer = ContainerFragment.newInstance(Fragments.ORDER)
-            fragmentManager.beginTransaction()
-                    .add(R.id.mainActivityContainer, orderContainer)
-                    .detach(orderContainer)
-                    .commitNow()
+                false
+            }
         }
     }
 
@@ -159,12 +174,15 @@ class MainActivity : MvpAppCompatActivity(), RouterProvider, DrawerNavigationVie
     }
 
     override fun onBackPressed() {
-        val fragment = supportFragmentManager.findFragmentById(R.id.mainActivityContainer)
-        if (fragment != null && fragment is BackButtonListener && fragment.onBackPressed()) {
+        if (navigationDrawer.isDrawerOpen) {
+            navigationDrawer.closeDrawer()
             return
-        } else {
-            presenter.onBackPressed()
+        } else if (supportFragmentManager.backStackEntryCount == 1) {
+            finish()
+            return
         }
+
+        presenter.onBackPressed()
     }
 
     override fun onConfigurationChanged(newConfig: Configuration) {
@@ -176,11 +194,7 @@ class MainActivity : MvpAppCompatActivity(), RouterProvider, DrawerNavigationVie
         return navigationDrawer.actionBarDrawerToggle.onOptionsItemSelected(item) || super.onOptionsItemSelected(item)
     }
 
-    override fun getNavigationRouter(): Router {
-        return router
-    }
-
     override fun selectDrawerItem(position: Int) {
-        // navigationDrawer.setSelectionAtPosition(position)
+           navigationDrawer.setSelectionAtPosition(position, false)
     }
 }

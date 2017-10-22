@@ -1,26 +1,26 @@
 ext.versions = [
-        minSdkVersion        : 16,
-        compileSdkVersion    : 26,
-        buildToolsVersion    : "26.0.2",
-        gradleAlpha          : "3.0.0-beta7",
-        googleServices       : "3.1.0",
+        minSdkVersion          : 16,
+        compileSdkVersion      : 26,
+        buildToolsVersion      : "26.0.2",
+        gradleAlpha            : "3.0.0-rc1",
+        googleServices         : "3.1.0",
 
-        supportVersion       : "26.1.0",
-        constraintVersion    : "1.0.2",
-        kotlinVersion        : "1.1.51",
-        ciceroneVersion      : "2.1.0",
-        moxyVersion          : "1.5.3",
-        junitVersion         : "4.12",
-        espressoVersion      : "3.0.1",
-        firebaseVersion      : "11.4.0",
-        multidexVersion      : "1.0.2",
-        glideVersion         : "3.7.0",
-        hockeyAppVersion     : "4.1.4",
-        coreLibKotlin        : "0.0.1",
-        daggerVersion        : "2.10",
-        ankoVersion          : "0.10.1",
-        lottieVersion        : "2.2.5",
-        maretialDrawerVersion: "5.9.5@aar"
+        supportVersion         : "26.1.0",
+        constraintVersion      : "1.0.2",
+        kotlinVersion          : "1.1.51",
+        ciceroneVersion        : "2.1.0",
+        moxyVersion            : "1.5.3",
+        junitVersion           : "4.12",
+        espressoVersion        : "3.0.1",
+        firebaseVersion        : "11.4.0",
+        multidexVersion        : "1.0.2",
+        glideVersion           : "3.7.0",
+        hockeyAppVersion       : "4.1.4",
+        coreLibKotlin          : "0.0.1",
+        daggerVersion          : "2.10",
+        ankoVersion            : "0.10.1",
+        lottieVersion          : "2.2.5",
+        materialDrawerKtVersion: "1.1.1"
 ]
 
 ext.gradlePlugins = [
@@ -59,7 +59,7 @@ ext.libs = [
         coreLibKt         : "com.egoriku:CoreLib_Kotlin:$versions.coreLibKotlin",
 
         lottie            : "com.airbnb.android:lottie:$versions.lottieVersion",
-        materialDrawer    : "com.mikepenz:materialdrawer:$versions.maretialDrawerVersion"
+        materialDrawerKt  : "co.zsmb:materialdrawer-kt:$versions.materialDrawerKtVersion"
 ]
 
 allprojects {

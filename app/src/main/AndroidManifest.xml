@@ -17,11 +17,11 @@
             android:theme="@style/AppTheme" />
 
         <activity
-            android:name=".ui.activity.OrderActivity"
+            android:name=".ui.activity.CreateNewPostActivity"
             android:label="Order" />
 
         <activity
-            android:name=".ui.activity.start.StartActivity"
+            android:name=".ui.activity.StartActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen">
 
             <intent-filter>

@@ -5,16 +5,18 @@
     android:id="@+id/activity_start_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.egoriku.giugi.ui.activity.start.StartActivity"
+    tools:context="com.egoriku.giugi.ui.activity.StartActivity"
     tools:layout_editor_absoluteX="0dp"
     tools:layout_editor_absoluteY="25dp">
 
     <TextView
+        android:id="@+id/startActivityLogoText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:fontFamily="@font/damion"
         android:text="@string/activity_start_app_name"
+        android:visibility="invisible"
         android:textAppearance="@style/TextAppearance.AppCompat.Display2"
         android:textColor="@android:color/black"
         android:textStyle="bold"
