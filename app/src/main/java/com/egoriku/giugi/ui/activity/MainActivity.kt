@@ -173,6 +173,10 @@ class MainActivity : MvpAppCompatActivity(), DrawerNavigationView {
         super.onPause()
     }
 
+    fun onFragmentStart(titleResId: String) {
+        supportActionBar?.title = titleResId
+    }
+
     override fun onBackPressed() {
         if (navigationDrawer.isDrawerOpen) {
             navigationDrawer.closeDrawer()
@@ -195,6 +199,6 @@ class MainActivity : MvpAppCompatActivity(), DrawerNavigationView {
     }
 
     override fun selectDrawerItem(position: Int) {
-           navigationDrawer.setSelectionAtPosition(position, false)
+        navigationDrawer.setSelectionAtPosition(position, false)
     }
 }

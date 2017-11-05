@@ -4,7 +4,6 @@ import com.egoriku.giugi.dagger.module.LocalNavigationModule
 import com.egoriku.giugi.dagger.module.NavigationModule
 import com.egoriku.giugi.ui.activity.MainActivity
 import com.egoriku.giugi.ui.activity.StartActivity
-import com.egoriku.giugi.ui.fragment.ContainerFragment
 import com.egoriku.giugi.ui.fragment.allgoods.AllGoodsFragment
 import com.egoriku.giugi.ui.fragment.order.OrderFragment
 import dagger.Component

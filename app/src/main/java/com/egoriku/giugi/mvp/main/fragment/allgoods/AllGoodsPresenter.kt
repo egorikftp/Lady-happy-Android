@@ -5,9 +5,10 @@ import com.arellomobile.mvp.MvpPresenter
 import ru.terrakok.cicerone.Router
 
 @InjectViewState
-class AllGoodsPresenter(private val router: Router?, title: String) : MvpPresenter<AllGoodsView>() {
+class AllGoodsPresenter(private val router: Router?, private val title: String) : MvpPresenter<AllGoodsView>() {
 
-    init {
+    override fun attachView(view: AllGoodsView?) {
+        super.attachView(view)
         viewState.setTitle(title)
     }
 
