@@ -13,17 +13,15 @@ import java.lang.reflect.AnnotatedElement;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
 
 public class GhostAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private List<Object> items = new ArrayList<>();
-    private HashMap<Integer, Class<? extends RecyclerView.ViewHolder>> viewTypes = new HashMap<>();
+    private SparseArray<Class<? extends RecyclerView.ViewHolder>> viewTypes = new SparseArray<>();
     private LayoutInflater layoutInflater;
-
-    private SparseArray<Class<? extends Rec>>
-
 
     private void readAnnotations(AnnotatedElement element) {
         if (element.isAnnotationPresent(BindItem.class)) {
@@ -49,9 +47,7 @@ public class GhostAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             if (method.isAnnotationPresent(Binder.class)) {
                 try {
                     method.invoke(o, holder);
-                } catch (IllegalAccessException e) {
-                    e.printStackTrace();
-                } catch (InvocationTargetException e) {
+                } catch (IllegalAccessException | InvocationTargetException e) {
                     e.printStackTrace();
                 }
             }
@@ -78,9 +74,10 @@ public class GhostAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         View view = layoutInflater.inflate(viewType, parent, false);
         try {
             return viewTypes.get(viewType).getConstructor(View.class).newInstance(view);
-        } catch (InstantiationException | IllegalAccessException | NoSuchMethodException | InvocationTargetException | NullPointerException e) {
+        } catch (InstantiationException | NullPointerException | NoSuchMethodException | InvocationTargetException | IllegalAccessException e) {
             e.printStackTrace();
         }
+
         return null;
     }
 
@@ -151,7 +148,6 @@ public class GhostAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     public <T> void addItem(@NonNull T item) {
         items.add(item);
         readAnnotations(item.getClass());
-
         notifyItemInserted(items.size() - 1);
     }
 
@@ -165,8 +161,6 @@ public class GhostAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             items.remove(index);
             notifyItemRemoved(index);
         }
-
-
     }
 
     /**
@@ -185,16 +179,15 @@ public class GhostAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
             }
             notifyDataSetChanged();
-
         }
     }
-
 
     /**
      * adding an item to a position
      *
      * @param position insert position
      * @param item     input item
+     * @throws IndexOutOfBoundsException position > list size
      */
     public <T> void addItem(@IntRange(from = 0) int position, @NonNull T item) {
         if (position > items.size()) {
@@ -204,5 +197,120 @@ public class GhostAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         readAnnotations(item.getClass());
 
         notifyItemInserted(position);
+    }
+
+    /**
+     * gettin all items
+     */
+    public <T> List<Object> getItems() {
+
+        if (items.size() > 0)
+            return items;
+        return null;
+    }
+
+    /**
+     * getting an item from a position
+     *
+     * @param position insert position
+     * @throws IndexOutOfBoundsException position > list size
+     */
+    public <T> Object getItem(@IntRange(from = 0) int position) {
+        if (position > items.size()) {
+            throw new IndexOutOfBoundsException();
+        }
+        return items.get(position);
+    }
+
+    /**
+     * getting items from a specified position to the end of list
+     *
+     * @param position start position
+     * @throws IndexOutOfBoundsException position > list size
+     */
+    public <T> Object getItems(@IntRange(from = 0) int position) {
+        if (position > items.size()) {
+            throw new IndexOutOfBoundsException();
+        }
+        List<Object> temp = new ArrayList<>();
+        temp.addAll(items);
+        return temp;
+    }
+
+    /**
+     * getting items from a specified position to the end of list
+     *
+     * @param beginPosition start position
+     * @param endPosition   stop position
+     * @throws IndexOutOfBoundsException position > list size Or position < 0 Or start postion be grater than end position
+     */
+    public <T> Object getItems(@IntRange(from = 0) int beginPosition, @IntRange(from = 0) int endPosition) {
+        if (endPosition > items.size() || beginPosition < 0 || beginPosition > endPosition) {
+            throw new IndexOutOfBoundsException();
+        }
+        List temp = new ArrayList();
+        for (int i = beginPosition; i < endPosition + 1; i++)
+            //noinspection unchecked
+            temp.add(items.get(i));
+        return temp;
+    }
+
+    /**
+     * check if list has any item or not
+     *
+     * @return False  if any item exist
+     */
+    public boolean isEmpty() {
+        return items.isEmpty();
+    }
+
+    /**
+     * @return the iterator of list
+     */
+    @NonNull
+    public Iterator iterator() {
+        return items.iterator();
+    }
+
+    /**
+     * @return an array of list
+     */
+    @NonNull
+    public Object[] toArray() {
+        return items.toArray();
+    }
+
+    public boolean retainAll(@NonNull Collection collection) {
+        return items.retainAll(collection);
+    }
+
+    /**
+     * check if object exists in list or not
+     *
+     * @param o object for search the list
+     * @return False  if o item does not exist
+     */
+    public boolean contains(@NonNull Object o) {
+        return items.contains(o);
+    }
+
+    /**
+     * check an collection of objects are exist in list
+     *
+     * @param collection
+     */
+    public boolean containsAll(@NonNull Collection collection) {
+        return items.containsAll(collection);
+    }
+
+    /**
+     * getting items from a specified position to the end of list
+     *
+     * @param o object for search the list
+     * @return index of o object if it exist on list
+     * -1 will be returned if no  situation
+     */
+    public int indexOf(@NonNull Object o) {
+        return items.indexOf(o);
     }
 }

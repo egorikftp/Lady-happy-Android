@@ -9,7 +9,6 @@ import com.egoriku.giugi.ui.fragment.order.OrderFragment
 import dagger.Component
 import javax.inject.Singleton
 
-
 @Singleton
 @Component(modules = arrayOf(NavigationModule::class, LocalNavigationModule::class))
 interface AppComponent {
@@ -17,8 +16,6 @@ interface AppComponent {
     fun inject(activity: StartActivity)
 
     fun inject(activity: MainActivity)
-
-    fun inject(fragment: ContainerFragment)
 
     fun inject(fragment: AllGoodsFragment)
 
