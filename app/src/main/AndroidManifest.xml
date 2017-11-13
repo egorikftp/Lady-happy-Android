@@ -13,15 +13,15 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".ui.activity.MainActivity"
+            android:name=".presentation.ui.activity.MainActivity"
             android:theme="@style/AppTheme" />
 
         <activity
-            android:name=".ui.activity.CreateNewPostActivity"
+            android:name=".presentation.ui.activity.CreateNewPostActivity"
             android:label="Order" />
 
         <activity
-            android:name=".ui.activity.StartActivity"
+            android:name=".presentation.ui.activity.StartActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen">
 
             <intent-filter>

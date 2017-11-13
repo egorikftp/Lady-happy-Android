@@ -1,4 +1,4 @@
-package com.egoriku.giugi.ui.fragment.order
+package com.egoriku.giugi.presentation.ui.fragments.order
 
 import android.os.Bundle
 import android.view.LayoutInflater

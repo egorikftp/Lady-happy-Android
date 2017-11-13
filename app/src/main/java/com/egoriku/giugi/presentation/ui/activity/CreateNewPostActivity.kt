@@ -1,4 +1,4 @@
-package com.egoriku.giugi.ui.activity
+package com.egoriku.giugi.presentation.ui.activity
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity

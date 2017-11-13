@@ -13,18 +13,18 @@ import ext.adapter.Binder
 import kotlinx.android.synthetic.main.layout_images.view.*
 
 @BindItem(layout = R.layout.layout_images, holder = ToysItem.ToysViewHolder::class)
-class ToysItem(private val toy: Toy, private val context: Context?) {
+class ToysItem(private val toy: Toy) {
 
     @Binder
     fun bind(holder: ToysViewHolder) {
 
         holder.textViewName.text = toy.name
 
-        Glide.with(context)
+        /*Glide.with(context)
                 .load(toy.url)
                 .asBitmap()
                 .fitCenter()
-                .into(holder.imageView)
+                .into(holder.imageView)*/
     }
 
     class ToysViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

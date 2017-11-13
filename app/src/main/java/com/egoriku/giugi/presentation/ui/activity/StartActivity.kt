@@ -1,4 +1,4 @@
-package com.egoriku.giugi.ui.activity
+package com.egoriku.giugi.presentation.ui.activity
 
 import android.animation.Animator
 import android.content.Intent

@@ -1,4 +1,4 @@
-package com.egoriku.giugi.ui.activity
+package com.egoriku.giugi.presentation.ui.activity
 
 import android.content.res.Configuration
 import android.os.Bundle
@@ -13,14 +13,13 @@ import com.arellomobile.mvp.MvpAppCompatActivity
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
 import com.egoriku.corelib_kt.extensions.drawableCompat
-import com.egoriku.giugi.App
 import com.egoriku.giugi.R
 import com.egoriku.giugi.common.Fragments
 import com.egoriku.giugi.common.Screens
 import com.egoriku.giugi.mvp.main.DrawerNavigationPresenter
 import com.egoriku.giugi.mvp.main.DrawerNavigationView
-import com.egoriku.giugi.ui.fragment.allgoods.AllGoodsFragment
-import com.egoriku.giugi.ui.fragment.order.OrderFragment
+import com.egoriku.giugi.presentation.ui.fragments.AllGoodsFragment
+import com.egoriku.giugi.presentation.ui.fragments.order.OrderFragment
 import com.mikepenz.materialdrawer.Drawer
 import kotlinx.android.synthetic.main.activity_main.*
 import org.jetbrains.anko.intentFor
@@ -75,7 +74,6 @@ class MainActivity : MvpAppCompatActivity(), DrawerNavigationView {
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        App.instance.appComponent.inject(this)
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.activity_main)

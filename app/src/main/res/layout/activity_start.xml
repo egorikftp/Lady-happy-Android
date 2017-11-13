@@ -5,7 +5,7 @@
     android:id="@+id/activity_start_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.egoriku.giugi.ui.activity.StartActivity"
+    tools:context="com.egoriku.giugi.presentation.ui.activity.StartActivity"
     tools:layout_editor_absoluteX="0dp"
     tools:layout_editor_absoluteY="25dp">
 

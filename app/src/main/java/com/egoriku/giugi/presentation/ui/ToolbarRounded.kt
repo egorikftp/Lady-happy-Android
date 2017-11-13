@@ -1,4 +1,4 @@
-package com.egoriku.giugi.ui
+package com.egoriku.giugi.presentation.ui
 
 import android.content.Context
 import android.graphics.Canvas

@@ -1,11 +1,12 @@
 package com.egoriku.giugi
 
+import android.app.Application
 import com.egoriku.corelib_kt.extensions.DelegatesExt
-import com.egoriku.giugi.dagger.AppComponent
-import com.egoriku.giugi.dagger.DaggerAppComponent
+import com.egoriku.giugi.di.AppComponent
+import com.egoriku.giugi.di.module.AppModule
 
 
-class App : DebugApplication() {
+ open class App : Application() {
 
     companion object {
         @JvmStatic
@@ -14,7 +15,9 @@ class App : DebugApplication() {
     }
 
     val appComponent: AppComponent by lazy {
-        DaggerAppComponent.builder().build()
+        DaggerAppComponent.builder()
+                .appModule(AppModule(this))
+                .build()
     }
 
     override fun onCreate() {
