@@ -16,7 +16,7 @@ import com.egoriku.giugi.R
 import com.egoriku.giugi.di.AllGoodsComponent
 import com.egoriku.giugi.di.module.AllGoodsModule
 import com.egoriku.giugi.presentation.presenters.AllGoodsMVP
-import com.egoriku.giugi.presentation.presenters.AllGoodsPresenterNew
+import com.egoriku.giugi.presentation.presenters.impl.AllGoodsPresenterNew
 import com.egoriku.giugi.presentation.ui.activity.MainActivity
 import com.egoriku.giugi.presentation.ui.base.BaseFragment
 import ext.adapter.GhostAdapter

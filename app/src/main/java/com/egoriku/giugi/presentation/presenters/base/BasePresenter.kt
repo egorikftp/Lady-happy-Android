@@ -1,6 +1,5 @@
 package com.egoriku.giugi.presentation.presenters.base
 
-import com.egoriku.giugi.presentation.presenters.IBasePresenter
 import com.egoriku.giugi.presentation.ui.base.BaseMvpView
 
 

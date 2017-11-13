@@ -1,10 +1,11 @@
-package com.egoriku.giugi.presentation.presenters
+package com.egoriku.giugi.presentation.presenters.impl
 
 import com.egoriku.giugi.R
 import com.egoriku.giugi.adapter.ToysItem
 import com.egoriku.giugi.data.Toy
 import com.egoriku.giugi.external.AnalyticsInterface
 import com.egoriku.giugi.external.TrackingConstants
+import com.egoriku.giugi.presentation.presenters.AllGoodsMVP
 import com.egoriku.giugi.presentation.presenters.base.BasePresenter
 import javax.inject.Inject
 
