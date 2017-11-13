@@ -75,6 +75,11 @@ dependencies {
     implementation libs.hockeyApp
     implementation libs.multidex
 
+    implementation libs.rxJava
+    implementation libs.rxAndroid
+
+    implementation libs.gson
+
     implementation libs.moxy
     kapt libs.moxyCompiler
     implementation libs.cicerone

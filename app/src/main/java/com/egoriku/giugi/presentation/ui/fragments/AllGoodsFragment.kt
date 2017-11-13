@@ -1,6 +1,7 @@
 package com.egoriku.giugi.presentation.ui.fragments
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.os.Build
 import android.os.Bundle
 import android.support.design.widget.AppBarLayout
@@ -63,12 +64,67 @@ class AllGoodsFragment : BaseFragment(), AllGoodsMVP.View {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return container?.inflate(R.layout.fragment_all_goods, false)
+        val view = container?.inflate(R.layout.fragment_all_goods, false)
+        initRecyclerView()
+        return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        presenter.getCategories()
+    }
 
+    override fun getArgs(_bundle: Bundle?) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun onAttach(context: Context?) {
+        this.injectDependencies()
+        this.attachToPresenter()
+        this.showTitle(getString(R.string.navigation_drawer_all_goods))
+        super.onAttach(context)
+    }
+
+    override fun onDetach() {
+        detachFromPresenter()
+        super.onDetach()
+    }
+
+    override fun showTitle(message: String) {
+        (activity as MainActivity).onFragmentStart(message)
+    }
+
+    override fun onLandscape() {
+    }
+
+    override fun showCategories() {
+    }
+
+    override fun onPortrait() {
+
+    }
+
+    override fun showLoading() {
+
+    }
+
+    override fun showNews() {
+
+    }
+
+    override fun hideLoading() {
+
+    }
+
+    override fun showMessage(message: String) {
+
+    }
+
+    override fun showNoNetwork() {
+
+    }
+
+    private fun initRecyclerView() {
         val adapterToy = GhostAdapter()
         //adapterToy.addItems(list)
 
@@ -101,51 +157,5 @@ class AllGoodsFragment : BaseFragment(), AllGoodsMVP.View {
                 }
             }
         })
-    }
-
-    override fun getArgs(_bundle: Bundle?) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
-    override fun setTitle(title: String) {
-        Log.e("egor", title)
-        (activity as MainActivity).onFragmentStart(title)
-    }
-
-
-    override fun showTitle(message: String) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
-    override fun onLandscape() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
-    override fun showCategories() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
-    override fun onPortrait() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
-    override fun showLoading() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
-    override fun showNews() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
-    override fun hideLoading() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
-    override fun showMessage(message: String) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
-    override fun showNoNetwork() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 }

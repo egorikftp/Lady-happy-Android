@@ -7,7 +7,7 @@ ext.versions = [
 
         supportVersion         : "27.0.0",
         constraintVersion      : "1.0.2",
-        kotlinVersion          : "1.1.51",
+        kotlinVersion          : "1.1.60",
         ciceroneVersion        : "2.1.0",
         moxyVersion            : "1.5.3",
         junitVersion           : "4.12",
@@ -17,10 +17,13 @@ ext.versions = [
         glideVersion           : "3.7.0",
         hockeyAppVersion       : "4.1.4",
         coreLibKotlin          : "0.0.1",
-        daggerVersion          : "2.10",
-        ankoVersion            : "0.10.1",
+        daggerVersion          : "2.13",
+        ankoVersion            : "0.10.2",
         lottieVersion          : "2.2.5",
-        materialDrawerKtVersion: "1.1.1"
+        materialDrawerKtVersion: "1.2.1",
+        rxJavaVersion          : "2.1.6",
+        rxAndroidVersion       : "2.0.1",
+        gsonVersion            : "2.8.2"
 ]
 
 ext.gradlePlugins = [
@@ -38,7 +41,7 @@ ext.libs = [
         constraint        : "com.android.support.constraint:constraint-layout:$versions.constraintVersion",
 
         firebaseStorage   : "com.google.firebase:firebase-storage:$versions.firebaseVersion",
-        firebaseDatabase :  "com.google.firebase:firebase-database:$versions.firebaseVersion",
+        firebaseDatabase  : "com.google.firebase:firebase-database:$versions.firebaseVersion",
         firebaseAuth      : "com.google.firebase:firebase-auth:$versions.firebaseVersion",
         googlePlayServices: "com.google.android.gms:play-services-plus:$versions.firebaseVersion",
 
@@ -49,6 +52,9 @@ ext.libs = [
         hockeyApp         : "net.hockeyapp.android:HockeySDK:$versions.hockeyAppVersion",
         dagger            : "com.google.dagger:dagger:$versions.daggerVersion",
         daggerCompiler    : "com.google.dagger:dagger-compiler:$versions.daggerVersion",
+        rxJava            : "io.reactivex.rxjava2:rxjava:$versions.rxJavaVersion",
+        rxAndroid         : "io.reactivex.rxjava2:rxandroid:$versions.rxAndroidVersion",
+        gson              : "com.google.code.gson:gson:$versions.gsonVersion",
 
         junit             : "junit:junit:$versions.junitVersion",
         espresso          : "com.android.support.test.espresso:espresso-core:$versions.espressoVersion",

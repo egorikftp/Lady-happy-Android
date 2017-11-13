@@ -2,7 +2,7 @@ package com.egoriku.giugi.presentation.ui.base
 
 import android.content.Context
 
-public interface BaseView {
+interface BaseView {
 
     fun injectDependencies()
 
