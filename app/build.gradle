@@ -65,9 +65,12 @@ dependencies {
     implementation libs.appcompat
     implementation libs.design
     implementation libs.constraint
+
     implementation libs.firebaseStorage
     implementation libs.firebaseDatabase
     implementation libs.firebaseAuth
+    implementation libs.firebaseFirestore
+
     implementation libs.kotlin
     implementation libs.glide
     implementation libs.palette

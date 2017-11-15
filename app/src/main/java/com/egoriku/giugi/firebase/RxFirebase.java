@@ -3,6 +3,7 @@ package com.egoriku.giugi.firebase;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
+import com.egoriku.giugi.data.entities.AllGoodsEntity;
 import com.egoriku.giugi.data.exceptions.FirebaseRxDataCastException;
 import com.egoriku.giugi.data.exceptions.FirebaseRxDataException;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -12,6 +13,12 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import io.reactivex.Observable;
 import io.reactivex.ObservableEmitter;
@@ -26,6 +33,7 @@ public class RxFirebase {
      * https://github.com/ReactiveX/RxJava/wiki/What's-different-in-2.0#nulls
      */
     public static class FirebaseTaskResponseSuccess {
+
     }
 
     @NonNull
@@ -49,6 +57,42 @@ public class RxFirebase {
                         }
                     }
 
+                    @Override
+                    public void onCancelled(DatabaseError error) {
+                        if (!emitter.isDisposed()) {
+                            emitter.onError(new FirebaseRxDataException(error));
+                        }
+                    }
+                });
+            }
+        });
+    }
+
+    @NonNull
+    public static <T> Observable<T> getObservable(@NotNull final com.google.firebase.firestore.Query collectionReference, @NotNull final Class<AllGoodsEntity> clazz) {
+        return Observable.create(new ObservableOnSubscribe<T>() {
+            @Override
+            public void subscribe(final ObservableEmitter<T> emitter) throws Exception {
+                collectionReference.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+
+                    @Override
+                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                        Log.d(TAG, documentSnapshot.toString());
+                        T value = documentSnapshot.toObject(clazz);
+
+                        if (value != null) {
+                            if (!emitter.isDisposed()) {
+                                emitter.onNext(value);
+                            }
+                        } else {
+                            if (!emitter.isDisposed()) {
+                                emitter.onError(new FirebaseRxDataCastException("Unable to cast Firebase data response to " + clazz.getSimpleName()));
+                            }
+                        }
+                    }
+
+
+                    
                     @Override
                     public void onCancelled(DatabaseError error) {
                         if (!emitter.isDisposed()) {
@@ -127,8 +171,7 @@ public class RxFirebase {
      * @return
      */
     @NonNull
-    public static <T> Observable<Object> getObservable(@NonNull final Task<T> task,
-                                                       @NonNull final Object objectToReturn) {
+    public static <T> Observable<Object> getObservable(@NonNull final Task<T> task, @NonNull final Object objectToReturn) {
         return Observable.create(new ObservableOnSubscribe<Object>() {
             @Override
             public void subscribe(final ObservableEmitter<Object> emitter) throws Exception {
