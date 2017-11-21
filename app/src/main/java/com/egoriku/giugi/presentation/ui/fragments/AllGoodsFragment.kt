@@ -56,6 +56,7 @@ class AllGoodsFragment : BaseFragment(), AllGoodsMVP.View {
 
     override fun detachFromPresenter() {
         this.presenter.detachView()
+        activity
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
