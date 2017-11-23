@@ -1,6 +1,7 @@
 package com.egoriku.giugi.data.repositories.datasource
 
 import com.egoriku.giugi.data.entities.CategoriesEntity
+import com.egoriku.giugi.data.entities.CategoryEntity
 import com.egoriku.giugi.firebase.RxFirestore
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
@@ -23,8 +24,8 @@ class CategoriesDataSourceRemote
         return query
     }
 
-    fun getCategories(): Observable<List<Class<CategoriesEntity>>>? =
+    fun getCategories(): Observable<CategoriesEntity>? =
             getCategoriesReference()?.let {
-                RxFirestore.getObservable(it, CategoriesEntity::class.java)
+                RxFirestore.getObservableCategories(it, CategoriesEntity(), CategoryEntity::class.java)
             }
 }

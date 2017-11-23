@@ -3,7 +3,7 @@ package com.egoriku.giugi.data.entities
 import com.google.firebase.database.PropertyName
 
 data class CategoriesEntity(
-        @get:PropertyName("id") @set:PropertyName("id") var id: Int = 0,
-        @get:PropertyName("title") @set:PropertyName("title") var title: String = "",
-        @get:PropertyName("imageUrl") @set:PropertyName("imageUrl") var imageUrl: String = ""
+        @get:PropertyName("categories")
+        @set:PropertyName("categories")
+        var categories: HashMap<String, CategoryEntity> = hashMapOf()
 )
