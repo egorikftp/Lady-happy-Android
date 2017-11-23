@@ -3,8 +3,6 @@ package com.egoriku.giugi.domain.interactors;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
-import com.egoriku.giugi.domain.interactors.base.BaseUseCase;
-
 import java.util.HashMap;
 import java.util.Map;
 

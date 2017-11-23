@@ -11,9 +11,9 @@ import javax.inject.Singleton
 class CategoriesRepository
 @Inject constructor(private val categoriesDataSourceRemote: CategoriesDataSourceRemote) {
 
-    fun getCategories(): Observable<CategoriesModel>? {
+    fun getCategories(): Observable<CategoriesModel> {
         return categoriesDataSourceRemote
                 .getCategories()
-                ?.map({ bucketEntity -> CategoriesMapper.transform(bucketEntity) })
+                .map({ bucketEntity -> CategoriesMapper.transform(bucketEntity) })
     }
 }
