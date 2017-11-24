@@ -4,7 +4,7 @@ import android.app.Activity
 import android.app.Application
 import android.os.Bundle
 import com.egoriku.corelib_kt.listeners.SimpleActivityLifecycleCallback
-import com.egoriku.giugi.presentation.ui.activity.MainActivity
+import com.egoriku.ladyhappy.presentation.ui.activity.MainActivity
 import net.hockeyapp.android.CrashManager
 import net.hockeyapp.android.CrashManagerListener
 import net.hockeyapp.android.UpdateManager
