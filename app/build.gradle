@@ -70,6 +70,7 @@ dependencies {
     implementation libs.firebaseDatabase
     implementation libs.firebaseAuth
     implementation libs.firebaseFirestore
+    implementation libs.firebaseAnalytics
 
     implementation libs.kotlin
     implementation libs.glide

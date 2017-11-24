@@ -13,10 +13,11 @@ import com.egoriku.corelib_kt.extensions.fromApi
 import com.egoriku.corelib_kt.extensions.inflate
 import com.egoriku.ladyhappy.App
 import com.egoriku.giugi.R
-import com.egoriku.ladyhappy.di.AllGoodsComponent
-import com.egoriku.ladyhappy.di.module.AllGoodsModule
+import com.egoriku.ladyhappy.di.allgoods.AllGoodsComponent
+import com.egoriku.ladyhappy.di.allgoods.AllGoodsModule
+import com.egoriku.ladyhappy.di.allgoods.DaggerAllGoodsComponent
 import com.egoriku.ladyhappy.presentation.presenters.AllGoodsMVP
-import com.egoriku.ladyhappy.presentation.presenters.impl.AllGoodsPresenterNew
+import com.egoriku.ladyhappy.presentation.presenters.impl.AllGoodsPresenter
 import com.egoriku.ladyhappy.presentation.ui.activity.MainActivity
 import com.egoriku.ladyhappy.presentation.ui.base.BaseFragment
 import ext.adapter.GhostAdapter
@@ -27,9 +28,10 @@ import javax.inject.Inject
 class AllGoodsFragment : BaseFragment(), AllGoodsMVP.View {
 
     @Inject
-    private lateinit var router: Router
-    private lateinit var presenter: AllGoodsPresenterNew
-    private var component: AllGoodsComponent? = null
+    //lateinit var router: Router
+    lateinit var presenter: AllGoodsPresenter
+
+    var component: AllGoodsComponent? = null
 
     lateinit var allGoodsAdapter: GhostAdapter
 

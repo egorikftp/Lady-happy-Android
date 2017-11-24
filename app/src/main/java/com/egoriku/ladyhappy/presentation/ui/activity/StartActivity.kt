@@ -45,7 +45,7 @@ class StartActivity : MvpAppCompatActivity(), StartActivityView {
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        App.instance.appComponent.inject(this@StartActivity)
+       // App.instance.appComponent.inject(this@StartActivity)
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.activity_start)

@@ -1,13 +1,11 @@
-package com.egoriku.ladyhappy.di
+package com.egoriku.ladyhappy.di.app
 
 import android.content.Context
 import com.egoriku.ladyhappy.App
-import com.egoriku.ladyhappy.di.module.AppModule
 import com.egoriku.ladyhappy.di.scope.ApplicationScope
 import com.egoriku.ladyhappy.external.AnalyticsInterface
-import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.firestore.FirebaseFirestore
 import dagger.Component
-
 
 /**
  * The role of the component is to inject the dependencies in the specified targets
@@ -23,8 +21,6 @@ interface AppComponent {
 
     fun context(): Context
     fun app(): App
-    fun firebaseDatabase(): FirebaseDatabase
+    fun firebaseFirestore(): FirebaseFirestore
     fun analyticsHelper(): AnalyticsInterface
-
-    /*fun sharedPreferences(): SharedPreferences*/
 }

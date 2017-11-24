@@ -13,9 +13,8 @@ import com.egoriku.ladyhappy.presentation.presenters.base.BasePresenter
 import com.egoriku.ladyhappy.rx.DefaultObserver
 import javax.inject.Inject
 
-class AllGoodsPresenterNew
-@Inject constructor(private val analyticsInterface: AnalyticsInterface,
-                    private val getCategoriesUseCase: CategoriesUseCase)
+class AllGoodsPresenter
+@Inject constructor(val getCategoriesUseCase: CategoriesUseCase, val analyticsInterface: AnalyticsInterface)
     : BasePresenter<AllGoodsMVP.View>(), AllGoodsMVP.Presenter {
 
     override fun attachView(view: AllGoodsMVP.View) {

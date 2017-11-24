@@ -37,7 +37,7 @@ class OrderFragment : MvpAppCompatFragment(), OrderView, BackButtonListener {
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        App.instance.appComponent.inject(this)
+       // App.instance.appComponent.inject(this)
         super.onCreate(savedInstanceState)
     }
 
