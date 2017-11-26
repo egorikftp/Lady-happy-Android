@@ -1,8 +1,7 @@
-package com.egoriku.giugi
+package com.egoriku.ladyhappy
 
 import android.annotation.SuppressLint
 import android.os.StrictMode
-import com.egoriku.ladyhappy.App
 
 
 @SuppressLint("Registered")

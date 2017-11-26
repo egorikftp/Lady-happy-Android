@@ -2,7 +2,7 @@ ext.versions = [
         minSdkVersion          : 19,
         compileSdkVersion      : 26,
         buildToolsVersion      : "27.0.1",
-        gradle                 : "3.0.0",
+        gradle                 : "3.0.1",
         googleServices         : "3.1.1",
 
         supportVersion         : "27.0.0",
