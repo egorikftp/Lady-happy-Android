@@ -3,12 +3,12 @@ package com.egoriku.ladyhappy.di.allgoods
 import com.egoriku.ladyhappy.data.repositories.CategoriesRepository
 import com.egoriku.ladyhappy.data.repositories.datasource.CategoriesDataSourceRemote
 import com.egoriku.ladyhappy.di.app.AppComponent
-import com.egoriku.ladyhappy.di.app.NavigationModule
 import com.egoriku.ladyhappy.di.scope.ActivityScope
 import com.egoriku.ladyhappy.domain.interactors.allgoods.CategoriesUseCase
 import com.egoriku.ladyhappy.presentation.presenters.impl.AllGoodsPresenter
 import com.egoriku.ladyhappy.presentation.ui.fragments.AllGoodsFragment
 import dagger.Component
+import ru.terrakok.cicerone.NavigatorHolder
 import ru.terrakok.cicerone.Router
 
 /**
@@ -18,7 +18,7 @@ import ru.terrakok.cicerone.Router
 
 @ActivityScope
 @Component(dependencies = arrayOf(AppComponent::class), modules = arrayOf(AllGoodsModule::class))
-public interface AllGoodsComponent {
+interface AllGoodsComponent {
 
     //fragments
     fun inject(allGoodsFragment: AllGoodsFragment)
@@ -37,4 +37,5 @@ public interface AllGoodsComponent {
 
     //navigation
     fun inject(router: Router)
+    fun inject(navigatorHolder: NavigatorHolder)
 }

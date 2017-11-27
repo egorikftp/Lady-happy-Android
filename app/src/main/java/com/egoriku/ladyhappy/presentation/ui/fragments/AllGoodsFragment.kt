@@ -28,7 +28,7 @@ import javax.inject.Inject
 class AllGoodsFragment : BaseFragment(), AllGoodsMVP.View {
 
     @Inject
-    //lateinit var router: Router
+    lateinit var router: Router
     lateinit var presenter: AllGoodsPresenter
 
     var component: AllGoodsComponent? = null
@@ -57,7 +57,6 @@ class AllGoodsFragment : BaseFragment(), AllGoodsMVP.View {
 
     override fun detachFromPresenter() {
         this.presenter.detachView()
-        activity
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
