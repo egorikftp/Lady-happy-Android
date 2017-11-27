@@ -6,6 +6,8 @@ import com.egoriku.ladyhappy.di.scope.ApplicationScope
 import com.egoriku.ladyhappy.external.AnalyticsInterface
 import com.google.firebase.firestore.FirebaseFirestore
 import dagger.Component
+import ru.terrakok.cicerone.NavigatorHolder
+import ru.terrakok.cicerone.Router
 
 /**
  * The role of the component is to inject the dependencies in the specified targets
@@ -13,7 +15,7 @@ import dagger.Component
  */
 
 @ApplicationScope
-@Component(modules = arrayOf(AppModule::class))
+@Component(modules = arrayOf(AppModule::class, NavigationModule::class))
 interface AppComponent {
 
     // Allows to inject into the App
@@ -23,4 +25,6 @@ interface AppComponent {
     fun app(): App
     fun firebaseFirestore(): FirebaseFirestore
     fun analyticsHelper(): AnalyticsInterface
+    fun router(): Router
+    fun navigatorHolder():NavigatorHolder
 }

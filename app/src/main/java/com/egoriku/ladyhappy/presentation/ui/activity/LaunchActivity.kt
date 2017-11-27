@@ -4,15 +4,14 @@ import android.animation.Animator
 import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import com.arellomobile.mvp.MvpAppCompatActivity
-import com.arellomobile.mvp.presenter.InjectPresenter
-import com.arellomobile.mvp.presenter.ProvidePresenter
+import android.support.v7.app.AppCompatActivity
 import com.egoriku.corelib_kt.extensions.show
 import com.egoriku.corelib_kt.listeners.SimpleAnimatorListener
 import com.egoriku.ladyhappy.App
 import com.egoriku.giugi.R
 import com.egoriku.ladyhappy.common.Screens
-import com.egoriku.ladyhappy.mvp.start.StartActivityPresenter
+import com.egoriku.ladyhappy.di.launch.DaggerLaunchComponent
+import com.egoriku.ladyhappy.di.launch.LaunchComponent
 import com.egoriku.ladyhappy.mvp.start.StartActivityView
 import kotlinx.android.synthetic.main.activity_start.*
 import org.jetbrains.anko.intentFor
@@ -21,7 +20,7 @@ import ru.terrakok.cicerone.Router
 import ru.terrakok.cicerone.android.SupportAppNavigator
 import javax.inject.Inject
 
-class StartActivity : MvpAppCompatActivity(), StartActivityView {
+class LaunchActivity : AppCompatActivity(), StartActivityView {
 
     @Inject
     lateinit var router: Router
@@ -29,13 +28,9 @@ class StartActivity : MvpAppCompatActivity(), StartActivityView {
     @Inject
     lateinit var navigatorHolder: NavigatorHolder
 
-    @InjectPresenter
-    lateinit var presenter: StartActivityPresenter
+    private lateinit var component: LaunchComponent
 
-    @ProvidePresenter
-    fun createStartActivityPresenter() = StartActivityPresenter(router)
-
-    private val navigator = object : SupportAppNavigator(this@StartActivity, R.id.activity_start_container) {
+    private val navigator = object : SupportAppNavigator(this@LaunchActivity, R.id.activity_start_container) {
         override fun createActivityIntent(screenKey: String?, data: Any?): Intent? = when (screenKey) {
             Screens.MAIN_ACTIVITY -> intentFor<MainActivity>()
             else -> null
@@ -45,9 +40,13 @@ class StartActivity : MvpAppCompatActivity(), StartActivityView {
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
-       // App.instance.appComponent.inject(this@StartActivity)
-        super.onCreate(savedInstanceState)
+        component = DaggerLaunchComponent.builder()
+                .appComponent(App.instance.appComponent)
+                .build()
 
+        component.inject(this)
+
+        super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_start)
     }
 
@@ -62,7 +61,7 @@ class StartActivity : MvpAppCompatActivity(), StartActivityView {
 
                 }
                 override fun onAnimationEnd(p0: Animator?) {
-                    presenter.openMainActivity()
+                  //  presenter.openMainActivity()
                 }
             })
             playAnimation()
@@ -75,5 +74,5 @@ class StartActivity : MvpAppCompatActivity(), StartActivityView {
         super.onPause()
     }
 
-    override fun onBackPressed() = presenter.onBackPressed()
+    //override fun onBackPressed() = presenter.onBackPressed()
 }

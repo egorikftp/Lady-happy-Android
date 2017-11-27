@@ -31,7 +31,7 @@ class AllGoodsFragment : BaseFragment(), AllGoodsMVP.View {
     lateinit var router: Router
     lateinit var presenter: AllGoodsPresenter
 
-    var component: AllGoodsComponent? = null
+    private lateinit var component: AllGoodsComponent
 
     lateinit var allGoodsAdapter: GhostAdapter
 
@@ -42,13 +42,11 @@ class AllGoodsFragment : BaseFragment(), AllGoodsMVP.View {
     }
 
     override fun injectDependencies() {
-        if (component == null) {
-            component = DaggerAllGoodsComponent.builder()
-                    .appComponent(App.instance.appComponent)
-                    .allGoodsModule(AllGoodsModule(this))
-                    .build()
-            component?.inject(this)
-        }
+        component = DaggerAllGoodsComponent.builder()
+                .appComponent(App.instance.appComponent)
+                .allGoodsModule(AllGoodsModule(this))
+                .build()
+        component.inject(this)
     }
 
     override fun attachToPresenter() {

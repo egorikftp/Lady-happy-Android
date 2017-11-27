@@ -38,6 +38,7 @@ class AppModule(private val app: App) {
         return FirebaseAnalyticsHelper(FirebaseAnalytics.getInstance(context))
     }
 
+
 /*
      @Provides
      @ApplicationScope
