@@ -59,7 +59,7 @@ class AllGoodsPresenter
     }
 
     override fun onGetCategoriesSuccessTracking() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        analyticsInterface.trackGetCategoriesSuccess(null)
     }
 
     override fun onGetCategoriesFailureTracking() {

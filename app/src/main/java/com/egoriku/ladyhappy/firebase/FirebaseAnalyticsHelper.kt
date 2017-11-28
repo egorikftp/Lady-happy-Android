@@ -12,7 +12,7 @@ class FirebaseAnalyticsHelper(private val analytics: FirebaseAnalytics) : Analyt
         analytics.logEvent(view, null)
     }
 
-    override fun trackGetCategoriesSuccess(bundle: Bundle) {
+    override fun trackGetCategoriesSuccess(bundle: Bundle?) {
         analytics.logEvent(GET_CATEGORIES_SUCCESS, bundle)
     }
 
