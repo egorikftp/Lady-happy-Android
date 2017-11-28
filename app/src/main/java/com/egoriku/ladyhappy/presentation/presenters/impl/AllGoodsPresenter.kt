@@ -1,6 +1,6 @@
 package com.egoriku.ladyhappy.presentation.presenters.impl
 
-import com.egoriku.giugi.R
+import com.egoriku.ladyhappy.R
 import com.egoriku.ladyhappy.adapter.ToysItem
 import com.egoriku.ladyhappy.data.Toy
 import com.egoriku.ladyhappy.domain.interactors.Params

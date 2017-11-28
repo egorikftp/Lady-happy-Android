@@ -9,8 +9,7 @@ import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
 import com.egoriku.corelib_kt.extensions.consume
 import com.egoriku.corelib_kt.extensions.inflate
-import com.egoriku.ladyhappy.App
-import com.egoriku.giugi.R
+import com.egoriku.ladyhappy.R
 import com.egoriku.ladyhappy.mvp.main.fragment.order.OrderPresenter
 import com.egoriku.ladyhappy.mvp.main.fragment.order.OrderView
 import com.egoriku.ladyhappy.navigation.BackButtonListener

@@ -8,7 +8,7 @@ import android.support.annotation.RequiresApi
 import android.util.AttributeSet
 import android.view.View
 import com.egoriku.corelib_kt.extensions.colorCompat
-import com.egoriku.giugi.R
+import com.egoriku.ladyhappy.R
 
 class ToolbarRounded @JvmOverloads constructor(
         context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0

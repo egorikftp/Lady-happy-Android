@@ -13,7 +13,7 @@ import com.arellomobile.mvp.MvpAppCompatActivity
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
 import com.egoriku.corelib_kt.extensions.drawableCompat
-import com.egoriku.giugi.R
+import com.egoriku.ladyhappy.R
 import com.egoriku.ladyhappy.common.Fragments
 import com.egoriku.ladyhappy.common.Screens
 import com.egoriku.ladyhappy.mvp.main.DrawerNavigationPresenter

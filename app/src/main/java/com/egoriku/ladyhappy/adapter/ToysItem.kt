@@ -4,7 +4,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
-import com.egoriku.giugi.R
+import com.egoriku.ladyhappy.R
 import com.egoriku.ladyhappy.data.Toy
 import ext.adapter.BindItem
 import ext.adapter.Binder

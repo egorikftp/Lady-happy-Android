@@ -8,8 +8,8 @@ import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
 import com.egoriku.corelib_kt.extensions.show
 import com.egoriku.corelib_kt.listeners.SimpleAnimatorListener
-import com.egoriku.giugi.R
 import com.egoriku.ladyhappy.App
+import com.egoriku.ladyhappy.R
 import com.egoriku.ladyhappy.common.Screens
 import com.egoriku.ladyhappy.di.launch.DaggerLaunchComponent
 import com.egoriku.ladyhappy.di.launch.LaunchComponent

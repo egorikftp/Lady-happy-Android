@@ -2,7 +2,7 @@ package com.egoriku.ladyhappy.presentation.ui.activity
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import com.egoriku.giugi.R
+import com.egoriku.ladyhappy.R
 
 class CreateNewPostActivity : AppCompatActivity() {
 

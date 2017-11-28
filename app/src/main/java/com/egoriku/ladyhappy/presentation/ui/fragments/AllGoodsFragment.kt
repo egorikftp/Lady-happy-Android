@@ -12,7 +12,7 @@ import android.view.ViewGroup
 import com.egoriku.corelib_kt.extensions.fromApi
 import com.egoriku.corelib_kt.extensions.inflate
 import com.egoriku.ladyhappy.App
-import com.egoriku.giugi.R
+import com.egoriku.ladyhappy.R
 import com.egoriku.ladyhappy.di.allgoods.AllGoodsComponent
 import com.egoriku.ladyhappy.di.allgoods.AllGoodsModule
 import com.egoriku.ladyhappy.di.allgoods.DaggerAllGoodsComponent
