@@ -74,7 +74,6 @@ class AllGoodsFragment : BaseFragment(), AllGoodsMVP.View {
     }
 
     override fun getArgs(_bundle: Bundle?) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
     override fun onAttach(context: Context?) {

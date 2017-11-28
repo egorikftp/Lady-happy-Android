@@ -16,7 +16,7 @@ android {
     buildToolsVersion versions.buildToolsVersion
 
     defaultConfig {
-        applicationId "egoriku.com.giugi"
+        applicationId "com.egoriku.ladyhappy"
         minSdkVersion versions.minSdkVersion
         targetSdkVersion versions.compileSdkVersion
         versionCode verCode
@@ -49,7 +49,7 @@ android {
 
     applicationVariants.all { variant ->
         variant.outputs.all {
-            outputFileName = "${"GiuGi Toys"}.${variant.name}_${variant.versionName}.apk"
+            outputFileName = "${"Lady Happy"}.${variant.name}_${variant.versionName}.apk"
         }
     }
 }

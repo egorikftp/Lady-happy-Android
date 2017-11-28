@@ -17,11 +17,7 @@ class AllGoodsModule(private val fragment: Fragment) {
     fun providesFragment() = fragment
 
     @Provides
-    fun providesAllGoodsPresenter(useCase: CategoriesUseCase,
-                                  analyticsInterface: AnalyticsInterface
-    ): AllGoodsPresenter {
-        return AllGoodsPresenter(useCase, analyticsInterface)
-    }
+    fun providesAllGoodsPresenter(useCase: CategoriesUseCase, analyticsInterface: AnalyticsInterface) = AllGoodsPresenter(useCase, analyticsInterface)
 
     @Provides
     fun provideCategoriesUseCase(categoriesRepository: CategoriesRepository) = CategoriesUseCase(categoriesRepository)
