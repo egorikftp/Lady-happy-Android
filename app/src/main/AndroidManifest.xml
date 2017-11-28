@@ -21,7 +21,7 @@
             android:label="Order" />
 
         <activity
-            android:name="com.egoriku.ladyhappy.presentation.ui.activity.StartActivity"
+            android:name="com.egoriku.ladyhappy.presentation.ui.activity.LaunchActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen">
 
             <intent-filter>
