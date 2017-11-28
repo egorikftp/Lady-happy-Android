@@ -66,14 +66,14 @@ class AllGoodsFragment : BaseFragment(), AllGoodsMVP.View {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val view = container?.inflate(R.layout.fragment_all_goods, false)
-        initRecyclerView(view)
-        return view
+        return container?.inflate(R.layout.fragment_all_goods, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         presenter.getCategories()
+
+        initRecyclerView()
     }
 
     override fun getArgs(_bundle: Bundle?) {
@@ -125,9 +125,8 @@ class AllGoodsFragment : BaseFragment(), AllGoodsMVP.View {
 
     }
 
-    private fun initRecyclerView(view: View?) {
+    private fun initRecyclerView() {
         val adapterToy = GhostAdapter()
-        //adapterToy.addItems(list)
 
         recycler_all_goods.apply {
             setHasFixedSize(true)
