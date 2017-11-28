@@ -3,6 +3,7 @@ package com.egoriku.ladyhappy.di.allgoods
 import com.egoriku.ladyhappy.data.repositories.CategoriesRepository
 import com.egoriku.ladyhappy.data.repositories.datasource.CategoriesDataSourceRemote
 import com.egoriku.ladyhappy.di.app.AppComponent
+import com.egoriku.ladyhappy.di.app.NavigationModule
 import com.egoriku.ladyhappy.di.scope.ActivityScope
 import com.egoriku.ladyhappy.domain.interactors.allgoods.CategoriesUseCase
 import com.egoriku.ladyhappy.presentation.presenters.impl.AllGoodsPresenter

@@ -11,8 +11,8 @@ import android.view.View
 import android.view.ViewGroup
 import com.egoriku.corelib_kt.extensions.fromApi
 import com.egoriku.corelib_kt.extensions.inflate
-import com.egoriku.giugi.R
 import com.egoriku.ladyhappy.App
+import com.egoriku.giugi.R
 import com.egoriku.ladyhappy.di.allgoods.AllGoodsComponent
 import com.egoriku.ladyhappy.di.allgoods.AllGoodsModule
 import com.egoriku.ladyhappy.di.allgoods.DaggerAllGoodsComponent
@@ -28,10 +28,10 @@ import javax.inject.Inject
 class AllGoodsFragment : BaseFragment(), AllGoodsMVP.View {
 
     @Inject
-    lateinit var router: Router
+    //lateinit var router: Router
     lateinit var presenter: AllGoodsPresenter
 
-    private lateinit var component: AllGoodsComponent
+    var component: AllGoodsComponent? = null
 
     lateinit var allGoodsAdapter: GhostAdapter
 
@@ -42,11 +42,13 @@ class AllGoodsFragment : BaseFragment(), AllGoodsMVP.View {
     }
 
     override fun injectDependencies() {
-        component = DaggerAllGoodsComponent.builder()
-                .appComponent(App.instance.appComponent)
-                .allGoodsModule(AllGoodsModule(this))
-                .build()
-        component.inject(this)
+        if (component == null) {
+            component = DaggerAllGoodsComponent.builder()
+                    .appComponent(App.instance.appComponent)
+                    .allGoodsModule(AllGoodsModule(this))
+                    .build()
+            component?.inject(this)
+        }
     }
 
     override fun attachToPresenter() {
