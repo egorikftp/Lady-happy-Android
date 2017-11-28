@@ -1,7 +1,9 @@
 package com.egoriku.ladyhappy.presentation.ui.activity
 
+import android.content.Intent
 import android.content.res.Configuration
 import android.os.Bundle
+import android.support.annotation.StringRes
 import android.support.v4.app.Fragment
 import android.view.MenuItem
 import co.zsmb.materialdrawerkt.builders.drawer
@@ -9,15 +11,17 @@ import co.zsmb.materialdrawerkt.builders.footer
 import co.zsmb.materialdrawerkt.draweritems.badgeable.primaryItem
 import co.zsmb.materialdrawerkt.draweritems.badgeable.secondaryItem
 import co.zsmb.materialdrawerkt.draweritems.divider
-import com.arellomobile.mvp.MvpAppCompatActivity
-import com.arellomobile.mvp.presenter.InjectPresenter
-import com.arellomobile.mvp.presenter.ProvidePresenter
 import com.egoriku.corelib_kt.extensions.drawableCompat
+import com.egoriku.ladyhappy.App
 import com.egoriku.ladyhappy.R
 import com.egoriku.ladyhappy.common.Fragments
 import com.egoriku.ladyhappy.common.Screens
-import com.egoriku.ladyhappy.mvp.main.DrawerNavigationPresenter
-import com.egoriku.ladyhappy.mvp.main.DrawerNavigationView
+import com.egoriku.ladyhappy.di.activity.ActivityComponent
+import com.egoriku.ladyhappy.di.activity.ActivityModule
+import com.egoriku.ladyhappy.di.activity.DaggerActivityComponent
+import com.egoriku.ladyhappy.presentation.presenters.MainActivityMVP
+import com.egoriku.ladyhappy.presentation.presenters.impl.MainActivityPresenter
+import com.egoriku.ladyhappy.presentation.ui.base.BaseActivity
 import com.egoriku.ladyhappy.presentation.ui.fragments.AllGoodsFragment
 import com.egoriku.ladyhappy.presentation.ui.fragments.order.OrderFragment
 import com.mikepenz.materialdrawer.Drawer
@@ -32,7 +36,7 @@ import ru.terrakok.cicerone.commands.Replace
 import javax.inject.Inject
 
 
-class MainActivity : MvpAppCompatActivity(), DrawerNavigationView {
+class MainActivity : BaseActivity(), MainActivityMVP.View {
 
     private var allGoodsFragment: Fragment? = null
     private var orderFragment: Fragment? = null
@@ -45,11 +49,10 @@ class MainActivity : MvpAppCompatActivity(), DrawerNavigationView {
     @Inject
     lateinit var navigatorHolder: NavigatorHolder
 
-    @InjectPresenter
-    lateinit var presenter: DrawerNavigationPresenter
+    @Inject
+    lateinit var mainActivityPresenter: MainActivityPresenter
 
-    @ProvidePresenter
-    fun createDrawerNavigationPresenter() = DrawerNavigationPresenter(router)
+    private lateinit var component: ActivityComponent
 
     @Suppress("UNUSED_EXPRESSION")
     private val navigator = Navigator { command ->
@@ -74,6 +77,8 @@ class MainActivity : MvpAppCompatActivity(), DrawerNavigationView {
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        injectDependencies()
+        attachToPresenter()
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.activity_main)
@@ -85,6 +90,19 @@ class MainActivity : MvpAppCompatActivity(), DrawerNavigationView {
 
         initNavigationDrawer(savedInstanceState)
         initContainers()
+
+        if (savedInstanceState == null) {
+            mainActivityPresenter.openAllGoodsCategory()
+        }
+    }
+
+    override fun injectDependencies() {
+        component = DaggerActivityComponent.builder()
+                .appComponent(App.instance.appComponent)
+                .activityModule(ActivityModule())
+                .build()
+
+        component.inject(this)
     }
 
     @Suppress("SENSELESS_COMPARISON")
@@ -149,11 +167,11 @@ class MainActivity : MvpAppCompatActivity(), DrawerNavigationView {
 
             onItemClick { _, _, drawerItem ->
                 when (drawerItem.tag.toString()) {
-                    Fragments.ALL_GOODS -> presenter.openAllGoodsCategory()
-                    Fragments.ORDER -> presenter.openOrderCategory()
-                    Fragments.SHARE -> presenter.openShareCategory()
-                    Fragments.FEEDBACK -> presenter.openFeedbackCategory()
-                    Screens.CREATE_POST_ACTIVITY -> presenter.openCreateNewPostScreen()
+                    Fragments.ALL_GOODS -> mainActivityPresenter.openAllGoodsCategory()
+                    Fragments.ORDER -> mainActivityPresenter.openOrderCategory()
+                    Fragments.SHARE -> mainActivityPresenter.openShareCategory()
+                    Fragments.FEEDBACK -> mainActivityPresenter.openFeedbackCategory()
+                    Screens.CREATE_POST_ACTIVITY -> mainActivityPresenter.openCreateNewPostScreen()
                 }
 
                 false
@@ -171,10 +189,6 @@ class MainActivity : MvpAppCompatActivity(), DrawerNavigationView {
         super.onPause()
     }
 
-    fun onFragmentStart(titleResId: String) {
-        supportActionBar?.title = titleResId
-    }
-
     override fun onBackPressed() {
         if (navigationDrawer.isDrawerOpen) {
             navigationDrawer.closeDrawer()
@@ -184,7 +198,7 @@ class MainActivity : MvpAppCompatActivity(), DrawerNavigationView {
             return
         }
 
-        presenter.onBackPressed()
+        mainActivityPresenter.onBackPressed()
     }
 
     override fun onConfigurationChanged(newConfig: Configuration) {
@@ -192,11 +206,46 @@ class MainActivity : MvpAppCompatActivity(), DrawerNavigationView {
         navigationDrawer.actionBarDrawerToggle.onConfigurationChanged(newConfig)
     }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return navigationDrawer.actionBarDrawerToggle.onOptionsItemSelected(item) || super.onOptionsItemSelected(item)
-    }
+    override fun onOptionsItemSelected(item: MenuItem) = navigationDrawer.actionBarDrawerToggle.onOptionsItemSelected(item) || super.onOptionsItemSelected(item)
 
     override fun selectDrawerItem(position: Int) {
         navigationDrawer.setSelectionAtPosition(position, false)
     }
+
+    override fun attachToPresenter() {
+        mainActivityPresenter.attachView(this)
+    }
+
+    override fun detachFromPresenter() {
+        mainActivityPresenter.detachView()
+    }
+
+    override fun onLandscape() {
+    }
+
+    override fun onPortrait() {
+    }
+
+    override fun showLoading() {
+    }
+
+    override fun hideLoading() {
+    }
+
+    override fun getExtras(_intent: Intent) {
+    }
+
+    override fun showMessage(message: String) {
+    }
+
+    override fun showNoNetwork() {
+    }
+
+    override fun setUpToolbar(@StringRes title: Int) {
+        supportActionBar?.title = getString(title)
+    }
+
+    override fun getAttachedFragment(id: Int): Fragment = supportFragmentManager.findFragmentById(id)
+
+    override fun getAttachedFragment(tag: String): Fragment = supportFragmentManager.findFragmentByTag(tag)
 }

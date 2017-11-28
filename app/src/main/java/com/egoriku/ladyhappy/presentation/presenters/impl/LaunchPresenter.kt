@@ -14,7 +14,7 @@ class LaunchPresenter
 
     override fun attachView(view: LaunchMVP.View) {
         super.attachView(view)
-        analyticsInterface.trackPageView(TrackingConstants.VIEW_LAUNCH)
+        analyticsInterface.trackPageView(TrackingConstants.ACTIVITY_LAUNCH)
     }
 
     override fun processOpeningApp() {

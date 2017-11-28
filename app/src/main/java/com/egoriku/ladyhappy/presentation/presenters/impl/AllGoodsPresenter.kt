@@ -19,7 +19,7 @@ class AllGoodsPresenter
 
     override fun attachView(view: AllGoodsMVP.View) {
         super.attachView(view)
-        analyticsInterface.trackPageView(TrackingConstants.VIEW_ALL_GOODS)
+        analyticsInterface.trackPageView(TrackingConstants.FRAGMENT_ALL_GOODS)
     }
 
     override fun detachView() {

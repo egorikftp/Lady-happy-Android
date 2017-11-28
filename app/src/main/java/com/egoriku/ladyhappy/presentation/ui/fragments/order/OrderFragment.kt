@@ -1,22 +1,24 @@
 package com.egoriku.ladyhappy.presentation.ui.fragments.order
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.arellomobile.mvp.MvpAppCompatFragment
-import com.arellomobile.mvp.presenter.InjectPresenter
-import com.arellomobile.mvp.presenter.ProvidePresenter
-import com.egoriku.corelib_kt.extensions.consume
 import com.egoriku.corelib_kt.extensions.inflate
+import com.egoriku.ladyhappy.App
 import com.egoriku.ladyhappy.R
-import com.egoriku.ladyhappy.mvp.main.fragment.order.OrderPresenter
-import com.egoriku.ladyhappy.mvp.main.fragment.order.OrderView
-import com.egoriku.ladyhappy.navigation.BackButtonListener
+import com.egoriku.ladyhappy.di.order.DaggerOrderComponent
+import com.egoriku.ladyhappy.di.order.OrderComponent
+import com.egoriku.ladyhappy.di.order.OrderModule
+import com.egoriku.ladyhappy.presentation.presenters.OrderMVP
+import com.egoriku.ladyhappy.presentation.presenters.impl.OrderPresenter
+import com.egoriku.ladyhappy.presentation.ui.activity.MainActivity
+import com.egoriku.ladyhappy.presentation.ui.base.BaseFragment
 import ru.terrakok.cicerone.Router
 import javax.inject.Inject
 
-class OrderFragment : MvpAppCompatFragment(), OrderView, BackButtonListener {
+class OrderFragment : BaseFragment(), OrderMVP.View {
 
     companion object {
         fun newInstance(): OrderFragment {
@@ -27,26 +29,70 @@ class OrderFragment : MvpAppCompatFragment(), OrderView, BackButtonListener {
     @Inject
     lateinit var router: Router
 
-    @InjectPresenter
+    @Inject
     lateinit var presenter: OrderPresenter
 
-    @ProvidePresenter
-    fun provideOrderPresenter(): OrderPresenter {
-        return OrderPresenter(router)
-    }
+    private lateinit var component: OrderComponent
 
     override fun onCreate(savedInstanceState: Bundle?) {
-       // App.instance.appComponent.inject(this)
         super.onCreate(savedInstanceState)
+        getArgs(savedInstanceState)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return container?.inflate(R.layout.fragment_order, false)
     }
 
-    override fun onBackPressed(): Boolean {
-        return consume {
-            presenter.onBackPressed()
-        }
+    override fun onAttach(context: Context?) {
+        injectDependencies()
+        attachToPresenter()
+        showTitle(R.string.navigation_drawer_order)
+        super.onAttach(context)
+    }
+
+    override fun injectDependencies() {
+        component = DaggerOrderComponent.builder()
+                .appComponent(App.instance.appComponent)
+                .orderModule(OrderModule())
+                .build()
+        component.inject(this)
+    }
+
+    override fun attachToPresenter() {
+        presenter.attachView(this)
+    }
+
+    override fun detachFromPresenter() {
+        presenter.detachView()
+    }
+
+    override fun onLandscape() {
+    }
+
+    override fun onPortrait() {
+    }
+
+    override fun showTitle(title: Int) {
+        (activity as MainActivity).setUpToolbar(title)
+    }
+
+    override fun showLoading() {
+
+    }
+
+    override fun hideLoading() {
+
+    }
+
+    override fun showMessage(message: String) {
+
+    }
+
+    override fun showNoNetwork() {
+
+    }
+
+    override fun getArgs(_bundle: Bundle?) {
+
     }
 }

@@ -1,13 +1,15 @@
 package com.egoriku.ladyhappy.presentation.presenters
 
+import android.support.annotation.StringRes
 import com.egoriku.ladyhappy.presentation.ui.base.BaseMvpView
 
-interface LaunchMVP {
+interface OrderMVP {
 
-    interface View : BaseMvpView
+    interface View : BaseMvpView {
+        fun showTitle(@StringRes title: Int)
+    }
 
     interface Presenter {
-        fun processOpeningApp()
         fun onBackPressed()
     }
 }

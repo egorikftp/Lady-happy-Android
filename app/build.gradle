@@ -2,6 +2,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'io.fabric'
 apply from: 'keys.gradle'
 
 def versionProp = loadProperties('version.properties')
@@ -42,7 +43,8 @@ android {
     }
 
     gradle.taskGraph.whenReady { taskGraph ->
-        if (taskGraph.hasTask(assembleDebug) || taskGraph.hasTask(assembleRelease)) {
+        //if (taskGraph.hasTask(assembleDebug) || taskGraph.hasTask(assembleRelease)) {
+        if (taskGraph.hasTask(assembleRelease)) {
             autoIncrementBuildVersionNumber()
         }
     }
@@ -71,6 +73,10 @@ dependencies {
     implementation libs.firebaseAuth
     implementation libs.firebaseFirestore
     implementation libs.firebaseAnalytics
+
+    implementation('com.crashlytics.sdk.android:crashlytics:2.7.1@aar') {
+        transitive = true
+    }
 
     implementation libs.kotlin
     implementation libs.glide

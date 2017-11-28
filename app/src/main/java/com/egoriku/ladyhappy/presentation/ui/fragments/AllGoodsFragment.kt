@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Build
 import android.os.Bundle
+import android.support.annotation.StringRes
 import android.support.design.widget.AppBarLayout
 import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
@@ -29,6 +30,8 @@ class AllGoodsFragment : BaseFragment(), AllGoodsMVP.View {
 
     @Inject
     lateinit var router: Router
+
+    @Inject
     lateinit var presenter: AllGoodsPresenter
 
     private lateinit var component: AllGoodsComponent
@@ -50,21 +53,21 @@ class AllGoodsFragment : BaseFragment(), AllGoodsMVP.View {
     }
 
     override fun attachToPresenter() {
-        this.presenter.attachView(this)
+        presenter.attachView(this)
     }
 
     override fun detachFromPresenter() {
-        this.presenter.detachView()
+        presenter.detachView()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        this.getArgs(savedInstanceState)
+        getArgs(savedInstanceState)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = container?.inflate(R.layout.fragment_all_goods, false)
-        initRecyclerView()
+        initRecyclerView(view)
         return view
     }
 
@@ -77,9 +80,9 @@ class AllGoodsFragment : BaseFragment(), AllGoodsMVP.View {
     }
 
     override fun onAttach(context: Context?) {
-        this.injectDependencies()
-        this.attachToPresenter()
-        this.showTitle(getString(R.string.navigation_drawer_all_goods))
+        injectDependencies()
+        attachToPresenter()
+        showTitle(R.string.navigation_drawer_all_goods)
         super.onAttach(context)
     }
 
@@ -88,8 +91,8 @@ class AllGoodsFragment : BaseFragment(), AllGoodsMVP.View {
         super.onDetach()
     }
 
-    override fun showTitle(message: String) {
-        (activity as MainActivity).onFragmentStart(message)
+    override fun showTitle(@StringRes title: Int) {
+        (activity as MainActivity).setUpToolbar(title)
     }
 
     override fun onLandscape() {
@@ -122,11 +125,11 @@ class AllGoodsFragment : BaseFragment(), AllGoodsMVP.View {
 
     }
 
-    private fun initRecyclerView() {
+    private fun initRecyclerView(view: View?) {
         val adapterToy = GhostAdapter()
         //adapterToy.addItems(list)
 
-        recycler.apply {
+        recycler_all_goods.apply {
             setHasFixedSize(true)
             layoutManager = LinearLayoutManager(context)
             adapter = adapterToy

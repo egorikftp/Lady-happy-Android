@@ -11,9 +11,9 @@ import com.egoriku.corelib_kt.listeners.SimpleAnimatorListener
 import com.egoriku.ladyhappy.App
 import com.egoriku.ladyhappy.R
 import com.egoriku.ladyhappy.common.Screens
-import com.egoriku.ladyhappy.di.launch.DaggerLaunchComponent
-import com.egoriku.ladyhappy.di.launch.LaunchComponent
-import com.egoriku.ladyhappy.di.launch.LaunchModule
+import com.egoriku.ladyhappy.di.activity.ActivityComponent
+import com.egoriku.ladyhappy.di.activity.ActivityModule
+import com.egoriku.ladyhappy.di.activity.DaggerActivityComponent
 import com.egoriku.ladyhappy.presentation.presenters.LaunchMVP
 import com.egoriku.ladyhappy.presentation.presenters.impl.LaunchPresenter
 import kotlinx.android.synthetic.main.activity_start.*
@@ -34,7 +34,7 @@ class LaunchActivity : AppCompatActivity(), LaunchMVP.View {
     @Inject
     lateinit var launchPresenter: LaunchPresenter
 
-    private lateinit var component: LaunchComponent
+    private lateinit var component: ActivityComponent
 
     private val navigator = object : SupportAppNavigator(this@LaunchActivity, R.id.activity_start_container) {
         override fun createActivityIntent(screenKey: String?, data: Any?): Intent? = when (screenKey) {
@@ -45,20 +45,20 @@ class LaunchActivity : AppCompatActivity(), LaunchMVP.View {
         override fun createFragment(screenKey: String?, data: Any?): Fragment? = null
     }
 
-    override fun injectDependencies() {
-        component = DaggerLaunchComponent.builder()
-                .appComponent(App.instance.appComponent)
-                .launchModule(LaunchModule())
-                .build()
-
-        component.inject(this)
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         injectDependencies()
         attachToPresenter()
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_start)
+    }
+
+    override fun injectDependencies() {
+        component = DaggerActivityComponent.builder()
+                .appComponent(App.instance.appComponent)
+                .activityModule(ActivityModule())
+                .build()
+
+        component.inject(this)
     }
 
     override fun onResume() {
