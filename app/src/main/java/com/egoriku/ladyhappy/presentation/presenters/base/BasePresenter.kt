@@ -3,7 +3,7 @@ package com.egoriku.ladyhappy.presentation.presenters.base
 import com.egoriku.ladyhappy.presentation.ui.base.BaseMvpView
 
 
-public open class BasePresenter<T : BaseMvpView> : IBasePresenter<T> {
+open class BasePresenter<T : BaseMvpView> : IBasePresenter<T> {
 
     protected var view: T? = null
 

@@ -15,10 +15,9 @@ import ru.terrakok.cicerone.Router
  */
 
 @ApplicationScope
-@Component(modules = arrayOf(AppModule::class, NavigationModule::class))
+@Component(modules = [AppModule::class, NavigationModule::class])
 interface AppComponent {
 
-    // Allows to inject into the App
     fun inject(app: App)
 
     fun context(): Context
@@ -26,5 +25,5 @@ interface AppComponent {
     fun firebaseFirestore(): FirebaseFirestore
     fun analyticsHelper(): AnalyticsInterface
     fun router(): Router
-    fun navigatorHolder():NavigatorHolder
+    fun navigatorHolder(): NavigatorHolder
 }

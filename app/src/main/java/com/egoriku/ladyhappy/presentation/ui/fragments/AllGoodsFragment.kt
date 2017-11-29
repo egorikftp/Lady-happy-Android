@@ -12,11 +12,13 @@ import android.view.View
 import android.view.ViewGroup
 import com.egoriku.corelib_kt.extensions.fromApi
 import com.egoriku.corelib_kt.extensions.inflate
+import com.egoriku.corelib_kt.extensions.show
 import com.egoriku.ladyhappy.App
 import com.egoriku.ladyhappy.R
 import com.egoriku.ladyhappy.di.allgoods.AllGoodsComponent
 import com.egoriku.ladyhappy.di.allgoods.AllGoodsModule
 import com.egoriku.ladyhappy.di.allgoods.DaggerAllGoodsComponent
+import com.egoriku.ladyhappy.domain.models.CategoryModel
 import com.egoriku.ladyhappy.presentation.presenters.AllGoodsMVP
 import com.egoriku.ladyhappy.presentation.presenters.impl.AllGoodsPresenter
 import com.egoriku.ladyhappy.presentation.ui.activity.MainActivity
@@ -98,7 +100,10 @@ class AllGoodsFragment : BaseFragment(), AllGoodsMVP.View {
     override fun onLandscape() {
     }
 
-    override fun showCategories() {
+    override fun showCategories(categories: List<CategoryModel>) {
+        recycler_all_goods.show()
+
+        allGoodsAdapter.setItems(categories)
     }
 
     override fun onPortrait() {
@@ -126,12 +131,12 @@ class AllGoodsFragment : BaseFragment(), AllGoodsMVP.View {
     }
 
     private fun initRecyclerView() {
-        val adapterToy = GhostAdapter()
+        allGoodsAdapter = GhostAdapter()
 
         recycler_all_goods.apply {
             setHasFixedSize(true)
             layoutManager = LinearLayoutManager(context)
-            adapter = adapterToy
+            adapter = allGoodsAdapter
         }
 
         appbarLayout.addOnOffsetChangedListener(object : AppBarLayout.OnOffsetChangedListener {

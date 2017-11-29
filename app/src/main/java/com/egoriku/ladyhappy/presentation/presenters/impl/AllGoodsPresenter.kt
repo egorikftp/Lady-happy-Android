@@ -43,7 +43,21 @@ class AllGoodsPresenter
     }
 
     override fun onGetCategoriesSuccess(categoriesModel: CategoriesModel) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        checkViewAttached()
+        view?.hideLoading()
+        if (categoriesModel.isEmpty()) {
+         /*   if (!SharedPreferencesHelper.getBoolean(sharedPreferences,
+                    SharedPreferencesHelper.KEY_USER_TASK_AT_LEAST_ONCE)) {
+                view.showBucketEmptyFirstTime()
+            } else {
+                view.showBucketEmpty()
+            }*/
+
+            TODO("Show empty view")
+
+        } else {
+            view?.showCategories(categoriesModel.toList())
+        }
     }
 
     override fun onGetCategoriesFailure(e: Throwable) {

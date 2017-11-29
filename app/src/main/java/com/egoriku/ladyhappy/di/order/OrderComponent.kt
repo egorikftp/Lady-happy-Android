@@ -7,7 +7,7 @@ import dagger.Component
 import ru.terrakok.cicerone.Router
 
 @ActivityScope
-@Component(dependencies = arrayOf(AppComponent::class), modules = arrayOf(OrderModule::class))
+@Component(dependencies = [AppComponent::class], modules = [OrderModule::class])
 interface OrderComponent {
 
     fun inject(orderFragment: OrderFragment)

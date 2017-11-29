@@ -17,7 +17,7 @@ import ru.terrakok.cicerone.Router
  */
 
 @ActivityScope
-@Component(dependencies = arrayOf(AppComponent::class), modules = arrayOf(AllGoodsModule::class))
+@Component(dependencies = [AppComponent::class], modules = [AllGoodsModule::class])
 interface AllGoodsComponent {
 
     //fragments
