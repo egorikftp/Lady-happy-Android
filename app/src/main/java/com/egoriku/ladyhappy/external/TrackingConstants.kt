@@ -13,6 +13,5 @@ class TrackingConstants {
         const val DRAWER_ORDER = "drawer_order"
         const val DRAWER_SHARE = "drawer_share"
         const val DRAWER_FEEDBACK = "drawer_feedback"
-
     }
 }
