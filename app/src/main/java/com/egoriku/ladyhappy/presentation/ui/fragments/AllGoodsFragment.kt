@@ -22,8 +22,9 @@ import com.egoriku.ladyhappy.domain.models.CategoryModel
 import com.egoriku.ladyhappy.presentation.presenters.AllGoodsMVP
 import com.egoriku.ladyhappy.presentation.presenters.impl.AllGoodsPresenter
 import com.egoriku.ladyhappy.presentation.ui.activity.MainActivity
+import com.egoriku.ladyhappy.presentation.ui.adapter.AllGoodsAdapter
+import com.egoriku.ladyhappy.presentation.ui.adapter.model.SectionType
 import com.egoriku.ladyhappy.presentation.ui.base.BaseFragment
-import ext.adapter.GhostAdapter
 import kotlinx.android.synthetic.main.fragment_all_goods.*
 import ru.terrakok.cicerone.Router
 import javax.inject.Inject
@@ -38,7 +39,7 @@ class AllGoodsFragment : BaseFragment(), AllGoodsMVP.View {
 
     private lateinit var component: AllGoodsComponent
 
-    lateinit var allGoodsAdapter: GhostAdapter
+    lateinit var allGoodsAdapter: AllGoodsAdapter
 
     companion object {
         fun newInstance(): AllGoodsFragment {
@@ -102,8 +103,7 @@ class AllGoodsFragment : BaseFragment(), AllGoodsMVP.View {
 
     override fun showCategories(categories: List<CategoryModel>) {
         recycler_all_goods.show()
-
-        allGoodsAdapter.setItems(categories)
+        allGoodsAdapter.setItems(SectionType.CATEGORIES, categories)
     }
 
     override fun onPortrait() {
@@ -131,7 +131,7 @@ class AllGoodsFragment : BaseFragment(), AllGoodsMVP.View {
     }
 
     private fun initRecyclerView() {
-        allGoodsAdapter = GhostAdapter()
+        allGoodsAdapter = AllGoodsAdapter(activity)
 
         recycler_all_goods.apply {
             setHasFixedSize(true)

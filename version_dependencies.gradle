@@ -23,7 +23,8 @@ ext.versions = [
         materialDrawerKtVersion: "1.2.1",
         rxJavaVersion          : "2.1.6",
         rxAndroidVersion       : "2.0.1",
-        gsonVersion            : "2.8.2"
+        gsonVersion            : "2.8.2",
+        adapterDelegateVersion : "3.0.1"
 ]
 
 ext.gradlePlugins = [
@@ -68,7 +69,9 @@ ext.libs = [
         coreLibKt         : "com.egoriku:CoreLib_Kotlin:$versions.coreLibKotlin",
 
         lottie            : "com.airbnb.android:lottie:$versions.lottieVersion",
-        materialDrawerKt  : "co.zsmb:materialdrawer-kt:$versions.materialDrawerKtVersion"
+        materialDrawerKt  : "co.zsmb:materialdrawer-kt:$versions.materialDrawerKtVersion",
+
+        adapterDelegate   : "com.hannesdorfmann:adapterdelegates3:$versions.adapterDelegateVersion"
 ]
 
 allprojects {

@@ -103,6 +103,8 @@ dependencies {
 
     implementation libs.lottie
     implementation libs.materialDrawerKt
+
+    implementation libs.adapterDelegate
 }
 
 apply plugin: 'com.google.gms.google-services'

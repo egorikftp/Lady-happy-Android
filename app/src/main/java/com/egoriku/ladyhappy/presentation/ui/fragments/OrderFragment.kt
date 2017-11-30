@@ -1,4 +1,4 @@
-package com.egoriku.ladyhappy.presentation.ui.fragments.order
+package com.egoriku.ladyhappy.presentation.ui.fragments
 
 import android.content.Context
 import android.os.Bundle

@@ -23,7 +23,7 @@ import com.egoriku.ladyhappy.presentation.presenters.MainActivityMVP
 import com.egoriku.ladyhappy.presentation.presenters.impl.MainActivityPresenter
 import com.egoriku.ladyhappy.presentation.ui.base.BaseActivity
 import com.egoriku.ladyhappy.presentation.ui.fragments.AllGoodsFragment
-import com.egoriku.ladyhappy.presentation.ui.fragments.order.OrderFragment
+import com.egoriku.ladyhappy.presentation.ui.fragments.OrderFragment
 import com.mikepenz.materialdrawer.Drawer
 import kotlinx.android.synthetic.main.activity_main.*
 import org.jetbrains.anko.intentFor

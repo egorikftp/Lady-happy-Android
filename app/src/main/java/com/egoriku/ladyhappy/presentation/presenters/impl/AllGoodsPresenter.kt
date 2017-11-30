@@ -1,8 +1,5 @@
 package com.egoriku.ladyhappy.presentation.presenters.impl
 
-import com.egoriku.ladyhappy.R
-import com.egoriku.ladyhappy.adapter.ToysItem
-import com.egoriku.ladyhappy.data.Toy
 import com.egoriku.ladyhappy.domain.interactors.Params
 import com.egoriku.ladyhappy.domain.interactors.allgoods.CategoriesUseCase
 import com.egoriku.ladyhappy.domain.models.CategoriesModel
@@ -30,28 +27,18 @@ class AllGoodsPresenter
     override fun getCategories() {
         view?.showLoading()
         getCategoriesUseCase.execute(GetCategoriesObserver(), Params.EMPTY)
-
-        val list = mutableListOf<Any>()
-        list.add(ToysItem(Toy("1", R.drawable.ic1)))
-        list.add(ToysItem(Toy("2", R.drawable.ic2)))
-        list.add(ToysItem(Toy("3", R.drawable.ic3)))
-        list.add(ToysItem(Toy("4", R.drawable.ic4)))
-        list.add(ToysItem(Toy("5", R.drawable.ic5)))
-        list.add(ToysItem(Toy("6", R.drawable.ic6)))
-        list.add(ToysItem(Toy("7", R.drawable.ic7)))
-        list.add(ToysItem(Toy("8", R.drawable.ic8)))
     }
 
     override fun onGetCategoriesSuccess(categoriesModel: CategoriesModel) {
         checkViewAttached()
         view?.hideLoading()
         if (categoriesModel.isEmpty()) {
-         /*   if (!SharedPreferencesHelper.getBoolean(sharedPreferences,
-                    SharedPreferencesHelper.KEY_USER_TASK_AT_LEAST_ONCE)) {
-                view.showBucketEmptyFirstTime()
-            } else {
-                view.showBucketEmpty()
-            }*/
+            /*   if (!SharedPreferencesHelper.getBoolean(sharedPreferences,
+                       SharedPreferencesHelper.KEY_USER_TASK_AT_LEAST_ONCE)) {
+                   view.showBucketEmptyFirstTime()
+               } else {
+                   view.showBucketEmpty()
+               }*/
 
             TODO("Show empty view")
 

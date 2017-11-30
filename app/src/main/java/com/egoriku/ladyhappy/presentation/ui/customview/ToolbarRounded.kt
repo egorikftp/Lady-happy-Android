@@ -1,4 +1,4 @@
-package com.egoriku.ladyhappy.presentation.ui
+package com.egoriku.ladyhappy.presentation.ui.customview
 
 import android.content.Context
 import android.graphics.Canvas

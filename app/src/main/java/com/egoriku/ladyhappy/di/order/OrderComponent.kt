@@ -2,7 +2,7 @@ package com.egoriku.ladyhappy.di.order
 
 import com.egoriku.ladyhappy.di.app.AppComponent
 import com.egoriku.ladyhappy.di.scope.ActivityScope
-import com.egoriku.ladyhappy.presentation.ui.fragments.order.OrderFragment
+import com.egoriku.ladyhappy.presentation.ui.fragments.OrderFragment
 import dagger.Component
 import ru.terrakok.cicerone.Router
 
