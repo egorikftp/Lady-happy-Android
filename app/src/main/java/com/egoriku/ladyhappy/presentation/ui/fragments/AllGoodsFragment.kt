@@ -1,16 +1,12 @@
 package com.egoriku.ladyhappy.presentation.ui.fragments
 
-import android.annotation.SuppressLint
 import android.content.Context
-import android.os.Build
 import android.os.Bundle
 import android.support.annotation.StringRes
-import android.support.design.widget.AppBarLayout
 import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.egoriku.corelib_kt.extensions.fromApi
 import com.egoriku.corelib_kt.extensions.inflate
 import com.egoriku.corelib_kt.extensions.show
 import com.egoriku.ladyhappy.App
@@ -138,29 +134,5 @@ class AllGoodsFragment : BaseFragment(), AllGoodsMVP.View {
             layoutManager = LinearLayoutManager(context)
             adapter = allGoodsAdapter
         }
-
-        appbarLayout.addOnOffsetChangedListener(object : AppBarLayout.OnOffsetChangedListener {
-
-            internal var scrollRange = -1
-
-            @SuppressLint("NewApi")
-            override fun onOffsetChanged(appBarLayout: AppBarLayout, verticalOffset: Int) {
-                if (scrollRange == -1) {
-                    scrollRange = appBarLayout.totalScrollRange
-                }
-
-                val scale = 1 + verticalOffset / scrollRange.toFloat()
-
-                toolbarRounded.setScale(scale)
-
-                if (scale <= 0) {
-                    fromApi(Build.VERSION_CODES.LOLLIPOP, true) {
-                        appbarLayout.elevation = 0f
-                    }
-                } else {
-                    appbarLayout.elevation = 0f
-                }
-            }
-        })
     }
 }

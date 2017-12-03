@@ -19,7 +19,6 @@ class AllGoodsAdapter(val activity: Activity?) : ListDelegationAdapter<List<Base
 
     @SuppressLint("SwitchIntDef")
     fun setItems(@SectionType type: Int, newDataList: List<BaseDisplayableItem>) {
-        TODO("TODO(Create extension function for adding to some place in list")
         when (type) {
             SectionType.CATEGORIES -> {
                 list = newDataList

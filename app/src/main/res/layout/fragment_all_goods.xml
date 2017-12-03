@@ -1,49 +1,11 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/fragmentAllGoodsRoot"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.egoriku.ladyhappy.presentation.ui.fragments.AllGoodsFragment">
+    android:layout_height="match_parent">
 
-    <android.support.design.widget.CoordinatorLayout
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_all_goods"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <android.support.design.widget.AppBarLayout
-            android:id="@+id/appbarLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:elevation="0dp">
-
-            <android.support.design.widget.CollapsingToolbarLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layout_scrollFlags="scroll|exitUntilCollapsed">
-
-                <FrameLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="70dp"
-                    app:layout_collapseMode="pin">
-
-                    <com.egoriku.ladyhappy.presentation.ui.customview.ToolbarRounded
-                        android:id="@+id/toolbarRounded"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        app:title="egorik" />
-                </FrameLayout>
-
-            </android.support.design.widget.CollapsingToolbarLayout>
-
-        </android.support.design.widget.AppBarLayout>
-
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/recycler_all_goods"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior"
-            tools:listitem="@layout/layout_images" />
-
-    </android.support.design.widget.CoordinatorLayout>
-
+        android:layout_height="match_parent"
+        tools:listitem="@layout/adapter_item_category" />
 </FrameLayout>

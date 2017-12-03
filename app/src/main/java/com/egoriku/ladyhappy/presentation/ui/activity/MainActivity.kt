@@ -30,6 +30,7 @@ import org.jetbrains.anko.intentFor
 import ru.terrakok.cicerone.Navigator
 import ru.terrakok.cicerone.NavigatorHolder
 import ru.terrakok.cicerone.Router
+import ru.terrakok.cicerone.android.SupportFragmentNavigator
 import ru.terrakok.cicerone.commands.Back
 import ru.terrakok.cicerone.commands.Forward
 import ru.terrakok.cicerone.commands.Replace
@@ -37,9 +38,6 @@ import javax.inject.Inject
 
 
 class MainActivity : BaseActivity(), MainActivityMVP.View {
-
-    private var allGoodsFragment: Fragment? = null
-    private var orderFragment: Fragment? = null
 
     private lateinit var navigationDrawer: Drawer
 
@@ -55,24 +53,22 @@ class MainActivity : BaseActivity(), MainActivityMVP.View {
     private lateinit var component: ActivityComponent
 
     @Suppress("UNUSED_EXPRESSION")
-    private val navigator = Navigator { command ->
-        when (command) {
-            is Replace -> when (command.screenKey) {
-                Fragments.ALL_GOODS -> supportFragmentManager.beginTransaction()
-                        .detach(orderFragment)
-                        .attach(allGoodsFragment)
-                        .commitNow()
-                Fragments.ORDER -> supportFragmentManager.beginTransaction()
-                        .detach(allGoodsFragment)
-                        .attach(orderFragment)
-                        .commitNow()
-                else -> null
+    private val navigator = object : SupportFragmentNavigator(supportFragmentManager, R.id.mainActivityContainer) {
+
+        override fun createFragment(screenKey: String?, data: Any?): Fragment {
+            return when (screenKey) {
+                Fragments.ALL_GOODS -> AllGoodsFragment.newInstance()
+                Fragments.ORDER -> OrderFragment.newInstance()
+                else -> throw  IllegalStateException("Navigation to unknown screen")
             }
-            is Forward -> when (command.screenKey) {
-                Screens.CREATE_POST_ACTIVITY -> intentFor<CreateNewPostActivity>()
-                else -> null
-            }
-            is Back -> finish()
+        }
+
+        override fun exit() {
+            finish()
+        }
+
+        override fun showSystemMessage(message: String?) {
+
         }
     }
 
@@ -89,7 +85,6 @@ class MainActivity : BaseActivity(), MainActivityMVP.View {
         }
 
         initNavigationDrawer(savedInstanceState)
-        initContainers()
 
         if (savedInstanceState == null) {
             mainActivityPresenter.openAllGoodsCategory()
@@ -103,27 +98,6 @@ class MainActivity : BaseActivity(), MainActivityMVP.View {
                 .build()
 
         component.inject(this)
-    }
-
-    @Suppress("SENSELESS_COMPARISON")
-    private fun initContainers() {
-        val fm = supportFragmentManager
-        allGoodsFragment = fm.findFragmentByTag(Fragments.ALL_GOODS)
-
-        if (allGoodsFragment == null) {
-            allGoodsFragment = AllGoodsFragment.newInstance()
-            fm.beginTransaction()
-                    .add(R.id.mainActivityContainer, allGoodsFragment, Fragments.ALL_GOODS)
-                    .detach(allGoodsFragment).commitNow()
-        }
-
-        orderFragment = fm.findFragmentByTag(Fragments.ORDER)
-        if (orderFragment == null) {
-            orderFragment = OrderFragment.newInstance()
-            fm.beginTransaction()
-                    .add(R.id.mainActivityContainer, orderFragment, Fragments.ORDER)
-                    .detach(orderFragment).commitNow()
-        }
     }
 
     override fun onPostCreate(savedInstanceState: Bundle?) {

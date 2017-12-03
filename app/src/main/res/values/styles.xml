@@ -14,4 +14,9 @@
         <item name="android:windowAnimationStyle">@null</item>
     </style>
 
+    <style name="ToolbarTheme" parent="ThemeOverlay.AppCompat.ActionBar">
+        <item name="android:textColorPrimary">@color/Terracota</item>
+        <item name="android:background">@color/white</item>
+    </style>
+
 </resources>
