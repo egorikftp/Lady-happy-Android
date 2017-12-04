@@ -3,6 +3,10 @@
     <color name="colorPrimary">#FFFFFF</color>
     <color name="colorPrimaryDark">#d7d7d7</color>
     <color name="colorAccent">#FF4081</color>
+    <color name="transpanent">#00000000</color>
+
+    <color name="categoriesGradientStart">#AA000000</color>
+    <color name="categoriesGradientEnd">@color/transpanent</color>
 
     <color name="white">#FFFFFF</color>
     <color name="Terracota">#7F6854</color>
