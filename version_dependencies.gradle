@@ -20,7 +20,7 @@ ext.versions = [
         daggerVersion          : "2.13",
         ankoVersion            : "0.10.2",
         lottieVersion          : "2.2.5",
-        materialDrawerKtVersion: "1.2.1",
+        materialDrawerKtVersion: "1.2.2",
         rxJavaVersion          : "2.1.6",
         rxAndroidVersion       : "2.0.1",
         gsonVersion            : "2.8.2",

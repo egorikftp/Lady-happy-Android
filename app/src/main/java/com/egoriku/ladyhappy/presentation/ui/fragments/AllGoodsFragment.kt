@@ -8,7 +8,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.egoriku.corelib_kt.extensions.inflate
-import com.egoriku.corelib_kt.extensions.show
 import com.egoriku.ladyhappy.App
 import com.egoriku.ladyhappy.R
 import com.egoriku.ladyhappy.di.allgoods.AllGoodsComponent
@@ -35,7 +34,7 @@ class AllGoodsFragment : BaseFragment(), AllGoodsMVP.View {
 
     private lateinit var component: AllGoodsComponent
 
-    lateinit var allGoodsAdapter: AllGoodsAdapter
+    private lateinit var allGoodsAdapter: AllGoodsAdapter
 
     companion object {
         fun newInstance(): AllGoodsFragment {
@@ -70,6 +69,7 @@ class AllGoodsFragment : BaseFragment(), AllGoodsMVP.View {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        showTitle(R.string.navigation_drawer_all_goods)
         presenter.getCategories()
 
         initRecyclerView()
@@ -81,7 +81,6 @@ class AllGoodsFragment : BaseFragment(), AllGoodsMVP.View {
     override fun onAttach(context: Context?) {
         injectDependencies()
         attachToPresenter()
-        showTitle(R.string.navigation_drawer_all_goods)
         super.onAttach(context)
     }
 
@@ -98,7 +97,6 @@ class AllGoodsFragment : BaseFragment(), AllGoodsMVP.View {
     }
 
     override fun showCategories(categories: List<CategoryModel>) {
-        recycler_all_goods.show()
         allGoodsAdapter.setItems(SectionType.CATEGORIES, categories)
     }
 

@@ -43,10 +43,14 @@ class OrderFragment : BaseFragment(), OrderMVP.View {
         return container?.inflate(R.layout.fragment_order, false)
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        showTitle(R.string.navigation_drawer_order)
+    }
+
     override fun onAttach(context: Context?) {
         injectDependencies()
         attachToPresenter()
-        showTitle(R.string.navigation_drawer_order)
         super.onAttach(context)
     }
 

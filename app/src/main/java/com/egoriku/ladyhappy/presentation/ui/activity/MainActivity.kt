@@ -26,23 +26,13 @@ import com.egoriku.ladyhappy.presentation.ui.fragments.AllGoodsFragment
 import com.egoriku.ladyhappy.presentation.ui.fragments.OrderFragment
 import com.mikepenz.materialdrawer.Drawer
 import kotlinx.android.synthetic.main.activity_main.*
-import org.jetbrains.anko.intentFor
-import ru.terrakok.cicerone.Navigator
 import ru.terrakok.cicerone.NavigatorHolder
-import ru.terrakok.cicerone.Router
-import ru.terrakok.cicerone.android.SupportFragmentNavigator
-import ru.terrakok.cicerone.commands.Back
-import ru.terrakok.cicerone.commands.Forward
-import ru.terrakok.cicerone.commands.Replace
+import ru.terrakok.cicerone.android.SupportAppNavigator
 import javax.inject.Inject
-
 
 class MainActivity : BaseActivity(), MainActivityMVP.View {
 
     private lateinit var navigationDrawer: Drawer
-
-    @Inject
-    lateinit var router: Router
 
     @Inject
     lateinit var navigatorHolder: NavigatorHolder
@@ -53,22 +43,19 @@ class MainActivity : BaseActivity(), MainActivityMVP.View {
     private lateinit var component: ActivityComponent
 
     @Suppress("UNUSED_EXPRESSION")
-    private val navigator = object : SupportFragmentNavigator(supportFragmentManager, R.id.mainActivityContainer) {
+    private val navigator = object : SupportAppNavigator(this, supportFragmentManager, R.id.mainActivityContainer) {
+        override fun createActivityIntent(screenKey: String?, data: Any?): Intent? {
+            return null
+        }
 
-        override fun createFragment(screenKey: String?, data: Any?): Fragment {
+        override fun createFragment(screenKey: String?, data: Any?): Fragment? {
             return when (screenKey) {
-                Fragments.ALL_GOODS -> AllGoodsFragment.newInstance()
+                Fragments.ALL_GOODS -> {
+                    AllGoodsFragment.newInstance()
+                }
                 Fragments.ORDER -> OrderFragment.newInstance()
-                else -> throw  IllegalStateException("Navigation to unknown screen")
+                else -> null
             }
-        }
-
-        override fun exit() {
-            finish()
-        }
-
-        override fun showSystemMessage(message: String?) {
-
         }
     }
 
@@ -108,7 +95,9 @@ class MainActivity : BaseActivity(), MainActivityMVP.View {
     private fun initNavigationDrawer(savedInstanceState: Bundle?) {
         navigationDrawer = drawer {
             savedInstance = savedInstanceState
+            hasStableIds = true
             toolbar = this@MainActivity.toolbarMainActivity
+            delayDrawerClickEvent = 500
 
             primaryItem(R.string.navigation_drawer_all_goods) {
                 iconDrawable = drawableCompat(this@MainActivity, R.drawable.ic_toys)!!
@@ -192,6 +181,11 @@ class MainActivity : BaseActivity(), MainActivityMVP.View {
 
     override fun detachFromPresenter() {
         mainActivityPresenter.detachView()
+    }
+
+    override fun onSaveInstanceState(outState: Bundle?) {
+        navigationDrawer.saveInstanceState(outState)
+        super.onSaveInstanceState(outState)
     }
 
     override fun onLandscape() {
