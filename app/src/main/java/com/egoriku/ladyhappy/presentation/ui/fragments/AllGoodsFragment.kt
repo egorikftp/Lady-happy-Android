@@ -7,7 +7,9 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.egoriku.corelib_kt.extensions.hide
 import com.egoriku.corelib_kt.extensions.inflate
+import com.egoriku.corelib_kt.extensions.show
 import com.egoriku.ladyhappy.App
 import com.egoriku.ladyhappy.R
 import com.egoriku.ladyhappy.di.allgoods.AllGoodsComponent
@@ -70,6 +72,8 @@ class AllGoodsFragment : BaseFragment(), AllGoodsMVP.View {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         showTitle(R.string.navigation_drawer_all_goods)
+
+        showLoading()
         presenter.getCategories()
 
         initRecyclerView()
@@ -97,14 +101,11 @@ class AllGoodsFragment : BaseFragment(), AllGoodsMVP.View {
     }
 
     override fun showCategories(categories: List<CategoryModel>) {
-        allGoodsAdapter.setItems(SectionType.CATEGORIES, categories)
+        allGoodsAdapter.addItems(SectionType.CATEGORIES, categories)
+        hideLoading()
     }
 
     override fun onPortrait() {
-
-    }
-
-    override fun showLoading() {
 
     }
 
@@ -112,8 +113,12 @@ class AllGoodsFragment : BaseFragment(), AllGoodsMVP.View {
 
     }
 
-    override fun hideLoading() {
+    override fun showLoading() {
+        progressView.show()
+    }
 
+    override fun hideLoading() {
+        progressView.hide()
     }
 
     override fun showMessage(message: String) {
@@ -128,7 +133,6 @@ class AllGoodsFragment : BaseFragment(), AllGoodsMVP.View {
         allGoodsAdapter = AllGoodsAdapter(activity)
 
         recycler_all_goods.apply {
-            setHasFixedSize(true)
             layoutManager = LinearLayoutManager(context)
             adapter = allGoodsAdapter
         }
