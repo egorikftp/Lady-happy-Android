@@ -73,7 +73,6 @@ class AllGoodsFragment : BaseFragment(), AllGoodsMVP.View {
         super.onViewCreated(view, savedInstanceState)
         showTitle(R.string.navigation_drawer_all_goods)
 
-        showLoading()
         presenter.getCategories()
 
         initRecyclerView()
@@ -102,7 +101,6 @@ class AllGoodsFragment : BaseFragment(), AllGoodsMVP.View {
 
     override fun showCategories(categories: List<CategoryModel>) {
         allGoodsAdapter.addItems(SectionType.CATEGORIES, categories)
-        hideLoading()
     }
 
     override fun onPortrait() {

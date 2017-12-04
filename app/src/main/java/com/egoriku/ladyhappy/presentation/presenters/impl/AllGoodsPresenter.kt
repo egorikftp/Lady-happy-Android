@@ -32,23 +32,15 @@ class AllGoodsPresenter
     override fun onGetCategoriesSuccess(categoriesModel: CategoriesModel) {
         checkViewAttached()
         view?.hideLoading()
-        if (categoriesModel.isEmpty()) {
-            /*   if (!SharedPreferencesHelper.getBoolean(sharedPreferences,
-                       SharedPreferencesHelper.KEY_USER_TASK_AT_LEAST_ONCE)) {
-                   view.showBucketEmptyFirstTime()
-               } else {
-                   view.showBucketEmpty()
-               }*/
 
-            TODO("Show empty view")
-
-        } else {
+        if (!categoriesModel.isEmpty()) {
             view?.showCategories(categoriesModel.toList())
         }
     }
 
     override fun onGetCategoriesFailure(e: Throwable) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        checkViewAttached()
+        view?.hideLoading()
     }
 
     override fun onCategoryClickSuccessTracking() {
@@ -64,7 +56,7 @@ class AllGoodsPresenter
     }
 
     override fun onGetCategoriesFailureTracking() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        analyticsInterface.trackGetCategoriesFail(null)
     }
 
     private inner class GetCategoriesObserver : DefaultObserver<CategoriesModel>() {

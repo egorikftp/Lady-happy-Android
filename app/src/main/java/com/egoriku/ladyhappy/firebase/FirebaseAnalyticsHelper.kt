@@ -16,7 +16,7 @@ class FirebaseAnalyticsHelper(private val analytics: FirebaseAnalytics) : Analyt
         analytics.logEvent(GET_CATEGORIES_SUCCESS, bundle)
     }
 
-    override fun trackGetCategoriesFail(bundle: Bundle) {
+    override fun trackGetCategoriesFail(bundle: Bundle?) {
         analytics.logEvent(GET_CATEGORIES_FAIL, bundle)
     }
 }
