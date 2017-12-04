@@ -15,13 +15,8 @@ object DebugInitializer {
         application.registerActivityLifecycleCallbacks(object : SimpleActivityLifecycleCallback() {
 
             override fun onActivityCreated(activity: Activity?, bundle: Bundle?) {
-                if (activity is MainActivity) {
-                    if (BuildConfig.DEBUG) {
-                        CrashManager.register(activity, crashListener)
-                        UpdateManager.register(activity)
-                    } else {
-                        CrashManager.register(activity, crashListener)
-                    }
+                if (activity is MainActivity && BuildConfig.DEBUG) {
+                    UpdateManager.register(activity)
                 }
             }
 
@@ -32,9 +27,4 @@ object DebugInitializer {
             }
         })
     }
-
-    private val crashListener: CrashManagerListener
-        get() = object : CrashManagerListener() {
-            override fun shouldAutoUploadCrashes() = true
-        }
 }
