@@ -9,7 +9,6 @@ ext.versions = [
         constraintVersion      : "1.0.2",
         kotlinVersion          : "1.2.0",
         ciceroneVersion        : "2.1.0",
-        moxyVersion            : "1.5.3",
         junitVersion           : "4.12",
         espressoVersion        : "3.0.1",
         firebaseVersion        : "11.6.0",
@@ -23,7 +22,6 @@ ext.versions = [
         materialDrawerKtVersion: "1.2.2",
         rxJavaVersion          : "2.1.6",
         rxAndroidVersion       : "2.0.1",
-        gsonVersion            : "2.8.2",
         adapterDelegateVersion : "3.0.1"
 ]
 
@@ -49,15 +47,12 @@ ext.libs = [
         googlePlayServices: "com.google.android.gms:play-services-plus:$versions.firebaseVersion",
 
         cicerone          : "ru.terrakok.cicerone:cicerone:$versions.ciceroneVersion",
-        moxy              : "com.arello-mobile:moxy-app-compat:$versions.moxyVersion",
-        moxyCompiler      : "com.arello-mobile:moxy-compiler:$versions.moxyVersion",
         glide             : "com.github.bumptech.glide:glide:$versions.glideVersion",
         hockeyApp         : "net.hockeyapp.android:HockeySDK:$versions.hockeyAppVersion",
         dagger            : "com.google.dagger:dagger:$versions.daggerVersion",
         daggerCompiler    : "com.google.dagger:dagger-compiler:$versions.daggerVersion",
         rxJava            : "io.reactivex.rxjava2:rxjava:$versions.rxJavaVersion",
         rxAndroid         : "io.reactivex.rxjava2:rxandroid:$versions.rxAndroidVersion",
-        gson              : "com.google.code.gson:gson:$versions.gsonVersion",
 
         junit             : "junit:junit:$versions.junitVersion",
         espresso          : "com.android.support.test.espresso:espresso-core:$versions.espressoVersion",

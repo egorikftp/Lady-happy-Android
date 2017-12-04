@@ -88,10 +88,6 @@ dependencies {
     implementation libs.rxJava
     implementation libs.rxAndroid
 
-    implementation libs.gson
-
-    implementation libs.moxy
-    kapt libs.moxyCompiler
     implementation libs.cicerone
 
     implementation libs.dagger
