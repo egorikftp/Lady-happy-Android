@@ -7,7 +7,6 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
 import com.egoriku.corelib_kt.extensions.show
-import com.egoriku.corelib_kt.listeners.SimpleAnimatorListener
 import com.egoriku.ladyhappy.App
 import com.egoriku.ladyhappy.R
 import com.egoriku.ladyhappy.common.Screens
@@ -66,7 +65,13 @@ class LaunchActivity : AppCompatActivity(), LaunchMVP.View {
         navigatorHolder.setNavigator(navigator)
 
         startActivityImageView.apply {
-            addAnimatorListener(object : SimpleAnimatorListener() {
+            addAnimatorListener(object : Animator.AnimatorListener {
+                override fun onAnimationRepeat(animation: Animator?) {
+                }
+
+                override fun onAnimationCancel(animation: Animator?) {
+                }
+
                 override fun onAnimationStart(p0: Animator?) {
                     startActivityLogoText.show()
                 }
@@ -98,12 +103,6 @@ class LaunchActivity : AppCompatActivity(), LaunchMVP.View {
 
     override fun detachFromPresenter() {
         launchPresenter.detachView()
-    }
-
-    override fun onLandscape() {
-    }
-
-    override fun onPortrait() {
     }
 
     override fun showLoading() {

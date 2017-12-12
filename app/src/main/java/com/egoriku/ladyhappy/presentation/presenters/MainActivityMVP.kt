@@ -1,5 +1,6 @@
 package com.egoriku.ladyhappy.presentation.presenters
 
+import com.egoriku.corelib_kt.arch.BaseContract
 import com.egoriku.ladyhappy.presentation.ui.base.BaseMvpView
 
 interface MainActivityMVP {
@@ -17,7 +18,7 @@ interface MainActivityMVP {
         fun selectDrawerItem(position: Int)
     }
 
-    interface Presenter {
+    interface Presenter : BaseContract.Presenter<MainActivityMVP.View> {
         fun openAllGoodsCategory()
         fun openOrderCategory()
         fun openShareCategory()

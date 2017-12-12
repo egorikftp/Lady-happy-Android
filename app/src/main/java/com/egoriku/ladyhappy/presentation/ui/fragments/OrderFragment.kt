@@ -70,12 +70,6 @@ class OrderFragment : BaseFragment(), OrderMVP.View {
         presenter.detachView()
     }
 
-    override fun onLandscape() {
-    }
-
-    override fun onPortrait() {
-    }
-
     override fun showTitle(title: Int) {
         (activity as MainActivity).setUpToolbar(title)
     }

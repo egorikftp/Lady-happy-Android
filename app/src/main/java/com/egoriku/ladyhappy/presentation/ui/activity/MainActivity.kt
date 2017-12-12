@@ -11,6 +11,7 @@ import co.zsmb.materialdrawerkt.builders.footer
 import co.zsmb.materialdrawerkt.draweritems.badgeable.primaryItem
 import co.zsmb.materialdrawerkt.draweritems.badgeable.secondaryItem
 import co.zsmb.materialdrawerkt.draweritems.divider
+import com.egoriku.corelib_kt.arch.BaseContract
 import com.egoriku.corelib_kt.extensions.drawableCompat
 import com.egoriku.ladyhappy.App
 import com.egoriku.ladyhappy.R
@@ -87,6 +88,10 @@ class MainActivity : BaseActivity(), MainActivityMVP.View {
         component.inject(this)
     }
 
+    override fun initPresenter(): BaseContract.Presenter<*> {
+        return mainActivityPresenter
+    }
+
     override fun onPostCreate(savedInstanceState: Bundle?) {
         super.onPostCreate(savedInstanceState)
         navigationDrawer.actionBarDrawerToggle.syncState()
@@ -142,8 +147,8 @@ class MainActivity : BaseActivity(), MainActivityMVP.View {
         }
     }
 
-    override fun onResumeFragments() {
-        super.onResumeFragments()
+    override fun onResume() {
+        super.onResume()
         navigatorHolder.setNavigator(navigator)
     }
 
@@ -176,22 +181,16 @@ class MainActivity : BaseActivity(), MainActivityMVP.View {
     }
 
     override fun attachToPresenter() {
-        mainActivityPresenter.attachView(this)
+//        mainActivityPresenter.attachView(this)
     }
 
     override fun detachFromPresenter() {
-        mainActivityPresenter.detachView()
+//        mainActivityPresenter.detachView()
     }
 
     override fun onSaveInstanceState(outState: Bundle?) {
         navigationDrawer.saveInstanceState(outState)
         super.onSaveInstanceState(outState)
-    }
-
-    override fun onLandscape() {
-    }
-
-    override fun onPortrait() {
     }
 
     override fun showLoading() {
@@ -212,8 +211,4 @@ class MainActivity : BaseActivity(), MainActivityMVP.View {
     override fun setUpToolbar(@StringRes title: Int) {
         supportActionBar?.title = getString(title)
     }
-
-    override fun getAttachedFragment(id: Int): Fragment = supportFragmentManager.findFragmentById(id)
-
-    override fun getAttachedFragment(tag: String): Fragment = supportFragmentManager.findFragmentByTag(tag)
 }

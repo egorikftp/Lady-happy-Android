@@ -57,50 +57,47 @@ android {
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
     androidTestImplementation(libs.espresso, {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     testImplementation libs.junit
-
     implementation libs.googlePlayServices
     implementation libs.appcompat
     implementation libs.design
     implementation libs.constraint
-
     implementation libs.firebaseStorage
     implementation libs.firebaseDatabase
     implementation libs.firebaseAuth
     implementation libs.firebaseFirestore
     implementation libs.firebaseAnalytics
-
     implementation('com.crashlytics.sdk.android:crashlytics:2.7.1@aar') {
         transitive = true
     }
-
     implementation libs.kotlin
     implementation libs.glide
     implementation libs.palette
     implementation libs.cardview
     implementation libs.hockeyApp
     implementation libs.multidex
-
     implementation libs.rxJava
     implementation libs.rxAndroid
-
     implementation libs.cicerone
-
     implementation libs.dagger
     kapt libs.daggerCompiler
-
     implementation libs.anko_v4
     implementation libs.anko_v7
     implementation libs.coreLibKt
-
     implementation libs.lottie
     implementation libs.materialDrawerKt
-
     implementation libs.adapterDelegate
+
+    ext{
+        archComponents = "1.0.0"
+    }
+
+    implementation "android.arch.lifecycle:extensions:$archComponents"
+    kapt "android.arch.lifecycle:compiler:$archComponents"
 }
 
 apply plugin: 'com.google.gms.google-services'

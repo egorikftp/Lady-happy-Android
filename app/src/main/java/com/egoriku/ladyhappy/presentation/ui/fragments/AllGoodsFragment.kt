@@ -28,6 +28,10 @@ import javax.inject.Inject
 
 class AllGoodsFragment : BaseFragment(), AllGoodsMVP.View {
 
+    override fun showNews() {
+
+    }
+
     @Inject
     lateinit var router: Router
 
@@ -96,19 +100,8 @@ class AllGoodsFragment : BaseFragment(), AllGoodsMVP.View {
         (activity as MainActivity).setUpToolbar(title)
     }
 
-    override fun onLandscape() {
-    }
-
     override fun showCategories(categories: List<CategoryModel>) {
         allGoodsAdapter.addItems(SectionType.CATEGORIES, categories)
-    }
-
-    override fun onPortrait() {
-
-    }
-
-    override fun showNews() {
-
     }
 
     override fun showLoading() {

@@ -1,7 +1,7 @@
 ext.versions = [
         minSdkVersion          : 19,
         compileSdkVersion      : 26,
-        buildToolsVersion      : "27.0.1",
+        buildToolsVersion      : "27.0.2",
         gradle                 : "3.0.1",
         googleServices         : "3.1.1",
 
@@ -15,7 +15,7 @@ ext.versions = [
         multidexVersion        : "1.0.2",
         glideVersion           : "4.3.1",
         hockeyAppVersion       : "4.1.4",
-        coreLibKotlin          : "0.0.1",
+        coreLibKotlin          : "0.0.2",
         daggerVersion          : "2.13",
         ankoVersion            : "0.10.2",
         lottieVersion          : "2.2.5",
