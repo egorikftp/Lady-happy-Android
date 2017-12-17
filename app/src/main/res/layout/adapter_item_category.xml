@@ -28,7 +28,7 @@
         android:layout_marginStart="16dp"
         android:fontFamily="@font/damion"
         android:textAllCaps="true"
-        android:textColor="@color/white"
+        android:textColor="@color/RealWhite"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"

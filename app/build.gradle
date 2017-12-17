@@ -44,7 +44,8 @@ android {
 
     gradle.taskGraph.whenReady { taskGraph ->
         //if (taskGraph.hasTask(assembleDebug) || taskGraph.hasTask(assembleRelease)) {
-        if (taskGraph.hasTask(assembleRelease)) {
+
+        if (taskGraph.hasTask('assembleRelease')) {
             autoIncrementBuildVersionNumber()
         }
     }
