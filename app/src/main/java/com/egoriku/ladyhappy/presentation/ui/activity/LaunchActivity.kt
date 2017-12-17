@@ -81,7 +81,6 @@ class LaunchActivity : BaseActivity<LaunchMVP.View, LaunchMVP.Presenter>(), Laun
         super.onPause()
     }
 
-
     override fun onBackPressed() = presenter.onBackPressed()
 
     override fun attachToPresenter() {

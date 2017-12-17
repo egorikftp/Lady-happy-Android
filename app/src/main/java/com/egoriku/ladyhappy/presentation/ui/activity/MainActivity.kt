@@ -19,6 +19,7 @@ import co.zsmb.materialdrawerkt.draweritems.sectionHeader
 import com.egoriku.corelib_kt.Constants
 import com.egoriku.corelib_kt.arch.BaseActivity
 import com.egoriku.corelib_kt.extensions.DelegatesExt
+import com.egoriku.corelib_kt.extensions.colorCompat
 import com.egoriku.corelib_kt.extensions.drawableCompat
 import com.egoriku.ladyhappy.App
 import com.egoriku.ladyhappy.R
@@ -63,7 +64,7 @@ class MainActivity : BaseActivity<MainActivityContract.View, MainActivityContrac
     @Suppress("UNUSED_EXPRESSION")
     private val navigator = object : SupportAppNavigator(this, supportFragmentManager, R.id.mainActivityContainer) {
         override fun createActivityIntent(screenKey: String?, data: Any?): Intent? {
-            return when(screenKey){
+            return when (screenKey) {
                 Screens.CREATE_POST_ACTIVITY -> intentFor<CreateNewPostActivity>()
                 else -> null
             }
@@ -130,11 +131,13 @@ class MainActivity : BaseActivity<MainActivityContract.View, MainActivityContrac
             primaryItem(R.string.navigation_drawer_all_goods) {
                 iconDrawable = drawableCompat(this@MainActivity, R.drawable.ic_toys)!!
                 tag = Fragments.ALL_GOODS
+                iconTintingEnabled = true
             }
 
             primaryItem(R.string.navigation_drawer_order) {
                 iconDrawable = drawableCompat(this@MainActivity, R.drawable.ic_payment)!!
                 tag = Fragments.ORDER
+                iconTintingEnabled = true
             }
 
             divider()
