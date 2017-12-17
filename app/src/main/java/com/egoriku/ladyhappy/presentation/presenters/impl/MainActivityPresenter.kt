@@ -51,19 +51,12 @@ class MainActivityPresenter
 
     override fun openCreateNewPostScreen() {
         router.navigateTo(Screens.CREATE_POST_ACTIVITY)
-        if (isViewAttached) {
-            view.selectDrawerItem(CREATE_NEW_POST_POSITION)
-        }
     }
 
     private fun processNavigation(newDrawerPosition: Int, trackingConstant: String) {
         if (currentDrawerPosition != newDrawerPosition) {
             analyticsInterface.trackPageView(trackingConstant)
             currentDrawerPosition = newDrawerPosition
-
-            if (isViewAttached) {
-                view.selectDrawerItem(currentDrawerPosition)
-            }
 
             if (newDrawerPosition == ALL_GOODS_POSITION) {
                 router.newRootScreen(drawerData[newDrawerPosition])

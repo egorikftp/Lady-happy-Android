@@ -14,8 +14,6 @@ interface MainActivityContract {
 
             const val CREATE_NEW_POST_POSITION = 4
         }
-
-        fun selectDrawerItem(position: Int)
     }
 
     interface Presenter : BaseContract.Presenter<MainActivityContract.View> {

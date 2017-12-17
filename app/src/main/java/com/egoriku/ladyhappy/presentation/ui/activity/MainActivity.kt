@@ -7,11 +7,15 @@ import android.os.Bundle
 import android.support.annotation.StringRes
 import android.support.v4.app.Fragment
 import android.view.MenuItem
+import co.zsmb.materialdrawerkt.builders.accountHeader
 import co.zsmb.materialdrawerkt.builders.drawer
 import co.zsmb.materialdrawerkt.builders.footer
 import co.zsmb.materialdrawerkt.draweritems.badgeable.primaryItem
 import co.zsmb.materialdrawerkt.draweritems.badgeable.secondaryItem
 import co.zsmb.materialdrawerkt.draweritems.divider
+import co.zsmb.materialdrawerkt.draweritems.profile.profile
+import co.zsmb.materialdrawerkt.draweritems.profile.profileSetting
+import co.zsmb.materialdrawerkt.draweritems.sectionHeader
 import com.egoriku.corelib_kt.Constants
 import com.egoriku.corelib_kt.arch.BaseActivity
 import com.egoriku.corelib_kt.extensions.DelegatesExt
@@ -28,8 +32,11 @@ import com.egoriku.ladyhappy.presentation.presenters.MainActivityContract
 import com.egoriku.ladyhappy.presentation.presenters.impl.MainActivityPresenter
 import com.egoriku.ladyhappy.presentation.ui.fragments.AllGoodsFragment
 import com.egoriku.ladyhappy.presentation.ui.fragments.OrderFragment
+import com.mikepenz.materialdrawer.AccountHeader
 import com.mikepenz.materialdrawer.Drawer
+import com.mikepenz.materialdrawer.model.ProfileDrawerItem
 import kotlinx.android.synthetic.main.activity_main.*
+import org.jetbrains.anko.intentFor
 import ru.terrakok.cicerone.NavigatorHolder
 import ru.terrakok.cicerone.Router
 import ru.terrakok.cicerone.android.SupportAppNavigator
@@ -38,6 +45,7 @@ import javax.inject.Inject
 class MainActivity : BaseActivity<MainActivityContract.View, MainActivityContract.Presenter>(), MainActivityContract.View {
 
     private lateinit var navigationDrawer: Drawer
+    private lateinit var headerResult: AccountHeader
 
     @Inject
     lateinit var navigatorHolder: NavigatorHolder
@@ -55,14 +63,15 @@ class MainActivity : BaseActivity<MainActivityContract.View, MainActivityContrac
     @Suppress("UNUSED_EXPRESSION")
     private val navigator = object : SupportAppNavigator(this, supportFragmentManager, R.id.mainActivityContainer) {
         override fun createActivityIntent(screenKey: String?, data: Any?): Intent? {
-            return null
+            return when(screenKey){
+                Screens.CREATE_POST_ACTIVITY -> intentFor<CreateNewPostActivity>()
+                else -> null
+            }
         }
 
         override fun createFragment(screenKey: String?, data: Any?): Fragment? {
             return when (screenKey) {
-                Fragments.ALL_GOODS -> {
-                    AllGoodsFragment.newInstance()
-                }
+                Fragments.ALL_GOODS -> AllGoodsFragment.newInstance()
                 Fragments.ORDER -> OrderFragment.newInstance()
                 else -> null
             }
@@ -111,6 +120,13 @@ class MainActivity : BaseActivity<MainActivityContract.View, MainActivityContrac
             hasStableIds = true
             toolbar = this@MainActivity.toolbarMainActivity
 
+            headerResult = accountHeader {
+                background = R.drawable.header
+                savedInstance = savedInstanceState
+                translucentStatusBar = true
+                selectionListEnabledForSingleProfile = false
+            }
+
             primaryItem(R.string.navigation_drawer_all_goods) {
                 iconDrawable = drawableCompat(this@MainActivity, R.drawable.ic_toys)!!
                 tag = Fragments.ALL_GOODS
@@ -123,16 +139,6 @@ class MainActivity : BaseActivity<MainActivityContract.View, MainActivityContrac
 
             divider()
 
-            secondaryItem(R.string.navigation_drawer_share) {
-                iconDrawable = drawableCompat(this@MainActivity, R.drawable.ic_tag_faces)!!
-                tag = Fragments.SHARE
-            }
-
-            secondaryItem(R.string.navigation_drawer_feedback) {
-                iconDrawable = drawableCompat(this@MainActivity, R.drawable.ic_favorite)!!
-                tag = Fragments.FEEDBACK
-            }
-
             footer {
                 secondaryItem(R.string.navigation_drawer_create_new_post) {
                     iconDrawable = drawableCompat(this@MainActivity, R.drawable.ic_create_new_post)!!
@@ -141,7 +147,10 @@ class MainActivity : BaseActivity<MainActivityContract.View, MainActivityContrac
             }
 
             onItemClick { _, _, drawerItem ->
-                drawerItemTag = drawerItem.tag.toString()
+                if (drawerItem.tag != null) {
+                    drawerItemTag = drawerItem.tag.toString()
+                }
+
                 false
             }
 
@@ -186,10 +195,6 @@ class MainActivity : BaseActivity<MainActivityContract.View, MainActivityContrac
 
     override fun onOptionsItemSelected(item: MenuItem) = navigationDrawer.actionBarDrawerToggle.onOptionsItemSelected(item) || super.onOptionsItemSelected(item)
 
-    override fun selectDrawerItem(position: Int) {
-        navigationDrawer.setSelectionAtPosition(position, false)
-    }
-
     override fun attachToPresenter() {
 //        mainActivityPresenter.attachView(this)
     }
@@ -200,6 +205,7 @@ class MainActivity : BaseActivity<MainActivityContract.View, MainActivityContrac
 
     override fun onSaveInstanceState(outState: Bundle?) {
         navigationDrawer.saveInstanceState(outState)
+        headerResult.saveInstanceState(outState)
         super.onSaveInstanceState(outState)
     }
 
