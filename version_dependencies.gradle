@@ -5,9 +5,10 @@ ext.versions = [
         gradle                 : "3.0.1",
         googleServices         : "3.1.1",
 
+        kotlinVersion          : "1.2.10",
+
         supportVersion         : "27.0.0",
         constraintVersion      : "1.0.2",
-        kotlinVersion          : "1.2.0",
         ciceroneVersion        : "2.1.0",
         junitVersion           : "4.12",
         espressoVersion        : "3.0.1",

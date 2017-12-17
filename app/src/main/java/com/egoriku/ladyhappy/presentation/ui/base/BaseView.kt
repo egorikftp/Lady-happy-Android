@@ -7,7 +7,9 @@ interface BaseView : BaseContract.View {
 
     fun injectDependencies()
 
+    @Deprecated("")
     fun attachToPresenter()
+    @Deprecated("")
     fun detachFromPresenter()
 
     fun showLoading()

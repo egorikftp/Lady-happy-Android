@@ -1,5 +1,6 @@
 package com.egoriku.ladyhappy.presentation.ui.activity
 
+import android.content.Context
 import android.content.Intent
 import android.content.res.Configuration
 import android.os.Bundle
@@ -11,7 +12,7 @@ import co.zsmb.materialdrawerkt.builders.footer
 import co.zsmb.materialdrawerkt.draweritems.badgeable.primaryItem
 import co.zsmb.materialdrawerkt.draweritems.badgeable.secondaryItem
 import co.zsmb.materialdrawerkt.draweritems.divider
-import com.egoriku.corelib_kt.arch.BaseContract
+import com.egoriku.corelib_kt.arch.BaseActivity
 import com.egoriku.corelib_kt.extensions.drawableCompat
 import com.egoriku.ladyhappy.App
 import com.egoriku.ladyhappy.R
@@ -20,18 +21,19 @@ import com.egoriku.ladyhappy.common.Screens
 import com.egoriku.ladyhappy.di.activity.ActivityComponent
 import com.egoriku.ladyhappy.di.activity.ActivityModule
 import com.egoriku.ladyhappy.di.activity.DaggerActivityComponent
-import com.egoriku.ladyhappy.presentation.presenters.MainActivityMVP
+import com.egoriku.ladyhappy.external.AnalyticsInterface
+import com.egoriku.ladyhappy.presentation.presenters.MainActivityContract
 import com.egoriku.ladyhappy.presentation.presenters.impl.MainActivityPresenter
-import com.egoriku.ladyhappy.presentation.ui.base.BaseActivity
 import com.egoriku.ladyhappy.presentation.ui.fragments.AllGoodsFragment
 import com.egoriku.ladyhappy.presentation.ui.fragments.OrderFragment
 import com.mikepenz.materialdrawer.Drawer
 import kotlinx.android.synthetic.main.activity_main.*
 import ru.terrakok.cicerone.NavigatorHolder
+import ru.terrakok.cicerone.Router
 import ru.terrakok.cicerone.android.SupportAppNavigator
 import javax.inject.Inject
 
-class MainActivity : BaseActivity(), MainActivityMVP.View {
+class MainActivity : BaseActivity<MainActivityContract.View, MainActivityContract.Presenter>(), MainActivityContract.View {
 
     private lateinit var navigationDrawer: Drawer
 
@@ -39,9 +41,14 @@ class MainActivity : BaseActivity(), MainActivityMVP.View {
     lateinit var navigatorHolder: NavigatorHolder
 
     @Inject
-    lateinit var mainActivityPresenter: MainActivityPresenter
+    lateinit var router: Router
+
+    @Inject
+    lateinit var analyticInterface: AnalyticsInterface
 
     private lateinit var component: ActivityComponent
+
+    private lateinit var drawerItemTag: String
 
     @Suppress("UNUSED_EXPRESSION")
     private val navigator = object : SupportAppNavigator(this, supportFragmentManager, R.id.mainActivityContainer) {
@@ -62,7 +69,6 @@ class MainActivity : BaseActivity(), MainActivityMVP.View {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         injectDependencies()
-        attachToPresenter()
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.activity_main)
@@ -75,7 +81,7 @@ class MainActivity : BaseActivity(), MainActivityMVP.View {
         initNavigationDrawer(savedInstanceState)
 
         if (savedInstanceState == null) {
-            mainActivityPresenter.openAllGoodsCategory()
+            presenter.openAllGoodsCategory()
         }
     }
 
@@ -88,8 +94,8 @@ class MainActivity : BaseActivity(), MainActivityMVP.View {
         component.inject(this)
     }
 
-    override fun initPresenter(): BaseContract.Presenter<*> {
-        return mainActivityPresenter
+    override fun initPresenter(): MainActivityContract.Presenter? {
+        return MainActivityPresenter(router, analyticInterface)
     }
 
     override fun onPostCreate(savedInstanceState: Bundle?) {
@@ -102,7 +108,6 @@ class MainActivity : BaseActivity(), MainActivityMVP.View {
             savedInstance = savedInstanceState
             hasStableIds = true
             toolbar = this@MainActivity.toolbarMainActivity
-            delayDrawerClickEvent = 500
 
             primaryItem(R.string.navigation_drawer_all_goods) {
                 iconDrawable = drawableCompat(this@MainActivity, R.drawable.ic_toys)!!
@@ -134,15 +139,18 @@ class MainActivity : BaseActivity(), MainActivityMVP.View {
             }
 
             onItemClick { _, _, drawerItem ->
-                when (drawerItem.tag.toString()) {
-                    Fragments.ALL_GOODS -> mainActivityPresenter.openAllGoodsCategory()
-                    Fragments.ORDER -> mainActivityPresenter.openOrderCategory()
-                    Fragments.SHARE -> mainActivityPresenter.openShareCategory()
-                    Fragments.FEEDBACK -> mainActivityPresenter.openFeedbackCategory()
-                    Screens.CREATE_POST_ACTIVITY -> mainActivityPresenter.openCreateNewPostScreen()
-                }
-
+                drawerItemTag = drawerItem.tag.toString()
                 false
+            }
+
+            onClosed {
+                when (drawerItemTag) {
+                    Fragments.ALL_GOODS -> presenter.openAllGoodsCategory()
+                    Fragments.ORDER -> presenter.openOrderCategory()
+                    Fragments.SHARE -> presenter.openShareCategory()
+                    Fragments.FEEDBACK -> presenter.openFeedbackCategory()
+                    Screens.CREATE_POST_ACTIVITY -> presenter.openCreateNewPostScreen()
+                }
             }
         }
     }
@@ -166,7 +174,7 @@ class MainActivity : BaseActivity(), MainActivityMVP.View {
             return
         }
 
-        mainActivityPresenter.onBackPressed()
+        presenter.onBackPressed()
     }
 
     override fun onConfigurationChanged(newConfig: Configuration) {
@@ -199,16 +207,15 @@ class MainActivity : BaseActivity(), MainActivityMVP.View {
     override fun hideLoading() {
     }
 
-    override fun getExtras(_intent: Intent) {
-    }
-
     override fun showMessage(message: String) {
     }
 
     override fun showNoNetwork() {
     }
 
-    override fun setUpToolbar(@StringRes title: Int) {
+    fun setUpToolbar(@StringRes title: Int) {
         supportActionBar?.title = getString(title)
     }
+
+    override fun getContext(): Context? = this
 }

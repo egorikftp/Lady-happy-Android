@@ -1,6 +1,7 @@
 package com.egoriku.ladyhappy.presentation.ui.activity
 
 import android.animation.Animator
+import android.animation.AnimatorListenerAdapter
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -65,13 +66,7 @@ class LaunchActivity : AppCompatActivity(), LaunchMVP.View {
         navigatorHolder.setNavigator(navigator)
 
         startActivityImageView.apply {
-            addAnimatorListener(object : Animator.AnimatorListener {
-                override fun onAnimationRepeat(animation: Animator?) {
-                }
-
-                override fun onAnimationCancel(animation: Animator?) {
-                }
-
+            addAnimatorListener(object : AnimatorListenerAdapter() {
                 override fun onAnimationStart(p0: Animator?) {
                     startActivityLogoText.show()
                 }

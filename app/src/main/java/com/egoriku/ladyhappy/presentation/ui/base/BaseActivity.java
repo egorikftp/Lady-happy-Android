@@ -4,7 +4,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.StringRes;
 
-public abstract class BaseActivity extends com.egoriku.corelib_kt.arch.BaseActivity {
+import com.egoriku.corelib_kt.arch.BaseContract;
+
+public abstract class BaseActivity<V extends BaseContract.View, P extends BaseContract.Presenter<V>> extends com.egoriku.corelib_kt.arch.BaseActivity {
 
     public abstract void getExtras(Intent _intent);
 

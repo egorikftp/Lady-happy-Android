@@ -13,6 +13,4 @@ class ActivityModule {
     @Provides
     fun provideLaunchPresenter(router: Router, analyticsInterface: AnalyticsInterface) = LaunchPresenter(router, analyticsInterface)
 
-    @Provides
-    fun provideMainActivityPresenter(router: Router, analyticsInterface: AnalyticsInterface) = MainActivityPresenter(router, analyticsInterface)
 }

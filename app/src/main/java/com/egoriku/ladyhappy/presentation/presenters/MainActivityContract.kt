@@ -3,7 +3,7 @@ package com.egoriku.ladyhappy.presentation.presenters
 import com.egoriku.corelib_kt.arch.BaseContract
 import com.egoriku.ladyhappy.presentation.ui.base.BaseMvpView
 
-interface MainActivityMVP {
+interface MainActivityContract {
 
     interface View : BaseMvpView {
         companion object {
@@ -18,7 +18,7 @@ interface MainActivityMVP {
         fun selectDrawerItem(position: Int)
     }
 
-    interface Presenter : BaseContract.Presenter<MainActivityMVP.View> {
+    interface Presenter : BaseContract.Presenter<MainActivityContract.View> {
         fun openAllGoodsCategory()
         fun openOrderCategory()
         fun openShareCategory()
