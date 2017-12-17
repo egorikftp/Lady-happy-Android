@@ -12,7 +12,9 @@ import co.zsmb.materialdrawerkt.builders.footer
 import co.zsmb.materialdrawerkt.draweritems.badgeable.primaryItem
 import co.zsmb.materialdrawerkt.draweritems.badgeable.secondaryItem
 import co.zsmb.materialdrawerkt.draweritems.divider
+import com.egoriku.corelib_kt.Constants
 import com.egoriku.corelib_kt.arch.BaseActivity
+import com.egoriku.corelib_kt.extensions.DelegatesExt
 import com.egoriku.corelib_kt.extensions.drawableCompat
 import com.egoriku.ladyhappy.App
 import com.egoriku.ladyhappy.R
@@ -48,7 +50,7 @@ class MainActivity : BaseActivity<MainActivityContract.View, MainActivityContrac
 
     private lateinit var component: ActivityComponent
 
-    private lateinit var drawerItemTag: String
+    private var drawerItemTag: String = Constants.EMPTY
 
     @Suppress("UNUSED_EXPRESSION")
     private val navigator = object : SupportAppNavigator(this, supportFragmentManager, R.id.mainActivityContainer) {
