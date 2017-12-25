@@ -5,20 +5,20 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.egoriku.corelib_kt.extensions.inflate
+import com.egoriku.corelib_kt.arch.BaseFragment
+import com.egoriku.corelib_kt.dsl.inflate
 import com.egoriku.ladyhappy.App
 import com.egoriku.ladyhappy.R
 import com.egoriku.ladyhappy.di.order.DaggerOrderComponent
 import com.egoriku.ladyhappy.di.order.OrderComponent
 import com.egoriku.ladyhappy.di.order.OrderModule
-import com.egoriku.ladyhappy.presentation.presenters.OrderMVP
+import com.egoriku.ladyhappy.presentation.presenters.OrderContract
 import com.egoriku.ladyhappy.presentation.presenters.impl.OrderPresenter
 import com.egoriku.ladyhappy.presentation.ui.activity.MainActivity
-import com.egoriku.ladyhappy.presentation.ui.base.BaseFragment
 import ru.terrakok.cicerone.Router
 import javax.inject.Inject
 
-class OrderFragment : BaseFragment(), OrderMVP.View {
+class OrderFragment : BaseFragment<OrderContract.View, OrderContract.Presenter>(), OrderContract.View {
 
     companion object {
         fun newInstance(): OrderFragment {
@@ -30,13 +30,12 @@ class OrderFragment : BaseFragment(), OrderMVP.View {
     lateinit var router: Router
 
     @Inject
-    lateinit var presenter: OrderPresenter
+    lateinit var orderPresenter: OrderPresenter
 
     private lateinit var component: OrderComponent
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        getArgs(savedInstanceState)
+    override fun initPresenter(): OrderContract.Presenter {
+        return orderPresenter
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -50,7 +49,6 @@ class OrderFragment : BaseFragment(), OrderMVP.View {
 
     override fun onAttach(context: Context?) {
         injectDependencies()
-        attachToPresenter()
         super.onAttach(context)
     }
 
@@ -60,14 +58,6 @@ class OrderFragment : BaseFragment(), OrderMVP.View {
                 .orderModule(OrderModule())
                 .build()
         component.inject(this)
-    }
-
-    override fun attachToPresenter() {
-        presenter.attachView(this)
-    }
-
-    override fun detachFromPresenter() {
-        presenter.detachView()
     }
 
     override fun showTitle(title: Int) {
@@ -87,10 +77,6 @@ class OrderFragment : BaseFragment(), OrderMVP.View {
     }
 
     override fun showNoNetwork() {
-
-    }
-
-    override fun getArgs(_bundle: Bundle?) {
 
     }
 }

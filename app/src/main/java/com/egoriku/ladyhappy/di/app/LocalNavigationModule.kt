@@ -4,7 +4,6 @@ import com.egoriku.ladyhappy.di.scope.ApplicationScope
 import com.egoriku.ladyhappy.navigation.LocalCiceroneHolder
 import dagger.Module
 import dagger.Provides
-import javax.inject.Singleton
 
 @Module
 class LocalNavigationModule {

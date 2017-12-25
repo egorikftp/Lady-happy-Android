@@ -1,11 +1,10 @@
 package com.egoriku.ladyhappy.presentation.ui.activity
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import com.egoriku.corelib_kt.arch.BaseActivity
-import com.egoriku.corelib_kt.extensions.runDelayed
+import com.egoriku.corelib_kt.dsl.runDelayed
 import com.egoriku.ladyhappy.App
 import com.egoriku.ladyhappy.R
 import com.egoriku.ladyhappy.common.Screens
@@ -13,7 +12,7 @@ import com.egoriku.ladyhappy.di.activity.ActivityComponent
 import com.egoriku.ladyhappy.di.activity.ActivityModule
 import com.egoriku.ladyhappy.di.activity.DaggerActivityComponent
 import com.egoriku.ladyhappy.external.AnalyticsInterface
-import com.egoriku.ladyhappy.presentation.presenters.LaunchMVP
+import com.egoriku.ladyhappy.presentation.presenters.LaunchContract
 import com.egoriku.ladyhappy.presentation.presenters.impl.LaunchPresenter
 import org.jetbrains.anko.intentFor
 import ru.terrakok.cicerone.NavigatorHolder
@@ -21,7 +20,7 @@ import ru.terrakok.cicerone.Router
 import ru.terrakok.cicerone.android.SupportAppNavigator
 import javax.inject.Inject
 
-class LaunchActivity : BaseActivity<LaunchMVP.View, LaunchMVP.Presenter>(), LaunchMVP.View {
+class LaunchActivity : BaseActivity<LaunchContract.View, LaunchContract.Presenter>(), LaunchContract.View {
 
     companion object {
         const val LAUNCH_DELAY = 1_000L
@@ -38,7 +37,7 @@ class LaunchActivity : BaseActivity<LaunchMVP.View, LaunchMVP.Presenter>(), Laun
 
     private lateinit var component: ActivityComponent
 
-    override fun initPresenter(): LaunchMVP.Presenter {
+    override fun initPresenter(): LaunchContract.Presenter {
         return LaunchPresenter(router, analyticsInterface)
     }
 
@@ -83,14 +82,6 @@ class LaunchActivity : BaseActivity<LaunchMVP.View, LaunchMVP.Presenter>(), Laun
 
     override fun onBackPressed() = presenter.onBackPressed()
 
-    override fun attachToPresenter() {
-        //presenter.attachView(this)
-    }
-
-    override fun detachFromPresenter() {
-        //   presenter.detachView()
-    }
-
     override fun showLoading() {
     }
 
@@ -102,6 +93,4 @@ class LaunchActivity : BaseActivity<LaunchMVP.View, LaunchMVP.Presenter>(), Laun
 
     override fun showNoNetwork() {
     }
-
-    override fun getContext(): Context? = this
 }

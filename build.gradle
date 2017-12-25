@@ -24,9 +24,7 @@ allprojects {
         google()
         jcenter()
 
-        maven {
-            url "https://dl.bintray.com/egorikftp/maven"
-        }
+        maven { url 'https://jitpack.io' }
     }
 }
 

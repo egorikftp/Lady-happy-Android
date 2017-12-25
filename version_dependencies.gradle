@@ -16,7 +16,6 @@ ext.versions = [
         multidexVersion        : "1.0.2",
         glideVersion           : "4.3.1",
         hockeyAppVersion       : "4.1.4",
-        coreLibKotlin          : "0.0.2",
         daggerVersion          : "2.13",
         ankoVersion            : "0.10.2",
         lottieVersion          : "2.2.5",
@@ -62,7 +61,6 @@ ext.libs = [
         kotlin            : "org.jetbrains.kotlin:kotlin-stdlib-jre7:$versions.kotlinVersion",
         anko_v4           : "org.jetbrains.anko:anko-appcompat-v7:$versions.ankoVersion",
         anko_v7           : "org.jetbrains.anko:anko-support-v4-commons:$versions.ankoVersion",
-        coreLibKt         : "com.egoriku:CoreLib_Kotlin:$versions.coreLibKotlin",
 
         lottie            : "com.airbnb.android:lottie:$versions.lottieVersion",
         materialDrawerKt  : "co.zsmb:materialdrawer-kt:$versions.materialDrawerKtVersion",

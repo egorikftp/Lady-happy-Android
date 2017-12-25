@@ -7,26 +7,26 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.egoriku.corelib_kt.extensions.hide
-import com.egoriku.corelib_kt.extensions.inflate
-import com.egoriku.corelib_kt.extensions.show
+import com.egoriku.corelib_kt.arch.BaseFragment
+import com.egoriku.corelib_kt.dsl.hide
+import com.egoriku.corelib_kt.dsl.inflate
+import com.egoriku.corelib_kt.dsl.show
 import com.egoriku.ladyhappy.App
 import com.egoriku.ladyhappy.R
 import com.egoriku.ladyhappy.di.allgoods.AllGoodsComponent
 import com.egoriku.ladyhappy.di.allgoods.AllGoodsModule
 import com.egoriku.ladyhappy.di.allgoods.DaggerAllGoodsComponent
 import com.egoriku.ladyhappy.domain.models.CategoryModel
-import com.egoriku.ladyhappy.presentation.presenters.AllGoodsMVP
+import com.egoriku.ladyhappy.presentation.presenters.AllGoodsContract
 import com.egoriku.ladyhappy.presentation.presenters.impl.AllGoodsPresenter
 import com.egoriku.ladyhappy.presentation.ui.activity.MainActivity
 import com.egoriku.ladyhappy.presentation.ui.adapter.AllGoodsAdapter
 import com.egoriku.ladyhappy.presentation.ui.adapter.model.SectionType
-import com.egoriku.ladyhappy.presentation.ui.base.BaseFragment
 import kotlinx.android.synthetic.main.fragment_all_goods.*
 import ru.terrakok.cicerone.Router
 import javax.inject.Inject
 
-class AllGoodsFragment : BaseFragment(), AllGoodsMVP.View {
+class AllGoodsFragment : BaseFragment<AllGoodsContract.View, AllGoodsContract.Presenter>(), AllGoodsContract.View {
 
     override fun showNews() {
 
@@ -36,17 +36,17 @@ class AllGoodsFragment : BaseFragment(), AllGoodsMVP.View {
     lateinit var router: Router
 
     @Inject
-    lateinit var presenter: AllGoodsPresenter
+    lateinit var allGoodsPresenter: AllGoodsPresenter
 
     private lateinit var component: AllGoodsComponent
 
     private lateinit var allGoodsAdapter: AllGoodsAdapter
 
     companion object {
-        fun newInstance(): AllGoodsFragment {
-            return AllGoodsFragment()
-        }
+        fun newInstance() = AllGoodsFragment()
     }
+
+    override fun initPresenter() = allGoodsPresenter
 
     override fun injectDependencies() {
         component = DaggerAllGoodsComponent.builder()
@@ -54,19 +54,6 @@ class AllGoodsFragment : BaseFragment(), AllGoodsMVP.View {
                 .allGoodsModule(AllGoodsModule(this))
                 .build()
         component.inject(this)
-    }
-
-    override fun attachToPresenter() {
-        presenter.attachView(this)
-    }
-
-    override fun detachFromPresenter() {
-        presenter.detachView()
-    }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        getArgs(savedInstanceState)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -77,23 +64,14 @@ class AllGoodsFragment : BaseFragment(), AllGoodsMVP.View {
         super.onViewCreated(view, savedInstanceState)
         showTitle(R.string.navigation_drawer_all_goods)
 
-        presenter.getCategories()
+        allGoodsPresenter.getCategories()
 
         initRecyclerView()
     }
 
-    override fun getArgs(_bundle: Bundle?) {
-    }
-
     override fun onAttach(context: Context?) {
         injectDependencies()
-        attachToPresenter()
         super.onAttach(context)
-    }
-
-    override fun onDetach() {
-        detachFromPresenter()
-        super.onDetach()
     }
 
     override fun showTitle(@StringRes title: Int) {

@@ -88,14 +88,16 @@ dependencies {
     kapt libs.daggerCompiler
     implementation libs.anko_v4
     implementation libs.anko_v7
-    implementation libs.coreLibKt
     implementation libs.lottie
     implementation libs.materialDrawerKt
     implementation libs.adapterDelegate
 
-    ext{
+    ext {
         archComponents = "1.0.0"
+        coreLibKotlin = "0.0.7"
     }
+
+    implementation "com.github.egorikftp:CoreLib-Kotlin:$coreLibKotlin"
 
     implementation "android.arch.lifecycle:extensions:$archComponents"
     kapt "android.arch.lifecycle:compiler:$archComponents"

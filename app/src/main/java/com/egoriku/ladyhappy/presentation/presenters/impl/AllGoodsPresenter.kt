@@ -1,27 +1,27 @@
 package com.egoriku.ladyhappy.presentation.presenters.impl
 
+import com.egoriku.corelib_kt.arch.BasePresenter
 import com.egoriku.ladyhappy.domain.interactors.Params
 import com.egoriku.ladyhappy.domain.interactors.allgoods.CategoriesUseCase
 import com.egoriku.ladyhappy.domain.models.CategoriesModel
 import com.egoriku.ladyhappy.external.AnalyticsInterface
 import com.egoriku.ladyhappy.external.TrackingConstants
-import com.egoriku.ladyhappy.presentation.presenters.AllGoodsMVP
-import com.egoriku.ladyhappy.presentation.presenters.base.BasePresenter
+import com.egoriku.ladyhappy.presentation.presenters.AllGoodsContract
 import com.egoriku.ladyhappy.rx.DefaultObserver
 import javax.inject.Inject
 
 class AllGoodsPresenter
 @Inject constructor(private val getCategoriesUseCase: CategoriesUseCase, private val analyticsInterface: AnalyticsInterface)
-    : BasePresenter<AllGoodsMVP.View>(), AllGoodsMVP.Presenter {
+    : BasePresenter<AllGoodsContract.View>(), AllGoodsContract.Presenter {
 
-    override fun attachView(view: AllGoodsMVP.View) {
-        super.attachView(view)
+    override fun onPresenterCreated() {
+        super.onPresenterCreated()
         analyticsInterface.trackPageView(TrackingConstants.FRAGMENT_ALL_GOODS)
     }
 
-    override fun detachView() {
+    override fun onPresenterDestroy() {
         getCategoriesUseCase.dispose()
-        super.detachView()
+        super.onPresenterDestroy()
     }
 
     override fun getCategories() {
@@ -30,17 +30,19 @@ class AllGoodsPresenter
     }
 
     override fun onGetCategoriesSuccess(categoriesModel: CategoriesModel) {
-        checkViewAttached()
-        view?.hideLoading()
+        if (isViewAttached) {
+            view?.hideLoading()
 
-        if (!categoriesModel.isEmpty()) {
-            view?.showCategories(categoriesModel.toList())
+            if (!categoriesModel.isEmpty()) {
+                view?.showCategories(categoriesModel.toList())
+            }
         }
     }
 
     override fun onGetCategoriesFailure(e: Throwable) {
-        checkViewAttached()
-        view?.hideLoading()
+        if (isViewAttached) {
+            view?.hideLoading()
+        }
     }
 
     override fun onCategoryClickSuccessTracking() {

@@ -1,6 +1,5 @@
 package com.egoriku.ladyhappy.presentation.ui.activity
 
-import android.content.Context
 import android.content.Intent
 import android.content.res.Configuration
 import android.os.Bundle
@@ -13,14 +12,8 @@ import co.zsmb.materialdrawerkt.builders.footer
 import co.zsmb.materialdrawerkt.draweritems.badgeable.primaryItem
 import co.zsmb.materialdrawerkt.draweritems.badgeable.secondaryItem
 import co.zsmb.materialdrawerkt.draweritems.divider
-import co.zsmb.materialdrawerkt.draweritems.profile.profile
-import co.zsmb.materialdrawerkt.draweritems.profile.profileSetting
-import co.zsmb.materialdrawerkt.draweritems.sectionHeader
-import com.egoriku.corelib_kt.Constants
 import com.egoriku.corelib_kt.arch.BaseActivity
-import com.egoriku.corelib_kt.extensions.DelegatesExt
-import com.egoriku.corelib_kt.extensions.colorCompat
-import com.egoriku.corelib_kt.extensions.drawableCompat
+import com.egoriku.corelib_kt.dsl.drawableCompat
 import com.egoriku.ladyhappy.App
 import com.egoriku.ladyhappy.R
 import com.egoriku.ladyhappy.common.Fragments
@@ -35,7 +28,6 @@ import com.egoriku.ladyhappy.presentation.ui.fragments.AllGoodsFragment
 import com.egoriku.ladyhappy.presentation.ui.fragments.OrderFragment
 import com.mikepenz.materialdrawer.AccountHeader
 import com.mikepenz.materialdrawer.Drawer
-import com.mikepenz.materialdrawer.model.ProfileDrawerItem
 import kotlinx.android.synthetic.main.activity_main.*
 import org.jetbrains.anko.intentFor
 import ru.terrakok.cicerone.NavigatorHolder
@@ -59,7 +51,7 @@ class MainActivity : BaseActivity<MainActivityContract.View, MainActivityContrac
 
     private lateinit var component: ActivityComponent
 
-    private var drawerItemTag: String = Constants.EMPTY
+    private var drawerItemTag: String = com.egoriku.corelib_kt.Constants.EMPTY
 
     @Suppress("UNUSED_EXPRESSION")
     private val navigator = object : SupportAppNavigator(this, supportFragmentManager, R.id.mainActivityContainer) {
@@ -129,13 +121,13 @@ class MainActivity : BaseActivity<MainActivityContract.View, MainActivityContrac
             }
 
             primaryItem(R.string.navigation_drawer_all_goods) {
-                iconDrawable = drawableCompat(this@MainActivity, R.drawable.ic_toys)!!
+                iconDrawable = drawableCompat(R.drawable.ic_toys)!!
                 tag = Fragments.ALL_GOODS
                 iconTintingEnabled = true
             }
 
             primaryItem(R.string.navigation_drawer_order) {
-                iconDrawable = drawableCompat(this@MainActivity, R.drawable.ic_payment)!!
+                iconDrawable = drawableCompat(R.drawable.ic_payment)!!
                 tag = Fragments.ORDER
                 iconTintingEnabled = true
             }
@@ -144,7 +136,7 @@ class MainActivity : BaseActivity<MainActivityContract.View, MainActivityContrac
 
             footer {
                 secondaryItem(R.string.navigation_drawer_create_new_post) {
-                    iconDrawable = drawableCompat(this@MainActivity, R.drawable.ic_create_new_post)!!
+                    iconDrawable = drawableCompat(R.drawable.ic_create_new_post)!!
                     tag = Screens.CREATE_POST_ACTIVITY
                 }
             }
@@ -198,14 +190,6 @@ class MainActivity : BaseActivity<MainActivityContract.View, MainActivityContrac
 
     override fun onOptionsItemSelected(item: MenuItem) = navigationDrawer.actionBarDrawerToggle.onOptionsItemSelected(item) || super.onOptionsItemSelected(item)
 
-    override fun attachToPresenter() {
-//        mainActivityPresenter.attachView(this)
-    }
-
-    override fun detachFromPresenter() {
-//        mainActivityPresenter.detachView()
-    }
-
     override fun onSaveInstanceState(outState: Bundle?) {
         navigationDrawer.saveInstanceState(outState)
         headerResult.saveInstanceState(outState)
@@ -227,6 +211,4 @@ class MainActivity : BaseActivity<MainActivityContract.View, MainActivityContrac
     fun setUpToolbar(@StringRes title: Int) {
         supportActionBar?.title = getString(title)
     }
-
-    override fun getContext(): Context? = this
 }

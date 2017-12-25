@@ -1,7 +1,7 @@
 package com.egoriku.ladyhappy
 
 import android.app.Application
-import com.egoriku.corelib_kt.extensions.DelegatesExt
+import com.egoriku.ladyhappy.common.DelegatesExt
 import com.egoriku.ladyhappy.di.app.AppComponent
 import com.egoriku.ladyhappy.di.app.AppModule
 import com.egoriku.ladyhappy.di.app.DaggerAppComponent

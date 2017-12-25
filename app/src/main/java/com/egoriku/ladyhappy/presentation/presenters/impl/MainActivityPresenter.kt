@@ -7,7 +7,6 @@ import com.egoriku.ladyhappy.external.AnalyticsInterface
 import com.egoriku.ladyhappy.external.TrackingConstants
 import com.egoriku.ladyhappy.presentation.presenters.MainActivityContract
 import com.egoriku.ladyhappy.presentation.presenters.MainActivityContract.View.Companion.ALL_GOODS_POSITION
-import com.egoriku.ladyhappy.presentation.presenters.MainActivityContract.View.Companion.CREATE_NEW_POST_POSITION
 import com.egoriku.ladyhappy.presentation.presenters.MainActivityContract.View.Companion.FEEDBACK_POSITION
 import com.egoriku.ladyhappy.presentation.presenters.MainActivityContract.View.Companion.ORDER_POSITION
 import com.egoriku.ladyhappy.presentation.presenters.MainActivityContract.View.Companion.SHARE_POSITION

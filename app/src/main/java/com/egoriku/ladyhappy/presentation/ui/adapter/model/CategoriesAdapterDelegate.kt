@@ -7,8 +7,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import com.bumptech.glide.Glide
-import com.bumptech.glide.module.GlideModule
-import com.egoriku.corelib_kt.extensions.inflate
+import com.egoriku.corelib_kt.dsl.inflate
 import com.egoriku.ladyhappy.R
 import com.egoriku.ladyhappy.domain.models.CategoryModel
 import com.hannesdorfmann.adapterdelegates3.AdapterDelegate

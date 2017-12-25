@@ -1,11 +1,11 @@
 package com.egoriku.ladyhappy.presentation.presenters
 
 import com.egoriku.corelib_kt.arch.BaseContract
-import com.egoriku.ladyhappy.presentation.ui.base.BaseMvpView
+import com.egoriku.ladyhappy.presentation.ui.base.BaseView
 
 interface MainActivityContract {
 
-    interface View : BaseMvpView {
+    interface View : BaseView {
         companion object {
             const val ALL_GOODS_POSITION = 0
             const val ORDER_POSITION = 1
@@ -16,7 +16,7 @@ interface MainActivityContract {
         }
     }
 
-    interface Presenter : BaseContract.Presenter<MainActivityContract.View> {
+    interface Presenter : BaseContract.Presenter<View> {
         fun openAllGoodsCategory()
         fun openOrderCategory()
         fun openShareCategory()
