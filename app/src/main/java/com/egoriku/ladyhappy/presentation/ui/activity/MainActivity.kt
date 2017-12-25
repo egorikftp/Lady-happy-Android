@@ -21,7 +21,6 @@ import com.egoriku.ladyhappy.common.Screens
 import com.egoriku.ladyhappy.di.activity.ActivityComponent
 import com.egoriku.ladyhappy.di.activity.ActivityModule
 import com.egoriku.ladyhappy.di.activity.DaggerActivityComponent
-import com.egoriku.ladyhappy.external.AnalyticsInterface
 import com.egoriku.ladyhappy.presentation.presenters.MainActivityContract
 import com.egoriku.ladyhappy.presentation.presenters.impl.MainActivityPresenter
 import com.egoriku.ladyhappy.presentation.ui.fragments.AllGoodsFragment
@@ -31,7 +30,6 @@ import com.mikepenz.materialdrawer.Drawer
 import kotlinx.android.synthetic.main.activity_main.*
 import org.jetbrains.anko.intentFor
 import ru.terrakok.cicerone.NavigatorHolder
-import ru.terrakok.cicerone.Router
 import ru.terrakok.cicerone.android.SupportAppNavigator
 import javax.inject.Inject
 
@@ -41,13 +39,10 @@ class MainActivity : BaseActivity<MainActivityContract.View, MainActivityContrac
     private lateinit var headerResult: AccountHeader
 
     @Inject
+    lateinit var mainActivityPresenter: MainActivityPresenter
+
+    @Inject
     lateinit var navigatorHolder: NavigatorHolder
-
-    @Inject
-    lateinit var router: Router
-
-    @Inject
-    lateinit var analyticInterface: AnalyticsInterface
 
     private lateinit var component: ActivityComponent
 
@@ -98,9 +93,7 @@ class MainActivity : BaseActivity<MainActivityContract.View, MainActivityContrac
         component.inject(this)
     }
 
-    override fun initPresenter(): MainActivityContract.Presenter? {
-        return MainActivityPresenter(router, analyticInterface)
-    }
+    override fun initPresenter() = mainActivityPresenter
 
     override fun onPostCreate(savedInstanceState: Bundle?) {
         super.onPostCreate(savedInstanceState)

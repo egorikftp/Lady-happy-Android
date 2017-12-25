@@ -2,6 +2,7 @@ package com.egoriku.ladyhappy
 
 import android.annotation.SuppressLint
 import android.os.StrictMode
+import timber.log.Timber
 
 
 @SuppressLint("Registered")
@@ -10,6 +11,7 @@ open class DebugApplication : App() {
     override fun onCreate() {
         super.onCreate()
         DebugInitializer.register(this)
+        Timber.plant(Timber.DebugTree())
 
         enableStrictMode()
     }

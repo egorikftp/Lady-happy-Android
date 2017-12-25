@@ -7,18 +7,18 @@ import com.egoriku.corelib_kt.arch.BaseActivity
 import com.egoriku.corelib_kt.dsl.runDelayed
 import com.egoriku.ladyhappy.App
 import com.egoriku.ladyhappy.R
-import com.egoriku.ladyhappy.common.Screens
 import com.egoriku.ladyhappy.di.activity.ActivityComponent
 import com.egoriku.ladyhappy.di.activity.ActivityModule
 import com.egoriku.ladyhappy.di.activity.DaggerActivityComponent
-import com.egoriku.ladyhappy.external.AnalyticsInterface
 import com.egoriku.ladyhappy.presentation.presenters.LaunchContract
 import com.egoriku.ladyhappy.presentation.presenters.impl.LaunchPresenter
-import org.jetbrains.anko.intentFor
+import ru.terrakok.cicerone.Navigator
 import ru.terrakok.cicerone.NavigatorHolder
-import ru.terrakok.cicerone.Router
-import ru.terrakok.cicerone.android.SupportAppNavigator
 import javax.inject.Inject
+import com.egoriku.ladyhappy.common.Screens
+import ru.terrakok.cicerone.commands.Replace
+import com.egoriku.corelib_kt.timber.e
+import org.jetbrains.anko.startActivity
 
 class LaunchActivity : BaseActivity<LaunchContract.View, LaunchContract.Presenter>(), LaunchContract.View {
 
@@ -27,28 +27,27 @@ class LaunchActivity : BaseActivity<LaunchContract.View, LaunchContract.Presente
     }
 
     @Inject
-    lateinit var router: Router
-
-    @Inject
-    lateinit var analyticsInterface: AnalyticsInterface
+    lateinit var launchPresenter: LaunchPresenter
 
     @Inject
     lateinit var navigatorHolder: NavigatorHolder
 
     private lateinit var component: ActivityComponent
 
-    override fun initPresenter(): LaunchContract.Presenter {
-        return LaunchPresenter(router, analyticsInterface)
-    }
-
-    private val navigator = object : SupportAppNavigator(this@LaunchActivity, R.id.activity_launch_container) {
-        override fun createActivityIntent(screenKey: String?, data: Any?): Intent? = when (screenKey) {
-            Screens.MAIN_ACTIVITY -> intentFor<MainActivity>()
-            else -> null
+    private val customNavigator = Navigator { command ->
+        if (command is Replace) {
+            when (command.screenKey) {
+                Screens.MAIN_ACTIVITY -> {
+                    startActivity<MainActivity>()
+                    finish()
+                }
+            }
+        } else {
+            e("Illegal command for this screen: " + command.javaClass.simpleName)
         }
-
-        override fun createFragment(screenKey: String?, data: Any?): Fragment? = null
     }
+
+    override fun initPresenter() = launchPresenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         injectDependencies()
@@ -67,7 +66,7 @@ class LaunchActivity : BaseActivity<LaunchContract.View, LaunchContract.Presente
 
     override fun onResume() {
         super.onResume()
-        navigatorHolder.setNavigator(navigator)
+        navigatorHolder.setNavigator(customNavigator)
 
         runDelayed(LAUNCH_DELAY) {
             presenter.processOpeningApp()

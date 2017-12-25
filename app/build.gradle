@@ -95,9 +95,11 @@ dependencies {
     ext {
         archComponents = "1.0.0"
         coreLibKotlin = "0.0.7"
+        timber = "4.6.0"
     }
 
     implementation "com.github.egorikftp:CoreLib-Kotlin:$coreLibKotlin"
+    implementation "com.jakewharton.timber:timber:$timber"
 
     implementation "android.arch.lifecycle:extensions:$archComponents"
     kapt "android.arch.lifecycle:compiler:$archComponents"

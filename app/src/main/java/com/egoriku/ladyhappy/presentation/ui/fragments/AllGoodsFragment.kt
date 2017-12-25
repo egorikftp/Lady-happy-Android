@@ -33,9 +33,6 @@ class AllGoodsFragment : BaseFragment<AllGoodsContract.View, AllGoodsContract.Pr
     }
 
     @Inject
-    lateinit var router: Router
-
-    @Inject
     lateinit var allGoodsPresenter: AllGoodsPresenter
 
     private lateinit var component: AllGoodsComponent
@@ -64,7 +61,7 @@ class AllGoodsFragment : BaseFragment<AllGoodsContract.View, AllGoodsContract.Pr
         super.onViewCreated(view, savedInstanceState)
         showTitle(R.string.navigation_drawer_all_goods)
 
-        allGoodsPresenter.getCategories()
+        presenter.getCategories()
 
         initRecyclerView()
     }

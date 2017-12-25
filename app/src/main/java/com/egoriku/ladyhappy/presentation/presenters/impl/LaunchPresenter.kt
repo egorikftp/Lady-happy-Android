@@ -18,7 +18,7 @@ class LaunchPresenter
     }
 
     override fun processOpeningApp() {
-        router.newRootScreen(Screens.MAIN_ACTIVITY)
+        router.replaceScreen(Screens.MAIN_ACTIVITY)
     }
 
     override fun onBackPressed() {
