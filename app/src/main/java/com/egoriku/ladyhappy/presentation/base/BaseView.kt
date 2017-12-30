@@ -1,4 +1,4 @@
-package com.egoriku.ladyhappy.presentation.ui.base
+package com.egoriku.ladyhappy.presentation.base
 
 import com.egoriku.corelib_kt.arch.BaseContract
 

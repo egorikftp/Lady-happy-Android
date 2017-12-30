@@ -1,4 +1,4 @@
-package com.egoriku.ladyhappy.presentation.presenters.impl
+package com.egoriku.ladyhappy.presentation.fragment.allgoods
 
 import com.egoriku.corelib_kt.arch.BasePresenter
 import com.egoriku.ladyhappy.domain.interactors.Params
@@ -6,7 +6,6 @@ import com.egoriku.ladyhappy.domain.interactors.allgoods.CategoriesUseCase
 import com.egoriku.ladyhappy.domain.models.CategoriesModel
 import com.egoriku.ladyhappy.external.AnalyticsInterface
 import com.egoriku.ladyhappy.external.TrackingConstants
-import com.egoriku.ladyhappy.presentation.presenters.AllGoodsContract
 import com.egoriku.ladyhappy.rx.DefaultObserver
 import javax.inject.Inject
 

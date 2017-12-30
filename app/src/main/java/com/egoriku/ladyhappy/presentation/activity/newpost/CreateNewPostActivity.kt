@@ -1,4 +1,4 @@
-package com.egoriku.ladyhappy.presentation.ui.activity
+package com.egoriku.ladyhappy.presentation.activity.newpost
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity

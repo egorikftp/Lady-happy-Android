@@ -1,4 +1,4 @@
-package com.egoriku.ladyhappy.presentation.ui.adapter.model
+package com.egoriku.ladyhappy.presentation.adapter.model
 
 import android.app.Activity
 import android.support.v7.widget.RecyclerView

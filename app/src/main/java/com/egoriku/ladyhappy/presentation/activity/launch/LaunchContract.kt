@@ -1,7 +1,7 @@
-package com.egoriku.ladyhappy.presentation.presenters
+package com.egoriku.ladyhappy.presentation.activity.launch
 
 import com.egoriku.corelib_kt.arch.BaseContract
-import com.egoriku.ladyhappy.presentation.ui.base.BaseView
+import com.egoriku.ladyhappy.presentation.base.BaseView
 
 interface LaunchContract {
 

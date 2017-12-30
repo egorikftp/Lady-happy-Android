@@ -1,9 +1,8 @@
-package com.egoriku.ladyhappy.presentation.presenters.impl
+package com.egoriku.ladyhappy.presentation.fragment.order
 
 import com.egoriku.corelib_kt.arch.BasePresenter
 import com.egoriku.ladyhappy.external.AnalyticsInterface
 import com.egoriku.ladyhappy.external.TrackingConstants
-import com.egoriku.ladyhappy.presentation.presenters.OrderContract
 import javax.inject.Inject
 
 class OrderPresenter

@@ -1,8 +1,8 @@
 package com.egoriku.ladyhappy.di.activity
 
 import com.egoriku.ladyhappy.external.AnalyticsInterface
-import com.egoriku.ladyhappy.presentation.presenters.impl.LaunchPresenter
-import com.egoriku.ladyhappy.presentation.presenters.impl.MainActivityPresenter
+import com.egoriku.ladyhappy.presentation.activity.launch.LaunchPresenter
+import com.egoriku.ladyhappy.presentation.activity.main.MainActivityPresenter
 import dagger.Module
 import dagger.Provides
 import ru.terrakok.cicerone.Router

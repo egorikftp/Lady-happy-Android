@@ -1,8 +1,8 @@
-package com.egoriku.ladyhappy.presentation.presenters
+package com.egoriku.ladyhappy.presentation.fragment.order
 
 import android.support.annotation.StringRes
 import com.egoriku.corelib_kt.arch.BaseContract
-import com.egoriku.ladyhappy.presentation.ui.base.BaseView
+import com.egoriku.ladyhappy.presentation.base.BaseView
 
 interface OrderContract {
 

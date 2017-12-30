@@ -1,8 +1,6 @@
-package com.egoriku.ladyhappy.presentation.ui.activity
+package com.egoriku.ladyhappy.presentation.activity.launch
 
-import android.content.Intent
 import android.os.Bundle
-import android.support.v4.app.Fragment
 import com.egoriku.corelib_kt.arch.BaseActivity
 import com.egoriku.corelib_kt.dsl.runDelayed
 import com.egoriku.ladyhappy.App
@@ -10,14 +8,13 @@ import com.egoriku.ladyhappy.R
 import com.egoriku.ladyhappy.di.activity.ActivityComponent
 import com.egoriku.ladyhappy.di.activity.ActivityModule
 import com.egoriku.ladyhappy.di.activity.DaggerActivityComponent
-import com.egoriku.ladyhappy.presentation.presenters.LaunchContract
-import com.egoriku.ladyhappy.presentation.presenters.impl.LaunchPresenter
 import ru.terrakok.cicerone.Navigator
 import ru.terrakok.cicerone.NavigatorHolder
 import javax.inject.Inject
 import com.egoriku.ladyhappy.common.Screens
 import ru.terrakok.cicerone.commands.Replace
 import com.egoriku.corelib_kt.timber.e
+import com.egoriku.ladyhappy.presentation.activity.main.MainActivity
 import org.jetbrains.anko.startActivity
 
 class LaunchActivity : BaseActivity<LaunchContract.View, LaunchContract.Presenter>(), LaunchContract.View {

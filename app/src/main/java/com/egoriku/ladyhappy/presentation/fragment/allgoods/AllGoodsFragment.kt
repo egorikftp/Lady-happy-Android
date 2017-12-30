@@ -1,4 +1,4 @@
-package com.egoriku.ladyhappy.presentation.ui.fragments
+package com.egoriku.ladyhappy.presentation.fragment.allgoods
 
 import android.content.Context
 import android.os.Bundle
@@ -17,13 +17,10 @@ import com.egoriku.ladyhappy.di.allgoods.AllGoodsComponent
 import com.egoriku.ladyhappy.di.allgoods.AllGoodsModule
 import com.egoriku.ladyhappy.di.allgoods.DaggerAllGoodsComponent
 import com.egoriku.ladyhappy.domain.models.CategoryModel
-import com.egoriku.ladyhappy.presentation.presenters.AllGoodsContract
-import com.egoriku.ladyhappy.presentation.presenters.impl.AllGoodsPresenter
-import com.egoriku.ladyhappy.presentation.ui.activity.MainActivity
-import com.egoriku.ladyhappy.presentation.ui.adapter.AllGoodsAdapter
-import com.egoriku.ladyhappy.presentation.ui.adapter.model.SectionType
+import com.egoriku.ladyhappy.presentation.activity.main.MainActivity
+import com.egoriku.ladyhappy.presentation.adapter.AllGoodsAdapter
+import com.egoriku.ladyhappy.presentation.adapter.model.SectionType
 import kotlinx.android.synthetic.main.fragment_all_goods.*
-import ru.terrakok.cicerone.Router
 import javax.inject.Inject
 
 class AllGoodsFragment : BaseFragment<AllGoodsContract.View, AllGoodsContract.Presenter>(), AllGoodsContract.View {

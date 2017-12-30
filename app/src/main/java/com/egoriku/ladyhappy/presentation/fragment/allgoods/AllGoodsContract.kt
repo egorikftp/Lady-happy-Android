@@ -1,10 +1,10 @@
-package com.egoriku.ladyhappy.presentation.presenters
+package com.egoriku.ladyhappy.presentation.fragment.allgoods
 
 import android.support.annotation.StringRes
 import com.egoriku.corelib_kt.arch.BaseContract
 import com.egoriku.ladyhappy.domain.models.CategoriesModel
 import com.egoriku.ladyhappy.domain.models.CategoryModel
-import com.egoriku.ladyhappy.presentation.ui.base.BaseView
+import com.egoriku.ladyhappy.presentation.base.BaseView
 
 interface AllGoodsContract {
 

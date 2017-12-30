@@ -1,4 +1,4 @@
-package com.egoriku.ladyhappy.presentation.ui.adapter.model
+package com.egoriku.ladyhappy.presentation.adapter.model
 
 
 interface BaseDisplayableItem

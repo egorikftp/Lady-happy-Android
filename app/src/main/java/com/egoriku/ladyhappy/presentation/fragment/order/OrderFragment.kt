@@ -1,4 +1,4 @@
-package com.egoriku.ladyhappy.presentation.ui.fragments
+package com.egoriku.ladyhappy.presentation.fragment.order
 
 import android.content.Context
 import android.os.Bundle
@@ -12,9 +12,7 @@ import com.egoriku.ladyhappy.R
 import com.egoriku.ladyhappy.di.order.DaggerOrderComponent
 import com.egoriku.ladyhappy.di.order.OrderComponent
 import com.egoriku.ladyhappy.di.order.OrderModule
-import com.egoriku.ladyhappy.presentation.presenters.OrderContract
-import com.egoriku.ladyhappy.presentation.presenters.impl.OrderPresenter
-import com.egoriku.ladyhappy.presentation.ui.activity.MainActivity
+import com.egoriku.ladyhappy.presentation.activity.main.MainActivity
 import ru.terrakok.cicerone.Router
 import javax.inject.Inject
 

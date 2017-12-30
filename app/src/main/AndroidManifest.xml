@@ -13,15 +13,15 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name="com.egoriku.ladyhappy.presentation.ui.activity.MainActivity"
+            android:name="com.egoriku.ladyhappy.presentation.activity.main.MainActivity"
             android:theme="@style/AppTheme" />
 
         <activity
-            android:name="com.egoriku.ladyhappy.presentation.ui.activity.CreateNewPostActivity"
+            android:name="com.egoriku.ladyhappy.presentation.activity.newpost.CreateNewPostActivity"
             android:label="Order" />
 
         <activity
-            android:name="com.egoriku.ladyhappy.presentation.ui.activity.LaunchActivity"
+            android:name="com.egoriku.ladyhappy.presentation.activity.launch.LaunchActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen">
 
             <intent-filter>

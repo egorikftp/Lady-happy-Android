@@ -1,4 +1,4 @@
-package com.egoriku.ladyhappy.presentation.ui.activity
+package com.egoriku.ladyhappy.presentation.activity.main
 
 import android.content.Intent
 import android.content.res.Configuration
@@ -21,10 +21,9 @@ import com.egoriku.ladyhappy.common.Screens
 import com.egoriku.ladyhappy.di.activity.ActivityComponent
 import com.egoriku.ladyhappy.di.activity.ActivityModule
 import com.egoriku.ladyhappy.di.activity.DaggerActivityComponent
-import com.egoriku.ladyhappy.presentation.presenters.MainActivityContract
-import com.egoriku.ladyhappy.presentation.presenters.impl.MainActivityPresenter
-import com.egoriku.ladyhappy.presentation.ui.fragments.AllGoodsFragment
-import com.egoriku.ladyhappy.presentation.ui.fragments.OrderFragment
+import com.egoriku.ladyhappy.presentation.activity.newpost.CreateNewPostActivity
+import com.egoriku.ladyhappy.presentation.fragment.allgoods.AllGoodsFragment
+import com.egoriku.ladyhappy.presentation.fragment.order.OrderFragment
 import com.mikepenz.materialdrawer.AccountHeader
 import com.mikepenz.materialdrawer.Drawer
 import kotlinx.android.synthetic.main.activity_main.*

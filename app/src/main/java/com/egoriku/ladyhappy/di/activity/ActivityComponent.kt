@@ -2,13 +2,11 @@ package com.egoriku.ladyhappy.di.activity
 
 import com.egoriku.ladyhappy.di.app.AppComponent
 import com.egoriku.ladyhappy.di.scope.ActivityScope
-import com.egoriku.ladyhappy.external.AnalyticsInterface
-import com.egoriku.ladyhappy.presentation.presenters.impl.LaunchPresenter
-import com.egoriku.ladyhappy.presentation.presenters.impl.MainActivityPresenter
-import com.egoriku.ladyhappy.presentation.ui.activity.LaunchActivity
-import com.egoriku.ladyhappy.presentation.ui.activity.MainActivity
+import com.egoriku.ladyhappy.presentation.activity.launch.LaunchPresenter
+import com.egoriku.ladyhappy.presentation.activity.main.MainActivityPresenter
+import com.egoriku.ladyhappy.presentation.activity.launch.LaunchActivity
+import com.egoriku.ladyhappy.presentation.activity.main.MainActivity
 import dagger.Component
-import ru.terrakok.cicerone.Router
 
 @ActivityScope
 @Component(dependencies = [AppComponent::class], modules = [ActivityModule::class])

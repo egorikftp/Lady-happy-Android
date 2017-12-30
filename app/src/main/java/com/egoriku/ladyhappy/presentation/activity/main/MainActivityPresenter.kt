@@ -1,15 +1,14 @@
-package com.egoriku.ladyhappy.presentation.presenters.impl
+package com.egoriku.ladyhappy.presentation.activity.main
 
 import com.egoriku.corelib_kt.arch.BasePresenter
 import com.egoriku.ladyhappy.common.Fragments
 import com.egoriku.ladyhappy.common.Screens
 import com.egoriku.ladyhappy.external.AnalyticsInterface
 import com.egoriku.ladyhappy.external.TrackingConstants
-import com.egoriku.ladyhappy.presentation.presenters.MainActivityContract
-import com.egoriku.ladyhappy.presentation.presenters.MainActivityContract.View.Companion.ALL_GOODS_POSITION
-import com.egoriku.ladyhappy.presentation.presenters.MainActivityContract.View.Companion.FEEDBACK_POSITION
-import com.egoriku.ladyhappy.presentation.presenters.MainActivityContract.View.Companion.ORDER_POSITION
-import com.egoriku.ladyhappy.presentation.presenters.MainActivityContract.View.Companion.SHARE_POSITION
+import com.egoriku.ladyhappy.presentation.activity.main.MainActivityContract.View.Companion.ALL_GOODS_POSITION
+import com.egoriku.ladyhappy.presentation.activity.main.MainActivityContract.View.Companion.FEEDBACK_POSITION
+import com.egoriku.ladyhappy.presentation.activity.main.MainActivityContract.View.Companion.ORDER_POSITION
+import com.egoriku.ladyhappy.presentation.activity.main.MainActivityContract.View.Companion.SHARE_POSITION
 import ru.terrakok.cicerone.Router
 import javax.inject.Inject
 

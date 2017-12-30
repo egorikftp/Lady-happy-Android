@@ -5,8 +5,8 @@ import com.egoriku.ladyhappy.data.repositories.datasource.CategoriesDataSourceRe
 import com.egoriku.ladyhappy.di.app.AppComponent
 import com.egoriku.ladyhappy.di.scope.ActivityScope
 import com.egoriku.ladyhappy.domain.interactors.allgoods.CategoriesUseCase
-import com.egoriku.ladyhappy.presentation.presenters.impl.AllGoodsPresenter
-import com.egoriku.ladyhappy.presentation.ui.fragments.AllGoodsFragment
+import com.egoriku.ladyhappy.presentation.fragment.allgoods.AllGoodsPresenter
+import com.egoriku.ladyhappy.presentation.fragment.allgoods.AllGoodsFragment
 import dagger.Component
 import ru.terrakok.cicerone.NavigatorHolder
 import ru.terrakok.cicerone.Router

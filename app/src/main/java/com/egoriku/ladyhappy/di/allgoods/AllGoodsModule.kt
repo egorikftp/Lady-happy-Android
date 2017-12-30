@@ -5,7 +5,7 @@ import com.egoriku.ladyhappy.data.repositories.CategoriesRepository
 import com.egoriku.ladyhappy.data.repositories.datasource.CategoriesDataSourceRemote
 import com.egoriku.ladyhappy.domain.interactors.allgoods.CategoriesUseCase
 import com.egoriku.ladyhappy.external.AnalyticsInterface
-import com.egoriku.ladyhappy.presentation.presenters.impl.AllGoodsPresenter
+import com.egoriku.ladyhappy.presentation.fragment.allgoods.AllGoodsPresenter
 import com.google.firebase.firestore.FirebaseFirestore
 import dagger.Module
 import dagger.Provides
