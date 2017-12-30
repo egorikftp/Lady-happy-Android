@@ -1,8 +1,4 @@
-apply from: 'version_dependencies.gradle'
-
 buildscript {
-    apply from: 'version_dependencies.gradle'
-
     repositories {
         google()
         jcenter()
@@ -11,10 +7,9 @@ buildscript {
         }
     }
     dependencies {
-        classpath gradlePlugins.gradle
-        classpath gradlePlugins.kotlin
-        classpath gradlePlugins.googleservices
-
+        classpath 'com.android.tools.build:gradle:3.0.1'
+        classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:1.2.10'
+        classpath 'com.google.gms:google-services:3.1.1'
         classpath 'io.fabric.tools:gradle:1.24.4'
     }
 }

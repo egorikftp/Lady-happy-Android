@@ -13,13 +13,13 @@ def verCode = version * 100000 + sub_version * 1000 + build_version
 def verName = "$version.$sub_version.$build_version"
 
 android {
-    compileSdkVersion versions.compileSdkVersion
-    buildToolsVersion versions.buildToolsVersion
+    compileSdkVersion 27
+    buildToolsVersion "27.0.2"
 
     defaultConfig {
         applicationId "com.egoriku.ladyhappy"
-        minSdkVersion versions.minSdkVersion
-        targetSdkVersion versions.compileSdkVersion
+        minSdkVersion 19
+        targetSdkVersion 27
         versionCode verCode
         versionName verName
         multiDexEnabled true
@@ -59,50 +59,57 @@ android {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    androidTestImplementation(libs.espresso, {
+
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation('com.android.support.test.espresso:espresso-core:3.0.1', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    testImplementation libs.junit
-    implementation libs.googlePlayServices
-    implementation libs.appcompat
-    implementation libs.design
-    implementation libs.constraint
-    implementation libs.firebaseStorage
-    implementation libs.firebaseDatabase
-    implementation libs.firebaseAuth
-    implementation libs.firebaseFirestore
-    implementation libs.firebaseAnalytics
+
+    implementation 'com.android.support:multidex:1.0.2'
+
     implementation('com.crashlytics.sdk.android:crashlytics:2.7.1@aar') {
         transitive = true
     }
-    implementation libs.kotlin
-    implementation libs.glide
-    implementation libs.palette
-    implementation libs.cardview
-    implementation libs.hockeyApp
-    implementation libs.multidex
-    implementation libs.rxJava
-    implementation libs.rxAndroid
-    implementation libs.cicerone
-    implementation libs.dagger
-    kapt libs.daggerCompiler
-    implementation libs.anko_v4
-    implementation libs.anko_v7
-    implementation libs.lottie
-    implementation libs.materialDrawerKt
-    implementation libs.adapterDelegate
 
-    ext {
-        archComponents = "1.0.0"
-        coreLibKotlin = "0.0.7"
-        timber = "4.6.0"
-    }
+    implementation 'com.android.support:appcompat-v7:27.0.2'
+    implementation 'com.android.support:recyclerview-v7:27.0.2'
+    implementation 'com.android.support:design:27.0.2'
+    implementation 'com.android.support:palette-v7:27.0.2'
+    implementation 'com.android.support:cardview-v7:27.0.2'
+    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
 
-    implementation "com.github.egorikftp:CoreLib-Kotlin:$coreLibKotlin"
-    implementation "com.jakewharton.timber:timber:$timber"
+    implementation 'com.google.firebase:firebase-storage:11.8.0'
+    implementation 'com.google.firebase:firebase-database:11.8.0'
+    implementation 'com.google.firebase:firebase-auth:11.8.0'
+    implementation 'com.google.firebase:firebase-firestore:11.8.0'
+    implementation 'com.google.firebase:firebase-core:11.8.0'
+    implementation 'com.google.android.gms:play-services-plus:11.8.0'
 
-    implementation "android.arch.lifecycle:extensions:$archComponents"
-    kapt "android.arch.lifecycle:compiler:$archComponents"
+    implementation 'io.reactivex.rxjava2:rxjava:2.1.6'
+    implementation 'io.reactivex.rxjava2:rxandroid:2.0.1'
+
+    implementation 'com.airbnb.android:lottie:2.5.0-beta1'
+    implementation 'com.jakewharton.timber:timber:4.6.0'
+    implementation 'co.zsmb:materialdrawer-kt:1.2.2'
+    implementation 'ru.terrakok.cicerone:cicerone:2.1.0'
+    implementation 'com.github.bumptech.glide:glide:4.3.1'
+    implementation 'net.hockeyapp.android:HockeySDK:4.1.4'
+    implementation 'com.hannesdorfmann:adapterdelegates3:3.0.1'
+
+    implementation 'org.jetbrains.kotlin:kotlin-stdlib-jre7:1.2.10'
+    implementation 'org.jetbrains.anko:anko-appcompat-v7:0.10.4'
+    implementation 'org.jetbrains.anko:anko-support-v4-commons:0.10.4'
+
+    implementation 'com.github.egorikftp:CoreLib-Kotlin:0.0.7'
+
+    implementation 'android.arch.lifecycle:extensions:1.0.0'
+    kapt 'android.arch.lifecycle:compiler:1.0.0'
+
+    implementation 'com.google.dagger:dagger:2.14.1'
+    kapt 'com.google.dagger:dagger-compiler:2.14.1'
+    implementation 'com.google.dagger:dagger-android:2.14.1'
+    kapt 'com.google.dagger:dagger-android-processor:2.11'
+    implementation 'com.google.dagger:dagger-android-support:2.14.1'
 }
 
 apply plugin: 'com.google.gms.google-services'
