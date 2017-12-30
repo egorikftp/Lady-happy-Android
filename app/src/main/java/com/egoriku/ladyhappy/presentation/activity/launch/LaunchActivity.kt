@@ -24,7 +24,7 @@ class LaunchActivity : BaseActivity<LaunchContract.View, LaunchContract.Presente
     }
 
     @Inject
-    lateinit var launchPresenter: LaunchPresenter
+    lateinit var launchPresenter: LaunchContract.Presenter
 
     @Inject
     lateinit var navigatorHolder: NavigatorHolder

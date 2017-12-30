@@ -38,7 +38,7 @@ class MainActivity : BaseActivity<MainActivityContract.View, MainActivityContrac
     private lateinit var headerResult: AccountHeader
 
     @Inject
-    lateinit var mainActivityPresenter: MainActivityPresenter
+    lateinit var mainActivityPresenter: MainActivityContract.Presenter
 
     @Inject
     lateinit var navigatorHolder: NavigatorHolder
