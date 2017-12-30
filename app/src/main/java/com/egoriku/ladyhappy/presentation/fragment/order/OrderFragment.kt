@@ -69,12 +69,4 @@ class OrderFragment : BaseFragment<OrderContract.View, OrderContract.Presenter>(
     override fun hideLoading() {
 
     }
-
-    override fun showMessage(message: String) {
-
-    }
-
-    override fun showNoNetwork() {
-
-    }
 }

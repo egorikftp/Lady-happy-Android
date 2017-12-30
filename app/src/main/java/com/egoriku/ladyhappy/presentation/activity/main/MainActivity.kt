@@ -194,12 +194,6 @@ class MainActivity : BaseActivity<MainActivityContract.View, MainActivityContrac
     override fun hideLoading() {
     }
 
-    override fun showMessage(message: String) {
-    }
-
-    override fun showNoNetwork() {
-    }
-
     fun setUpToolbar(@StringRes title: Int) {
         supportActionBar?.title = getString(title)
     }

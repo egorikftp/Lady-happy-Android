@@ -11,12 +11,11 @@ interface AllGoodsContract {
     interface View : BaseView {
         fun showTitle(@StringRes title: Int)
 
-        fun showCategories(categories: List<CategoryModel>)
-        fun showNews()
+        fun render(screenModel: AllGoodsScreenModel)
     }
 
     interface Presenter : BaseContract.Presenter<View> {
-        fun getCategories()
+        fun loadData()
         fun onGetCategoriesSuccess(categoriesModel: CategoriesModel)
         fun onGetCategoriesFailure(e: Throwable)
 

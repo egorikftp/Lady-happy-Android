@@ -8,5 +8,8 @@
     <string name="navigation_drawer_share">Share</string>
     <string name="navigation_drawer_feedback">Feedback</string>
     <string name="navigation_drawer_create_new_post">Create new post</string>
-    <string name="content_description_categories">Категории</string>
+    <string name="content_description_categories">Categories</string>
+    <string name="adapter_item_error_state">An error occurred while loading the data</string>
+    <string name="adapter_item_error_state_retry">Tap to retry</string>
+    <string name="adapter_item_pagination_footer_load_more">Load more</string>
 </resources>

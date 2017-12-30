@@ -10,8 +10,10 @@ import com.egoriku.ladyhappy.rx.DefaultObserver
 import javax.inject.Inject
 
 class AllGoodsPresenter
-@Inject constructor(private val getCategoriesUseCase: CategoriesUseCase, private val analyticsInterface: AnalyticsInterface)
+@Inject constructor(private val categoriesUseCase: CategoriesUseCase, private val analyticsInterface: AnalyticsInterface)
     : BasePresenter<AllGoodsContract.View>(), AllGoodsContract.Presenter {
+
+    private var screenModel = AllGoodsScreenModel()
 
     override fun onPresenterCreated() {
         super.onPresenterCreated()
@@ -19,37 +21,43 @@ class AllGoodsPresenter
     }
 
     override fun onPresenterDestroy() {
-        getCategoriesUseCase.dispose()
+        categoriesUseCase.dispose()
         super.onPresenterDestroy()
     }
 
-    override fun getCategories() {
-        view?.showLoading()
-        getCategoriesUseCase.execute(GetCategoriesObserver(), Params.EMPTY)
+    override fun loadData() {
+        if (isViewAttached) {
+            view.showLoading()
+
+            if (!screenModel.hasCategories()) {
+                categoriesUseCase.execute(CategoriesObserver(), Params.EMPTY)
+            } else {
+                view.hideLoading()
+                view.render(screenModel)
+            }
+        }
     }
 
     override fun onGetCategoriesSuccess(categoriesModel: CategoriesModel) {
         if (isViewAttached) {
-            view?.hideLoading()
-
-            if (!categoriesModel.isEmpty()) {
-                view?.showCategories(categoriesModel.toList())
-            }
+            screenModel.categories = categoriesModel.toList()
+            view.hideLoading()
+            view.render(screenModel)
         }
     }
 
     override fun onGetCategoriesFailure(e: Throwable) {
         if (isViewAttached) {
-            view?.hideLoading()
+            view.hideLoading()
         }
     }
 
     override fun onCategoryClickSuccessTracking() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+
     }
 
     override fun onCategoryClickFailureTracking(e: Throwable) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+
     }
 
     override fun onGetCategoriesSuccessTracking() {
@@ -60,10 +68,7 @@ class AllGoodsPresenter
         analyticsInterface.trackGetCategoriesFail(null)
     }
 
-    private inner class GetCategoriesObserver : DefaultObserver<CategoriesModel>() {
-
-        override fun onComplete() {
-        }
+    private inner class CategoriesObserver : DefaultObserver<CategoriesModel>() {
 
         override fun onError(exception: Throwable) {
             onGetCategoriesFailureTracking()

@@ -83,10 +83,4 @@ class LaunchActivity : BaseActivity<LaunchContract.View, LaunchContract.Presente
 
     override fun hideLoading() {
     }
-
-    override fun showMessage(message: String) {
-    }
-
-    override fun showNoNetwork() {
-    }
 }

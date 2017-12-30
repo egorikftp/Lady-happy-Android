@@ -8,7 +8,4 @@ interface BaseView : BaseContract.View {
 
     fun showLoading()
     fun hideLoading()
-
-    fun showMessage(message: String)
-    fun showNoNetwork()
 }

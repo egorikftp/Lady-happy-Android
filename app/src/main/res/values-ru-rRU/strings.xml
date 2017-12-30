@@ -7,4 +7,7 @@
     <string name="navigation_drawer_share">Поделиться</string>
     <string name="navigation_drawer_feedback">Обратная связь</string>
     <string name="navigation_drawer_create_new_post">Создать новый пост</string>
+    <string name="adapter_item_error_state">При загрузке данных произошла ошибка</string>
+    <string name="adapter_item_error_state_retry">Нажмите чтобы повторить</string>
+    <string name="adapter_item_pagination_footer_load_more">Загрузить больше</string>
 </resources>

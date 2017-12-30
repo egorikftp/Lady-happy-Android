@@ -17,4 +17,7 @@
     <color name="material_drawer_primary_text">@color/RealBlack70</color>
     <color name="material_drawer_primary_icon">@color/RealBlack70</color>
 
+    <color name="adapter_stub">#E0E0E0</color>
+    <color name="adapter_item_pagination_text_color">#555555</color>
+
 </resources>

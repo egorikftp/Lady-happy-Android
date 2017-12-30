@@ -13,28 +13,27 @@ import com.egoriku.corelib_kt.dsl.inflate
 import com.egoriku.corelib_kt.dsl.show
 import com.egoriku.ladyhappy.App
 import com.egoriku.ladyhappy.R
-import com.egoriku.ladyhappy.di.allgoods.AllGoodsComponent
 import com.egoriku.ladyhappy.di.allgoods.AllGoodsModule
 import com.egoriku.ladyhappy.di.allgoods.DaggerAllGoodsComponent
-import com.egoriku.ladyhappy.domain.models.CategoryModel
 import com.egoriku.ladyhappy.presentation.activity.main.MainActivity
-import com.egoriku.ladyhappy.presentation.adapter.AllGoodsAdapter
-import com.egoriku.ladyhappy.presentation.adapter.model.SectionType
+import com.egoriku.ladyhappy.presentation.adapter.animator.DefaultItemAnimator
+import com.egoriku.ladyhappy.presentation.fragment.allgoods.recycler.controller.CategoriesController
+import com.egoriku.ladyhappy.presentation.fragment.allgoods.recycler.controller.ErrorStateController
 import kotlinx.android.synthetic.main.fragment_all_goods.*
+import org.jetbrains.anko.support.v4.toast
+import ru.surfstudio.easyadapter.recycler.EasyAdapter
+import ru.surfstudio.easyadapter.recycler.ItemList
 import javax.inject.Inject
 
 class AllGoodsFragment : BaseFragment<AllGoodsContract.View, AllGoodsContract.Presenter>(), AllGoodsContract.View {
 
-    override fun showNews() {
-
-    }
-
     @Inject
     lateinit var allGoodsPresenter: AllGoodsPresenter
 
-    private lateinit var component: AllGoodsComponent
+    private lateinit var categoriesController: CategoriesController
+    private lateinit var errorStateController: ErrorStateController
 
-    private lateinit var allGoodsAdapter: AllGoodsAdapter
+    private val allGoodsAdapter = EasyAdapter()
 
     companion object {
         fun newInstance() = AllGoodsFragment()
@@ -43,11 +42,11 @@ class AllGoodsFragment : BaseFragment<AllGoodsContract.View, AllGoodsContract.Pr
     override fun initPresenter() = allGoodsPresenter
 
     override fun injectDependencies() {
-        component = DaggerAllGoodsComponent.builder()
+        DaggerAllGoodsComponent.builder()
                 .appComponent(App.instance.appComponent)
                 .allGoodsModule(AllGoodsModule(this))
                 .build()
-        component.inject(this)
+                .inject(this)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -58,9 +57,33 @@ class AllGoodsFragment : BaseFragment<AllGoodsContract.View, AllGoodsContract.Pr
         super.onViewCreated(view, savedInstanceState)
         showTitle(R.string.navigation_drawer_all_goods)
 
-        presenter.getCategories()
-
         initRecyclerView()
+
+        presenter.loadData()
+    }
+
+    private fun initRecyclerView() {
+        recyclerViewAllGoods.apply {
+            layoutManager = LinearLayoutManager(context)
+            itemAnimator = DefaultItemAnimator()
+            adapter = allGoodsAdapter
+        }
+
+        categoriesController = CategoriesController(onClickListener = {
+            toast("on ${it.title} click")
+        })
+
+        errorStateController = ErrorStateController(onReloadClickListener = {
+            presenter.loadData()
+        })
+    }
+
+    override fun render(screenModel: AllGoodsScreenModel) {
+        val itemList = ItemList.create()
+                .addAll(screenModel.categories, categoriesController)
+                .addIf(screenModel.isEmpty(), errorStateController)
+
+        allGoodsAdapter.setItems(itemList)
     }
 
     override fun onAttach(context: Context?) {
@@ -72,32 +95,11 @@ class AllGoodsFragment : BaseFragment<AllGoodsContract.View, AllGoodsContract.Pr
         (activity as MainActivity).setUpToolbar(title)
     }
 
-    override fun showCategories(categories: List<CategoryModel>) {
-        allGoodsAdapter.addItems(SectionType.CATEGORIES, categories)
-    }
-
     override fun showLoading() {
         progressView.show()
     }
 
     override fun hideLoading() {
         progressView.hide()
-    }
-
-    override fun showMessage(message: String) {
-
-    }
-
-    override fun showNoNetwork() {
-
-    }
-
-    private fun initRecyclerView() {
-        allGoodsAdapter = AllGoodsAdapter(activity)
-
-        recycler_all_goods.apply {
-            layoutManager = LinearLayoutManager(context)
-            adapter = allGoodsAdapter
-        }
     }
 }

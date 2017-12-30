@@ -5,16 +5,10 @@ import io.reactivex.observers.DisposableObserver
 /**
  * Default [DisposableObserver] base class to be used whenever you want default error handling.
  */
-open class DefaultObserver<T> : DisposableObserver<T>() {
-    override fun onNext(t: T) {
-        // Intentionally empty.
-    }
+abstract class DefaultObserver<T> : DisposableObserver<T>() {
+    override fun onNext(t: T) {}
 
-    override fun onComplete() {
-        // Intentionally empty.
-    }
+    override fun onComplete() {}
 
-    override fun onError(exception: Throwable) {
-        // Intentionally empty.
-    }
+    override fun onError(exception: Throwable) {}
 }

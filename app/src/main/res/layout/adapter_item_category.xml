@@ -9,7 +9,7 @@
     android:foreground="?android:attr/selectableItemBackground">
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/imageCategoryView"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:contentDescription="@string/content_description_categories"
