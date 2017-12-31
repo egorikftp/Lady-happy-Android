@@ -12,6 +12,7 @@ open class DebugApplication : App() {
         super.onCreate()
         DebugInitializer.register(this)
         Timber.plant(Timber.DebugTree())
+        FirebaseCrash.setCrashCollectionEnabled(false);
 
         enableStrictMode()
     }

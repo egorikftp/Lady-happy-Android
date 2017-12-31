@@ -1,11 +1,11 @@
 package com.egoriku.ladyhappy.presentation.fragment.allgoods
 
 import com.egoriku.ladyhappy.domain.models.CategoryModel
-import com.egoriku.ladyhappy.presentation.adapter.model.NewsItem
+import com.egoriku.ladyhappy.domain.models.NewsModel
 
 data class AllGoodsScreenModel(
         var categories: List<CategoryModel> = emptyList(),
-        var news: List<NewsItem> = emptyList()
+        var news: List<NewsModel> = emptyList()
 ) {
     fun hasCategories() = !categories.isEmpty()
 

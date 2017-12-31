@@ -1,3 +1,4 @@
+@file:JvmName("StubExt")
 package com.egoriku.ladyhappy.presentation.fragment.allgoods.recycler.controller.stub
 
 import android.view.View
