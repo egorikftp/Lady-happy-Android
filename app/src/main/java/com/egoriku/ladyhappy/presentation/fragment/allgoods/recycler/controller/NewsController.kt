@@ -1,10 +1,14 @@
 package com.egoriku.ladyhappy.presentation.fragment.allgoods.recycler.controller
 
+import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
 import android.view.ViewGroup
 import android.widget.TextView
 import com.egoriku.ladyhappy.R
 import com.egoriku.ladyhappy.domain.models.SingleNewsModel
 import kotlinx.android.synthetic.main.adapter_item_news.view.*
+import ru.surfstudio.easyadapter.recycler.EasyAdapter
+import ru.surfstudio.easyadapter.recycler.ItemList
 import ru.surfstudio.easyadapter.recycler.controller.BindableItemController
 import ru.surfstudio.easyadapter.recycler.holder.BindableViewHolder
 
@@ -15,16 +19,38 @@ class NewsController : BindableItemController<SingleNewsModel, NewsController.Ho
 
     inner class Holder(parent: ViewGroup) : BindableViewHolder<SingleNewsModel>(parent, R.layout.adapter_item_news) {
 
-        private lateinit var category: SingleNewsModel
-        private val title: TextView
+        private lateinit var newsModel: SingleNewsModel
+
+        private val newsImagesController: NewsImagesController
+
+        private val description: TextView
+        private val newsRecyclerView: RecyclerView
 
         init {
-            title = itemView.textView
+            newsImagesController = NewsImagesController()
+
+            description = itemView.descriptionTextView
+            newsRecyclerView = itemView.newsRecyclerView.apply {
+                setHasFixedSize(true)
+                layoutManager = LinearLayoutManager(itemView.context, LinearLayoutManager.HORIZONTAL, false).apply {
+                    isItemPrefetchEnabled = true
+                    initialPrefetchItemCount = 4
+                }
+            }
         }
 
         override fun bind(data: SingleNewsModel) {
-            category = data
-            title.text = data.description
+            newsModel = data
+            description.text = data.description
+
+            if (newsRecyclerView.adapter == null) {
+                newsRecyclerView.adapter = EasyAdapter().apply {
+                    setItems(ItemList.create().addAll(data.images, newsImagesController))
+                }
+            } else {
+                (newsRecyclerView.adapter as EasyAdapter)
+                        .setItems(ItemList.create().addAll(data.images, newsImagesController))
+            }
         }
     }
 }
