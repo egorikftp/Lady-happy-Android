@@ -17,7 +17,7 @@ class NewsDataSourceRemote
     private fun getNewsQuery(): Query {
         query = firebaseFirestore
                 .collection(COLLECTION_KEY_NEWS)
-                .orderBy(QUERY_DATE, Query.Direction.ASCENDING)
+                .orderBy(QUERY_DATE, Query.Direction.DESCENDING)
         return query
     }
 
