@@ -1,10 +1,13 @@
 package com.egoriku.ladyhappy.presentation.fragment.allgoods.recycler.controller
 
 import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.LinearSnapHelper
 import android.support.v7.widget.RecyclerView
+import android.view.Gravity
 import android.view.ViewGroup
 import android.widget.TextView
 import com.egoriku.ladyhappy.R
+import com.egoriku.ladyhappy.common.snaphelper.GravitySnapHelper
 import com.egoriku.ladyhappy.domain.models.SingleNewsModel
 import kotlinx.android.synthetic.main.adapter_item_news.view.*
 import ru.surfstudio.easyadapter.recycler.EasyAdapter
@@ -37,6 +40,8 @@ class NewsController : BindableItemController<SingleNewsModel, NewsController.Ho
                     initialPrefetchItemCount = 4
                 }
             }
+
+            LinearSnapHelper().attachToRecyclerView(newsRecyclerView)
         }
 
         override fun bind(data: SingleNewsModel) {
