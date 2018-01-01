@@ -1,15 +1,15 @@
 package com.egoriku.ladyhappy.presentation.fragment.allgoods
 
 import com.egoriku.ladyhappy.domain.models.SingleCategoryModel
-import com.egoriku.ladyhappy.domain.models.NewsModel
+import com.egoriku.ladyhappy.domain.models.SingleNewsModel
 
 data class AllGoodsScreenModel(
         var categories: List<SingleCategoryModel> = emptyList(),
-        var news: List<NewsModel> = emptyList()
+        var news: List<SingleNewsModel> = emptyList()
 ) {
-    fun hasCategories() = !categories.isEmpty()
+    fun categoriesEmpty() = categories.isEmpty()
 
-    fun hasNews() = !news.isEmpty()
+    fun newsEmpty() = news.isEmpty()
 
-    fun isEmpty() = hasCategories() && hasNews()
+    fun isEmpty() = categoriesEmpty() && newsEmpty()
 }

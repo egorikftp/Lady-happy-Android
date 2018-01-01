@@ -3,15 +3,20 @@ package com.egoriku.ladyhappy.presentation.fragment.allgoods
 import com.egoriku.corelib_kt.arch.BasePresenter
 import com.egoriku.ladyhappy.domain.interactors.base.Params
 import com.egoriku.ladyhappy.domain.interactors.allgoods.CategoriesUseCase
+import com.egoriku.ladyhappy.domain.interactors.allgoods.NewsUseCase
 import com.egoriku.ladyhappy.domain.models.CategoriesModel
+import com.egoriku.ladyhappy.domain.models.NewsModel
 import com.egoriku.ladyhappy.external.AnalyticsInterface
 import com.egoriku.ladyhappy.external.TrackingConstants
 import com.egoriku.ladyhappy.rx.DefaultObserver
 import javax.inject.Inject
 
 class AllGoodsPresenter
-@Inject constructor(private val categoriesUseCase: CategoriesUseCase, private val analyticsInterface: AnalyticsInterface)
-    : BasePresenter<AllGoodsContract.View>(), AllGoodsContract.Presenter {
+@Inject constructor(
+        private val categoriesUseCase: CategoriesUseCase,
+        private val newsUseCase: NewsUseCase,
+        private val analyticsInterface: AnalyticsInterface
+) : BasePresenter<AllGoodsContract.View>(), AllGoodsContract.Presenter {
 
     private var screenModel = AllGoodsScreenModel()
 
@@ -29,8 +34,9 @@ class AllGoodsPresenter
         if (isViewAttached) {
             view.showLoading()
 
-            if (!screenModel.hasCategories()) {
+            if (screenModel.categoriesEmpty() && screenModel.newsEmpty()) {
                 categoriesUseCase.execute(CategoriesObserver(), Params.EMPTY)
+                newsUseCase.execute(NewsObserver(), Params.EMPTY)
             } else {
                 view.hideLoading()
                 view.render(screenModel)
@@ -47,7 +53,21 @@ class AllGoodsPresenter
         }
     }
 
-    override fun onGetCategoriesFailure(e: Throwable) {
+    override fun onGetNewsSuccess(newsModel: NewsModel) {
+        if (isViewAttached) {
+            screenModel.news = newsModel.news
+
+            view.render(screenModel)
+        }
+    }
+
+    override fun onGetCategoriesError(e: Throwable) {
+        if (isViewAttached) {
+            view.hideLoading()
+        }
+    }
+
+    override fun onGetNewsError(e: Throwable) {
         if (isViewAttached) {
             view.hideLoading()
         }
@@ -57,29 +77,44 @@ class AllGoodsPresenter
 
     }
 
-    override fun onCategoryClickFailureTracking(e: Throwable) {
-
-    }
-
     override fun onGetCategoriesSuccessTracking() {
         analyticsInterface.trackGetCategoriesSuccess(null)
     }
 
-    override fun onGetCategoriesFailureTracking() {
+    override fun onGetCategoriesErrorTracking() {
         analyticsInterface.trackGetCategoriesFail(null)
+    }
+
+    override fun onGetNewsSuccessTracking() {
+
+    }
+
+    override fun onGetNewsErrorTracking() {
+
     }
 
     private inner class CategoriesObserver : DefaultObserver<CategoriesModel>() {
 
         override fun onError(exception: Throwable) {
-            onGetCategoriesFailureTracking()
-            onGetCategoriesFailure(exception)
+            onGetCategoriesErrorTracking()
+            onGetCategoriesError(exception)
         }
 
-        @Suppress("PARAMETER_NAME_CHANGED_ON_OVERRIDE")
-        override fun onNext(categoriesModel: CategoriesModel) {
+        override fun onNext(t: CategoriesModel) {
             onGetCategoriesSuccessTracking()
-            onGetCategoriesSuccess(categoriesModel)
+            onGetCategoriesSuccess(t)
+        }
+    }
+
+    private inner class NewsObserver : DefaultObserver<NewsModel>() {
+        override fun onNext(t: NewsModel) {
+            onGetNewsSuccessTracking()
+            onGetNewsSuccess(t)
+        }
+
+        override fun onError(exception: Throwable) {
+            onGetNewsErrorTracking()
+            onGetNewsError(exception)
         }
     }
 }

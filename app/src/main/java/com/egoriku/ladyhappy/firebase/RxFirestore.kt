@@ -14,17 +14,22 @@ class RxFirestore {
         fun getObservableCategories(query: Query, model: CategoriesDocumentEntity, clazz: Class<CategoryEntity>): Observable<CategoriesDocumentEntity> =
                 Observable.create { emitter ->
                     query.addSnapshotListener { querySnapshot, exception ->
-                        if (exception != null) {
-                            if (!emitter.isDisposed) {
-                                emitter.onError(FirebaseRxDataException(exception.message, exception.cause))
-                            }
-                        } else {
-                            querySnapshot.documents.mapTo(model.categories) {
-                                it.toObject(clazz)
+
+                        when (exception) {
+                            null ->{
+                                querySnapshot.documents.mapTo(model.categories) {
+                                    it.toObject(clazz)
+                                }
+
+                                if (!emitter.isDisposed) {
+                                    emitter.onNext(model)
+                                }
                             }
 
-                            if (!emitter.isDisposed) {
-                                emitter.onNext(model)
+                            else -> {
+                                if (!emitter.isDisposed) {
+                                    emitter.onError(FirebaseRxDataException(exception.message, exception.cause))
+                                }
                             }
                         }
                     }
@@ -35,9 +40,9 @@ class RxFirestore {
                     query.addSnapshotListener { querySnapshot, exception ->
                         when (exception) {
                             null -> {
-                                model.news = querySnapshot.documents.associateBy(
-                                        keySelector = { document -> document.id },
-                                        valueTransform = { snapshot -> snapshot.toObject(clazz) })
+                                querySnapshot.documents.mapTo(model.news) {
+                                    it.toObject(clazz)
+                                }
 
                                 if (!emitter.isDisposed) {
                                     emitter.onNext(model)

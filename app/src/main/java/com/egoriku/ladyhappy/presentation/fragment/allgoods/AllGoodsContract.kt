@@ -3,6 +3,7 @@ package com.egoriku.ladyhappy.presentation.fragment.allgoods
 import android.support.annotation.StringRes
 import com.egoriku.corelib_kt.arch.BaseContract
 import com.egoriku.ladyhappy.domain.models.CategoriesModel
+import com.egoriku.ladyhappy.domain.models.NewsModel
 import com.egoriku.ladyhappy.presentation.base.BaseView
 
 interface AllGoodsContract {
@@ -15,13 +16,18 @@ interface AllGoodsContract {
 
     interface Presenter : BaseContract.Presenter<View> {
         fun loadData()
+
         fun onGetCategoriesSuccess(categoriesModel: CategoriesModel)
-        fun onGetCategoriesFailure(e: Throwable)
+        fun onGetCategoriesError(e: Throwable)
+        fun onGetNewsSuccess(newsModel: NewsModel)
+        fun onGetNewsError(e: Throwable)
 
         fun onGetCategoriesSuccessTracking()
-        fun onGetCategoriesFailureTracking()
+        fun onGetCategoriesErrorTracking()
+
+        fun onGetNewsSuccessTracking()
+        fun onGetNewsErrorTracking()
 
         fun onCategoryClickSuccessTracking()
-        fun onCategoryClickFailureTracking(e: Throwable)
     }
 }

@@ -14,15 +14,15 @@ class NewsDataSourceRemote
 
     private lateinit var query: Query
 
-    private fun getCategoriesReference(): Query {
+    private fun getNewsQuery(): Query {
         query = firebaseFirestore
                 .collection(COLLECTION_KEY_NEWS)
-                .orderBy("date", Query.Direction.ASCENDING)
+                .orderBy(QUERY_DATE, Query.Direction.ASCENDING)
         return query
     }
 
     fun getNews(): Observable<NewsDocumentEntity> {
-        return getCategoriesReference().let {
+        return getNewsQuery().let {
             RxFirestore.getObservableNews(it, NewsDocumentEntity(), NewsEntity::class.java)
         }
     }

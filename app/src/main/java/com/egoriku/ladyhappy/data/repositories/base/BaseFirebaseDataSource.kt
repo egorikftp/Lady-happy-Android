@@ -8,5 +8,6 @@ open class BaseFirebaseDataSource {
         const val COLLECTION_KEY_NEWS = "news"
 
         const val QUERY_ID = "id"
+        const val QUERY_DATE = "date"
     }
 }

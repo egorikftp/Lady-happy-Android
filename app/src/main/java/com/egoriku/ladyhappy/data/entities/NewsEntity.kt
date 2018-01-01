@@ -18,4 +18,4 @@ data class NewsEntity(
         var images: List<String> = mutableListOf()
 )
 
-data class NewsDocumentEntity(var news: Map<String, NewsEntity> = hashMapOf())
+data class NewsDocumentEntity(var news: MutableList<NewsEntity> = mutableListOf())

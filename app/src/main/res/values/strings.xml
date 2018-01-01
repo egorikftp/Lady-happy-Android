@@ -12,4 +12,5 @@
     <string name="adapter_item_error_state">An error occurred while loading the data</string>
     <string name="adapter_item_error_state_retry">Tap to retry</string>
     <string name="adapter_item_pagination_footer_load_more">Load more</string>
+    <string name="adapter_item_news_header_text">Latest news</string>
 </resources>

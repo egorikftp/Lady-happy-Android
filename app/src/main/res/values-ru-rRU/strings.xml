@@ -10,4 +10,5 @@
     <string name="adapter_item_error_state">При загрузке данных произошла ошибка</string>
     <string name="adapter_item_error_state_retry">Нажмите чтобы повторить</string>
     <string name="adapter_item_pagination_footer_load_more">Загрузить больше</string>
+    <string name="adapter_item_news_header_text">Последние новости</string>
 </resources>
