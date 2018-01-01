@@ -5,21 +5,21 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.bumptech.glide.Glide
 import com.egoriku.ladyhappy.R
-import com.egoriku.ladyhappy.domain.models.CategoryModel
+import com.egoriku.ladyhappy.domain.models.SingleCategoryModel
 import kotlinx.android.synthetic.main.adapter_item_category.view.*
 import ru.surfstudio.easyadapter.recycler.controller.BindableItemController
 import ru.surfstudio.easyadapter.recycler.holder.BindableViewHolder
 
-class CategoriesController(val onClickListener: (categoriesModel: CategoryModel) -> Unit)
-    : BindableItemController<CategoryModel, CategoriesController.Holder>() {
+class CategoriesController(val onClickListener: (categoriesModel: SingleCategoryModel) -> Unit)
+    : BindableItemController<SingleCategoryModel, CategoriesController.Holder>() {
 
     override fun createViewHolder(parent: ViewGroup) = Holder(parent)
 
-    override fun getItemId(data: CategoryModel) = data.id.hashCode().toLong()
+    override fun getItemId(data: SingleCategoryModel) = data.id.hashCode().toLong()
 
-    inner class Holder(parent: ViewGroup) : BindableViewHolder<CategoryModel>(parent, R.layout.adapter_item_category) {
+    inner class Holder(parent: ViewGroup) : BindableViewHolder<SingleCategoryModel>(parent, R.layout.adapter_item_category) {
 
-        private lateinit var category: CategoryModel
+        private lateinit var category: SingleCategoryModel
         private val title: TextView
         private val imageCategory: ImageView
 
@@ -29,7 +29,7 @@ class CategoriesController(val onClickListener: (categoriesModel: CategoryModel)
             imageCategory = itemView.imageCategoryView
         }
 
-        override fun bind(data: CategoryModel) {
+        override fun bind(data: SingleCategoryModel) {
             category = data
             title.text = data.title
 

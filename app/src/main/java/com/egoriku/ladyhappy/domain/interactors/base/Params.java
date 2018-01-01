@@ -1,4 +1,4 @@
-package com.egoriku.ladyhappy.domain.interactors;
+package com.egoriku.ladyhappy.domain.interactors.base;
 
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;

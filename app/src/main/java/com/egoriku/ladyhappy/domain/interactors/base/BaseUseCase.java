@@ -1,7 +1,5 @@
 package com.egoriku.ladyhappy.domain.interactors.base;
 
-import com.egoriku.ladyhappy.domain.interactors.Params;
-
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
