@@ -9,6 +9,7 @@
     <color name="RealBlack">#FF000000</color>
     <color name="RealBlack70">#B3000000</color>
     <color name="Terracota">#7F6854</color>
+    <color name="Wheat">#DBCDAD</color>
 
     <color name="categoriesGradientStart">#AA000000</color>
     <color name="categoriesGradientEnd">@color/transpanent</color>

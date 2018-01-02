@@ -40,6 +40,10 @@ class RxFirestore {
                     query.addSnapshotListener { querySnapshot, exception ->
                         when (exception) {
                             null -> {
+                                model.news.clear()
+
+                                //Use logic for checking data change status
+
                                 querySnapshot.documents.mapTo(model.news) {
                                     it.toObject(clazz)
                                 }

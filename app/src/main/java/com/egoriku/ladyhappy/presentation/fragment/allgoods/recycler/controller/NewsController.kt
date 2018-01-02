@@ -1,13 +1,13 @@
 package com.egoriku.ladyhappy.presentation.fragment.allgoods.recycler.controller
 
 import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.LinearSnapHelper
+import android.support.v7.widget.PagerSnapHelper
 import android.support.v7.widget.RecyclerView
-import android.view.Gravity
 import android.view.ViewGroup
 import android.widget.TextView
 import com.egoriku.ladyhappy.R
-import com.egoriku.ladyhappy.common.snaphelper.GravitySnapHelper
+import com.egoriku.ladyhappy.common.scrollPercentage
+import com.egoriku.ladyhappy.common.view.DotsView
 import com.egoriku.ladyhappy.domain.models.SingleNewsModel
 import kotlinx.android.synthetic.main.adapter_item_news.view.*
 import ru.surfstudio.easyadapter.recycler.EasyAdapter
@@ -28,10 +28,12 @@ class NewsController : BindableItemController<SingleNewsModel, NewsController.Ho
 
         private val description: TextView
         private val newsRecyclerView: RecyclerView
+        private val dots: DotsView
 
         init {
             newsImagesController = NewsImagesController()
 
+            dots = itemView.dotsView
             description = itemView.descriptionTextView
             newsRecyclerView = itemView.newsRecyclerView.apply {
                 setHasFixedSize(true)
@@ -39,14 +41,22 @@ class NewsController : BindableItemController<SingleNewsModel, NewsController.Ho
                     isItemPrefetchEnabled = true
                     initialPrefetchItemCount = 4
                 }
+
+                addOnScrollListener(object : RecyclerView.OnScrollListener() {
+                    override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                        super.onScrolled(recyclerView, dx, dy)
+                        dots.updateScrollPosition(recyclerView.scrollPercentage())
+                    }
+                })
             }
 
-            LinearSnapHelper().attachToRecyclerView(newsRecyclerView)
+            PagerSnapHelper().attachToRecyclerView(newsRecyclerView)
         }
 
         override fun bind(data: SingleNewsModel) {
             newsModel = data
             description.text = data.description
+            dots.setDotCount(data.images.size)
 
             if (newsRecyclerView.adapter == null) {
                 newsRecyclerView.adapter = EasyAdapter().apply {
