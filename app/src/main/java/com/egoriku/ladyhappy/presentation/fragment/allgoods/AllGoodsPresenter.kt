@@ -27,6 +27,7 @@ class AllGoodsPresenter
 
     override fun onPresenterDestroy() {
         categoriesUseCase.dispose()
+        newsUseCase.dispose()
         super.onPresenterDestroy()
     }
 
