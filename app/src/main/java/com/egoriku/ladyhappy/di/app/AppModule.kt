@@ -1,7 +1,7 @@
 package com.egoriku.ladyhappy.di.app
 
+import android.app.Application
 import android.content.Context
-import com.egoriku.ladyhappy.App
 import com.egoriku.ladyhappy.di.scope.ApplicationScope
 import com.egoriku.ladyhappy.external.AnalyticsInterface
 import com.egoriku.ladyhappy.firebase.FirebaseAnalyticsHelper
@@ -12,37 +12,21 @@ import dagger.Module
 import dagger.Provides
 
 @Module
-class AppModule(private val app: App) {
+class AppModule {
 
     @Provides
     @ApplicationScope
-    fun provideApplication(): App = app
+    fun provideContext(application: Application): Context = application
 
     @Provides
     @ApplicationScope
-    fun provideContext(): Context = app
-
-    @Provides
-    @ApplicationScope
-    fun provideFirebaseFirestore(): FirebaseFirestore {
-        return FirebaseFirestore.getInstance().apply {
-            firestoreSettings = FirebaseFirestoreSettings.Builder()
-                    .setPersistenceEnabled(true)
-                    .build()
-        }
+    fun provideFirebaseFirestore() = FirebaseFirestore.getInstance().apply {
+        firestoreSettings = FirebaseFirestoreSettings.Builder()
+                .setPersistenceEnabled(true)
+                .build()
     }
 
     @Provides
     @ApplicationScope
-    fun provideAnalyticsHelper(context: Context): AnalyticsInterface {
-        return FirebaseAnalyticsHelper(FirebaseAnalytics.getInstance(context))
-    }
-
-
-/*
-     @Provides
-     @ApplicationScope
-     fun provideSharedPreferences(context: Context): SharedPreferences {
-         return PreferenceManager.getDefaultSharedPreferences(context)
-     }*/
+    fun provideAnalyticsHelper(context: Context): AnalyticsInterface = FirebaseAnalyticsHelper(FirebaseAnalytics.getInstance(context))
 }

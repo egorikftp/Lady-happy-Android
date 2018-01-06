@@ -1,40 +1,25 @@
 package com.egoriku.ladyhappy.presentation.fragment.order
 
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.egoriku.corelib_kt.arch.BaseFragment
 import com.egoriku.corelib_kt.dsl.inflate
-import com.egoriku.ladyhappy.App
 import com.egoriku.ladyhappy.R
-import com.egoriku.ladyhappy.di.order.DaggerOrderComponent
-import com.egoriku.ladyhappy.di.order.OrderComponent
-import com.egoriku.ladyhappy.di.order.OrderModule
 import com.egoriku.ladyhappy.presentation.activity.main.MainActivity
-import ru.terrakok.cicerone.Router
+import com.egoriku.ladyhappy.presentation.base.BaseInjectableFragment
 import javax.inject.Inject
 
-class OrderFragment : BaseFragment<OrderContract.View, OrderContract.Presenter>(), OrderContract.View {
+class OrderFragment : BaseInjectableFragment<OrderContract.View, OrderContract.Presenter>(), OrderContract.View {
 
     companion object {
-        fun newInstance(): OrderFragment {
-            return OrderFragment()
-        }
+        fun newInstance() = OrderFragment()
     }
 
     @Inject
-    lateinit var router: Router
+    lateinit var orderPresenter: OrderContract.Presenter
 
-    @Inject
-    lateinit var orderPresenter: OrderPresenter
-
-    private lateinit var component: OrderComponent
-
-    override fun initPresenter(): OrderContract.Presenter {
-        return orderPresenter
-    }
+    override fun initPresenter()  = orderPresenter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return container?.inflate(R.layout.fragment_order, false)
@@ -43,19 +28,6 @@ class OrderFragment : BaseFragment<OrderContract.View, OrderContract.Presenter>(
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         showTitle(R.string.navigation_drawer_order)
-    }
-
-    override fun onAttach(context: Context?) {
-        injectDependencies()
-        super.onAttach(context)
-    }
-
-    override fun injectDependencies() {
-        component = DaggerOrderComponent.builder()
-                .appComponent(App.instance.appComponent)
-                .orderModule(OrderModule())
-                .build()
-        component.inject(this)
     }
 
     override fun showTitle(title: Int) {

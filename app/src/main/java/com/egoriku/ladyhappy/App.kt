@@ -1,28 +1,27 @@
 package com.egoriku.ladyhappy
 
+import android.app.Activity
 import android.app.Application
-import com.egoriku.corelib_kt.dsl.DelegatesDsl
-import com.egoriku.ladyhappy.di.app.AppComponent
-import com.egoriku.ladyhappy.di.app.AppModule
 import com.egoriku.ladyhappy.di.app.DaggerAppComponent
+import dagger.android.AndroidInjector
+import dagger.android.HasActivityInjector
+import javax.inject.Inject
+import dagger.android.DispatchingAndroidInjector
 
-open class App : Application() {
+open class App : Application(), HasActivityInjector {
 
-    companion object {
-        @JvmStatic
-        var instance: App by DelegatesDsl.notNullSingleValue()
-            private set
-    }
-
-    val appComponent: AppComponent by lazy {
-        DaggerAppComponent.builder()
-                .appModule(AppModule(this))
-                .build()
-    }
+    @Inject
+    lateinit var activityDispatchingAndroidInjector: DispatchingAndroidInjector<Activity>
 
     override fun onCreate() {
         super.onCreate()
-        instance = this
+        DaggerAppComponent
+                .builder()
+                .application(this)
+                .build()
+                .inject(this)
     }
+
+    override fun activityInjector(): AndroidInjector<Activity> = activityDispatchingAndroidInjector
 }
 

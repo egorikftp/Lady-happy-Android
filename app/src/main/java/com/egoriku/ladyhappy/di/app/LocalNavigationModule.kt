@@ -10,7 +10,5 @@ class LocalNavigationModule {
 
     @Provides
     @ApplicationScope
-    fun provideLocalNavigationHolder(): LocalCiceroneHolder {
-        return LocalCiceroneHolder()
-    }
+    fun provideLocalNavigationHolder() = LocalCiceroneHolder()
 }

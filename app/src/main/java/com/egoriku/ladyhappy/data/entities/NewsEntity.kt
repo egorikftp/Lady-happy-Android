@@ -1,7 +1,7 @@
 package com.egoriku.ladyhappy.data.entities
 
 import com.egoriku.corelib_kt.Constants
-import com.google.firebase.database.PropertyName
+import com.google.firebase.firestore.PropertyName
 import java.util.*
 
 data class NewsEntity(

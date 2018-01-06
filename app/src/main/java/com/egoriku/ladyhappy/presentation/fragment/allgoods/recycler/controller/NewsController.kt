@@ -38,8 +38,7 @@ class NewsController : BindableItemController<SingleNewsModel, NewsController.Ho
             newsRecyclerView = itemView.newsRecyclerView.apply {
                 setHasFixedSize(true)
                 layoutManager = LinearLayoutManager(itemView.context, LinearLayoutManager.HORIZONTAL, false).apply {
-                    isItemPrefetchEnabled = true
-                    initialPrefetchItemCount = 4
+                    initialPrefetchItemCount = 1
                 }
 
                 addOnScrollListener(object : RecyclerView.OnScrollListener() {

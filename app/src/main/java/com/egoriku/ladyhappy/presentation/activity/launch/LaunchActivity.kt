@@ -3,11 +3,7 @@ package com.egoriku.ladyhappy.presentation.activity.launch
 import android.os.Bundle
 import com.egoriku.corelib_kt.arch.BaseActivity
 import com.egoriku.corelib_kt.dsl.runDelayed
-import com.egoriku.ladyhappy.App
 import com.egoriku.ladyhappy.R
-import com.egoriku.ladyhappy.di.activity.ActivityComponent
-import com.egoriku.ladyhappy.di.activity.ActivityModule
-import com.egoriku.ladyhappy.di.activity.DaggerActivityComponent
 import ru.terrakok.cicerone.Navigator
 import ru.terrakok.cicerone.NavigatorHolder
 import javax.inject.Inject
@@ -15,6 +11,7 @@ import com.egoriku.ladyhappy.common.Screens
 import ru.terrakok.cicerone.commands.Replace
 import com.egoriku.corelib_kt.timber.e
 import com.egoriku.ladyhappy.presentation.activity.main.MainActivity
+import dagger.android.AndroidInjection
 import org.jetbrains.anko.startActivity
 
 class LaunchActivity : BaseActivity<LaunchContract.View, LaunchContract.Presenter>(), LaunchContract.View {
@@ -28,8 +25,6 @@ class LaunchActivity : BaseActivity<LaunchContract.View, LaunchContract.Presente
 
     @Inject
     lateinit var navigatorHolder: NavigatorHolder
-
-    private lateinit var component: ActivityComponent
 
     private val customNavigator = Navigator { command ->
         if (command is Replace) {
@@ -47,18 +42,9 @@ class LaunchActivity : BaseActivity<LaunchContract.View, LaunchContract.Presente
     override fun initPresenter() = launchPresenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        injectDependencies()
+        AndroidInjection.inject(this)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_launch)
-    }
-
-    override fun injectDependencies() {
-        component = DaggerActivityComponent.builder()
-                .appComponent(App.instance.appComponent)
-                .activityModule(ActivityModule())
-                .build()
-
-        component.inject(this)
     }
 
     override fun onResume() {

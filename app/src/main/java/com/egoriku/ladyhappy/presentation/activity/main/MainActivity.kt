@@ -12,16 +12,12 @@ import co.zsmb.materialdrawerkt.builders.footer
 import co.zsmb.materialdrawerkt.draweritems.badgeable.primaryItem
 import co.zsmb.materialdrawerkt.draweritems.badgeable.secondaryItem
 import co.zsmb.materialdrawerkt.draweritems.divider
-import com.egoriku.corelib_kt.arch.BaseActivity
 import com.egoriku.corelib_kt.dsl.drawableCompat
-import com.egoriku.ladyhappy.App
 import com.egoriku.ladyhappy.R
 import com.egoriku.ladyhappy.common.Fragments
 import com.egoriku.ladyhappy.common.Screens
-import com.egoriku.ladyhappy.di.activity.ActivityComponent
-import com.egoriku.ladyhappy.di.activity.ActivityModule
-import com.egoriku.ladyhappy.di.activity.DaggerActivityComponent
 import com.egoriku.ladyhappy.presentation.activity.newpost.CreateNewPostActivity
+import com.egoriku.ladyhappy.presentation.base.BaseSupportInjectableActivity
 import com.egoriku.ladyhappy.presentation.fragment.allgoods.AllGoodsFragment
 import com.egoriku.ladyhappy.presentation.fragment.order.OrderFragment
 import com.mikepenz.materialdrawer.AccountHeader
@@ -32,7 +28,7 @@ import ru.terrakok.cicerone.NavigatorHolder
 import ru.terrakok.cicerone.android.SupportAppNavigator
 import javax.inject.Inject
 
-class MainActivity : BaseActivity<MainActivityContract.View, MainActivityContract.Presenter>(), MainActivityContract.View {
+class MainActivity : BaseSupportInjectableActivity<MainActivityContract.View, MainActivityContract.Presenter>(), MainActivityContract.View {
 
     private lateinit var navigationDrawer: Drawer
     private lateinit var headerResult: AccountHeader
@@ -42,8 +38,6 @@ class MainActivity : BaseActivity<MainActivityContract.View, MainActivityContrac
 
     @Inject
     lateinit var navigatorHolder: NavigatorHolder
-
-    private lateinit var component: ActivityComponent
 
     private var drawerItemTag: String = com.egoriku.corelib_kt.Constants.EMPTY
 
@@ -65,8 +59,9 @@ class MainActivity : BaseActivity<MainActivityContract.View, MainActivityContrac
         }
     }
 
+    override fun initPresenter() = mainActivityPresenter
+
     override fun onCreate(savedInstanceState: Bundle?) {
-        injectDependencies()
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.activity_main)
@@ -82,17 +77,6 @@ class MainActivity : BaseActivity<MainActivityContract.View, MainActivityContrac
             presenter.openAllGoodsCategory()
         }
     }
-
-    override fun injectDependencies() {
-        component = DaggerActivityComponent.builder()
-                .appComponent(App.instance.appComponent)
-                .activityModule(ActivityModule())
-                .build()
-
-        component.inject(this)
-    }
-
-    override fun initPresenter() = mainActivityPresenter
 
     override fun onPostCreate(savedInstanceState: Bundle?) {
         super.onPostCreate(savedInstanceState)

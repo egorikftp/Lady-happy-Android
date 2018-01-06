@@ -1,22 +1,18 @@
 package com.egoriku.ladyhappy.presentation.fragment.allgoods
 
-import android.content.Context
 import android.os.Bundle
 import android.support.annotation.StringRes
 import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.egoriku.corelib_kt.arch.BaseFragment
 import com.egoriku.corelib_kt.dsl.hide
 import com.egoriku.corelib_kt.dsl.inflate
 import com.egoriku.corelib_kt.dsl.show
-import com.egoriku.ladyhappy.App
 import com.egoriku.ladyhappy.R
-import com.egoriku.ladyhappy.di.allgoods.AllGoodsModule
-import com.egoriku.ladyhappy.di.allgoods.DaggerAllGoodsComponent
 import com.egoriku.ladyhappy.presentation.activity.main.MainActivity
 import com.egoriku.ladyhappy.presentation.adapter.animator.DefaultItemAnimator
+import com.egoriku.ladyhappy.presentation.base.BaseInjectableFragment
 import com.egoriku.ladyhappy.presentation.fragment.allgoods.recycler.controller.CategoriesController
 import com.egoriku.ladyhappy.presentation.fragment.allgoods.recycler.controller.ErrorStateController
 import com.egoriku.ladyhappy.presentation.fragment.allgoods.recycler.controller.NewsController
@@ -27,10 +23,10 @@ import ru.surfstudio.easyadapter.recycler.EasyAdapter
 import ru.surfstudio.easyadapter.recycler.ItemList
 import javax.inject.Inject
 
-class AllGoodsFragment : BaseFragment<AllGoodsContract.View, AllGoodsContract.Presenter>(), AllGoodsContract.View {
+class AllGoodsFragment : BaseInjectableFragment<AllGoodsContract.View, AllGoodsContract.Presenter>(), AllGoodsContract.View {
 
     @Inject
-    lateinit var allGoodsPresenter: AllGoodsPresenter
+    lateinit var allGoodsPresenter: AllGoodsContract.Presenter
 
     private lateinit var categoriesController: CategoriesController
     private lateinit var errorStateController: ErrorStateController
@@ -44,14 +40,6 @@ class AllGoodsFragment : BaseFragment<AllGoodsContract.View, AllGoodsContract.Pr
     }
 
     override fun initPresenter() = allGoodsPresenter
-
-    override fun injectDependencies() {
-        DaggerAllGoodsComponent.builder()
-                .appComponent(App.instance.appComponent)
-                .allGoodsModule(AllGoodsModule())
-                .build()
-                .inject(this)
-    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return container?.inflate(R.layout.fragment_all_goods, false)
@@ -93,11 +81,6 @@ class AllGoodsFragment : BaseFragment<AllGoodsContract.View, AllGoodsContract.Pr
                 .addIf(screenModel.isEmpty(), errorStateController)
 
         allGoodsAdapter.setItems(itemList)
-    }
-
-    override fun onAttach(context: Context?) {
-        injectDependencies()
-        super.onAttach(context)
     }
 
     override fun showTitle(@StringRes title: Int) {
