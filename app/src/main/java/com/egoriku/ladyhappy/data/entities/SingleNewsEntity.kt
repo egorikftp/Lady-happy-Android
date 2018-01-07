@@ -4,7 +4,7 @@ import com.egoriku.corelib_kt.Constants
 import com.google.firebase.firestore.PropertyName
 import java.util.*
 
-data class NewsEntity(
+data class SingleNewsEntity(
         @get:PropertyName("date")
         @set:PropertyName("date")
         var date: Date = Date(),
@@ -18,4 +18,4 @@ data class NewsEntity(
         var images: List<String> = mutableListOf()
 )
 
-data class NewsDocumentEntity(var news: MutableList<NewsEntity> = mutableListOf())
+data class NewsEntity(var news: MutableList<SingleNewsEntity> = mutableListOf())

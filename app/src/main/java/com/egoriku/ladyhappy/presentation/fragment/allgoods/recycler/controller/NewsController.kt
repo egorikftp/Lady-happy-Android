@@ -20,6 +20,7 @@ class NewsController : BindableItemController<SingleNewsModel, NewsController.Ho
     override fun createViewHolder(parent: ViewGroup) = Holder(parent)
     override fun getItemId(data: SingleNewsModel) = data.hashCode().toLong()
 
+    @Suppress("JoinDeclarationAndAssignment")
     inner class Holder(parent: ViewGroup) : BindableViewHolder<SingleNewsModel>(parent, R.layout.adapter_item_news) {
 
         private lateinit var newsModel: SingleNewsModel
@@ -29,15 +30,16 @@ class NewsController : BindableItemController<SingleNewsModel, NewsController.Ho
         private val description: TextView
         private val newsRecyclerView: RecyclerView
         private val dots: DotsView
+        private val newsDate: TextView
 
         init {
             newsImagesController = NewsImagesController()
 
             dots = itemView.dotsView
+            newsDate = itemView.newsDate
             description = itemView.descriptionTextView
             newsRecyclerView = itemView.newsRecyclerView.apply {
-                setHasFixedSize(true)
-                layoutManager = LinearLayoutManager(itemView.context, LinearLayoutManager.HORIZONTAL, false).apply {
+                layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false).apply {
                     initialPrefetchItemCount = 1
                 }
 
@@ -54,6 +56,7 @@ class NewsController : BindableItemController<SingleNewsModel, NewsController.Ho
 
         override fun bind(data: SingleNewsModel) {
             newsModel = data
+            newsDate.text = data.date
             description.text = data.description
             dots.setDotCount(data.images.size)
 

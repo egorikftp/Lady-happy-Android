@@ -2,8 +2,8 @@ package com.egoriku.ladyhappy.firebase
 
 import com.egoriku.ladyhappy.data.entities.CategoriesDocumentEntity
 import com.egoriku.ladyhappy.data.entities.CategoryEntity
-import com.egoriku.ladyhappy.data.entities.NewsDocumentEntity
 import com.egoriku.ladyhappy.data.entities.NewsEntity
+import com.egoriku.ladyhappy.data.entities.SingleNewsEntity
 import com.egoriku.ladyhappy.data.exceptions.FirebaseRxDataException
 import com.google.firebase.firestore.Query
 import io.reactivex.Observable
@@ -35,7 +35,7 @@ class RxFirestore {
                     }
                 }
 
-        fun getObservableNews(query: Query, model: NewsDocumentEntity, clazz: Class<NewsEntity>): Observable<NewsDocumentEntity> =
+        fun getObservableNews(query: Query, model: NewsEntity, clazz: Class<SingleNewsEntity>): Observable<NewsEntity> =
                 Observable.create { emitter ->
                     query.addSnapshotListener { querySnapshot, exception ->
                         when (exception) {

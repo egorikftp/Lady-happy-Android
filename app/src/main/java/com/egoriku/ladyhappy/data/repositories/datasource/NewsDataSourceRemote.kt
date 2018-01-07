@@ -1,7 +1,7 @@
 package com.egoriku.ladyhappy.data.repositories.datasource
 
-import com.egoriku.ladyhappy.data.entities.NewsDocumentEntity
 import com.egoriku.ladyhappy.data.entities.NewsEntity
+import com.egoriku.ladyhappy.data.entities.SingleNewsEntity
 import com.egoriku.ladyhappy.data.repositories.base.BaseFirebaseDataSource
 import com.egoriku.ladyhappy.firebase.RxFirestore
 import com.google.firebase.firestore.FirebaseFirestore
@@ -21,9 +21,9 @@ class NewsDataSourceRemote
         return query
     }
 
-    fun getNews(): Observable<NewsDocumentEntity> {
+    fun getNews(): Observable<NewsEntity> {
         return getNewsQuery().let {
-            RxFirestore.getObservableNews(it, NewsDocumentEntity(), NewsEntity::class.java)
+            RxFirestore.getObservableNews(it, NewsEntity(), SingleNewsEntity::class.java)
         }
     }
 }

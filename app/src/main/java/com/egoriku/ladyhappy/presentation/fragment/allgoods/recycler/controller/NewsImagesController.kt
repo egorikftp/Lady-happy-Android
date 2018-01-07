@@ -3,6 +3,7 @@ package com.egoriku.ladyhappy.presentation.fragment.allgoods.recycler.controller
 import android.view.ViewGroup
 import android.widget.ImageView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade
 import com.egoriku.ladyhappy.R
 import kotlinx.android.synthetic.main.adapter_item_news_image.view.*
 import ru.surfstudio.easyadapter.recycler.controller.BindableItemController
@@ -21,6 +22,7 @@ class NewsImagesController : BindableItemController<String, NewsImagesController
         override fun bind(data: String) {
             Glide.with(itemView.context)
                     .load(data)
+                    .transition(withCrossFade())
                     .into(newsImage)
         }
     }

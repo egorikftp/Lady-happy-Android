@@ -6,19 +6,46 @@
     android:layout_height="wrap_content"
     tools:layout_editor_absoluteY="25dp">
 
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/newsRecyclerView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintDimensionRatio=""
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layoutManager="android.support.v7.widget.LinearLayoutManager"
+        tools:listitem="@layout/adapter_item_news_image" />
+
+    <TextView
+        android:id="@+id/descriptionTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="4dp"
+        android:maxLines="2"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dotsView"
+        app:layout_constraintVertical_bias="0.0"
+        tools:text="Description" />
+
     <com.egoriku.ladyhappy.common.view.DotsView
         android:id="@+id/dotsView"
         android:layout_width="0dp"
-        android:layout_height="15dp"
-        android:layout_marginBottom="16dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
+        android:layout_height="13dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         app:colorSelected="@color/Terracota"
         app:colorUnselected="@color/Wheat"
         app:dotRadius="2dp"
         app:dotSpace="7dp"
-        app:layout_constraintBottom_toTopOf="@+id/descriptionTextView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -26,28 +53,12 @@
         app:selectedDotRadius="3dp" />
 
     <TextView
-        android:id="@+id/descriptionTextView"
-        android:layout_width="0dp"
+        android:id="@+id/newsDate"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="16dp"
-        android:maxLines="2"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/dotsView"
-        tools:text="Description" />
-
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/newsRecyclerView"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintDimensionRatio="w,2:3"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
+        android:textSize="10sp"
+        app:layout_constraintBottom_toBottomOf="@+id/dotsView"
+        app:layout_constraintStart_toStartOf="@+id/dotsView"
+        app:layout_constraintTop_toTopOf="@+id/dotsView"
+        tools:text="12 Sep, 2017" />
 </android.support.constraint.ConstraintLayout>

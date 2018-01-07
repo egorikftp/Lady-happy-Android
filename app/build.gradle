@@ -97,7 +97,8 @@ dependencies {
     implementation 'com.jakewharton.timber:timber:4.6.0'
     implementation 'co.zsmb:materialdrawer-kt:1.2.2'
     implementation 'ru.terrakok.cicerone:cicerone:2.1.0'
-    implementation 'com.github.bumptech.glide:glide:4.3.1'
+    implementation 'com.github.bumptech.glide:glide:4.5.0'
+    kapt 'com.github.bumptech.glide:compiler:4.5.0'
     implementation 'net.hockeyapp.android:HockeySDK:4.1.4'
 
     implementation 'org.jetbrains.kotlin:kotlin-stdlib-jre7:1.2.10'
