@@ -1,10 +1,7 @@
 package com.egoriku.ladyhappy.presentation.fragment.order
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import com.egoriku.corelib_kt.dsl.inflate
 import com.egoriku.ladyhappy.R
 import com.egoriku.ladyhappy.presentation.activity.main.MainActivity
 import com.egoriku.ladyhappy.presentation.base.BaseInjectableFragment
@@ -21,9 +18,7 @@ class OrderFragment : BaseInjectableFragment<OrderContract.View, OrderContract.P
 
     override fun initPresenter()  = orderPresenter
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return container?.inflate(R.layout.fragment_order, false)
-    }
+    override fun provideLayout(): Int = R.layout.fragment_order
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

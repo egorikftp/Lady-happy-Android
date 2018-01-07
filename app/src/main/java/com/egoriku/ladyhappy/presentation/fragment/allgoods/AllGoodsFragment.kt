@@ -3,11 +3,8 @@ package com.egoriku.ladyhappy.presentation.fragment.allgoods
 import android.os.Bundle
 import android.support.annotation.StringRes
 import android.support.v7.widget.LinearLayoutManager
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import com.egoriku.corelib_kt.dsl.hide
-import com.egoriku.corelib_kt.dsl.inflate
 import com.egoriku.corelib_kt.dsl.show
 import com.egoriku.ladyhappy.R
 import com.egoriku.ladyhappy.presentation.activity.main.MainActivity
@@ -41,9 +38,7 @@ class AllGoodsFragment : BaseInjectableFragment<AllGoodsContract.View, AllGoodsC
 
     override fun initPresenter() = allGoodsPresenter
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return container?.inflate(R.layout.fragment_all_goods, false)
-    }
+    override fun provideLayout(): Int = R.layout.fragment_all_goods
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

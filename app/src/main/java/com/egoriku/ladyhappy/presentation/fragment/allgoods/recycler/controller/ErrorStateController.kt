@@ -11,10 +11,10 @@ class ErrorStateController(val onReloadClickListener: () -> Unit)
 
     override fun createViewHolder(parent: ViewGroup) = Holder(parent)
 
-    inner class Holder(parent: ViewGroup): BaseViewHolder(parent, R.layout.adapter_item_error_state) {
+    inner class Holder(parent: ViewGroup) : BaseViewHolder(parent, R.layout.adapter_item_error_state) {
 
         init {
-            itemView.retryButton.setOnClickListener{onReloadClickListener.invoke()}
+            itemView.retryButton.setOnClickListener { onReloadClickListener }
         }
     }
 }

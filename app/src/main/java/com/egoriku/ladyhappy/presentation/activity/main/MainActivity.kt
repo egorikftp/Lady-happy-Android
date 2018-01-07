@@ -28,6 +28,7 @@ import ru.terrakok.cicerone.NavigatorHolder
 import ru.terrakok.cicerone.android.SupportAppNavigator
 import javax.inject.Inject
 
+@Suppress("MemberVisibilityCanPrivate")
 class MainActivity : BaseSupportInjectableActivity<MainActivityContract.View, MainActivityContract.Presenter>(), MainActivityContract.View {
 
     private lateinit var navigationDrawer: Drawer
@@ -43,28 +44,25 @@ class MainActivity : BaseSupportInjectableActivity<MainActivityContract.View, Ma
 
     @Suppress("UNUSED_EXPRESSION")
     private val navigator = object : SupportAppNavigator(this, supportFragmentManager, R.id.mainActivityContainer) {
-        override fun createActivityIntent(screenKey: String?, data: Any?): Intent? {
-            return when (screenKey) {
-                Screens.CREATE_POST_ACTIVITY -> intentFor<CreateNewPostActivity>()
-                else -> null
-            }
+        override fun createActivityIntent(screenKey: String?, data: Any?) = when (screenKey) {
+            Screens.CREATE_POST_ACTIVITY -> intentFor<CreateNewPostActivity>()
+            else -> null
         }
 
-        override fun createFragment(screenKey: String?, data: Any?): Fragment? {
-            return when (screenKey) {
-                Fragments.ALL_GOODS -> AllGoodsFragment.newInstance()
-                Fragments.ORDER -> OrderFragment.newInstance()
-                else -> null
-            }
+        override fun createFragment(screenKey: String?, data: Any?): Fragment? = when (screenKey) {
+            Fragments.ALL_GOODS -> AllGoodsFragment.newInstance()
+            Fragments.ORDER -> OrderFragment.newInstance()
+            else -> null
         }
     }
 
     override fun initPresenter() = mainActivityPresenter
 
+    override fun provideLayout(): Int = R.layout.activity_main
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        setContentView(R.layout.activity_main)
         setSupportActionBar(toolbarMainActivity)
 
         supportActionBar?.let {

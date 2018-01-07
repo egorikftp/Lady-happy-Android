@@ -24,7 +24,7 @@ class CategoriesController(val onClickListener: (categoriesModel: SingleCategory
         private val imageCategory: ImageView
 
         init {
-            itemView.setOnClickListener { onClickListener.invoke(category) }
+            itemView.setOnClickListener { onClickListener(category) }
             title = itemView.title
             imageCategory = itemView.imageCategoryView
         }

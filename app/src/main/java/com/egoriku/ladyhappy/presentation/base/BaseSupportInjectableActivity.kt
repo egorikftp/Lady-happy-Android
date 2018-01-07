@@ -1,6 +1,7 @@
 package com.egoriku.ladyhappy.presentation.base
 
 import android.os.Bundle
+import android.support.annotation.LayoutRes
 import android.support.v4.app.Fragment
 import com.egoriku.corelib_kt.arch.BaseActivity
 import com.egoriku.corelib_kt.arch.BaseContract
@@ -19,7 +20,11 @@ abstract class BaseSupportInjectableActivity<V : BaseContract.View, P : BaseCont
     override fun onCreate(savedInstanceState: Bundle?) {
         AndroidInjection.inject(this)
         super.onCreate(savedInstanceState)
+        setContentView(provideLayout())
     }
 
     override fun supportFragmentInjector(): AndroidInjector<Fragment> = fragmentDispatchingAndroidInjector
+
+    @LayoutRes
+    abstract fun provideLayout(): Int
 }
