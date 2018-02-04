@@ -3,10 +3,10 @@
     package="com.egoriku.ladyhappy">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
-        android:name="com.egoriku.ladyhappy.App"
+        android:name=".App"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -14,17 +14,14 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name="com.egoriku.ladyhappy.presentation.activity.main.MainActivity"
+            android:name=".presentation.activity.main.MainActivity"
             android:theme="@style/AppTheme" />
-
         <activity
-            android:name="com.egoriku.ladyhappy.presentation.activity.newpost.CreateNewPostActivity"
+            android:name=".presentation.activity.newpost.CreateNewPostActivity"
             android:label="Order" />
-
         <activity
-            android:name="com.egoriku.ladyhappy.presentation.activity.launch.LaunchActivity"
+            android:name=".presentation.activity.launch.LaunchActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -36,4 +33,5 @@
             android:name="net.hockeyapp.android.appIdentifier"
             android:value="@string/hockey_app_id" />
     </application>
+
 </manifest>

@@ -101,7 +101,7 @@ dependencies {
     kapt 'com.github.bumptech.glide:compiler:4.5.0'
     implementation 'net.hockeyapp.android:HockeySDK:4.1.4'
 
-    implementation 'org.jetbrains.kotlin:kotlin-stdlib-jre7:1.2.10'
+    implementation 'org.jetbrains.kotlin:kotlin-stdlib-jre7:1.2.21'
     implementation 'org.jetbrains.anko:anko-appcompat-v7:0.10.4'
     implementation 'org.jetbrains.anko:anko-appcompat-v7-coroutines:0.10.4'
     implementation 'org.jetbrains.anko:anko-support-v4-commons:0.10.4'
@@ -109,10 +109,10 @@ dependencies {
     implementation 'org.jetbrains.anko:anko-sdk25-coroutines:0.10.4'
     implementation 'org.jetbrains.anko:anko-constraint-layout:0.10.4'
 
-    implementation 'com.github.egorikftp:CoreLib-Kotlin:0.0.7'
+    implementation 'com.github.egorikftp:CoreLib-Kotlin:0.0.8'
 
-    implementation 'android.arch.lifecycle:extensions:1.0.0'
-    kapt 'android.arch.lifecycle:compiler:1.0.0'
+    implementation 'android.arch.lifecycle:extensions:1.1.0'
+    kapt 'android.arch.lifecycle:compiler:1.1.0'
 
     implementation 'com.google.dagger:dagger:2.14.1'
     kapt 'com.google.dagger:dagger-compiler:2.14.1'
