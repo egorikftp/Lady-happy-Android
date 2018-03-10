@@ -2,6 +2,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'org.jetbrains.kotlin.android.extensions'
 apply plugin: 'io.fabric'
 apply from: 'keys.gradle'
 
@@ -14,7 +15,7 @@ def verName = "$version.$sub_version.$build_version"
 
 android {
     compileSdkVersion 27
-    buildToolsVersion "27.0.2"
+    buildToolsVersion "27.0.3"
 
     defaultConfig {
         applicationId "com.egoriku.ladyhappy"
@@ -25,6 +26,10 @@ android {
         multiDexEnabled true
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
+    }
+
+    androidExtensions {
+        experimental = true
     }
 
     buildTypes {
@@ -56,9 +61,13 @@ android {
     }
 
     dexOptions {
-        incremental true
         javaMaxHeapSize "4g"
         preDexLibraries true
+    }
+
+    kapt {
+        useBuildCache = true
+        mapDiagnosticLocations = true
     }
 }
 
@@ -71,18 +80,19 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
 
-    implementation 'com.android.support:multidex:1.0.2'
+    implementation 'com.android.support:multidex:1.0.3'
 
     implementation('com.crashlytics.sdk.android:crashlytics:2.7.1@aar') {
         transitive = true
     }
 
-    implementation 'com.android.support:appcompat-v7:27.0.2'
-    implementation 'com.android.support:recyclerview-v7:27.0.2'
-    implementation 'com.android.support:design:27.0.2'
-    implementation 'com.android.support:palette-v7:27.0.2'
-    implementation 'com.android.support:cardview-v7:27.0.2'
-    implementation 'com.android.support.constraint:constraint-layout:1.1.0-beta4'
+    implementation 'com.android.support:appcompat-v7:27.1.0'
+    implementation 'com.android.support:recyclerview-v7:27.1.0'
+    implementation 'com.android.support:design:27.1.0'
+    implementation 'com.android.support:palette-v7:27.1.0'
+    implementation 'com.android.support:cardview-v7:27.1.0'
+    implementation 'com.android.support:support-dynamic-animation:27.1.0'
+    implementation 'com.android.support.constraint:constraint-layout:1.1.0-beta5'
 
     implementation 'com.google.firebase:firebase-storage:11.8.0'
     implementation 'com.google.firebase:firebase-auth:11.8.0'
@@ -90,35 +100,28 @@ dependencies {
     implementation 'com.google.firebase:firebase-core:11.8.0'
     implementation 'com.google.android.gms:play-services-plus:11.8.0'
 
-    implementation 'io.reactivex.rxjava2:rxjava:2.1.6'
+    implementation 'io.reactivex.rxjava2:rxjava:2.1.9'
     implementation 'io.reactivex.rxjava2:rxandroid:2.0.1'
 
-    implementation 'com.airbnb.android:lottie:2.5.0-beta1'
-    implementation 'com.jakewharton.timber:timber:4.6.0'
+    implementation 'com.airbnb.android:lottie:2.5.0'
+    implementation 'com.jakewharton.timber:timber:4.6.1'
     implementation 'co.zsmb:materialdrawer-kt:1.2.2'
-    implementation 'ru.terrakok.cicerone:cicerone:2.1.0'
+    implementation 'ru.terrakok.cicerone:cicerone:3.0.0'
     implementation 'com.github.bumptech.glide:glide:4.5.0'
     kapt 'com.github.bumptech.glide:compiler:4.5.0'
     implementation 'net.hockeyapp.android:HockeySDK:4.1.4'
 
-    implementation 'org.jetbrains.kotlin:kotlin-stdlib-jre7:1.2.21'
-    implementation 'org.jetbrains.anko:anko-appcompat-v7:0.10.4'
-    implementation 'org.jetbrains.anko:anko-appcompat-v7-coroutines:0.10.4'
-    implementation 'org.jetbrains.anko:anko-support-v4-commons:0.10.4'
-    implementation 'org.jetbrains.anko:anko-sdk25:0.10.4'
-    implementation 'org.jetbrains.anko:anko-sdk25-coroutines:0.10.4'
-    implementation 'org.jetbrains.anko:anko-constraint-layout:0.10.4'
-
+    implementation 'org.jetbrains.kotlin:kotlin-stdlib-jre7:1.2.30'
     implementation 'com.github.egorikftp:CoreLib-Kotlin:0.0.8'
 
     implementation 'android.arch.lifecycle:extensions:1.1.0'
     kapt 'android.arch.lifecycle:compiler:1.1.0'
 
-    implementation 'com.google.dagger:dagger:2.14.1'
-    kapt 'com.google.dagger:dagger-compiler:2.14.1'
-    implementation 'com.google.dagger:dagger-android:2.14.1'
+    implementation 'com.google.dagger:dagger:2.15'
+    kapt 'com.google.dagger:dagger-compiler:2.15'
+    implementation 'com.google.dagger:dagger-android:2.15'
     kapt 'com.google.dagger:dagger-android-processor:2.11'
-    implementation 'com.google.dagger:dagger-android-support:2.14.1'
+    implementation 'com.google.dagger:dagger-android-support:2.15'
 }
 
 apply plugin: 'com.google.gms.google-services'
