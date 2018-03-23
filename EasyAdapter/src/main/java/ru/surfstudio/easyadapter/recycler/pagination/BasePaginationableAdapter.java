@@ -33,7 +33,7 @@ import ru.surfstudio.easyadapter.recycler.item.NoDataItem;
 
 /**
  * Adapter with pagination Footer, based on {@link EasyAdapter}
- * Adapter emit event "onLoadMore" when user scroll to bottom or click on footer with state {@link PaginationState#ERROR}.
+ * Adapter emit event "onShowMore" when user scroll to bottom or click on footer with state {@link PaginationState#ERROR}.
  * Adapter can emit this event if user scroll only if state is {@link PaginationState#READY}
  */
 
@@ -43,13 +43,13 @@ public abstract class BasePaginationableAdapter extends EasyAdapter {
     private boolean blockShowMoreEvent = true;
 
     public interface OnShowMoreListener {
-        void onLoadMore();
+        void onShowMore();
     }
 
     public BasePaginationableAdapter() {
         getPaginationFooterController().setListener(new OnShowMoreListener() {
             @Override
-            public void onLoadMore() {
+            public void onShowMore() {
                 onShowMoreClick();
             }
         });
@@ -116,7 +116,7 @@ public abstract class BasePaginationableAdapter extends EasyAdapter {
 
                     if (totalItemCount - lastVisibleItem < 2 * numVisibleItem) {
                         blockShowMoreEvent = true;
-                        onShowMoreListener.onLoadMore();
+                        onShowMoreListener.onShowMore();
                     }
                 }
             }
@@ -153,7 +153,7 @@ public abstract class BasePaginationableAdapter extends EasyAdapter {
     private void onShowMoreClick() {
         setState(PaginationState.READY);
         if (onShowMoreListener != null) {
-            onShowMoreListener.onLoadMore();
+            onShowMoreListener.onShowMore();
         }
     }
 

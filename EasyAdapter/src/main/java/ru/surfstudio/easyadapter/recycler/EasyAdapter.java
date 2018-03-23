@@ -18,6 +18,8 @@ package ru.surfstudio.easyadapter.recycler;
 
 import android.support.annotation.NonNull;
 import android.support.v7.util.DiffUtil;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.SparseArray;
 import android.view.View;
@@ -55,6 +57,32 @@ public class EasyAdapter extends RecyclerView.Adapter {
 
     public void setAutoNotifyOnSetItemsEnabled(boolean enableAutoNotifyOnSetItems) {
         this.autoNotifyOnSetItemsEnabled = enableAutoNotifyOnSetItems;
+    }
+
+    @Override
+    public void onAttachedToRecyclerView(RecyclerView recyclerView) {
+        super.onAttachedToRecyclerView(recyclerView);
+        LinearLayoutManager layoutManager = (LinearLayoutManager) recyclerView.getLayoutManager();
+        initLayoutManager(layoutManager);
+    }
+
+    private void initLayoutManager(LinearLayoutManager layoutManager) {
+        if (layoutManager instanceof GridLayoutManager) {
+            final GridLayoutManager castedLayoutManager = (GridLayoutManager) layoutManager;
+            final GridLayoutManager.SpanSizeLookup existingLookup = castedLayoutManager.getSpanSizeLookup();
+
+            castedLayoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
+                @Override
+                public int getSpanSize(int position) {
+                    if (position == 0) {
+                        //full first invisible element
+                        return castedLayoutManager.getSpanCount();
+                    } else {
+                        return existingLookup.getSpanSize(position);
+                    }
+                }
+            });
+        }
     }
 
     @Override
