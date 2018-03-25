@@ -11,6 +11,9 @@
     <color name="Terracota">#7f6854</color>
     <color name="Wheat">#DBCDAD</color>
 
+    <color name="Quotes">#515151</color>
+    <color name="Quotes60">#99515151</color>
+
     <color name="categoriesGradientStart">#AA000000</color>
     <color name="categoriesGradientEnd">@color/transpanent</color>
 

@@ -6,11 +6,23 @@
     android:layout_height="220dp"
     android:padding="16dp">
 
+    <ImageView
+        android:id="@+id/quotes_background"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/RealBlack70"
+        android:foreground="@color/Quotes60"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <android.support.v7.widget.AppCompatTextView
         android:id="@+id/quotesContent"
         android:layout_width="0dp"
         android:layout_height="120dp"
         android:textAlignment="center"
+        android:textColor="@color/RealWhite"
         app:autoSizeTextType="uniform"
         app:fontFamily="@font/playfair_display"
         app:layout_constraintEnd_toEndOf="parent"
@@ -19,12 +31,12 @@
         tools:text="Quotes Content" />
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/quotes_olive"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:adjustViewBounds="true"
         android:paddingTop="8dp"
-        app:layout_constraintDimensionRatio="w,2:1"
+        app:layout_constraintDimensionRatio="w,1.5:1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/quotesContent"
@@ -35,10 +47,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/playfair_display"
+        android:textColor="@color/RealWhite"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        app:layout_constraintTop_toBottomOf="@+id/quotes_olive"
         app:layout_constraintVertical_bias="1.0"
         tools:text="Author" />
 </android.support.constraint.ConstraintLayout>
