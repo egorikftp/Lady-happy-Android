@@ -39,7 +39,7 @@ class PaginationableAdapter<H : RecyclerView.ViewHolder> : BasePaginationableAda
                     hide()
                 }
                 loadMore = itemView.paginationTextView.apply {
-                    setOnClickListener { _ -> listener.onLoadMore() }
+                    setOnClickListener { _ -> listener.onShowMore() }
                     hide()
                 }
             }

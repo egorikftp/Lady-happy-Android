@@ -1,6 +1,6 @@
 package com.egoriku.ladyhappy.presentation.activity.main
 
-import android.content.Intent
+import android.content.Context
 import android.content.res.Configuration
 import android.os.Bundle
 import android.support.annotation.StringRes
@@ -16,9 +16,10 @@ import com.egoriku.corelib_kt.dsl.drawableCompat
 import com.egoriku.ladyhappy.R
 import com.egoriku.ladyhappy.common.Fragments
 import com.egoriku.ladyhappy.common.Screens
-import com.egoriku.ladyhappy.presentation.activity.newpost.CreateNewPostActivity
+import com.egoriku.ladyhappy.presentation.activity.newpost.DetailCategoryActivity
 import com.egoriku.ladyhappy.presentation.base.BaseSupportInjectableActivity
 import com.egoriku.ladyhappy.presentation.fragment.allgoods.AllGoodsFragment
+import com.egoriku.ladyhappy.presentation.fragment.main.MainPageFragment
 import com.egoriku.ladyhappy.presentation.fragment.order.OrderFragment
 import com.mikepenz.materialdrawer.AccountHeader
 import com.mikepenz.materialdrawer.Drawer
@@ -44,14 +45,16 @@ class MainActivity : BaseSupportInjectableActivity<MainActivityContract.View, Ma
 
     @Suppress("UNUSED_EXPRESSION")
     private val navigator = object : SupportAppNavigator(this, supportFragmentManager, R.id.mainActivityContainer) {
-        override fun createActivityIntent(screenKey: String?, data: Any?) = when (screenKey) {
-            Screens.CREATE_POST_ACTIVITY -> intentFor<CreateNewPostActivity>()
+
+        override fun createActivityIntent(context: Context?, screenKey: String?, data: Any?) = when (screenKey) {
+            Screens.CREATE_POST_ACTIVITY -> intentFor<DetailCategoryActivity>()
             else -> null
         }
 
         override fun createFragment(screenKey: String?, data: Any?): Fragment? = when (screenKey) {
             Fragments.ALL_GOODS -> AllGoodsFragment.newInstance()
             Fragments.ORDER -> OrderFragment.newInstance()
+            Fragments.MAIN_PAGE -> MainPageFragment.newInstance()
             else -> null
         }
     }
@@ -72,7 +75,7 @@ class MainActivity : BaseSupportInjectableActivity<MainActivityContract.View, Ma
         initNavigationDrawer(savedInstanceState)
 
         if (savedInstanceState == null) {
-            presenter.openAllGoodsCategory()
+            presenter.openMainPageFragment()
         }
     }
 

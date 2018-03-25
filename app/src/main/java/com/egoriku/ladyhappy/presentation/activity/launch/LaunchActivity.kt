@@ -3,16 +3,17 @@ package com.egoriku.ladyhappy.presentation.activity.launch
 import android.os.Bundle
 import com.egoriku.corelib_kt.arch.BaseActivity
 import com.egoriku.corelib_kt.dsl.runDelayed
-import com.egoriku.ladyhappy.R
-import ru.terrakok.cicerone.Navigator
-import ru.terrakok.cicerone.NavigatorHolder
-import javax.inject.Inject
-import com.egoriku.ladyhappy.common.Screens
-import ru.terrakok.cicerone.commands.Replace
 import com.egoriku.corelib_kt.timber.e
+import com.egoriku.ladyhappy.R
+import com.egoriku.ladyhappy.common.Screens
 import com.egoriku.ladyhappy.presentation.activity.main.MainActivity
 import dagger.android.AndroidInjection
 import org.jetbrains.anko.startActivity
+import ru.terrakok.cicerone.Navigator
+import ru.terrakok.cicerone.NavigatorHolder
+import ru.terrakok.cicerone.commands.Command
+import ru.terrakok.cicerone.commands.Replace
+import javax.inject.Inject
 
 class LaunchActivity : BaseActivity<LaunchContract.View, LaunchContract.Presenter>(), LaunchContract.View {
 
@@ -26,7 +27,11 @@ class LaunchActivity : BaseActivity<LaunchContract.View, LaunchContract.Presente
     @Inject
     lateinit var navigatorHolder: NavigatorHolder
 
-    private val customNavigator = Navigator { command ->
+    private val customNavigator = Navigator { commands: Array<out Command> ->
+        for (command in commands) applyCommand(command)
+    }
+
+    private fun applyCommand(command: Command) {
         if (command is Replace) {
             when (command.screenKey) {
                 Screens.MAIN_ACTIVITY -> {

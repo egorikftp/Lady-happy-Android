@@ -10,6 +10,7 @@ object Fragments {
     const val ORDER = "ORDER"
     const val SHARE = "SHARE"
     const val FEEDBACK = "FEEDBACK"
+    const val MAIN_PAGE = "MAIN_PAGE"
 }
 
 object ExtraConstants {

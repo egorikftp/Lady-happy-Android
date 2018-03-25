@@ -1,13 +1,18 @@
 package com.egoriku.ladyhappy.presentation.fragment.allgoods
 
+import android.app.Activity
 import android.os.Bundle
 import android.support.annotation.StringRes
+import android.support.v4.app.ActivityOptionsCompat
+import android.support.v4.view.ViewCompat
 import android.support.v7.widget.LinearLayoutManager
 import android.view.View
 import com.egoriku.corelib_kt.dsl.hide
 import com.egoriku.corelib_kt.dsl.show
 import com.egoriku.ladyhappy.R
+import com.egoriku.ladyhappy.common.cast
 import com.egoriku.ladyhappy.presentation.activity.main.MainActivity
+import com.egoriku.ladyhappy.presentation.activity.newpost.DetailCategoryActivity
 import com.egoriku.ladyhappy.presentation.adapter.animator.DefaultItemAnimator
 import com.egoriku.ladyhappy.presentation.base.BaseInjectableFragment
 import com.egoriku.ladyhappy.presentation.fragment.allgoods.recycler.controller.CategoriesController
@@ -15,10 +20,11 @@ import com.egoriku.ladyhappy.presentation.fragment.allgoods.recycler.controller.
 import com.egoriku.ladyhappy.presentation.fragment.allgoods.recycler.controller.NewsController
 import com.egoriku.ladyhappy.presentation.fragment.allgoods.recycler.controller.NewsHeaderController
 import kotlinx.android.synthetic.main.fragment_all_goods.*
-import org.jetbrains.anko.support.v4.toast
+import org.jetbrains.anko.support.v4.intentFor
 import ru.surfstudio.easyadapter.recycler.EasyAdapter
 import ru.surfstudio.easyadapter.recycler.ItemList
 import javax.inject.Inject
+
 
 class AllGoodsFragment : BaseInjectableFragment<AllGoodsContract.View, AllGoodsContract.Presenter>(), AllGoodsContract.View {
 
@@ -34,6 +40,9 @@ class AllGoodsFragment : BaseInjectableFragment<AllGoodsContract.View, AllGoodsC
 
     companion object {
         fun newInstance() = AllGoodsFragment()
+
+        const val EXTRA_ANIMAL_ITEM = "EXTRA_ANIMAL_ITEM"
+        const val EXTRA_ANIMAL_IMAGE_TRANSITION_NAME = "EXTRA_ANIMAL_IMAGE_TRANSITION_NAME"
     }
 
     override fun initPresenter() = allGoodsPresenter
@@ -51,13 +60,25 @@ class AllGoodsFragment : BaseInjectableFragment<AllGoodsContract.View, AllGoodsC
 
     private fun initRecyclerView() {
         recyclerViewAllGoods.apply {
-            layoutManager = LinearLayoutManager(context)
+            layoutManager = LinearLayoutManager(context).apply {
+                initialPrefetchItemCount = 5
+            }
             itemAnimator = DefaultItemAnimator()
             adapter = allGoodsAdapter
+            setHasFixedSize(true)
         }
 
-        categoriesController = CategoriesController(onClickListener = {
-            toast("on ${it.title} click")
+        categoriesController = CategoriesController(onClickListener = { model, imageView ->
+            val options = ActivityOptionsCompat.makeSceneTransitionAnimation(
+                    activity as Activity,
+                    imageView,
+                    ViewCompat.getTransitionName(imageView))
+
+            startActivity(
+                    intentFor<DetailCategoryActivity>().apply {
+                        putExtra(EXTRA_ANIMAL_ITEM, model)
+                        putExtra(EXTRA_ANIMAL_IMAGE_TRANSITION_NAME, ViewCompat.getTransitionName(imageView))
+                    }, options.toBundle())
         })
 
         errorStateController = ErrorStateController(onReloadClickListener = {
@@ -79,7 +100,7 @@ class AllGoodsFragment : BaseInjectableFragment<AllGoodsContract.View, AllGoodsC
     }
 
     override fun showTitle(@StringRes title: Int) {
-        (activity as MainActivity).setUpToolbar(title)
+        activity?.cast<MainActivity>()?.setUpToolbar(title)
     }
 
     override fun showLoading() {

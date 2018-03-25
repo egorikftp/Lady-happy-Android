@@ -1,5 +1,6 @@
 package com.egoriku.ladyhappy.presentation.fragment.allgoods.recycler.controller
 
+import android.support.v4.view.ViewCompat
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
@@ -10,7 +11,7 @@ import kotlinx.android.synthetic.main.adapter_item_category.view.*
 import ru.surfstudio.easyadapter.recycler.controller.BindableItemController
 import ru.surfstudio.easyadapter.recycler.holder.BindableViewHolder
 
-class CategoriesController(val onClickListener: (categoriesModel: SingleCategoryModel) -> Unit)
+class CategoriesController(val onClickListener: (categoriesModel: SingleCategoryModel, imageView: ImageView) -> Unit)
     : BindableItemController<SingleCategoryModel, CategoriesController.Holder>() {
 
     override fun createViewHolder(parent: ViewGroup) = Holder(parent)
@@ -24,7 +25,7 @@ class CategoriesController(val onClickListener: (categoriesModel: SingleCategory
         private val imageCategory: ImageView
 
         init {
-            itemView.setOnClickListener { onClickListener(category) }
+            itemView.setOnClickListener { onClickListener(category, itemView.imageCategoryView) }
             title = itemView.title
             imageCategory = itemView.imageCategoryView
         }
@@ -37,6 +38,8 @@ class CategoriesController(val onClickListener: (categoriesModel: SingleCategory
                     .load(data.imageUrl)
                     .thumbnail(0.5f)
                     .into(imageCategory)
+
+            ViewCompat.setTransitionName(itemView.imageCategoryView, data.title)
         }
     }
 }

@@ -7,6 +7,7 @@ import com.egoriku.ladyhappy.external.AnalyticsInterface
 import com.egoriku.ladyhappy.external.TrackingConstants
 import com.egoriku.ladyhappy.presentation.activity.main.MainActivityContract.View.Companion.ALL_GOODS_POSITION
 import com.egoriku.ladyhappy.presentation.activity.main.MainActivityContract.View.Companion.FEEDBACK_POSITION
+import com.egoriku.ladyhappy.presentation.activity.main.MainActivityContract.View.Companion.MAIN_PAGE_POSITION
 import com.egoriku.ladyhappy.presentation.activity.main.MainActivityContract.View.Companion.ORDER_POSITION
 import com.egoriku.ladyhappy.presentation.activity.main.MainActivityContract.View.Companion.SHARE_POSITION
 import ru.terrakok.cicerone.Router
@@ -25,11 +26,16 @@ class MainActivityPresenter
                 ALL_GOODS_POSITION to Fragments.ALL_GOODS,
                 ORDER_POSITION to Fragments.ORDER,
                 SHARE_POSITION to Fragments.SHARE,
-                FEEDBACK_POSITION to Fragments.FEEDBACK
+                FEEDBACK_POSITION to Fragments.FEEDBACK,
+                MAIN_PAGE_POSITION to Fragments.MAIN_PAGE
         )
     }
 
     private var currentDrawerPosition = DEFAULT_POSITION
+
+    override fun openMainPageFragment() {
+        processNavigation(MAIN_PAGE_POSITION, TrackingConstants.FRAGMENT_MAIN_PAGE)
+    }
 
     override fun openAllGoodsCategory() {
         processNavigation(ALL_GOODS_POSITION, TrackingConstants.DRAWER_ALL_GOODS)

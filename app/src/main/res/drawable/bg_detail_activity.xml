@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@color/colorPrimary" />
+
+    <item
+        android:bottom="-300dp"
+        android:left="0dp"
+        android:right="-300dp"
+        android:top="300dp">
+
+        <rotate
+            android:fromDegrees="-10"
+            android:pivotX="0%"
+            android:pivotY="100%">
+            <shape android:shape="rectangle">
+                <solid android:color="@color/Terracota" />
+            </shape>
+        </rotate>
+    </item>
+</layer-list>

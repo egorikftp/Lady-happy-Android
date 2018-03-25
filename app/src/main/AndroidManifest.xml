@@ -16,9 +16,8 @@
         <activity
             android:name=".presentation.activity.main.MainActivity"
             android:theme="@style/AppTheme" />
-        <activity
-            android:name=".presentation.activity.newpost.CreateNewPostActivity"
-            android:label="Order" />
+        <activity android:name=".presentation.activity.newpost.DetailCategoryActivity" />
+
         <activity
             android:name=".presentation.activity.launch.LaunchActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen">

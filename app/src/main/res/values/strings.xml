@@ -4,6 +4,7 @@
     <string name="action_settings">Settings</string>
     <string name="activity_start_app_name" translatable="false">Lady\'s Happy</string>
     <string name="navigation_drawer_all_goods">All Goods</string>
+    <string name="navigation_main">Main</string>
     <string name="navigation_drawer_order">Order</string>
     <string name="navigation_drawer_share">Share</string>
     <string name="navigation_drawer_feedback">Feedback</string>
