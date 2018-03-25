@@ -1,4 +1,4 @@
-package com.egoriku.ladyhappy.presentation.fragment.allgoods.recycler.controller
+package com.egoriku.ladyhappy.presentation.fragment.allgoods.controller
 
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.PagerSnapHelper

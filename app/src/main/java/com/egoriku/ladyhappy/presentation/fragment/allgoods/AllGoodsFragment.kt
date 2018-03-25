@@ -15,10 +15,10 @@ import com.egoriku.ladyhappy.presentation.activity.main.MainActivity
 import com.egoriku.ladyhappy.presentation.activity.newpost.DetailCategoryActivity
 import com.egoriku.ladyhappy.presentation.adapter.animator.DefaultItemAnimator
 import com.egoriku.ladyhappy.presentation.base.BaseInjectableFragment
-import com.egoriku.ladyhappy.presentation.fragment.allgoods.recycler.controller.CategoriesController
-import com.egoriku.ladyhappy.presentation.fragment.allgoods.recycler.controller.ErrorStateController
-import com.egoriku.ladyhappy.presentation.fragment.allgoods.recycler.controller.NewsController
-import com.egoriku.ladyhappy.presentation.fragment.allgoods.recycler.controller.NewsHeaderController
+import com.egoriku.ladyhappy.presentation.fragment.allgoods.controller.CategoriesController
+import com.egoriku.ladyhappy.presentation.fragment.allgoods.controller.ErrorStateController
+import com.egoriku.ladyhappy.presentation.fragment.allgoods.controller.NewsController
+import com.egoriku.ladyhappy.presentation.fragment.allgoods.controller.NewsHeaderController
 import kotlinx.android.synthetic.main.fragment_all_goods.*
 import org.jetbrains.anko.support.v4.intentFor
 import ru.surfstudio.easyadapter.recycler.EasyAdapter
