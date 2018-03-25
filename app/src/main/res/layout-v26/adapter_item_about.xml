@@ -3,14 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="250dp">
+    android:layout_height="250dp"
+    android:padding="16dp">
 
     <TextView
         android:id="@+id/about_header"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
         android:fontFamily="@font/montserrat"
         android:text="@string/about_us"
         app:layout_constraintStart_toStartOf="parent"
@@ -20,14 +19,11 @@
         android:id="@+id/about_content"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginBottom="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
         android:autoSizeTextType="uniform"
         android:fontFamily="@font/raleway"
         android:justificationMode="inter_word"
         android:lineSpacingMultiplier="1.2"
+        android:paddingTop="8dp"
         android:textAlignment="viewStart"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
