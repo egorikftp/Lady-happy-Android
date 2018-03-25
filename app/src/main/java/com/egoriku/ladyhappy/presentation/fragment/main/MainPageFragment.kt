@@ -9,6 +9,7 @@ import com.egoriku.ladyhappy.R
 import com.egoriku.ladyhappy.common.cast
 import com.egoriku.ladyhappy.presentation.activity.main.MainActivity
 import com.egoriku.ladyhappy.presentation.base.BaseInjectableFragment
+import com.egoriku.ladyhappy.presentation.fragment.main.conroller.AboutController
 import com.egoriku.ladyhappy.presentation.fragment.main.conroller.HeaderController
 import kotlinx.android.synthetic.main.fragment_main_page.*
 import ru.surfstudio.easyadapter.recycler.EasyAdapter
@@ -23,6 +24,7 @@ class MainPageFragment : BaseInjectableFragment<MainPageContract.View, MainPageC
     private val mainPageAdapter = EasyAdapter()
 
     private lateinit var headerController: HeaderController
+    private lateinit var aboutController: AboutController
 
     companion object {
         fun newInstance() = MainPageFragment()
@@ -45,6 +47,7 @@ class MainPageFragment : BaseInjectableFragment<MainPageContract.View, MainPageC
         }
 
         headerController = HeaderController()
+        aboutController = AboutController()
 
         showInformation()
     }
@@ -58,9 +61,15 @@ class MainPageFragment : BaseInjectableFragment<MainPageContract.View, MainPageC
     }
 
     override fun showInformation() {
+        val s = "Женщина должна притягивать своей красотой взгляды окружающих. Красивый аксессуар всегда был неотъемлемой частью гардероба. Он подчеркивал женскую загадочность и робкость... \n" +
+                "\n" +
+                "В последнее время изделия из натуральных материалов стали популярны на рынке. Все обусловленно тем, что они делаются вручную и, в конечном итоге, являются уникальным предметом. Компания \"Дамское счастье\" сделает все, чтобы вы почувствовали себя той самой неповторимой."
+
         mainPageAdapter.setItems(
                 ItemList.create()
                         .addIf(true, headerController)
+                        .add(s, aboutController)
+
         )
     }
 }
