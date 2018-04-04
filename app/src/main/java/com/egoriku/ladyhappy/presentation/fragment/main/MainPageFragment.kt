@@ -7,6 +7,7 @@ import com.egoriku.corelib_kt.dsl.hide
 import com.egoriku.corelib_kt.dsl.show
 import com.egoriku.ladyhappy.R
 import com.egoriku.ladyhappy.common.cast
+import com.egoriku.ladyhappy.common.parallax.ParallaxScrollListener
 import com.egoriku.ladyhappy.presentation.activity.main.MainActivity
 import com.egoriku.ladyhappy.presentation.base.BaseInjectableFragment
 import com.egoriku.ladyhappy.presentation.fragment.main.conroller.AboutController
@@ -23,6 +24,7 @@ class MainPageFragment : BaseInjectableFragment<MainPageContract.View, MainPageC
     lateinit var mainPagePresenter: MainPageContract.Presenter
 
     private val mainPageAdapter = EasyAdapter()
+    private lateinit var parallaxScrollListener: ParallaxScrollListener
 
     private lateinit var headerController: HeaderController
     private lateinit var aboutController: AboutController
@@ -43,14 +45,19 @@ class MainPageFragment : BaseInjectableFragment<MainPageContract.View, MainPageC
     }
 
     override fun initViews() {
+
         mainPageRecyclerView.apply {
             layoutManager = LinearLayoutManager(context)
             adapter = mainPageAdapter
         }
 
+        parallaxScrollListener = ParallaxScrollListener().apply {
+            initWith(mainPageRecyclerView)
+        }
+
         headerController = HeaderController()
         aboutController = AboutController()
-        quotasController = QuotesController()
+        quotasController = QuotesController(parallaxScrollListener)
 
         showInformation()
     }
@@ -75,5 +82,10 @@ class MainPageFragment : BaseInjectableFragment<MainPageContract.View, MainPageC
                         .add(s, aboutController)
                         .add(quotes, quotasController)
         )
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        parallaxScrollListener.detach()
     }
 }

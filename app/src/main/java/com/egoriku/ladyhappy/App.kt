@@ -2,6 +2,8 @@ package com.egoriku.ladyhappy
 
 import android.app.Activity
 import android.app.Application
+import android.content.Context
+import android.support.multidex.MultiDex
 import com.egoriku.ladyhappy.di.app.DaggerAppComponent
 import dagger.android.AndroidInjector
 import dagger.android.HasActivityInjector
@@ -12,6 +14,11 @@ open class App : Application(), HasActivityInjector {
 
     @Inject
     lateinit var activityDispatchingAndroidInjector: DispatchingAndroidInjector<Activity>
+
+    override fun attachBaseContext(base: Context?) {
+        super.attachBaseContext(base)
+        MultiDex.install(this)
+    }
 
     override fun onCreate() {
         super.onCreate()
