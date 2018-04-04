@@ -14,5 +14,6 @@
     <string name="adapter_item_error_state_retry">Tap to retry</string>
     <string name="adapter_item_pagination_footer_load_more">Load more</string>
     <string name="adapter_item_news_header_text">Latest news</string>
-    <string name="about_us">ABOUT US</string>
+    <string name="about_us">About us</string>
+    <string name="adapter_item_quotes_header">What inspires us</string>
 </resources>

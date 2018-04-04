@@ -63,7 +63,6 @@ android {
     dexOptions {
         javaMaxHeapSize "4g"
         preDexLibraries true
-        incremental true
     }
 
     kapt {
