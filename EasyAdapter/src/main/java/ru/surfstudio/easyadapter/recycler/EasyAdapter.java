@@ -95,6 +95,7 @@ public class EasyAdapter extends RecyclerView.Adapter {
         return supportedItemControllers.get(viewType).createViewHolder(parent);
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     public final void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         BaseItem item = items.get(position);
@@ -169,12 +170,14 @@ public class EasyAdapter extends RecyclerView.Adapter {
         }
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     public final long getItemId(int position) {
         BaseItem item = items.get(position);
         return item.getItemController().getItemId(item);
     }
 
+    @SuppressWarnings("unchecked")
     public final long getItemHash(int position) {
         BaseItem item = items.get(position);
         return item.getItemController().getItemHash(item);
