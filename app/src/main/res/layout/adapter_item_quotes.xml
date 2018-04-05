@@ -3,13 +3,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/adapter_item_quotes_height">
+    android:layout_height="@dimen/adapter_item_quotes_height"
+    android:paddingBottom="8dp">
 
     <ImageView
         android:id="@+id/quotesBackground"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:foreground="@color/Quotes60"
+        android:foreground="@color/RealBlack30"
         android:scaleType="matrix"
         android:src="@drawable/bg_quotes"
         app:layout_constraintBottom_toBottomOf="parent"

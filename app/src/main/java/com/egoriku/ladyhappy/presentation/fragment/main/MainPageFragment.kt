@@ -13,7 +13,7 @@ import com.egoriku.ladyhappy.presentation.base.BaseInjectableFragment
 import com.egoriku.ladyhappy.presentation.fragment.main.conroller.AboutController
 import com.egoriku.ladyhappy.presentation.fragment.main.conroller.HeaderController
 import com.egoriku.ladyhappy.presentation.fragment.main.conroller.QuotesController
-import com.egoriku.ladyhappy.presentation.fragment.main.conroller.QuotesHeaderController
+import com.egoriku.ladyhappy.presentation.fragment.main.conroller.SectionsHeaderController
 import kotlinx.android.synthetic.main.fragment_main_page.*
 import ru.surfstudio.easyadapter.recycler.EasyAdapter
 import ru.surfstudio.easyadapter.recycler.ItemList
@@ -30,7 +30,7 @@ class MainPageFragment : BaseInjectableFragment<MainPageContract.View, MainPageC
     private lateinit var headerController: HeaderController
     private lateinit var aboutController: AboutController
     private lateinit var quotasController: QuotesController
-    private lateinit var quotasHeaderController: QuotesHeaderController
+    private lateinit var sectionsHeaderController: SectionsHeaderController
 
     companion object {
         fun newInstance() = MainPageFragment()
@@ -59,7 +59,7 @@ class MainPageFragment : BaseInjectableFragment<MainPageContract.View, MainPageC
 
         headerController = HeaderController()
         aboutController = AboutController()
-        quotasHeaderController = QuotesHeaderController()
+        sectionsHeaderController = SectionsHeaderController()
         quotasController = QuotesController(parallaxScrollListener)
 
         showInformation()
@@ -83,8 +83,9 @@ class MainPageFragment : BaseInjectableFragment<MainPageContract.View, MainPageC
                 ItemList.create()
                         .addIf(true, headerController)
                         .add(s, aboutController)
-                        .addIf(true, quotasHeaderController)
+                        .addIf(true, getString(R.string.header_quotes), sectionsHeaderController)
                         .add(quotes, quotasController)
+                        .addIf(true, getString(R.string.header_our_team), sectionsHeaderController)
         )
     }
 

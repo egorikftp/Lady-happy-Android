@@ -12,5 +12,6 @@
     <string name="adapter_item_pagination_footer_load_more">Загрузить больше</string>
     <string name="adapter_item_news_header_text">Последние новости</string>
     <string name="about_us">О нас</string>
-    <string name="adapter_item_quotes_header">Что нас вдохновляет</string>
+    <string name="header_quotes">Что нас вдохновляет</string>
+    <string name="header_our_team">Наша команда</string>
 </resources>
