@@ -1,10 +1,12 @@
 package com.egoriku.ladyhappy.data.entities.mappers
 
+import android.support.annotation.Keep
 import com.egoriku.ladyhappy.data.entities.CategoriesDocumentEntity
 import com.egoriku.ladyhappy.data.entities.CategoryEntity
 import com.egoriku.ladyhappy.domain.models.CategoriesModel
 import com.egoriku.ladyhappy.domain.models.SingleCategoryModel
 
+@Keep
 class CategoriesMapper {
 
     companion object {

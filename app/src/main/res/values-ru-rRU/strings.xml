@@ -14,4 +14,6 @@
     <string name="about_us">О нас</string>
     <string name="header_quotes">Что нас вдохновляет</string>
     <string name="header_our_team">Наша команда</string>
+    <string name="navigation_main">Главная</string>
+    <string name="activity_start_app_name">Дамское счастье</string>
 </resources>

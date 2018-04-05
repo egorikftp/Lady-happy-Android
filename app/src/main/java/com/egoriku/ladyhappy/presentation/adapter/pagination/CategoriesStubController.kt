@@ -3,7 +3,7 @@ package com.egoriku.ladyhappy.presentation.adapter.pagination
 import android.view.ViewGroup
 import com.egoriku.ladyhappy.R
 import com.egoriku.ladyhappy.presentation.fragment.allgoods.recycler.controller.stub.Stub
-import com.egoriku.ladyhappy.presentation.fragment.allgoods.recycler.controller.stub.toStub
+import com.egoriku.ladyhappy.presentation.adapter.dsl.toStub
 import ru.surfstudio.easyadapter.recycler.controller.BindableItemController
 import ru.surfstudio.easyadapter.recycler.holder.BindableViewHolder
 

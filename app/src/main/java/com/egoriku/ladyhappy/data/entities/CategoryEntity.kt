@@ -1,8 +1,10 @@
 package com.egoriku.ladyhappy.data.entities
 
+import android.support.annotation.Keep
 import com.egoriku.corelib_kt.Constants
 import com.google.firebase.firestore.PropertyName
 
+@Keep
 data class CategoryEntity(
         @get:PropertyName("id")
         @set:PropertyName("id")
@@ -21,4 +23,5 @@ data class CategoryEntity(
         var imageUrl: String = Constants.EMPTY
 )
 
+@Keep
 data class CategoriesDocumentEntity(var categories: MutableList<CategoryEntity> = mutableListOf())

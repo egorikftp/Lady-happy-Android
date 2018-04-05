@@ -7,7 +7,7 @@ import android.view.ViewTreeObserver
 import com.egoriku.ladyhappy.presentation.activity.main.MainActivity
 import kotlin.reflect.KProperty
 
-inline fun RecyclerView.scrollPercentage(): Int {
+fun RecyclerView.scrollPercentage(): Int {
     val offset = computeHorizontalScrollOffset()
     val extent = computeHorizontalScrollExtent()
     val range = computeHorizontalScrollRange()

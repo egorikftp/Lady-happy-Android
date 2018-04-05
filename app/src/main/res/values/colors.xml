@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#FFFFFF</color>
-    <color name="colorPrimaryDark">#d7d7d7</color>
+    <color name="colorPrimaryDark">#D7D7D7</color>
     <color name="colorAccent">#FF4081</color>
-    <color name="transpanent">#00000000</color>
+    <color name="transparent">#00000000</color>
 
     <color name="RealWhite">#FFFFFF</color>
     <color name="RealBlack">#FF000000</color>
@@ -16,7 +16,7 @@
     <color name="Quotes60">#99515151</color>
 
     <color name="categoriesGradientStart">#AA000000</color>
-    <color name="categoriesGradientEnd">@color/transpanent</color>
+    <color name="categoriesGradientEnd">@color/transparent</color>
 
     <color name="material_drawer_selected_text">@color/Terracota</color>
     <color name="material_drawer_primary_text">@color/RealBlack70</color>

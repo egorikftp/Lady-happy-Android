@@ -1,5 +1,5 @@
 @file:JvmName("StubExt")
-package com.egoriku.ladyhappy.presentation.fragment.allgoods.recycler.controller.stub
+package com.egoriku.ladyhappy.presentation.adapter.dsl
 
 import android.view.View
 import android.view.ViewGroup
@@ -9,6 +9,7 @@ import com.egoriku.corelib_kt.Constants
 import com.egoriku.corelib_kt.dsl.colorCompat
 import com.egoriku.ladyhappy.R
 
+@Suppress("NO_TAIL_CALLS_FOUND")
 tailrec fun View.toStub() {
     when (this) {
         is ViewGroup ->

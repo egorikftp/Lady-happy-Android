@@ -73,7 +73,7 @@ class DetailCategoryActivity : AppCompatActivity() {
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     private fun setTranslucentStatusBarLollipop() {
-        window.statusBarColor = colorCompat(R.color.transpanent)
+        window.statusBarColor = colorCompat(R.color.transparent)
     }
 
     @TargetApi(Build.VERSION_CODES.KITKAT)
