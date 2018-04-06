@@ -6,4 +6,8 @@
     <dimen name="adapter_item_category_title_text_size">14sp</dimen>
     <dimen name="adapter_item_news_image_height">250dp</dimen>
     <dimen name="adapter_item_quotes_height">220dp</dimen>
+    <dimen name="material_padding_16">16dp</dimen>
+    <dimen name="material_padding_8">8dp</dimen>
+
+    <dimen name="header_text_size">15sp</dimen>
 </resources>

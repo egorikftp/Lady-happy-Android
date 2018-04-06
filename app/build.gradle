@@ -58,9 +58,7 @@ android {
     }
 
     gradle.taskGraph.whenReady { taskGraph ->
-        //if (taskGraph.hasTask(assembleDebug) || taskGraph.hasTask(assembleRelease)) {
-
-        if (taskGraph.hasTask('assembleRelease')) {
+        if (taskGraph.hasTask(assembleDebug) || taskGraph.hasTask(assembleRelease)) {
             autoIncrementBuildVersionNumber()
         }
     }
@@ -82,6 +80,8 @@ android {
         mapDiagnosticLocations = true
     }
 }
+
+apply plugin: 'com.getkeepsafe.dexcount'
 
 dependencies {
     implementation project(path: ':EasyAdapter')

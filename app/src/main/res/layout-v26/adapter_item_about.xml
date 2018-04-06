@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="250dp"
-    android:padding="16dp">
+    android:padding="@dimen/material_padding_16">
 
     <TextView
         android:id="@+id/about_header"
@@ -24,7 +24,7 @@
         android:fontFamily="@font/raleway"
         android:justificationMode="inter_word"
         android:lineSpacingMultiplier="1.2"
-        android:paddingTop="8dp"
+        android:paddingTop="@dimen/material_padding_8"
         android:textAlignment="viewStart"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
