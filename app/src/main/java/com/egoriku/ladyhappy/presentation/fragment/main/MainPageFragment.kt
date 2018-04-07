@@ -8,12 +8,11 @@ import com.egoriku.corelib_kt.dsl.show
 import com.egoriku.ladyhappy.R
 import com.egoriku.ladyhappy.common.cast
 import com.egoriku.ladyhappy.common.parallax.ParallaxScrollListener
+import com.egoriku.ladyhappy.data.entities.main.OurTeamEntity
+import com.egoriku.ladyhappy.data.entities.main.TeamMember
 import com.egoriku.ladyhappy.presentation.activity.main.MainActivity
 import com.egoriku.ladyhappy.presentation.base.BaseInjectableFragment
-import com.egoriku.ladyhappy.presentation.fragment.main.conroller.AboutController
-import com.egoriku.ladyhappy.presentation.fragment.main.conroller.HeaderController
-import com.egoriku.ladyhappy.presentation.fragment.main.conroller.QuotesController
-import com.egoriku.ladyhappy.presentation.fragment.main.conroller.SectionsHeaderController
+import com.egoriku.ladyhappy.presentation.fragment.main.conroller.*
 import kotlinx.android.synthetic.main.fragment_main_page.*
 import ru.surfstudio.easyadapter.recycler.EasyAdapter
 import ru.surfstudio.easyadapter.recycler.ItemList
@@ -31,6 +30,7 @@ class MainPageFragment : BaseInjectableFragment<MainPageContract.View, MainPageC
     private lateinit var aboutController: AboutController
     private lateinit var quotasController: QuotesController
     private lateinit var sectionsHeaderController: SectionsHeaderController
+    private lateinit var ourTeamController: OurTeamController
 
     companion object {
         fun newInstance() = MainPageFragment()
@@ -61,6 +61,7 @@ class MainPageFragment : BaseInjectableFragment<MainPageContract.View, MainPageC
         aboutController = AboutController()
         sectionsHeaderController = SectionsHeaderController()
         quotasController = QuotesController(parallaxScrollListener)
+        ourTeamController = OurTeamController()
 
         showInformation()
     }
@@ -79,13 +80,24 @@ class MainPageFragment : BaseInjectableFragment<MainPageContract.View, MainPageC
                 "В последнее время изделия из натуральных материалов стали популярны на рынке. Все обусловленно тем, что они делаются вручную и, в конечном итоге, являются уникальным предметом. Компания \"Дамское счастье\" сделает все, чтобы вы почувствовали себя той самой неповторимой."
 
         val quotes = "Главное в платье - это женщина, которая его надевает."
+
+        val ourTeamEntity = OurTeamEntity(listOf(
+                TeamMember("https://lady-happy.com/assets/images/team-1.jpg",
+                        "Ольга Урбанович",
+                        "Мастер"),
+                TeamMember("https://lady-happy.com/assets/images/team-2.jpg",
+                        "Егор Урбанович",
+                        "Разработчик / UX дизайнейр / Фотограф")
+        ))
+
         mainPageAdapter.setItems(
                 ItemList.create()
                         .addIf(true, headerController)
                         .add(s, aboutController)
                         .addIf(true, getString(R.string.header_quotes), sectionsHeaderController)
                         .add(quotes, quotasController)
-                        .addIf(true, getString(R.string.header_our_team), sectionsHeaderController)
+                        .addIf(ourTeamEntity.ourTeam.isNotEmpty(), getString(R.string.header_our_team), sectionsHeaderController)
+                        .add(ourTeamEntity, ourTeamController)
         )
     }
 

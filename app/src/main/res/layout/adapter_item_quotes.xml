@@ -8,7 +8,7 @@
 
     <ImageView
         android:id="@+id/quotesBackground"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="match_parent"
         android:foreground="@color/RealBlack30"
         android:scaleType="matrix"
@@ -22,6 +22,8 @@
         android:id="@+id/quotesContent"
         android:layout_width="0dp"
         android:layout_height="120dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
         android:paddingEnd="@dimen/material_padding_16"
         android:paddingLeft="@dimen/material_padding_16"
         android:paddingRight="@dimen/material_padding_16"
@@ -30,8 +32,8 @@
         android:textColor="@color/RealWhite"
         app:autoSizeTextType="uniform"
         app:fontFamily="@font/playfair_display"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/quotesBackground"
+        app:layout_constraintStart_toStartOf="@+id/quotesBackground"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="Quotes Content" />
 
@@ -39,6 +41,7 @@
         android:id="@+id/quotes_olive"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
         android:adjustViewBounds="true"
         android:paddingTop="@dimen/material_padding_8"
         app:layout_constraintDimensionRatio="w,1.5:1"
