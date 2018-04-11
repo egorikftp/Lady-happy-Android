@@ -9,11 +9,13 @@ import com.egoriku.ladyhappy.R
 import com.egoriku.ladyhappy.common.cast
 import com.egoriku.ladyhappy.common.parallax.ParallaxScrollListener
 import com.egoriku.ladyhappy.data.entities.main.OurTeamEntity
+import com.egoriku.ladyhappy.data.entities.main.SocialModel
 import com.egoriku.ladyhappy.data.entities.main.TeamMember
 import com.egoriku.ladyhappy.presentation.activity.main.MainActivity
 import com.egoriku.ladyhappy.presentation.base.BaseInjectableFragment
 import com.egoriku.ladyhappy.presentation.fragment.main.conroller.*
 import kotlinx.android.synthetic.main.fragment_main_page.*
+import org.jetbrains.anko.support.v4.browse
 import ru.surfstudio.easyadapter.recycler.EasyAdapter
 import ru.surfstudio.easyadapter.recycler.ItemList
 import javax.inject.Inject
@@ -61,7 +63,9 @@ class MainPageFragment : BaseInjectableFragment<MainPageContract.View, MainPageC
         aboutController = AboutController()
         sectionsHeaderController = SectionsHeaderController()
         quotasController = QuotesController(parallaxScrollListener)
-        ourTeamController = OurTeamController()
+        ourTeamController = OurTeamController(onSocialItemClick = {
+            browse(it)
+        })
 
         showInformation()
     }
@@ -84,11 +88,23 @@ class MainPageFragment : BaseInjectableFragment<MainPageContract.View, MainPageC
         val ourTeamEntity = OurTeamEntity(listOf(
                 TeamMember("https://lady-happy.com/assets/images/team-1.jpg",
                         "Ольга Урбанович",
-                        "Мастер"),
+                        "Мастер",
+                        listOf(
+                                SocialModel("https://vk.com/urbanovich.olga", R.drawable.ic_vk),
+                                SocialModel("https://ok.ru/urbanovich.olga", R.drawable.ic_odnoklassniki),
+                                SocialModel("https://www.instagram.com/urbanovich.olga/", R.drawable.ic_instagram),
+                                SocialModel("https://t.me/urbanovich_olga/", R.drawable.ic_telegram)
+                        )),
                 TeamMember("https://lady-happy.com/assets/images/team-2.jpg",
                         "Егор Урбанович",
-                        "Разработчик / UX дизайнейр / Фотограф")
-        ))
+                        "Разработчик / UX дизайнейр / Фотограф",
+                        listOf(
+                                SocialModel("https://vk.com/egoriku", R.drawable.ic_vk),
+                                SocialModel("https://t.me/egoriku/", R.drawable.ic_telegram),
+                                SocialModel("https://www.instagram.com/egorik.u//", R.drawable.ic_instagram),
+                                SocialModel("https://github.com/egorikftp/", R.drawable.ic_github)
+                        )))
+        )
 
         mainPageAdapter.setItems(
                 ItemList.create()

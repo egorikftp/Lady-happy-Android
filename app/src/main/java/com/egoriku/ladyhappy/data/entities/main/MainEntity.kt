@@ -1,5 +1,6 @@
 package com.egoriku.ladyhappy.data.entities.main
 
+import android.support.annotation.DrawableRes
 import android.support.annotation.Keep
 import com.egoriku.corelib_kt.Constants
 import com.google.firebase.firestore.PropertyName
@@ -10,6 +11,9 @@ data class OurTeamEntity(
         @set:PropertyName("ourTeam")
         var ourTeam: List<TeamMember> = mutableListOf()
 )
+
+@Keep
+data class SocialModel(val url: String, @DrawableRes val imageResId: Int)
 
 @Keep
 data class TeamMember(
@@ -23,5 +27,9 @@ data class TeamMember(
 
         @get:PropertyName("skills")
         @set:PropertyName("skills")
-        var skills: String = Constants.EMPTY
+        var skills: String = Constants.EMPTY,
+
+        @get:PropertyName("social")
+        @set:PropertyName("social")
+        var socialModel: List<SocialModel> = emptyList()
 )

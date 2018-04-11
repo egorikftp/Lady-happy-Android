@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android" android:enterFadeDuration="@android:integer/config_mediumAnimTime" android:exitFadeDuration="@android:integer/config_mediumAnimTime">
+    <item android:color="@color/RealWhite" android:state_pressed="true" />
+    <item android:color="@color/RealBlack" />
+</selector>

@@ -10,7 +10,7 @@ import kotlinx.android.synthetic.main.adapter_item_our_team.view.*
 import ru.surfstudio.easyadapter.recycler.controller.BindableItemController
 import ru.surfstudio.easyadapter.recycler.holder.BindableViewHolder
 
-class OurTeamController : BindableItemController<OurTeamEntity, OurTeamController.Holder>() {
+class OurTeamController(val onSocialItemClick: (url: String) -> Unit) : BindableItemController<OurTeamEntity, OurTeamController.Holder>() {
 
     override fun createViewHolder(parent: ViewGroup) = Holder(parent)
 
@@ -27,10 +27,19 @@ class OurTeamController : BindableItemController<OurTeamEntity, OurTeamControlle
         private val firstPersonSkills = itemView.skills
         private val secondPersonSkills = itemView.skills2
 
+        private val firstSocialView = itemView.socialView
+        private val secondSocialView = itemView.socialView2
+
         override fun bind(data: OurTeamEntity) {
             data.ourTeam.first().also {
                 firstPersonName.text = it.name
                 firstPersonSkills.text = it.skills
+
+                firstSocialView.apply {
+                    setSocialModel(it.socialModel)
+                    setOnClickListener { showView() }
+                    setOnSocialIconClickListener { onSocialItemClick(it) }
+                }
 
                 Glide.with(itemView.context)
                         .load(it.personImageUrl)
@@ -41,6 +50,12 @@ class OurTeamController : BindableItemController<OurTeamEntity, OurTeamControlle
             data.ourTeam.second().also {
                 secondPersonName.text = it.name
                 secondPersonSkills.text = it.skills
+
+                secondSocialView.apply {
+                    setSocialModel(it.socialModel)
+                    setOnClickListener { showView() }
+                    secondSocialView.setOnSocialIconClickListener { onSocialItemClick(it) }
+                }
 
                 Glide.with(itemView.context)
                         .load(it.personImageUrl)

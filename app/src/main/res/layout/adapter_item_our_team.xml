@@ -10,20 +10,16 @@
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="350dp"
-        android:layout_height="470dp"
-        android:layout_margin="8dp">
+        android:layout_height="500dp">
 
         <TextView
             android:id="@+id/name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginBottom="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
             android:fontFamily="@font/montserrat"
             android:textColor="@color/RealBlack"
-            android:textSize="20sp"
+            android:textSize="14sp"
             app:layout_constraintBottom_toTopOf="@+id/skills"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -33,11 +29,10 @@
             android:id="@+id/skills"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
             android:fontFamily="@font/playfair_display"
+            android:paddingBottom="@dimen/material_padding_8"
             android:textColor="@color/RoseTaupe"
+            android:textSize="12sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -47,33 +42,40 @@
             android:id="@+id/personImage"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginBottom="8dp"
             android:adjustViewBounds="false"
             android:cropToPadding="false"
-            android:scaleType="fitCenter"
+            android:paddingBottom="@dimen/material_padding_8"
+            android:scaleType="centerCrop"
             app:layout_constraintBottom_toTopOf="@+id/name"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <com.egoriku.ladyhappy.common.view.SocialView
+            android:id="@+id/socialView"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="@+id/personImage"
+            app:layout_constraintEnd_toEndOf="@+id/personImage"
+            app:layout_constraintStart_toStartOf="@+id/personImage"
+            app:layout_constraintTop_toTopOf="@+id/personImage">
+
+        </com.egoriku.ladyhappy.common.view.SocialView>
+
     </android.support.constraint.ConstraintLayout>
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="350dp"
-        android:layout_height="470dp"
-        android:layout_margin="8dp">
+        android:layout_height="500dp">
 
         <TextView
             android:id="@+id/name2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginBottom="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
             android:fontFamily="@font/montserrat"
             android:textColor="@color/RealBlack"
-            android:textSize="20sp"
+            android:textSize="14sp"
             app:layout_constraintBottom_toTopOf="@+id/skills2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -83,11 +85,10 @@
             android:id="@+id/skills2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
             android:fontFamily="@font/playfair_display"
+            android:paddingBottom="@dimen/material_padding_8"
             android:textColor="@color/RoseTaupe"
+            android:textSize="12sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -97,14 +98,25 @@
             android:id="@+id/personImage2"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginBottom="8dp"
             android:adjustViewBounds="false"
             android:cropToPadding="false"
-            android:scaleType="fitCenter"
+            android:paddingBottom="@dimen/material_padding_8"
+            android:scaleType="centerCrop"
             app:layout_constraintBottom_toTopOf="@+id/name2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <com.egoriku.ladyhappy.common.view.SocialView
+            android:id="@+id/socialView2"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="@+id/personImage2"
+            app:layout_constraintEnd_toEndOf="@+id/personImage2"
+            app:layout_constraintStart_toStartOf="@+id/personImage2"
+            app:layout_constraintTop_toTopOf="@+id/personImage2">
+
+        </com.egoriku.ladyhappy.common.view.SocialView>
 
     </android.support.constraint.ConstraintLayout>
 

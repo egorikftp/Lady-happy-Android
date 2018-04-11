@@ -12,6 +12,9 @@
             <enum name="horizontal" value="0" />
             <enum name="vertical" value="1" />
         </attr>
+    </declare-styleable>
 
+    <declare-styleable name="SocialView">
+        <attr name="itemPadding" format="dimension" />
     </declare-styleable>
 </resources>
