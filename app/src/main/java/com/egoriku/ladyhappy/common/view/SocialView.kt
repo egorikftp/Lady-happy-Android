@@ -11,6 +11,7 @@ import android.graphics.drawable.ColorDrawable
 import android.support.v4.content.ContextCompat
 import android.support.v7.widget.AppCompatImageButton
 import android.util.AttributeSet
+import android.util.Log
 import android.view.Gravity
 import android.view.View
 import android.view.ViewGroup
@@ -24,7 +25,6 @@ import com.egoriku.ladyhappy.data.entities.main.SocialModel
 
 class SocialView : LinearLayout, View.OnClickListener {
 
-
     enum class AnimationState {
         NEED_SHOW, NEED_HIDE
     }
@@ -36,10 +36,10 @@ class SocialView : LinearLayout, View.OnClickListener {
 
     private companion object DefaultValues {
         const val DEFAULT_MAX_PADDING = 30
+        const val DEFAULT_ITEM_SIDE_SIZE = 120
         const val ANIMATION_DURATION = 500L
         const val ANIMATION_SHOW_OFFSET = 100L
         const val ANIMATION_HIDE_OFFSET = 50L
-        const val MAX_ITEM_WIDTH = 220
 
         const val VIEW_DEFAULT_POSITION = 0f
         const val VIEW_OFFSET_POSITION = -300f
@@ -53,6 +53,7 @@ class SocialView : LinearLayout, View.OnClickListener {
     private lateinit var animatorSet: AnimatorSet
 
     private var itemPadding = 0
+    private var itemSideSize = 0
 
     private lateinit var onClickListener: (url: String) -> Unit
 
@@ -69,7 +70,10 @@ class SocialView : LinearLayout, View.OnClickListener {
         val typedArray = context.obtainStyledAttributes(attrs, R.styleable.SocialView)
 
         try {
-            itemPadding = typedArray.getDimensionPixelSize(R.styleable.SocialView_itemPadding, DEFAULT_MAX_PADDING)
+            typedArray.apply {
+                itemPadding = getDimensionPixelSize(R.styleable.SocialView_itemPadding, DEFAULT_MAX_PADDING)
+                itemSideSize = getDimensionPixelSize(R.styleable.SocialView_itemSideSize, DEFAULT_ITEM_SIDE_SIZE)
+            }
         } finally {
             typedArray.recycle()
         }
@@ -90,20 +94,21 @@ class SocialView : LinearLayout, View.OnClickListener {
             return
         }
 
-        var itemWidth = (right - left) / childCount - itemPadding * 2
+        val calcItemSideSize = (right - left) / childCount - itemPadding * 2
+        Log.d("egorik", "itemSide = $itemSideSize, calc = $calcItemSideSize")
 
-        if (itemWidth > MAX_ITEM_WIDTH) itemWidth = MAX_ITEM_WIDTH
+        if (calcItemSideSize < itemSideSize) itemSideSize = calcItemSideSize
 
-        if (firstChild().layoutParams.width != itemWidth) {
-            applyItemWidth(itemWidth)
+        if (firstChild().layoutParams.width != itemSideSize) {
+            applyItemWidth()
         }
     }
 
-    private fun applyItemWidth(itemWidth: Int) {
+    private fun applyItemWidth() {
         for (i in 0 until childCount) {
             (getChildAt(i).layoutParams as LinearLayout.LayoutParams).apply {
-                width = itemWidth
-                height = itemWidth
+                width = itemSideSize
+                height = itemSideSize
                 leftMargin = itemPadding
                 rightMargin = itemPadding
             }

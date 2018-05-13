@@ -2,7 +2,6 @@ package com.egoriku.ladyhappy.presentation.fragment.main.conroller
 
 import android.view.ViewGroup
 import com.bumptech.glide.Glide
-import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.egoriku.ladyhappy.R
 import com.egoriku.ladyhappy.common.second
 import com.egoriku.ladyhappy.data.entities.main.OurTeamEntity
@@ -27,39 +26,33 @@ class OurTeamController(val onSocialItemClick: (url: String) -> Unit) : Bindable
         private val firstPersonSkills = itemView.skills
         private val secondPersonSkills = itemView.skills2
 
-        private val firstSocialView = itemView.socialView
-        private val secondSocialView = itemView.socialView2
+        private val firstSocialView = itemView.socialView.apply {
+            setOnClickListener { showView() }
+            setOnSocialIconClickListener { onSocialItemClick(it) }
+        }
+        private val secondSocialView = itemView.socialView2.apply {
+            setOnClickListener { showView() }
+            setOnSocialIconClickListener { onSocialItemClick(it) }
+        }
 
         override fun bind(data: OurTeamEntity) {
             data.ourTeam.first().also {
                 firstPersonName.text = it.name
                 firstPersonSkills.text = it.skills
-
-                firstSocialView.apply {
-                    setSocialModel(it.socialModel)
-                    setOnClickListener { showView() }
-                    setOnSocialIconClickListener { onSocialItemClick(it) }
-                }
+                firstSocialView.setSocialModel(it.socialModel)
 
                 Glide.with(itemView.context)
                         .load(it.personImageUrl)
-                        .transition(DrawableTransitionOptions.withCrossFade())
                         .into(firstPersonImage)
             }
 
             data.ourTeam.second().also {
                 secondPersonName.text = it.name
                 secondPersonSkills.text = it.skills
-
-                secondSocialView.apply {
-                    setSocialModel(it.socialModel)
-                    setOnClickListener { showView() }
-                    secondSocialView.setOnSocialIconClickListener { onSocialItemClick(it) }
-                }
+                secondSocialView.setSocialModel(it.socialModel)
 
                 Glide.with(itemView.context)
                         .load(it.personImageUrl)
-                        .transition(DrawableTransitionOptions.withCrossFade())
                         .into(secondPersonImage)
             }
         }

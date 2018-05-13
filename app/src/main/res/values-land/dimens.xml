@@ -1,3 +1,4 @@
 <resources>
     <dimen name="adapter_item_news_image_height">350dp</dimen>
+    <dimen name="social_view_item_side_size">50dp</dimen>
 </resources>

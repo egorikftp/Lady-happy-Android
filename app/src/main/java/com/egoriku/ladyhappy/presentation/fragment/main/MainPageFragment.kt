@@ -53,6 +53,7 @@ class MainPageFragment : BaseInjectableFragment<MainPageContract.View, MainPageC
         mainPageRecyclerView.apply {
             layoutManager = LinearLayoutManager(context)
             adapter = mainPageAdapter
+            setHasFixedSize(true)
         }
 
         parallaxScrollListener = ParallaxScrollListener().apply {
@@ -102,6 +103,7 @@ class MainPageFragment : BaseInjectableFragment<MainPageContract.View, MainPageC
                                 SocialModel("https://vk.com/egoriku", R.drawable.ic_vk),
                                 SocialModel("https://t.me/egoriku/", R.drawable.ic_telegram),
                                 SocialModel("https://www.instagram.com/egorik.u//", R.drawable.ic_instagram),
+                                SocialModel("https://github.com/egorikftp/", R.drawable.ic_github),
                                 SocialModel("https://github.com/egorikftp/", R.drawable.ic_github)
                         )))
         )

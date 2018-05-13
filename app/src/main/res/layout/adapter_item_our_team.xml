@@ -10,7 +10,9 @@
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="350dp"
-        android:layout_height="500dp">
+        android:layout_height="500dp"
+        android:layout_marginEnd="@dimen/material_padding_16"
+        tools:background="@color/RoseTaupe">
 
         <TextView
             android:id="@+id/name"
@@ -55,6 +57,7 @@
             android:id="@+id/socialView"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            app:itemSideSize="@dimen/social_view_item_side_size"
             app:layout_constraintBottom_toBottomOf="@+id/personImage"
             app:layout_constraintEnd_toEndOf="@+id/personImage"
             app:layout_constraintStart_toStartOf="@+id/personImage"
@@ -66,7 +69,8 @@
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="350dp"
-        android:layout_height="500dp">
+        android:layout_height="500dp"
+        tools:background="@color/Terracota">
 
         <TextView
             android:id="@+id/name2"
@@ -111,13 +115,10 @@
             android:id="@+id/socialView2"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            app:itemSideSize="@dimen/social_view_item_side_size"
             app:layout_constraintBottom_toBottomOf="@+id/personImage2"
             app:layout_constraintEnd_toEndOf="@+id/personImage2"
             app:layout_constraintStart_toStartOf="@+id/personImage2"
-            app:layout_constraintTop_toTopOf="@+id/personImage2">
-
-        </com.egoriku.ladyhappy.common.view.SocialView>
-
+            app:layout_constraintTop_toTopOf="@+id/personImage2" />
     </android.support.constraint.ConstraintLayout>
-
 </com.google.android.flexbox.FlexboxLayout>
