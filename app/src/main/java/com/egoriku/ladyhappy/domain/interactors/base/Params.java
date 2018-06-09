@@ -14,7 +14,8 @@ public class Params {
 
     private final Map<String, Object> parameters = new HashMap<>();
 
-    private Params() {}
+    private Params() {
+    }
 
     public static Params create() {
         return new Params();

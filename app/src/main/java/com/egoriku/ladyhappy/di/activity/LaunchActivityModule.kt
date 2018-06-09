@@ -11,5 +11,5 @@ import ru.terrakok.cicerone.Router
 class LaunchActivityModule {
 
     @Provides
-    fun provideLaunchPresenter(router: Router, analyticsInterface: AnalyticsInterface):LaunchContract.Presenter = LaunchPresenter(router, analyticsInterface)
+    fun provideLaunchPresenter(router: Router, analyticsInterface: AnalyticsInterface): LaunchContract.Presenter = LaunchPresenter(router, analyticsInterface)
 }

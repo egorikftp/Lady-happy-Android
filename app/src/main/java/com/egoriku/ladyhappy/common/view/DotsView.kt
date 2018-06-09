@@ -6,9 +6,9 @@ import android.graphics.Color
 import android.graphics.Paint
 import android.support.annotation.ColorInt
 import android.util.AttributeSet
+import android.util.TypedValue
 import android.view.View
 import com.egoriku.ladyhappy.R
-import android.util.TypedValue
 
 class DotsView : View {
 

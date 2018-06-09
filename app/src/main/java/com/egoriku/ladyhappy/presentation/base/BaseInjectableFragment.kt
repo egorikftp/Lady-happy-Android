@@ -11,7 +11,7 @@ import com.egoriku.corelib_kt.arch.BaseFragment
 import com.egoriku.corelib_kt.dsl.inflate
 import dagger.android.support.AndroidSupportInjection
 
-abstract class BaseInjectableFragment<V : BaseContract.View, P : BaseContract.Presenter<V>> : BaseFragment<V, P>(){
+abstract class BaseInjectableFragment<V : BaseContract.View, P : BaseContract.Presenter<V>> : BaseFragment<V, P>() {
 
     override fun onAttach(context: Context?) {
         AndroidSupportInjection.inject(this)

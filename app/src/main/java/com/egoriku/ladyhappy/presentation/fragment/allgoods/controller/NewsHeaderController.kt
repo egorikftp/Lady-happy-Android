@@ -9,5 +9,5 @@ class NewsHeaderController : NoDataItemController<NewsHeaderController.Holder>()
 
     override fun createViewHolder(parent: ViewGroup) = Holder(parent)
 
-    inner class Holder(parent: ViewGroup): BaseViewHolder(parent, R.layout.adapter_item_news_header)
+    inner class Holder(parent: ViewGroup) : BaseViewHolder(parent, R.layout.adapter_item_news_header)
 }

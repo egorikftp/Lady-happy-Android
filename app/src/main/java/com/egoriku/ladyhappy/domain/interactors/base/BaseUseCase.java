@@ -21,7 +21,7 @@ public abstract class BaseUseCase {
      * Executes the current UseCase.
      *
      * @param observer {@link DisposableObserver} which will be listening to the observable build
-     * with {@link #getObservable(Params)}.
+     *                 with {@link #getObservable(Params)}.
      */
     @SuppressWarnings("unchecked")
     public void execute(DisposableObserver observer, Params params) {

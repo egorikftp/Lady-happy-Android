@@ -1,4 +1,5 @@
 @file:JvmName("StubExt")
+
 package com.egoriku.ladyhappy.presentation.adapter.dsl
 
 import android.view.View

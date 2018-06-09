@@ -6,9 +6,9 @@ import android.content.Context
 import android.support.multidex.MultiDex
 import com.egoriku.ladyhappy.di.app.DaggerAppComponent
 import dagger.android.AndroidInjector
+import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasActivityInjector
 import javax.inject.Inject
-import dagger.android.DispatchingAndroidInjector
 
 open class App : Application(), HasActivityInjector {
 

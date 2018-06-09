@@ -16,7 +16,7 @@ class OrderFragment : BaseInjectableFragment<OrderContract.View, OrderContract.P
     @Inject
     lateinit var orderPresenter: OrderContract.Presenter
 
-    override fun initPresenter()  = orderPresenter
+    override fun initPresenter() = orderPresenter
 
     override fun provideLayout(): Int = R.layout.fragment_order
 

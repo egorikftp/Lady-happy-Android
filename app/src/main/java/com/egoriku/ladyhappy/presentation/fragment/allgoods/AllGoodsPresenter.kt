@@ -1,9 +1,9 @@
 package com.egoriku.ladyhappy.presentation.fragment.allgoods
 
 import com.egoriku.corelib_kt.arch.BasePresenter
-import com.egoriku.ladyhappy.domain.interactors.base.Params
 import com.egoriku.ladyhappy.domain.interactors.allgoods.CategoriesUseCase
 import com.egoriku.ladyhappy.domain.interactors.allgoods.NewsUseCase
+import com.egoriku.ladyhappy.domain.interactors.base.Params
 import com.egoriku.ladyhappy.domain.models.CategoriesModel
 import com.egoriku.ladyhappy.domain.models.NewsModel
 import com.egoriku.ladyhappy.external.AnalyticsInterface

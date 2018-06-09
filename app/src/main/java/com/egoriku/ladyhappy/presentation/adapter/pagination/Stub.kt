@@ -1,4 +1,4 @@
-package com.egoriku.ladyhappy.presentation.fragment.allgoods.recycler.controller.stub
+package com.egoriku.ladyhappy.presentation.adapter.pagination
 
 import java.util.*
 
@@ -8,7 +8,7 @@ data class Stub(val id: Long = rnd.nextLong()) {
     }
 }
 
-fun generateStubs(count: Int): List<Stub>{
+fun generateStubs(count: Int): List<Stub> {
     return (0 until count)
             .map { Stub() }
             .toList()

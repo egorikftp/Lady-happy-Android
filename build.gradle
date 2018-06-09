@@ -21,7 +21,6 @@ allprojects {
         google()
         jcenter()
         maven { url 'https://jitpack.io' }
-        maven { url 'http://artifactory.surfstudio.ru/artifactory/libs-release-local' }
     }
 }
 
