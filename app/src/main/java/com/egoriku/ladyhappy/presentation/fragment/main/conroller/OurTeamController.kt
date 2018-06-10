@@ -1,9 +1,12 @@
 package com.egoriku.ladyhappy.presentation.fragment.main.conroller
 
+import android.view.View
 import android.view.ViewGroup
 import com.bumptech.glide.Glide
 import com.egoriku.ladyhappy.R
 import com.egoriku.ladyhappy.data.entities.main.TeamMember
+import kotlinx.android.extensions.LayoutContainer
+import kotlinx.android.synthetic.main.adapter_item_our_team.*
 import kotlinx.android.synthetic.main.adapter_item_our_team.view.*
 import ru.surfstudio.easyadapter.recycler.controller.BindableItemController
 import ru.surfstudio.easyadapter.recycler.holder.BindableViewHolder
@@ -14,29 +17,23 @@ class OurTeamController(val onSocialItemClick: (url: String) -> Unit) : Bindable
 
     override fun getItemId(data: TeamMember) = data.hashCode().toLong()
 
-    inner class Holder(parent: ViewGroup) : BindableViewHolder<TeamMember>(parent, R.layout.adapter_item_our_team) {
-
-        private val firstPersonImage = itemView.personImage
-
-        private val firstPersonName = itemView.name
-
-        private val firstPersonSkills = itemView.skills
+    inner class Holder(parent: ViewGroup) : BindableViewHolder<TeamMember>(parent, R.layout.adapter_item_our_team), LayoutContainer {
+        override val containerView: View
+            get() = itemView
 
         private val firstSocialView = itemView.socialView.apply {
             setOnClickListener { showView() }
             setOnSocialIconClickListener { onSocialItemClick(it) }
         }
 
-        override fun bind(data: TeamMember) {
-            with(data) {
-                firstPersonName.text = name
-                firstPersonSkills.text = skills
-                firstSocialView.setSocialModel(socialModel)
+        override fun bind(model: TeamMember) {
+            ourTeamName.text = model.name
+            ourTeamBio.text = model.skills
+            firstSocialView.setSocialModel(model.socialModel)
 
-                Glide.with(itemView.context)
-                        .load(personImageUrl)
-                        .into(firstPersonImage)
-            }
+            Glide.with(itemView.context)
+                    .load(model.personImageUrl)
+                    .into(ourTeamPersonImage)
         }
     }
 }
