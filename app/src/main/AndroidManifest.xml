@@ -14,11 +14,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".presentation.activity.main.MainActivity"
-            android:theme="@style/AppTheme" />
-        <activity android:name=".presentation.activity.newpost.DetailCategoryActivity" />
-
-        <activity
             android:name=".presentation.activity.launch.LaunchActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen">
             <intent-filter>
@@ -27,6 +22,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".presentation.activity.main.MainActivity"
+            android:theme="@style/AppTheme" />
+
+        <activity android:name=".presentation.activity.newpost.DetailCategoryActivity" />
 
         <meta-data
             android:name="net.hockeyapp.android.appIdentifier"

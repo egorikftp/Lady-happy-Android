@@ -1,6 +1,5 @@
 package com.egoriku.ladyhappy.di.app
 
-import com.egoriku.ladyhappy.di.activity.LaunchActivityModule
 import com.egoriku.ladyhappy.di.activity.MainActivityModule
 import com.egoriku.ladyhappy.di.allgoods.AllGoodsFragmentProvider
 import com.egoriku.ladyhappy.di.mainpage.MainPageProvider
@@ -13,9 +12,6 @@ import dagger.android.ContributesAndroidInjector
 @Module
 abstract class ActivityBuilder {
 
-    @ContributesAndroidInjector(modules = [LaunchActivityModule::class])
-    abstract fun bindLaunchActivity(): LaunchActivity
-
     @ContributesAndroidInjector(modules = [
         MainActivityModule::class,
         AllGoodsFragmentProvider::class,
@@ -23,5 +19,4 @@ abstract class ActivityBuilder {
         MainPageProvider::class
     ])
     abstract fun bindMainActivity(): MainActivity
-
 }
