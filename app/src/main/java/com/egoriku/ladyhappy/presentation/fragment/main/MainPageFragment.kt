@@ -57,7 +57,7 @@ class MainPageFragment : BaseInjectableFragment<MainPageContract.View, MainPageC
         }
 
         parallaxScrollListener = ParallaxScrollListener().apply {
-            initWith(mainPageRecyclerView)
+            initWith(mainPageRecyclerView, lifecycle)
         }
 
         headerController = HeaderController()
@@ -115,12 +115,7 @@ class MainPageFragment : BaseInjectableFragment<MainPageContract.View, MainPageC
                         .addIf(true, getString(R.string.header_quotes), sectionsHeaderController)
                         .add(quotes, quotasController)
                         .addIf(ourTeamEntity.ourTeam.isNotEmpty(), getString(R.string.header_our_team), sectionsHeaderController)
-                        .add(ourTeamEntity, ourTeamController)
+                        .addAll(ourTeamEntity.ourTeam, ourTeamController)
         )
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        parallaxScrollListener.detach()
     }
 }

@@ -23,6 +23,7 @@ class AppModule {
     fun provideFirebaseFirestore() = FirebaseFirestore.getInstance().apply {
         firestoreSettings = FirebaseFirestoreSettings.Builder()
                 .setPersistenceEnabled(true)
+                .setTimestampsInSnapshotsEnabled(true)
                 .build()
     }
 

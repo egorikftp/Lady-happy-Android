@@ -41,7 +41,6 @@
         android:id="@+id/quotes_olive"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
         android:adjustViewBounds="true"
         android:paddingTop="@dimen/material_padding_8"
         app:layout_constraintDimensionRatio="w,1.5:1"

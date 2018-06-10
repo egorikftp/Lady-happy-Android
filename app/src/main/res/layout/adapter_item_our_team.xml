@@ -1,124 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.google.android.flexbox.FlexboxLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    app:flexDirection="row"
-    app:flexWrap="wrap"
-    app:justifyContent="center">
+    android:gravity="center"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/material_padding_16">
 
-    <android.support.constraint.ConstraintLayout
+    <FrameLayout
         android:layout_width="350dp"
-        android:layout_height="500dp"
-        android:layout_marginEnd="@dimen/material_padding_16"
-        tools:background="@color/RoseTaupe">
-
-        <TextView
-            android:id="@+id/name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:fontFamily="@font/montserrat"
-            android:textColor="@color/RealBlack"
-            android:textSize="14sp"
-            app:layout_constraintBottom_toTopOf="@+id/skills"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            tools:text="name" />
-
-        <TextView
-            android:id="@+id/skills"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/playfair_display"
-            android:paddingBottom="@dimen/material_padding_8"
-            android:textColor="@color/RoseTaupe"
-            android:textSize="12sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            tools:text="bio" />
+        android:layout_height="500dp">
 
         <ImageView
             android:id="@+id/personImage"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:adjustViewBounds="false"
-            android:cropToPadding="false"
-            android:paddingBottom="@dimen/material_padding_8"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:scaleType="centerCrop"
-            app:layout_constraintBottom_toTopOf="@+id/name"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            tools:ignore="ContentDescription"
+            tools:src="@tools:sample/backgrounds/scenic" />
 
         <com.egoriku.ladyhappy.common.view.SocialView
             android:id="@+id/socialView"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            app:itemSideSize="@dimen/social_view_item_side_size"
-            app:layout_constraintBottom_toBottomOf="@+id/personImage"
-            app:layout_constraintEnd_toEndOf="@+id/personImage"
-            app:layout_constraintStart_toStartOf="@+id/personImage"
-            app:layout_constraintTop_toTopOf="@+id/personImage">
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:itemSideSize="@dimen/social_view_item_side_size" />
+    </FrameLayout>
 
-        </com.egoriku.ladyhappy.common.view.SocialView>
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/montserrat"
+        android:textColor="@color/RealBlack"
+        android:textSize="14sp"
+        tools:text="@tools:sample/full_names" />
 
-    </android.support.constraint.ConstraintLayout>
+    <TextView
+        android:id="@+id/skills"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/playfair_display"
+        android:paddingBottom="@dimen/material_padding_8"
+        android:textColor="@color/RoseTaupe"
+        android:textSize="12sp"
+        tools:text="@tools:sample/lorem" />
+</LinearLayout>
 
-    <android.support.constraint.ConstraintLayout
-        android:layout_width="350dp"
-        android:layout_height="500dp"
-        tools:background="@color/Terracota">
-
-        <TextView
-            android:id="@+id/name2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:fontFamily="@font/montserrat"
-            android:textColor="@color/RealBlack"
-            android:textSize="14sp"
-            app:layout_constraintBottom_toTopOf="@+id/skills2"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            tools:text="name" />
-
-        <TextView
-            android:id="@+id/skills2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/playfair_display"
-            android:paddingBottom="@dimen/material_padding_8"
-            android:textColor="@color/RoseTaupe"
-            android:textSize="12sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            tools:text="bio" />
-
-        <ImageView
-            android:id="@+id/personImage2"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:adjustViewBounds="false"
-            android:cropToPadding="false"
-            android:paddingBottom="@dimen/material_padding_8"
-            android:scaleType="centerCrop"
-            app:layout_constraintBottom_toTopOf="@+id/name2"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <com.egoriku.ladyhappy.common.view.SocialView
-            android:id="@+id/socialView2"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            app:itemSideSize="@dimen/social_view_item_side_size"
-            app:layout_constraintBottom_toBottomOf="@+id/personImage2"
-            app:layout_constraintEnd_toEndOf="@+id/personImage2"
-            app:layout_constraintStart_toStartOf="@+id/personImage2"
-            app:layout_constraintTop_toTopOf="@+id/personImage2" />
-    </android.support.constraint.ConstraintLayout>
-</com.google.android.flexbox.FlexboxLayout>
