@@ -8,6 +8,6 @@ import dagger.android.ContributesAndroidInjector
 abstract class AllGoodsFragmentProvider {
 
     @ContributesAndroidInjector(modules = [AllGoodsModule::class])
-    abstract fun provideAllGoogsFragment(): AllGoodsFragment
+    abstract fun provideAllGoodsFragment(): AllGoodsFragment
 
 }

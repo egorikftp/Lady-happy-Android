@@ -143,10 +143,10 @@ class GravityDelegate(private val gravity: Int,
             // We should return the child if it's visible width
             // is greater than 0.5 of it's total width.
             // In a RTL configuration, we need to check the start point and in LTR the end point
-            if (isRtlHorizontal) {
-                visibleWidth = (helper.totalSpace - helper.getDecoratedStart(child)).toFloat() / helper.getDecoratedMeasurement(child)
+            visibleWidth = if (isRtlHorizontal) {
+                (helper.totalSpace - helper.getDecoratedStart(child)).toFloat() / helper.getDecoratedMeasurement(child)
             } else {
-                visibleWidth = helper.getDecoratedEnd(child).toFloat() / helper.getDecoratedMeasurement(child)
+                helper.getDecoratedEnd(child).toFloat() / helper.getDecoratedMeasurement(child)
             }
 
             // If we're at the end of the list, we shouldn't snap
@@ -201,20 +201,20 @@ class GravityDelegate(private val gravity: Int,
 
             val visibleWidth: Float
 
-            if (isRtlHorizontal) {
-                visibleWidth = helper.getDecoratedEnd(child).toFloat() / helper.getDecoratedMeasurement(child)
+            visibleWidth = if (isRtlHorizontal) {
+                helper.getDecoratedEnd(child).toFloat() / helper.getDecoratedMeasurement(child)
             } else {
-                visibleWidth = (helper.totalSpace - helper.getDecoratedStart(child)).toFloat() / helper.getDecoratedMeasurement(child)
+                (helper.totalSpace - helper.getDecoratedStart(child)).toFloat() / helper.getDecoratedMeasurement(child)
             }
 
             // If we're at the start of the list, we shouldn't snap
             // to avoid having the first item not completely visible.
             val startOfList: Boolean
-            if (!reverseLayout) {
-                startOfList = layoutManager
+            startOfList = if (!reverseLayout) {
+                layoutManager
                         .findFirstCompletelyVisibleItemPosition() == 0
             } else {
-                startOfList = layoutManager
+                layoutManager
                         .findLastCompletelyVisibleItemPosition() == layoutManager.getItemCount() - 1
             }
 
