@@ -1,1 +1,4 @@
 include ':app', ':EasyAdapter'
+
+include':core'
+project(':core').projectDir = new File(rootDir, 'sources/base/core')
