@@ -3,8 +3,8 @@ package com.egoriku.ladyhappy.presentation.fragment.main.conroller
 import android.view.ViewGroup
 import com.egoriku.ladyhappy.R
 import kotlinx.android.synthetic.main.adapter_item_section_header.view.*
-import ru.surfstudio.easyadapter.recycler.controller.BindableItemController
-import ru.surfstudio.easyadapter.recycler.holder.BindableViewHolder
+import ru.surfstudio.android.easyadapter.controller.BindableItemController
+import ru.surfstudio.android.easyadapter.holder.BindableViewHolder
 
 class SectionsHeaderController : BindableItemController<String, SectionsHeaderController.Holder>() {
 

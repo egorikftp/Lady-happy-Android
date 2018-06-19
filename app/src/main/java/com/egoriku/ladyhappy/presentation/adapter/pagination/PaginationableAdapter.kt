@@ -11,8 +11,8 @@ import com.egoriku.corelib_kt.dsl.hide
 import com.egoriku.corelib_kt.dsl.show
 import com.egoriku.ladyhappy.R
 import kotlinx.android.synthetic.main.adapter_item_pagination_footer.view.*
-import ru.surfstudio.easyadapter.recycler.pagination.BasePaginationableAdapter
-import ru.surfstudio.easyadapter.recycler.pagination.PaginationState
+import ru.surfstudio.android.easyadapter.pagination.BasePaginationableAdapter
+import ru.surfstudio.android.easyadapter.pagination.PaginationState
 
 class PaginationableAdapter<H : RecyclerView.ViewHolder> : BasePaginationableAdapter() {
 

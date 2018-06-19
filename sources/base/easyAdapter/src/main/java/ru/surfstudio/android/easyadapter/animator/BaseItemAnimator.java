@@ -13,12 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package ru.surfstudio.easyadapter.recycler.animator;
+package ru.surfstudio.android.easyadapter.animator;
 
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.RecyclerView;
 
-import ru.surfstudio.easyadapter.recycler.holder.BaseViewHolder;
+import ru.surfstudio.android.easyadapter.holder.BaseViewHolder;
+
 
 /**
  * ItemAnimator with support custom animations for View Holders, see {@link BaseViewHolder}

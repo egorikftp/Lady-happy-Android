@@ -21,8 +21,8 @@ import com.egoriku.ladyhappy.presentation.fragment.allgoods.controller.NewsContr
 import com.egoriku.ladyhappy.presentation.fragment.allgoods.controller.NewsHeaderController
 import kotlinx.android.synthetic.main.fragment_all_goods.*
 import org.jetbrains.anko.support.v4.intentFor
-import ru.surfstudio.easyadapter.recycler.EasyAdapter
-import ru.surfstudio.easyadapter.recycler.ItemList
+import ru.surfstudio.android.easyadapter.EasyAdapter
+import ru.surfstudio.android.easyadapter.ItemList
 import javax.inject.Inject
 
 

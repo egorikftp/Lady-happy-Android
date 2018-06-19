@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package ru.surfstudio.easyadapter.recycler;
+package ru.surfstudio.android.easyadapter;
 
 
 import android.support.v7.widget.RecyclerView;
@@ -21,14 +21,15 @@ import android.support.v7.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import ru.surfstudio.easyadapter.recycler.controller.BindableItemController;
-import ru.surfstudio.easyadapter.recycler.controller.DoubleBindableItemController;
-import ru.surfstudio.easyadapter.recycler.controller.NoDataItemController;
-import ru.surfstudio.easyadapter.recycler.holder.BindableViewHolder;
-import ru.surfstudio.easyadapter.recycler.item.BaseItem;
-import ru.surfstudio.easyadapter.recycler.item.BindableItem;
-import ru.surfstudio.easyadapter.recycler.item.DoubleBindableItem;
-import ru.surfstudio.easyadapter.recycler.item.NoDataItem;
+import ru.surfstudio.android.easyadapter.controller.BindableItemController;
+import ru.surfstudio.android.easyadapter.controller.DoubleBindableItemController;
+import ru.surfstudio.android.easyadapter.controller.NoDataItemController;
+import ru.surfstudio.android.easyadapter.holder.BindableViewHolder;
+import ru.surfstudio.android.easyadapter.item.BaseItem;
+import ru.surfstudio.android.easyadapter.item.BindableItem;
+import ru.surfstudio.android.easyadapter.item.DoubleBindableItem;
+import ru.surfstudio.android.easyadapter.item.NoDataItem;
+
 
 /**
  * List of items for RecyclerView, used with {@link EasyAdapter}

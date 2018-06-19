@@ -13,13 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package ru.surfstudio.easyadapter.recycler.holder;
+package ru.surfstudio.android.easyadapter.holder;
 
 import android.support.annotation.LayoutRes;
 import android.view.View;
 import android.view.ViewGroup;
 
-import ru.surfstudio.easyadapter.recycler.controller.DoubleBindableItemController;
+import ru.surfstudio.android.easyadapter.controller.DoubleBindableItemController;
+
 
 /**
  * ViewHolder with rendering two block of data

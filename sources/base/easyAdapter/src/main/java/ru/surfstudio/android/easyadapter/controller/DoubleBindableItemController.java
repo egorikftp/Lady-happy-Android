@@ -13,13 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package ru.surfstudio.easyadapter.recycler.controller;
+package ru.surfstudio.android.easyadapter.controller;
 
 
-import ru.surfstudio.easyadapter.recycler.EasyAdapter;
-import ru.surfstudio.easyadapter.recycler.ItemList;
-import ru.surfstudio.easyadapter.recycler.holder.DoubleBindableViewHolder;
-import ru.surfstudio.easyadapter.recycler.item.DoubleBindableItem;
+import ru.surfstudio.android.easyadapter.EasyAdapter;
+import ru.surfstudio.android.easyadapter.ItemList;
+import ru.surfstudio.android.easyadapter.holder.DoubleBindableViewHolder;
+import ru.surfstudio.android.easyadapter.item.DoubleBindableItem;
 
 /**
  * Controller for item of RecyclerView with two block of data {@link DoubleBindableItem}

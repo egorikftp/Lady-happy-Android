@@ -10,10 +10,10 @@ import com.egoriku.ladyhappy.common.scrollPercentage
 import com.egoriku.ladyhappy.common.view.DotsView
 import com.egoriku.ladyhappy.domain.models.SingleNewsModel
 import kotlinx.android.synthetic.main.adapter_item_news.view.*
-import ru.surfstudio.easyadapter.recycler.EasyAdapter
-import ru.surfstudio.easyadapter.recycler.ItemList
-import ru.surfstudio.easyadapter.recycler.controller.BindableItemController
-import ru.surfstudio.easyadapter.recycler.holder.BindableViewHolder
+import ru.surfstudio.android.easyadapter.EasyAdapter
+import ru.surfstudio.android.easyadapter.ItemList
+import ru.surfstudio.android.easyadapter.controller.BindableItemController
+import ru.surfstudio.android.easyadapter.holder.BindableViewHolder
 
 class NewsController : BindableItemController<SingleNewsModel, NewsController.Holder>() {
 

@@ -13,30 +13,31 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package ru.surfstudio.easyadapter.recycler.pagination;
+package ru.surfstudio.android.easyadapter.pagination;
 
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.ViewGroup;
 
 import java.util.Collection;
 
-import ru.surfstudio.easyadapter.recycler.EasyAdapter;
-import ru.surfstudio.easyadapter.recycler.ItemList;
-import ru.surfstudio.easyadapter.recycler.controller.BindableItemController;
-import ru.surfstudio.easyadapter.recycler.controller.NoDataItemController;
-import ru.surfstudio.easyadapter.recycler.holder.BindableViewHolder;
-import ru.surfstudio.easyadapter.recycler.item.NoDataItem;
+import ru.surfstudio.android.easyadapter.EasyAdapter;
+import ru.surfstudio.android.easyadapter.ItemList;
+import ru.surfstudio.android.easyadapter.controller.BindableItemController;
+import ru.surfstudio.android.easyadapter.controller.NoDataItemController;
+import ru.surfstudio.android.easyadapter.holder.BindableViewHolder;
+import ru.surfstudio.android.easyadapter.item.NoDataItem;
+
 
 /**
  * Adapter with pagination Footer, based on {@link EasyAdapter}
  * Adapter emit event "onShowMore" when user scroll to bottom or click on footer with state {@link PaginationState#ERROR}.
  * Adapter can emit this event if user scroll only if state is {@link PaginationState#READY}
  */
-
 public abstract class BasePaginationableAdapter extends EasyAdapter {
 
     private OnShowMoreListener onShowMoreListener;
@@ -98,20 +99,20 @@ public abstract class BasePaginationableAdapter extends EasyAdapter {
     @Override
     public void onAttachedToRecyclerView(RecyclerView recyclerView) {
         super.onAttachedToRecyclerView(recyclerView);
-        LinearLayoutManager layoutManager = (LinearLayoutManager) recyclerView.getLayoutManager();
+        RecyclerView.LayoutManager  layoutManager = recyclerView.getLayoutManager();
         initLayoutManager(layoutManager);
         initPaginationListener(recyclerView, layoutManager);
     }
 
-    private void initPaginationListener(RecyclerView recyclerView, final LinearLayoutManager layoutManager) {
+    protected void initPaginationListener(RecyclerView recyclerView, final RecyclerView.LayoutManager layoutManager) {
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
                 if (onShowMoreListener != null && !blockShowMoreEvent) {
                     int totalItemCount = layoutManager.getItemCount();
-                    int firstVisibleItem = layoutManager.findFirstVisibleItemPosition();
-                    int lastVisibleItem = layoutManager.findLastVisibleItemPosition();
+                    int firstVisibleItem = findFirstVisibleItem(layoutManager);
+                    int lastVisibleItem = findLastVisibleItem(layoutManager);
                     int numVisibleItem = lastVisibleItem - firstVisibleItem;
 
                     if (totalItemCount - lastVisibleItem < 2 * numVisibleItem) {
@@ -123,7 +124,52 @@ public abstract class BasePaginationableAdapter extends EasyAdapter {
         });
     }
 
-    private void initLayoutManager(LinearLayoutManager layoutManager) {
+    protected int findFirstVisibleItem(RecyclerView.LayoutManager  layoutManager) {
+        int pos = 0;
+
+        if (layoutManager instanceof StaggeredGridLayoutManager) {
+            StaggeredGridLayoutManager lm = (StaggeredGridLayoutManager) layoutManager;
+
+            int[] items = lm.findFirstVisibleItemPositions(new int[lm.getSpanCount()]);
+            int position = 0;
+
+            for (int i = 0; i < items.length-1; i++) {
+                position = Math.min(items[i], items[i + 1]);
+            }
+            pos = position;
+        }
+
+        if (layoutManager instanceof LinearLayoutManager) {
+            pos = ((LinearLayoutManager) layoutManager).findFirstVisibleItemPosition();
+        }
+
+        return pos;
+    }
+
+    protected int findLastVisibleItem(RecyclerView.LayoutManager  layoutManager) {
+        int pos = 0;
+
+        if (layoutManager instanceof StaggeredGridLayoutManager) {
+            StaggeredGridLayoutManager lm = (StaggeredGridLayoutManager) layoutManager;
+
+            int spanCount = lm.getSpanCount();
+            int[] items = lm.findLastVisibleItemPositions(new int[spanCount]);
+            int position = 0;
+
+            for (int i = 0; i < items.length-1; i++) {
+                position = Math.max(items[i], items[i + 1]);
+            }
+            pos = position;
+        }
+
+        if (layoutManager instanceof LinearLayoutManager) {
+            pos = ((LinearLayoutManager) layoutManager).findLastVisibleItemPosition();
+        }
+
+        return pos;
+    }
+
+    protected void initLayoutManager(RecyclerView.LayoutManager  layoutManager) {
         if (layoutManager instanceof GridLayoutManager) {
             final GridLayoutManager castedLayoutManager = (GridLayoutManager) layoutManager;
             final GridLayoutManager.SpanSizeLookup existingLookup = castedLayoutManager.getSpanSizeLookup();
@@ -157,7 +203,7 @@ public abstract class BasePaginationableAdapter extends EasyAdapter {
         }
     }
 
-    private void setState(final PaginationState state) {
+    public void setState(final PaginationState state) {
         blockShowMoreEvent = state != PaginationState.READY;
         ItemList items = getItems();
         int lastIndex = items.size() - 1;
@@ -206,11 +252,9 @@ public abstract class BasePaginationableAdapter extends EasyAdapter {
     }
 
     protected static abstract class BasePaginationFooterHolder extends BindableViewHolder<PaginationState> {
-
         public BasePaginationFooterHolder(ViewGroup parent, @LayoutRes int layoutRes) {
             super(parent, layoutRes);
         }
-
     }
 
 }

@@ -16,8 +16,8 @@ import com.egoriku.ladyhappy.presentation.base.BaseInjectableFragment
 import com.egoriku.ladyhappy.presentation.fragment.main.conroller.*
 import kotlinx.android.synthetic.main.fragment_main_page.*
 import org.jetbrains.anko.support.v4.browse
-import ru.surfstudio.easyadapter.recycler.EasyAdapter
-import ru.surfstudio.easyadapter.recycler.ItemList
+import ru.surfstudio.android.easyadapter.EasyAdapter
+import ru.surfstudio.android.easyadapter.ItemList
 import javax.inject.Inject
 
 class MainPageFragment : BaseInjectableFragment<MainPageContract.View, MainPageContract.Presenter>(), MainPageContract.View {

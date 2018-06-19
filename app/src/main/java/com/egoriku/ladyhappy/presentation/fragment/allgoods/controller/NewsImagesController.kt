@@ -6,8 +6,8 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade
 import com.egoriku.ladyhappy.R
 import kotlinx.android.synthetic.main.adapter_item_news_image.view.*
-import ru.surfstudio.easyadapter.recycler.controller.BindableItemController
-import ru.surfstudio.easyadapter.recycler.holder.BindableViewHolder
+import ru.surfstudio.android.easyadapter.controller.BindableItemController
+import ru.surfstudio.android.easyadapter.holder.BindableViewHolder
 
 class NewsImagesController : BindableItemController<String, NewsImagesController.Holder>() {
 

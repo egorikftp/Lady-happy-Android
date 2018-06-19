@@ -1,6 +1,6 @@
 package com.egoriku.ladyhappy.presentation.adapter.animator
 
-import ru.surfstudio.easyadapter.recycler.animator.BaseItemAnimator
+import ru.surfstudio.android.easyadapter.animator.BaseItemAnimator
 
 class DefaultItemAnimator : BaseItemAnimator() {
 

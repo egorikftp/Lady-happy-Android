@@ -13,28 +13,24 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package ru.surfstudio.easyadapter.recycler.item;
+package ru.surfstudio.android.easyadapter.item;
 
 
-import ru.surfstudio.easyadapter.recycler.ItemList;
-import ru.surfstudio.easyadapter.recycler.controller.BindableItemController;
-import ru.surfstudio.easyadapter.recycler.holder.BindableViewHolder;
+import android.support.v7.widget.RecyclerView;
+
+import ru.surfstudio.android.easyadapter.ItemList;
+import ru.surfstudio.android.easyadapter.controller.NoDataItemController;
+
 
 /**
- * Item for {@link ItemList} with data
+ * Item for {@link ItemList} without data
  *
- * @param <T> type of data
  * @param <H> type of ViewHolder
  */
-public final class BindableItem<T, H extends BindableViewHolder<T>> extends BaseItem<H> {
-    private T data;
+public final class NoDataItem<H extends RecyclerView.ViewHolder>
+        extends BaseItem<H> {
 
-    public BindableItem(T data, BindableItemController<T, H> itemController) {
+    public NoDataItem(NoDataItemController<H> itemController) {
         super(itemController);
-        this.data = data;
-    }
-
-    public T getData() {
-        return data;
     }
 }

@@ -6,8 +6,8 @@ import com.egoriku.ladyhappy.R
 import com.egoriku.ladyhappy.common.parallax.IParallaxScrollListener
 import com.egoriku.ladyhappy.common.parallax.ParallaxScrollListener
 import kotlinx.android.synthetic.main.adapter_item_quotes.view.*
-import ru.surfstudio.easyadapter.recycler.controller.BindableItemController
-import ru.surfstudio.easyadapter.recycler.holder.BindableViewHolder
+import ru.surfstudio.android.easyadapter.controller.BindableItemController
+import ru.surfstudio.android.easyadapter.holder.BindableViewHolder
 
 class QuotesController(val scrollListener: ParallaxScrollListener) : BindableItemController<String, QuotesController.Holder>() {
 

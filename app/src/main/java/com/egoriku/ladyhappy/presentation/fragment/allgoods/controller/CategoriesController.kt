@@ -8,8 +8,8 @@ import com.bumptech.glide.Glide
 import com.egoriku.ladyhappy.R
 import com.egoriku.ladyhappy.domain.models.SingleCategoryModel
 import kotlinx.android.synthetic.main.adapter_item_category.view.*
-import ru.surfstudio.easyadapter.recycler.controller.BindableItemController
-import ru.surfstudio.easyadapter.recycler.holder.BindableViewHolder
+import ru.surfstudio.android.easyadapter.controller.BindableItemController
+import ru.surfstudio.android.easyadapter.holder.BindableViewHolder
 
 class CategoriesController(val onClickListener: (categoriesModel: SingleCategoryModel, imageView: ImageView) -> Unit)
     : BindableItemController<SingleCategoryModel, CategoriesController.Holder>() {

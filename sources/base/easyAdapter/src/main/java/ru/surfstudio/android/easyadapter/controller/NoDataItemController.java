@@ -13,14 +13,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package ru.surfstudio.easyadapter.recycler.controller;
+package ru.surfstudio.android.easyadapter.controller;
 
 
 import android.support.v7.widget.RecyclerView;
 
-import ru.surfstudio.easyadapter.recycler.EasyAdapter;
-import ru.surfstudio.easyadapter.recycler.ItemList;
-import ru.surfstudio.easyadapter.recycler.item.NoDataItem;
+import ru.surfstudio.android.easyadapter.EasyAdapter;
+import ru.surfstudio.android.easyadapter.ItemList;
+import ru.surfstudio.android.easyadapter.item.NoDataItem;
+
 
 /**
  * Controller for item of RecyclerView without data {@link NoDataItem}

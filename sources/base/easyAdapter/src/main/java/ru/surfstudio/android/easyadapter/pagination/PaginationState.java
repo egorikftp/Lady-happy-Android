@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package ru.surfstudio.easyadapter.recycler.pagination;
+package ru.surfstudio.android.easyadapter.pagination;
 
 /**
  * states of {@link BasePaginationableAdapter}
@@ -21,7 +21,7 @@ package ru.surfstudio.easyadapter.recycler.pagination;
 public enum PaginationState {
     COMPLETE(false), // none
     READY(true),     //footer loader
-    ERROR(true);     //footer button "show more"
+    ERROR(true);     //footer button "showSimpleDialog more"
 
     /**
      * means that list has pagination footer
