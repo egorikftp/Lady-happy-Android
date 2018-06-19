@@ -1,4 +1,10 @@
-include ':app', ':EasyAdapter'
+include ':app'
 
 include':core'
 project(':core').projectDir = new File(rootDir, 'sources/base/core')
+
+include':easyAdapter'
+project(':easyAdapter').projectDir = new File(rootDir, 'sources/base/easyAdapter')
+
+include':featureActivityMain'
+project(':featureActivityMain').projectDir = new File(rootDir, 'sources/feature/featureActivityMain')
