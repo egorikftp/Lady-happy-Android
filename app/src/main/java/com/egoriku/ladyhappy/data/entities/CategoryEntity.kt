@@ -22,6 +22,3 @@ data class CategoryEntity(
         @set:PropertyName("imageUrl")
         var imageUrl: String = Constants.EMPTY
 )
-
-@Keep
-data class CategoriesDocumentEntity(var categories: MutableList<CategoryEntity> = mutableListOf())

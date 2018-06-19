@@ -19,6 +19,3 @@ data class SingleNewsEntity(
         @set:PropertyName("images")
         var images: List<String> = mutableListOf()
 )
-
-@Keep
-data class NewsEntity(var news: MutableList<SingleNewsEntity> = mutableListOf())
