@@ -8,6 +8,9 @@ import com.egoriku.ladyhappy.presentation.base.BaseInjectableFragment
 import javax.inject.Inject
 
 class OrderFragment : BaseInjectableFragment<OrderContract.View, OrderContract.Presenter>(), OrderContract.View {
+    override fun injectDependencies() {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
 
     companion object {
         fun newInstance() = OrderFragment()

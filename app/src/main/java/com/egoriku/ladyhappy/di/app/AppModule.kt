@@ -2,7 +2,7 @@ package com.egoriku.ladyhappy.di.app
 
 import android.app.Application
 import android.content.Context
-import com.egoriku.ladyhappy.di.scope.ApplicationScope
+import com.egoriku.core.di.ApplicationScope
 import com.egoriku.ladyhappy.external.AnalyticsInterface
 import com.egoriku.ladyhappy.firebase.FirebaseAnalyticsHelper
 import com.google.firebase.analytics.FirebaseAnalytics

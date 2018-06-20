@@ -6,5 +6,8 @@ project(':core').projectDir = new File(rootDir, 'sources/base/core')
 include':easyAdapter'
 project(':easyAdapter').projectDir = new File(rootDir, 'sources/base/easyAdapter')
 
+include':featureActivityLaunch'
+project(':featureActivityLaunch').projectDir = new File(rootDir, 'sources/feature/featureActivityLaunch')
+
 include':featureActivityMain'
 project(':featureActivityMain').projectDir = new File(rootDir, 'sources/feature/featureActivityMain')

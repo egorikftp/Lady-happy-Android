@@ -9,8 +9,11 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.View
 import com.egoriku.corelib_kt.dsl.hide
 import com.egoriku.corelib_kt.dsl.show
+import com.egoriku.ladyhappy.App
 import com.egoriku.ladyhappy.R
 import com.egoriku.ladyhappy.common.cast
+import com.egoriku.ladyhappy.di.allgoods.AllGoodsModule
+import com.egoriku.ladyhappy.di.allgoods.DaggerAllGoodsComponent
 import com.egoriku.ladyhappy.presentation.activity.main.MainActivity
 import com.egoriku.ladyhappy.presentation.activity.newpost.DetailCategoryActivity
 import com.egoriku.ladyhappy.presentation.adapter.animator.DefaultItemAnimator
@@ -48,6 +51,14 @@ class AllGoodsFragment : BaseInjectableFragment<AllGoodsContract.View, AllGoodsC
     override fun initPresenter() = allGoodsPresenter
 
     override fun provideLayout(): Int = R.layout.fragment_all_goods
+
+    override fun injectDependencies() {
+        DaggerAllGoodsComponent.builder()
+                .appComponent((activity?.applicationContext as App).getAppComponent())
+                .allGoodsModule(AllGoodsModule())
+                .build()
+                .inject(this)
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

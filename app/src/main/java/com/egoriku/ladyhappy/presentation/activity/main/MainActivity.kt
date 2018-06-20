@@ -13,9 +13,12 @@ import co.zsmb.materialdrawerkt.draweritems.badgeable.primaryItem
 import co.zsmb.materialdrawerkt.draweritems.badgeable.secondaryItem
 import co.zsmb.materialdrawerkt.draweritems.divider
 import com.egoriku.corelib_kt.dsl.drawableCompat
+import com.egoriku.ladyhappy.App
 import com.egoriku.ladyhappy.R
 import com.egoriku.ladyhappy.common.Fragments
 import com.egoriku.ladyhappy.common.Screens
+import com.egoriku.ladyhappy.di.activity.ActivityModule
+import com.egoriku.ladyhappy.di.activity.DaggerActivityComponent
 import com.egoriku.ladyhappy.presentation.activity.newpost.DetailCategoryActivity
 import com.egoriku.ladyhappy.presentation.base.BaseSupportInjectableActivity
 import com.egoriku.ladyhappy.presentation.fragment.allgoods.AllGoodsFragment
@@ -62,6 +65,14 @@ class MainActivity : BaseSupportInjectableActivity<MainActivityContract.View, Ma
     override fun initPresenter() = mainActivityPresenter
 
     override fun provideLayout(): Int = R.layout.activity_main
+
+    override fun injectDependencies() {
+        DaggerActivityComponent.builder()
+                .appComponent((applicationContext as App).getAppComponent())
+                .activityModule(ActivityModule())
+                .build()
+                .inject(this)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

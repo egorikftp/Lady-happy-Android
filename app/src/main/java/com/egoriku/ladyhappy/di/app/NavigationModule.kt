@@ -1,6 +1,6 @@
 package com.egoriku.ladyhappy.di.app
 
-import com.egoriku.ladyhappy.di.scope.ApplicationScope
+import com.egoriku.core.di.ApplicationScope
 import dagger.Module
 import dagger.Provides
 import ru.terrakok.cicerone.Cicerone

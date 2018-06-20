@@ -1,21 +1,15 @@
 package com.egoriku.ladyhappy
 
-import android.app.Activity
 import android.app.Application
 import android.content.Context
 import android.support.multidex.MultiDex
 import com.egoriku.core.IApp
 import com.egoriku.core.di.ApplicationProvider
-import com.egoriku.ladyhappy.di.app.DaggerAppComponent
-import dagger.android.AndroidInjector
-import dagger.android.DispatchingAndroidInjector
-import dagger.android.HasActivityInjector
-import javax.inject.Inject
+import com.egoriku.ladyhappy.di.app.AppComponent
 
-open class App : Application(), IApp, HasActivityInjector {
+open class App : Application(), IApp {
 
-    @Inject
-    lateinit var activityDispatchingAndroidInjector: DispatchingAndroidInjector<Activity>
+    private val appComponent: AppComponent by lazy { AppComponent.Initializer.init(this@App) }
 
     override fun attachBaseContext(base: Context?) {
         super.attachBaseContext(base)
@@ -24,13 +18,10 @@ open class App : Application(), IApp, HasActivityInjector {
 
     override fun onCreate() {
         super.onCreate()
-        DaggerAppComponent
-                .builder()
-                .application(this)
-                .build()
-                .inject(this)
+
+        appComponent.inject(this)
     }
 
-    override fun activityInjector(): AndroidInjector<Activity> = activityDispatchingAndroidInjector
+    override fun getAppComponent(): ApplicationProvider = appComponent
 }
 

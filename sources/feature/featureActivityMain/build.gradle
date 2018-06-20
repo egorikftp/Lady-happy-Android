@@ -1,4 +1,6 @@
 apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion 27
@@ -22,6 +24,6 @@ android {
 }
 
 dependencies {
-    implentation project(":easyAdapter")
+    implementation project(":easyAdapter")
     implementation 'com.android.support:appcompat-v7:27.1.1'
 }
