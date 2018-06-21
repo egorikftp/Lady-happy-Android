@@ -1,17 +1,19 @@
 package com.egoriku.core.di
 
-import com.egoriku.core.IApp
+import com.egoriku.core.IApplication
 import com.egoriku.core.actions.ShowMainScreenAction
 
 interface ApplicationProvider :
         MainToolsProvider,
-        ActionsProvider
+        MainScreenActionsProvider
 
 
 interface MainToolsProvider {
-    fun provideContext(): IApp
+    fun provideContext(): IApplication
+    fun provideFirebaseFirestore(): IFirebaseFirestore
+    fun provideAnalyticsHelper(): IAnalyticsHelper
 }
 
-interface ActionsProvider {
+interface MainScreenActionsProvider {
     fun provideShowMainScreenAction(): ShowMainScreenAction
 }

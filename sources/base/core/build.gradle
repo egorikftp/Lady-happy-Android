@@ -24,4 +24,6 @@ android {
 dependencies {
     implementation 'com.google.dagger:dagger:2.16'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.2.50"
+
+    implementation 'com.google.firebase:firebase-firestore:17.0.1'
 }

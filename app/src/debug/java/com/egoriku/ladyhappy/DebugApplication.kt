@@ -8,7 +8,7 @@ import timber.log.Timber
 
 
 @SuppressLint("Registered")
-open class DebugApplication : App() {
+open class DebugApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()

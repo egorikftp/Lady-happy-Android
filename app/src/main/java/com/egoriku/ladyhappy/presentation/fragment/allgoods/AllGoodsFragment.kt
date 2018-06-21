@@ -9,7 +9,7 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.View
 import com.egoriku.corelib_kt.dsl.hide
 import com.egoriku.corelib_kt.dsl.show
-import com.egoriku.ladyhappy.App
+import com.egoriku.ladyhappy.Application
 import com.egoriku.ladyhappy.R
 import com.egoriku.ladyhappy.common.cast
 import com.egoriku.ladyhappy.di.allgoods.AllGoodsModule
@@ -54,7 +54,7 @@ class AllGoodsFragment : BaseInjectableFragment<AllGoodsContract.View, AllGoodsC
 
     override fun injectDependencies() {
         DaggerAllGoodsComponent.builder()
-                .appComponent((activity?.applicationContext as App).getAppComponent())
+                .appComponent((activity?.applicationContext as Application).getAppComponent())
                 .allGoodsModule(AllGoodsModule())
                 .build()
                 .inject(this)

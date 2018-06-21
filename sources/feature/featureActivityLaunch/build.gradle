@@ -27,7 +27,7 @@ android {
 dependencies {
     implementation project(":core")
 
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:1.2.50"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.2.50"
     implementation 'com.android.support:appcompat-v7:27.1.1'
 
     kapt "com.google.dagger:dagger-compiler:2.16"

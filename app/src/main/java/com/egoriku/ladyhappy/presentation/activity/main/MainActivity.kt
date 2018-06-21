@@ -13,12 +13,10 @@ import co.zsmb.materialdrawerkt.draweritems.badgeable.primaryItem
 import co.zsmb.materialdrawerkt.draweritems.badgeable.secondaryItem
 import co.zsmb.materialdrawerkt.draweritems.divider
 import com.egoriku.corelib_kt.dsl.drawableCompat
-import com.egoriku.ladyhappy.App
+import com.egoriku.ladyhappy.Application
 import com.egoriku.ladyhappy.R
 import com.egoriku.ladyhappy.common.Fragments
 import com.egoriku.ladyhappy.common.Screens
-import com.egoriku.ladyhappy.di.activity.ActivityModule
-import com.egoriku.ladyhappy.di.activity.DaggerActivityComponent
 import com.egoriku.ladyhappy.presentation.activity.newpost.DetailCategoryActivity
 import com.egoriku.ladyhappy.presentation.base.BaseSupportInjectableActivity
 import com.egoriku.ladyhappy.presentation.fragment.allgoods.AllGoodsFragment
@@ -68,7 +66,7 @@ class MainActivity : BaseSupportInjectableActivity<MainActivityContract.View, Ma
 
     override fun injectDependencies() {
         DaggerActivityComponent.builder()
-                .appComponent((applicationContext as App).getAppComponent())
+                .appComponent((applicationContext as Application).getAppComponent())
                 .activityModule(ActivityModule())
                 .build()
                 .inject(this)

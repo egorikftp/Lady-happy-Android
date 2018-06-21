@@ -1,4 +1,4 @@
-package com.egoriku.ladyhappy.di.app
+package com.egoriku.ladyhappy.di.application.module
 
 import com.egoriku.core.di.ApplicationScope
 import dagger.Module
