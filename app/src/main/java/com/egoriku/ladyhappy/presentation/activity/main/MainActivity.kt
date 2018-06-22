@@ -14,14 +14,13 @@ import co.zsmb.materialdrawerkt.draweritems.badgeable.secondaryItem
 import co.zsmb.materialdrawerkt.draweritems.divider
 import com.egoriku.corelib_kt.dsl.drawableCompat
 import com.egoriku.ladyhappy.R
-import com.egoriku.ladyhappy.R.id.toolbarMainActivity
 import com.egoriku.ladyhappy.common.Fragments
 import com.egoriku.ladyhappy.common.Screens
 import com.egoriku.ladyhappy.presentation.activity.newpost.DetailCategoryActivity
 import com.egoriku.ladyhappy.presentation.fragment.allgoods.AllGoodsFragment
 import com.egoriku.ladyhappy.presentation.fragment.main.MainPageFragment
 import com.egoriku.ladyhappy.presentation.fragment.order.OrderFragment
-import com.egoriku.ui.BaseSupportInjectableActivity
+import com.egoriku.ui.BaseInjectableActivity
 import com.mikepenz.materialdrawer.AccountHeader
 import com.mikepenz.materialdrawer.Drawer
 import kotlinx.android.synthetic.main.activity_main.*
@@ -30,7 +29,7 @@ import ru.terrakok.cicerone.NavigatorHolder
 import ru.terrakok.cicerone.android.SupportAppNavigator
 
 @Suppress("MemberVisibilityCanPrivate")
-class MainActivity : BaseSupportInjectableActivity<MainActivityContract.View, MainActivityContract.Presenter>(), MainActivityContract.View {
+class MainActivity : BaseInjectableActivity<MainActivityContract.View, MainActivityContract.Presenter>(), MainActivityContract.View {
 
     private lateinit var navigationDrawer: Drawer
     private lateinit var headerResult: AccountHeader
