@@ -12,8 +12,8 @@ import com.egoriku.ladyhappy.data.entities.main.OurTeamEntity
 import com.egoriku.ladyhappy.data.entities.main.SocialModel
 import com.egoriku.ladyhappy.data.entities.main.TeamMember
 import com.egoriku.ladyhappy.presentation.activity.main.MainActivity
-import com.egoriku.ladyhappy.presentation.base.BaseInjectableFragment
 import com.egoriku.ladyhappy.presentation.fragment.main.conroller.*
+import com.egoriku.ui.BaseInjectableFragment
 import kotlinx.android.synthetic.main.fragment_main_page.*
 import org.jetbrains.anko.support.v4.browse
 import ru.surfstudio.android.easyadapter.EasyAdapter

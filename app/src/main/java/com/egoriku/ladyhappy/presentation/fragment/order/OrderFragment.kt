@@ -4,10 +4,11 @@ import android.os.Bundle
 import android.view.View
 import com.egoriku.ladyhappy.R
 import com.egoriku.ladyhappy.presentation.activity.main.MainActivity
-import com.egoriku.ladyhappy.presentation.base.BaseInjectableFragment
+import com.egoriku.ui.BaseInjectableFragment
 import javax.inject.Inject
 
 class OrderFragment : BaseInjectableFragment<OrderContract.View, OrderContract.Presenter>(), OrderContract.View {
+
     override fun injectDependencies() {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }

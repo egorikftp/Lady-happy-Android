@@ -4,7 +4,7 @@ import android.support.annotation.StringRes
 import com.egoriku.corelib_kt.arch.BaseContract
 import com.egoriku.ladyhappy.domain.models.CategoriesModel
 import com.egoriku.ladyhappy.domain.models.NewsModel
-import com.egoriku.ladyhappy.presentation.base.BaseView
+import com.egoriku.ui.BaseView
 
 interface AllGoodsContract {
 

@@ -1,4 +1,4 @@
-package com.egoriku.ladyhappy.presentation.base
+package com.egoriku.ui
 
 import android.content.Context
 import android.os.Bundle

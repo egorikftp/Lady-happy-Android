@@ -1,13 +1,16 @@
 include ':app'
 
-include':core'
+include ':core'
 project(':core').projectDir = new File(rootDir, 'sources/base/core')
 
-include':easyAdapter'
+include ':ui'
+project(':ui').projectDir = new File(rootDir, 'sources/base/ui')
+
+include ':easyAdapter'
 project(':easyAdapter').projectDir = new File(rootDir, 'sources/base/easyAdapter')
 
-include':featureActivityLaunch'
+include ':featureActivityLaunch'
 project(':featureActivityLaunch').projectDir = new File(rootDir, 'sources/feature/featureActivityLaunch')
 
-include':featureActivityMain'
+include ':featureActivityMain'
 project(':featureActivityMain').projectDir = new File(rootDir, 'sources/feature/featureActivityMain')

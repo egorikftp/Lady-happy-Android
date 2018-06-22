@@ -14,13 +14,14 @@ import co.zsmb.materialdrawerkt.draweritems.badgeable.secondaryItem
 import co.zsmb.materialdrawerkt.draweritems.divider
 import com.egoriku.corelib_kt.dsl.drawableCompat
 import com.egoriku.ladyhappy.R
+import com.egoriku.ladyhappy.R.id.toolbarMainActivity
 import com.egoriku.ladyhappy.common.Fragments
 import com.egoriku.ladyhappy.common.Screens
 import com.egoriku.ladyhappy.presentation.activity.newpost.DetailCategoryActivity
-import com.egoriku.ladyhappy.presentation.base.BaseSupportInjectableActivity
 import com.egoriku.ladyhappy.presentation.fragment.allgoods.AllGoodsFragment
 import com.egoriku.ladyhappy.presentation.fragment.main.MainPageFragment
 import com.egoriku.ladyhappy.presentation.fragment.order.OrderFragment
+import com.egoriku.ui.BaseSupportInjectableActivity
 import com.mikepenz.materialdrawer.AccountHeader
 import com.mikepenz.materialdrawer.Drawer
 import kotlinx.android.synthetic.main.activity_main.*
