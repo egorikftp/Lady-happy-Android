@@ -9,11 +9,8 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.View
 import com.egoriku.corelib_kt.dsl.hide
 import com.egoriku.corelib_kt.dsl.show
-import com.egoriku.ladyhappy.Application
 import com.egoriku.ladyhappy.R
 import com.egoriku.ladyhappy.common.cast
-import com.egoriku.ladyhappy.di.allgoods.AllGoodsModule
-import com.egoriku.ladyhappy.di.allgoods.DaggerAllGoodsComponent
 import com.egoriku.ladyhappy.presentation.activity.main.MainActivity
 import com.egoriku.ladyhappy.presentation.activity.newpost.DetailCategoryActivity
 import com.egoriku.ladyhappy.presentation.adapter.animator.DefaultItemAnimator
@@ -26,12 +23,11 @@ import kotlinx.android.synthetic.main.fragment_all_goods.*
 import org.jetbrains.anko.support.v4.intentFor
 import ru.surfstudio.android.easyadapter.EasyAdapter
 import ru.surfstudio.android.easyadapter.ItemList
-import javax.inject.Inject
 
 
 class AllGoodsFragment : BaseInjectableFragment<AllGoodsContract.View, AllGoodsContract.Presenter>(), AllGoodsContract.View {
 
-    @Inject
+   // @Inject
     lateinit var allGoodsPresenter: AllGoodsContract.Presenter
 
     private lateinit var categoriesController: CategoriesController
@@ -53,11 +49,11 @@ class AllGoodsFragment : BaseInjectableFragment<AllGoodsContract.View, AllGoodsC
     override fun provideLayout(): Int = R.layout.fragment_all_goods
 
     override fun injectDependencies() {
-        DaggerAllGoodsComponent.builder()
+      /*  DaggerAllGoodsComponent.builder()
                 .appComponent((activity?.applicationContext as Application).getAppComponent())
                 .allGoodsModule(AllGoodsModule())
                 .build()
-                .inject(this)
+                .inject(this)*/
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

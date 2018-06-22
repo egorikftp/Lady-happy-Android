@@ -18,11 +18,10 @@ import kotlinx.android.synthetic.main.fragment_main_page.*
 import org.jetbrains.anko.support.v4.browse
 import ru.surfstudio.android.easyadapter.EasyAdapter
 import ru.surfstudio.android.easyadapter.ItemList
-import javax.inject.Inject
 
 class MainPageFragment : BaseInjectableFragment<MainPageContract.View, MainPageContract.Presenter>(), MainPageContract.View {
 
-    @Inject
+    //  @Inject
     lateinit var mainPagePresenter: MainPageContract.Presenter
 
     private val mainPageAdapter = EasyAdapter()
@@ -41,6 +40,10 @@ class MainPageFragment : BaseInjectableFragment<MainPageContract.View, MainPageC
     override fun provideLayout(): Int = R.layout.fragment_main_page
 
     override fun initPresenter(): MainPageContract.Presenter = mainPagePresenter
+
+    override fun injectDependencies() {
+
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

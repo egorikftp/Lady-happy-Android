@@ -13,7 +13,6 @@ import co.zsmb.materialdrawerkt.draweritems.badgeable.primaryItem
 import co.zsmb.materialdrawerkt.draweritems.badgeable.secondaryItem
 import co.zsmb.materialdrawerkt.draweritems.divider
 import com.egoriku.corelib_kt.dsl.drawableCompat
-import com.egoriku.ladyhappy.Application
 import com.egoriku.ladyhappy.R
 import com.egoriku.ladyhappy.common.Fragments
 import com.egoriku.ladyhappy.common.Screens
@@ -28,7 +27,6 @@ import kotlinx.android.synthetic.main.activity_main.*
 import org.jetbrains.anko.intentFor
 import ru.terrakok.cicerone.NavigatorHolder
 import ru.terrakok.cicerone.android.SupportAppNavigator
-import javax.inject.Inject
 
 @Suppress("MemberVisibilityCanPrivate")
 class MainActivity : BaseSupportInjectableActivity<MainActivityContract.View, MainActivityContract.Presenter>(), MainActivityContract.View {
@@ -36,10 +34,10 @@ class MainActivity : BaseSupportInjectableActivity<MainActivityContract.View, Ma
     private lateinit var navigationDrawer: Drawer
     private lateinit var headerResult: AccountHeader
 
-    @Inject
+   // @Inject
     lateinit var mainActivityPresenter: MainActivityContract.Presenter
 
-    @Inject
+  //  @Inject
     lateinit var navigatorHolder: NavigatorHolder
 
     private var drawerItemTag: String = com.egoriku.corelib_kt.Constants.EMPTY
@@ -65,11 +63,11 @@ class MainActivity : BaseSupportInjectableActivity<MainActivityContract.View, Ma
     override fun provideLayout(): Int = R.layout.activity_main
 
     override fun injectDependencies() {
-        DaggerActivityComponent.builder()
+     /*   DaggerActivityComponent.builder()
                 .appComponent((applicationContext as Application).getAppComponent())
                 .activityModule(ActivityModule())
                 .build()
-                .inject(this)
+                .inject(this)*/
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
