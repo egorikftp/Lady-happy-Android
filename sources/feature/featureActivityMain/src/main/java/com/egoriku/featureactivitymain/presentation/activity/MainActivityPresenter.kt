@@ -1,20 +1,20 @@
-package com.egoriku.ladyhappy.presentation.activity.main
+package com.egoriku.featureactivitymain.presentation.activity
 
+import com.egoriku.core.common.TrackingConstants
+import com.egoriku.core.di.utils.IAnalyticsHelper
+import com.egoriku.core.di.utils.IRouter
 import com.egoriku.corelib_kt.arch.BasePresenter
-import com.egoriku.ladyhappy.common.Fragments
-import com.egoriku.ladyhappy.common.Screens
-import com.egoriku.ladyhappy.external.AnalyticsInterface
-import com.egoriku.ladyhappy.external.TrackingConstants
-import com.egoriku.ladyhappy.presentation.activity.main.MainActivityContract.View.Companion.ALL_GOODS_POSITION
-import com.egoriku.ladyhappy.presentation.activity.main.MainActivityContract.View.Companion.FEEDBACK_POSITION
-import com.egoriku.ladyhappy.presentation.activity.main.MainActivityContract.View.Companion.MAIN_PAGE_POSITION
-import com.egoriku.ladyhappy.presentation.activity.main.MainActivityContract.View.Companion.ORDER_POSITION
-import com.egoriku.ladyhappy.presentation.activity.main.MainActivityContract.View.Companion.SHARE_POSITION
-import ru.terrakok.cicerone.Router
+import com.egoriku.featureactivitymain.common.Fragments
+import com.egoriku.featureactivitymain.common.Screens
+import com.egoriku.featureactivitymain.presentation.activity.MainActivityContract.View.Companion.ALL_GOODS_POSITION
+import com.egoriku.featureactivitymain.presentation.activity.MainActivityContract.View.Companion.FEEDBACK_POSITION
+import com.egoriku.featureactivitymain.presentation.activity.MainActivityContract.View.Companion.MAIN_PAGE_POSITION
+import com.egoriku.featureactivitymain.presentation.activity.MainActivityContract.View.Companion.ORDER_POSITION
+import com.egoriku.featureactivitymain.presentation.activity.MainActivityContract.View.Companion.SHARE_POSITION
 import javax.inject.Inject
 
 class MainActivityPresenter
-@Inject constructor(private val router: Router, private val analyticsInterface: AnalyticsInterface)
+@Inject constructor(private val router: IRouter, private val analyticsInterface: IAnalyticsHelper)
     : BasePresenter<MainActivityContract.View>(), MainActivityContract.Presenter {
 
     companion object {

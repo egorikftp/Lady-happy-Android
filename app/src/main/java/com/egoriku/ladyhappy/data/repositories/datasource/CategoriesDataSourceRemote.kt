@@ -1,6 +1,6 @@
 package com.egoriku.ladyhappy.data.repositories.datasource
 
-import com.egoriku.core.di.IFirebaseFirestore
+import com.egoriku.core.di.utils.IFirebaseFirestore
 import com.egoriku.ladyhappy.data.entities.CategoryEntity
 import com.egoriku.ladyhappy.data.repositories.base.BaseFirebaseDataSource
 import com.egoriku.ladyhappy.firebase.getObservable

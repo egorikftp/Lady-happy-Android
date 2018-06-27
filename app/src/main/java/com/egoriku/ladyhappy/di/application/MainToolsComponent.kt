@@ -3,7 +3,6 @@ package com.egoriku.ladyhappy.di.application
 import com.egoriku.core.IApplication
 import com.egoriku.core.di.ApplicationScope
 import com.egoriku.core.di.MainToolsProvider
-import com.egoriku.ladyhappy.Application
 import com.egoriku.ladyhappy.di.application.module.AppModule
 import com.egoriku.ladyhappy.di.application.module.NavigationModule
 import dagger.BindsInstance

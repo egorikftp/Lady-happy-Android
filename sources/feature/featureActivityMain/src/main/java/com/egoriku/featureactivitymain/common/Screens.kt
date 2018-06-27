@@ -1,4 +1,4 @@
-package com.egoriku.ladyhappy.common
+package com.egoriku.featureactivitymain.common
 
 object Screens {
     const val MAIN_ACTIVITY = "MAIN_ACTIVITY"

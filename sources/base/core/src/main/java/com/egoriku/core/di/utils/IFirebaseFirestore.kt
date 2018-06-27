@@ -1,4 +1,4 @@
-package com.egoriku.core.di
+package com.egoriku.core.di.utils
 
 import com.google.firebase.firestore.FirebaseFirestore
 

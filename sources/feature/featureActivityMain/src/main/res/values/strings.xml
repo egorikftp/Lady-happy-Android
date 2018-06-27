@@ -1,1 +1,11 @@
-<resources></resources>
+<resources>
+    <string name="navigation_drawer_all_goods">All Goods</string>
+    <string name="navigation_drawer_order">Order</string>
+    <string name="navigation_drawer_share">Share</string>
+    <string name="navigation_drawer_feedback">Feedback</string>
+    <string name="navigation_drawer_create_new_post">Create new post</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+</resources>

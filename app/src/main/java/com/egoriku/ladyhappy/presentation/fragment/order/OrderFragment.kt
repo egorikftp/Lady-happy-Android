@@ -2,8 +2,8 @@ package com.egoriku.ladyhappy.presentation.fragment.order
 
 import android.os.Bundle
 import android.view.View
+import com.egoriku.featureactivitymain.presentation.activity.MainActivity
 import com.egoriku.ladyhappy.R
-import com.egoriku.ladyhappy.presentation.activity.main.MainActivity
 import com.egoriku.ui.BaseInjectableFragment
 import javax.inject.Inject
 

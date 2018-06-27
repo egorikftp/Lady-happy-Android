@@ -1,4 +1,4 @@
-package com.egoriku.ladyhappy.presentation.activity.main
+package com.egoriku.featureactivitymain.presentation.activity
 
 import android.content.Context
 import android.content.res.Configuration
@@ -12,21 +12,19 @@ import co.zsmb.materialdrawerkt.builders.footer
 import co.zsmb.materialdrawerkt.draweritems.badgeable.primaryItem
 import co.zsmb.materialdrawerkt.draweritems.badgeable.secondaryItem
 import co.zsmb.materialdrawerkt.draweritems.divider
+import com.egoriku.core.IApplication
+import com.egoriku.core.di.utils.INavigationHolder
 import com.egoriku.corelib_kt.dsl.drawableCompat
-import com.egoriku.ladyhappy.R
-import com.egoriku.ladyhappy.common.Fragments
-import com.egoriku.ladyhappy.common.Screens
-import com.egoriku.ladyhappy.presentation.activity.newpost.DetailCategoryActivity
-import com.egoriku.ladyhappy.presentation.fragment.allgoods.AllGoodsFragment
-import com.egoriku.ladyhappy.presentation.fragment.main.MainPageFragment
-import com.egoriku.ladyhappy.presentation.fragment.order.OrderFragment
+import com.egoriku.featureactivitymain.R
+import com.egoriku.featureactivitymain.common.Fragments
+import com.egoriku.featureactivitymain.common.Screens
+import com.egoriku.featureactivitymain.di.MainActivityComponent
 import com.egoriku.ui.BaseInjectableActivity
 import com.mikepenz.materialdrawer.AccountHeader
 import com.mikepenz.materialdrawer.Drawer
 import kotlinx.android.synthetic.main.activity_main.*
-import org.jetbrains.anko.intentFor
-import ru.terrakok.cicerone.NavigatorHolder
 import ru.terrakok.cicerone.android.SupportAppNavigator
+import javax.inject.Inject
 
 @Suppress("MemberVisibilityCanPrivate")
 class MainActivity : BaseInjectableActivity<MainActivityContract.View, MainActivityContract.Presenter>(), MainActivityContract.View {
@@ -34,11 +32,11 @@ class MainActivity : BaseInjectableActivity<MainActivityContract.View, MainActiv
     private lateinit var navigationDrawer: Drawer
     private lateinit var headerResult: AccountHeader
 
-   // @Inject
+    @Inject
     lateinit var mainActivityPresenter: MainActivityContract.Presenter
 
-  //  @Inject
-    lateinit var navigatorHolder: NavigatorHolder
+    @Inject
+    lateinit var navigatorHolder: INavigationHolder
 
     private var drawerItemTag: String = com.egoriku.corelib_kt.Constants.EMPTY
 
@@ -46,14 +44,14 @@ class MainActivity : BaseInjectableActivity<MainActivityContract.View, MainActiv
     private val navigator = object : SupportAppNavigator(this, supportFragmentManager, R.id.mainActivityContainer) {
 
         override fun createActivityIntent(context: Context?, screenKey: String?, data: Any?) = when (screenKey) {
-            Screens.CREATE_POST_ACTIVITY -> intentFor<DetailCategoryActivity>()
+           // Screens.CREATE_POST_ACTIVITY -> null  intentFor<DetailCategoryActivity>()
             else -> null
         }
 
         override fun createFragment(screenKey: String?, data: Any?): Fragment? = when (screenKey) {
-            Fragments.ALL_GOODS -> AllGoodsFragment.newInstance()
-            Fragments.ORDER -> OrderFragment.newInstance()
-            Fragments.MAIN_PAGE -> MainPageFragment.newInstance()
+            //Fragments.ALL_GOODS -> AllGoodsFragment.newInstance()
+            //Fragments.ORDER -> OrderFragment.newInstance()
+            Fragments.MAIN_PAGE -> BlankFragment.newInstance("", "")
             else -> null
         }
     }
@@ -63,11 +61,9 @@ class MainActivity : BaseInjectableActivity<MainActivityContract.View, MainActiv
     override fun provideLayout(): Int = R.layout.activity_main
 
     override fun injectDependencies() {
-     /*   DaggerActivityComponent.builder()
-                .appComponent((applicationContext as Application).getAppComponent())
-                .activityModule(ActivityModule())
-                .build()
-                .inject(this)*/
+        MainActivityComponent.Initializer
+                .init((applicationContext as IApplication).getAppComponent())
+                .inject(this)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

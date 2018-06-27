@@ -4,7 +4,7 @@ import android.app.Activity
 import android.app.Application
 import android.os.Bundle
 import com.egoriku.corelib_kt.listeners.SimpleActivityLifecycleCallback
-import com.egoriku.ladyhappy.presentation.activity.main.MainActivity
+import com.egoriku.featureactivitymain.presentation.activity.MainActivity
 import net.hockeyapp.android.UpdateManager
 
 object DebugInitializer {

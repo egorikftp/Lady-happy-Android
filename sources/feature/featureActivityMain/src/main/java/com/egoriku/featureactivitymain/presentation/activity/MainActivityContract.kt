@@ -1,4 +1,4 @@
-package com.egoriku.ladyhappy.presentation.activity.main
+package com.egoriku.featureactivitymain.presentation.activity
 
 import com.egoriku.corelib_kt.arch.BaseContract
 import com.egoriku.ui.BaseView

@@ -1,10 +1,9 @@
 package com.egoriku.ladyhappy.data.repositories.datasource
 
-import com.egoriku.core.di.IFirebaseFirestore
+import com.egoriku.core.di.utils.IFirebaseFirestore
 import com.egoriku.ladyhappy.data.entities.SingleNewsEntity
 import com.egoriku.ladyhappy.data.repositories.base.BaseFirebaseDataSource
 import com.egoriku.ladyhappy.firebase.getObservable
-
 import com.google.firebase.firestore.Query
 import io.reactivex.Observable
 import javax.inject.Inject

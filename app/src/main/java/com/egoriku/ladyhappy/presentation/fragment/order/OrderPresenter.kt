@@ -1,12 +1,12 @@
 package com.egoriku.ladyhappy.presentation.fragment.order
 
+import com.egoriku.core.common.TrackingConstants
+import com.egoriku.core.di.utils.IAnalyticsHelper
 import com.egoriku.corelib_kt.arch.BasePresenter
-import com.egoriku.ladyhappy.external.AnalyticsInterface
-import com.egoriku.ladyhappy.external.TrackingConstants
 import javax.inject.Inject
 
 class OrderPresenter
-@Inject constructor(private val analyticsInterface: AnalyticsInterface)
+@Inject constructor(private val analyticsHelper: IAnalyticsHelper)
     : BasePresenter<OrderContract.View>(), OrderContract.Presenter {
 
     override fun onBackPressed() {
@@ -14,6 +14,6 @@ class OrderPresenter
 
     override fun onPresenterCreated() {
         super.onPresenterCreated()
-        analyticsInterface.trackPageView(TrackingConstants.FRAGMENT_ORDER)
+        analyticsHelper.trackPageView(TrackingConstants.FRAGMENT_ORDER)
     }
 }

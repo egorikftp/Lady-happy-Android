@@ -1,8 +1,8 @@
-package com.egoriku.ladyhappy.external
+package com.egoriku.core.di.utils
 
 import android.os.Bundle
 
-interface AnalyticsInterface {
+interface IAnalyticsHelper {
 
     fun trackPageView(view: String)
 

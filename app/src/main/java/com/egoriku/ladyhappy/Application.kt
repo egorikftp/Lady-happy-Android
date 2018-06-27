@@ -18,7 +18,6 @@ open class Application : Application(), IApplication {
 
     override fun onCreate() {
         super.onCreate()
-
         appComponent.inject(this)
     }
 

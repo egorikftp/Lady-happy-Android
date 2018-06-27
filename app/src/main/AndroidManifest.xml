@@ -18,7 +18,7 @@
         android:fullBackupContent="@xml/backup_descriptor">
 
         <activity
-            android:name=".presentation.activity.main.MainActivity"
+            android:name="com.egoriku.featureactivitymain.presentation.activity.MainActivity"
             android:theme="@style/AppTheme" />
 
         <activity android:name=".presentation.activity.newpost.DetailCategoryActivity" />

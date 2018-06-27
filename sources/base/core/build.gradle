@@ -26,4 +26,5 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.2.50"
 
     implementation 'com.google.firebase:firebase-firestore:17.0.1'
+    implementation 'ru.terrakok.cicerone:cicerone:3.0.0'
 }

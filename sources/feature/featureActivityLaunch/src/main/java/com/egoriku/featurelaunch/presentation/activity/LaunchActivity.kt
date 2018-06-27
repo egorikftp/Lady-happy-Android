@@ -3,20 +3,20 @@ package com.egoriku.featurelaunch.presentation.activity
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import com.egoriku.core.IApplication
-import com.egoriku.core.actions.ShowMainScreenAction
+import com.egoriku.core.actions.ShowMainActivityAction
 import com.egoriku.featurelaunch.di.LaunchActivityComponent
 import javax.inject.Inject
 
 class LaunchActivity : AppCompatActivity() {
 
     @Inject
-    lateinit var showMainScreenAction: ShowMainScreenAction
+    lateinit var showMainActivityAction: ShowMainActivityAction
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         inject()
 
-        showMainScreenAction.show(this)
+        showMainActivityAction.show(this)
         finish()
     }
 

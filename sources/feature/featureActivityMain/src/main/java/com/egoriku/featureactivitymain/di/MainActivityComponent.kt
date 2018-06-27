@@ -2,8 +2,9 @@ package com.egoriku.featureactivitymain.di
 
 import com.egoriku.core.di.ActivityScope
 import com.egoriku.core.di.ApplicationProvider
-import com.egoriku.featureactivitymain.MainActivityTest
 import com.egoriku.featureactivitymain.di.module.MainActivityModule
+import com.egoriku.featureactivitymain.presentation.activity.MainActivity
+import com.egoriku.featureactivitymain.presentation.activity.MainActivityContract
 import dagger.Component
 
 @ActivityScope
@@ -13,7 +14,9 @@ import dagger.Component
 )
 interface MainActivityComponent {
 
-    fun inject(activity: MainActivityTest)
+    fun inject(activity: MainActivity)
+
+    fun inject(mainActivityPresenter: MainActivityContract.Presenter)
 
     class Initializer private constructor() {
         companion object {

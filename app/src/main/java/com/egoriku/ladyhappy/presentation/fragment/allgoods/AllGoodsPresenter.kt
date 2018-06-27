@@ -1,13 +1,13 @@
 package com.egoriku.ladyhappy.presentation.fragment.allgoods
 
+import com.egoriku.core.common.TrackingConstants
+import com.egoriku.core.di.utils.IAnalyticsHelper
 import com.egoriku.corelib_kt.arch.BasePresenter
 import com.egoriku.ladyhappy.domain.interactors.allgoods.CategoriesUseCase
 import com.egoriku.ladyhappy.domain.interactors.allgoods.NewsUseCase
 import com.egoriku.ladyhappy.domain.interactors.base.Params
 import com.egoriku.ladyhappy.domain.models.CategoriesModel
 import com.egoriku.ladyhappy.domain.models.NewsModel
-import com.egoriku.ladyhappy.external.AnalyticsInterface
-import com.egoriku.ladyhappy.external.TrackingConstants
 import com.egoriku.ladyhappy.rx.DefaultObserver
 import javax.inject.Inject
 
@@ -15,14 +15,14 @@ class AllGoodsPresenter
 @Inject constructor(
         private val categoriesUseCase: CategoriesUseCase,
         private val newsUseCase: NewsUseCase,
-        private val analyticsInterface: AnalyticsInterface
+        private val analyticsHelper: IAnalyticsHelper
 ) : BasePresenter<AllGoodsContract.View>(), AllGoodsContract.Presenter {
 
     private var screenModel = AllGoodsScreenModel()
 
     override fun onPresenterCreated() {
         super.onPresenterCreated()
-        analyticsInterface.trackPageView(TrackingConstants.FRAGMENT_ALL_GOODS)
+        analyticsHelper.trackPageView(TrackingConstants.FRAGMENT_ALL_GOODS)
     }
 
     override fun onPresenterDestroy() {
@@ -79,11 +79,11 @@ class AllGoodsPresenter
     }
 
     override fun onGetCategoriesSuccessTracking() {
-        analyticsInterface.trackGetCategoriesSuccess(null)
+        analyticsHelper.trackGetCategoriesSuccess(null)
     }
 
     override fun onGetCategoriesErrorTracking() {
-        analyticsInterface.trackGetCategoriesFail(null)
+        analyticsHelper.trackGetCategoriesFail(null)
     }
 
     override fun onGetNewsSuccessTracking() {

@@ -1,6 +1,6 @@
 package com.egoriku.ladyhappy.di.tools
 
-import com.egoriku.core.di.IFirebaseFirestore
+import com.egoriku.core.di.utils.IFirebaseFirestore
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.FirebaseFirestoreSettings
 

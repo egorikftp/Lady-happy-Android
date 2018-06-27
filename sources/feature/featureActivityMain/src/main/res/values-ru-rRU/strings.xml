@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="navigation_drawer_all_goods">Все товары</string>
+    <string name="navigation_drawer_order">Заказать</string>
+    <string name="navigation_drawer_share">Поделиться</string>
+    <string name="navigation_drawer_feedback">Обратная связь</string>
+    <string name="navigation_drawer_create_new_post">Создать новый пост</string>
+</resources>

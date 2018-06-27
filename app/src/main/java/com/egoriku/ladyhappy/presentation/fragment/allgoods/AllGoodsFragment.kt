@@ -9,11 +9,9 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.View
 import com.egoriku.corelib_kt.dsl.hide
 import com.egoriku.corelib_kt.dsl.show
+import com.egoriku.featureactivitymain.presentation.activity.MainActivity
 import com.egoriku.ladyhappy.R
-import com.egoriku.ladyhappy.R.id.progressView
-import com.egoriku.ladyhappy.R.id.recyclerViewAllGoods
 import com.egoriku.ladyhappy.common.cast
-import com.egoriku.ladyhappy.presentation.activity.main.MainActivity
 import com.egoriku.ladyhappy.presentation.activity.newpost.DetailCategoryActivity
 import com.egoriku.ladyhappy.presentation.adapter.animator.DefaultItemAnimator
 import com.egoriku.ladyhappy.presentation.fragment.allgoods.controller.CategoriesController

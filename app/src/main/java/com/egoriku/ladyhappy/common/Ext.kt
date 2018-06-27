@@ -2,7 +2,7 @@ package com.egoriku.ladyhappy.common
 
 import android.support.v4.app.FragmentActivity
 import android.support.v7.widget.RecyclerView
-import com.egoriku.ladyhappy.presentation.activity.main.MainActivity
+import com.egoriku.featureactivitymain.presentation.activity.MainActivity
 
 fun RecyclerView.scrollPercentage(): Int {
     val offset = computeHorizontalScrollOffset()
