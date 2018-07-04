@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="120dp"
+    tools:background="@color/Terracota">
+
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/adapter_item_main_header_logo"
+        android:layout_width="0dp"
+        android:layout_height="80dp"
+        android:gravity="bottom"
+        android:text="@string/lady_happy"
+        android:textAlignment="center"
+        android:textColor="@color/RealBlack"
+        android:textSize="24sp"
+        android:typeface="normal"
+        app:autoSizeTextType="uniform"
+        app:fontFamily="@font/lobster"
+        app:layout_constraintDimensionRatio=""
+        app:layout_constraintEnd_toStartOf="@+id/guideline_right"
+        app:layout_constraintStart_toStartOf="@+id/guideline_left"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/adapter_item_main_header_footer"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:adjustViewBounds="true"
+        android:cropToPadding="false"
+        android:paddingBottom="8dp"
+        android:paddingTop="8dp"
+        android:scaleType="fitStart"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintDimensionRatio="2:1"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_right"
+        app:layout_constraintStart_toStartOf="@+id/guideline_left"
+        app:layout_constraintTop_toBottomOf="@+id/adapter_item_main_header_logo"
+        app:layout_constraintVertical_bias="0.51"
+        app:srcCompat="@drawable/ic_footer" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline_left"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.13" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline_right"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.87" />
+
+</android.support.constraint.ConstraintLayout>

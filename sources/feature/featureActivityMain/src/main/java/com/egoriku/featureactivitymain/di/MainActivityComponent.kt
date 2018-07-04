@@ -16,8 +16,6 @@ interface MainActivityComponent {
 
     fun inject(activity: MainActivity)
 
-    fun inject(mainActivityPresenter: MainActivityContract.Presenter)
-
     class Initializer private constructor() {
         companion object {
 

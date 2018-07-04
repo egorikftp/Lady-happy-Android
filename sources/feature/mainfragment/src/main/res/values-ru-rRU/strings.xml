@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="adapter_item_about_us">О нас</string>
+    <string name="adapter_item_header_quotes">Что нас вдохновляет</string>
+
+    <string name="lady_happy">Дамское счастье</string>
+    <string name="adapter_item_header_our_team">Наша команда</string>
+
+</resources>

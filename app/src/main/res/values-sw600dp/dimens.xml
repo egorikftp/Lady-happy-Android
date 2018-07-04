@@ -3,11 +3,4 @@
     <dimen name="adapter_item_category_title_text_size">18sp</dimen>
     <dimen name="adapter_item_news_image_height">400dp</dimen>
 
-    <dimen name="adapter_item_quotes_height">320dp</dimen>
-    <dimen name="material_padding_16">32dp</dimen>
-    <dimen name="material_padding_8">16dp</dimen>
-
-    <dimen name="header_text_size">20sp</dimen>
-    <dimen name="social_view_item_side_size">60dp</dimen>
-
 </resources>

@@ -11,9 +11,4 @@
         <item name="android:background">@color/RealWhite</item>
     </style>
 
-    <style name="SectionHeader">
-        <item name="android:textSize">@dimen/header_text_size</item>
-        <item name="android:textAllCaps">true</item>
-    </style>
-
 </resources>

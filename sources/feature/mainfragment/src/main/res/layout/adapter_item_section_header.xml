@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="30dp">
+
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/sectionHeader"
+        style="@style/AdapterSectionHeaderStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:fontFamily="@font/montserrat"
+        android:gravity="center"
+        android:paddingLeft="@dimen/material_padding_16"
+        android:paddingStart="@dimen/material_padding_16"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.50"
+        tools:text="@string/adapter_item_header_quotes" />
+</android.support.constraint.ConstraintLayout>

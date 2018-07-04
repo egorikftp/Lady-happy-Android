@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="adapter_item_header_text_size">15sp</dimen>
+    <dimen name="adapter_item_quotes_height">220dp</dimen>
+
+    <dimen name="social_view_item_side_size">40dp</dimen>
+
+
+</resources>

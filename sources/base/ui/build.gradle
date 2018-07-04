@@ -25,4 +25,6 @@ dependencies {
     implementation 'com.github.egorikftp:CoreLib-Kotlin:0.0.8'
 
     implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.2.50'
+
+    implementation 'com.android.support:recyclerview-v7:27.1.1'
 }

@@ -14,8 +14,4 @@
         </attr>
     </declare-styleable>
 
-    <declare-styleable name="SocialView">
-        <attr name="itemSideSize" format="dimension" />
-        <attr name="itemPadding" format="dimension" />
-    </declare-styleable>
 </resources>

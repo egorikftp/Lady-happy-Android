@@ -3,16 +3,7 @@
     <color name="colorPrimary">#FFFFFF</color>
     <color name="colorPrimaryDark">#D7D7D7</color>
     <color name="colorAccent">#FF4081</color>
-    <color name="transparent">#00000000</color>
 
-    <color name="RealWhite">#FFFFFF</color>
-    <color name="RealWhite80">#CCFFFFFF</color>
-    <color name="RealBlack">#FF000000</color>
-    <color name="RealBlack30">#4D000000</color>
-    <color name="RealBlack70">#B3000000</color>
-    <color name="RoseTaupe">#9c5b57</color>
-    <color name="Terracota">#7f6854</color>
-    <color name="Wheat">#DBCDAD</color>
 
     <color name="Quotes">#515151</color>
     <color name="Quotes60">#99515151</color>

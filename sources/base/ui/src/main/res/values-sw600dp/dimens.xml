@@ -1,0 +1,4 @@
+<resources>
+    <dimen name="material_padding_16">32dp</dimen>
+    <dimen name="material_padding_8">16dp</dimen>
+</resources>

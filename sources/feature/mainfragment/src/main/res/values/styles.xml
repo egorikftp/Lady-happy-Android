@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="AdapterSectionHeaderStyle">
+        <item name="android:textSize">@dimen/adapter_item_header_text_size</item>
+        <item name="android:textAllCaps">true</item>
+    </style>
+</resources>

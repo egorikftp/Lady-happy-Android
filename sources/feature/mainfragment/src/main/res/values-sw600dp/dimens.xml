@@ -1,0 +1,7 @@
+<resources>
+    <dimen name="adapter_item_header_text_size">20sp</dimen>
+    <dimen name="adapter_item_quotes_height">320dp</dimen>
+
+    <dimen name="social_view_item_side_size">60dp</dimen>
+
+</resources>
