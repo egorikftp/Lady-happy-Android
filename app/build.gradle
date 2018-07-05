@@ -124,7 +124,7 @@ dependencies {
 
     debugImplementation 'net.hockeyapp.android:HockeySDK:5.1.0'
 
-    implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.2.50'
+    implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.2.51'
     implementation 'com.github.egorikftp:CoreLib-Kotlin:0.0.8'
 
     implementation 'android.arch.lifecycle:extensions:1.1.1'
