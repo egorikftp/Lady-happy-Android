@@ -3,23 +3,26 @@ package com.egoriku.mainfragment.presentation.fragment
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.view.View
+import com.egoriku.core.IApplication
 import com.egoriku.corelib_kt.dsl.hide
 import com.egoriku.corelib_kt.dsl.show
-import com.egoriku.ui.common.parallax.ParallaxScrollListener
 import com.egoriku.mainfragment.R
 import com.egoriku.mainfragment.data.entities.OurTeamEntity
 import com.egoriku.mainfragment.data.entities.SocialModel
 import com.egoriku.mainfragment.data.entities.TeamMember
+import com.egoriku.mainfragment.di.MainFragmentComponent
 import com.egoriku.mainfragment.presentation.fragment.controller.*
 import com.egoriku.ui.BaseInjectableFragment
+import com.egoriku.ui.common.parallax.ParallaxScrollListener
 import kotlinx.android.synthetic.main.fragment_main_page.*
 import org.jetbrains.anko.support.v4.browse
 import ru.surfstudio.android.easyadapter.EasyAdapter
 import ru.surfstudio.android.easyadapter.ItemList
+import javax.inject.Inject
 
 class MainPageFragment : BaseInjectableFragment<MainPageContract.View, MainPageContract.Presenter>(), MainPageContract.View {
 
-    //  @Inject
+    @Inject
     lateinit var mainPagePresenter: MainPageContract.Presenter
 
     private val mainPageAdapter = EasyAdapter()
@@ -40,12 +43,14 @@ class MainPageFragment : BaseInjectableFragment<MainPageContract.View, MainPageC
     override fun initPresenter(): MainPageContract.Presenter = mainPagePresenter
 
     override fun injectDependencies() {
-
+        MainFragmentComponent.Initializer
+                .init((activity?.applicationContext as IApplication).getAppComponent())
+                .inject(this)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-     //   activity?.cast<MainActivity>()?.setUpToolbar(R.string.navigation_main)
+        activity?.setTitle(R.string.navigation_main)
         initViews()
     }
 

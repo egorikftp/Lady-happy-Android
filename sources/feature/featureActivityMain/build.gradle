@@ -25,7 +25,6 @@ dependencies {
     implementation project(":easyAdapter")
     implementation project(":core")
     implementation project(":ui")
-    implementation project(':mainfragment')
 
     implementation 'com.android.support:appcompat-v7:27.1.1'
     implementation 'com.android.support.constraint:constraint-layout:1.1.2'
@@ -40,5 +39,5 @@ dependencies {
 
     implementation 'org.jetbrains.anko:anko-commons:0.10.5'
     implementation 'org.jetbrains.anko:anko-support-v4-commons:0.10.5'
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.2.50"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.2.51"
 }

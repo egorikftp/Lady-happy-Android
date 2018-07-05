@@ -13,7 +13,9 @@ import co.zsmb.materialdrawerkt.draweritems.badgeable.primaryItem
 import co.zsmb.materialdrawerkt.draweritems.badgeable.secondaryItem
 import co.zsmb.materialdrawerkt.draweritems.divider
 import com.egoriku.core.IApplication
+import com.egoriku.core.actions.MainFragmentAction
 import com.egoriku.core.di.utils.INavigationHolder
+import com.egoriku.corelib_kt.Constants
 import com.egoriku.corelib_kt.dsl.drawableCompat
 import com.egoriku.featureactivitymain.R
 import com.egoriku.featureactivitymain.common.Fragments
@@ -38,20 +40,23 @@ class MainActivity : BaseInjectableActivity<MainActivityContract.View, MainActiv
     @Inject
     lateinit var navigatorHolder: INavigationHolder
 
-    private var drawerItemTag: String = com.egoriku.corelib_kt.Constants.EMPTY
+    @Inject
+    lateinit var mainFragmentProvider: MainFragmentAction
+
+    private var drawerItemTag: String = Constants.EMPTY
 
     @Suppress("UNUSED_EXPRESSION")
     private val navigator = object : SupportAppNavigator(this, supportFragmentManager, R.id.mainActivityContainer) {
 
         override fun createActivityIntent(context: Context?, screenKey: String?, data: Any?) = when (screenKey) {
-           // Screens.CREATE_POST_ACTIVITY -> null  intentFor<DetailCategoryActivity>()
+        // Screens.CREATE_POST_ACTIVITY -> null  intentFor<DetailCategoryActivity>()
             else -> null
         }
 
         override fun createFragment(screenKey: String?, data: Any?): Fragment? = when (screenKey) {
-            //Fragments.ALL_GOODS -> AllGoodsFragment.newInstance()
-            //Fragments.ORDER -> OrderFragment.newInstance()
-            Fragments.MAIN_PAGE -> BlankFragment.newInstance("", "")
+        //Fragments.ALL_GOODS -> AllGoodsFragment.newInstance()
+        //Fragments.ORDER -> OrderFragment.newInstance()
+            Fragments.MAIN_PAGE -> mainFragmentProvider.provideFragment()
             else -> null
         }
     }

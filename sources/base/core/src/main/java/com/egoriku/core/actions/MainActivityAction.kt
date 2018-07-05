@@ -2,6 +2,7 @@ package com.egoriku.core.actions
 
 import android.content.Context
 
-interface ShowMainActivityAction {
+interface MainActivityAction {
+
     fun show(context: Context)
 }

@@ -5,7 +5,7 @@ import com.egoriku.corelib_kt.arch.BasePresenter
 import javax.inject.Inject
 
 class MainPagePresenter
-@Inject constructor(private val analyticsHelper: IAnalyticsHelper)
+@Inject constructor(val analyticsHelper: IAnalyticsHelper)
     : BasePresenter<MainPageContract.View>(), MainPageContract.Presenter {
 
 }

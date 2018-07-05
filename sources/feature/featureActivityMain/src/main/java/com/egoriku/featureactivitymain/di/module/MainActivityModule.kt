@@ -14,5 +14,4 @@ class MainActivityModule {
     @Provides
     @ActivityScope
     fun provideMainActivityPresenter(router: IRouter, analyticsHelper: IAnalyticsHelper): MainActivityContract.Presenter = MainActivityPresenter(router, analyticsHelper)
-
 }

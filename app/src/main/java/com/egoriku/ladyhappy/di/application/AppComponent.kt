@@ -1,17 +1,16 @@
 package com.egoriku.ladyhappy.di.application
 
-import com.egoriku.core.di.ApplicationProvider
-import com.egoriku.core.di.ApplicationScope
-import com.egoriku.core.di.MainScreenActionsProvider
-import com.egoriku.core.di.MainToolsProvider
+import com.egoriku.core.di.*
 import com.egoriku.featureactivitymain.di.MainActivityExportComponent
 import com.egoriku.ladyhappy.Application
+import com.egoriku.mainfragment.di.MainFragmentExportComponent
 import dagger.Component
 
 @Component(
         dependencies = [
             MainToolsProvider::class,
-            MainScreenActionsProvider::class
+            MainActivityProvider::class,
+            MainFragmentProvider::class
         ])
 @ApplicationScope
 interface AppComponent : ApplicationProvider {
@@ -21,15 +20,14 @@ interface AppComponent : ApplicationProvider {
     class Initializer private constructor() {
         companion object {
             fun init(app: Application): AppComponent {
-                val mainToolsProvider = MainToolsComponent.Initializer
-                        .init(app)
-
-                val mainScreenActionsProvider = MainActivityExportComponent.Initializer
-                        .init(mainToolsProvider)
+                val mainToolsProvider = MainToolsComponent.Initializer.init(app)
+                val mainActivityProvider = MainActivityExportComponent.Initializer.init(mainToolsProvider)
+                val mainFragmentProvider = MainFragmentExportComponent.Initializer.init(mainToolsProvider)
 
                 return DaggerAppComponent.builder()
                         .mainToolsProvider(mainToolsProvider)
-                        .mainScreenActionsProvider(mainScreenActionsProvider)
+                        .mainActivityProvider(mainActivityProvider)
+                        .mainFragmentProvider(mainFragmentProvider)
                         .build()
             }
         }
