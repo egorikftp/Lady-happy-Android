@@ -26,8 +26,7 @@ interface MainToolsComponent : MainToolsProvider {
     class Initializer private constructor() {
         companion object {
 
-            fun init(app: IApplication): MainToolsProvider =
-                    DaggerMainToolsComponent.builder()
+            fun init(app: IApplication): MainToolsProvider = DaggerMainToolsComponent.builder()
                             .app(app)
                             .build()
         }

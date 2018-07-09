@@ -68,11 +68,6 @@ android {
         }
     }
 
-    dexOptions {
-        javaMaxHeapSize "4g"
-        preDexLibraries false
-    }
-
     kapt {
         useBuildCache = false
     }
@@ -81,7 +76,6 @@ android {
 //apply plugin: 'com.getkeepsafe.dexcount'
 
 dependencies {
-    implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation project(':easyAdapter')
     implementation project(':core')
     implementation project(':ui')
@@ -89,11 +83,6 @@ dependencies {
     implementation project(':featureActivityMain')
     implementation project(':featureMainfragment')
 
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation('com.android.support.test.espresso:espresso-core:3.0.2', {
-        exclude group: 'com.android.support', module: 'support-annotations'
-    })
-    implementation 'com.android.support:multidex:1.0.3'
     implementation('com.crashlytics.sdk.android:crashlytics:2.9.4@aar') {
         transitive = true
     }
@@ -102,7 +91,6 @@ dependencies {
     implementation 'com.android.support:design:27.1.1'
 
     implementation 'com.android.support.constraint:constraint-layout:1.1.2'
-    implementation 'com.google.android:flexbox:1.0.0'
     implementation 'androidx.core:core-ktx:0.3'
     implementation 'org.jetbrains.anko:anko-commons:0.10.5'
     implementation 'org.jetbrains.anko:anko-support-v4-commons:0.10.5'

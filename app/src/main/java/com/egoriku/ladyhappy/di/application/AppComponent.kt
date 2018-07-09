@@ -21,8 +21,8 @@ interface AppComponent : ApplicationProvider {
         companion object {
             fun init(app: Application): AppComponent {
                 val mainToolsProvider = MainToolsComponent.Initializer.init(app)
-                val mainActivityProvider = MainActivityExportComponent.Initializer.init(mainToolsProvider)
-                val mainFragmentProvider = MainFragmentExportComponent.Initializer.init(mainToolsProvider)
+                val mainActivityProvider = MainActivityExportComponent.Initializer.init()
+                val mainFragmentProvider = MainFragmentExportComponent.Initializer.init()
 
                 return DaggerAppComponent.builder()
                         .mainToolsProvider(mainToolsProvider)

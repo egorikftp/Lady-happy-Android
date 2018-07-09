@@ -12,16 +12,11 @@ import dagger.Provides
 @Module
 class AppModule {
 
-    @Module
-    companion object {
-        @JvmStatic
-        @Provides
-        @ApplicationScope
-        fun provideFirebaseFirestore(): IFirebaseFirestore = FirebaseFirestoreImpl()
+    @Provides
+    @ApplicationScope
+    fun provideFirebaseFirestore(): IFirebaseFirestore = FirebaseFirestoreImpl()
 
-        @JvmStatic
-        @Provides
-        @ApplicationScope
-        fun provideAnalyticsHelper(app: IApplication): IAnalyticsHelper = AnalyticsHelperImpl(app.getApplicationContext())
-    }
+    @Provides
+    @ApplicationScope
+    fun provideAnalyticsHelper(app: IApplication): IAnalyticsHelper = AnalyticsHelperImpl(app.getApplicationContext())
 }
