@@ -5,10 +5,10 @@ import com.egoriku.core.di.utils.IAnalyticsHelper
 import com.egoriku.corelib_kt.arch.BasePresenter
 import com.egoriku.ladyhappy.domain.interactors.allgoods.CategoriesUseCase
 import com.egoriku.ladyhappy.domain.interactors.allgoods.NewsUseCase
-import com.egoriku.ladyhappy.domain.interactors.base.Params
+import com.egoriku.core.usecase.Params
 import com.egoriku.ladyhappy.domain.models.CategoriesModel
 import com.egoriku.ladyhappy.domain.models.NewsModel
-import com.egoriku.ladyhappy.rx.DefaultObserver
+import com.egoriku.core.usecase.DefaultObserver
 import javax.inject.Inject
 
 class AllGoodsPresenter

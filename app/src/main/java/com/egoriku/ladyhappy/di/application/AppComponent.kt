@@ -4,13 +4,15 @@ import com.egoriku.core.di.*
 import com.egoriku.featureactivitymain.di.MainActivityExportComponent
 import com.egoriku.ladyhappy.Application
 import com.egoriku.mainfragment.di.MainFragmentExportComponent
+import com.egoriku.storage.di.StorageComponent
 import dagger.Component
 
 @Component(
         dependencies = [
             MainToolsProvider::class,
             MainActivityProvider::class,
-            MainFragmentProvider::class
+            MainFragmentProvider::class,
+            RepositoryProvider::class
         ])
 @ApplicationScope
 interface AppComponent : ApplicationProvider {
@@ -23,11 +25,13 @@ interface AppComponent : ApplicationProvider {
                 val mainToolsProvider = MainToolsComponent.Initializer.init(app)
                 val mainActivityProvider = MainActivityExportComponent.Initializer.init()
                 val mainFragmentProvider = MainFragmentExportComponent.Initializer.init()
+                val repositoryProvider = StorageComponent.Initializer.init()
 
                 return DaggerAppComponent.builder()
                         .mainToolsProvider(mainToolsProvider)
                         .mainActivityProvider(mainActivityProvider)
                         .mainFragmentProvider(mainFragmentProvider)
+                        .repositoryProvider(repositoryProvider)
                         .build()
             }
         }

@@ -12,7 +12,3 @@ object Fragments {
     const val FEEDBACK = "FEEDBACK"
     const val MAIN_PAGE = "MAIN_PAGE"
 }
-
-object ExtraConstants {
-    const val EXTRA_FRAGMENT_CONTAINER_NAME = "EXTRA_FRAGMENT_CONTAINER_NAME"
-}

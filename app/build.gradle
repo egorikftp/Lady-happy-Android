@@ -78,6 +78,7 @@ android {
 dependencies {
     implementation project(':easyAdapter')
     implementation project(':core')
+    implementation project(':storage')
     implementation project(':ui')
     implementation project(':featureActivityLaunch')
     implementation project(':featureActivityMain')

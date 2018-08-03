@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.view.View
 import com.egoriku.core.IApplication
+import com.egoriku.core.models.ILandingModel
 import com.egoriku.corelib_kt.dsl.hide
 import com.egoriku.corelib_kt.dsl.show
 import com.egoriku.mainfragment.R
@@ -74,7 +75,8 @@ class MainPageFragment : BaseInjectableFragment<MainPageContract.View, MainPageC
             browse(it)
         })
 
-        showInformation()
+        presenter.loadLandingData()
+        // showInformation()
     }
 
     override fun showLoading() {
@@ -85,11 +87,8 @@ class MainPageFragment : BaseInjectableFragment<MainPageContract.View, MainPageC
         mainProgressBar.hide()
     }
 
-    override fun showInformation() {
-        val s = "Женщина должна притягивать своей красотой взгляды окружающих. Красивый аксессуар всегда был неотъемлемой частью гардероба. Он подчеркивал женскую загадочность и робкость... \n" +
-                "\n" +
-                "В последнее время изделия из натуральных материалов стали популярны на рынке. Все обусловленно тем, что они делаются вручную и, в конечном итоге, являются уникальным предметом. Компания \"Дамское счастье\" сделает все, чтобы вы почувствовали себя той самой неповторимой."
-
+    override fun showInformation(model: ILandingModel) {
+        val s = model.aboutInfo()
         val quotes = "Главное в платье - это женщина, которая его надевает."
 
         val ourTeamEntity = OurTeamEntity(listOf(
@@ -100,14 +99,14 @@ class MainPageFragment : BaseInjectableFragment<MainPageContract.View, MainPageC
                                 SocialModel("https://vk.com/urbanovich.olga", R.drawable.ic_vk),
                                 SocialModel("https://ok.ru/urbanovich.olga", R.drawable.ic_odnoklassniki),
                                 SocialModel("https://www.instagram.com/urbanovich.olga/", R.drawable.ic_instagram),
-                                SocialModel("https://t.me/urbanovich_olga/", R.drawable.ic_telegram)
+                                SocialModel("https://model.me/urbanovich_olga/", R.drawable.ic_telegram)
                         )),
                 TeamMember("https://lady-happy.com/assets/images/team-2.jpg",
                         "Егор Урбанович",
                         "Разработчик / UX дизайнейр / Фотограф",
                         listOf(
                                 SocialModel("https://vk.com/egoriku", R.drawable.ic_vk),
-                                SocialModel("https://t.me/egoriku/", R.drawable.ic_telegram),
+                                SocialModel("https://model.me/egoriku/", R.drawable.ic_telegram),
                                 SocialModel("https://www.instagram.com/egorik.u//", R.drawable.ic_instagram),
                                 SocialModel("https://github.com/egorikftp/", R.drawable.ic_github),
                                 SocialModel("https://github.com/egorikftp/", R.drawable.ic_github)

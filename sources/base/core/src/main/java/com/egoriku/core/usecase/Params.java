@@ -1,4 +1,4 @@
-package com.egoriku.ladyhappy.domain.interactors.base;
+package com.egoriku.core.usecase;
 
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;

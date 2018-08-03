@@ -1,4 +1,4 @@
-package com.egoriku.ladyhappy.rx
+package com.egoriku.core.usecase
 
 import io.reactivex.observers.DisposableObserver
 

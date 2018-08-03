@@ -1,8 +1,8 @@
 package com.egoriku.ladyhappy.domain.interactors.allgoods
 
 import com.egoriku.ladyhappy.data.repositories.NewsRepository
-import com.egoriku.ladyhappy.domain.interactors.base.BaseUseCase
-import com.egoriku.ladyhappy.domain.interactors.base.Params
+import com.egoriku.core.usecase.BaseUseCase
+import com.egoriku.core.usecase.Params
 import javax.inject.Inject
 
 class NewsUseCase

@@ -10,8 +10,7 @@ import com.egoriku.corelib_kt.Constants
 import com.egoriku.corelib_kt.dsl.colorCompat
 import com.egoriku.ladyhappy.R
 
-@Suppress("NO_TAIL_CALLS_FOUND")
-tailrec fun View.toStub() {
+fun View.toStub() {
     when (this) {
         is ViewGroup ->
             (0 until childCount)

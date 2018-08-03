@@ -1,4 +1,4 @@
-package com.egoriku.ladyhappy.domain.interactors.base;
+package com.egoriku.core.usecase;
 
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
