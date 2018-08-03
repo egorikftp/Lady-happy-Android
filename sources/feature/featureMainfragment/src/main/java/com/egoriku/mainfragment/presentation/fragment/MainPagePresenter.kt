@@ -3,6 +3,7 @@ package com.egoriku.mainfragment.presentation.fragment
 import com.egoriku.core.di.utils.IAnalyticsHelper
 import com.egoriku.core.models.ILandingModel
 import com.egoriku.core.usecase.DefaultObserver
+import com.egoriku.core.usecase.Params
 import com.egoriku.corelib_kt.arch.BasePresenter
 import com.egoriku.mainfragment.domain.interactors.LandingUseCase
 import javax.inject.Inject
@@ -12,7 +13,7 @@ class MainPagePresenter
     : BasePresenter<MainPageContract.View>(), MainPageContract.Presenter {
 
     override fun loadLandingData() {
-        landingUseCase.execute(Observer(), null)
+        landingUseCase.execute(Observer(), Params.EMPTY)
     }
 
     private inner class Observer : DefaultObserver<ILandingModel>() {
