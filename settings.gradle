@@ -18,5 +18,5 @@ project(':featureActivityLaunch').projectDir = new File(rootDir, 'sources/featur
 include ':featureActivityMain'
 project(':featureActivityMain').projectDir = new File(rootDir, 'sources/feature/featureActivityMain')
 
-include ':featureMainfragment'
-project(':featureMainfragment').projectDir = new File(rootDir, 'sources/feature/featureMainfragment')
+include ':landingFragment'
+project(':landingFragment').projectDir = new File(rootDir, 'sources/feature/landingFragment')

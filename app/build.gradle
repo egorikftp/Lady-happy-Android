@@ -82,7 +82,7 @@ dependencies {
     implementation project(':ui')
     implementation project(':featureActivityLaunch')
     implementation project(':featureActivityMain')
-    implementation project(':featureMainfragment')
+    implementation project(':landingFragment')
 
     implementation('com.crashlytics.sdk.android:crashlytics:2.9.4@aar') {
         transitive = true
