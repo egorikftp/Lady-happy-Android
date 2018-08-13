@@ -3,15 +3,15 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 
 android {
-    compileSdkVersion 27
+    compileSdkVersion 28
+    buildToolsVersion '28.0.1'
 
     defaultConfig {
         minSdkVersion 21
-        targetSdkVersion 27
+        targetSdkVersion 28
         versionCode 1
         versionName "1.0"
     }
-
     buildTypes {
         release {
             minifyEnabled false
@@ -21,11 +21,12 @@ android {
 }
 
 dependencies {
-    implementation project(":core")
+    implementation project(':core')
 
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.2.51"
-    implementation 'com.android.support:appcompat-v7:27.1.1'
+    implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.2.60'
+
+    implementation 'com.android.support:appcompat-v7:28.0.0-rc01'
 
     kapt "com.google.dagger:dagger-compiler:2.16"
-    implementation "com.google.dagger:dagger:2.16"
+    implementation 'com.google.dagger:dagger:2.16'
 }

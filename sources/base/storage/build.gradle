@@ -4,6 +4,7 @@ apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion 28
+    buildToolsVersion '28.0.1'
 
     defaultConfig {
         minSdkVersion 21
@@ -13,7 +14,6 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
-
     buildTypes {
         release {
             minifyEnabled false
@@ -23,13 +23,13 @@ android {
 }
 
 dependencies {
-    implementation project(":core")
+    implementation project(':core')
 
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.2.51"
+    implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.2.60'
 
     implementation 'io.reactivex.rxjava2:rxjava:2.1.15'
     implementation 'io.reactivex.rxjava2:rxandroid:2.0.2'
 
     kapt "com.google.dagger:dagger-compiler:2.16"
-    implementation "com.google.dagger:dagger:2.16"
+    implementation 'com.google.dagger:dagger:2.16'
 }

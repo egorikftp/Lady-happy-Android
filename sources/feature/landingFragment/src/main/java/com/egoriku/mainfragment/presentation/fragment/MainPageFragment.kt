@@ -15,8 +15,8 @@ import com.egoriku.mainfragment.di.MainFragmentComponent
 import com.egoriku.mainfragment.presentation.fragment.controller.*
 import com.egoriku.ui.BaseInjectableFragment
 import com.egoriku.ui.common.parallax.ParallaxScrollListener
+import com.egoriku.ui.ktx.browseUrl
 import kotlinx.android.synthetic.main.fragment_main_page.*
-import org.jetbrains.anko.support.v4.browse
 import ru.surfstudio.android.easyadapter.EasyAdapter
 import ru.surfstudio.android.easyadapter.ItemList
 import javax.inject.Inject
@@ -72,7 +72,7 @@ class MainPageFragment : BaseInjectableFragment<MainPageContract.View, MainPageC
         sectionsHeaderController = SectionsHeaderController()
         quotasController = QuotesController(parallaxScrollListener)
         ourTeamController = OurTeamController(onSocialItemClick = {
-            browse(it)
+            browseUrl(it)
         })
 
         presenter.loadLandingData()

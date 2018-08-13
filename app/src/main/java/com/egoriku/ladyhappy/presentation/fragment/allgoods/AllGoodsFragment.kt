@@ -19,15 +19,14 @@ import com.egoriku.ladyhappy.presentation.fragment.allgoods.controller.ErrorStat
 import com.egoriku.ladyhappy.presentation.fragment.allgoods.controller.NewsController
 import com.egoriku.ladyhappy.presentation.fragment.allgoods.controller.NewsHeaderController
 import com.egoriku.ui.BaseInjectableFragment
+import com.egoriku.ui.ktx.intentFor
 import kotlinx.android.synthetic.main.fragment_all_goods.*
-import org.jetbrains.anko.support.v4.intentFor
 import ru.surfstudio.android.easyadapter.EasyAdapter
 import ru.surfstudio.android.easyadapter.ItemList
 
-
 class AllGoodsFragment : BaseInjectableFragment<AllGoodsContract.View, AllGoodsContract.Presenter>(), AllGoodsContract.View {
 
-   // @Inject
+    // @Inject
     lateinit var allGoodsPresenter: AllGoodsContract.Presenter
 
     private lateinit var categoriesController: CategoriesController
@@ -49,11 +48,11 @@ class AllGoodsFragment : BaseInjectableFragment<AllGoodsContract.View, AllGoodsC
     override fun provideLayout(): Int = R.layout.fragment_all_goods
 
     override fun injectDependencies() {
-      /*  DaggerAllGoodsComponent.builder()
-                .appComponent((activity?.applicationContext as Application).getAppComponent())
-                .allGoodsModule(AllGoodsModule())
-                .build()
-                .inject(this)*/
+        /*  DaggerAllGoodsComponent.builder()
+                  .appComponent((activity?.applicationContext as Application).getAppComponent())
+                  .allGoodsModule(AllGoodsModule())
+                  .build()
+                  .inject(this)*/
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -76,16 +75,17 @@ class AllGoodsFragment : BaseInjectableFragment<AllGoodsContract.View, AllGoodsC
         }
 
         categoriesController = CategoriesController(onClickListener = { model, imageView ->
-            val options = ActivityOptionsCompat.makeSceneTransitionAnimation(
-                    activity as Activity,
-                    imageView,
-                    ViewCompat.getTransitionName(imageView))
+            val options = ViewCompat.getTransitionName(imageView)?.let {
+                ActivityOptionsCompat.makeSceneTransitionAnimation(
+                        activity as Activity,
+                        imageView,
+                        it
+                )
+            }
 
             startActivity(
-                    intentFor<DetailCategoryActivity>().apply {
-                        putExtra(EXTRA_ANIMAL_ITEM, model)
-                        putExtra(EXTRA_ANIMAL_IMAGE_TRANSITION_NAME, ViewCompat.getTransitionName(imageView))
-                    }, options.toBundle())
+                    intentFor<DetailCategoryActivity>(EXTRA_ANIMAL_ITEM to model,
+                            EXTRA_ANIMAL_IMAGE_TRANSITION_NAME to ViewCompat.getTransitionName(imageView)), options?.toBundle())
         })
 
         errorStateController = ErrorStateController(onReloadClickListener = {
