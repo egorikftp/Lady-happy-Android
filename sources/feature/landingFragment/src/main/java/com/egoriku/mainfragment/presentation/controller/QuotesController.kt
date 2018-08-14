@@ -1,4 +1,4 @@
-package com.egoriku.mainfragment.presentation.fragment.controller
+package com.egoriku.mainfragment.presentation.controller
 
 import android.graphics.Matrix
 import android.view.View
@@ -12,7 +12,7 @@ import kotlinx.android.synthetic.main.adapter_item_quotes.view.*
 import ru.surfstudio.android.easyadapter.controller.BindableItemController
 import ru.surfstudio.android.easyadapter.holder.BindableViewHolder
 
-class QuotesController(val scrollListener: ParallaxScrollListener) : BindableItemController<String, QuotesController.Holder>() {
+internal class QuotesController(val scrollListener: ParallaxScrollListener) : BindableItemController<String, QuotesController.Holder>() {
 
     override fun createViewHolder(parent: ViewGroup) = Holder(parent)
 

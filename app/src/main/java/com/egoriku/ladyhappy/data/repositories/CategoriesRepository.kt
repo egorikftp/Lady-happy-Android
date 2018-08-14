@@ -14,6 +14,6 @@ class CategoriesRepository
     fun getCategories(): Observable<CategoriesModel> {
         return categoriesDataSourceRemote
                 .getCategories()
-                .map({ categoriesDocumentEntity -> CategoriesMapper.transform(categoriesDocumentEntity) })
+                .map { categoriesDocumentEntity -> CategoriesMapper.transform(categoriesDocumentEntity) }
     }
 }

@@ -34,6 +34,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/about_header"
-        tools:text="About Content" />
+        tools:text="Красивый аксессуар всегда был неотъемлемой частью гардероба. Он подчеркивал женскую загадочность и робкость... \n\nВ последнее время изделия из натуральных материалов стали популярны на рынке." />
 
 </android.support.constraint.ConstraintLayout>

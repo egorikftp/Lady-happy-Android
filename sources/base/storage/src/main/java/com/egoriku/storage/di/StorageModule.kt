@@ -1,7 +1,8 @@
 package com.egoriku.storage.di
 
 import com.egoriku.core.repository.ILandingRepository
-import com.egoriku.storage.LandingRepository
+import com.egoriku.network.landing.LandingDataSource
+import com.egoriku.storage.landing.LandingRepository
 import dagger.Module
 import dagger.Provides
 
@@ -9,5 +10,5 @@ import dagger.Provides
 class StorageModule {
 
     @Provides
-    fun provideLandingRepo(): ILandingRepository = LandingRepository()
+    fun provideLandingRepo(landingDataSource: LandingDataSource): ILandingRepository = LandingRepository(landingDataSource)
 }

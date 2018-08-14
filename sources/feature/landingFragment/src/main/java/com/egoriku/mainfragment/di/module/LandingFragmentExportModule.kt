@@ -6,7 +6,7 @@ import dagger.Module
 import dagger.Provides
 
 @Module
-class MainFragmentExportModule {
+class LandingFragmentExportModule {
 
     @Provides
     fun provideShowMainActivityAction(): MainFragmentAction = MainFragmentActionImpl()

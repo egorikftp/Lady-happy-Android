@@ -1,4 +1,4 @@
-package com.egoriku.mainfragment.presentation.fragment.controller
+package com.egoriku.mainfragment.presentation.controller
 
 import android.view.View
 import android.view.ViewGroup
@@ -9,7 +9,7 @@ import kotlinx.android.synthetic.main.adapter_item_about.view.*
 import ru.surfstudio.android.easyadapter.controller.BindableItemController
 import ru.surfstudio.android.easyadapter.holder.BindableViewHolder
 
-class AboutController : BindableItemController<String, AboutController.Holder>() {
+internal class AboutController : BindableItemController<String, AboutController.Holder>() {
 
     override fun createViewHolder(parent: ViewGroup) = Holder(parent)
 

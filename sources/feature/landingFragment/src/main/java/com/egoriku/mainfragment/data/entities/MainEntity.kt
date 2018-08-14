@@ -2,6 +2,7 @@ package com.egoriku.mainfragment.data.entities
 
 import android.support.annotation.DrawableRes
 import android.support.annotation.Keep
+import com.egoriku.core.models.ITeamMember
 import com.egoriku.corelib_kt.Constants
 import com.google.firebase.firestore.PropertyName
 
@@ -32,4 +33,10 @@ data class TeamMember(
         @get:PropertyName("social")
         @set:PropertyName("social")
         var socialModel: List<SocialModel> = emptyList()
-)
+) : ITeamMember {
+    override fun profileImage() = personImageUrl
+
+    override fun name() = name
+
+    override fun skills() = skills
+}

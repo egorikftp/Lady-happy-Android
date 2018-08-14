@@ -1,4 +1,4 @@
-package com.egoriku.mainfragment.presentation.fragment.controller
+package com.egoriku.mainfragment.presentation.controller
 
 import android.view.View
 import android.view.ViewGroup
@@ -8,7 +8,7 @@ import kotlinx.android.synthetic.main.adapter_item_section_header.*
 import ru.surfstudio.android.easyadapter.controller.BindableItemController
 import ru.surfstudio.android.easyadapter.holder.BindableViewHolder
 
-class SectionsHeaderController : BindableItemController<String, SectionsHeaderController.Holder>() {
+internal class SectionsHeaderController : BindableItemController<String, SectionsHeaderController.Holder>() {
 
     override fun getItemId(data: String) = data.hashCode().toLong()
 

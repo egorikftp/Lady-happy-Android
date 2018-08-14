@@ -1,4 +1,4 @@
-package com.egoriku.mainfragment.presentation.fragment
+package com.egoriku.mainfragment.presentation
 
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
@@ -12,7 +12,7 @@ import com.egoriku.mainfragment.data.entities.OurTeamEntity
 import com.egoriku.mainfragment.data.entities.SocialModel
 import com.egoriku.mainfragment.data.entities.TeamMember
 import com.egoriku.mainfragment.di.MainFragmentComponent
-import com.egoriku.mainfragment.presentation.fragment.controller.*
+import com.egoriku.mainfragment.presentation.controller.*
 import com.egoriku.ui.BaseInjectableFragment
 import com.egoriku.ui.common.parallax.ParallaxScrollListener
 import com.egoriku.ui.ktx.browseUrl
@@ -21,10 +21,10 @@ import ru.surfstudio.android.easyadapter.EasyAdapter
 import ru.surfstudio.android.easyadapter.ItemList
 import javax.inject.Inject
 
-class MainPageFragment : BaseInjectableFragment<MainPageContract.View, MainPageContract.Presenter>(), MainPageContract.View {
+internal class LandingPageFragment : BaseInjectableFragment<LandingPageContract.View, LandingPageContract.Presenter>(), LandingPageContract.View {
 
     @Inject
-    lateinit var mainPagePresenter: MainPageContract.Presenter
+    lateinit var landingPagePresenter: LandingPageContract.Presenter
 
     private val mainPageAdapter = EasyAdapter()
     private lateinit var parallaxScrollListener: ParallaxScrollListener
@@ -36,12 +36,12 @@ class MainPageFragment : BaseInjectableFragment<MainPageContract.View, MainPageC
     private lateinit var ourTeamController: OurTeamController
 
     companion object {
-        fun newInstance() = MainPageFragment()
+        fun newInstance() = LandingPageFragment()
     }
 
     override fun provideLayout(): Int = R.layout.fragment_main_page
 
-    override fun initPresenter(): MainPageContract.Presenter = mainPagePresenter
+    override fun initPresenter(): LandingPageContract.Presenter = landingPagePresenter
 
     override fun injectDependencies() {
         MainFragmentComponent.Initializer
@@ -76,7 +76,6 @@ class MainPageFragment : BaseInjectableFragment<MainPageContract.View, MainPageC
         })
 
         presenter.loadLandingData()
-        // showInformation()
     }
 
     override fun showLoading() {
@@ -88,9 +87,6 @@ class MainPageFragment : BaseInjectableFragment<MainPageContract.View, MainPageC
     }
 
     override fun showInformation(model: ILandingModel) {
-        val s = model.aboutInfo()
-        val quotes = "Главное в платье - это женщина, которая его надевает."
-
         val ourTeamEntity = OurTeamEntity(listOf(
                 TeamMember("https://lady-happy.com/assets/images/team-1.jpg",
                         "Ольга Урбанович",
@@ -116,9 +112,9 @@ class MainPageFragment : BaseInjectableFragment<MainPageContract.View, MainPageC
         mainPageAdapter.setItems(
                 ItemList.create()
                         .addIf(true, headerController)
-                        .add(s, aboutController)
+                        .add(model.aboutInfo(), aboutController)
                         .addIf(true, getString(R.string.adapter_item_header_quotes), sectionsHeaderController)
-                        .add(quotes, quotasController)
+                        .add(model.quote(), quotasController)
                         .addIf(ourTeamEntity.ourTeam.isNotEmpty(), getString(R.string.adapter_item_header_our_team), sectionsHeaderController)
                         .addAll(ourTeamEntity.ourTeam, ourTeamController)
         )

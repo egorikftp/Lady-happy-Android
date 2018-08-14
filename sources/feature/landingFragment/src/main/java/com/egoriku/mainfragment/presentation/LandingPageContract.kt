@@ -1,10 +1,10 @@
-package com.egoriku.mainfragment.presentation.fragment
+package com.egoriku.mainfragment.presentation
 
 import com.egoriku.core.models.ILandingModel
 import com.egoriku.corelib_kt.arch.BaseContract
 import com.egoriku.ui.BaseView
 
-interface MainPageContract {
+internal interface LandingPageContract {
 
     interface View : BaseView {
         fun initViews()

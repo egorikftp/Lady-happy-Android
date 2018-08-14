@@ -23,7 +23,7 @@ import com.egoriku.corelib_kt.listeners.SimpleAnimationListener
 import com.egoriku.mainfragment.R
 import com.egoriku.mainfragment.data.entities.SocialModel
 
-class SocialView : LinearLayout, View.OnClickListener {
+internal class SocialView : LinearLayout, View.OnClickListener {
 
     enum class AnimationState {
         NEED_SHOW, NEED_HIDE

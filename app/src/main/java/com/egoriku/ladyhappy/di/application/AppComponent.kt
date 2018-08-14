@@ -25,7 +25,7 @@ interface AppComponent : ApplicationProvider {
                 val mainToolsProvider = MainToolsComponent.Initializer.init(app)
                 val mainActivityProvider = MainActivityExportComponent.Initializer.init()
                 val mainFragmentProvider = MainFragmentExportComponent.Initializer.init()
-                val repositoryProvider = StorageComponent.Initializer.init()
+                val repositoryProvider = StorageComponent.Initializer.init(mainToolsProvider)
 
                 return DaggerAppComponent.builder()
                         .mainToolsProvider(mainToolsProvider)

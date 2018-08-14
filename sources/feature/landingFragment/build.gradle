@@ -16,7 +16,7 @@ android {
 
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
@@ -35,6 +35,7 @@ dependencies {
 
     implementation 'com.android.support:appcompat-v7:28.0.0-rc01'
     implementation 'com.android.support:recyclerview-v7:28.0.0-rc01'
+    implementation 'com.android.support.constraint:constraint-layout:1.1.2'
 
     kapt "com.google.dagger:dagger-compiler:2.16"
     implementation 'com.google.dagger:dagger:2.16'

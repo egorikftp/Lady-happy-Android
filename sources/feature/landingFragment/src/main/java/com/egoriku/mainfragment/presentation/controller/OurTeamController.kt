@@ -1,4 +1,4 @@
-package com.egoriku.mainfragment.presentation.fragment.controller
+package com.egoriku.mainfragment.presentation.controller
 
 import android.view.View
 import android.view.ViewGroup
@@ -7,11 +7,10 @@ import com.egoriku.mainfragment.R
 import com.egoriku.mainfragment.data.entities.TeamMember
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.adapter_item_our_team.*
-import kotlinx.android.synthetic.main.adapter_item_our_team.view.*
 import ru.surfstudio.android.easyadapter.controller.BindableItemController
 import ru.surfstudio.android.easyadapter.holder.BindableViewHolder
 
-class OurTeamController(val onSocialItemClick: (url: String) -> Unit) : BindableItemController<TeamMember, OurTeamController.Holder>() {
+internal class OurTeamController(val onSocialItemClick: (url: String) -> Unit) : BindableItemController<TeamMember, OurTeamController.Holder>() {
 
     override fun createViewHolder(parent: ViewGroup) = Holder(parent)
 
