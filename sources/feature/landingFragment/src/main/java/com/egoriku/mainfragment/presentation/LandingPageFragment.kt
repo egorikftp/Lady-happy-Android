@@ -60,7 +60,6 @@ internal class LandingPageFragment : BaseInjectableFragment<LandingPageContract.
         mainPageRecyclerView.apply {
             layoutManager = LinearLayoutManager(context)
             adapter = mainPageAdapter
-            setHasFixedSize(true)
         }
 
         parallaxScrollListener = ParallaxScrollListener().apply {
@@ -71,9 +70,9 @@ internal class LandingPageFragment : BaseInjectableFragment<LandingPageContract.
         aboutController = AboutController()
         sectionsHeaderController = SectionsHeaderController()
         quotasController = QuotesController(parallaxScrollListener)
-        ourTeamController = OurTeamController(onSocialItemClick = {
+        ourTeamController = OurTeamController {
             browseUrl(it)
-        })
+        }
 
         presenter.loadLandingData()
     }
@@ -111,7 +110,7 @@ internal class LandingPageFragment : BaseInjectableFragment<LandingPageContract.
 
         mainPageAdapter.setItems(
                 ItemList.create()
-                        .addIf(true, headerController)
+                        .add(headerController)
                         .add(model.aboutInfo(), aboutController)
                         .addIf(true, getString(R.string.adapter_item_header_quotes), sectionsHeaderController)
                         .add(model.quote(), quotasController)
