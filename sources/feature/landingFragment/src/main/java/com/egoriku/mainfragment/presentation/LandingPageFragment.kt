@@ -112,9 +112,9 @@ internal class LandingPageFragment : BaseInjectableFragment<LandingPageContract.
                 ItemList.create()
                         .add(headerController)
                         .add(model.aboutInfo(), aboutController)
-                        .addIf(true, getString(R.string.adapter_item_header_quotes), sectionsHeaderController)
+                        .addIf(true, R.string.adapter_item_header_quotes, sectionsHeaderController)
                         .add(model.quote(), quotasController)
-                        .addIf(ourTeamEntity.ourTeam.isNotEmpty(), getString(R.string.adapter_item_header_our_team), sectionsHeaderController)
+                        .addIf(ourTeamEntity.ourTeam.isNotEmpty(), R.string.adapter_item_header_our_team, sectionsHeaderController)
                         .addAll(ourTeamEntity.ourTeam, ourTeamController)
         )
     }
