@@ -1,9 +1,11 @@
 package com.egoriku.storage.landing
 
 import com.egoriku.core.models.ILandingModel
+import com.egoriku.core.models.ITeamMemberModel
 import com.egoriku.core.repository.ILandingRepository
 import com.egoriku.network.landing.LandingDataSource
 import com.egoriku.network.landing.entity.LandingEntity
+import com.egoriku.network.landing.entity.TeamMemberEntity
 import com.egoriku.storage.common.Constants.EMPTY
 import io.reactivex.Observable
 
@@ -17,6 +19,13 @@ class LandingRepository(private val landingDataSource: LandingDataSource) : ILan
     private fun transform(entity: LandingEntity): ILandingModel =
             LandingModel(
                     entity.aboutInfo ?: EMPTY,
-                    entity.quote ?: EMPTY
+                    entity.quote ?: EMPTY,
+                    transformMember(entity.teamMembers)
             )
+
+    private fun transformMember(teamMembers: List<TeamMemberEntity>?): List<ITeamMemberModel> {
+        return teamMembers?.map {
+
+        } ?: emptyList()
+    }
 }

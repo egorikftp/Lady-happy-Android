@@ -1,12 +1,17 @@
 package com.egoriku.storage.landing
 
 import com.egoriku.core.models.ILandingModel
+import com.egoriku.core.models.ITeamMemberModel
 
 data class LandingModel(
-        private val aboutInfo: String,
-        private val quote: String
-) : ILandingModel {
+        override val aboutInfo: String,
+        override val quote: String,
+        override val teamMembers: List<ITeamMemberModel>
+) : ILandingModel
 
-    override fun aboutInfo() = aboutInfo
-    override fun quote() = quote
-}
+
+data class TeamMemberModel(
+        override val profileImage: String,
+        override val name: String,
+        override val skills: String
+) : ITeamMemberModel

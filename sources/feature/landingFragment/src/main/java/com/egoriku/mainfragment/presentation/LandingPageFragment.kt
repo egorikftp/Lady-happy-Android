@@ -111,9 +111,9 @@ internal class LandingPageFragment : BaseInjectableFragment<LandingPageContract.
         mainPageAdapter.setItems(
                 ItemList.create()
                         .add(headerController)
-                        .add(model.aboutInfo(), aboutController)
+                        .add(model.aboutInfo, aboutController)
                         .addIf(true, R.string.adapter_item_header_quotes, sectionsHeaderController)
-                        .add(model.quote(), quotasController)
+                        .add(model.quote, quotasController)
                         .addIf(ourTeamEntity.ourTeam.isNotEmpty(), R.string.adapter_item_header_our_team, sectionsHeaderController)
                         .addAll(ourTeamEntity.ourTeam, ourTeamController)
         )

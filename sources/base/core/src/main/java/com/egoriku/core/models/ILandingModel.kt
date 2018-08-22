@@ -2,19 +2,18 @@ package com.egoriku.core.models
 
 interface ILandingModel {
 
-    fun aboutInfo(): String
+    val aboutInfo: String
 
-    fun quote(): String
+    val quote: String
 
-    //fun teamMembers(): List<ITeamMember>
+    val teamMembers: List<ITeamMemberModel>
 }
 
-interface ITeamMember {
+interface ITeamMemberModel {
 
-    fun profileImage(): String
+    val profileImage: String
 
-    fun name(): String
+    val name: String
 
-    fun skills(): String
-
+    val skills: String
 }
