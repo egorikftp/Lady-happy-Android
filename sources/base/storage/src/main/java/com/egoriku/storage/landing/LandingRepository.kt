@@ -18,14 +18,18 @@ class LandingRepository(private val landingDataSource: LandingDataSource) : ILan
 
     private fun transform(entity: LandingEntity): ILandingModel =
             LandingModel(
-                    entity.aboutInfo ?: EMPTY,
-                    entity.quote ?: EMPTY,
-                    transformMember(entity.teamMembers)
+                    aboutInfo = entity.aboutInfo ?: EMPTY,
+                    quote = entity.quote ?: EMPTY,
+                    teamMembers = transformMember(entity.teamMembers)
             )
 
     private fun transformMember(teamMembers: List<TeamMemberEntity>?): List<ITeamMemberModel> {
         return teamMembers?.map {
-
+            TeamMemberModel(
+                    profileImage = it.personImageUrl ?: EMPTY,
+                    name = it.name ?: EMPTY,
+                    skills = it.skills ?: EMPTY
+            )
         } ?: emptyList()
     }
 }

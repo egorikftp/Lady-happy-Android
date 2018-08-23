@@ -2,6 +2,7 @@ package com.egoriku.mainfragment.presentation
 
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
+import android.util.Log
 import android.view.View
 import com.egoriku.core.IApplication
 import com.egoriku.core.models.ILandingModel
@@ -86,7 +87,7 @@ internal class LandingPageFragment : BaseInjectableFragment<LandingPageContract.
     }
 
     override fun showInformation(model: ILandingModel) {
-        val ourTeamEntity = OurTeamEntity(listOf(
+       /* val ourTeamEntity = OurTeamEntity(listOf(
                 TeamMember("https://lady-happy.com/assets/images/team-1.jpg",
                         "Ольга Урбанович",
                         "Мастер",
@@ -108,14 +109,16 @@ internal class LandingPageFragment : BaseInjectableFragment<LandingPageContract.
                         )))
         )
 
+        Log.d("egorik", model.teamMembers.get(0).toString())
+*/
         mainPageAdapter.setItems(
                 ItemList.create()
                         .add(headerController)
                         .add(model.aboutInfo, aboutController)
                         .addIf(true, R.string.adapter_item_header_quotes, sectionsHeaderController)
                         .add(model.quote, quotasController)
-                        .addIf(ourTeamEntity.ourTeam.isNotEmpty(), R.string.adapter_item_header_our_team, sectionsHeaderController)
-                        .addAll(ourTeamEntity.ourTeam, ourTeamController)
+                        .addIf(model.teamMembers.isNotEmpty(), R.string.adapter_item_header_our_team, sectionsHeaderController)
+                        .addAll(model.teamMembers, ourTeamController)
         )
     }
 }
