@@ -1,7 +1,7 @@
 package com.egoriku.network.di
 
 import com.egoriku.core.di.utils.IFirebaseFirestore
-import com.egoriku.network.landing.LandingDataSource
+import com.egoriku.network.datasource.LandingDataSource
 import dagger.Module
 import dagger.Provides
 

@@ -2,16 +2,12 @@ package com.egoriku.mainfragment.presentation
 
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
-import android.util.Log
 import android.view.View
 import com.egoriku.core.IApplication
 import com.egoriku.core.models.ILandingModel
 import com.egoriku.corelib_kt.dsl.hide
 import com.egoriku.corelib_kt.dsl.show
 import com.egoriku.mainfragment.R
-import com.egoriku.mainfragment.data.entities.OurTeamEntity
-import com.egoriku.mainfragment.data.entities.SocialModel
-import com.egoriku.mainfragment.data.entities.TeamMember
 import com.egoriku.mainfragment.di.MainFragmentComponent
 import com.egoriku.mainfragment.presentation.controller.*
 import com.egoriku.ui.BaseInjectableFragment
@@ -87,30 +83,6 @@ internal class LandingPageFragment : BaseInjectableFragment<LandingPageContract.
     }
 
     override fun showInformation(model: ILandingModel) {
-       /* val ourTeamEntity = OurTeamEntity(listOf(
-                TeamMember("https://lady-happy.com/assets/images/team-1.jpg",
-                        "Ольга Урбанович",
-                        "Мастер",
-                        listOf(
-                                SocialModel("https://vk.com/urbanovich.olga", R.drawable.ic_vk),
-                                SocialModel("https://ok.ru/urbanovich.olga", R.drawable.ic_odnoklassniki),
-                                SocialModel("https://www.instagram.com/urbanovich.olga/", R.drawable.ic_instagram),
-                                SocialModel("https://model.me/urbanovich_olga/", R.drawable.ic_telegram)
-                        )),
-                TeamMember("https://lady-happy.com/assets/images/team-2.jpg",
-                        "Егор Урбанович",
-                        "Разработчик / UX дизайнейр / Фотограф",
-                        listOf(
-                                SocialModel("https://vk.com/egoriku", R.drawable.ic_vk),
-                                SocialModel("https://model.me/egoriku/", R.drawable.ic_telegram),
-                                SocialModel("https://www.instagram.com/egorik.u//", R.drawable.ic_instagram),
-                                SocialModel("https://github.com/egorikftp/", R.drawable.ic_github),
-                                SocialModel("https://github.com/egorikftp/", R.drawable.ic_github)
-                        )))
-        )
-
-        Log.d("egorik", model.teamMembers.get(0).toString())
-*/
         mainPageAdapter.setItems(
                 ItemList.create()
                         .add(headerController)

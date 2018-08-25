@@ -11,7 +11,6 @@
     <string name="adapter_item_error_state_retry">Нажмите чтобы повторить</string>
     <string name="adapter_item_pagination_footer_load_more">Загрузить больше</string>
     <string name="adapter_item_news_header_text">Последние новости</string>
-    <string name="about_us">О нас</string>
 
     <string name="activity_start_app_name">Дамское счастье</string>
 </resources>

@@ -19,9 +19,10 @@ import android.view.animation.AlphaAnimation
 import android.view.animation.Animation
 import android.widget.ImageView
 import android.widget.LinearLayout
+import com.egoriku.core.models.ISocialModel
 import com.egoriku.corelib_kt.listeners.SimpleAnimationListener
 import com.egoriku.mainfragment.R
-import com.egoriku.mainfragment.data.entities.SocialModel
+import com.egoriku.mainfragment.common.PredefinedResources
 
 internal class SocialView : LinearLayout, View.OnClickListener {
 
@@ -195,17 +196,19 @@ internal class SocialView : LinearLayout, View.OnClickListener {
     }
 
     @SuppressLint("RestrictedApi")
-    fun setSocialModel(list: List<SocialModel>) {
-        list.forEach { (url, imageResId) ->
+    fun setSocialModel(list: List<ISocialModel>) {
+        removeAllViews()
+        list.forEach {
             addView(AppCompatImageButton(context).apply {
                 alpha = MIN_ALPHA
-                tag = url
+                tag = it.socialUrl
                 scaleType = ImageView.ScaleType.FIT_CENTER
-                setImageResource(imageResId)
+                setImageResource(PredefinedResources.getDrawableByType(it.type))
                 setBackgroundResource(R.drawable.bg_social_view)
                 supportImageTintList = ContextCompat.getColorStateList(context, R.color.selector_social_icon)
             }, LayoutParams.WRAP_CONTENT)
         }
+        invalidate()
     }
 
     fun setOnSocialIconClickListener(onClickListener: (url: String) -> Unit) {

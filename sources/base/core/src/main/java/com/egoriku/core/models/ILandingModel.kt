@@ -16,4 +16,13 @@ interface ITeamMemberModel {
     val name: String
 
     val skills: String
+
+    val socialLinks: List<ISocialModel>
+}
+
+interface ISocialModel {
+
+    val socialUrl: String
+
+    val type: String
 }

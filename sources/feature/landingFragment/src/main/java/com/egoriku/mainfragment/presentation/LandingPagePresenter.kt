@@ -19,10 +19,10 @@ internal class LandingPagePresenter
         }
 
         landingUseCase.execute(object : DefaultObserver<ILandingModel>() {
-            override fun onNext(t: ILandingModel) {
+            override fun onNext(model: ILandingModel) {
                 if (isViewAttached) {
                     view.hideLoading()
-                    view.showInformation(t)
+                    view.showInformation(model)
                 }
             }
 

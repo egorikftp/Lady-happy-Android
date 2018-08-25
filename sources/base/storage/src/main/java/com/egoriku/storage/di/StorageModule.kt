@@ -1,7 +1,7 @@
 package com.egoriku.storage.di
 
 import com.egoriku.core.repository.ILandingRepository
-import com.egoriku.network.landing.LandingDataSource
+import com.egoriku.network.datasource.LandingDataSource
 import com.egoriku.storage.landing.LandingRepository
 import dagger.Module
 import dagger.Provides

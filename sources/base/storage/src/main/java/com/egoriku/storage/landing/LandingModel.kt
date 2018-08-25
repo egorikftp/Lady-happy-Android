@@ -1,6 +1,7 @@
 package com.egoriku.storage.landing
 
 import com.egoriku.core.models.ILandingModel
+import com.egoriku.core.models.ISocialModel
 import com.egoriku.core.models.ITeamMemberModel
 
 data class LandingModel(
@@ -13,5 +14,11 @@ data class LandingModel(
 data class TeamMemberModel(
         override val profileImage: String,
         override val name: String,
-        override val skills: String
+        override val skills: String,
+        override val socialLinks: List<ISocialModel>
 ) : ITeamMemberModel
+
+data class SocialModel(
+        override val socialUrl: String,
+        override val type: String
+) : ISocialModel

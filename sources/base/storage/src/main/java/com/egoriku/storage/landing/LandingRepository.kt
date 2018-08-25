@@ -1,11 +1,13 @@
 package com.egoriku.storage.landing
 
 import com.egoriku.core.models.ILandingModel
+import com.egoriku.core.models.ISocialModel
 import com.egoriku.core.models.ITeamMemberModel
 import com.egoriku.core.repository.ILandingRepository
-import com.egoriku.network.landing.LandingDataSource
-import com.egoriku.network.landing.entity.LandingEntity
-import com.egoriku.network.landing.entity.TeamMemberEntity
+import com.egoriku.network.datasource.LandingDataSource
+import com.egoriku.network.data.entities.LandingEntity
+import com.egoriku.network.data.entities.SocialEntity
+import com.egoriku.network.data.entities.TeamMemberEntity
 import com.egoriku.storage.common.Constants.EMPTY
 import io.reactivex.Observable
 
@@ -28,8 +30,19 @@ class LandingRepository(private val landingDataSource: LandingDataSource) : ILan
             TeamMemberModel(
                     profileImage = it.personImageUrl ?: EMPTY,
                     name = it.name ?: EMPTY,
-                    skills = it.skills ?: EMPTY
+                    skills = it.skills ?: EMPTY,
+                    socialLinks = transformSocialLinks(it.socialLinks)
             )
+        } ?: emptyList()
+    }
+
+    private fun transformSocialLinks(socialLinks: List<SocialEntity>?): List<ISocialModel> {
+        return socialLinks?.map {
+            SocialModel(
+                    socialUrl = it.url ?: EMPTY,
+                    type = it.type ?: EMPTY
+            )
+
         } ?: emptyList()
     }
 }

@@ -1,4 +1,4 @@
-package com.egoriku.network.landing.entity
+package com.egoriku.network.data.entities
 
 import android.support.annotation.Keep
 import com.google.firebase.firestore.PropertyName
@@ -32,8 +32,18 @@ class TeamMemberEntity {
     @PropertyName("skills")
     @JvmField
     val skills: String? = null
+
+    @PropertyName("socialLinks")
+    @JvmField
+    val socialLinks: List<SocialEntity>? = null
 }
-/*
-        @get:PropertyName("social")
-@set:PropertyName("social")
-var socialModel: List<SocialModel> = emptyList()*/
+
+class SocialEntity {
+    @PropertyName("url")
+    @JvmField
+    val url: String? = null
+
+    @PropertyName("socialType")
+    @JvmField
+    val type: String? = null
+}

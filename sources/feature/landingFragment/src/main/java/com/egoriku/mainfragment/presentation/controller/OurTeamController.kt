@@ -20,7 +20,7 @@ internal class OurTeamController(val onSocialItemClick: (url: String) -> Unit) :
         override val containerView: View
             get() = itemView
 
-        private val firstSocialView = socialView.apply {
+        private val socialViewContainer = socialView.apply {
             setOnClickListener { showView() }
             setOnSocialIconClickListener { onSocialItemClick(it) }
         }
@@ -28,7 +28,8 @@ internal class OurTeamController(val onSocialItemClick: (url: String) -> Unit) :
         override fun bind(model: ITeamMemberModel) {
             ourTeamName.text = model.name
             ourTeamBio.text = model.skills
-            // firstSocialView.setSocialModel(model.socialModel)
+
+            socialViewContainer.setSocialModel(model.socialLinks)
 
             Glide.with(itemView.context)
                     .load(model.profileImage)
