@@ -10,7 +10,7 @@ class CategoriesStubController : BindableItemController<Stub, CategoriesStubCont
 
     override fun createViewHolder(parent: ViewGroup) = Holder(parent)
 
-    override fun getItemId(stub: Stub) = stub.id
+    override fun getItemId(stub: Stub) = stub.id.toString()
 
     inner class Holder(parent: ViewGroup) : BindableViewHolder<Stub>(parent, R.layout.adapter_item_category) {
 

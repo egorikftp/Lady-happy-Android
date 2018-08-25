@@ -11,7 +11,7 @@ import ru.surfstudio.android.easyadapter.holder.BindableViewHolder
 
 internal class SectionsHeaderController : BindableItemController<Int, SectionsHeaderController.Holder>() {
 
-    override fun getItemId(data: Int) = data.hashCode().toLong()
+    override fun getItemId(data: Int) = data.hashCode().toString()
 
     override fun createViewHolder(parent: ViewGroup) = Holder(parent)
 

@@ -14,7 +14,7 @@ internal class OurTeamController(val onSocialItemClick: (url: String) -> Unit) :
 
     override fun createViewHolder(parent: ViewGroup) = Holder(parent)
 
-    override fun getItemId(data: ITeamMemberModel) = data.hashCode().toLong()
+    override fun getItemId(data: ITeamMemberModel) = data.hashCode().toString()
 
     inner class Holder(parent: ViewGroup) : BindableViewHolder<ITeamMemberModel>(parent, R.layout.adapter_item_our_team), LayoutContainer {
         override val containerView: View

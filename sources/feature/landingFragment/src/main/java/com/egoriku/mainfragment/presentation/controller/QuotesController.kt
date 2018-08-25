@@ -16,7 +16,7 @@ internal class QuotesController(val scrollListener: ParallaxScrollListener) : Bi
 
     override fun createViewHolder(parent: ViewGroup) = Holder(parent)
 
-    override fun getItemId(data: String) = data.hashCode().toLong()
+    override fun getItemId(data: String) = data.hashCode().toString()
 
     inner class Holder(parent: ViewGroup) : BindableViewHolder<String>(parent, R.layout.adapter_item_quotes),
             IParallaxScrollListener, LayoutContainer {
