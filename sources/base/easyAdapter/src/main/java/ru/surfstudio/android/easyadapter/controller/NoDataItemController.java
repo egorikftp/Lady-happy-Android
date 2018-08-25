@@ -15,13 +15,11 @@
  */
 package ru.surfstudio.android.easyadapter.controller;
 
-
 import android.support.v7.widget.RecyclerView;
 
 import ru.surfstudio.android.easyadapter.EasyAdapter;
 import ru.surfstudio.android.easyadapter.ItemList;
 import ru.surfstudio.android.easyadapter.item.NoDataItem;
-
 
 /**
  * Controller for item of RecyclerView without data {@link NoDataItem}
@@ -33,8 +31,8 @@ public abstract class NoDataItemController<H extends RecyclerView.ViewHolder>
         extends BaseItemController<H, NoDataItem<H>> {
 
     @Override
-    public long getItemId(NoDataItem<H> item) {
-        return getClass().getCanonicalName().hashCode();
+    public String getItemId(NoDataItem<H> item) {
+        return String.valueOf(getClass().getCanonicalName().hashCode());
     }
 
     @Override
@@ -43,7 +41,7 @@ public abstract class NoDataItemController<H extends RecyclerView.ViewHolder>
     }
 
     @Override
-    public long getItemHash(NoDataItem<H> item) {
-        return 0;
+    public String getItemHash(NoDataItem<H> item) {
+        return "0";
     }
 }
