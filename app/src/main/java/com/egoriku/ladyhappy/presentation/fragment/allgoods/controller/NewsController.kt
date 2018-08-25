@@ -18,7 +18,7 @@ import ru.surfstudio.android.easyadapter.holder.BindableViewHolder
 class NewsController : BindableItemController<SingleNewsModel, NewsController.Holder>() {
 
     override fun createViewHolder(parent: ViewGroup) = Holder(parent)
-    override fun getItemId(data: SingleNewsModel) = data.hashCode().toLong()
+    override fun getItemId(data: SingleNewsModel) = data.hashCode().toString()
 
     @Suppress("JoinDeclarationAndAssignment")
     inner class Holder(parent: ViewGroup) : BindableViewHolder<SingleNewsModel>(parent, R.layout.adapter_item_news) {

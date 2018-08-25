@@ -13,7 +13,7 @@ internal class AboutController : BindableItemController<String, AboutController.
 
     override fun createViewHolder(parent: ViewGroup) = Holder(parent)
 
-    override fun getItemId(data: String) = data.hashCode().toLong()
+    override fun getItemId(data: String) = data.hashCode().toString()
 
     inner class Holder(parent: ViewGroup) : BindableViewHolder<String>(parent, R.layout.adapter_item_about), LayoutContainer {
 

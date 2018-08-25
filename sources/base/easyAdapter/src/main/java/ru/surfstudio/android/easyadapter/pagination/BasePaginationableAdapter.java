@@ -244,8 +244,8 @@ public abstract class BasePaginationableAdapter extends EasyAdapter {
         }
 
         @Override
-        public long getItemHash(NoDataItem<H> item) {
-            return state.hashCode();
+        public String getItemHash(NoDataItem<H> item) {
+            return String.valueOf(state.hashCode());
         }
 
         protected abstract H createViewHolder(ViewGroup parent, OnShowMoreListener listener);

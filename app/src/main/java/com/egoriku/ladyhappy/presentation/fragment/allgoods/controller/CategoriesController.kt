@@ -16,7 +16,7 @@ class CategoriesController(val onClickListener: (categoriesModel: SingleCategory
 
     override fun createViewHolder(parent: ViewGroup) = Holder(parent)
 
-    override fun getItemId(data: SingleCategoryModel) = data.id.hashCode().toLong()
+    override fun getItemId(data: SingleCategoryModel) = data.id.hashCode().toString()
 
     inner class Holder(parent: ViewGroup) : BindableViewHolder<SingleCategoryModel>(parent, R.layout.adapter_item_category) {
 

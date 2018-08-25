@@ -15,7 +15,6 @@
  */
 package ru.surfstudio.android.easyadapter.controller;
 
-
 import ru.surfstudio.android.easyadapter.EasyAdapter;
 import ru.surfstudio.android.easyadapter.ItemList;
 import ru.surfstudio.android.easyadapter.holder.BindableViewHolder;
@@ -41,12 +40,12 @@ public abstract class BindableItemController<T, H extends BindableViewHolder<T>>
     }
 
     @Override
-    public final long getItemId(BindableItem<T, H> item) {
+    public final String getItemId(BindableItem<T, H> item) {
         return getItemId(item.getData());
     }
 
     @Override
-    public final long getItemHash(BindableItem<T, H> item) {
+    public final String getItemHash(BindableItem<T, H> item) {
         return getItemHash(item.getData());
     }
 
@@ -55,13 +54,13 @@ public abstract class BindableItemController<T, H extends BindableViewHolder<T>>
      * method is used for automatically call notify... methods, see {@link EasyAdapter}
      * @return item id
      */
-    protected abstract long getItemId(T data);
+    protected abstract String getItemId(T data);
 
     /**
      * method is used for automatically call notify... methods, see {@link EasyAdapter}
      * @return hash of data
      */
-    protected long getItemHash(T data) {
-        return data == null ? 0 : data.hashCode();
+    protected String getItemHash(T data) {
+        return String.valueOf(data == null ? 0 : data.hashCode());
     }
 }
