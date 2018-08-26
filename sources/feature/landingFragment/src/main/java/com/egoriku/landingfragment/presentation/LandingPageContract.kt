@@ -1,4 +1,4 @@
-package com.egoriku.mainfragment.presentation
+package com.egoriku.landingfragment.presentation
 
 import com.egoriku.core.models.ILandingModel
 import com.egoriku.corelib_kt.arch.BaseContract

@@ -1,9 +1,9 @@
-package com.egoriku.mainfragment.presentation.controller
+package com.egoriku.landingfragment.presentation.controller
 
 import android.graphics.Matrix
 import android.view.View
 import android.view.ViewGroup
-import com.egoriku.mainfragment.R
+import com.egoriku.landingfragment.R
 import com.egoriku.ui.common.parallax.IParallaxScrollListener
 import com.egoriku.ui.common.parallax.ParallaxScrollListener
 import kotlinx.android.extensions.LayoutContainer

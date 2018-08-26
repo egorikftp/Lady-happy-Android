@@ -1,7 +1,7 @@
-package com.egoriku.mainfragment.di.module
+package com.egoriku.landingfragment.di.module
 
 import com.egoriku.core.actions.MainFragmentAction
-import com.egoriku.mainfragment.action.MainFragmentActionImpl
+import com.egoriku.landingfragment.action.MainFragmentActionImpl
 import dagger.Module
 import dagger.Provides
 

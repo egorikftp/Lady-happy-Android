@@ -1,4 +1,4 @@
-package com.egoriku.mainfragment.presentation
+package com.egoriku.landingfragment.presentation
 
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
@@ -7,9 +7,9 @@ import com.egoriku.core.IApplication
 import com.egoriku.core.models.ILandingModel
 import com.egoriku.corelib_kt.dsl.hide
 import com.egoriku.corelib_kt.dsl.show
-import com.egoriku.mainfragment.R
-import com.egoriku.mainfragment.di.MainFragmentComponent
-import com.egoriku.mainfragment.presentation.controller.*
+import com.egoriku.landingfragment.R
+import com.egoriku.landingfragment.di.MainFragmentComponent
+import com.egoriku.landingfragment.presentation.controller.*
 import com.egoriku.ui.BaseInjectableFragment
 import com.egoriku.ui.common.parallax.ParallaxScrollListener
 import com.egoriku.ui.ktx.browseUrl

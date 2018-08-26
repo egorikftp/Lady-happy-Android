@@ -1,10 +1,10 @@
-package com.egoriku.mainfragment.presentation.controller
+package com.egoriku.landingfragment.presentation.controller
 
 import android.view.View
 import android.view.ViewGroup
 import com.bumptech.glide.Glide
 import com.egoriku.core.models.ITeamMemberModel
-import com.egoriku.mainfragment.R
+import com.egoriku.landingfragment.R
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.adapter_item_our_team.*
 import ru.surfstudio.android.easyadapter.controller.BindableItemController
