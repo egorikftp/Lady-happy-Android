@@ -9,7 +9,7 @@ internal interface LandingPageContract {
     interface View : BaseView {
         fun initViews()
 
-        fun showInformation(model: ILandingModel)
+        fun render(model: ILandingModel)
     }
 
     interface Presenter : BaseContract.Presenter<View>{

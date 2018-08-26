@@ -82,7 +82,7 @@ internal class LandingPageFragment : BaseInjectableFragment<LandingPageContract.
         mainProgressBar.hide()
     }
 
-    override fun showInformation(model: ILandingModel) {
+    override fun render(model: ILandingModel) {
         mainPageAdapter.setItems(
                 ItemList.create()
                         .add(headerController)

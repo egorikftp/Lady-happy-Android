@@ -13,21 +13,34 @@ internal class LandingPagePresenter
 @Inject constructor(private val analyticsHelper: IAnalyticsHelper, private val landingUseCase: LandingUseCase)
     : BasePresenter<LandingPageContract.View>(), LandingPageContract.Presenter {
 
-    @Suppress("PARAMETER_NAME_CHANGED_ON_OVERRIDE")
-    override fun loadLandingData() {
-        if (isViewAttached) {
-            view.showLoading()
-        }
+    private var screenModel: ILandingModel? = null
 
+    override fun loadLandingData() {
+        if (screenModel != null) {
+            view.render(screenModel!!)
+        } else {
+            if (isViewAttached) {
+                view.showLoading()
+            }
+            getLandingData()
+        }
+    }
+
+    @Suppress("PARAMETER_NAME_CHANGED_ON_OVERRIDE")
+    private fun getLandingData() {
         landingUseCase.execute(object : DefaultObserver<ILandingModel>() {
             override fun onNext(model: ILandingModel) {
+                screenModel = model
+
                 if (isViewAttached) {
                     view.hideLoading()
-                    view.showInformation(model)
+                    view.render(model)
                 }
             }
 
             override fun onError(exception: Throwable) {
+                screenModel = null
+
                 if (isViewAttached) {
                     view.hideLoading()
                 }
