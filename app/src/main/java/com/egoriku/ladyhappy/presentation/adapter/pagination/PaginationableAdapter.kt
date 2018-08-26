@@ -7,8 +7,8 @@ import android.view.ViewGroup
 import android.view.animation.AccelerateInterpolator
 import android.widget.ProgressBar
 import android.widget.TextView
-import com.egoriku.corelib_kt.dsl.hide
-import com.egoriku.corelib_kt.dsl.show
+import com.egoriku.ui.ktx.hide
+import com.egoriku.ui.ktx.show
 import com.egoriku.ladyhappy.R
 import kotlinx.android.synthetic.main.adapter_item_pagination_footer.view.*
 import ru.surfstudio.android.easyadapter.pagination.BasePaginationableAdapter

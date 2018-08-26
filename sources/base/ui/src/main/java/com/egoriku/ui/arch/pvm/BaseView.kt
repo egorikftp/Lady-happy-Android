@@ -1,6 +1,4 @@
-package com.egoriku.ui
-
-import com.egoriku.corelib_kt.arch.BaseContract
+package com.egoriku.ui.arch.pvm
 
 interface BaseView : BaseContract.View {
     fun showLoading()

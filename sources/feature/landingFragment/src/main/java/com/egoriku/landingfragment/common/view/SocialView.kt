@@ -20,9 +20,9 @@ import android.view.animation.Animation
 import android.widget.ImageView
 import android.widget.LinearLayout
 import com.egoriku.core.models.ISocialModel
-import com.egoriku.corelib_kt.listeners.SimpleAnimationListener
 import com.egoriku.landingfragment.R
 import com.egoriku.landingfragment.common.PredefinedResources
+import com.egoriku.ui.listeners.SimpleAnimationListener
 
 internal class SocialView : LinearLayout, View.OnClickListener {
 

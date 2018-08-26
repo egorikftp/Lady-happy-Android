@@ -2,7 +2,7 @@ package com.egoriku.ladyhappy.domain.models
 
 import android.annotation.SuppressLint
 import android.os.Parcelable
-import com.egoriku.corelib_kt.Constants
+import com.egoriku.featureactivitymain.common.Constants
 import kotlinx.android.parcel.Parcelize
 
 @SuppressLint("ParcelCreator")

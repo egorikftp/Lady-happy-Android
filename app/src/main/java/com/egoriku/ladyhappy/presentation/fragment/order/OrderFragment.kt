@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.view.View
 import com.egoriku.featureactivitymain.presentation.activity.MainActivity
 import com.egoriku.ladyhappy.R
-import com.egoriku.ui.BaseInjectableFragment
+import com.egoriku.ui.arch.fragment.BaseInjectableFragment
 import javax.inject.Inject
 
 class OrderFragment : BaseInjectableFragment<OrderContract.View, OrderContract.Presenter>(), OrderContract.View {

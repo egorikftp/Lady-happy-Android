@@ -15,13 +15,13 @@ import co.zsmb.materialdrawerkt.draweritems.divider
 import com.egoriku.core.IApplication
 import com.egoriku.core.actions.MainFragmentAction
 import com.egoriku.core.di.utils.INavigationHolder
-import com.egoriku.corelib_kt.Constants
-import com.egoriku.corelib_kt.dsl.drawableCompat
 import com.egoriku.featureactivitymain.R
+import com.egoriku.featureactivitymain.common.Constants
 import com.egoriku.featureactivitymain.common.Fragments
 import com.egoriku.featureactivitymain.common.Screens
 import com.egoriku.featureactivitymain.di.MainActivityComponent
-import com.egoriku.ui.BaseInjectableActivity
+import com.egoriku.ui.arch.activity.BaseInjectableActivity
+import com.egoriku.ui.ktx.drawableCompat
 import com.mikepenz.materialdrawer.AccountHeader
 import com.mikepenz.materialdrawer.Drawer
 import kotlinx.android.synthetic.main.activity_main.*

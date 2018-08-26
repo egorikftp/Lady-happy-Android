@@ -2,7 +2,7 @@ package com.egoriku.ladyhappy.presentation.fragment.order
 
 import com.egoriku.core.common.TrackingConstants
 import com.egoriku.core.di.utils.IAnalyticsHelper
-import com.egoriku.corelib_kt.arch.BasePresenter
+import com.egoriku.ui.arch.pvm.BasePresenter
 import javax.inject.Inject
 
 class OrderPresenter
