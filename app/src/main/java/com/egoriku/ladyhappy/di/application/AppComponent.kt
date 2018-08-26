@@ -3,7 +3,7 @@ package com.egoriku.ladyhappy.di.application
 import com.egoriku.core.di.*
 import com.egoriku.featureactivitymain.di.MainActivityExportComponent
 import com.egoriku.ladyhappy.Application
-import com.egoriku.mainfragment.di.MainFragmentExportComponent
+import com.egoriku.landingfragment.di.MainFragmentExportComponent
 import com.egoriku.storage.di.StorageComponent
 import dagger.Component
 

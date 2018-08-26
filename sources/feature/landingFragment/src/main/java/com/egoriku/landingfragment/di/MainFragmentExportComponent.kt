@@ -1,7 +1,7 @@
-package com.egoriku.mainfragment.di
+package com.egoriku.landingfragment.di
 
 import com.egoriku.core.di.MainFragmentProvider
-import com.egoriku.mainfragment.di.module.LandingFragmentExportModule
+import com.egoriku.landingfragment.di.module.LandingFragmentExportModule
 import dagger.Component
 
 @Component(modules = [LandingFragmentExportModule::class])

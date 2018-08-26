@@ -1,7 +1,7 @@
-package com.egoriku.mainfragment.presentation.controller
+package com.egoriku.landingfragment.presentation.controller
 
 import android.view.ViewGroup
-import com.egoriku.mainfragment.R
+import com.egoriku.landingfragment.R
 import ru.surfstudio.android.easyadapter.controller.NoDataItemController
 import ru.surfstudio.android.easyadapter.holder.BaseViewHolder
 

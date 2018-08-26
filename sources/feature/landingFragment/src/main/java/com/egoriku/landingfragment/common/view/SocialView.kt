@@ -1,4 +1,4 @@
-package com.egoriku.mainfragment.common.view
+package com.egoriku.landingfragment.common.view
 
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
@@ -21,8 +21,8 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import com.egoriku.core.models.ISocialModel
 import com.egoriku.corelib_kt.listeners.SimpleAnimationListener
-import com.egoriku.mainfragment.R
-import com.egoriku.mainfragment.common.PredefinedResources
+import com.egoriku.landingfragment.R
+import com.egoriku.landingfragment.common.PredefinedResources
 
 internal class SocialView : LinearLayout, View.OnClickListener {
 

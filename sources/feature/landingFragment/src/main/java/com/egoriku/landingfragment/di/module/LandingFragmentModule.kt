@@ -1,11 +1,11 @@
-package com.egoriku.mainfragment.di.module
+package com.egoriku.landingfragment.di.module
 
 import com.egoriku.core.di.FragmentScope
 import com.egoriku.core.di.utils.IAnalyticsHelper
 import com.egoriku.core.repository.ILandingRepository
-import com.egoriku.mainfragment.domain.interactors.LandingUseCase
-import com.egoriku.mainfragment.presentation.LandingPageContract
-import com.egoriku.mainfragment.presentation.LandingPagePresenter
+import com.egoriku.landingfragment.domain.interactors.LandingUseCase
+import com.egoriku.landingfragment.presentation.LandingPageContract
+import com.egoriku.landingfragment.presentation.LandingPagePresenter
 import dagger.Module
 import dagger.Provides
 

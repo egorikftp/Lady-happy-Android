@@ -1,8 +1,8 @@
-package com.egoriku.mainfragment.action
+package com.egoriku.landingfragment.action
 
 import android.support.v4.app.Fragment
 import com.egoriku.core.actions.MainFragmentAction
-import com.egoriku.mainfragment.presentation.LandingPageFragment
+import com.egoriku.landingfragment.presentation.LandingPageFragment
 
 internal class MainFragmentActionImpl : MainFragmentAction {
 

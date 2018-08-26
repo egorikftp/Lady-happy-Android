@@ -1,9 +1,9 @@
-package com.egoriku.mainfragment.di
+package com.egoriku.landingfragment.di
 
 import com.egoriku.core.di.ApplicationProvider
 import com.egoriku.core.di.FragmentScope
-import com.egoriku.mainfragment.di.module.LandingFragmentModule
-import com.egoriku.mainfragment.presentation.LandingPageFragment
+import com.egoriku.landingfragment.di.module.LandingFragmentModule
+import com.egoriku.landingfragment.presentation.LandingPageFragment
 import dagger.Component
 
 @FragmentScope

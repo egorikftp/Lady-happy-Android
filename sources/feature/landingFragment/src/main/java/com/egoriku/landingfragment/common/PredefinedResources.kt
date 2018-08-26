@@ -1,6 +1,6 @@
-package com.egoriku.mainfragment.common
+package com.egoriku.landingfragment.common
 
-import com.egoriku.mainfragment.R
+import com.egoriku.landingfragment.R
 
 object PredefinedResources {
 
