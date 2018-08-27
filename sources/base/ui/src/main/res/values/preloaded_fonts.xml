@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="preloaded_fonts" translatable="false">
+        <item>@font/damion</item>
+        <item>@font/lobster</item>
+        <item>@font/montserrat</item>
+        <item>@font/philosopher</item>
+        <item>@font/playfair_display</item>
+        <item>@font/raleway</item>
+    </array>
+</resources>
