@@ -197,7 +197,6 @@ internal class SocialView : LinearLayout, View.OnClickListener {
 
     @SuppressLint("RestrictedApi")
     fun setSocialModel(list: List<ISocialModel>) {
-        removeAllViews()
         list.forEach {
             addView(AppCompatImageButton(context).apply {
                 alpha = MIN_ALPHA
@@ -208,7 +207,6 @@ internal class SocialView : LinearLayout, View.OnClickListener {
                 supportImageTintList = ContextCompat.getColorStateList(context, R.color.selector_social_icon)
             }, LayoutParams.WRAP_CONTENT)
         }
-        invalidate()
     }
 
     fun setOnSocialIconClickListener(onClickListener: (url: String) -> Unit) {
