@@ -2,7 +2,7 @@ package com.egoriku.ladyhappy.data.entities.main
 
 import android.support.annotation.DrawableRes
 import android.support.annotation.Keep
-import com.egoriku.corelib_kt.Constants
+import com.egoriku.featureactivitymain.common.Constants
 import com.google.firebase.firestore.PropertyName
 
 @Keep

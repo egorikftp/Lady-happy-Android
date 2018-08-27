@@ -5,7 +5,7 @@ import com.egoriku.core.di.utils.IAnalyticsHelper
 import com.egoriku.core.models.ILandingModel
 import com.egoriku.core.usecase.DefaultObserver
 import com.egoriku.core.usecase.Params
-import com.egoriku.corelib_kt.arch.BasePresenter
+import com.egoriku.ui.arch.pvm.BasePresenter
 import com.egoriku.landingfragment.domain.interactors.LandingUseCase
 import javax.inject.Inject
 

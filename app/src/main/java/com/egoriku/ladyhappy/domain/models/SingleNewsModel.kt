@@ -1,6 +1,6 @@
 package com.egoriku.ladyhappy.domain.models
 
-import com.egoriku.corelib_kt.Constants
+import com.egoriku.featureactivitymain.common.Constants
 
 data class SingleNewsModel(
         val date: String = Constants.EMPTY,

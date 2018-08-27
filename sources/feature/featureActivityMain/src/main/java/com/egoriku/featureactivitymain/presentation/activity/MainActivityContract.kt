@@ -1,7 +1,7 @@
 package com.egoriku.featureactivitymain.presentation.activity
 
-import com.egoriku.corelib_kt.arch.BaseContract
-import com.egoriku.ui.BaseView
+import com.egoriku.ui.arch.pvm.BaseContract
+import com.egoriku.ui.arch.pvm.BaseView
 
 interface MainActivityContract {
 

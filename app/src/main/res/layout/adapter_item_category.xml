@@ -26,7 +26,6 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:layout_marginStart="16dp"
-        android:fontFamily="@font/bad_script"
         android:textAllCaps="true"
         android:textColor="@color/RealWhite"
         android:textSize="@dimen/adapter_item_category_title_text_size"

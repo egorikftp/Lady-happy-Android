@@ -3,7 +3,7 @@ package com.egoriku.featureactivitymain.presentation.activity
 import com.egoriku.core.common.TrackingConstants
 import com.egoriku.core.di.utils.IAnalyticsHelper
 import com.egoriku.core.di.utils.IRouter
-import com.egoriku.corelib_kt.arch.BasePresenter
+import com.egoriku.ui.arch.pvm.BasePresenter
 import com.egoriku.featureactivitymain.common.Fragments
 import com.egoriku.featureactivitymain.common.Screens
 import com.egoriku.featureactivitymain.presentation.activity.MainActivityContract.View.Companion.ALL_GOODS_POSITION

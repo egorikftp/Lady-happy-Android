@@ -2,7 +2,7 @@ package com.egoriku.ladyhappy.presentation.fragment.allgoods
 
 import com.egoriku.core.common.TrackingConstants
 import com.egoriku.core.di.utils.IAnalyticsHelper
-import com.egoriku.corelib_kt.arch.BasePresenter
+import com.egoriku.ui.arch.pvm.BasePresenter
 import com.egoriku.ladyhappy.domain.interactors.allgoods.CategoriesUseCase
 import com.egoriku.ladyhappy.domain.interactors.allgoods.NewsUseCase
 import com.egoriku.core.usecase.Params

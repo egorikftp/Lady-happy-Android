@@ -7,8 +7,8 @@ import android.support.v4.app.ActivityOptionsCompat
 import android.support.v4.view.ViewCompat
 import android.support.v7.widget.LinearLayoutManager
 import android.view.View
-import com.egoriku.corelib_kt.dsl.hide
-import com.egoriku.corelib_kt.dsl.show
+import com.egoriku.ui.ktx.hide
+import com.egoriku.ui.ktx.show
 import com.egoriku.featureactivitymain.presentation.activity.MainActivity
 import com.egoriku.ladyhappy.R
 import com.egoriku.ladyhappy.common.cast
@@ -18,7 +18,7 @@ import com.egoriku.ladyhappy.presentation.fragment.allgoods.controller.Categorie
 import com.egoriku.ladyhappy.presentation.fragment.allgoods.controller.ErrorStateController
 import com.egoriku.ladyhappy.presentation.fragment.allgoods.controller.NewsController
 import com.egoriku.ladyhappy.presentation.fragment.allgoods.controller.NewsHeaderController
-import com.egoriku.ui.BaseInjectableFragment
+import com.egoriku.ui.arch.fragment.BaseInjectableFragment
 import com.egoriku.ui.ktx.intentFor
 import kotlinx.android.synthetic.main.fragment_all_goods.*
 import ru.surfstudio.android.easyadapter.EasyAdapter

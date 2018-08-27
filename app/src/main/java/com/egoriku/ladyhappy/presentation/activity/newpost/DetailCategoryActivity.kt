@@ -12,8 +12,8 @@ import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
-import com.egoriku.corelib_kt.dsl.colorCompat
-import com.egoriku.corelib_kt.dsl.fromApi
+import com.egoriku.ui.ktx.colorCompat
+import com.egoriku.ui.ktx.fromApi
 import com.egoriku.ladyhappy.R
 import com.egoriku.ladyhappy.domain.models.SingleCategoryModel
 import com.egoriku.ladyhappy.presentation.fragment.allgoods.AllGoodsFragment

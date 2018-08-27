@@ -1,4 +1,4 @@
-package com.egoriku.ui.common.parallax
+package com.egoriku.landingfragment.common.parallax
 
 interface IParallaxScrollListener {
     fun onScroll()

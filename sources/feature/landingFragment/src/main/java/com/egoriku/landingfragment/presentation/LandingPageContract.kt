@@ -1,8 +1,8 @@
 package com.egoriku.landingfragment.presentation
 
 import com.egoriku.core.models.ILandingModel
-import com.egoriku.corelib_kt.arch.BaseContract
-import com.egoriku.ui.BaseView
+import com.egoriku.ui.arch.pvm.BaseContract
+import com.egoriku.ui.arch.pvm.BaseView
 
 internal interface LandingPageContract {
 

@@ -1,4 +1,4 @@
-package com.egoriku.ui
+package com.egoriku.ui.arch.fragment
 
 import android.content.Context
 import android.os.Bundle
@@ -6,9 +6,8 @@ import android.support.annotation.LayoutRes
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.egoriku.corelib_kt.arch.BaseContract
-import com.egoriku.corelib_kt.arch.BaseFragment
-import com.egoriku.corelib_kt.dsl.inflate
+import com.egoriku.ui.arch.pvm.BaseContract
+import com.egoriku.ui.ktx.inflate
 
 abstract class BaseInjectableFragment<V : BaseContract.View, P : BaseContract.Presenter<V>> : BaseFragment<V, P>() {
 
