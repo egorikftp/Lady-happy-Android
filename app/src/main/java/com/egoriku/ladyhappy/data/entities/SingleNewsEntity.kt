@@ -1,7 +1,7 @@
 package com.egoriku.ladyhappy.data.entities
 
 import android.support.annotation.Keep
-import com.egoriku.corelib_kt.Constants
+import com.egoriku.featureactivitymain.common.Constants
 import com.google.firebase.firestore.PropertyName
 import java.util.*
 

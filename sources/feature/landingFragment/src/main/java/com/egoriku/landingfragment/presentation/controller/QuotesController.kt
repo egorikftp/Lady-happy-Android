@@ -4,8 +4,8 @@ import android.graphics.Matrix
 import android.view.View
 import android.view.ViewGroup
 import com.egoriku.landingfragment.R
-import com.egoriku.ui.common.parallax.IParallaxScrollListener
-import com.egoriku.ui.common.parallax.ParallaxScrollListener
+import com.egoriku.landingfragment.common.parallax.IParallaxScrollListener
+import com.egoriku.landingfragment.common.parallax.ParallaxScrollListener
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.adapter_item_quotes.*
 import kotlinx.android.synthetic.main.adapter_item_quotes.view.*

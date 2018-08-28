@@ -6,8 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import com.egoriku.corelib_kt.Constants
-import com.egoriku.corelib_kt.dsl.colorCompat
+import com.egoriku.featureactivitymain.common.Constants
+import com.egoriku.ui.ktx.colorCompat
 import com.egoriku.ladyhappy.R
 
 fun View.toStub() {

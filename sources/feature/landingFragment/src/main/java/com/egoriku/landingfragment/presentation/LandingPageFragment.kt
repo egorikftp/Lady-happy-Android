@@ -5,13 +5,13 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.View
 import com.egoriku.core.IApplication
 import com.egoriku.core.models.ILandingModel
-import com.egoriku.corelib_kt.dsl.hide
-import com.egoriku.corelib_kt.dsl.show
+import com.egoriku.ui.ktx.hide
+import com.egoriku.ui.ktx.show
 import com.egoriku.landingfragment.R
 import com.egoriku.landingfragment.di.MainFragmentComponent
 import com.egoriku.landingfragment.presentation.controller.*
-import com.egoriku.ui.BaseInjectableFragment
-import com.egoriku.ui.common.parallax.ParallaxScrollListener
+import com.egoriku.ui.arch.fragment.BaseInjectableFragment
+import com.egoriku.landingfragment.common.parallax.ParallaxScrollListener
 import com.egoriku.ui.ktx.browseUrl
 import kotlinx.android.synthetic.main.fragment_main_page.*
 import ru.surfstudio.android.easyadapter.EasyAdapter

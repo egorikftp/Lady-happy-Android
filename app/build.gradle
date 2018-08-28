@@ -110,16 +110,9 @@ dependencies {
 
     debugImplementation 'net.hockeyapp.android:HockeySDK:5.1.1'
     implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.2.61'
-    implementation 'com.github.egorikftp:CoreLib-Kotlin:0.0.8'
-
-    implementation 'android.arch.lifecycle:extensions:1.1.1'
-    kapt 'android.arch.lifecycle:compiler:1.1.1'
 
     implementation 'com.google.dagger:dagger:2.17'
     kapt 'com.google.dagger:dagger-compiler:2.17'
-    kapt 'com.google.dagger:dagger-android-processor:2.17'
-    implementation 'com.google.dagger:dagger-android:2.17'
-    implementation 'com.google.dagger:dagger-android-support:2.17'
 
     debugImplementation 'com.squareup.leakcanary:leakcanary-android:1.6.1'
     releaseImplementation 'com.squareup.leakcanary:leakcanary-android-no-op:1.6.1'

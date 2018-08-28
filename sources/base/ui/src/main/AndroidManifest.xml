@@ -1,1 +1,9 @@
-<manifest package="com.egoriku.ui" />
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.egoriku.ui">
+
+    <application>
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
+    </application>
+</manifest>
