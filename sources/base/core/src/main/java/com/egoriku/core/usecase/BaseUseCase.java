@@ -1,5 +1,7 @@
 package com.egoriku.core.usecase;
 
+import android.os.Looper;
+
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
@@ -27,7 +29,7 @@ public abstract class BaseUseCase {
     public void execute(DisposableObserver observer, Params params) {
         final Observable<?> observable = this.getObservable(params)
                 .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread());
+                .observeOn(AndroidSchedulers.from(Looper.getMainLooper(), true));
         addDisposable(observable.subscribeWith(observer));
     }
 
