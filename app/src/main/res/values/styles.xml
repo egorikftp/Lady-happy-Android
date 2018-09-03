@@ -6,9 +6,4 @@
         <item name="colorAccent">@color/Terracota</item>
     </style>
 
-    <style name="ToolbarTheme" parent="ThemeOverlay.AppCompat.ActionBar">
-        <item name="android:textColorPrimary">@color/Terracota</item>
-        <item name="android:background">@color/RealWhite</item>
-    </style>
-
 </resources>

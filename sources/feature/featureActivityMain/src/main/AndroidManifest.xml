@@ -3,7 +3,7 @@
     package="com.egoriku.featureactivitymain">
 
     <application>
-        <activity android:name=".MainActivityTest"></activity>
+        <activity
+            android:name=".presentation.activity.MainActivity"/>
     </application>
-
 </manifest>

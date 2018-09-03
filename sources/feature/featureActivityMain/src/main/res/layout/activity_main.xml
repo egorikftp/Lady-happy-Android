@@ -4,33 +4,34 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <android.support.design.widget.AppBarLayout
-        android:id="@+id/appbarLayout"
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbarMainActivity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <LinearLayout
+        android:id="@+id/backContainer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:elevation="0dp">
+        android:orientation="vertical">
 
-        <android.support.design.widget.CollapsingToolbarLayout
+        <android.support.design.widget.NavigationView
+            android:id="@+id/navigationView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_scrollFlags="scroll|enterAlways|enterAlwaysCollapsed"
-            app:titleEnabled="false">
+            android:background="@android:color/transparent"
+            app:itemBackground="@drawable/bg_menu_item"
+            app:itemTextColor="@color/RealBlack"
+            app:menu="@menu/main_menu" />
 
-            <android.support.v7.widget.Toolbar
-                android:id="@+id/toolbarMainActivity"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                android:background="?attr/colorPrimary"
-                android:theme="@style/ToolbarTheme"
-                app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
-        </android.support.design.widget.CollapsingToolbarLayout>
-    </android.support.design.widget.AppBarLayout>
+    </LinearLayout>
 
     <FrameLayout
-        android:id="@+id/mainActivityContainer"
+        android:id="@+id/foregroundContainer"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/toolbarMainActivity"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+        android:elevation="4dp"
+        android:background="@drawable/bg_top_radius"
+        app:layout_behavior="ru.semper_viventem.backdrop.BackdropBehavior" />
 </android.support.design.widget.CoordinatorLayout>
 
