@@ -42,7 +42,7 @@ class MainActivity : BaseInjectableActivity<MainActivityContract.View, MainActiv
     private lateinit var backdropBehavior: BackdropBehavior
 
     @Suppress("UNUSED_EXPRESSION")
-    private val navigator = object : SupportAppNavigator(this, supportFragmentManager, R.id.foregroundContainer) {
+    private val navigator = object : SupportAppNavigator(this, supportFragmentManager, R.id.fragmentContainer) {
 
         override fun createActivityIntent(context: Context?, screenKey: String?, data: Any?) = when (screenKey) {
             // Screens.CREATE_POST_ACTIVITY -> null  intentFor<DetailCategoryActivity>()

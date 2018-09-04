@@ -26,12 +26,18 @@
 
     </LinearLayout>
 
-    <FrameLayout
+    <android.support.design.card.MaterialCardView
         android:id="@+id/foregroundContainer"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:elevation="4dp"
-        android:background="@drawable/bg_top_radius"
-        app:layout_behavior="ru.semper_viventem.backdrop.BackdropBehavior" />
+        app:cardCornerRadius="16dp"
+        app:layout_behavior="ru.semper_viventem.backdrop.BackdropBehavior">
+
+        <FrameLayout
+            android:id="@+id/fragmentContainer"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </android.support.design.card.MaterialCardView>
 </android.support.design.widget.CoordinatorLayout>
 
