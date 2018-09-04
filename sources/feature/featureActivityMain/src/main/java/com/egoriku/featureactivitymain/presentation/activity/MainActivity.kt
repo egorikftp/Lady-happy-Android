@@ -79,10 +79,12 @@ class MainActivity : BaseInjectableActivity<MainActivityContract.View, MainActiv
             setOpenedIcon(R.drawable.ic_close)
         }
 
-        navigationView.setNavigationItemSelectedListener { item ->
-            checkMenuPosition(item.itemId)
-            backdropBehavior.close()
-            true
+        with(navigationView) {
+            setNavigationItemSelectedListener { item ->
+                checkMenuPosition(item.itemId)
+                backdropBehavior.close()
+                true
+            }
         }
 
         val currentMenuItem = savedInstanceState?.getInt(ARGS_MENU_ITEM) ?: DEFAULT_MENU_ITEM
@@ -107,7 +109,7 @@ class MainActivity : BaseInjectableActivity<MainActivityContract.View, MainActiv
     }
 
     override fun onBackPressed() {
-        if (!backdropBehavior.close()) {
+        if (backdropBehavior.close()) {
             return
         } else if (supportFragmentManager.backStackEntryCount == 1) {
             finish()
