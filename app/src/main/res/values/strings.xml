@@ -9,4 +9,9 @@
     <string name="adapter_item_error_state_retry">Tap to retry</string>
     <string name="adapter_item_pagination_footer_load_more">Load more</string>
     <string name="adapter_item_news_header_text">Latest news</string>
+    <string name="navigation_drawer_all_goods">All Goods</string>
+    <string name="navigation_drawer_order">Order</string>
+    <string name="navigation_drawer_share">Share</string>
+    <string name="navigation_drawer_feedback">Feedback</string>
+    <string name="navigation_drawer_create_new_post">New post</string>
 </resources>
