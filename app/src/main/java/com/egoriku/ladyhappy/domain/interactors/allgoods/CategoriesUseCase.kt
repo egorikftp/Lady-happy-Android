@@ -1,6 +1,5 @@
 package com.egoriku.ladyhappy.domain.interactors.allgoods
 
-import com.egoriku.ladyhappy.data.repositories.CategoriesRepository
 import com.egoriku.core.usecase.BaseUseCase
 import com.egoriku.core.usecase.Params
 import javax.inject.Inject

@@ -23,3 +23,6 @@ project(':featureActivityMain').projectDir = new File(rootDir, 'sources/feature/
 
 include ':landingFragment'
 project(':landingFragment').projectDir = new File(rootDir, 'sources/feature/landingFragment')
+
+include ':photoreportFragment'
+project(':photoreportFragment').projectDir = new File(rootDir, 'sources/feature/photoreportFragment')

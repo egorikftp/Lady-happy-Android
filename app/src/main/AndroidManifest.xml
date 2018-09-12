@@ -17,8 +17,6 @@
         android:theme="@style/AppTheme"
         android:fullBackupContent="@xml/backup_descriptor">
 
-        <activity android:name=".presentation.activity.newpost.DetailCategoryActivity" />
-
         <meta-data
             android:name="net.hockeyapp.android.appIdentifier"
             android:value="@string/hockey_app_id" />

@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.view.View
 import com.egoriku.core.IApplication
-import com.egoriku.core.models.ILandingModel
+import com.egoriku.core.model.ILandingModel
 import com.egoriku.ui.ktx.hide
 import com.egoriku.ui.ktx.show
 import com.egoriku.landingfragment.R

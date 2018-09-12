@@ -9,13 +9,13 @@ interface AllGoodsComponent {
         fun inject(allGoodsPresenter: AllGoodsPresenter)
 
         fun inject(categoriesUseCase: CategoriesUseCase)
-        fun inject(newsUseCase: NewsUseCase)
+        fun inject(newsUseCase: PhotoReportUseCase)
 
         fun inject(categoriesRepository: CategoriesRepository)
         fun inject(newsRepository: NewsRepository)
 
         fun inject(categoriesDataSourceRemote: CategoriesDataSourceRemote)
-        fun inject(newsDataSourceRemote: NewsDataSourceRemote)
+        fun inject(newsDataSourceRemote: PhotoReportDataSource)
 
         fun inject(router: Router)
         fun inject(navigatorHolder: NavigatorHolder)

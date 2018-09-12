@@ -19,7 +19,7 @@ import android.view.animation.AlphaAnimation
 import android.view.animation.Animation
 import android.widget.ImageView
 import android.widget.LinearLayout
-import com.egoriku.core.models.ISocialModel
+import com.egoriku.core.model.ISocialModel
 import com.egoriku.landingfragment.R
 import com.egoriku.landingfragment.common.PredefinedResources
 import com.egoriku.ui.listeners.SimpleAnimationListener

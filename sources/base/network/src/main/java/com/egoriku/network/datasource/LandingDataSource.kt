@@ -1,7 +1,7 @@
 package com.egoriku.network.datasource
 
 import com.egoriku.core.di.utils.IFirebaseFirestore
-import com.egoriku.network.data.entities.LandingEntity
+import com.egoriku.network.data.entities.landing.LandingEntity
 import com.egoriku.network.getObservable
 import com.google.firebase.firestore.DocumentReference
 import io.reactivex.Observable

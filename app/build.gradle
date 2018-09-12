@@ -83,6 +83,10 @@ dependencies {
     implementation project(':featureActivityLaunch')
     implementation project(':featureActivityMain')
     implementation project(':landingFragment')
+    implementation project(':photoreportFragment')
+
+    //temp
+    implementation project(':network')
 
     implementation('com.crashlytics.sdk.android:crashlytics:2.9.5@aar') {
         transitive = true
