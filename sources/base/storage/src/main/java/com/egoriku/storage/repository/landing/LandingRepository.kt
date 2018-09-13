@@ -9,6 +9,9 @@ import com.egoriku.network.data.entities.landing.SocialEntity
 import com.egoriku.network.data.entities.landing.TeamMemberEntity
 import com.egoriku.network.datasource.LandingDataSource
 import com.egoriku.storage.common.Constants.EMPTY
+import com.egoriku.storage.domain.model.landing.LandingModel
+import com.egoriku.storage.domain.model.landing.SocialModel
+import com.egoriku.storage.domain.model.landing.TeamMemberModel
 import io.reactivex.Observable
 
 class LandingRepository(private val landingDataSource: LandingDataSource) : ILandingRepository {

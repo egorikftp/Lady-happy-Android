@@ -1,10 +1,11 @@
 package com.egoriku.storage.data.entity.mapper
 
 import android.support.annotation.Keep
-import com.egoriku.ladyhappy.common.utils.DateUtils
-import com.egoriku.ladyhappy.domain.models.ComplexPhotoReportModel
-import com.egoriku.ladyhappy.domain.models.PhotoReportModel
+import com.egoriku.core.model.IPhotoReportModel
 import com.egoriku.network.data.entities.photoreport.PhotoReportEntity
+import com.egoriku.storage.common.DateUtils
+import com.egoriku.storage.domain.model.photoreport.ComplexPhotoReportModel
+import com.egoriku.storage.domain.model.photoreport.PhotoReportModel
 
 @Keep
 class PhotoReportMapper {
@@ -16,7 +17,7 @@ class PhotoReportMapper {
                 }
         )
 
-        private fun transformToModel(it: PhotoReportEntity): PhotoReportModel {
+        private fun transformToModel(it: PhotoReportEntity): IPhotoReportModel {
             return PhotoReportModel(
                     date = DateUtils.instance.convertNewsDateToString(it.date!!) ?: "",
                     description = it.description ?: "",

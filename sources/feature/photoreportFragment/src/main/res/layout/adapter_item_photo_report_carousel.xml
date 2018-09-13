@@ -17,7 +17,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:layoutManager="android.support.v7.widget.LinearLayoutManager"
-        tools:listitem="@layout/adapter_item_news_image" />
+        tools:listitem="@layout/adapter_item_photo_report" />
 
     <TextView
         android:id="@+id/descriptionTextView"
@@ -35,7 +35,7 @@
         app:layout_constraintVertical_bias="0.0"
         tools:text="Description" />
 
-    <com.egoriku.ladyhappy.common.view.DotsView
+    <com.egoriku.photoreportfragment.presentation.view.DotsView
         android:id="@+id/dotsView"
         android:layout_width="0dp"
         android:layout_height="13dp"

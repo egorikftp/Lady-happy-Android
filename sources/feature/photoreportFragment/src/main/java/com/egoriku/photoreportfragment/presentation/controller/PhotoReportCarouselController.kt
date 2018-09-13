@@ -1,4 +1,4 @@
-package com.egoriku.ladyhappy.presentation.fragment.allgoods.controller
+package com.egoriku.photoreportfragment.presentation.controller
 
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.PagerSnapHelper
@@ -6,26 +6,26 @@ import android.support.v7.widget.RecyclerView
 import android.view.ViewGroup
 import android.widget.TextView
 import com.egoriku.core.model.IPhotoReportModel
-import com.egoriku.ladyhappy.R
-import com.egoriku.ladyhappy.common.scrollPercentage
-import com.egoriku.ladyhappy.common.view.DotsView
-import kotlinx.android.synthetic.main.adapter_item_news.view.*
+import com.egoriku.photoreportfragment.R
+import com.egoriku.photoreportfragment.common.scrollPercentage
+import com.egoriku.photoreportfragment.presentation.view.DotsView
+import kotlinx.android.synthetic.main.adapter_item_photo_report_carousel.view.*
 import ru.surfstudio.android.easyadapter.EasyAdapter
 import ru.surfstudio.android.easyadapter.ItemList
 import ru.surfstudio.android.easyadapter.controller.BindableItemController
 import ru.surfstudio.android.easyadapter.holder.BindableViewHolder
 
-class PhotoReportController : BindableItemController<IPhotoReportModel, PhotoReportController.Holder>() {
+class PhotoReportCarouselController : BindableItemController<IPhotoReportModel, PhotoReportCarouselController.Holder>() {
 
     override fun createViewHolder(parent: ViewGroup) = Holder(parent)
 
     override fun getItemId(data: IPhotoReportModel) = data.hashCode().toString()
 
-    inner class Holder(parent: ViewGroup) : BindableViewHolder<IPhotoReportModel>(parent, R.layout.adapter_item_news) {
+    inner class Holder(parent: ViewGroup) : BindableViewHolder<IPhotoReportModel>(parent, R.layout.adapter_item_photo_report_carousel) {
 
         private lateinit var newsModel: IPhotoReportModel
 
-        private val newsImagesController: NewsImagesController = NewsImagesController()
+        private val photoReportItemController: PhotoReportItemController = PhotoReportItemController()
 
         private val description: TextView = itemView.descriptionTextView
         private val newsRecyclerView: RecyclerView
@@ -57,11 +57,11 @@ class PhotoReportController : BindableItemController<IPhotoReportModel, PhotoRep
 
             if (newsRecyclerView.adapter == null) {
                 newsRecyclerView.adapter = EasyAdapter().apply {
-                    setItems(ItemList.create().addAll(data.images, newsImagesController))
+                    setItems(ItemList.create().addAll(data.images, photoReportItemController))
                 }
             } else {
                 (newsRecyclerView.adapter as EasyAdapter)
-                        .setItems(ItemList.create().addAll(data.images, newsImagesController))
+                        .setItems(ItemList.create().addAll(data.images, photoReportItemController))
             }
         }
     }

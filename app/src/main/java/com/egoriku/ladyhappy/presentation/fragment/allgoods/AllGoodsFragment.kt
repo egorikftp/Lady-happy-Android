@@ -1,15 +1,12 @@
 package com.egoriku.ladyhappy.presentation.fragment.allgoods
 
 import android.os.Bundle
-import android.support.annotation.StringRes
 import android.support.v7.widget.LinearLayoutManager
 import android.view.View
-import com.egoriku.featureactivitymain.presentation.activity.MainActivity
 import com.egoriku.ladyhappy.R
-import com.egoriku.ladyhappy.common.cast
 import com.egoriku.ladyhappy.presentation.adapter.animator.DefaultItemAnimator
-import com.egoriku.ladyhappy.presentation.fragment.allgoods.controller.NewsHeaderController
-import com.egoriku.ladyhappy.presentation.fragment.allgoods.controller.PhotoReportController
+import com.egoriku.photoreportfragment.presentation.controller.PhotoReportHeaderController
+import com.egoriku.photoreportfragment.presentation.controller.PhotoReportCarouselController
 import com.egoriku.photoreportfragment.presentation.AllGoodsContract
 import com.egoriku.photoreportfragment.presentation.ScreenModel
 import com.egoriku.photoreportfragment.presentation.controller.ErrorStateController
@@ -26,16 +23,13 @@ class AllGoodsFragment : BaseInjectableFragment<AllGoodsContract.View, AllGoodsC
     lateinit var allGoodsPresenter: AllGoodsContract.Presenter
 
     private lateinit var errorStateController: ErrorStateController
-    private lateinit var newsHeaderController: NewsHeaderController
-    private lateinit var photoReportController: PhotoReportController
+    private lateinit var photoReportHeaderController: PhotoReportHeaderController
+    private lateinit var photoReportCarouselController: PhotoReportCarouselController
 
     private val allGoodsAdapter = EasyAdapter()
 
     companion object {
         fun newInstance() = AllGoodsFragment()
-
-        const val EXTRA_ANIMAL_ITEM = "EXTRA_ANIMAL_ITEM"
-        const val EXTRA_ANIMAL_IMAGE_TRANSITION_NAME = "EXTRA_ANIMAL_IMAGE_TRANSITION_NAME"
     }
 
     override fun initPresenter() = allGoodsPresenter
@@ -52,7 +46,7 @@ class AllGoodsFragment : BaseInjectableFragment<AllGoodsContract.View, AllGoodsC
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        showTitle(R.string.navigation_drawer_all_goods)
+        activity?.setTitle(R.string.navigation_drawer_all_goods)
 
         initRecyclerView()
 
@@ -73,20 +67,17 @@ class AllGoodsFragment : BaseInjectableFragment<AllGoodsContract.View, AllGoodsC
             presenter.loadData()
         })
 
-        newsHeaderController = NewsHeaderController()
-        photoReportController = PhotoReportController()
+        photoReportHeaderController = PhotoReportHeaderController()
+        photoReportCarouselController = PhotoReportCarouselController()
     }
 
     override fun render(screenModel: ScreenModel) {
         val itemList = ItemList.create()
-                .addAll(screenModel.photoReports, photoReportController)
+                .add(photoReportHeaderController)
+                .addAll(screenModel.photoReports, photoReportCarouselController)
                 .addIf(screenModel.isPhotoReportsEmpty(), errorStateController)
 
         allGoodsAdapter.setItems(itemList)
-    }
-
-    override fun showTitle(@StringRes title: Int) {
-        activity?.cast<MainActivity>()?.setUpToolbar(title)
     }
 
     override fun showLoading() {

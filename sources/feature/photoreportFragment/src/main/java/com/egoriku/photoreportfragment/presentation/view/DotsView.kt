@@ -1,4 +1,4 @@
-package com.egoriku.ladyhappy.common.view
+package com.egoriku.photoreportfragment.presentation.view
 
 import android.content.Context
 import android.graphics.Canvas
@@ -8,8 +8,9 @@ import android.support.annotation.ColorInt
 import android.util.AttributeSet
 import android.util.TypedValue
 import android.view.View
-import com.egoriku.ladyhappy.R
+import com.egoriku.photoreportfragment.R
 
+@Deprecated("Should use new implementation from github")
 class DotsView : View {
 
     companion object {

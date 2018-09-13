@@ -1,9 +1,10 @@
-package com.egoriku.ladyhappy.common.utils
+package com.egoriku.storage.common
 
-import com.egoriku.ladyhappy.common.utils.DateUtils.Holder.newsSimpleDate
+import com.egoriku.storage.common.DateUtils.Holder.newsSimpleDate
 import java.text.SimpleDateFormat
 import java.util.*
 
+@Deprecated("Should use more convenient way")
 class DateUtils private constructor() {
 
     private object Holder {
