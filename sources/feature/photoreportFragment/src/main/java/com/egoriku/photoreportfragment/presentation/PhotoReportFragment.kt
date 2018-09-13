@@ -53,9 +53,7 @@ class PhotoReportFragment : BaseInjectableFragment<PhotoReportContract.View, Pho
 
     private fun initRecyclerView() {
         recyclerViewAllGoods.apply {
-            layoutManager = LinearLayoutManager(context).apply {
-                initialPrefetchItemCount = 5
-            }
+            layoutManager = LinearLayoutManager(context)
             adapter = photoReportAdapter
             setHasFixedSize(true)
         }

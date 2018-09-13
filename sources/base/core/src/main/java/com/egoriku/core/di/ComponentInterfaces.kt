@@ -3,7 +3,7 @@ package com.egoriku.core.di
 import com.egoriku.core.IApplication
 import com.egoriku.core.actions.ILandingFragmentAction
 import com.egoriku.core.actions.MainActivityAction
-import com.egoriku.core.actions.IPhotoReportAction
+import com.egoriku.core.actions.IPhotoReportFragmentAction
 import com.egoriku.core.di.utils.IAnalyticsHelper
 import com.egoriku.core.di.utils.IFirebaseFirestore
 import com.egoriku.core.di.utils.INavigationHolder
@@ -39,7 +39,7 @@ interface LandingFragmentProvider {
 }
 
 interface PhotoReportFragmentProvider {
-    fun providePhotoReportGFragmentAction(): IPhotoReportAction
+    fun providePhotoReportGFragmentAction(): IPhotoReportFragmentAction
 }
 
 interface RepositoryProvider {

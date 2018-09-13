@@ -6,6 +6,7 @@ import android.support.annotation.IdRes
 import android.support.v4.app.Fragment
 import com.egoriku.core.IApplication
 import com.egoriku.core.actions.ILandingFragmentAction
+import com.egoriku.core.actions.IPhotoReportFragmentAction
 import com.egoriku.core.di.utils.INavigationHolder
 import com.egoriku.featureactivitymain.R
 import com.egoriku.featureactivitymain.common.findBehavior
@@ -39,7 +40,7 @@ class MainActivity : BaseInjectableActivity<MainActivityContract.View, MainActiv
     lateinit var landingFragmentAction: ILandingFragmentAction
 
     @Inject
-    lateinit var photoFragmentAction: ILandingFragmentAction
+    lateinit var photoReportFragmentAction: IPhotoReportFragmentAction
 
     private lateinit var backdropBehavior: BackdropBehavior
 
@@ -49,7 +50,7 @@ class MainActivity : BaseInjectableActivity<MainActivityContract.View, MainActiv
 
         override fun createFragment(screenKey: String?, data: Any?): Fragment? = when (screenKey) {
             LANDING_PAGE -> landingFragmentAction.provideFragment()
-            PHOTO_REPORT -> photoFragmentAction.provideFragment()
+            PHOTO_REPORT -> photoReportFragmentAction.provideFragment()
             else -> null
         }
     }
