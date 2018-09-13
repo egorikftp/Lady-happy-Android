@@ -9,11 +9,11 @@ import com.egoriku.photoreportfragment.domain.interactor.PhotoReportUseCase
 import com.egoriku.ui.arch.pvm.BasePresenter
 import javax.inject.Inject
 
-class AllGoodsPresenter
+class PhotoReportPresenter
 @Inject constructor(
         private val photoReportUseCase: PhotoReportUseCase,
         private val analyticsHelper: IAnalyticsHelper
-) : BasePresenter<AllGoodsContract.View>(), AllGoodsContract.Presenter {
+) : BasePresenter<PhotoReportContract.View>(), PhotoReportContract.Presenter {
 
     private var screenModel = ScreenModel()
 

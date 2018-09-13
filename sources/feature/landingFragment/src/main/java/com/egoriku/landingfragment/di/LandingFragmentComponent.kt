@@ -11,18 +11,15 @@ import dagger.Component
         dependencies = [ApplicationProvider::class],
         modules = [LandingFragmentModule::class]
 )
-internal interface MainFragmentComponent {
+internal interface LandingFragmentComponent {
 
     fun inject(fragment: LandingPageFragment)
 
     class Initializer private constructor() {
         companion object {
-
-            fun init(applicationProvider: ApplicationProvider): MainFragmentComponent {
-                return DaggerMainFragmentComponent.builder()
+            fun init(applicationProvider: ApplicationProvider): LandingFragmentComponent = DaggerLandingFragmentComponent.builder()
                         .applicationProvider(applicationProvider)
                         .build()
             }
         }
-    }
 }

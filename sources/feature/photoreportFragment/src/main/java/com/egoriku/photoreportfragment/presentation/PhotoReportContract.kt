@@ -4,7 +4,7 @@ import com.egoriku.core.model.IComplexPhotoReportModel
 import com.egoriku.ui.arch.pvm.BaseContract
 import com.egoriku.ui.arch.pvm.BaseView
 
-interface AllGoodsContract {
+interface PhotoReportContract {
 
     interface View : BaseView {
         fun render(screenModel: ScreenModel)

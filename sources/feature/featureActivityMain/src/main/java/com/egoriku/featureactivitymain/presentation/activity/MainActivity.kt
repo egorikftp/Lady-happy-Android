@@ -5,12 +5,13 @@ import android.os.Bundle
 import android.support.annotation.IdRes
 import android.support.v4.app.Fragment
 import com.egoriku.core.IApplication
-import com.egoriku.core.actions.MainFragmentAction
+import com.egoriku.core.actions.ILandingFragmentAction
 import com.egoriku.core.di.utils.INavigationHolder
 import com.egoriku.featureactivitymain.R
-import com.egoriku.featureactivitymain.common.Fragments
 import com.egoriku.featureactivitymain.common.findBehavior
 import com.egoriku.featureactivitymain.di.MainActivityComponent
+import com.egoriku.featureactivitymain.presentation.activity.MainActivityPresenter.Companion.LANDING_PAGE
+import com.egoriku.featureactivitymain.presentation.activity.MainActivityPresenter.Companion.PHOTO_REPORT
 import com.egoriku.ui.arch.activity.BaseInjectableActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import ru.semper_viventem.backdrop.BackdropBehavior
@@ -35,7 +36,10 @@ class MainActivity : BaseInjectableActivity<MainActivityContract.View, MainActiv
     lateinit var navigatorHolder: INavigationHolder
 
     @Inject
-    lateinit var mainFragmentProvider: MainFragmentAction
+    lateinit var landingFragmentAction: ILandingFragmentAction
+
+    @Inject
+    lateinit var photoFragmentAction: ILandingFragmentAction
 
     private lateinit var backdropBehavior: BackdropBehavior
 
@@ -44,8 +48,8 @@ class MainActivity : BaseInjectableActivity<MainActivityContract.View, MainActiv
         override fun createActivityIntent(context: Context?, screenKey: String?, data: Any?) = null
 
         override fun createFragment(screenKey: String?, data: Any?): Fragment? = when (screenKey) {
-            Fragments.LANDING_PAGE -> mainFragmentProvider.provideFragment()
-            Fragments.PHOTO_REPORT -> null
+            LANDING_PAGE -> landingFragmentAction.provideFragment()
+            PHOTO_REPORT -> photoFragmentAction.provideFragment()
             else -> null
         }
     }

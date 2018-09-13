@@ -2,7 +2,7 @@ package com.egoriku.ui.ktx
 
 import android.view.View
 
-fun View.hide() {
+fun View.gone() {
     if (visibility != View.GONE) visibility = View.GONE
 }
 

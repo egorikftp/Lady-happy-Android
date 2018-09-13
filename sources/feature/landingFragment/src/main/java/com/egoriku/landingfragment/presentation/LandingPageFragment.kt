@@ -5,10 +5,10 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.View
 import com.egoriku.core.IApplication
 import com.egoriku.core.model.ILandingModel
-import com.egoriku.ui.ktx.hide
+import com.egoriku.ui.ktx.gone
 import com.egoriku.ui.ktx.show
 import com.egoriku.landingfragment.R
-import com.egoriku.landingfragment.di.MainFragmentComponent
+import com.egoriku.landingfragment.di.LandingFragmentComponent
 import com.egoriku.landingfragment.presentation.controller.*
 import com.egoriku.ui.arch.fragment.BaseInjectableFragment
 import com.egoriku.landingfragment.common.parallax.ParallaxScrollListener
@@ -41,7 +41,7 @@ internal class LandingPageFragment : BaseInjectableFragment<LandingPageContract.
     override fun initPresenter(): LandingPageContract.Presenter = landingPagePresenter
 
     override fun injectDependencies() {
-        MainFragmentComponent.Initializer
+        LandingFragmentComponent.Initializer
                 .init((activity?.applicationContext as IApplication).getAppComponent())
                 .inject(this)
     }
@@ -79,7 +79,7 @@ internal class LandingPageFragment : BaseInjectableFragment<LandingPageContract.
     }
 
     override fun hideLoading() {
-        mainProgressBar.hide()
+        mainProgressBar.gone()
     }
 
     override fun render(model: ILandingModel) {
