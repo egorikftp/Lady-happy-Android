@@ -19,7 +19,7 @@ class AllGoodsPresenter
 
     override fun onPresenterCreated() {
         super.onPresenterCreated()
-        analyticsHelper.trackPageView(TrackingConstants.FRAGMENT_ALL_GOODS)
+        analyticsHelper.trackPageView(TrackingConstants.TRACKING_FRAGMENT_LANDING)
     }
 
     override fun onPresenterDestroy() {

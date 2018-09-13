@@ -3,7 +3,6 @@ package com.egoriku.featureactivitymain.presentation.activity
 import android.content.Context
 import android.os.Bundle
 import android.support.annotation.IdRes
-import android.support.annotation.StringRes
 import android.support.v4.app.Fragment
 import com.egoriku.core.IApplication
 import com.egoriku.core.actions.MainFragmentAction
@@ -18,16 +17,15 @@ import ru.semper_viventem.backdrop.BackdropBehavior
 import ru.terrakok.cicerone.android.SupportAppNavigator
 import javax.inject.Inject
 
-@Suppress("MemberVisibilityCanPrivate")
 class MainActivity : BaseInjectableActivity<MainActivityContract.View, MainActivityContract.Presenter>(), MainActivityContract.View {
 
     companion object {
         private const val ARGS_MENU_ITEM = "selected_item"
 
-        private val MENU_MAIN = R.id.menuMain
-        private val MENU_NEWS = R.id.menuNews
+        private val MENU_LANDING = R.id.menuLanding
+        private val MENU_PHOTO_REPORT = R.id.menuPhotoReport
 
-        private val DEFAULT_MENU_ITEM = MENU_MAIN
+        private val DEFAULT_MENU_ITEM = MENU_LANDING
     }
 
     @Inject
@@ -41,18 +39,13 @@ class MainActivity : BaseInjectableActivity<MainActivityContract.View, MainActiv
 
     private lateinit var backdropBehavior: BackdropBehavior
 
-    @Suppress("UNUSED_EXPRESSION")
     private val navigator = object : SupportAppNavigator(this, supportFragmentManager, R.id.fragmentContainer) {
 
-        override fun createActivityIntent(context: Context?, screenKey: String?, data: Any?) = when (screenKey) {
-            // Screens.CREATE_POST_ACTIVITY -> null  intentFor<DetailCategoryActivity>()
-            else -> null
-        }
+        override fun createActivityIntent(context: Context?, screenKey: String?, data: Any?) = null
 
         override fun createFragment(screenKey: String?, data: Any?): Fragment? = when (screenKey) {
-            //Fragments.ALL_GOODS -> AllGoodsFragment.newInstance()
-            //Fragments.ORDER -> OrderFragment.newInstance()
-            Fragments.MAIN_PAGE -> mainFragmentProvider.provideFragment()
+            Fragments.LANDING_PAGE -> mainFragmentProvider.provideFragment()
+            Fragments.PHOTO_REPORT -> null
             else -> null
         }
     }
@@ -94,7 +87,7 @@ class MainActivity : BaseInjectableActivity<MainActivityContract.View, MainActiv
         setSupportActionBar(toolbarMainActivity)
 
         if (savedInstanceState == null) {
-            presenter.openMainPageFragment()
+            presenter.openLanding()
         }
     }
 
@@ -126,23 +119,16 @@ class MainActivity : BaseInjectableActivity<MainActivityContract.View, MainActiv
 
     private fun checkMenuPosition(@IdRes menuItemId: Int) {
         when (menuItemId) {
-            MENU_MAIN -> presenter.openMainPageFragment()
-            //   Fragments.ALL_GOODS -> presenter.openAllGoodsCategory()
-            //  Fragments.ORDER -> presenter.openOrderCategory()
-            // Fragments.SHARE -> presenter.openShareCategory()
-            //  Fragments.FEEDBACK -> presenter.openFeedbackCategory()
-            //  Screens.CREATE_POST_ACTIVITY -> presenter.openCreateNewPostScreen()
+            MENU_LANDING -> presenter.openLanding()
+            MENU_PHOTO_REPORT -> presenter.openPhotoReport()
         }
     }
 
+    @Deprecated("move to fragment view contract")
     override fun showLoading() {
     }
 
+    @Deprecated("move to fragment view contract")
     override fun hideLoading() {
-    }
-
-    @Deprecated("Need remove")
-    fun setUpToolbar(@StringRes title: Int) {
-        supportActionBar?.title = getString(title)
     }
 }

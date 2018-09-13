@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="navigation_view_main">Главная</string>
-    <string name="navigation_view_news">Новости</string>
+    <string name="navigation_view_landing">Главная</string>
+    <string name="navigation_view_photo_report">Фотоотчет</string>
 
     <string name="navigation_drawer_all_goods">Все товары</string>
     <string name="navigation_drawer_order">Заказать</string>
