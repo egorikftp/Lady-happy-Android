@@ -26,9 +26,9 @@ dependencies {
     implementation project(':core')
     implementation project(':network')
 
-    implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.2.61'
+    implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.2.70'
 
-    implementation 'io.reactivex.rxjava2:rxjava:2.2.1'
+    implementation 'io.reactivex.rxjava2:rxjava:2.2.2'
 
     kapt "com.google.dagger:dagger-compiler:2.17"
     implementation 'com.google.dagger:dagger:2.17'
