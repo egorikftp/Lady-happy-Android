@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment
 import com.egoriku.core.IApplication
 import com.egoriku.core.actions.ILandingFragmentAction
 import com.egoriku.core.actions.IPhotoReportFragmentAction
+import com.egoriku.core.actions.common.IMainActivityConnector
 import com.egoriku.core.di.utils.INavigationHolder
 import com.egoriku.featureactivitymain.R
 import com.egoriku.featureactivitymain.common.findBehavior
@@ -19,7 +20,8 @@ import ru.semper_viventem.backdrop.BackdropBehavior
 import ru.terrakok.cicerone.android.SupportAppNavigator
 import javax.inject.Inject
 
-class MainActivity : BaseInjectableActivity<MainActivityContract.View, MainActivityContract.Presenter>(), MainActivityContract.View {
+class MainActivity : BaseInjectableActivity<MainActivityContract.View, MainActivityContract.Presenter>(), MainActivityContract.View,
+        IMainActivityConnector {
 
     companion object {
         private const val ARGS_MENU_ITEM = "selected_item"
@@ -127,6 +129,10 @@ class MainActivity : BaseInjectableActivity<MainActivityContract.View, MainActiv
             MENU_LANDING -> presenter.openLanding()
             MENU_PHOTO_REPORT -> presenter.openPhotoReport()
         }
+    }
+
+    override fun onScroll() {
+        backdropBehavior.close()
     }
 
     @Deprecated("move to fragment view contract")

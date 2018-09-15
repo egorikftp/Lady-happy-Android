@@ -3,7 +3,7 @@ package com.egoriku.photoreportfragment.presentation
 import com.egoriku.core.common.TrackingConstants
 import com.egoriku.core.di.utils.IAnalyticsHelper
 import com.egoriku.core.model.IComplexPhotoReportModel
-import com.egoriku.core.usecase.DefaultObserver
+import com.egoriku.core.usecase.AppObserver
 import com.egoriku.core.usecase.Params
 import com.egoriku.photoreportfragment.domain.interactor.PhotoReportUseCase
 import com.egoriku.ui.arch.pvm.BasePresenter
@@ -32,7 +32,7 @@ class PhotoReportPresenter
             view.showLoading()
 
             if (screenModel.isPhotoReportsEmpty()) {
-                photoReportUseCase.execute(object : DefaultObserver<IComplexPhotoReportModel>() {
+                photoReportUseCase.execute(object : AppObserver<IComplexPhotoReportModel>() {
                     override fun onNext(t: IComplexPhotoReportModel) {
                         onGetPhotoReportSuccessTracking()
                         onGetPhotoReportSuccess(t)

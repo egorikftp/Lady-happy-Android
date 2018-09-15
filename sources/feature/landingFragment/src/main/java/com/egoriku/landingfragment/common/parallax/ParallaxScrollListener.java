@@ -37,8 +37,13 @@ public class ParallaxScrollListener extends OnScrollListener implements OnGlobal
         }
     }
 
+    @Override
     public void onGlobalLayout() {
-        int height = recyclerView.getHeight();
+        int height = 0;
+
+        if (recyclerView != null) {
+            height = recyclerView.getHeight();
+        }
 
         if (height > 0) {
             recyclerViewHeight = height;

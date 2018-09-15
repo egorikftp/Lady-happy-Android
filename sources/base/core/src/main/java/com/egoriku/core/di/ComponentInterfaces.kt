@@ -2,7 +2,7 @@ package com.egoriku.core.di
 
 import com.egoriku.core.IApplication
 import com.egoriku.core.actions.ILandingFragmentAction
-import com.egoriku.core.actions.MainActivityAction
+import com.egoriku.core.actions.IMainActivityAction
 import com.egoriku.core.actions.IPhotoReportFragmentAction
 import com.egoriku.core.di.utils.IAnalyticsHelper
 import com.egoriku.core.di.utils.IFirebaseFirestore
@@ -31,7 +31,7 @@ interface MainToolsProvider {
 }
 
 interface MainActivityProvider {
-    fun provideMainActivityAction(): MainActivityAction
+    fun provideMainActivityAction(): IMainActivityAction
 }
 
 interface LandingFragmentProvider {

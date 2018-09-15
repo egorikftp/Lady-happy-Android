@@ -1,7 +1,7 @@
 package com.egoriku.featureactivitymain.di.module
 
-import com.egoriku.core.actions.MainActivityAction
-import com.egoriku.featureactivitymain.actions.MainActivityActionImpl
+import com.egoriku.core.actions.IMainActivityAction
+import com.egoriku.featureactivitymain.actions.MainActivityAction
 import dagger.Module
 import dagger.Provides
 
@@ -9,5 +9,5 @@ import dagger.Provides
 class MainActivityExportModule {
 
     @Provides
-    fun provideShowMainActivityAction(): MainActivityAction = MainActivityActionImpl()
+    fun provideShowMainActivityAction(): IMainActivityAction = MainActivityAction()
 }
