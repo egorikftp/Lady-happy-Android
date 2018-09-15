@@ -4,7 +4,7 @@ import com.egoriku.core.di.utils.IFirebaseFirestore
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.FirebaseFirestoreSettings
 
-class FirebaseFirestoreImpl : IFirebaseFirestore {
+class FirebaseFirestore : IFirebaseFirestore {
     private val firebaseFirestore by lazy { FirebaseFirestore.getInstance() }
 
     init {

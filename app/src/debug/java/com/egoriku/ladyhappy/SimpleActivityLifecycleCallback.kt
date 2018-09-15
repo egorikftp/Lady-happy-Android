@@ -1,4 +1,4 @@
-package com.egoriku.ui.listeners
+package com.egoriku.ladyhappy
 
 import android.app.Activity
 import android.app.Application

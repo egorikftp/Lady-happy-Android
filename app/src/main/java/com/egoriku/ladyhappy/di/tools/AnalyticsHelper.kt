@@ -7,20 +7,16 @@ import com.egoriku.core.di.utils.IAnalyticsHelper
 import com.google.firebase.analytics.FirebaseAnalytics
 import javax.inject.Inject
 
-class AnalyticsHelperImpl
+class AnalyticsHelper
 @Inject constructor(context: Context) : IAnalyticsHelper {
 
     private val firebaseAnalytics: FirebaseAnalytics by lazy { FirebaseAnalytics.getInstance(context) }
 
-    override fun trackPageView(view: String) {
-        firebaseAnalytics.logEvent(view, null)
-    }
+    override fun trackPageView(view: String) = firebaseAnalytics.logEvent(view, null)
 
-    override fun trackGetCategoriesSuccess(bundle: Bundle?) {
-        firebaseAnalytics.logEvent(TrackingConstants.GET_CATEGORIES_SUCCESS, bundle)
-    }
+    override fun trackGetCategoriesSuccess(bundle: Bundle?) =
+            firebaseAnalytics.logEvent(TrackingConstants.GET_CATEGORIES_SUCCESS, bundle)
 
-    override fun trackGetCategoriesFail(bundle: Bundle?) {
-        firebaseAnalytics.logEvent(TrackingConstants.GET_CATEGORIES_FAIL, bundle)
-    }
+    override fun trackGetCategoriesFail(bundle: Bundle?) =
+            firebaseAnalytics.logEvent(TrackingConstants.GET_CATEGORIES_FAIL, bundle)
 }
