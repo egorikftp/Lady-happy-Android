@@ -1,7 +1,6 @@
 package com.egoriku.featureactivitymain.common
 
 object Screens {
-    const val MAIN_ACTIVITY = "MAIN_ACTIVITY"
     const val CREATE_POST_ACTIVITY = "CREATE_POST_ACTIVITY"
 }
 

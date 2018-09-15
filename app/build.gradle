@@ -25,6 +25,7 @@ android {
         versionName verName
         multiDexEnabled true
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        resConfigs "en", "ru"
     }
 
     signingConfigs {
@@ -44,10 +45,9 @@ android {
         release {
             debuggable false
             minifyEnabled true
-            zipAlignEnabled true
             shrinkResources true
             signingConfig signingConfigs.release
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            proguardFiles 'proguard-rules.pro', getDefaultProguardFile('proguard-android-optimize.txt')
             resValue("string", "hockey_app_id", "\"$hockey_app_id_debug\"")
         }
 

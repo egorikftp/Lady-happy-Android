@@ -11,6 +11,8 @@
 -optimizations !code/simplification/arithmetic,!field/*,!class/merging/*,!code/removal/advanced,!code/removal/simple
 
 -allowaccessmodification
+-repackageclasses
+
 -keepattributes *Annotation*
 -keepattributes Signature
 -keepattributes Exception
@@ -19,21 +21,30 @@
 -flattenpackagehierarchy ''
 -renamesourcefileattribute SourceFile
 
+-whyareyoukeeping class_specification
+
 -keepclasseswithmembernames class * {
     native <methods>;
 }
 
-# Keep all public constructors of all public classes, but still obfuscate+optimize their content.
-# This is necessary because optimization removes constructors which are called through XML.
--keepclasseswithmembers class * {
-    public <init>(android.content.Context, android.util.AttributeSet, int);
-    public <init>(android.content.Context, android.util.AttributeSet);
+-keep public class * extends android.app.Activity
+-keep public class * extends android.view.View {
     public <init>(android.content.Context);
+    public <init>(android.content.Context, android.util.AttributeSet);
+    public <init>(android.content.Context, android.util.AttributeSet, int);
+    public void set*(...);
 }
 
--keepclassmembers class * extends android.app.Activity {
-    public void *(android.view.View);
+-assumenosideeffects class android.util.Log {
+    public static *** d(...);
+    public static *** v(...);
+    public static *** i(...);
+    public static *** e(...);
+    public static *** w(...);
+    public static *** wtf(...);
 }
+
+
 -keepclassmembers class **.R$* {
     public static <fields>;
 }
@@ -126,7 +137,6 @@
 -keep class com.mikepenz.materialize.view.**
 -keep public class android.support.v4.** { *; }
 
--keep public class * extends android.app.Activity
 -keep public class * extends android.app.Application
 -keep public class * extends android.app.Service
 -keep public class * extends android.content.BroadcastReceiver
@@ -144,15 +154,6 @@
 -dontwarn com.google.errorprone.annotations.**
 -dontwarn org.apache.http.**
 
-#Turn off Logging
--assumenosideeffects class android.util.Log {
-    public static *** d(...);
-    public static *** v(...);
-    public static *** i(...);
-    public static *** e(...);
-    public static *** w(...);
-    public static *** wtf(...);
-}
 
 ## LIBRARY: Retrofit
 -keep class org.apache.http.** { *; }
@@ -188,20 +189,10 @@
 -dontwarn com.squareup.okhttp.**
 -dontwarn okio.**
 
-## ButterKnife
--dontwarn butterknife.internal.**
--keep class **$$ViewInjector { *; }
--keepnames class * { @butterknife.InjectView *;}
-
 ## Crashlytics
 -keep class com.crashlytics.** { *; }
 -keep class com.crashlytics.android.**
 -keep public class * extends java.lang.Exception
-
-## Required for the Javascript Interface
--keepclassmembers class com.urbanairship.js.UAJavascriptInterface {
-   public *;
-}
 
 ## SQLCipher
 -optimizations !code/simplification/arithmetic,!field/*,!class/merging/*,!code/allocation/variable

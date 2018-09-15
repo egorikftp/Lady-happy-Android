@@ -27,9 +27,10 @@ dependencies {
     implementation project(':ui')
 
     implementation 'com.android.support:appcompat-v7:28.0.0-rc01'
+    implementation 'com.android.support:design:28.0.0-rc01'
     implementation 'com.android.support.constraint:constraint-layout:1.1.2'
 
-    implementation 'co.zsmb:materialdrawer-kt:1.3.6'
+    implementation 'ru.semper-viventem.backdrop:backdrop:0.1.5'
     implementation 'ru.terrakok.cicerone:cicerone:3.0.0'
 
     kapt "com.google.dagger:dagger-compiler:2.17"

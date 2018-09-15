@@ -1,4 +1,7 @@
 <resources>
+    <string name="navigation_view_main">Main</string>
+    <string name="navigation_view_news">News</string>
+
     <string name="navigation_drawer_all_goods">All Goods</string>
     <string name="navigation_drawer_order">Order</string>
     <string name="navigation_drawer_share">Share</string>

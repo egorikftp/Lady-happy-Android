@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_checked="true">
+        <shape android:shape="rectangle">
+            <solid android:color="@color/RealWhite38" />
+            <corners android:radius="@dimen/material_padding_8" />
+        </shape>
+    </item>
+
+    <item>
+        <ripple android:color="@color/RealWhite">
+            <item android:id="@android:id/mask">
+                <shape android:shape="rectangle">
+                    <solid android:color="@color/RoseTaupe" />
+                    <corners android:radius="@dimen/material_padding_8" />
+                </shape>
+            </item>
+        </ripple>
+    </item>
+</selector>

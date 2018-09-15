@@ -1,38 +1,34 @@
 package com.egoriku.featureactivitymain.presentation.activity
 
 import android.content.Context
-import android.content.res.Configuration
 import android.os.Bundle
+import android.support.annotation.IdRes
 import android.support.annotation.StringRes
 import android.support.v4.app.Fragment
-import android.view.MenuItem
-import co.zsmb.materialdrawerkt.builders.accountHeader
-import co.zsmb.materialdrawerkt.builders.drawer
-import co.zsmb.materialdrawerkt.builders.footer
-import co.zsmb.materialdrawerkt.draweritems.badgeable.primaryItem
-import co.zsmb.materialdrawerkt.draweritems.badgeable.secondaryItem
-import co.zsmb.materialdrawerkt.draweritems.divider
 import com.egoriku.core.IApplication
 import com.egoriku.core.actions.MainFragmentAction
 import com.egoriku.core.di.utils.INavigationHolder
 import com.egoriku.featureactivitymain.R
-import com.egoriku.featureactivitymain.common.Constants
 import com.egoriku.featureactivitymain.common.Fragments
-import com.egoriku.featureactivitymain.common.Screens
+import com.egoriku.featureactivitymain.common.findBehavior
 import com.egoriku.featureactivitymain.di.MainActivityComponent
 import com.egoriku.ui.arch.activity.BaseInjectableActivity
-import com.egoriku.ui.ktx.drawableCompat
-import com.mikepenz.materialdrawer.AccountHeader
-import com.mikepenz.materialdrawer.Drawer
 import kotlinx.android.synthetic.main.activity_main.*
+import ru.semper_viventem.backdrop.BackdropBehavior
 import ru.terrakok.cicerone.android.SupportAppNavigator
 import javax.inject.Inject
 
 @Suppress("MemberVisibilityCanPrivate")
 class MainActivity : BaseInjectableActivity<MainActivityContract.View, MainActivityContract.Presenter>(), MainActivityContract.View {
 
-    private lateinit var navigationDrawer: Drawer
-    private lateinit var headerResult: AccountHeader
+    companion object {
+        private const val ARGS_MENU_ITEM = "selected_item"
+
+        private val MENU_MAIN = R.id.menuMain
+        private val MENU_NEWS = R.id.menuNews
+
+        private val DEFAULT_MENU_ITEM = MENU_MAIN
+    }
 
     @Inject
     lateinit var mainActivityPresenter: MainActivityContract.Presenter
@@ -43,19 +39,19 @@ class MainActivity : BaseInjectableActivity<MainActivityContract.View, MainActiv
     @Inject
     lateinit var mainFragmentProvider: MainFragmentAction
 
-    private var drawerItemTag: String = Constants.EMPTY
+    private lateinit var backdropBehavior: BackdropBehavior
 
     @Suppress("UNUSED_EXPRESSION")
-    private val navigator = object : SupportAppNavigator(this, supportFragmentManager, R.id.mainActivityContainer) {
+    private val navigator = object : SupportAppNavigator(this, supportFragmentManager, R.id.fragmentContainer) {
 
         override fun createActivityIntent(context: Context?, screenKey: String?, data: Any?) = when (screenKey) {
-        // Screens.CREATE_POST_ACTIVITY -> null  intentFor<DetailCategoryActivity>()
+            // Screens.CREATE_POST_ACTIVITY -> null  intentFor<DetailCategoryActivity>()
             else -> null
         }
 
         override fun createFragment(screenKey: String?, data: Any?): Fragment? = when (screenKey) {
-        //Fragments.ALL_GOODS -> AllGoodsFragment.newInstance()
-        //Fragments.ORDER -> OrderFragment.newInstance()
+            //Fragments.ALL_GOODS -> AllGoodsFragment.newInstance()
+            //Fragments.ORDER -> OrderFragment.newInstance()
             Fragments.MAIN_PAGE -> mainFragmentProvider.provideFragment()
             else -> null
         }
@@ -74,75 +70,31 @@ class MainActivity : BaseInjectableActivity<MainActivityContract.View, MainActiv
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        setSupportActionBar(toolbarMainActivity)
+        backdropBehavior = foregroundContainer.findBehavior()
 
-        supportActionBar?.let {
-            supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        with(backdropBehavior) {
+            attachBackContainer(R.id.backContainer)
+            attachToolbar(R.id.toolbarMainActivity)
+            setClosedIcon(R.drawable.ic_menu)
+            setOpenedIcon(R.drawable.ic_close)
         }
 
-        initNavigationDrawer(savedInstanceState)
+        with(navigationView) {
+            setNavigationItemSelectedListener { item ->
+                checkMenuPosition(item.itemId)
+                backdropBehavior.close()
+                true
+            }
+        }
+
+        val currentMenuItem = savedInstanceState?.getInt(ARGS_MENU_ITEM) ?: DEFAULT_MENU_ITEM
+        navigationView.setCheckedItem(currentMenuItem)
+        checkMenuPosition(navigationView.checkedItem!!.itemId)
+
+        setSupportActionBar(toolbarMainActivity)
 
         if (savedInstanceState == null) {
             presenter.openMainPageFragment()
-        }
-    }
-
-    override fun onPostCreate(savedInstanceState: Bundle?) {
-        super.onPostCreate(savedInstanceState)
-        navigationDrawer.actionBarDrawerToggle.syncState()
-    }
-
-    private fun initNavigationDrawer(savedInstanceState: Bundle?) {
-        navigationDrawer = drawer {
-            savedInstance = savedInstanceState
-            hasStableIds = true
-            toolbar = this@MainActivity.toolbarMainActivity
-
-            headerResult = accountHeader {
-                background = R.drawable.header
-                savedInstance = savedInstanceState
-                translucentStatusBar = true
-                selectionListEnabledForSingleProfile = false
-            }
-
-            primaryItem(R.string.navigation_drawer_all_goods) {
-                iconDrawable = drawableCompat(R.drawable.ic_toys)!!
-                tag = Fragments.ALL_GOODS
-                iconTintingEnabled = true
-            }
-
-            primaryItem(R.string.navigation_drawer_order) {
-                iconDrawable = drawableCompat(R.drawable.ic_payment)!!
-                tag = Fragments.ORDER
-                iconTintingEnabled = true
-            }
-
-            divider()
-
-            footer {
-                secondaryItem(R.string.navigation_drawer_create_new_post) {
-                    iconDrawable = drawableCompat(R.drawable.ic_create_new_post)!!
-                    tag = Screens.CREATE_POST_ACTIVITY
-                }
-            }
-
-            onItemClick { _, _, drawerItem ->
-                if (drawerItem.tag != null) {
-                    drawerItemTag = drawerItem.tag.toString()
-                }
-
-                false
-            }
-
-            onClosed {
-                when (drawerItemTag) {
-                    Fragments.ALL_GOODS -> presenter.openAllGoodsCategory()
-                    Fragments.ORDER -> presenter.openOrderCategory()
-                    Fragments.SHARE -> presenter.openShareCategory()
-                    Fragments.FEEDBACK -> presenter.openFeedbackCategory()
-                    Screens.CREATE_POST_ACTIVITY -> presenter.openCreateNewPostScreen()
-                }
-            }
         }
     }
 
@@ -157,8 +109,7 @@ class MainActivity : BaseInjectableActivity<MainActivityContract.View, MainActiv
     }
 
     override fun onBackPressed() {
-        if (navigationDrawer.isDrawerOpen) {
-            navigationDrawer.closeDrawer()
+        if (backdropBehavior.close()) {
             return
         } else if (supportFragmentManager.backStackEntryCount == 1) {
             finish()
@@ -168,17 +119,20 @@ class MainActivity : BaseInjectableActivity<MainActivityContract.View, MainActiv
         presenter.onBackPressed()
     }
 
-    override fun onConfigurationChanged(newConfig: Configuration) {
-        super.onConfigurationChanged(newConfig)
-        navigationDrawer.actionBarDrawerToggle.onConfigurationChanged(newConfig)
+    override fun onSaveInstanceState(outState: Bundle?) {
+        outState?.putInt(ARGS_MENU_ITEM, navigationView.checkedItem!!.itemId)
+        super.onSaveInstanceState(outState)
     }
 
-    override fun onOptionsItemSelected(item: MenuItem) = navigationDrawer.actionBarDrawerToggle.onOptionsItemSelected(item) || super.onOptionsItemSelected(item)
-
-    override fun onSaveInstanceState(outState: Bundle?) {
-        navigationDrawer.saveInstanceState(outState)
-        headerResult.saveInstanceState(outState)
-        super.onSaveInstanceState(outState)
+    private fun checkMenuPosition(@IdRes menuItemId: Int) {
+        when (menuItemId) {
+            MENU_MAIN -> presenter.openMainPageFragment()
+            //   Fragments.ALL_GOODS -> presenter.openAllGoodsCategory()
+            //  Fragments.ORDER -> presenter.openOrderCategory()
+            // Fragments.SHARE -> presenter.openShareCategory()
+            //  Fragments.FEEDBACK -> presenter.openFeedbackCategory()
+            //  Screens.CREATE_POST_ACTIVITY -> presenter.openCreateNewPostScreen()
+        }
     }
 
     override fun showLoading() {
@@ -187,6 +141,7 @@ class MainActivity : BaseInjectableActivity<MainActivityContract.View, MainActiv
     override fun hideLoading() {
     }
 
+    @Deprecated("Need remove")
     fun setUpToolbar(@StringRes title: Int) {
         supportActionBar?.title = getString(title)
     }
