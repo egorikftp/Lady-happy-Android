@@ -9,3 +9,5 @@ import android.support.v7.content.res.AppCompatResources
 fun Context.colorCompat(@ColorRes colorInt: Int) = ContextCompat.getColor(this, colorInt)
 
 fun Context.drawableCompat(@DrawableRes resId: Int) = AppCompatResources.getDrawable(this, resId)
+
+fun Context.colorStateListCompat(@ColorRes colorInt: Int) = ContextCompat.getColorStateList(this, colorInt)

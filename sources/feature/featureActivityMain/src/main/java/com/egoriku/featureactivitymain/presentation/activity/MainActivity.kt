@@ -14,7 +14,10 @@ import com.egoriku.featureactivitymain.common.findBehavior
 import com.egoriku.featureactivitymain.di.MainActivityComponent
 import com.egoriku.featureactivitymain.presentation.activity.MainActivityPresenter.Companion.LANDING_PAGE
 import com.egoriku.featureactivitymain.presentation.activity.MainActivityPresenter.Companion.PHOTO_REPORT
+import com.egoriku.featureactivitymain.presentation.activity.drawable.RoundTopRectDrawable
 import com.egoriku.ui.arch.activity.BaseInjectableActivity
+import com.egoriku.ui.ktx.colorStateListCompat
+import com.egoriku.ui.ktx.dimension
 import kotlinx.android.synthetic.main.activity_main.*
 import ru.semper_viventem.backdrop.BackdropBehavior
 import ru.terrakok.cicerone.android.SupportAppNavigator
@@ -69,6 +72,10 @@ class MainActivity : BaseInjectableActivity<MainActivityContract.View, MainActiv
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        foregroundContainer.background = RoundTopRectDrawable(
+                colorStateListCompat(R.color.RealWhite),
+                dimension(R.dimen.round_corners_radius))
 
         backdropBehavior = foregroundContainer.findBehavior()
 

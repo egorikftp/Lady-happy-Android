@@ -30,7 +30,6 @@
         android:id="@+id/foregroundContainer"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:cardCornerRadius="16dp"
         app:layout_behavior="ru.semper_viventem.backdrop.BackdropBehavior">
 
         <FrameLayout
