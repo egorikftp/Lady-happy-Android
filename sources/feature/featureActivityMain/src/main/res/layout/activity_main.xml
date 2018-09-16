@@ -26,17 +26,12 @@
 
     </LinearLayout>
 
-    <android.support.design.card.MaterialCardView
+    <com.egoriku.featureactivitymain.presentation.activity.drawable.Custom
         android:id="@+id/foregroundContainer"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_behavior="ru.semper_viventem.backdrop.BackdropBehavior">
 
-        <FrameLayout
-            android:id="@+id/fragmentContainer"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-
-    </android.support.design.card.MaterialCardView>
+    </com.egoriku.featureactivitymain.presentation.activity.drawable.Custom>
 </android.support.design.widget.CoordinatorLayout>
 

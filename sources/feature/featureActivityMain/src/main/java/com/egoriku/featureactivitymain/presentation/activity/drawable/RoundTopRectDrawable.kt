@@ -4,19 +4,12 @@ import android.content.res.ColorStateList
 import android.graphics.*
 import android.graphics.drawable.Drawable
 
-class RoundTopRectDrawable(backgroundColor: ColorStateList?, private var radius: Float) : Drawable() {
 
-    companion object {
-        private val COS_45 = Math.cos(Math.toRadians(45.0))
-    }
+class RoundTopRectDrawable(backgroundColor: ColorStateList?, private var radius: Float) : Drawable() {
 
     private val paint: Paint
     private val boundsRectF: RectF
     private val boundsRectI: Rect
-    private var padding: Float = 0.toFloat()
-
-    private var insetForPadding = false
-    private var iInsetForRadius = true
 
     private var background: ColorStateList? = null
     private var tintFilter: PorterDuffColorFilter? = null
@@ -53,7 +46,21 @@ class RoundTopRectDrawable(backgroundColor: ColorStateList?, private var radius:
             clearColorFilter = false
         }
 
-        canvas.drawRoundRect(boundsRectF, radius, 0f, paint)
+        val path = RoundedRect(
+                boundsRectF.left,
+                boundsRectF.top,
+                boundsRectF.right,
+                boundsRectF.bottom,
+                radius, radius,
+                true,
+                true,
+                false,
+                false
+        )
+
+        canvas.drawPath(path, paint)
+
+       // canvas.drawRoundRect(boundsRectF, radius, radius, paint)
         if (clearColorFilter) {
             paint.colorFilter = null
         }
@@ -70,26 +77,6 @@ class RoundTopRectDrawable(backgroundColor: ColorStateList?, private var radius:
 
         boundsRectF.set(bounds.left.toFloat(), bounds.top.toFloat(), bounds.right.toFloat(), bounds.bottom.toFloat())
         boundsRectI.set(bounds)
-
-        if (insetForPadding) {
-            val verticalInset = calculateVerticalPadding(padding, radius, iInsetForRadius)
-            val horizontalInset = calculateHorizontalPadding(padding, radius, iInsetForRadius)
-
-            boundsRectI.inset(
-                    Math.ceil(horizontalInset.toDouble()).toInt(),
-                    Math.ceil(verticalInset.toDouble()).toInt()
-            )
-
-            boundsRectF.set(boundsRectI)
-        }
-    }
-
-    private fun calculateVerticalPadding(maxShadowSize: Float, cornerRadius: Float, addPaddingForCorners: Boolean): Float {
-        return if (addPaddingForCorners) ((maxShadowSize * 1.5f).toDouble() + (1.0 - COS_45) * cornerRadius.toDouble()).toFloat() else maxShadowSize * 1.5f
-    }
-
-    private fun calculateHorizontalPadding(maxShadowSize: Float, cornerRadius: Float, addPaddingForCorners: Boolean): Float {
-        return if (addPaddingForCorners) (maxShadowSize.toDouble() + (1.0 - COS_45) * cornerRadius.toDouble()).toFloat() else maxShadowSize
     }
 
     override fun onBoundsChange(bounds: Rect) {
@@ -97,7 +84,75 @@ class RoundTopRectDrawable(backgroundColor: ColorStateList?, private var radius:
         updateBounds(bounds)
     }
 
-    override fun getOutline(outline: Outline) = outline.setRoundRect(boundsRectI, radius)
+    override fun getOutline(outline: Outline) {
+        val path = RoundedRect(
+                boundsRectF.left,
+                boundsRectF.top,
+                boundsRectF.right,
+                boundsRectF.bottom,
+                radius, radius,
+                true,
+                true,
+                false,
+                false
+        )
+
+        outline.setConvexPath(path)
+    }
+
+    fun RoundedRect(
+            left: Float, top: Float, right: Float, bottom: Float, rx: Float, ry: Float,
+            tl: Boolean, tr: Boolean, br: Boolean, bl: Boolean
+    ): Path {
+        var rx = rx
+        var ry = ry
+        val path = Path()
+        if (rx < 0) rx = 0f
+        if (ry < 0) ry = 0f
+        val width = right - left
+        val height = bottom - top
+        if (rx > width / 2) rx = width / 2
+        if (ry > height / 2) ry = height / 2
+        val widthMinusCorners = width - 2 * rx
+        val heightMinusCorners = height - 2 * ry
+
+        path.moveTo(right, top + ry)
+        if (tr)
+            path.rQuadTo(0F, -ry, -rx, -ry)//top-right corner
+        else {
+            path.rLineTo(0F, -ry)
+            path.rLineTo(-rx, 0F)
+        }
+        path.rLineTo(-widthMinusCorners, 0F)
+        if (tl)
+            path.rQuadTo(-rx, 0F, -rx, ry) //top-left corner
+        else {
+            path.rLineTo(-rx, 0F)
+            path.rLineTo(0F, ry)
+        }
+        path.rLineTo(0F, heightMinusCorners)
+
+        if (bl)
+            path.rQuadTo(0F, ry, rx, ry)//bottom-left corner
+        else {
+            path.rLineTo(0F, ry)
+            path.rLineTo(rx, 0F)
+        }
+
+        path.rLineTo(widthMinusCorners, 0F)
+        if (br)
+            path.rQuadTo(rx, 0F, rx, -ry) //bottom-right corner
+        else {
+            path.rLineTo(rx, 0F)
+            path.rLineTo(0F, -ry)
+        }
+
+        path.rLineTo(0F, -heightMinusCorners)
+
+        path.close()//Given close, last lineto can be removed.
+
+        return path
+    }
 
     override fun setAlpha(alpha: Int) {
         paint.alpha = alpha
