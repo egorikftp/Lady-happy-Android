@@ -2,7 +2,7 @@
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:state_checked="true">
         <shape android:shape="rectangle">
-            <solid android:color="@color/RealWhite38" />
+            <solid android:color="@color/TerracotaDark" />
             <corners android:radius="@dimen/material_padding_8" />
         </shape>
     </item>
@@ -11,7 +11,6 @@
         <ripple android:color="@color/RealWhite">
             <item android:id="@android:id/mask">
                 <shape android:shape="rectangle">
-                    <solid android:color="@color/RoseTaupe" />
                     <corners android:radius="@dimen/material_padding_8" />
                 </shape>
             </item>

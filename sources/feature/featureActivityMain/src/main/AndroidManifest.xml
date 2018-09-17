@@ -4,6 +4,7 @@
 
     <application>
         <activity
-            android:name=".presentation.activity.MainActivity"/>
+            android:name=".presentation.activity.MainActivity"
+            android:theme="@style/MainActivityStyle" />
     </application>
 </manifest>

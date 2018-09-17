@@ -70,13 +70,6 @@ class MainActivity : BaseInjectableActivity<MainActivityContract.View, MainActiv
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-
-
-/*        foregroundContainer.background = RoundTopRectDrawable(
-                colorStateListCompat(R.color.RealWhite),
-                dimension(R.dimen.round_corners_radius))
-                */
-
         backdropBehavior = foregroundContainer.findBehavior()
 
         with(backdropBehavior) {
