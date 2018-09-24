@@ -4,8 +4,8 @@ import com.egoriku.core.IApplication
 import com.egoriku.core.di.ApplicationScope
 import com.egoriku.core.di.utils.IAnalyticsHelper
 import com.egoriku.core.di.utils.IFirebaseFirestore
-import com.egoriku.ladyhappy.di.tools.AnalyticsHelper
-import com.egoriku.ladyhappy.di.tools.FirebaseFirestore
+import com.egoriku.ladyhappy.tools.AnalyticsHelper
+import com.egoriku.ladyhappy.tools.FirebaseFirestore
 import dagger.Module
 import dagger.Provides
 

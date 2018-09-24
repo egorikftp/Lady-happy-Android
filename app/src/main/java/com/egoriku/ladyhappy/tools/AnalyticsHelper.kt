@@ -1,4 +1,4 @@
-package com.egoriku.ladyhappy.di.tools
+package com.egoriku.ladyhappy.tools
 
 import android.content.Context
 import android.os.Bundle

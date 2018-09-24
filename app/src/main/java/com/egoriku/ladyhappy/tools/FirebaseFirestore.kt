@@ -1,4 +1,4 @@
-package com.egoriku.ladyhappy.di.tools
+package com.egoriku.ladyhappy.tools
 
 import com.egoriku.core.di.utils.IFirebaseFirestore
 import com.google.firebase.firestore.FirebaseFirestore

@@ -1,4 +1,4 @@
-package com.egoriku.ladyhappy.di.tools
+package com.egoriku.ladyhappy.tools
 
 import com.egoriku.core.di.utils.IRouter
 import ru.terrakok.cicerone.Router
