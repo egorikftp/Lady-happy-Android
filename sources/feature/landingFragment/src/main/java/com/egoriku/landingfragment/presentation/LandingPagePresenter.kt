@@ -2,11 +2,11 @@ package com.egoriku.landingfragment.presentation
 
 import android.util.Log
 import com.egoriku.core.di.utils.IAnalyticsHelper
-import com.egoriku.core.models.ILandingModel
-import com.egoriku.core.usecase.DefaultObserver
+import com.egoriku.core.model.ILandingModel
+import com.egoriku.core.usecase.AppObserver
 import com.egoriku.core.usecase.Params
-import com.egoriku.ui.arch.pvm.BasePresenter
 import com.egoriku.landingfragment.domain.interactors.LandingUseCase
+import com.egoriku.ui.arch.pvm.BasePresenter
 import javax.inject.Inject
 
 internal class LandingPagePresenter
@@ -28,7 +28,7 @@ internal class LandingPagePresenter
 
     @Suppress("PARAMETER_NAME_CHANGED_ON_OVERRIDE")
     private fun getLandingData() {
-        landingUseCase.execute(object : DefaultObserver<ILandingModel>() {
+        landingUseCase.execute(object : AppObserver<ILandingModel>() {
             override fun onNext(model: ILandingModel) {
                 screenModel = model
 

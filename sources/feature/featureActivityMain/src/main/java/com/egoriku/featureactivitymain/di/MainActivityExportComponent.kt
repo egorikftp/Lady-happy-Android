@@ -8,9 +8,7 @@ import dagger.Component
 interface MainActivityExportComponent : MainActivityProvider {
     class Initializer private constructor() {
         companion object {
-            fun init(): MainActivityProvider = DaggerMainActivityExportComponent
-                    .builder()
-                    .build()
+            fun init(): MainActivityProvider = DaggerMainActivityExportComponent.create()
         }
     }
 }

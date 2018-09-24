@@ -7,7 +7,10 @@
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbarMainActivity"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:background="@color/RoseTaupe"
+        app:contentInsetStartWithNavigation="0dp"
+        app:titleTextColor="@color/RealWhite" />
 
     <LinearLayout
         android:id="@+id/backContainer"
@@ -19,25 +22,19 @@
             android:id="@+id/navigationView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@android:color/transparent"
+            android:background="@color/RoseTaupe"
             app:itemBackground="@drawable/bg_menu_item"
-            app:itemTextColor="@color/RealBlack"
+            app:itemTextColor="@color/RealWhite"
             app:menu="@menu/main_menu" />
 
     </LinearLayout>
 
-    <android.support.design.card.MaterialCardView
+    <com.egoriku.featureactivitymain.presentation.view.RoundedTopFrameLayout
         android:id="@+id/foregroundContainer"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:cardCornerRadius="16dp"
         app:layout_behavior="ru.semper_viventem.backdrop.BackdropBehavior">
 
-        <FrameLayout
-            android:id="@+id/fragmentContainer"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-
-    </android.support.design.card.MaterialCardView>
+    </com.egoriku.featureactivitymain.presentation.view.RoundedTopFrameLayout>
 </android.support.design.widget.CoordinatorLayout>
 

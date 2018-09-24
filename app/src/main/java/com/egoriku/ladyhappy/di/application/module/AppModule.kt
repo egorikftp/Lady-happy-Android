@@ -4,8 +4,8 @@ import com.egoriku.core.IApplication
 import com.egoriku.core.di.ApplicationScope
 import com.egoriku.core.di.utils.IAnalyticsHelper
 import com.egoriku.core.di.utils.IFirebaseFirestore
-import com.egoriku.ladyhappy.di.tools.AnalyticsHelperImpl
-import com.egoriku.ladyhappy.di.tools.FirebaseFirestoreImpl
+import com.egoriku.ladyhappy.di.tools.AnalyticsHelper
+import com.egoriku.ladyhappy.di.tools.FirebaseFirestore
 import dagger.Module
 import dagger.Provides
 
@@ -14,9 +14,9 @@ class AppModule {
 
     @Provides
     @ApplicationScope
-    fun provideFirebaseFirestore(): IFirebaseFirestore = FirebaseFirestoreImpl()
+    fun provideFirebaseFirestore(): IFirebaseFirestore = FirebaseFirestore()
 
     @Provides
     @ApplicationScope
-    fun provideAnalyticsHelper(app: IApplication): IAnalyticsHelper = AnalyticsHelperImpl(app.getApplicationContext())
+    fun provideAnalyticsHelper(app: IApplication): IAnalyticsHelper = AnalyticsHelper(app.getApplicationContext())
 }

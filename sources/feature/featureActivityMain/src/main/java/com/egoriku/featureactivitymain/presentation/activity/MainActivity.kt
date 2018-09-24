@@ -3,31 +3,33 @@ package com.egoriku.featureactivitymain.presentation.activity
 import android.content.Context
 import android.os.Bundle
 import android.support.annotation.IdRes
-import android.support.annotation.StringRes
 import android.support.v4.app.Fragment
-import com.egoriku.core.IApplication
-import com.egoriku.core.actions.MainFragmentAction
+import com.egoriku.core.actions.ILandingFragmentAction
+import com.egoriku.core.actions.IPhotoReportFragmentAction
+import com.egoriku.core.actions.common.IMainActivityConnector
+import com.egoriku.core.di.findDependencies
 import com.egoriku.core.di.utils.INavigationHolder
 import com.egoriku.featureactivitymain.R
-import com.egoriku.featureactivitymain.common.Fragments
 import com.egoriku.featureactivitymain.common.findBehavior
 import com.egoriku.featureactivitymain.di.MainActivityComponent
+import com.egoriku.featureactivitymain.presentation.activity.MainActivityPresenter.Companion.LANDING_PAGE
+import com.egoriku.featureactivitymain.presentation.activity.MainActivityPresenter.Companion.PHOTO_REPORT
 import com.egoriku.ui.arch.activity.BaseInjectableActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import ru.semper_viventem.backdrop.BackdropBehavior
 import ru.terrakok.cicerone.android.SupportAppNavigator
 import javax.inject.Inject
 
-@Suppress("MemberVisibilityCanPrivate")
-class MainActivity : BaseInjectableActivity<MainActivityContract.View, MainActivityContract.Presenter>(), MainActivityContract.View {
+class MainActivity : BaseInjectableActivity<MainActivityContract.View, MainActivityContract.Presenter>(), MainActivityContract.View,
+        IMainActivityConnector {
 
     companion object {
         private const val ARGS_MENU_ITEM = "selected_item"
 
-        private val MENU_MAIN = R.id.menuMain
-        private val MENU_NEWS = R.id.menuNews
+        private val MENU_LANDING = R.id.menuLanding
+        private val MENU_PHOTO_REPORT = R.id.menuPhotoReport
 
-        private val DEFAULT_MENU_ITEM = MENU_MAIN
+        private val DEFAULT_MENU_ITEM = MENU_LANDING
     }
 
     @Inject
@@ -37,22 +39,20 @@ class MainActivity : BaseInjectableActivity<MainActivityContract.View, MainActiv
     lateinit var navigatorHolder: INavigationHolder
 
     @Inject
-    lateinit var mainFragmentProvider: MainFragmentAction
+    lateinit var landingFragmentAction: ILandingFragmentAction
+
+    @Inject
+    lateinit var photoReportFragmentAction: IPhotoReportFragmentAction
 
     private lateinit var backdropBehavior: BackdropBehavior
 
-    @Suppress("UNUSED_EXPRESSION")
-    private val navigator = object : SupportAppNavigator(this, supportFragmentManager, R.id.fragmentContainer) {
+    private val navigator = object : SupportAppNavigator(this, supportFragmentManager, R.id.foregroundContainer) {
 
-        override fun createActivityIntent(context: Context?, screenKey: String?, data: Any?) = when (screenKey) {
-            // Screens.CREATE_POST_ACTIVITY -> null  intentFor<DetailCategoryActivity>()
-            else -> null
-        }
+        override fun createActivityIntent(context: Context?, screenKey: String?, data: Any?) = null
 
         override fun createFragment(screenKey: String?, data: Any?): Fragment? = when (screenKey) {
-            //Fragments.ALL_GOODS -> AllGoodsFragment.newInstance()
-            //Fragments.ORDER -> OrderFragment.newInstance()
-            Fragments.MAIN_PAGE -> mainFragmentProvider.provideFragment()
+            LANDING_PAGE -> landingFragmentAction.provideFragment()
+            PHOTO_REPORT -> photoReportFragmentAction.provideFragment()
             else -> null
         }
     }
@@ -62,8 +62,7 @@ class MainActivity : BaseInjectableActivity<MainActivityContract.View, MainActiv
     override fun provideLayout(): Int = R.layout.activity_main
 
     override fun injectDependencies() {
-        MainActivityComponent.Initializer
-                .init((applicationContext as IApplication).getAppComponent())
+        MainActivityComponent.Initializer.init(findDependencies())
                 .inject(this)
     }
 
@@ -94,7 +93,7 @@ class MainActivity : BaseInjectableActivity<MainActivityContract.View, MainActiv
         setSupportActionBar(toolbarMainActivity)
 
         if (savedInstanceState == null) {
-            presenter.openMainPageFragment()
+            presenter.openLanding()
         }
     }
 
@@ -126,23 +125,20 @@ class MainActivity : BaseInjectableActivity<MainActivityContract.View, MainActiv
 
     private fun checkMenuPosition(@IdRes menuItemId: Int) {
         when (menuItemId) {
-            MENU_MAIN -> presenter.openMainPageFragment()
-            //   Fragments.ALL_GOODS -> presenter.openAllGoodsCategory()
-            //  Fragments.ORDER -> presenter.openOrderCategory()
-            // Fragments.SHARE -> presenter.openShareCategory()
-            //  Fragments.FEEDBACK -> presenter.openFeedbackCategory()
-            //  Screens.CREATE_POST_ACTIVITY -> presenter.openCreateNewPostScreen()
+            MENU_LANDING -> presenter.openLanding()
+            MENU_PHOTO_REPORT -> presenter.openPhotoReport()
         }
     }
 
+    override fun onScroll() {
+        backdropBehavior.close()
+    }
+
+    @Deprecated("move to fragment view contract")
     override fun showLoading() {
     }
 
+    @Deprecated("move to fragment view contract")
     override fun hideLoading() {
-    }
-
-    @Deprecated("Need remove")
-    fun setUpToolbar(@StringRes title: Int) {
-        supportActionBar?.title = getString(title)
     }
 }

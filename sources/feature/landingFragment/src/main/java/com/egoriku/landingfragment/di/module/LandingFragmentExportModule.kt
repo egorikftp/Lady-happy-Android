@@ -1,7 +1,7 @@
 package com.egoriku.landingfragment.di.module
 
-import com.egoriku.core.actions.MainFragmentAction
-import com.egoriku.landingfragment.action.MainFragmentActionImpl
+import com.egoriku.core.actions.ILandingFragmentAction
+import com.egoriku.landingfragment.action.LandingFragmentAction
 import dagger.Module
 import dagger.Provides
 
@@ -9,5 +9,5 @@ import dagger.Provides
 class LandingFragmentExportModule {
 
     @Provides
-    fun provideShowMainActivityAction(): MainFragmentAction = MainFragmentActionImpl()
+    fun provideShowMainActivityAction(): ILandingFragmentAction = LandingFragmentAction()
 }

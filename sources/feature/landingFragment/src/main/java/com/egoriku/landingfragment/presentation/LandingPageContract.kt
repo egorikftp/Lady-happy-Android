@@ -1,6 +1,6 @@
 package com.egoriku.landingfragment.presentation
 
-import com.egoriku.core.models.ILandingModel
+import com.egoriku.core.model.ILandingModel
 import com.egoriku.ui.arch.pvm.BaseContract
 import com.egoriku.ui.arch.pvm.BaseView
 

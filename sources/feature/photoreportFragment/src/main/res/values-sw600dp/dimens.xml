@@ -1,0 +1,3 @@
+<resources>
+    <dimen name="adapter_item_news_image_height">400dp</dimen>
+</resources>

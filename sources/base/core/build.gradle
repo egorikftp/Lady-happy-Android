@@ -3,7 +3,7 @@ apply plugin: 'kotlin-android'
 
 android {
     compileSdkVersion 28
-    buildToolsVersion '28.0.1'
+    buildToolsVersion '28.0.2'
 
     defaultConfig {
         minSdkVersion 21
@@ -25,12 +25,12 @@ android {
 dependencies {
     implementation 'com.google.dagger:dagger:2.17'
 
-    implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.2.61'
+    implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.2.70'
 
     implementation 'com.google.firebase:firebase-firestore:17.1.0'
 
     implementation 'ru.terrakok.cicerone:cicerone:3.0.0'
 
-    implementation 'io.reactivex.rxjava2:rxjava:2.2.1'
+    implementation 'io.reactivex.rxjava2:rxjava:2.2.2'
     implementation 'io.reactivex.rxjava2:rxandroid:2.1.0'
 }

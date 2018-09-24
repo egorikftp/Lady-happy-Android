@@ -1,18 +1,21 @@
 package com.egoriku.core.di
 
 import com.egoriku.core.IApplication
-import com.egoriku.core.actions.MainActivityAction
-import com.egoriku.core.actions.MainFragmentAction
+import com.egoriku.core.actions.ILandingFragmentAction
+import com.egoriku.core.actions.IMainActivityAction
+import com.egoriku.core.actions.IPhotoReportFragmentAction
 import com.egoriku.core.di.utils.IAnalyticsHelper
 import com.egoriku.core.di.utils.IFirebaseFirestore
 import com.egoriku.core.di.utils.INavigationHolder
 import com.egoriku.core.di.utils.IRouter
 import com.egoriku.core.repository.ILandingRepository
+import com.egoriku.core.repository.IPhotoReportRepository
 
 interface ApplicationProvider :
         MainToolsProvider,
         MainActivityProvider,
-        MainFragmentProvider,
+        LandingFragmentProvider,
+        PhotoReportFragmentProvider,
         RepositoryProvider
 
 interface MainToolsProvider {
@@ -28,13 +31,19 @@ interface MainToolsProvider {
 }
 
 interface MainActivityProvider {
-    fun provideMainActivityAction(): MainActivityAction
+    fun provideMainActivityAction(): IMainActivityAction
 }
 
-interface MainFragmentProvider {
-    fun provideMainFragmentAction(): MainFragmentAction
+interface LandingFragmentProvider {
+    fun provideLandingFragmentAction(): ILandingFragmentAction
+}
+
+interface PhotoReportFragmentProvider {
+    fun providePhotoReportGFragmentAction(): IPhotoReportFragmentAction
 }
 
 interface RepositoryProvider {
     fun provideLandingRepository(): ILandingRepository
+
+    fun providePhotoReportRepository(): IPhotoReportRepository
 }

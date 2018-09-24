@@ -1,6 +1,0 @@
-<resources>
-    <dimen name="adapter_item_category_height">300dp</dimen>
-    <dimen name="adapter_item_category_title_text_size">18sp</dimen>
-    <dimen name="adapter_item_news_image_height">400dp</dimen>
-
-</resources>
