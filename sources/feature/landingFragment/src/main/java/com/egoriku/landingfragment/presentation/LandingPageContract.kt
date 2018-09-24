@@ -15,7 +15,7 @@ internal interface LandingPageContract {
         fun render(model: ILandingModel)
     }
 
-    interface Presenter : BaseContract.Presenter<View>{
+    interface Presenter : BaseContract.Presenter<View> {
 
         fun loadLandingData()
     }
