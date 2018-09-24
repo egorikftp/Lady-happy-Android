@@ -3,12 +3,12 @@ package com.egoriku.photoreportfragment.presentation
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.view.View
-import com.egoriku.core.IApplication
+import com.egoriku.core.di.findDependencies
 import com.egoriku.photoreportfragment.R
 import com.egoriku.photoreportfragment.di.PhotoReportFragmentComponent
-import com.egoriku.photoreportfragment.presentation.controller.PhotoReportHeaderController
-import com.egoriku.photoreportfragment.presentation.controller.PhotoReportCarouselController
 import com.egoriku.photoreportfragment.presentation.controller.ErrorStateController
+import com.egoriku.photoreportfragment.presentation.controller.PhotoReportCarouselController
+import com.egoriku.photoreportfragment.presentation.controller.PhotoReportHeaderController
 import com.egoriku.ui.arch.fragment.BaseInjectableFragment
 import com.egoriku.ui.ktx.gone
 import com.egoriku.ui.ktx.show
@@ -19,6 +19,10 @@ import javax.inject.Inject
 
 class PhotoReportFragment : BaseInjectableFragment<PhotoReportContract.View, PhotoReportContract.Presenter>(), PhotoReportContract.View {
 
+    companion object {
+        fun newInstance() = PhotoReportFragment()
+    }
+
     @Inject
     lateinit var photoReportPresenter: PhotoReportContract.Presenter
 
@@ -28,23 +32,18 @@ class PhotoReportFragment : BaseInjectableFragment<PhotoReportContract.View, Pho
 
     private val photoReportAdapter = EasyAdapter()
 
-    companion object {
-        fun newInstance() = PhotoReportFragment()
-    }
-
     override fun initPresenter() = photoReportPresenter
 
     override fun provideLayout(): Int = R.layout.fragment_photo_report
 
     override fun injectDependencies() {
-        PhotoReportFragmentComponent.Initializer
-                .init((activity?.applicationContext as IApplication).getAppComponent())
+        PhotoReportFragmentComponent.Initializer.init(findDependencies())
                 .inject(this)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-       // activity?.setTitle(R.string.navigation_drawer_all_goods)
+        activity?.setTitle(R.string.navigation_photo_report)
 
         initRecyclerView()
 

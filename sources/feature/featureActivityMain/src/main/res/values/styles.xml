@@ -1,7 +1,7 @@
 <resources>
     <style name="MainActivityStyle" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="colorPrimary">@color/Terracota</item>
-        <item name="colorPrimaryDark">@color/TerracotaDark</item>
+        <item name="colorPrimary">@color/RoseTaupe</item>
+        <item name="colorPrimaryDark">@color/RoseTaupeDark</item>
         <item name="colorAccent">@color/Terracota</item>
     </style>
 </resources>

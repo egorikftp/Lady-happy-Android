@@ -4,10 +4,10 @@ import android.content.Context
 import android.os.Bundle
 import android.support.annotation.IdRes
 import android.support.v4.app.Fragment
-import com.egoriku.core.IApplication
 import com.egoriku.core.actions.ILandingFragmentAction
 import com.egoriku.core.actions.IPhotoReportFragmentAction
 import com.egoriku.core.actions.common.IMainActivityConnector
+import com.egoriku.core.di.findDependencies
 import com.egoriku.core.di.utils.INavigationHolder
 import com.egoriku.featureactivitymain.R
 import com.egoriku.featureactivitymain.common.findBehavior
@@ -62,8 +62,7 @@ class MainActivity : BaseInjectableActivity<MainActivityContract.View, MainActiv
     override fun provideLayout(): Int = R.layout.activity_main
 
     override fun injectDependencies() {
-        MainActivityComponent.Initializer
-                .init((applicationContext as IApplication).getAppComponent())
+        MainActivityComponent.Initializer.init(findDependencies())
                 .inject(this)
     }
 

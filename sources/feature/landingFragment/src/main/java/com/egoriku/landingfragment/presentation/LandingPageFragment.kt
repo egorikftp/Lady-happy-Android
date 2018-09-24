@@ -5,8 +5,8 @@ import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.View
-import com.egoriku.core.IApplication
 import com.egoriku.core.actions.common.IMainActivityConnector
+import com.egoriku.core.di.findDependencies
 import com.egoriku.core.model.ILandingModel
 import com.egoriku.landingfragment.R
 import com.egoriku.landingfragment.common.parallax.ParallaxScrollListener
@@ -23,31 +23,29 @@ import javax.inject.Inject
 
 internal class LandingPageFragment : BaseInjectableFragment<LandingPageContract.View, LandingPageContract.Presenter>(), LandingPageContract.View {
 
+    companion object {
+        fun newInstance() = LandingPageFragment()
+    }
+
     @Inject
     lateinit var landingPagePresenter: LandingPageContract.Presenter
 
     private var mainActivityConnector: IMainActivityConnector? = null
-
     private val mainPageAdapter = EasyAdapter()
-    private lateinit var parallaxScrollListener: ParallaxScrollListener
 
+    private lateinit var parallaxScrollListener: ParallaxScrollListener
     private lateinit var headerController: HeaderController
     private lateinit var aboutController: AboutController
     private lateinit var quotasController: QuotesController
     private lateinit var sectionsHeaderController: SectionsHeaderController
     private lateinit var ourTeamController: OurTeamController
 
-    companion object {
-        fun newInstance() = LandingPageFragment()
-    }
-
     override fun provideLayout(): Int = R.layout.fragment_main_page
 
     override fun initPresenter(): LandingPageContract.Presenter = landingPagePresenter
 
     override fun injectDependencies() {
-        LandingFragmentComponent.Initializer
-                .init((activity?.applicationContext as IApplication).getAppComponent())
+        LandingFragmentComponent.Initializer.init(findDependencies())
                 .inject(this)
     }
 
