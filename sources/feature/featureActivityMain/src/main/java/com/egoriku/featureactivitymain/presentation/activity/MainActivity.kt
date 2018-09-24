@@ -57,7 +57,7 @@ class MainActivity : BaseInjectableActivity<MainActivityContract.View, MainActiv
         }
     }
 
-    override fun initPresenter() = mainActivityPresenter
+    override fun providePresenter() = mainActivityPresenter
 
     override fun provideLayout(): Int = R.layout.activity_main
 
@@ -132,13 +132,5 @@ class MainActivity : BaseInjectableActivity<MainActivityContract.View, MainActiv
 
     override fun onScroll() {
         backdropBehavior.close()
-    }
-
-    @Deprecated("move to fragment view contract")
-    override fun showLoading() {
-    }
-
-    @Deprecated("move to fragment view contract")
-    override fun hideLoading() {
     }
 }

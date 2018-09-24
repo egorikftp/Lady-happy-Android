@@ -42,7 +42,7 @@ internal class LandingPageFragment : BaseInjectableFragment<LandingPageContract.
 
     override fun provideLayout(): Int = R.layout.fragment_main_page
 
-    override fun initPresenter(): LandingPageContract.Presenter = landingPagePresenter
+    override fun providePresenter(): LandingPageContract.Presenter = landingPagePresenter
 
     override fun injectDependencies() {
         LandingFragmentComponent.Initializer.init(findDependencies())
@@ -66,7 +66,7 @@ internal class LandingPageFragment : BaseInjectableFragment<LandingPageContract.
     }
 
     override fun initViews() {
-        mainPageRecyclerView.apply {
+        recyclerView.apply {
             layoutManager = LinearLayoutManager(context)
             adapter = mainPageAdapter
             addOnScrollListener(object : RecyclerView.OnScrollListener() {
@@ -77,7 +77,7 @@ internal class LandingPageFragment : BaseInjectableFragment<LandingPageContract.
         }
 
         parallaxScrollListener = ParallaxScrollListener().apply {
-            initWith(mainPageRecyclerView, lifecycle)
+            initWith(recyclerView, lifecycle)
         }
 
         headerController = HeaderController()
@@ -91,13 +91,9 @@ internal class LandingPageFragment : BaseInjectableFragment<LandingPageContract.
         presenter.loadLandingData()
     }
 
-    override fun showLoading() {
-        mainProgressBar.show()
-    }
+    override fun showLoading() = progressBar.show()
 
-    override fun hideLoading() {
-        mainProgressBar.gone()
-    }
+    override fun hideLoading() = progressBar.gone()
 
     override fun render(model: ILandingModel) {
         mainPageAdapter.setItems(

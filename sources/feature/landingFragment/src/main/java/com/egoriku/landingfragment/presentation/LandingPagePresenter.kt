@@ -17,11 +17,9 @@ internal class LandingPagePresenter
 
     override fun loadLandingData() {
         if (screenModel != null) {
-            view.render(screenModel!!)
+            view?.render(screenModel!!)
         } else {
-            if (isViewAttached) {
-                view.showLoading()
-            }
+            view?.showLoading()
             getLandingData()
         }
     }
@@ -32,18 +30,17 @@ internal class LandingPagePresenter
             override fun onNext(model: ILandingModel) {
                 screenModel = model
 
-                if (isViewAttached) {
-                    view.hideLoading()
-                    view.render(model)
+                view?.let {
+                    it.hideLoading()
+                    it.render(model)
                 }
             }
 
             override fun onError(exception: Throwable) {
                 screenModel = null
 
-                if (isViewAttached) {
-                    view.hideLoading()
-                }
+                view?.hideLoading()
+
                 Log.e(this@LandingPagePresenter.javaClass.simpleName, "Error", exception)
             }
         }, Params.EMPTY)
