@@ -22,6 +22,7 @@ android {
 
     androidExtensions {
         experimental = true
+        defaultCacheImplementation = "SPARSE_ARRAY"
     }
 }
 
@@ -30,8 +31,8 @@ dependencies {
     implementation project(':ui')
     implementation project(':easyAdapter')
 
-    implementation 'com.android.support:appcompat-v7:28.0.0-rc02'
-    implementation 'com.android.support:recyclerview-v7:28.0.0-rc02'
+    implementation 'com.android.support:appcompat-v7:28.0.0'
+    implementation 'com.android.support:recyclerview-v7:28.0.0'
     implementation 'com.android.support.constraint:constraint-layout:1.1.3'
 
     kapt "com.google.dagger:dagger-compiler:2.17"

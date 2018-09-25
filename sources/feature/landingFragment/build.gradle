@@ -22,6 +22,7 @@ android {
 
     androidExtensions {
         experimental = true
+        defaultCacheImplementation = "SPARSE_ARRAY"
     }
 }
 
