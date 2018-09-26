@@ -28,48 +28,41 @@ class PhotoReportPresenter
     }
 
     override fun loadData() {
-        if (isViewAttached) {
-            view.showLoading()
+        view?.showLoading()
+        if (screenModel.isPhotoReportsEmpty()) {
+            photoReportUseCase.execute(object : AppObserver<IComplexPhotoReportModel>() {
+                override fun onNext(t: IComplexPhotoReportModel) {
+                    onGetPhotoReportSuccessTracking()
+                    onGetPhotoReportSuccess(t)
+                }
 
-            if (screenModel.isPhotoReportsEmpty()) {
-                photoReportUseCase.execute(object : AppObserver<IComplexPhotoReportModel>() {
-                    override fun onNext(t: IComplexPhotoReportModel) {
-                        onGetPhotoReportSuccessTracking()
-                        onGetPhotoReportSuccess(t)
-                    }
-
-                    override fun onError(exception: Throwable) {
-                        onGetPhotoReportErrorTracking()
-                        onGetPhotoReportError(exception)
-                    }
-                }, Params.EMPTY)
-            } else {
-                view.hideLoading()
-                view.render(screenModel)
+                override fun onError(exception: Throwable) {
+                    onGetPhotoReportErrorTracking()
+                    onGetPhotoReportError(exception)
+                }
+            }, Params.EMPTY)
+        } else {
+            view?.let {
+                it.hideLoading()
+                it.render(screenModel)
             }
         }
     }
 
     override fun onGetPhotoReportSuccess(newsModel: IComplexPhotoReportModel) {
-        if (isViewAttached) {
-            screenModel.photoReports = newsModel.photoReports
+        screenModel.photoReports = newsModel.photoReports
 
-            view.hideLoading()
-            view.render(screenModel)
+        view?.let {
+            it.hideLoading()
+            it.render(screenModel)
         }
     }
 
     override fun onGetPhotoReportError(e: Throwable) {
-        if (isViewAttached) {
-            view.hideLoading()
-        }
+        view?.hideLoading()
     }
 
-    override fun onGetPhotoReportSuccessTracking() {
-        analyticsHelper.trackGetCategoriesSuccess(null)
-    }
+    override fun onGetPhotoReportSuccessTracking() = analyticsHelper.trackGetCategoriesSuccess(null)
 
-    override fun onGetPhotoReportErrorTracking() {
-        analyticsHelper.trackGetCategoriesFail(null)
-    }
+    override fun onGetPhotoReportErrorTracking() = analyticsHelper.trackGetCategoriesFail(null)
 }

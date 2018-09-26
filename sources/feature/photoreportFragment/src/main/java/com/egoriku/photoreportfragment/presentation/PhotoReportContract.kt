@@ -2,11 +2,14 @@ package com.egoriku.photoreportfragment.presentation
 
 import com.egoriku.core.model.IComplexPhotoReportModel
 import com.egoriku.ui.arch.pvm.BaseContract
-import com.egoriku.ui.arch.pvm.BaseView
 
 interface PhotoReportContract {
 
-    interface View : BaseView {
+    interface View : BaseContract.View {
+        fun showLoading()
+
+        fun hideLoading()
+
         fun render(screenModel: ScreenModel)
     }
 

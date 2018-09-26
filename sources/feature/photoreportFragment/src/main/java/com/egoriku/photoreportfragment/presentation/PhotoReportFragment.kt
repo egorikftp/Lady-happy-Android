@@ -32,7 +32,7 @@ class PhotoReportFragment : BaseInjectableFragment<PhotoReportContract.View, Pho
 
     private val photoReportAdapter = EasyAdapter()
 
-    override fun initPresenter() = photoReportPresenter
+    override fun providePresenter() = photoReportPresenter
 
     override fun provideLayout(): Int = R.layout.fragment_photo_report
 
@@ -74,11 +74,7 @@ class PhotoReportFragment : BaseInjectableFragment<PhotoReportContract.View, Pho
         photoReportAdapter.setItems(itemList)
     }
 
-    override fun showLoading() {
-        progressView.show()
-    }
+    override fun showLoading() = progressView.show()
 
-    override fun hideLoading() {
-        progressView.gone()
-    }
+    override fun hideLoading() = progressView.gone()
 }
