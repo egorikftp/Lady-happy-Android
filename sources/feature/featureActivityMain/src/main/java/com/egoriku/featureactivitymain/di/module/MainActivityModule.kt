@@ -1,5 +1,7 @@
 package com.egoriku.featureactivitymain.di.module
 
+import com.egoriku.core.actions.ILandingFragmentAction
+import com.egoriku.core.actions.IPhotoReportFragmentAction
 import com.egoriku.core.di.ActivityScope
 import com.egoriku.core.di.utils.IAnalyticsHelper
 import com.egoriku.core.di.utils.IRouter
@@ -13,5 +15,14 @@ class MainActivityModule {
 
     @Provides
     @ActivityScope
-    fun provideMainActivityPresenter(router: IRouter, analyticsHelper: IAnalyticsHelper): MainActivityContract.Presenter = MainActivityPresenter(router, analyticsHelper)
+    fun provideMainActivityPresenter(router: IRouter,
+                                     analyticsHelper: IAnalyticsHelper,
+                                     landingFragmentAction: ILandingFragmentAction,
+                                     photoReportFragmentAction: IPhotoReportFragmentAction
+    ): MainActivityContract.Presenter = MainActivityPresenter(
+            router,
+            analyticsHelper,
+            landingFragmentAction,
+            photoReportFragmentAction
+    )
 }

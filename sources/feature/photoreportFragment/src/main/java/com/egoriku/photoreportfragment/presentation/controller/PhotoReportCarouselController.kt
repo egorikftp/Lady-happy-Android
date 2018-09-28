@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import android.widget.TextView
 import com.egoriku.core.model.IPhotoReportModel
 import com.egoriku.photoreportfragment.R
-import com.egoriku.photoreportfragment.common.scrollPercentage
 import com.egoriku.photoreportfragment.presentation.view.DotsView
 import kotlinx.android.synthetic.main.adapter_item_photo_report_carousel.view.*
 import ru.surfstudio.android.easyadapter.EasyAdapter
