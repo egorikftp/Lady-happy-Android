@@ -27,7 +27,7 @@ dependencies {
     kapt "com.google.dagger:dagger-compiler:2.17"
     implementation 'com.google.dagger:dagger:2.17'
 
-    implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.2.70'
+    implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.2.71'
 
     implementation 'com.google.firebase:firebase-firestore:17.1.0'
 

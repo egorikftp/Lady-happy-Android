@@ -26,7 +26,7 @@ dependencies {
     implementation project(':core')
     implementation project(':network')
 
-    implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.2.70'
+    implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.2.71'
 
     implementation 'io.reactivex.rxjava2:rxjava:2.2.2'
 

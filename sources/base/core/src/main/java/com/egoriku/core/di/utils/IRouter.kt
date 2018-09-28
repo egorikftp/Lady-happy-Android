@@ -1,10 +1,12 @@
 package com.egoriku.core.di.utils
 
+import ru.terrakok.cicerone.Screen
+
 interface IRouter {
 
-    fun navigateTo(screen: String?)
+    fun navigateTo(screen: Screen)
 
-    fun newRootScreen(screen: String?)
+    fun newRootScreen(screen: Screen)
 
     fun exit()
 }
