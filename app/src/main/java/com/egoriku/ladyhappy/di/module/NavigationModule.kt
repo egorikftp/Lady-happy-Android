@@ -1,4 +1,4 @@
-package com.egoriku.ladyhappy.di.application.module
+package com.egoriku.ladyhappy.di.module
 
 import com.egoriku.core.di.ApplicationScope
 import com.egoriku.core.di.utils.INavigationHolder

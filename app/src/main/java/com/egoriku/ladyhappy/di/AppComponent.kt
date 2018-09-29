@@ -1,4 +1,4 @@
-package com.egoriku.ladyhappy.di.application
+package com.egoriku.ladyhappy.di
 
 import com.egoriku.core.di.*
 import com.egoriku.featureactivitymain.di.MainActivityExportComponent
@@ -10,7 +10,7 @@ import dagger.Component
 
 @Component(
         dependencies = [
-            MainToolsProvider::class,
+            DependenciesProvider::class,
             MainActivityProvider::class,
             LandingFragmentProvider::class,
             PhotoReportFragmentProvider::class,
@@ -24,16 +24,16 @@ interface AppComponent : ApplicationProvider {
     class Initializer private constructor() {
         companion object {
             fun init(app: Application): AppComponent {
-                val mainToolsProvider = MainToolsComponent.Initializer.init(app)
+                val dependenciesProvider = DependenciesComponent.Initializer.init(app)
                 val mainActivityProvider = MainActivityExportComponent.Initializer.init()
 
                 val landingFragmentProvider = LandingFragmentExportComponent.Initializer.init()
                 val photoReportFragmentProvider = PhotoReportFragmentExportComponent.Initializer.init()
 
-                val repositoryProvider = StorageComponent.Initializer.init(mainToolsProvider)
+                val repositoryProvider = StorageComponent.Initializer.init(dependenciesProvider)
 
                 return DaggerAppComponent.builder()
-                        .mainToolsProvider(mainToolsProvider)
+                        .dependenciesProvider(dependenciesProvider)
                         .mainActivityProvider(mainActivityProvider)
                         .landingFragmentProvider(landingFragmentProvider)
                         .photoReportFragmentProvider(photoReportFragmentProvider)
