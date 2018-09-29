@@ -40,7 +40,7 @@ class PhotoReportCarouselController : BindableItemController<IPhotoReportModel, 
                 addOnScrollListener(object : RecyclerView.OnScrollListener() {
                     override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                         super.onScrolled(recyclerView, dx, dy)
-                       // dots.updateScrollPosition(recyclerView.scrollPercentage())
+                        // dots.updateScrollPosition(recyclerView.scrollPercentage())
                     }
                 })
             }

@@ -43,10 +43,6 @@ public abstract class BasePaginationableAdapter extends EasyAdapter {
     private OnShowMoreListener onShowMoreListener;
     private boolean blockShowMoreEvent = true;
 
-    public interface OnShowMoreListener {
-        void onShowMore();
-    }
-
     public BasePaginationableAdapter() {
         getPaginationFooterController().setListener(new OnShowMoreListener() {
             @Override
@@ -99,7 +95,7 @@ public abstract class BasePaginationableAdapter extends EasyAdapter {
     @Override
     public void onAttachedToRecyclerView(RecyclerView recyclerView) {
         super.onAttachedToRecyclerView(recyclerView);
-        RecyclerView.LayoutManager  layoutManager = recyclerView.getLayoutManager();
+        RecyclerView.LayoutManager layoutManager = recyclerView.getLayoutManager();
         initLayoutManager(layoutManager);
         initPaginationListener(recyclerView, layoutManager);
     }
@@ -124,7 +120,7 @@ public abstract class BasePaginationableAdapter extends EasyAdapter {
         });
     }
 
-    protected int findFirstVisibleItem(RecyclerView.LayoutManager  layoutManager) {
+    protected int findFirstVisibleItem(RecyclerView.LayoutManager layoutManager) {
         int pos = 0;
 
         if (layoutManager instanceof StaggeredGridLayoutManager) {
@@ -133,7 +129,7 @@ public abstract class BasePaginationableAdapter extends EasyAdapter {
             int[] items = lm.findFirstVisibleItemPositions(new int[lm.getSpanCount()]);
             int position = 0;
 
-            for (int i = 0; i < items.length-1; i++) {
+            for (int i = 0; i < items.length - 1; i++) {
                 position = Math.min(items[i], items[i + 1]);
             }
             pos = position;
@@ -146,7 +142,7 @@ public abstract class BasePaginationableAdapter extends EasyAdapter {
         return pos;
     }
 
-    protected int findLastVisibleItem(RecyclerView.LayoutManager  layoutManager) {
+    protected int findLastVisibleItem(RecyclerView.LayoutManager layoutManager) {
         int pos = 0;
 
         if (layoutManager instanceof StaggeredGridLayoutManager) {
@@ -156,7 +152,7 @@ public abstract class BasePaginationableAdapter extends EasyAdapter {
             int[] items = lm.findLastVisibleItemPositions(new int[spanCount]);
             int position = 0;
 
-            for (int i = 0; i < items.length-1; i++) {
+            for (int i = 0; i < items.length - 1; i++) {
                 position = Math.max(items[i], items[i + 1]);
             }
             pos = position;
@@ -169,7 +165,7 @@ public abstract class BasePaginationableAdapter extends EasyAdapter {
         return pos;
     }
 
-    protected void initLayoutManager(RecyclerView.LayoutManager  layoutManager) {
+    protected void initLayoutManager(RecyclerView.LayoutManager layoutManager) {
         if (layoutManager instanceof GridLayoutManager) {
             final GridLayoutManager castedLayoutManager = (GridLayoutManager) layoutManager;
             final GridLayoutManager.SpanSizeLookup existingLookup = castedLayoutManager.getSpanSizeLookup();
@@ -217,6 +213,10 @@ public abstract class BasePaginationableAdapter extends EasyAdapter {
         setItems(items, true);
     }
 
+    public interface OnShowMoreListener {
+        void onShowMore();
+    }
+
     protected abstract static class BasePaginationFooterController<H extends BasePaginationFooterHolder> extends NoDataItemController<H> {
         private PaginationState state = PaginationState.COMPLETE;
         private OnShowMoreListener listener;
@@ -225,12 +225,12 @@ public abstract class BasePaginationableAdapter extends EasyAdapter {
             this.listener = listener;
         }
 
-        public void setState(PaginationState state) {
-            this.state = state;
-        }
-
         public PaginationState getState() {
             return state;
+        }
+
+        public void setState(PaginationState state) {
+            this.state = state;
         }
 
         @Override

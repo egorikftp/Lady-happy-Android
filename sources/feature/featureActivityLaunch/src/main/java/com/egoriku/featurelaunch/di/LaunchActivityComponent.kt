@@ -1,4 +1,5 @@
 package com.egoriku.featurelaunch.di
+
 import com.egoriku.core.di.ActivityScope
 import com.egoriku.core.di.ApplicationProvider
 import com.egoriku.featurelaunch.presentation.activity.LaunchActivity
@@ -13,7 +14,7 @@ interface LaunchActivityComponent {
 
     fun inject(activity: LaunchActivity)
 
-    class Initializer private constructor(){
+    class Initializer private constructor() {
         companion object {
             fun init(applicationProvider: ApplicationProvider): LaunchActivityComponent =
                     DaggerLaunchActivityComponent.builder()
