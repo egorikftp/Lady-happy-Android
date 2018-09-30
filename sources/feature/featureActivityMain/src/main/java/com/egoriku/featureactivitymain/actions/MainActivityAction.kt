@@ -1,12 +1,11 @@
 package com.egoriku.featureactivitymain.actions
 
 import android.content.Context
+import android.content.Intent
 import com.egoriku.core.actions.IMainActivityAction
 import com.egoriku.featureactivitymain.presentation.activity.MainActivity
-import org.jetbrains.anko.startActivity
 
 class MainActivityAction : IMainActivityAction {
-    override fun show(context: Context) {
-        context.startActivity<MainActivity>()
-    }
+
+    override fun getIntent(context: Context) = Intent(context, MainActivity::class.java)
 }
