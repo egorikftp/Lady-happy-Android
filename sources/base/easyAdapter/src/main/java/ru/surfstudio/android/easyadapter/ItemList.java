@@ -36,10 +36,6 @@ import ru.surfstudio.android.easyadapter.item.NoDataItem;
  */
 public class ItemList extends ArrayList<BaseItem> {
 
-    public interface BindableItemControllerProvider<T> {
-        BindableItemController<T, ? extends BindableViewHolder<T>> provide(T data);
-    }
-
     public ItemList(int initialCapacity) {
         super(initialCapacity);
     }
@@ -82,12 +78,12 @@ public class ItemList extends ArrayList<BaseItem> {
         return create().add(itemController);
     }
 
-    //single insert
-
     public ItemList insert(int index, BaseItem item) {
         this.add(index, item);
         return this;
     }
+
+    //single insert
 
     public ItemList insertIf(boolean condition,
                              int index,
@@ -134,11 +130,11 @@ public class ItemList extends ArrayList<BaseItem> {
         return insertIf(condition, index, new NoDataItem<>(itemController));
     }
 
-    //single add
-
     public ItemList addItem(BaseItem item) {
         return insert(this.size(), item);
     }
+
+    //single add
 
     public ItemList addIf(boolean condition,
                           BaseItem item) {
@@ -178,13 +174,13 @@ public class ItemList extends ArrayList<BaseItem> {
         return addIf(condition, new NoDataItem<>(itemController));
     }
 
-    //collection insert
-
     public ItemList insertAll(int index,
                               Collection<BaseItem> items) {
         this.addAll(index, items);
         return this;
     }
+
+    //collection insert
 
     public ItemList addAllItems(Collection<BaseItem> items) {
         return insertAll(this.size(), items);
@@ -258,11 +254,11 @@ public class ItemList extends ArrayList<BaseItem> {
         return insertAllIf(condition, this.size(), data, itemControllerProvider);
     }
 
-    //add headers
-
     public ItemList addHeader(BaseItem item) {
         return insert(0, item);
     }
+
+    //add headers
 
     public ItemList addHeaderIf(boolean condition, BaseItem item) {
         return condition ? addHeader(item) : this;
@@ -301,11 +297,11 @@ public class ItemList extends ArrayList<BaseItem> {
         return addHeaderIf(condition, new NoDataItem<>(itemController));
     }
 
-    // add footer
-
     public ItemList addFooter(BaseItem item) {
         return insert(this.size(), item);
     }
+
+    // add footer
 
     public ItemList addFooterIf(boolean condition, BaseItem item) {
         return condition ? addFooter(item) : this;
@@ -342,5 +338,9 @@ public class ItemList extends ArrayList<BaseItem> {
     public ItemList addFooterIf(boolean condition,
                                 NoDataItemController<? extends RecyclerView.ViewHolder> itemController) {
         return addFooterIf(condition, new NoDataItem<>(itemController));
+    }
+
+    public interface BindableItemControllerProvider<T> {
+        BindableItemController<T, ? extends BindableViewHolder<T>> provide(T data);
     }
 }

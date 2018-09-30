@@ -1,9 +1,9 @@
 package com.egoriku.network.di
 
-import com.egoriku.core.di.MainToolsProvider
+import com.egoriku.core.di.DependenciesProvider
 import dagger.Component
 
 @Component(
         modules = [NetworkModule::class],
-        dependencies = [MainToolsProvider::class])
+        dependencies = [DependenciesProvider::class])
 interface NetworkComponent : NetworkProvider

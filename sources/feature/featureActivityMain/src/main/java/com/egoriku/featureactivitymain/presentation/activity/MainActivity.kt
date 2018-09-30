@@ -1,23 +1,17 @@
 package com.egoriku.featureactivitymain.presentation.activity
 
-import android.content.Context
 import android.os.Bundle
 import android.support.annotation.IdRes
-import android.support.v4.app.Fragment
-import com.egoriku.core.actions.ILandingFragmentAction
-import com.egoriku.core.actions.IPhotoReportFragmentAction
 import com.egoriku.core.actions.common.IMainActivityConnector
 import com.egoriku.core.di.findDependencies
 import com.egoriku.core.di.utils.INavigationHolder
 import com.egoriku.featureactivitymain.R
 import com.egoriku.featureactivitymain.common.findBehavior
 import com.egoriku.featureactivitymain.di.MainActivityComponent
-import com.egoriku.featureactivitymain.presentation.activity.MainActivityPresenter.Companion.LANDING_PAGE
-import com.egoriku.featureactivitymain.presentation.activity.MainActivityPresenter.Companion.PHOTO_REPORT
 import com.egoriku.ui.arch.activity.BaseInjectableActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import ru.semper_viventem.backdrop.BackdropBehavior
-import ru.terrakok.cicerone.android.SupportAppNavigator
+import ru.terrakok.cicerone.android.support.SupportAppNavigator
 import javax.inject.Inject
 
 class MainActivity : BaseInjectableActivity<MainActivityContract.View, MainActivityContract.Presenter>(), MainActivityContract.View,
@@ -38,24 +32,9 @@ class MainActivity : BaseInjectableActivity<MainActivityContract.View, MainActiv
     @Inject
     lateinit var navigatorHolder: INavigationHolder
 
-    @Inject
-    lateinit var landingFragmentAction: ILandingFragmentAction
-
-    @Inject
-    lateinit var photoReportFragmentAction: IPhotoReportFragmentAction
-
     private lateinit var backdropBehavior: BackdropBehavior
 
-    private val navigator = object : SupportAppNavigator(this, supportFragmentManager, R.id.foregroundContainer) {
-
-        override fun createActivityIntent(context: Context?, screenKey: String?, data: Any?) = null
-
-        override fun createFragment(screenKey: String?, data: Any?): Fragment? = when (screenKey) {
-            LANDING_PAGE -> landingFragmentAction.provideFragment()
-            PHOTO_REPORT -> photoReportFragmentAction.provideFragment()
-            else -> null
-        }
-    }
+    private val navigator = object : SupportAppNavigator(this, R.id.foregroundContainer) {}
 
     override fun providePresenter() = mainActivityPresenter
 

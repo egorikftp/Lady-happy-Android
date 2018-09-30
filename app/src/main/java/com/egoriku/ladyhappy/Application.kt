@@ -4,7 +4,7 @@ import android.app.Application
 import android.os.Looper
 import com.egoriku.core.IApplication
 import com.egoriku.core.di.ApplicationProvider
-import com.egoriku.ladyhappy.di.application.AppComponent
+import com.egoriku.ladyhappy.di.AppComponent
 import io.reactivex.android.plugins.RxAndroidPlugins
 import io.reactivex.android.schedulers.AndroidSchedulers
 

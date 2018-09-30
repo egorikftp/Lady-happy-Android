@@ -27,6 +27,7 @@ import ru.surfstudio.android.easyadapter.item.BaseItem;
 /**
  * Base Controller for item of RecyclerView. It used with {@link EasyAdapter} and {@link ItemList}
  * It responsible for interaction with item.
+ *
  * @param <H> type of ViewHolder
  * @param <I> type of Item
  */
@@ -50,14 +51,16 @@ public abstract class BaseItemController<H extends RecyclerView.ViewHolder, I ex
     /**
      * must return unique value
      * method is used for automatically call notify... methods, see {@link EasyAdapter}
+     *
      * @return item id
      */
-    public String getItemId(I item){
+    public String getItemId(I item) {
         return String.valueOf(NO_ID);
     }
 
     /**
      * method is used for automatically call notify... methods, see {@link EasyAdapter}
+     *
      * @return hash of item's data
      */
     public abstract String getItemHash(I item);

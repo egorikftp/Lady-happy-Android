@@ -1,6 +1,6 @@
 package com.egoriku.storage.di
 
-import com.egoriku.core.di.MainToolsProvider
+import com.egoriku.core.di.DependenciesProvider
 import com.egoriku.core.di.RepositoryProvider
 import com.egoriku.network.di.DaggerNetworkComponent
 import com.egoriku.network.di.NetworkProvider
@@ -8,21 +8,21 @@ import dagger.Component
 
 @Component(
         modules = [StorageModule::class],
-        dependencies = [MainToolsProvider::class, NetworkProvider::class]
+        dependencies = [DependenciesProvider::class, NetworkProvider::class]
 )
 interface StorageComponent : RepositoryProvider {
 
     class Initializer private constructor() {
 
         companion object {
-            fun init(mainToolsProvider: MainToolsProvider): RepositoryProvider {
+            fun init(dependenciesProvider: DependenciesProvider): RepositoryProvider {
                 val networkProvider = DaggerNetworkComponent.builder()
-                        .mainToolsProvider(mainToolsProvider)
+                        .dependenciesProvider(dependenciesProvider)
                         .build()
 
                 return DaggerStorageComponent.builder()
                         .networkProvider(networkProvider)
-                        .mainToolsProvider(mainToolsProvider)
+                        .dependenciesProvider(dependenciesProvider)
                         .build()
             }
         }

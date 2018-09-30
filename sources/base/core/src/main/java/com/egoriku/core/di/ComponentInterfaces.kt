@@ -12,13 +12,13 @@ import com.egoriku.core.repository.ILandingRepository
 import com.egoriku.core.repository.IPhotoReportRepository
 
 interface ApplicationProvider :
-        MainToolsProvider,
+        DependenciesProvider,
         MainActivityProvider,
         LandingFragmentProvider,
         PhotoReportFragmentProvider,
         RepositoryProvider
 
-interface MainToolsProvider {
+interface DependenciesProvider {
     fun provideContext(): IApplication
 
     fun provideFirebaseFirestore(): IFirebaseFirestore

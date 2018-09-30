@@ -4,12 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="250dp"
-    android:paddingBottom="@dimen/material_padding_8"
-    android:paddingEnd="@dimen/material_padding_16"
-    android:paddingLeft="@dimen/material_padding_16"
-    android:paddingRight="@dimen/material_padding_16"
     android:paddingStart="@dimen/material_padding_16"
-    android:paddingTop="@dimen/material_padding_16">
+    android:paddingLeft="@dimen/material_padding_16"
+    android:paddingTop="@dimen/material_padding_16"
+    android:paddingEnd="@dimen/material_padding_16"
+    android:paddingRight="@dimen/material_padding_16"
+    android:paddingBottom="@dimen/material_padding_8">
 
     <TextView
         android:id="@+id/about_header"

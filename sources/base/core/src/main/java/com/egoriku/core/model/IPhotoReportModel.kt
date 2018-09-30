@@ -2,7 +2,7 @@ package com.egoriku.core.model
 
 interface IComplexPhotoReportModel {
 
-    val photoReports : List<IPhotoReportModel>
+    val photoReports: List<IPhotoReportModel>
 }
 
 interface IPhotoReportModel {

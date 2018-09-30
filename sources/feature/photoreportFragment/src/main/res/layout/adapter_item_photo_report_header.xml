@@ -6,8 +6,8 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:layout_marginLeft="16dp"
         android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
         android:fontFamily="@font/philosopher"
         android:gravity="center"
         android:text="@string/adapter_item_news_header_text"
