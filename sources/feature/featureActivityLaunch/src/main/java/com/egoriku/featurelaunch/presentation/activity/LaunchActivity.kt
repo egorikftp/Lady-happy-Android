@@ -16,7 +16,7 @@ class LaunchActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         inject()
 
-        showMainActivityAction.show(this)
+        startActivity(showMainActivityAction.getIntent(this))
         finish()
     }
 
