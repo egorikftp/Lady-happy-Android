@@ -7,7 +7,7 @@
     tools:layout_editor_absoluteY="25dp">
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/newsRecyclerView"
+        android:id="@+id/reportCarouselRecyclerView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -24,41 +24,40 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="32dp"
         android:maxLines="2"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/dotsView"
-        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintTop_toBottomOf="@+id/newsDateTextView"
+        app:layout_constraintVertical_bias="1.0"
         tools:text="Description" />
 
-    <com.egoriku.photoreportfragment.presentation.view.DotsView
-        android:id="@+id/dotsView"
+    <com.rbrooks.indefinitepagerindicator.IndefinitePagerIndicator
+        android:id="@+id/pagerIndicator"
         android:layout_width="0dp"
-        android:layout_height="13dp"
+        android:layout_height="0dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
-        app:colorSelected="@color/Terracota"
-        app:colorUnselected="@color/Wheat"
-        app:dotRadius="2dp"
-        app:dotSpace="7dp"
+        app:dotColor="@color/Wheat"
+        app:dotRadius="3dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/newsRecyclerView"
-        app:selectedDotRadius="3dp" />
+        app:layout_constraintTop_toBottomOf="@+id/reportCarouselRecyclerView"
+        app:selectedDotColor="@color/Terracota"
+        app:selectedDotRadius="4dp" />
 
     <TextView
-        android:id="@+id/newsDate"
+        android:id="@+id/newsDateTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         android:textSize="10sp"
-        app:layout_constraintBottom_toBottomOf="@+id/dotsView"
-        app:layout_constraintStart_toStartOf="@+id/dotsView"
-        app:layout_constraintTop_toTopOf="@+id/dotsView"
+        app:layout_constraintStart_toStartOf="@+id/pagerIndicator"
+        app:layout_constraintTop_toBottomOf="@+id/pagerIndicator"
         tools:text="12 Sep, 2017" />
 </android.support.constraint.ConstraintLayout>
