@@ -13,7 +13,7 @@ import android.net.ConnectivityManager
 import android.os.BatteryManager
 import android.os.Build
 import android.os.Vibrator
-import android.support.annotation.RequiresApi
+import androidx.annotation.RequiresApi
 import android.telephony.TelephonyManager
 import android.view.inputmethod.InputMethodManager
 

@@ -3,7 +3,7 @@ package com.egoriku.featureactivitymain.presentation.view
 import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Path
-import android.support.annotation.FloatRange
+import androidx.annotation.FloatRange
 import android.util.AttributeSet
 import android.widget.FrameLayout
 import com.egoriku.featureactivitymain.R

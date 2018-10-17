@@ -15,7 +15,7 @@
  */
 package ru.surfstudio.android.easyadapter.controller;
 
-import android.support.v7.widget.RecyclerView;
+import androidx.recyclerview.widget.RecyclerView;
 
 import ru.surfstudio.android.easyadapter.EasyAdapter;
 import ru.surfstudio.android.easyadapter.ItemList;

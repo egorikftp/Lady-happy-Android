@@ -1,6 +1,6 @@
 package com.egoriku.network.data.entities.landing
 
-import android.support.annotation.Keep
+import androidx.annotation.Keep
 import com.google.firebase.firestore.PropertyName
 
 @Keep

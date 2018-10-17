@@ -1,10 +1,10 @@
 package com.egoriku.photoreportfragment.presentation.controller
 
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.PagerSnapHelper
-import android.support.v7.widget.RecyclerView
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.PagerSnapHelper
+import androidx.recyclerview.widget.RecyclerView
 import com.egoriku.core.model.IPhotoReportModel
 import com.egoriku.photoreportfragment.R
 import com.egoriku.photoreportfragment.presentation.view.DotsView
@@ -27,23 +27,16 @@ class PhotoReportCarouselController : BindableItemController<IPhotoReportModel, 
         private val photoReportItemController: PhotoReportItemController = PhotoReportItemController()
 
         private val description: TextView = itemView.descriptionTextView
-        private val newsRecyclerView: RecyclerView
+
+        private val newsRecyclerView: RecyclerView = itemView.newsRecyclerView.apply {
+            layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false).apply {
+                initialPrefetchItemCount = 1
+            }
+        }
         private val dots: DotsView = itemView.dotsView
         private val newsDate: TextView = itemView.newsDate
 
         init {
-            newsRecyclerView = itemView.newsRecyclerView.apply {
-                layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false).apply {
-                    initialPrefetchItemCount = 1
-                }
-
-                addOnScrollListener(object : RecyclerView.OnScrollListener() {
-                    override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-                        super.onScrolled(recyclerView, dx, dy)
-                        // dots.updateScrollPosition(recyclerView.scrollPercentage())
-                    }
-                })
-            }
 
             PagerSnapHelper().attachToRecyclerView(newsRecyclerView)
         }
