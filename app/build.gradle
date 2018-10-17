@@ -61,6 +61,10 @@ android {
             outputFileName = "${"Lady Happy"}.${variant.name}_${variant.versionName}.apk"
         }
     }
+
+    lintOptions {
+        abortOnError false
+    }
 }
 
 //apply plugin: 'com.getkeepsafe.dexcount'
