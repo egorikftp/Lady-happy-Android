@@ -41,7 +41,7 @@ android {
             minifyEnabled true
             shrinkResources true
             signingConfig signingConfigs.release
-            proguardFiles 'proguard-rules.pro', getDefaultProguardFile('proguard-android-optimize.txt')
+            proguardFiles 'proguard-rules.pro', getDefaultProguardFile('proguard-android.txt')
             resValue("string", "hockey_app_id", "\"$hockey_app_id_debug\"")
         }
 
