@@ -15,7 +15,7 @@ jobs:
 #         command: sudo chmod +x ./gradlew
       - run:
           name: Copy google-services.json
-          command: echo $GOOGLE_SERVICES | base64 --decode > ~/${HOME}/app/google-services.json
+          command: echo $GOOGLE_SERVICES | base64 --decode > app/google-services.json
       - run:
           name: Download Dependencies
           command: |
