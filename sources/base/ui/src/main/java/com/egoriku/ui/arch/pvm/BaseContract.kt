@@ -1,6 +1,6 @@
 package com.egoriku.ui.arch.pvm
 
-import android.arch.lifecycle.Lifecycle
+import androidx.lifecycle.Lifecycle
 
 interface BaseContract {
 

@@ -1,7 +1,7 @@
 package com.egoriku.featureactivitymain.presentation.activity
 
 import android.os.Bundle
-import android.support.annotation.IdRes
+import androidx.annotation.IdRes
 import com.egoriku.core.actions.common.IMainActivityConnector
 import com.egoriku.core.di.findDependencies
 import com.egoriku.core.di.utils.INavigationHolder

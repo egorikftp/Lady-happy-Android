@@ -1,7 +1,7 @@
 package com.egoriku.core.di
 
 import android.app.Activity
-import android.support.v4.app.Fragment
+import androidx.fragment.app.Fragment
 import com.egoriku.core.IApplication
 
 fun Fragment?.findDependencies(): ApplicationProvider {
@@ -9,7 +9,7 @@ fun Fragment?.findDependencies(): ApplicationProvider {
         throw Exception("FragmentActivity mustn't be null")
     }
 
-    return (this.activity.applicationContext as IApplication).getAppComponent()
+    return (this.activity?.applicationContext as IApplication).getAppComponent()
 }
 
 fun Activity?.findDependencies(): ApplicationProvider {

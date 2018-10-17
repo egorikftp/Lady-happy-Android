@@ -1,6 +1,6 @@
 package com.egoriku.ui.arch.pvm
 
-import android.arch.lifecycle.ViewModel
+import androidx.lifecycle.ViewModel
 
 class BaseViewModel<V : BaseContract.View, P : BaseContract.Presenter<V>> : ViewModel() {
 

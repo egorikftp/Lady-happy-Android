@@ -15,7 +15,7 @@
  */
 package ru.surfstudio.android.easyadapter.holder;
 
-import android.support.annotation.LayoutRes;
+import androidx.annotation.LayoutRes;
 import android.view.View;
 import android.view.ViewGroup;
 

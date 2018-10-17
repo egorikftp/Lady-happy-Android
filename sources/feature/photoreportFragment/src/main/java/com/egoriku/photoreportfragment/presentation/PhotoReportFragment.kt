@@ -1,8 +1,8 @@
 package com.egoriku.photoreportfragment.presentation
 
 import android.os.Bundle
-import android.support.v7.widget.LinearLayoutManager
 import android.view.View
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.egoriku.core.di.findDependencies
 import com.egoriku.photoreportfragment.R
 import com.egoriku.photoreportfragment.di.PhotoReportFragmentComponent

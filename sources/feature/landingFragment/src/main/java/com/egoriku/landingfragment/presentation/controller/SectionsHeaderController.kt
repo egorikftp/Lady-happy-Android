@@ -1,6 +1,6 @@
 package com.egoriku.landingfragment.presentation.controller
 
-import android.support.annotation.StringRes
+import androidx.annotation.StringRes
 import android.view.View
 import android.view.ViewGroup
 import com.egoriku.landingfragment.R

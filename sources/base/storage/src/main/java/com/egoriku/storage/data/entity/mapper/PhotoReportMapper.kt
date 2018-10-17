@@ -1,6 +1,6 @@
 package com.egoriku.storage.data.entity.mapper
 
-import android.support.annotation.Keep
+import androidx.annotation.Keep
 import com.egoriku.core.model.IPhotoReportModel
 import com.egoriku.network.data.entities.photoreport.PhotoReportEntity
 import com.egoriku.storage.common.DateUtils

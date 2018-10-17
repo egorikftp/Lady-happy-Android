@@ -1,6 +1,6 @@
 package com.egoriku.photoreportfragment.common
 
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView
 
 fun RecyclerView.scrollPercentage(): Int {
     val offset = computeHorizontalScrollOffset()

@@ -4,7 +4,7 @@ apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion 28
-    buildToolsVersion '28.0.2'
+    buildToolsVersion '28.0.3'
 
     defaultConfig {
         minSdkVersion 21
@@ -33,5 +33,5 @@ dependencies {
     kapt "com.google.dagger:dagger-compiler:2.17"
     implementation 'com.google.dagger:dagger:2.17'
 
-    implementation 'com.google.firebase:firebase-firestore:17.1.0'
+    implementation 'com.google.firebase:firebase-firestore:17.1.1'
 }
