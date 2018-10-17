@@ -1,3 +1,5 @@
+@file:Suppress("unused")
+
 package com.egoriku.ui.ktx
 
 import android.app.Activity

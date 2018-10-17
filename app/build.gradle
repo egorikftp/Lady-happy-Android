@@ -78,9 +78,6 @@ dependencies {
     }
 
     implementation 'androidx.appcompat:appcompat:1.0.0'
-    implementation 'androidx.vectordrawable:vectordrawable-animated:1.0.0'
-    implementation 'androidx.media:media:1.0.0'
-    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
 
     implementation 'com.google.firebase:firebase-core:16.0.4'
     implementation 'com.google.firebase:firebase-firestore:17.1.1'

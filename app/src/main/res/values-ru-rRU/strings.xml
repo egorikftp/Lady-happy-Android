@@ -1,16 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="content_description_categories">Категории</string>
-    <string name="action_settings">Настройки</string>
-    <string name="navigation_drawer_all_goods">Все товары</string>
-    <string name="navigation_drawer_order">Заказать</string>
-    <string name="navigation_drawer_share">Поделиться</string>
-    <string name="navigation_drawer_feedback">Обратная связь</string>
-    <string name="navigation_drawer_create_new_post">Создать новый пост</string>
-    <string name="adapter_item_error_state">При загрузке данных произошла ошибка</string>
-    <string name="adapter_item_error_state_retry">Нажмите чтобы повторить</string>
-    <string name="adapter_item_pagination_footer_load_more">Загрузить больше</string>
-    <string name="adapter_item_news_header_text">Последние новости</string>
-
     <string name="activity_start_app_name">Дамское счастье</string>
 </resources>
