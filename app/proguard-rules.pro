@@ -21,8 +21,6 @@
 -flattenpackagehierarchy ''
 -renamesourcefileattribute SourceFile
 
--whyareyoukeeping class_specification
-
 -keepclasseswithmembernames class * {
     native <methods>;
 }
