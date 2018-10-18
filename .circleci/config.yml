@@ -11,9 +11,9 @@ jobs:
       - run:
           name: make keystore folder
           command: mkdir -p keystore
-
-      - run: echo ${ENCODED_KEYSTORE} | base64 --decode > keystore/lady_happy_key_store.jks
-
+      - run:
+          name: decode keystore
+          command: echo ${ENCODED_KEYSTORE} | base64 --decode > keystore/lady_happy_key_store.jks
       - restore_cache:
           key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
 #      - run:
