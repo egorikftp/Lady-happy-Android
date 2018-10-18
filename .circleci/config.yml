@@ -8,9 +8,13 @@ jobs:
       JVM_OPTS: -Xmx3200m
     steps:
       - checkout
-      - run: echo $ENCODED_KEYSTORE | base64 --decode >> keystore/lady_happy_key_store.jks
+      - run:
+          name: make keystore folder
+          command: mkdir -p keystore
+
+      - run: echo $ENCODED_KEYSTORE | base64 --decode > keystore/lady_happy_key_store.jks
       - run: echo 'export KEYSTORE=${HOME}/repo/keystore.jks' >> $BASH_ENV
-      
+
       - restore_cache:
           key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
 #      - run:
