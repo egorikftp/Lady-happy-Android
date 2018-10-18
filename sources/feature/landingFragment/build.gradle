@@ -42,7 +42,6 @@ dependencies {
     kapt 'com.github.bumptech.glide:compiler:4.8.0'
 
     implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.2.71'
-    implementation 'org.jetbrains.anko:anko-commons:0.10.7'
 
     implementation 'io.reactivex.rxjava2:rxjava:2.2.2'
 }
