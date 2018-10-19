@@ -2,6 +2,9 @@ version: 2
 jobs:
   build:
     working_directory: ~/code
+    containerInfo:
+    - image: maven:3.3.9-jdk-8
+      cmd: ["/bin/bash"]
     docker:
       - image: circleci/android:api-28-alpha
     environment:
