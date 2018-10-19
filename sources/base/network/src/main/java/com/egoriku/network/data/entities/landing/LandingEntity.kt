@@ -1,9 +1,7 @@
 package com.egoriku.network.data.entities.landing
 
-import androidx.annotation.Keep
 import com.google.firebase.firestore.PropertyName
 
-@Keep
 class LandingEntity {
     @PropertyName("aboutInfo")
     @JvmField

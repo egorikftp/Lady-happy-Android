@@ -1,13 +1,11 @@
 package com.egoriku.storage.data.entity.mapper
 
-import androidx.annotation.Keep
 import com.egoriku.core.model.IPhotoReportModel
 import com.egoriku.network.data.entities.photoreport.PhotoReportEntity
 import com.egoriku.storage.common.DateUtils
 import com.egoriku.storage.domain.model.photoreport.ComplexPhotoReportModel
 import com.egoriku.storage.domain.model.photoreport.PhotoReportModel
 
-@Keep
 class PhotoReportMapper {
 
     companion object {
