@@ -21,7 +21,6 @@ android {
         targetSdkVersion 28
         versionCode verCode
         versionName verName
-        multiDexEnabled true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         resConfigs "en", "ru"
     }
@@ -38,6 +37,7 @@ android {
     buildTypes {
         release {
             debuggable false
+            multiDexEnabled false
             minifyEnabled true
             shrinkResources true
             signingConfig signingConfigs.release
@@ -46,6 +46,7 @@ android {
         }
 
         debug {
+            multiDexEnabled true
             resValue("string", "hockey_app_id", "\"$hockey_app_id_debug\"")
         }
     }
