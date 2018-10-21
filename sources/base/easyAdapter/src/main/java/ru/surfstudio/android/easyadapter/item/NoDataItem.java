@@ -17,7 +17,6 @@ package ru.surfstudio.android.easyadapter.item;
 
 
 import androidx.recyclerview.widget.RecyclerView;
-
 import ru.surfstudio.android.easyadapter.ItemList;
 import ru.surfstudio.android.easyadapter.controller.NoDataItemController;
 

@@ -16,12 +16,12 @@
 package ru.surfstudio.android.easyadapter.holder;
 
 
-import androidx.annotation.LayoutRes;
-import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.LayoutRes;
+import androidx.recyclerview.widget.RecyclerView;
 import ru.surfstudio.android.easyadapter.animator.BaseItemAnimator;
 
 

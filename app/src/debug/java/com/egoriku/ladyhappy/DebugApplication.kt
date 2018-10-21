@@ -14,7 +14,7 @@ open class DebugApplication : Application() {
         DebugInitializer.register(this)
         Timber.plant(Timber.DebugTree())
 
-       // enableStrictMode()
+        // enableStrictMode()
     }
 
     private fun initLeakCanary() {

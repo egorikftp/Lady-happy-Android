@@ -4,10 +4,10 @@ import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
-import androidx.annotation.ColorInt
 import android.util.AttributeSet
 import android.util.TypedValue
 import android.view.View
+import androidx.annotation.ColorInt
 import com.egoriku.photoreportfragment.R
 
 @Deprecated("Should use new implementation from github")

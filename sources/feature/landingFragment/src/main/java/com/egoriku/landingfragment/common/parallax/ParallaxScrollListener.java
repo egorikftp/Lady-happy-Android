@@ -1,14 +1,15 @@
 package com.egoriku.landingfragment.common.parallax;
 
+import android.view.ViewTreeObserver.OnGlobalLayoutListener;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import androidx.lifecycle.Lifecycle;
 import androidx.lifecycle.LifecycleObserver;
 import androidx.lifecycle.OnLifecycleEvent;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.RecyclerView.OnScrollListener;
-import android.view.ViewTreeObserver.OnGlobalLayoutListener;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class ParallaxScrollListener extends OnScrollListener implements OnGlobalLayoutListener, LifecycleObserver {
 

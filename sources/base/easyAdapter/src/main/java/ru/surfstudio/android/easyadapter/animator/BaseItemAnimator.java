@@ -17,7 +17,6 @@ package ru.surfstudio.android.easyadapter.animator;
 
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.RecyclerView;
-
 import ru.surfstudio.android.easyadapter.holder.BaseViewHolder;
 
 

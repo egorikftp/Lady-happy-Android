@@ -1,4 +1,4 @@
--optimizationpasses 5
+-optimizationpasses 3
 -dontusemixedcaseclassnames
 -dontskipnonpubliclibraryclasses
 -dontskipnonpubliclibraryclassmembers

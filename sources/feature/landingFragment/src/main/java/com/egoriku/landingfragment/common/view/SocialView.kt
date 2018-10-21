@@ -8,8 +8,6 @@ import android.animation.PropertyValuesHolder.ofFloat
 import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.drawable.ColorDrawable
-import androidx.core.content.ContextCompat
-import androidx.appcompat.widget.AppCompatImageButton
 import android.util.AttributeSet
 import android.util.Log
 import android.view.Gravity
@@ -19,6 +17,8 @@ import android.view.animation.AlphaAnimation
 import android.view.animation.Animation
 import android.widget.ImageView
 import android.widget.LinearLayout
+import androidx.appcompat.widget.AppCompatImageButton
+import androidx.core.content.ContextCompat
 import com.egoriku.core.model.ISocialModel
 import com.egoriku.landingfragment.R
 import com.egoriku.landingfragment.common.PredefinedResources
