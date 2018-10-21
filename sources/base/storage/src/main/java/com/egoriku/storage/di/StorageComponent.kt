@@ -12,19 +12,16 @@ import dagger.Component
 )
 interface StorageComponent : RepositoryProvider {
 
-    class Initializer private constructor() {
+    companion object {
+        fun init(dependenciesProvider: DependenciesProvider): RepositoryProvider {
+            val networkProvider = DaggerNetworkComponent.builder()
+                    .dependenciesProvider(dependenciesProvider)
+                    .build()
 
-        companion object {
-            fun init(dependenciesProvider: DependenciesProvider): RepositoryProvider {
-                val networkProvider = DaggerNetworkComponent.builder()
-                        .dependenciesProvider(dependenciesProvider)
-                        .build()
-
-                return DaggerStorageComponent.builder()
-                        .networkProvider(networkProvider)
-                        .dependenciesProvider(dependenciesProvider)
-                        .build()
-            }
+            return DaggerStorageComponent.builder()
+                    .networkProvider(networkProvider)
+                    .dependenciesProvider(dependenciesProvider)
+                    .build()
         }
     }
 }

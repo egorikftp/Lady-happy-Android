@@ -13,9 +13,9 @@ import com.egoriku.core.repository.IPhotoReportRepository
 
 interface ApplicationProvider :
         DependenciesProvider,
-        MainActivityProvider,
-        LandingFragmentProvider,
-        PhotoReportFragmentProvider,
+        MainActivityFeatureProvider,
+        LandingFeatureProvider,
+        PhotoReportFeatureProvider,
         RepositoryProvider
 
 interface DependenciesProvider {
@@ -30,15 +30,15 @@ interface DependenciesProvider {
     fun provideNavigationHolder(): INavigationHolder
 }
 
-interface MainActivityProvider {
+interface MainActivityFeatureProvider {
     fun provideMainActivityAction(): IMainActivityAction
 }
 
-interface LandingFragmentProvider {
+interface LandingFeatureProvider {
     fun provideLandingFragmentAction(): ILandingFragmentAction
 }
 
-interface PhotoReportFragmentProvider {
+interface PhotoReportFeatureProvider {
     fun providePhotoReportGFragmentAction(): IPhotoReportFragmentAction
 }
 

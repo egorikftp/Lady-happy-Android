@@ -41,7 +41,7 @@ class MainActivity : BaseInjectableActivity<MainActivityContract.View, MainActiv
     override fun provideLayout(): Int = R.layout.activity_main
 
     override fun injectDependencies() {
-        MainActivityComponent.Initializer.init(findDependencies())
+        MainActivityComponent.init(findDependencies())
                 .inject(this)
     }
 
