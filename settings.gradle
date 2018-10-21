@@ -22,7 +22,11 @@ include ':featureActivityMain'
 project(':featureActivityMain').projectDir = new File(rootDir, 'sources/feature/featureActivityMain')
 
 include ':landingFragment'
-project(':landingFragment').projectDir = new File(rootDir, 'sources/feature/landingFragment')
+//project(':landingFragment').projectDir = new File(rootDir, 'sources/feature/landingFragment')
 
 include ':photoreportFragment'
 project(':photoreportFragment').projectDir = new File(rootDir, 'sources/feature/photoreportFragment')
+
+
+// Stub features
+//project(':photoreportFragment').projectDir = new File(rootDir, 'sources/feature/photoreportFragment/stub')
