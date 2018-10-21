@@ -24,7 +24,7 @@ android {
 }
 
 dependencies {
-    implementation 'com.google.dagger:dagger:2.17'
+    implementation 'com.google.dagger:dagger:2.18'
 
     implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.2.71'
 
