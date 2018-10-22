@@ -10,7 +10,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 
 open class Application : Application(), IApplication {
 
-    private val appComponent: AppComponent by lazy { AppComponent.Initializer.init(this@Application) }
+    private val appComponent: AppComponent by lazy { AppComponent.init(this@Application) }
 
     override fun onCreate() {
         RxAndroidPlugins.setInitMainThreadSchedulerHandler {

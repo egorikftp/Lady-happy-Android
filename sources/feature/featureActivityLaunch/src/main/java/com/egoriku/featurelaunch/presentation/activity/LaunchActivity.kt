@@ -21,7 +21,7 @@ class LaunchActivity : AppCompatActivity() {
     }
 
     private fun inject() {
-        LaunchActivityComponent.Initializer.init(findDependencies())
+        LaunchActivityComponent.init(findDependencies())
                 .inject(this@LaunchActivity)
     }
 }
