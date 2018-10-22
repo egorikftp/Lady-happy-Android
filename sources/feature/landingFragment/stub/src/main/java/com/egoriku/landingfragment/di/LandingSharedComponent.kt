@@ -1,19 +1,17 @@
 package com.egoriku.landingfragment.di
 
 import com.egoriku.core.actions.ILandingFragmentAction
-import com.egoriku.core.di.LandingFragmentProvider
+import com.egoriku.core.di.LandingFeatureProvider
 import com.egoriku.landingfragment.action.LandingFragmentAction
 import dagger.Component
 import dagger.Module
 import dagger.Provides
 
 @Component(modules = [LandingFragmentExportModule::class])
-interface LandingFragmentExportComponent : LandingFragmentProvider {
+interface LandingSharedComponent : LandingFeatureProvider {
 
-    class Initializer private constructor() {
-        companion object {
-            fun init(): LandingFragmentProvider = DaggerLandingFragmentExportComponent.create()
-        }
+    companion object {
+        fun init(): LandingFeatureProvider = DaggerLandingSharedComponent.create()
     }
 }
 

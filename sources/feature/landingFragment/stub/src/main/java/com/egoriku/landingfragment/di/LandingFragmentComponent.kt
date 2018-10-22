@@ -6,8 +6,5 @@ import dagger.Component
 import dagger.Module
 
 @FragmentScope
-@Component(dependencies = [ApplicationProvider::class], modules = [LandingFragmentModule::class])
+@Component(dependencies = [ApplicationProvider::class])
 internal interface LandingFragmentComponent
-
-@Module
-internal class LandingFragmentModule
