@@ -21,14 +21,13 @@ android {
         targetSdkVersion 28
         versionCode verCode
         versionName verName
-        multiDexEnabled true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         resConfigs "en", "ru"
     }
 
     signingConfigs {
         release {
-            storeFile file(System.getenv("KEYSTORE") ?: "0")
+            storeFile file("${rootProject.projectDir}\\keystore\\lady_happy_key_store.jks")
             storePassword System.getenv('KEY_STORE_PASSWORD')
             keyAlias System.getenv('KEY_ALIAS')
             keyPassword System.getenv('KEY_PASSWORD')
@@ -38,6 +37,7 @@ android {
     buildTypes {
         release {
             debuggable false
+            multiDexEnabled false
             minifyEnabled true
             shrinkResources true
             signingConfig signingConfigs.release
@@ -46,6 +46,7 @@ android {
         }
 
         debug {
+            multiDexEnabled true
             resValue("string", "hockey_app_id", "\"$hockey_app_id_debug\"")
         }
     }
@@ -60,6 +61,10 @@ android {
         variant.outputs.all {
             outputFileName = "${"Lady Happy"}.${variant.name}_${variant.versionName}.apk"
         }
+    }
+
+    lintOptions {
+        abortOnError false
     }
 }
 
@@ -91,8 +96,8 @@ dependencies {
     debugImplementation 'net.hockeyapp.android:HockeySDK:5.1.1'
     implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.2.71'
 
-    implementation 'com.google.dagger:dagger:2.17'
-    kapt 'com.google.dagger:dagger-compiler:2.17'
+    implementation 'com.google.dagger:dagger:2.18'
+    kapt 'com.google.dagger:dagger-compiler:2.18'
 
     debugImplementation 'com.squareup.leakcanary:leakcanary-android:1.6.2'
     releaseImplementation 'com.squareup.leakcanary:leakcanary-android-no-op:1.6.2'

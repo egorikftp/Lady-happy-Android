@@ -1,12 +1,13 @@
 package com.egoriku.ui.arch.activity;
 
-import androidx.lifecycle.ViewModelProviders;
 import android.os.Bundle;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 
 import com.egoriku.ui.arch.pvm.BaseContract;
 import com.egoriku.ui.arch.pvm.BaseViewModel;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProviders;
 
 public abstract class BaseActivity<V extends BaseContract.View, P extends BaseContract.Presenter<V>>
         extends AppCompatActivity implements BaseContract.View {

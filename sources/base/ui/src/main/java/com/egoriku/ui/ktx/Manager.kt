@@ -13,9 +13,9 @@ import android.net.ConnectivityManager
 import android.os.BatteryManager
 import android.os.Build
 import android.os.Vibrator
-import androidx.annotation.RequiresApi
 import android.telephony.TelephonyManager
 import android.view.inputmethod.InputMethodManager
+import androidx.annotation.RequiresApi
 
 inline val Context.connectivityManager
     get() = getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager

@@ -35,14 +35,13 @@ dependencies {
     implementation 'androidx.recyclerview:recyclerview:1.0.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.0-alpha2'
 
-    kapt "com.google.dagger:dagger-compiler:2.17"
-    implementation 'com.google.dagger:dagger:2.17'
+    kapt "com.google.dagger:dagger-compiler:2.18"
+    implementation 'com.google.dagger:dagger:2.18'
 
     implementation 'com.github.bumptech.glide:glide:4.8.0'
     kapt 'com.github.bumptech.glide:compiler:4.8.0'
 
     implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.2.71'
-    implementation 'org.jetbrains.anko:anko-commons:0.10.7'
 
     implementation 'io.reactivex.rxjava2:rxjava:2.2.2'
 }

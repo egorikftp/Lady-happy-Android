@@ -33,9 +33,8 @@ dependencies {
     implementation 'ru.semper-viventem.backdrop:backdrop:0.1.5'
     implementation 'ru.terrakok.cicerone:cicerone:4.0.2'
 
-    kapt "com.google.dagger:dagger-compiler:2.17"
-    implementation 'com.google.dagger:dagger:2.17'
+    kapt "com.google.dagger:dagger-compiler:2.18"
+    implementation 'com.google.dagger:dagger:2.18'
 
-    implementation 'org.jetbrains.anko:anko-commons:0.10.7'
     implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.2.71'
 }
