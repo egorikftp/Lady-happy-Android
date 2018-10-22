@@ -4,7 +4,7 @@
 -dontskipnonpubliclibraryclassmembers
 -dontpreverify
 -verbose
--dump class_files.txt
+#-dump class_files.txt
 -printseeds seeds.txt
 -printusage unused.txt
 -optimizations !code/simplification/arithmetic,!field/*,!class/merging/*,!code/removal/advanced,!code/removal/simple
