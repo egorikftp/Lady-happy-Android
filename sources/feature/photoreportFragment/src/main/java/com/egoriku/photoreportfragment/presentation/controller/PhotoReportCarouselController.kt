@@ -44,6 +44,7 @@ class PhotoReportCarouselController : BindableItemController<IPhotoReportModel, 
 
             if (reportCarouselRecyclerView.adapter == null) {
                 reportCarouselRecyclerView.adapter = EasyAdapter().apply {
+                    setFirstInvisibleItemEnabled(false)
                     setItems(ItemList.create().addAll(data.images, photoReportItemController))
                 }
             } else {
