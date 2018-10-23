@@ -15,11 +15,11 @@
  */
 package ru.surfstudio.android.easyadapter.controller;
 
-import android.support.v7.widget.RecyclerView;
 import android.view.ViewGroup;
 
 import java.util.Random;
 
+import androidx.recyclerview.widget.RecyclerView;
 import ru.surfstudio.android.easyadapter.EasyAdapter;
 import ru.surfstudio.android.easyadapter.ItemList;
 import ru.surfstudio.android.easyadapter.item.BaseItem;

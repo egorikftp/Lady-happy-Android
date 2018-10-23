@@ -1,7 +1,7 @@
 package com.egoriku.featurelaunch.presentation.activity
 
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import com.egoriku.core.actions.IMainActivityAction
 import com.egoriku.core.di.findDependencies
 import com.egoriku.featurelaunch.di.LaunchActivityComponent
@@ -21,7 +21,7 @@ class LaunchActivity : AppCompatActivity() {
     }
 
     private fun inject() {
-        LaunchActivityComponent.Initializer.init(findDependencies())
+        LaunchActivityComponent.init(findDependencies())
                 .inject(this@LaunchActivity)
     }
 }

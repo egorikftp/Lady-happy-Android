@@ -1,4 +1,4 @@
-ext{
+ext {
     hockey_app_id_debug = "36243e00756b47c6b4d3edae913c826e"
     hockey_app_id_release = "36243e00756b47c6b4d3edae913c826e"
 }

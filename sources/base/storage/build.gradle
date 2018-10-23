@@ -4,21 +4,23 @@ apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion 28
-    buildToolsVersion '28.0.2'
 
     defaultConfig {
         minSdkVersion 21
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
-
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
+
     buildTypes {
         release {
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+    }
+
+    lintOptions {
+        abortOnError false
     }
 }
 
@@ -30,8 +32,8 @@ dependencies {
 
     implementation 'io.reactivex.rxjava2:rxjava:2.2.2'
 
-    kapt "com.google.dagger:dagger-compiler:2.17"
-    implementation 'com.google.dagger:dagger:2.17'
+    kapt "com.google.dagger:dagger-compiler:2.18"
+    implementation 'com.google.dagger:dagger:2.18'
 
-    implementation 'com.google.firebase:firebase-firestore:17.1.0'
+    implementation 'com.google.firebase:firebase-firestore:17.1.1'
 }

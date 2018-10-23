@@ -1,7 +1,7 @@
 package com.egoriku.ui.arch.activity
 
 import android.os.Bundle
-import android.support.annotation.LayoutRes
+import androidx.annotation.LayoutRes
 import com.egoriku.ui.arch.pvm.BaseContract
 
 abstract class BaseInjectableActivity<V : BaseContract.View, P : BaseContract.Presenter<V>> : BaseActivity<V, P>() {

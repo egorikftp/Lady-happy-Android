@@ -2,10 +2,10 @@ package com.egoriku.ui.arch.fragment
 
 import android.content.Context
 import android.os.Bundle
-import android.support.annotation.LayoutRes
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.LayoutRes
 import com.egoriku.ui.arch.pvm.BaseContract
 import com.egoriku.ui.ktx.inflate
 

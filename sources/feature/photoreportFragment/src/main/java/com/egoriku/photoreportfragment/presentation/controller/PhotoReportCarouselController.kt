@@ -1,9 +1,9 @@
 package com.egoriku.photoreportfragment.presentation.controller
 
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.PagerSnapHelper
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.PagerSnapHelper
 import com.egoriku.core.model.IPhotoReportModel
 import com.egoriku.photoreportfragment.R
 import kotlinx.android.extensions.LayoutContainer

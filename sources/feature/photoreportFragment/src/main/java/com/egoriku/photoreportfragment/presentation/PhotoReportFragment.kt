@@ -1,8 +1,11 @@
 package com.egoriku.photoreportfragment.presentation
 
+import android.content.Context
 import android.os.Bundle
-import android.support.v7.widget.LinearLayoutManager
 import android.view.View
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.egoriku.core.actions.common.IMainActivityConnector
 import com.egoriku.core.di.findDependencies
 import com.egoriku.photoreportfragment.R
 import com.egoriku.photoreportfragment.di.PhotoReportFragmentComponent
@@ -26,6 +29,8 @@ class PhotoReportFragment : BaseInjectableFragment<PhotoReportContract.View, Pho
     @Inject
     lateinit var photoReportPresenter: PhotoReportContract.Presenter
 
+    private var mainActivityConnector: IMainActivityConnector? = null
+
     private lateinit var errorStateController: ErrorStateController
     private lateinit var photoReportHeaderController: PhotoReportHeaderController
     private lateinit var photoReportCarouselController: PhotoReportCarouselController
@@ -41,6 +46,16 @@ class PhotoReportFragment : BaseInjectableFragment<PhotoReportContract.View, Pho
                 .inject(this)
     }
 
+    override fun onAttach(context: Context?) {
+        super.onAttach(context)
+        mainActivityConnector = activity as IMainActivityConnector
+    }
+
+    override fun onDetach() {
+        super.onDetach()
+        mainActivityConnector = null
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         activity?.setTitle(R.string.navigation_photo_report)
@@ -54,7 +69,11 @@ class PhotoReportFragment : BaseInjectableFragment<PhotoReportContract.View, Pho
         recyclerViewAllGoods.apply {
             layoutManager = LinearLayoutManager(context)
             adapter = photoReportAdapter
-            setHasFixedSize(true)
+            addOnScrollListener(object : RecyclerView.OnScrollListener() {
+                override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                    mainActivityConnector?.onScroll()
+                }
+            })
         }
 
         errorStateController = ErrorStateController(onReloadClickListener = {

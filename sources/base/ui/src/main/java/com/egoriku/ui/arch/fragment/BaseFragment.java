@@ -1,14 +1,15 @@
 package com.egoriku.ui.arch.fragment;
 
-import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.view.View;
 
 import com.egoriku.ui.arch.pvm.BaseContract;
 import com.egoriku.ui.arch.pvm.BaseViewModel;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProviders;
 
 public abstract class BaseFragment<V extends BaseContract.View, P extends BaseContract.Presenter<V>>
         extends Fragment implements BaseContract.View {

@@ -16,11 +16,10 @@
 package ru.surfstudio.android.easyadapter;
 
 
-import android.support.v7.widget.RecyclerView;
-
 import java.util.ArrayList;
 import java.util.Collection;
 
+import androidx.recyclerview.widget.RecyclerView;
 import ru.surfstudio.android.easyadapter.controller.BindableItemController;
 import ru.surfstudio.android.easyadapter.controller.DoubleBindableItemController;
 import ru.surfstudio.android.easyadapter.controller.NoDataItemController;

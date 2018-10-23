@@ -1,10 +1,10 @@
 package com.egoriku.core.usecase;
 
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-
 import java.util.HashMap;
 import java.util.Map;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 /**
  * Class backed by a Map, used to pass parameters to {@link BaseUseCase} instances.

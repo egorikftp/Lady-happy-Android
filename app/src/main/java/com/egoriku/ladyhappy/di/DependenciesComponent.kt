@@ -8,10 +8,7 @@ import com.egoriku.ladyhappy.di.module.NavigationModule
 import dagger.BindsInstance
 import dagger.Component
 
-@Component(modules = [
-    AppModule::class,
-    NavigationModule::class
-])
+@Component(modules = [AppModule::class, NavigationModule::class])
 @ApplicationScope
 interface DependenciesComponent : DependenciesProvider {
 
@@ -23,9 +20,7 @@ interface DependenciesComponent : DependenciesProvider {
         fun app(app: IApplication): Builder
     }
 
-    class Initializer private constructor() {
-        companion object {
-            fun init(app: IApplication): DependenciesProvider = DaggerDependenciesComponent.builder().app(app).build()
-        }
+    companion object {
+        fun init(app: IApplication): DependenciesProvider = DaggerDependenciesComponent.builder().app(app).build()
     }
 }

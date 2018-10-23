@@ -1,8 +1,8 @@
 package com.egoriku.landingfragment.presentation.controller
 
-import android.support.annotation.StringRes
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.StringRes
 import com.egoriku.landingfragment.R
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.adapter_item_section_header.*
