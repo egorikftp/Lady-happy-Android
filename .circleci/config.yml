@@ -51,7 +51,7 @@ jobs:
           key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
       - run:
           name: Initial build
-          command: ./gradlew clean assembleRelease --no-daemon --stacktrace -Dkotlin.compiler.execution.strategy=in-proce
+          command: ./gradlew clean assembleRelease --no-daemon --stacktrace -Dkotlin.compiler.execution.strategy=in-proce --info
       - store_artifacts:
           path: app/build/outputs/apk/
           destination: apks/
