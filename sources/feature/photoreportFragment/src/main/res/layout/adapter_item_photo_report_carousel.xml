@@ -54,5 +54,6 @@
         android:textSize="10sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/pagerIndicator"
+        tools:ignore="SmallSp"
         tools:text="12 Sep, 2017" />
 </androidx.constraintlayout.widget.ConstraintLayout>
