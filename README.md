@@ -4,4 +4,4 @@ Shop application for handmade hats company <b>Дамское счастье</b> 
 
 This project uses multi-module structure: 
 
-<img src="assets/modules/Lady+happy+modules.png" />
+<img src="assets/modules/Lady%20happy%20modules.png" />
