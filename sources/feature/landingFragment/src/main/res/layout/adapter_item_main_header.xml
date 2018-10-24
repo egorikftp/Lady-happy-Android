@@ -30,6 +30,7 @@
         android:adjustViewBounds="true"
         android:cropToPadding="false"
         android:paddingTop="8dp"
+        android:contentDescription="@string/cc_adapter_item_main"
         android:paddingBottom="8dp"
         android:scaleType="fitStart"
         app:layout_constraintBottom_toBottomOf="parent"

@@ -34,5 +34,5 @@ dependencies {
 
     implementation 'com.google.firebase:firebase-firestore:17.1.1'
 
-    implementation 'io.reactivex.rxjava2:rxjava:2.2.2'
+    implementation 'io.reactivex.rxjava2:rxjava:2.2.3'
 }

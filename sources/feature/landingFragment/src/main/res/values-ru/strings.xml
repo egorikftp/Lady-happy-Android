@@ -6,6 +6,5 @@
     <string name="lady_happy">Дамское счастье</string>
     <string name="adapter_item_header_our_team">Наша команда</string>
 
-    <string name="navigation_main">Главная</string>
-
+    <string name="cc_adapter_item_main">Оливковая ветвь</string>
 </resources>

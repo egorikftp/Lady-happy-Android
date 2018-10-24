@@ -50,18 +50,8 @@ jobs:
             - ~/.gradle
           key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
       - run:
-          name: Run Tests
-          command: |
-                  sudo chmod +x gradlew
-                  ./gradlew lint test
-      - store_artifacts:
-          path: app/build/reports
-          destination: reports
-      - store_test_results:
-          path: app/build/test-results
-      - run:
           name: Initial build
-          command: ./gradlew clean assembleRelease --no-daemon --stacktrace
+          command: ./gradlew clean assembleRelease --no-daemon --stacktrace -Dkotlin.compiler.execution.strategy=in-proce
       - store_artifacts:
           path: app/build/outputs/apk/
           destination: apks/

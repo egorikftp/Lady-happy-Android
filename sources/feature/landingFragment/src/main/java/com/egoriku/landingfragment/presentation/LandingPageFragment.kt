@@ -61,7 +61,6 @@ internal class LandingPageFragment : BaseInjectableFragment<LandingPageContract.
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        activity?.setTitle(R.string.navigation_main)
         initViews()
     }
 
