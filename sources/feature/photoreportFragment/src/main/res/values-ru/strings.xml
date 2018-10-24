@@ -1,5 +1,4 @@
 <resources>
-    <string name="navigation_photo_report">Фото отчеты</string>
     <string name="adapter_item_error_state">При загрузке данных произошла ошибка</string>
     <string name="adapter_item_error_state_retry">Нажмите чтобы повторить</string>
     <string name="adapter_item_news_header_text">Последние новости</string>

@@ -58,8 +58,6 @@ class PhotoReportFragment : BaseInjectableFragment<PhotoReportContract.View, Pho
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        activity?.setTitle(R.string.navigation_photo_report)
-
         initRecyclerView()
 
         presenter.loadData()
