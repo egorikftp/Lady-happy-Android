@@ -22,7 +22,6 @@ android {
 }
 
 dependencies {
-    implementation project(':easyAdapter')
     implementation project(':core')
     implementation project(':ui')
 
