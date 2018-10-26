@@ -1,4 +1,7 @@
 <resources>
     <string name="navigation_view_landing">Main</string>
     <string name="navigation_view_photo_report">Photo report</string>
+
+    <string name="bullet_separator">•</string>
+
 </resources>

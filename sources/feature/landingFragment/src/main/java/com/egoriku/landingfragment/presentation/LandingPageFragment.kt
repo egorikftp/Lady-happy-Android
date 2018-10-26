@@ -44,10 +44,7 @@ internal class LandingPageFragment : BaseInjectableFragment<LandingPageContract.
 
     override fun providePresenter(): LandingPageContract.Presenter = landingPagePresenter
 
-    override fun injectDependencies() {
-        LandingFragmentComponent.Initializer.init(findDependencies())
-                .inject(this)
-    }
+    override fun injectDependencies() = LandingFragmentComponent.init(findDependencies()).inject(this)
 
     override fun onAttach(context: Context?) {
         super.onAttach(context)

@@ -41,10 +41,7 @@ class PhotoReportFragment : BaseInjectableFragment<PhotoReportContract.View, Pho
 
     override fun provideLayout(): Int = R.layout.fragment_photo_report
 
-    override fun injectDependencies() {
-        PhotoReportFragmentComponent.Initializer.init(findDependencies())
-                .inject(this)
-    }
+    override fun injectDependencies() = PhotoReportFragmentComponent.init(findDependencies()).inject(this)
 
     override fun onAttach(context: Context?) {
         super.onAttach(context)

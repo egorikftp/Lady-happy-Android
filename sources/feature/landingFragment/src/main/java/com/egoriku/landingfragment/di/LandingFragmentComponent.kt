@@ -15,12 +15,10 @@ internal interface LandingFragmentComponent {
 
     fun inject(fragment: LandingPageFragment)
 
-    class Initializer private constructor() {
-        companion object {
-            fun init(applicationProvider: ApplicationProvider): LandingFragmentComponent =
-                    DaggerLandingFragmentComponent.builder()
-                            .applicationProvider(applicationProvider)
-                            .build()
-        }
+    companion object {
+        fun init(applicationProvider: ApplicationProvider): LandingFragmentComponent =
+                DaggerLandingFragmentComponent.builder()
+                        .applicationProvider(applicationProvider)
+                        .build()
     }
 }

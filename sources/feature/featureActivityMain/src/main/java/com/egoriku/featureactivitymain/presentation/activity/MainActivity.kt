@@ -1,6 +1,8 @@
 package com.egoriku.featureactivitymain.presentation.activity
 
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import androidx.annotation.IdRes
 import com.egoriku.core.actions.common.IMainActivityConnector
 import com.egoriku.core.di.findDependencies
@@ -9,6 +11,7 @@ import com.egoriku.featureactivitymain.R
 import com.egoriku.featureactivitymain.common.findBehavior
 import com.egoriku.featureactivitymain.di.MainActivityComponent
 import com.egoriku.ui.arch.activity.BaseInjectableActivity
+import com.egoriku.ui.ktx.consume
 import kotlinx.android.synthetic.main.activity_main.*
 import ru.semper_viventem.backdrop.BackdropBehavior
 import ru.terrakok.cicerone.android.support.SupportAppNavigator
@@ -40,10 +43,7 @@ class MainActivity : BaseInjectableActivity<MainActivityContract.View, MainActiv
 
     override fun provideLayout(): Int = R.layout.activity_main
 
-    override fun injectDependencies() {
-        MainActivityComponent.init(findDependencies())
-                .inject(this)
-    }
+    override fun injectDependencies() = MainActivityComponent.init(findDependencies()).inject(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -84,6 +84,23 @@ class MainActivity : BaseInjectableActivity<MainActivityContract.View, MainActiv
     override fun onPause() {
         navigatorHolder.removeNavigator()
         super.onPause()
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        return consume {
+            menuInflater.inflate(R.menu.legal_menu, menu)
+        }
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        return when (item?.itemId) {
+            R.id.menu_main_setting -> consume {
+                RoundedBottomSheetDialogFragment().apply {
+                    show(supportFragmentManager, this.tag)
+                }
+            }
+            else -> return super.onOptionsItemSelected(item)
+        }
     }
 
     override fun onBackPressed() {
