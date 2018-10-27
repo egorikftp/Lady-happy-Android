@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.annotation.IdRes
+import com.egoriku.core.actions.ISettingsFragmentAction
 import com.egoriku.core.actions.common.IMainActivityConnector
 import com.egoriku.core.di.findDependencies
 import com.egoriku.core.di.utils.INavigationHolder
@@ -34,6 +35,9 @@ class MainActivity : BaseInjectableActivity<MainActivityContract.View, MainActiv
 
     @Inject
     lateinit var navigatorHolder: INavigationHolder
+
+    @Inject
+    lateinit var settingsFragmentAction: ISettingsFragmentAction
 
     private lateinit var backdropBehavior: BackdropBehavior
 
@@ -95,7 +99,7 @@ class MainActivity : BaseInjectableActivity<MainActivityContract.View, MainActiv
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         return when (item?.itemId) {
             R.id.menu_main_setting -> consume {
-                RoundedBottomSheetDialogFragment().apply {
+                settingsFragmentAction.provideFragment().apply {
                     show(supportFragmentManager, this.tag)
                 }
             }

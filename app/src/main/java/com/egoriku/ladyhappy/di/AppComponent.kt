@@ -5,6 +5,7 @@ import com.egoriku.featureactivitymain.di.MainActivityFeatureSharedComponent
 import com.egoriku.ladyhappy.Application
 import com.egoriku.landingfragment.di.LandingSharedComponent
 import com.egoriku.photoreportfragment.di.PhotoReportSharedComponent
+import com.egoriku.settings.di.SettingsFeatureSharedComponent
 import com.egoriku.storage.di.StorageComponent
 import dagger.Component
 
@@ -14,6 +15,7 @@ import dagger.Component
             MainActivityFeatureProvider::class,
             LandingFeatureProvider::class,
             PhotoReportFeatureProvider::class,
+            SettingsFeatureProvider::class,
             RepositoryProvider::class
         ])
 @ApplicationScope
@@ -28,6 +30,7 @@ interface AppComponent : ApplicationProvider {
 
             val landingFeature = LandingSharedComponent.init()
             val photoReportFeature = PhotoReportSharedComponent.init()
+            val settingsFeature = SettingsFeatureSharedComponent.init()
 
             val repositoryProvider = StorageComponent.init(dependenciesProvider)
 
@@ -36,6 +39,7 @@ interface AppComponent : ApplicationProvider {
                     .mainActivityFeatureProvider(mainActivityFeature)
                     .landingFeatureProvider(landingFeature)
                     .photoReportFeatureProvider(photoReportFeature)
+                    .settingsFeatureProvider(settingsFeature)
                     .repositoryProvider(repositoryProvider)
                     .build()
         }

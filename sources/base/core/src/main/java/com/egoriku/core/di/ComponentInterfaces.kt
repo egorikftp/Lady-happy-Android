@@ -4,6 +4,7 @@ import com.egoriku.core.IApplication
 import com.egoriku.core.actions.ILandingFragmentAction
 import com.egoriku.core.actions.IMainActivityAction
 import com.egoriku.core.actions.IPhotoReportFragmentAction
+import com.egoriku.core.actions.ISettingsFragmentAction
 import com.egoriku.core.di.utils.IAnalyticsHelper
 import com.egoriku.core.di.utils.IFirebaseFirestore
 import com.egoriku.core.di.utils.INavigationHolder
@@ -16,7 +17,8 @@ interface ApplicationProvider :
         MainActivityFeatureProvider,
         LandingFeatureProvider,
         PhotoReportFeatureProvider,
-        RepositoryProvider
+        RepositoryProvider,
+        SettingsFeatureProvider
 
 interface DependenciesProvider {
     fun provideContext(): IApplication
@@ -39,7 +41,11 @@ interface LandingFeatureProvider {
 }
 
 interface PhotoReportFeatureProvider {
-    fun providePhotoReportGFragmentAction(): IPhotoReportFragmentAction
+    fun providePhotoReportFragmentAction(): IPhotoReportFragmentAction
+}
+
+interface SettingsFeatureProvider {
+    fun provideSettingsFragment(): ISettingsFragmentAction
 }
 
 interface RepositoryProvider {
