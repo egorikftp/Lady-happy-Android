@@ -2,4 +2,5 @@
 <resources>
     <string name="navigation_view_landing">Главная</string>
     <string name="navigation_view_photo_report">Фотоотчет</string>
+    <string name="legal_menu_settings">Настройки</string>
 </resources>

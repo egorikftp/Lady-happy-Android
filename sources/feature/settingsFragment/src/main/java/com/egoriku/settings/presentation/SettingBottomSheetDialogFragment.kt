@@ -1,19 +1,55 @@
 package com.egoriku.settings.presentation
 
 import android.app.Dialog
+import android.graphics.Color
+import android.net.Uri
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
+import androidx.browser.customtabs.CustomTabsIntent
+import com.egoriku.core.di.findDependencies
 import com.egoriku.settings.R
+import com.egoriku.settings.di.SettingsFragmentComponent
+import com.egoriku.settings.presentation.base.BaseBottomSheetDialogFragment
+import com.egoriku.ui.ktx.colorCompat
 import com.google.android.material.bottomsheet.BottomSheetDialog
-import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import kotlinx.android.synthetic.main.fragment_settings_bottom_sheet.*
+import javax.inject.Inject
 
-class SettingBottomSheetDialogFragment : BottomSheetDialogFragment() {
+
+class SettingBottomSheetDialogFragment : BaseBottomSheetDialogFragment<SettingsPageContract.View, SettingsPageContract.Presenter>(), SettingsPageContract.View {
+
+    @Inject
+    lateinit var settingsPresenter: SettingsPageContract.Presenter
+
+    override fun injectDependencies() = SettingsFragmentComponent.init(findDependencies()).inject(this)
+
+    override fun providePresenter(): SettingsPageContract.Presenter = settingsPresenter
+
+    override fun getLayoutId(): Int = R.layout.fragment_settings_bottom_sheet
 
     override fun getTheme(): Int = R.style.BottomSheetDialog
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? = inflater.inflate(R.layout.fragment_settings_bottom_sheet, container)
-
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog = BottomSheetDialog(requireContext(), theme)
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        termsOfServiceButton.setOnClickListener {
+            CustomTabsIntent.Builder().apply {
+                setToolbarColor(context?.colorCompat(R.color.RoseTaupe) ?: Color.WHITE)
+                build().apply {
+                    launchUrl(context, Uri.parse(getString(R.string.terms_of_service_link)))
+                }
+            }
+        }
+
+        privacyPolicyButton.setOnClickListener {
+            CustomTabsIntent.Builder().apply {
+                setToolbarColor(context?.colorCompat(R.color.RoseTaupe) ?: Color.WHITE)
+                build().apply {
+                    launchUrl(context, Uri.parse(getString(R.string.privacy_policy_link)))
+                }
+            }
+        }
+    }
 }

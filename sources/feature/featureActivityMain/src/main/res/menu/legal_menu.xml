@@ -6,5 +6,5 @@
         android:id="@+id/menu_main_setting"
         android:orderInCategory="100"
         app:showAsAction="never"
-        android:title="Setting" />
+        android:title="@string/legal_menu_settings" />
 </menu>
