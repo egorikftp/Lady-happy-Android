@@ -31,3 +31,4 @@ project(':photoreportFragment').projectDir = new File(rootDir, 'sources/feature/
 
 include ':settingsFragment'
 project(':settingsFragment').projectDir = new File(rootDir, 'sources/feature/settingsFragment')
+//project(':settingsFragment').projectDir = new File(rootDir, 'sources/feature/settingsFragment/stub')
