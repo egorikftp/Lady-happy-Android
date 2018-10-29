@@ -4,5 +4,6 @@
         <item name="colorPrimary">@color/RoseTaupe</item>
         <item name="colorPrimaryDark">@color/RoseTaupeDark</item>
         <item name="colorAccent">@color/Terracota</item>
+        <item name="android:textColorSecondary">@color/RealWhite</item>
     </style>
 </resources>

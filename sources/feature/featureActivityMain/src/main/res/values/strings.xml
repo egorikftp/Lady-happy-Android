@@ -1,4 +1,5 @@
 <resources>
     <string name="navigation_view_landing">Main</string>
     <string name="navigation_view_photo_report">Photo report</string>
+    <string name="legal_menu_settings">Setting</string>
 </resources>

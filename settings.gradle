@@ -28,3 +28,7 @@ project(':landingFragment').projectDir = new File(rootDir, 'sources/feature/land
 include ':photoreportFragment'
 project(':photoreportFragment').projectDir = new File(rootDir, 'sources/feature/photoreportFragment')
 //project(':photoreportFragment').projectDir = new File(rootDir, 'sources/feature/photoreportFragment/stub')
+
+include ':settingsFragment'
+project(':settingsFragment').projectDir = new File(rootDir, 'sources/feature/settingsFragment')
+//project(':settingsFragment').projectDir = new File(rootDir, 'sources/feature/settingsFragment/stub')

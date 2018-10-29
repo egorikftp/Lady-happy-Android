@@ -1,11 +1,12 @@
 <resources>
 
-    <style name="Theme.AppCompat.Light.NoActionBar.FullScreen" parent="@style/Theme.AppCompat.Light">
+    <style name="SplashTheme" parent="@style/Theme.AppCompat.Light">
         <item name="windowNoTitle">true</item>
         <item name="android:windowBackground">@drawable/bg_launch_screen</item>
         <item name="windowActionBar">false</item>
         <item name="colorPrimaryDark">@color/RealWhite</item>
         <item name="android:windowContentOverlay">@null</item>
         <item name="android:windowAnimationStyle">@null</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
     </style>
 </resources>

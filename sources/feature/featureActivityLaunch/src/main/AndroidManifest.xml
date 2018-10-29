@@ -4,7 +4,7 @@
     <application>
         <activity
             android:name="com.egoriku.featurelaunch.presentation.activity.LaunchActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen">
+            android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -15,14 +15,11 @@ internal interface PhotoReportFragmentComponent {
 
     fun inject(fragment: PhotoReportFragment)
 
-    class Initializer private constructor() {
-        companion object {
-
-            fun init(applicationProvider: ApplicationProvider): PhotoReportFragmentComponent {
-                return DaggerPhotoReportFragmentComponent.builder()
-                        .applicationProvider(applicationProvider)
-                        .build()
-            }
+    companion object {
+        fun init(applicationProvider: ApplicationProvider): PhotoReportFragmentComponent {
+            return DaggerPhotoReportFragmentComponent.builder()
+                    .applicationProvider(applicationProvider)
+                    .build()
         }
     }
 }
