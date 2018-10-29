@@ -26,9 +26,9 @@ project(':landingFragment').projectDir = new File(rootDir, 'sources/feature/land
 //project(':landingFragment').projectDir = new File(rootDir, 'sources/feature/landingFragment/stub')
 
 include ':photoreportFragment'
-project(':photoreportFragment').projectDir = new File(rootDir, 'sources/feature/photoreportFragment')
-//project(':photoreportFragment').projectDir = new File(rootDir, 'sources/feature/photoreportFragment/stub')
+//project(':photoreportFragment').projectDir = new File(rootDir, 'sources/feature/photoreportFragment')
+project(':photoreportFragment').projectDir = new File(rootDir, 'sources/feature/photoreportFragment/stub')
 
 include ':settingsFragment'
-project(':settingsFragment').projectDir = new File(rootDir, 'sources/feature/settingsFragment')
-//project(':settingsFragment').projectDir = new File(rootDir, 'sources/feature/settingsFragment/stub')
+//project(':settingsFragment').projectDir = new File(rootDir, 'sources/feature/settingsFragment')
+project(':settingsFragment').projectDir = new File(rootDir, 'sources/feature/settingsFragment/stub')

@@ -30,9 +30,9 @@ dependencies {
     kapt "com.google.dagger:dagger-compiler:2.18"
     implementation 'com.google.dagger:dagger:2.18'
 
-    implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.2.71'
+    implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.3.0'
 
-    implementation 'com.google.firebase:firebase-firestore:17.1.1'
+    implementation 'com.google.firebase:firebase-firestore:17.1.2'
 
     implementation 'io.reactivex.rxjava2:rxjava:2.2.3'
 }
