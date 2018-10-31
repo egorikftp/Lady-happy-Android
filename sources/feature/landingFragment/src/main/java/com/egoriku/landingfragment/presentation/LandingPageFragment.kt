@@ -36,7 +36,7 @@ internal class LandingPageFragment : BaseInjectableFragment<LandingPageContract.
     private lateinit var parallaxScrollListener: ParallaxScrollListener
     private lateinit var headerController: HeaderController
     private lateinit var aboutController: AboutController
-    private lateinit var quotasController: QuotesController
+    private lateinit var quotesController: QuotesController
     private lateinit var sectionsHeaderController: SectionsHeaderController
     private lateinit var ourTeamController: OurTeamController
 
@@ -79,7 +79,7 @@ internal class LandingPageFragment : BaseInjectableFragment<LandingPageContract.
         headerController = HeaderController()
         aboutController = AboutController()
         sectionsHeaderController = SectionsHeaderController()
-        quotasController = QuotesController(parallaxScrollListener)
+        quotesController = QuotesController(parallaxScrollListener)
         ourTeamController = OurTeamController {
             browseUrl(it)
         }
@@ -96,8 +96,8 @@ internal class LandingPageFragment : BaseInjectableFragment<LandingPageContract.
                 ItemList.create()
                         .add(headerController)
                         .add(model.aboutInfo, aboutController)
-                        .addIf(true, R.string.adapter_item_header_quotes, sectionsHeaderController)
-                        .add(model.quote, quotasController)
+                        .addIf(model.quotes.isNotEmpty(), R.string.adapter_item_header_quotes, sectionsHeaderController)
+                        .addIf(model.quotes.isNotEmpty(), model.quotes, quotesController)
                         .addIf(model.teamMembers.isNotEmpty(), R.string.adapter_item_header_our_team, sectionsHeaderController)
                         .addAll(model.teamMembers, ourTeamController)
         )
