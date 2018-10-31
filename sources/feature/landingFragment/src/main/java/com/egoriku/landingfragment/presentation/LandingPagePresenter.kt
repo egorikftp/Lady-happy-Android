@@ -16,11 +16,12 @@ internal class LandingPagePresenter
     private var screenModel: ILandingModel? = null
 
     override fun loadLandingData() {
-        if (screenModel != null) {
-            view?.render(screenModel!!)
-        } else {
-            view?.showLoading()
-            getLandingData()
+        when {
+            screenModel != null -> screenModel?.let { view?.render(it) }
+            else -> {
+                view?.showLoading()
+                getLandingData()
+            }
         }
     }
 

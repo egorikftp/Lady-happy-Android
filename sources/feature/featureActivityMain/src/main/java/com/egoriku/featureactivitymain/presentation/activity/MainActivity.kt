@@ -70,13 +70,12 @@ class MainActivity : BaseInjectableActivity<MainActivityContract.View, MainActiv
         }
 
         val currentMenuItem = savedInstanceState?.getInt(ARGS_MENU_ITEM) ?: DEFAULT_MENU_ITEM
-        navigationView.setCheckedItem(currentMenuItem)
-        checkMenuPosition(navigationView.checkedItem!!.itemId)
-
         setSupportActionBar(toolbarMainActivity)
 
         if (savedInstanceState == null) {
             presenter.openLanding()
+            navigationView.setCheckedItem(currentMenuItem)
+            checkMenuPosition(navigationView.checkedItem!!.itemId)
         }
     }
 
