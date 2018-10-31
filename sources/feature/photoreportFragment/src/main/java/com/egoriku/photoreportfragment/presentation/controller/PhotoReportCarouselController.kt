@@ -4,6 +4,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.PagerSnapHelper
+import androidx.recyclerview.widget.RecyclerView
 import com.egoriku.core.model.IPhotoReportModel
 import com.egoriku.photoreportfragment.R
 import kotlinx.android.extensions.LayoutContainer
@@ -13,7 +14,7 @@ import ru.surfstudio.android.easyadapter.ItemList
 import ru.surfstudio.android.easyadapter.controller.BindableItemController
 import ru.surfstudio.android.easyadapter.holder.BindableViewHolder
 
-class PhotoReportCarouselController : BindableItemController<IPhotoReportModel, PhotoReportCarouselController.Holder>() {
+class PhotoReportCarouselController(val viewPool: RecyclerView.RecycledViewPool) : BindableItemController<IPhotoReportModel, PhotoReportCarouselController.Holder>() {
 
     override fun createViewHolder(parent: ViewGroup) = Holder(parent)
 
@@ -30,6 +31,7 @@ class PhotoReportCarouselController : BindableItemController<IPhotoReportModel, 
         init {
             reportCarouselRecyclerView.apply {
                 layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+                setRecycledViewPool(viewPool)
             }
 
             PagerSnapHelper().attachToRecyclerView(reportCarouselRecyclerView)
