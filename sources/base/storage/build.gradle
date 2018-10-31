@@ -32,8 +32,8 @@ dependencies {
 
     implementation 'io.reactivex.rxjava2:rxjava:2.2.3'
 
-    kapt "com.google.dagger:dagger-compiler:2.18"
-    implementation 'com.google.dagger:dagger:2.18'
+    kapt "com.google.dagger:dagger-compiler:2.19"
+    implementation 'com.google.dagger:dagger:2.19'
 
     implementation 'com.google.firebase:firebase-firestore:17.1.2'
 }
