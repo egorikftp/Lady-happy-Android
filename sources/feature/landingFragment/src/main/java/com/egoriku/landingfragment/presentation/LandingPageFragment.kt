@@ -33,7 +33,9 @@ internal class LandingPageFragment : BaseInjectableFragment<LandingPageContract.
     private var mainActivityConnector: IMainActivityConnector? = null
     private var parallaxScrollListener: ParallaxScrollListener? = null
 
-    private val mainPageAdapter = EasyAdapter()
+    private val mainPageAdapter = EasyAdapter().apply {
+        setFirstInvisibleItemEnabled(false)
+    }
 
     private lateinit var headerController: HeaderController
     private lateinit var aboutController: AboutController
@@ -108,11 +110,6 @@ internal class LandingPageFragment : BaseInjectableFragment<LandingPageContract.
 
     override fun onDestroy() {
         super.onDestroy()
-
-        val listener = parallaxScrollListener
-        if (listener != null) {
-            recyclerView.removeOnScrollListener(listener)
-        }
 
         parallaxScrollListener = null
     }
