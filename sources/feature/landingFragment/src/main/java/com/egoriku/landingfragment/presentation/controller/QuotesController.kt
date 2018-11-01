@@ -14,7 +14,7 @@ import ru.surfstudio.android.easyadapter.controller.BindableItemController
 import ru.surfstudio.android.easyadapter.holder.BindableViewHolder
 import java.util.*
 
-internal class QuotesController(val scrollListener: ParallaxScrollListener) : BindableItemController<List<IQuotesModel>, QuotesController.Holder>() {
+internal class QuotesController(val parallaxScrollListener: ParallaxScrollListener?) : BindableItemController<List<IQuotesModel>, QuotesController.Holder>() {
 
     override fun createViewHolder(parent: ViewGroup) = Holder(parent)
 
@@ -26,7 +26,6 @@ internal class QuotesController(val scrollListener: ParallaxScrollListener) : Bi
         override val containerView: View?
             get() = itemView
 
-        private var parallaxScrollListener: ParallaxScrollListener? = scrollListener
         private val random = Random()
         private var itemHeight = itemView.resources.getDimension(R.dimen.adapter_item_quotes_height).toInt()
 
@@ -90,8 +89,6 @@ internal class QuotesController(val scrollListener: ParallaxScrollListener) : Bi
             }
         }
 
-        override fun onDetach() {
-            parallaxScrollListener = null
-        }
+        override fun onDetach() = Unit
     }
 }

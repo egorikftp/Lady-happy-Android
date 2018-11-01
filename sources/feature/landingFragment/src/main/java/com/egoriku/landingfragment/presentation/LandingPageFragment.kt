@@ -31,14 +31,21 @@ internal class LandingPageFragment : BaseInjectableFragment<LandingPageContract.
     lateinit var landingPagePresenter: LandingPageContract.Presenter
 
     private var mainActivityConnector: IMainActivityConnector? = null
+    private var parallaxScrollListener: ParallaxScrollListener? = null
+
     private val mainPageAdapter = EasyAdapter()
 
-    private lateinit var parallaxScrollListener: ParallaxScrollListener
     private lateinit var headerController: HeaderController
     private lateinit var aboutController: AboutController
     private lateinit var quotesController: QuotesController
     private lateinit var sectionsHeaderController: SectionsHeaderController
     private lateinit var ourTeamController: OurTeamController
+
+    private val onScrollListener = object : RecyclerView.OnScrollListener() {
+        override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+            mainActivityConnector?.onScroll()
+        }
+    }
 
     override fun provideLayout(): Int = R.layout.fragment_main_page
 
@@ -65,11 +72,7 @@ internal class LandingPageFragment : BaseInjectableFragment<LandingPageContract.
         recyclerView.apply {
             layoutManager = LinearLayoutManager(context)
             adapter = mainPageAdapter
-            addOnScrollListener(object : RecyclerView.OnScrollListener() {
-                override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-                    mainActivityConnector?.onScroll()
-                }
-            })
+            addOnScrollListener(onScrollListener)
         }
 
         parallaxScrollListener = ParallaxScrollListener().apply {
@@ -80,7 +83,7 @@ internal class LandingPageFragment : BaseInjectableFragment<LandingPageContract.
         aboutController = AboutController()
         sectionsHeaderController = SectionsHeaderController()
         quotesController = QuotesController(parallaxScrollListener)
-        ourTeamController = OurTeamController {
+        ourTeamController = OurTeamController(parallaxScrollListener) {
             browseUrl(it)
         }
 
@@ -101,5 +104,16 @@ internal class LandingPageFragment : BaseInjectableFragment<LandingPageContract.
                         .addIf(model.teamMembers.isNotEmpty(), R.string.adapter_item_header_our_team, sectionsHeaderController)
                         .addAll(model.teamMembers, ourTeamController)
         )
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+
+        val listener = parallaxScrollListener
+        if (listener != null) {
+            recyclerView.removeOnScrollListener(listener)
+        }
+
+        parallaxScrollListener = null
     }
 }

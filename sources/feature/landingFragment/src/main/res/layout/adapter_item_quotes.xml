@@ -10,7 +10,7 @@
         android:id="@+id/quotesBackground"
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:foreground="@color/RealBlack30"
+        android:foreground="@color/RealBlack40"
         android:scaleType="matrix"
         android:src="@drawable/bg_quotes"
         app:layout_constraintBottom_toBottomOf="parent"

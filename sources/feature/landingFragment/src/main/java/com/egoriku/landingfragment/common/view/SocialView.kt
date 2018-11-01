@@ -38,7 +38,7 @@ internal class SocialView : LinearLayout, View.OnClickListener {
     private companion object DefaultValues {
         const val DEFAULT_MAX_PADDING = 30
         const val DEFAULT_ITEM_SIDE_SIZE = 120
-        const val ANIMATION_DURATION = 500L
+        const val ANIMATION_DURATION = 300L
         const val ANIMATION_SHOW_OFFSET = 100L
         const val ANIMATION_HIDE_OFFSET = 50L
 
@@ -113,6 +113,12 @@ internal class SocialView : LinearLayout, View.OnClickListener {
                 leftMargin = itemPadding
                 rightMargin = itemPadding
             }
+        }
+    }
+
+    fun hideView() {
+        if (animationState == AnimationState.NEED_HIDE) {
+            showView()
         }
     }
 
