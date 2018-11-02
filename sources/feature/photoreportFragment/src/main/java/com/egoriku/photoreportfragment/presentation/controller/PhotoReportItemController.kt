@@ -2,8 +2,10 @@ package com.egoriku.photoreportfragment.presentation.controller
 
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade
+import com.bumptech.glide.request.RequestOptions
 import com.egoriku.photoreportfragment.R
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.adapter_item_photo_report.view.*
@@ -21,10 +23,13 @@ class PhotoReportItemController : BindableItemController<String, PhotoReportItem
         override val containerView: View?
             get() = itemView
 
+        private val requestOptions = RequestOptions().placeholder(ContextCompat.getDrawable(itemView.context, R.color.RealBlack30))
+
         override fun bind(data: String) {
             Glide.with(itemView.context)
                     .load(data)
                     .transition(withCrossFade())
+                    .apply(requestOptions)
                     .into(itemView.reportPhotoItem)
         }
     }
