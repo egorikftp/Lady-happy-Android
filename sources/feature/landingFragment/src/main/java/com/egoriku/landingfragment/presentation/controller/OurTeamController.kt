@@ -5,20 +5,26 @@ import android.view.ViewGroup
 import com.bumptech.glide.Glide
 import com.egoriku.core.model.ITeamMemberModel
 import com.egoriku.landingfragment.R
+import com.egoriku.landingfragment.common.parallax.IParallaxScrollListener
+import com.egoriku.landingfragment.common.parallax.ParallaxScrollListener
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.adapter_item_our_team.*
 import ru.surfstudio.android.easyadapter.controller.BindableItemController
 import ru.surfstudio.android.easyadapter.holder.BindableViewHolder
 
-internal class OurTeamController(val onSocialItemClick: (url: String) -> Unit) : BindableItemController<ITeamMemberModel, OurTeamController.Holder>() {
+internal class OurTeamController(val parallaxScrollListener: ParallaxScrollListener?, val onSocialItemClick: (url: String) -> Unit) : BindableItemController<ITeamMemberModel, OurTeamController.Holder>() {
 
     override fun createViewHolder(parent: ViewGroup) = Holder(parent)
 
     override fun getItemId(data: ITeamMemberModel) = data.hashCode().toString()
 
-    inner class Holder(parent: ViewGroup) : BindableViewHolder<ITeamMemberModel>(parent, R.layout.adapter_item_our_team), LayoutContainer {
+    inner class Holder(parent: ViewGroup) : BindableViewHolder<ITeamMemberModel>(parent, R.layout.adapter_item_our_team), LayoutContainer, IParallaxScrollListener {
         override val containerView: View
             get() = itemView
+
+        init {
+            parallaxScrollListener?.addListener(this@Holder)
+        }
 
         private val socialViewContainer = socialView.apply {
             setOnClickListener { showView() }
@@ -35,5 +41,11 @@ internal class OurTeamController(val onSocialItemClick: (url: String) -> Unit) :
                     .load(model.profileImage)
                     .into(ourTeamPersonImage)
         }
+
+        override fun onScroll() = socialViewContainer.hideView()
+
+        override fun onAttach() = Unit
+
+        override fun onDetach() = Unit
     }
 }

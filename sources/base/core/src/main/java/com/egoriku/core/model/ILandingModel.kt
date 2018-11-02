@@ -4,7 +4,7 @@ interface ILandingModel {
 
     val aboutInfo: String
 
-    val quote: String
+    val quotes: List<IQuotesModel>
 
     val teamMembers: List<ITeamMemberModel>
 }
@@ -25,4 +25,11 @@ interface ISocialModel {
     val socialUrl: String
 
     val type: String
+}
+
+interface IQuotesModel {
+
+    val quote: String
+
+    val author: String
 }

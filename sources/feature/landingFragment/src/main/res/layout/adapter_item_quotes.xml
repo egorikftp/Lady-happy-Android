@@ -10,7 +10,7 @@
         android:id="@+id/quotesBackground"
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:foreground="@color/RealBlack30"
+        android:foreground="@color/RealBlack40"
         android:scaleType="matrix"
         android:src="@drawable/bg_quotes"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -21,32 +21,36 @@
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/quotesContent"
         android:layout_width="0dp"
-        android:layout_height="120dp"
+        android:layout_height="160dp"
         android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:paddingStart="@dimen/material_padding_16"
         android:paddingLeft="@dimen/material_padding_16"
         android:paddingEnd="@dimen/material_padding_16"
+        android:gravity="center"
         android:paddingRight="@dimen/material_padding_16"
         android:textAlignment="center"
         android:textColor="@color/RealWhite"
         app:autoSizeTextType="uniform"
+        app:autoSizeMaxTextSize="30sp"
         app:fontFamily="@font/playfair_display"
         app:layout_constraintEnd_toEndOf="@+id/quotesBackground"
         app:layout_constraintStart_toStartOf="@+id/quotesBackground"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="Quotes Content" />
+        tools:text="@tools:sample/date/day_of_week" />
 
     <ImageView
         android:id="@+id/quotes_olive"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
         android:adjustViewBounds="true"
         android:paddingTop="@dimen/material_padding_8"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintDimensionRatio="w,1.5:1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/quotesContent"
         app:srcCompat="@drawable/ic_olive_branch" />
 
     <TextView

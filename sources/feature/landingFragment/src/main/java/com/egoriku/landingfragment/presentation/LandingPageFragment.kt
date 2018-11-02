@@ -7,7 +7,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.egoriku.core.actions.common.IMainActivityConnector
 import com.egoriku.core.di.findDependencies
-import com.egoriku.core.model.ILandingModel
 import com.egoriku.landingfragment.R
 import com.egoriku.landingfragment.common.parallax.ParallaxScrollListener
 import com.egoriku.landingfragment.di.LandingFragmentComponent
@@ -31,14 +30,23 @@ internal class LandingPageFragment : BaseInjectableFragment<LandingPageContract.
     lateinit var landingPagePresenter: LandingPageContract.Presenter
 
     private var mainActivityConnector: IMainActivityConnector? = null
-    private val mainPageAdapter = EasyAdapter()
+    private var parallaxScrollListener: ParallaxScrollListener? = null
 
-    private lateinit var parallaxScrollListener: ParallaxScrollListener
+    private val mainPageAdapter = EasyAdapter().apply {
+        setFirstInvisibleItemEnabled(false)
+    }
+
     private lateinit var headerController: HeaderController
     private lateinit var aboutController: AboutController
-    private lateinit var quotasController: QuotesController
+    private lateinit var quotesController: QuotesController
     private lateinit var sectionsHeaderController: SectionsHeaderController
     private lateinit var ourTeamController: OurTeamController
+
+    private val onScrollListener = object : RecyclerView.OnScrollListener() {
+        override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+            mainActivityConnector?.onScroll()
+        }
+    }
 
     override fun provideLayout(): Int = R.layout.fragment_main_page
 
@@ -65,11 +73,7 @@ internal class LandingPageFragment : BaseInjectableFragment<LandingPageContract.
         recyclerView.apply {
             layoutManager = LinearLayoutManager(context)
             adapter = mainPageAdapter
-            addOnScrollListener(object : RecyclerView.OnScrollListener() {
-                override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-                    mainActivityConnector?.onScroll()
-                }
-            })
+            addOnScrollListener(onScrollListener)
         }
 
         parallaxScrollListener = ParallaxScrollListener().apply {
@@ -79,8 +83,8 @@ internal class LandingPageFragment : BaseInjectableFragment<LandingPageContract.
         headerController = HeaderController()
         aboutController = AboutController()
         sectionsHeaderController = SectionsHeaderController()
-        quotasController = QuotesController(parallaxScrollListener)
-        ourTeamController = OurTeamController {
+        quotesController = QuotesController(parallaxScrollListener)
+        ourTeamController = OurTeamController(parallaxScrollListener) {
             browseUrl(it)
         }
 
@@ -91,15 +95,25 @@ internal class LandingPageFragment : BaseInjectableFragment<LandingPageContract.
 
     override fun hideLoading() = progressBar.gone()
 
-    override fun render(model: ILandingModel) {
-        mainPageAdapter.setItems(
-                ItemList.create()
-                        .add(headerController)
-                        .add(model.aboutInfo, aboutController)
-                        .addIf(true, R.string.adapter_item_header_quotes, sectionsHeaderController)
-                        .add(model.quote, quotasController)
-                        .addIf(model.teamMembers.isNotEmpty(), R.string.adapter_item_header_our_team, sectionsHeaderController)
-                        .addAll(model.teamMembers, ourTeamController)
-        )
+    override fun render(screenModel: LandingScreenModel) {
+        val itemList = ItemList.create()
+
+        itemList.addIf(!screenModel.isEmpty(), headerController)
+
+        screenModel.landingModel?.let {
+            itemList.add(it.aboutInfo, aboutController)
+                    .addIf(it.quotes.isNotEmpty(), R.string.adapter_item_header_quotes, sectionsHeaderController)
+                    .addIf(it.quotes.isNotEmpty(), it.quotes, quotesController)
+                    .addIf(it.teamMembers.isNotEmpty(), R.string.adapter_item_header_our_team, sectionsHeaderController)
+                    .addAll(it.teamMembers, ourTeamController)
+        }
+
+        mainPageAdapter.setItems(itemList)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+
+        parallaxScrollListener = null
     }
 }

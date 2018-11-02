@@ -7,9 +7,9 @@ class LandingEntity {
     @JvmField
     val aboutInfo: String? = null
 
-    @PropertyName("quote")
+    @PropertyName("quotes")
     @JvmField
-    val quote: String? = null
+    val quotes: List<QuotesEntity>? = null
 
     @PropertyName("teamMembers")
     @JvmField

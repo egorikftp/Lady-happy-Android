@@ -61,6 +61,8 @@ class PhotoReportFragment : BaseInjectableFragment<PhotoReportContract.View, Pho
     }
 
     private fun initRecyclerView() {
+        val viewPool = RecyclerView.RecycledViewPool()
+
         recyclerViewAllGoods.apply {
             layoutManager = LinearLayoutManager(context)
             adapter = photoReportAdapter
@@ -76,7 +78,7 @@ class PhotoReportFragment : BaseInjectableFragment<PhotoReportContract.View, Pho
         })
 
         photoReportHeaderController = PhotoReportHeaderController()
-        photoReportCarouselController = PhotoReportCarouselController()
+        photoReportCarouselController = PhotoReportCarouselController(viewPool)
     }
 
     override fun render(screenModel: ScreenModel) {

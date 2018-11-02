@@ -17,8 +17,6 @@ package ru.surfstudio.android.easyadapter.controller;
 
 import android.view.ViewGroup;
 
-import java.util.Random;
-
 import androidx.recyclerview.widget.RecyclerView;
 import ru.surfstudio.android.easyadapter.EasyAdapter;
 import ru.surfstudio.android.easyadapter.ItemList;
@@ -27,40 +25,32 @@ import ru.surfstudio.android.easyadapter.item.BaseItem;
 /**
  * Base Controller for item of RecyclerView. It used with {@link EasyAdapter} and {@link ItemList}
  * It responsible for interaction with item.
- *
  * @param <H> type of ViewHolder
  * @param <I> type of Item
  */
 public abstract class BaseItemController<H extends RecyclerView.ViewHolder, I extends BaseItem> {
 
     public static final long NO_ID = RecyclerView.NO_ID;
-    private int uniqueControllerInstanceId;
-
-    public BaseItemController() {
-        uniqueControllerInstanceId = new Random().nextInt();
-    }
 
     public abstract void bind(H holder, I item);
 
     public abstract H createViewHolder(ViewGroup parent);
 
     public int viewType() {
-        return getClass().getCanonicalName().hashCode() + uniqueControllerInstanceId;
+        return getClass().getCanonicalName().hashCode();
     }
 
     /**
      * must return unique value
      * method is used for automatically call notify... methods, see {@link EasyAdapter}
-     *
      * @return item id
      */
-    public String getItemId(I item) {
+    public String getItemId(I item){
         return String.valueOf(NO_ID);
     }
 
     /**
      * method is used for automatically call notify... methods, see {@link EasyAdapter}
-     *
      * @return hash of item's data
      */
     public abstract String getItemHash(I item);

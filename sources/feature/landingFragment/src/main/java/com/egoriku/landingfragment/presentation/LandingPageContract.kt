@@ -1,6 +1,5 @@
 package com.egoriku.landingfragment.presentation
 
-import com.egoriku.core.model.ILandingModel
 import com.egoriku.ui.arch.pvm.BaseContract
 
 internal interface LandingPageContract {
@@ -12,7 +11,7 @@ internal interface LandingPageContract {
 
         fun hideLoading()
 
-        fun render(model: ILandingModel)
+        fun render(screenModel: LandingScreenModel)
     }
 
     interface Presenter : BaseContract.Presenter<View> {

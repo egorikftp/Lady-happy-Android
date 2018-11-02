@@ -52,14 +52,12 @@ public abstract class BindableItemController<T, H extends BindableViewHolder<T>>
     /**
      * must return unique value
      * method is used for automatically call notify... methods, see {@link EasyAdapter}
-     *
      * @return item id
      */
     protected abstract String getItemId(T data);
 
     /**
      * method is used for automatically call notify... methods, see {@link EasyAdapter}
-     *
      * @return hash of data
      */
     protected String getItemHash(T data) {
