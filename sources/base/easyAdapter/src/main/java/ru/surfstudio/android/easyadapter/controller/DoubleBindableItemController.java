@@ -53,14 +53,12 @@ public abstract class DoubleBindableItemController<T1, T2, H extends DoubleBinda
     /**
      * must return unique value
      * method is used for automatically call notify... methods, see {@link EasyAdapter}
-     *
      * @return item id
      */
     protected abstract String getItemId(T1 firstData, T2 secondData);
 
     /**
      * method is used for automatically call notify... methods, see {@link EasyAdapter}
-     *
      * @return hash of item's data
      */
     protected String getItemHash(T1 firstData, T2 secondData) {

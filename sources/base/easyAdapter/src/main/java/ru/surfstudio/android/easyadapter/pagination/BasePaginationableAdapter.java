@@ -43,6 +43,10 @@ public abstract class BasePaginationableAdapter extends EasyAdapter {
     private OnShowMoreListener onShowMoreListener;
     private boolean blockShowMoreEvent = true;
 
+    public interface OnShowMoreListener {
+        void onShowMore();
+    }
+
     public BasePaginationableAdapter() {
         getPaginationFooterController().setListener(new OnShowMoreListener() {
             @Override
@@ -213,10 +217,6 @@ public abstract class BasePaginationableAdapter extends EasyAdapter {
         setItems(items, true);
     }
 
-    public interface OnShowMoreListener {
-        void onShowMore();
-    }
-
     protected abstract static class BasePaginationFooterController<H extends BasePaginationFooterHolder> extends NoDataItemController<H> {
         private PaginationState state = PaginationState.COMPLETE;
         private OnShowMoreListener listener;
@@ -225,12 +225,12 @@ public abstract class BasePaginationableAdapter extends EasyAdapter {
             this.listener = listener;
         }
 
-        public PaginationState getState() {
-            return state;
-        }
-
         public void setState(PaginationState state) {
             this.state = state;
+        }
+
+        public PaginationState getState() {
+            return state;
         }
 
         @Override
