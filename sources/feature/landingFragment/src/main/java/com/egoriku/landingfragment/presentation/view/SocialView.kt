@@ -1,4 +1,4 @@
-package com.egoriku.landingfragment.common.view
+package com.egoriku.landingfragment.presentation.view
 
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
@@ -96,7 +96,6 @@ internal class SocialView : LinearLayout, View.OnClickListener {
         }
 
         val calcItemSideSize = (right - left) / childCount - itemPadding * 2
-        Log.d("egorik", "itemSide = $itemSideSize, calc = $calcItemSideSize")
 
         if (calcItemSideSize < itemSideSize) itemSideSize = calcItemSideSize
 

@@ -13,11 +13,11 @@ internal class LandingPagePresenter
 @Inject constructor(private val analyticsHelper: IAnalyticsHelper, private val landingUseCase: LandingUseCase)
     : BasePresenter<LandingPageContract.View>(), LandingPageContract.Presenter {
 
-    private var screenModel: ILandingModel? = null
+    private var screenModel: LandingScreenModel = LandingScreenModel()
 
     override fun loadLandingData() {
         when {
-            screenModel != null -> screenModel?.let { view?.render(it) }
+            !screenModel.isEmpty() -> view?.render(screenModel)
             else -> {
                 view?.showLoading()
                 getLandingData()
@@ -29,16 +29,16 @@ internal class LandingPagePresenter
     private fun getLandingData() {
         landingUseCase.execute(object : AppObserver<ILandingModel>() {
             override fun onNext(model: ILandingModel) {
-                screenModel = model
+                screenModel.landingModel = model
 
                 view?.let {
                     it.hideLoading()
-                    it.render(model)
+                    it.render(screenModel)
                 }
             }
 
             override fun onError(exception: Throwable) {
-                screenModel = null
+                screenModel.landingModel = null
 
                 view?.hideLoading()
 

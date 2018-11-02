@@ -7,7 +7,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.egoriku.core.actions.common.IMainActivityConnector
 import com.egoriku.core.di.findDependencies
-import com.egoriku.core.model.ILandingModel
 import com.egoriku.landingfragment.R
 import com.egoriku.landingfragment.common.parallax.ParallaxScrollListener
 import com.egoriku.landingfragment.di.LandingFragmentComponent
@@ -96,16 +95,20 @@ internal class LandingPageFragment : BaseInjectableFragment<LandingPageContract.
 
     override fun hideLoading() = progressBar.gone()
 
-    override fun render(model: ILandingModel) {
-        mainPageAdapter.setItems(
-                ItemList.create()
-                        .add(headerController)
-                        .add(model.aboutInfo, aboutController)
-                        .addIf(model.quotes.isNotEmpty(), R.string.adapter_item_header_quotes, sectionsHeaderController)
-                        .addIf(model.quotes.isNotEmpty(), model.quotes, quotesController)
-                        .addIf(model.teamMembers.isNotEmpty(), R.string.adapter_item_header_our_team, sectionsHeaderController)
-                        .addAll(model.teamMembers, ourTeamController)
-        )
+    override fun render(screenModel: LandingScreenModel) {
+        val itemList = ItemList.create()
+
+        itemList.addIf(!screenModel.isEmpty(), headerController)
+
+        screenModel.landingModel?.let {
+            itemList.add(it.aboutInfo, aboutController)
+                    .addIf(it.quotes.isNotEmpty(), R.string.adapter_item_header_quotes, sectionsHeaderController)
+                    .addIf(it.quotes.isNotEmpty(), it.quotes, quotesController)
+                    .addIf(it.teamMembers.isNotEmpty(), R.string.adapter_item_header_our_team, sectionsHeaderController)
+                    .addAll(it.teamMembers, ourTeamController)
+        }
+
+        mainPageAdapter.setItems(itemList)
     }
 
     override fun onDestroy() {
