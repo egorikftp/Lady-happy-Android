@@ -17,5 +17,7 @@ internal interface LandingPageContract {
     interface Presenter : BaseContract.Presenter<View> {
 
         fun loadLandingData()
+
+        fun retryLoading()
     }
 }

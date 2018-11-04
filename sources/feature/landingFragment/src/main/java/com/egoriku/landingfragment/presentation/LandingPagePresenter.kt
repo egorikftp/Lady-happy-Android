@@ -1,6 +1,5 @@
 package com.egoriku.landingfragment.presentation
 
-import android.util.Log
 import com.egoriku.core.di.utils.IAnalyticsHelper
 import com.egoriku.core.model.ILandingModel
 import com.egoriku.core.usecase.AppObserver
@@ -25,25 +24,23 @@ internal class LandingPagePresenter
         }
     }
 
+    override fun retryLoading() = getLandingData()
+
     @Suppress("PARAMETER_NAME_CHANGED_ON_OVERRIDE")
     private fun getLandingData() {
         landingUseCase.execute(object : AppObserver<ILandingModel>() {
-            override fun onNext(model: ILandingModel) {
-                screenModel.landingModel = model
+            override fun onNext(model: ILandingModel) = processResult(model)
 
-                view?.let {
-                    it.hideLoading()
-                    it.render(screenModel)
-                }
-            }
-
-            override fun onError(exception: Throwable) {
-                screenModel.landingModel = null
-
-                view?.hideLoading()
-
-                Log.e(this@LandingPagePresenter.javaClass.simpleName, "Error", exception)
-            }
+            override fun onError(exception: Throwable) = processResult()
         }, Params.EMPTY)
+    }
+
+    private fun processResult(model: ILandingModel? = null) {
+        screenModel.landingModel = model
+
+        view?.let {
+            it.hideLoading()
+            it.render(screenModel)
+        }
     }
 }

@@ -32,11 +32,12 @@ internal class LandingPageFragment : BaseInjectableFragment<LandingPageContract.
     private var mainActivityConnector: IMainActivityConnector? = null
     private var parallaxScrollListener: ParallaxScrollListener? = null
 
-    private val mainPageAdapter = EasyAdapter().apply {
+    private val landingAdapter = EasyAdapter().apply {
         setFirstInvisibleItemEnabled(false)
     }
 
     private lateinit var headerController: HeaderController
+    private lateinit var noDataController: NoDataController
     private lateinit var aboutController: AboutController
     private lateinit var quotesController: QuotesController
     private lateinit var sectionsHeaderController: SectionsHeaderController
@@ -72,7 +73,7 @@ internal class LandingPageFragment : BaseInjectableFragment<LandingPageContract.
     override fun initViews() {
         recyclerView.apply {
             layoutManager = LinearLayoutManager(context)
-            adapter = mainPageAdapter
+            adapter = landingAdapter
             addOnScrollListener(onScrollListener)
         }
 
@@ -81,6 +82,10 @@ internal class LandingPageFragment : BaseInjectableFragment<LandingPageContract.
         }
 
         headerController = HeaderController()
+        noDataController = NoDataController {
+            presenter.retryLoading()
+        }
+
         aboutController = AboutController()
         sectionsHeaderController = SectionsHeaderController()
         quotesController = QuotesController(parallaxScrollListener)
@@ -98,17 +103,18 @@ internal class LandingPageFragment : BaseInjectableFragment<LandingPageContract.
     override fun render(screenModel: LandingScreenModel) {
         val itemList = ItemList.create()
 
-        itemList.addIf(!screenModel.isEmpty(), headerController)
+        itemList.addIf(screenModel.isEmpty(), noDataController)
 
         screenModel.landingModel?.let {
-            itemList.add(it.aboutInfo, aboutController)
+            itemList.add(headerController)
+                    .add(it.aboutInfo, aboutController)
                     .addIf(it.quotes.isNotEmpty(), R.string.adapter_item_header_quotes, sectionsHeaderController)
                     .addIf(it.quotes.isNotEmpty(), it.quotes, quotesController)
                     .addIf(it.teamMembers.isNotEmpty(), R.string.adapter_item_header_our_team, sectionsHeaderController)
                     .addAll(it.teamMembers, ourTeamController)
         }
 
-        mainPageAdapter.setItems(itemList)
+        landingAdapter.setItems(itemList)
     }
 
     override fun onDestroy() {
