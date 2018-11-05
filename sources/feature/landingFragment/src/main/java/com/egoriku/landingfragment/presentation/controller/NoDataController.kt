@@ -3,8 +3,6 @@ package com.egoriku.landingfragment.presentation.controller
 import android.view.View
 import android.view.ViewGroup
 import com.egoriku.landingfragment.R
-import com.egoriku.ui.ktx.gone
-import com.egoriku.ui.ktx.show
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.adapter_item_no_data.*
 import ru.surfstudio.android.easyadapter.controller.NoDataItemController
@@ -19,14 +17,7 @@ internal class NoDataController(val retryListener: () -> Unit) : NoDataItemContr
             get() = itemView
 
         init {
-            progressBar.gone()
-
-            retryButton.setOnClickListener {
-                retryListener.invoke()
-                it.isClickable = false
-
-                progressBar.show()
-            }
+            retryButton.setOnClickListener { retryListener.invoke() }
         }
     }
 }

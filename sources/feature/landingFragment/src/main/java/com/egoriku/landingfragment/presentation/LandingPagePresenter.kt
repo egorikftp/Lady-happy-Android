@@ -17,30 +17,28 @@ internal class LandingPagePresenter
     override fun loadLandingData() {
         when {
             !screenModel.isEmpty() -> view?.render(screenModel)
-            else -> {
-                view?.showLoading()
-                getLandingData()
-            }
+            else -> getLandingData()
         }
     }
 
     override fun retryLoading() = getLandingData()
 
-    @Suppress("PARAMETER_NAME_CHANGED_ON_OVERRIDE")
     private fun getLandingData() {
-        landingUseCase.execute(object : AppObserver<ILandingModel>() {
-            override fun onNext(model: ILandingModel) = processResult(model)
+        processResult(LoadState.PROGRESS)
 
-            override fun onError(exception: Throwable) = processResult()
+        landingUseCase.execute(object : AppObserver<ILandingModel>() {
+            override fun onNext(model: ILandingModel) = processResult(LoadState.NONE, model)
+
+            override fun onError(exception: Throwable) = processResult(LoadState.ERROR_LOADING)
         }, Params.EMPTY)
     }
 
-    private fun processResult(model: ILandingModel? = null) {
-        screenModel.landingModel = model
+    private fun processResult(loadState: LoadState = LoadState.NONE, model: ILandingModel? = null) {
+        screenModel.let {
+            it.landingModel = model
+            it.loadState = loadState
 
-        view?.let {
-            it.hideLoading()
-            it.render(screenModel)
+            view?.render(it)
         }
     }
 }
