@@ -10,6 +10,7 @@ import com.egoriku.network.data.entities.landing.QuotesEntity
 import com.egoriku.network.data.entities.landing.SocialEntity
 import com.egoriku.network.data.entities.landing.TeamMemberEntity
 import com.egoriku.network.datasource.LandingDataSource
+import com.egoriku.network.datasource.LandingDataSourceExperimental
 import com.egoriku.storage.common.Constants.EMPTY
 import com.egoriku.storage.domain.model.landing.LandingModel
 import com.egoriku.storage.domain.model.landing.QuotesModel
@@ -17,11 +18,16 @@ import com.egoriku.storage.domain.model.landing.SocialModel
 import com.egoriku.storage.domain.model.landing.TeamMemberModel
 import io.reactivex.Observable
 
-class LandingRepository(private val landingDataSource: LandingDataSource) : ILandingRepository {
+class LandingRepository(private val landingDataSource: LandingDataSource, private val landingDataSourceEx: LandingDataSourceExperimental) : ILandingRepository {
 
     override fun getLandingInfo(): Observable<ILandingModel> {
         return landingDataSource.downloadLanding()
                 .map(::transform)
+    }
+
+    override suspend fun getLandingEx(): ILandingModel {
+        val landing = landingDataSourceEx.downloadLanding()
+        return transform(landing)
     }
 
     private fun transform(entity: LandingEntity): ILandingModel =

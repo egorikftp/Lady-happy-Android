@@ -2,7 +2,7 @@ package com.egoriku.network.datasource
 
 import com.egoriku.core.di.utils.IFirebaseFirestore
 import com.egoriku.network.data.entities.photoreport.PhotoReportEntity
-import com.egoriku.network.getObservable
+import com.egoriku.network.firestore.getObservable
 import com.google.firebase.firestore.Query
 import io.reactivex.Observable
 import javax.inject.Inject

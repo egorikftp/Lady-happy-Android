@@ -6,4 +6,6 @@ import io.reactivex.Observable
 interface ILandingRepository {
 
     fun getLandingInfo(): Observable<ILandingModel>
+
+    suspend fun getLandingEx(): ILandingModel
 }
