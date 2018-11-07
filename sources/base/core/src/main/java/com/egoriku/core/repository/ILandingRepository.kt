@@ -1,11 +1,9 @@
 package com.egoriku.core.repository
 
+import com.egoriku.core.firestore.Result
 import com.egoriku.core.model.ILandingModel
-import io.reactivex.Observable
 
 interface ILandingRepository {
 
-    fun getLandingInfo(): Observable<ILandingModel>
-
-    suspend fun getLandingEx(): ILandingModel
+    suspend fun getLanding(): Result<ILandingModel>
 }

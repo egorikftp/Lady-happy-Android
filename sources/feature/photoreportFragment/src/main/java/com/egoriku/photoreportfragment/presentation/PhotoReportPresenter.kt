@@ -1,7 +1,7 @@
 package com.egoriku.photoreportfragment.presentation
 
 import com.egoriku.core.common.TrackingConstants
-import com.egoriku.core.di.utils.IAnalyticsHelper
+import com.egoriku.core.di.utils.IAnalytics
 import com.egoriku.core.model.IComplexPhotoReportModel
 import com.egoriku.core.usecase.AppObserver
 import com.egoriku.core.usecase.Params
@@ -12,14 +12,14 @@ import javax.inject.Inject
 class PhotoReportPresenter
 @Inject constructor(
         private val photoReportUseCase: PhotoReportUseCase,
-        private val analyticsHelper: IAnalyticsHelper
+        private val analytics: IAnalytics
 ) : BasePresenter<PhotoReportContract.View>(), PhotoReportContract.Presenter {
 
     private var screenModel = ScreenModel()
 
     override fun onPresenterCreated() {
         super.onPresenterCreated()
-        analyticsHelper.trackPageView(TrackingConstants.TRACKING_FRAGMENT_LANDING)
+        analytics.trackPageView(TrackingConstants.TRACKING_FRAGMENT_LANDING)
     }
 
     override fun onPresenterDestroy() {
@@ -62,7 +62,7 @@ class PhotoReportPresenter
         view?.hideLoading()
     }
 
-    override fun onGetPhotoReportSuccessTracking() = analyticsHelper.trackGetCategoriesSuccess(null)
+    override fun onGetPhotoReportSuccessTracking() = analytics.trackGetCategoriesSuccess(null)
 
-    override fun onGetPhotoReportErrorTracking() = analyticsHelper.trackGetCategoriesFail(null)
+    override fun onGetPhotoReportErrorTracking() = analytics.trackGetCategoriesFail(null)
 }

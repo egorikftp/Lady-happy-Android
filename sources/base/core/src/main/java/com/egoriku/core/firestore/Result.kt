@@ -1,4 +1,4 @@
-package com.egoriku.networkpublic.firestore
+package com.egoriku.core.firestore
 
 sealed class Result<out T> {
     class Success<out T>(val value: T) : Result<T>()

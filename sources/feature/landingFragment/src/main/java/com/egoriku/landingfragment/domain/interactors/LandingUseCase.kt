@@ -1,12 +1,10 @@
 package com.egoriku.landingfragment.domain.interactors
 
 import com.egoriku.core.repository.ILandingRepository
-import com.egoriku.core.usecase.BaseUseCase
-import com.egoriku.core.usecase.Params
 import javax.inject.Inject
 
 internal class LandingUseCase
-@Inject constructor(private val landRepository: ILandingRepository) : BaseUseCase() {
+@Inject constructor(private val landRepository: ILandingRepository) {
 
-    override fun getObservable(params: Params) = landRepository.getLandingInfo()
+    suspend fun getLandingInfo() = landRepository.getLanding()
 }

@@ -3,7 +3,6 @@ package com.egoriku.ladyhappy
 import android.annotation.SuppressLint
 import android.os.StrictMode
 import com.squareup.leakcanary.LeakCanary
-import timber.log.Timber
 
 @SuppressLint("Registered")
 open class DebugApplication : Application() {
@@ -12,7 +11,6 @@ open class DebugApplication : Application() {
         super.onCreate()
         initLeakCanary()
         DebugInitializer.register(this)
-        Timber.plant(Timber.DebugTree())
 
         // enableStrictMode()
     }

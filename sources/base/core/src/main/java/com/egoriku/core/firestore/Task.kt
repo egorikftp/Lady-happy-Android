@@ -1,4 +1,4 @@
-package com.egoriku.networkpublic.firestore
+package com.egoriku.core.firestore
 
 import com.google.android.gms.tasks.Task
 import kotlinx.coroutines.suspendCancellableCoroutine

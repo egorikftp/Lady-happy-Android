@@ -1,7 +1,7 @@
 package com.egoriku.photoreportfragment.di.module
 
 import com.egoriku.core.di.FragmentScope
-import com.egoriku.core.di.utils.IAnalyticsHelper
+import com.egoriku.core.di.utils.IAnalytics
 import com.egoriku.core.repository.IPhotoReportRepository
 import com.egoriku.photoreportfragment.domain.interactor.PhotoReportUseCase
 import com.egoriku.photoreportfragment.presentation.PhotoReportContract
@@ -17,7 +17,7 @@ class PhotoReportModule {
     @FragmentScope
     fun providesAllGoodsPresenter(
             newsUseCase: PhotoReportUseCase,
-            analyticsInterface: IAnalyticsHelper
+            analyticsInterface: IAnalytics
     ): PhotoReportContract.Presenter = PhotoReportPresenter(newsUseCase, analyticsInterface)
 
     @Provides

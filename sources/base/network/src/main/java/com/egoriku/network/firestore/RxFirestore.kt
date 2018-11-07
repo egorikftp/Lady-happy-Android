@@ -1,10 +1,9 @@
 package com.egoriku.network.firestore
 
+import com.egoriku.core.exception.NoSuchDocumentException
 import com.google.android.gms.tasks.Task
 import com.google.firebase.firestore.*
 import io.reactivex.*
-
-class NoSuchDocumentException : Exception("There is no document at the given DocumentReference")
 
 /**
  * Listens to changes at the given [DocumentReference] (receiver) and returns an [Observable] that
