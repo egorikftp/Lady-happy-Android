@@ -9,6 +9,9 @@ project(':storage').projectDir = new File(rootDir, 'sources/base/storage')
 include ':network'
 project(':network').projectDir = new File(rootDir, 'sources/base/network')
 
+include ':networkPublic'
+project(':networkPublic').projectDir = new File(rootDir, 'sources/base/networkPublic')
+
 include ':ui'
 project(':ui').projectDir = new File(rootDir, 'sources/base/ui')
 
