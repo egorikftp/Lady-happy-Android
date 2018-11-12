@@ -1,6 +1,6 @@
 <resources>
 
-    <style name="MainActivityStyle" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="MainActivityStyle" parent="Theme.MaterialComponents.Light.NoActionBar">
         <item name="colorPrimary">@color/RoseTaupe</item>
         <item name="colorPrimaryDark">@color/RoseTaupeDark</item>
         <item name="colorAccent">@color/Terracota</item>

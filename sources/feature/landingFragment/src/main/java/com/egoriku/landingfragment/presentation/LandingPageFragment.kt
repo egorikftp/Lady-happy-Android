@@ -13,8 +13,6 @@ import com.egoriku.landingfragment.di.LandingFragmentComponent
 import com.egoriku.landingfragment.presentation.controller.*
 import com.egoriku.ui.arch.fragment.BaseInjectableFragment
 import com.egoriku.ui.ktx.browseUrl
-import com.egoriku.ui.ktx.gone
-import com.egoriku.ui.ktx.show
 import kotlinx.android.synthetic.main.fragment_main_page.*
 import ru.surfstudio.android.easyadapter.EasyAdapter
 import ru.surfstudio.android.easyadapter.ItemList
@@ -32,11 +30,13 @@ internal class LandingPageFragment : BaseInjectableFragment<LandingPageContract.
     private var mainActivityConnector: IMainActivityConnector? = null
     private var parallaxScrollListener: ParallaxScrollListener? = null
 
-    private val mainPageAdapter = EasyAdapter().apply {
+    private val landingAdapter = EasyAdapter().apply {
         setFirstInvisibleItemEnabled(false)
     }
 
     private lateinit var headerController: HeaderController
+    private lateinit var noDataController: NoDataController
+    private lateinit var progressController: ProgressController
     private lateinit var aboutController: AboutController
     private lateinit var quotesController: QuotesController
     private lateinit var sectionsHeaderController: SectionsHeaderController
@@ -72,7 +72,7 @@ internal class LandingPageFragment : BaseInjectableFragment<LandingPageContract.
     override fun initViews() {
         recyclerView.apply {
             layoutManager = LinearLayoutManager(context)
-            adapter = mainPageAdapter
+            adapter = landingAdapter
             addOnScrollListener(onScrollListener)
         }
 
@@ -81,6 +81,11 @@ internal class LandingPageFragment : BaseInjectableFragment<LandingPageContract.
         }
 
         headerController = HeaderController()
+        progressController = ProgressController()
+        noDataController = NoDataController {
+            presenter.retryLoading()
+        }
+
         aboutController = AboutController()
         sectionsHeaderController = SectionsHeaderController()
         quotesController = QuotesController(parallaxScrollListener)
@@ -91,24 +96,22 @@ internal class LandingPageFragment : BaseInjectableFragment<LandingPageContract.
         presenter.loadLandingData()
     }
 
-    override fun showLoading() = progressBar.show()
-
-    override fun hideLoading() = progressBar.gone()
-
     override fun render(screenModel: LandingScreenModel) {
         val itemList = ItemList.create()
 
-        itemList.addIf(!screenModel.isEmpty(), headerController)
+        itemList.addIf(screenModel.isEmpty() && screenModel.loadState == LoadState.ERROR_LOADING, noDataController)
+        itemList.addIf(screenModel.loadState == LoadState.PROGRESS, progressController)
 
         screenModel.landingModel?.let {
-            itemList.add(it.aboutInfo, aboutController)
+            itemList.add(headerController)
+                    .add(it.aboutInfo, aboutController)
                     .addIf(it.quotes.isNotEmpty(), R.string.adapter_item_header_quotes, sectionsHeaderController)
                     .addIf(it.quotes.isNotEmpty(), it.quotes, quotesController)
                     .addIf(it.teamMembers.isNotEmpty(), R.string.adapter_item_header_our_team, sectionsHeaderController)
                     .addAll(it.teamMembers, ourTeamController)
         }
 
-        mainPageAdapter.setItems(itemList)
+        landingAdapter.setItems(itemList)
     }
 
     override fun onDestroy() {

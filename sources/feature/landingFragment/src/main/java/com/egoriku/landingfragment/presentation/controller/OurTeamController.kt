@@ -2,7 +2,9 @@ package com.egoriku.landingfragment.presentation.controller
 
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import com.egoriku.core.model.ITeamMemberModel
 import com.egoriku.landingfragment.R
 import com.egoriku.landingfragment.common.parallax.IParallaxScrollListener
@@ -26,6 +28,8 @@ internal class OurTeamController(val parallaxScrollListener: ParallaxScrollListe
             parallaxScrollListener?.addListener(this@Holder)
         }
 
+        private val requestOptions = RequestOptions().placeholder(ContextCompat.getDrawable(itemView.context, R.color.RealBlack30))
+
         private val socialViewContainer = socialView.apply {
             setOnClickListener { showView() }
             setOnSocialIconClickListener { onSocialItemClick(it) }
@@ -39,6 +43,7 @@ internal class OurTeamController(val parallaxScrollListener: ParallaxScrollListe
 
             Glide.with(itemView.context)
                     .load(model.profileImage)
+                    .apply(requestOptions)
                     .into(ourTeamPersonImage)
         }
 
