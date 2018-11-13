@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="navigation_view_landing">Главная</string>
-    <string name="navigation_view_photo_report">Фотоотчет</string>
-    <string name="legal_menu_settings">Настройки</string>
+    <string name="navigation_view_landing">O нас</string>
+    <string name="navigation_view_photo_report">Фотоотчеты</string>
+    <string name="menu_settings">Настройки</string>
 </resources>

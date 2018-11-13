@@ -31,26 +31,18 @@ internal class LandingPagePresenter
     override fun loadLandingData() {
         when {
             !screenModel.isEmpty() -> view?.render(screenModel)
-            else -> {
-                view?.showLoading()
-                getLandingData()
-            }
+            else -> getLandingData()
         }
     }
 
     private fun getLandingData() {
         launch {
+            processResult(LoadState.PROGRESS)
+
             val result: Result<ILandingModel> = landingUseCase.getLandingInfo()
 
             when (result) {
-                is Result.Success -> {
-                    screenModel.landingModel = result.value
-
-                    view?.let {
-                        it.hideLoading()
-                        it.render(screenModel)
-                    }
-                }
+                is Result.Success -> processResult(LoadState.NONE, result.value)
 
                 is Result.Error -> {
                     when (result.exception) {
@@ -62,7 +54,7 @@ internal class LandingPagePresenter
                         is NoSuchDocumentException -> Log.e("LandingPagePresenter", "NoSuchDocumentException", result.exception)
                     }
 
-                    view?.hideLoading()
+                    processResult(LoadState.ERROR_LOADING)
                 }
             }
         }
@@ -71,5 +63,16 @@ internal class LandingPagePresenter
     override fun detachView() {
         job.cancel()
         super.detachView()
+    }
+
+    override fun retryLoading() = getLandingData()
+
+    private fun processResult(loadState: LoadState = LoadState.NONE, model: ILandingModel? = null) {
+        screenModel.let {
+            it.landingModel = model
+            it.loadState = loadState
+
+            view?.render(it)
+        }
     }
 }

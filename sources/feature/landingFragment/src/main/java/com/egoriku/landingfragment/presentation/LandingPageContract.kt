@@ -7,15 +7,13 @@ internal interface LandingPageContract {
     interface View : BaseContract.View {
         fun initViews()
 
-        fun showLoading()
-
-        fun hideLoading()
-
         fun render(screenModel: LandingScreenModel)
     }
 
     interface Presenter : BaseContract.Presenter<View> {
 
         fun loadLandingData()
+
+        fun retryLoading()
     }
 }
