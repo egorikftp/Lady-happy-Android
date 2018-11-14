@@ -1,8 +1,8 @@
 package com.egoriku.featureactivitymain.presentation.activity
 
-import com.egoriku.core.common.TrackingConstants
 import com.egoriku.core.di.utils.IAnalytics
 import com.egoriku.core.di.utils.IRouter
+import com.egoriku.featureactivitymain.common.Constants.Tracking
 import com.egoriku.featureactivitymain.presentation.screen.LandingScreen
 import com.egoriku.featureactivitymain.presentation.screen.PhotoReportScreen
 import com.egoriku.featureactivitymain.presentation.screen.ScreenFactory
@@ -20,11 +20,11 @@ class MainActivityPresenter
     private var currentScreen: SupportAppScreen? = null
 
     override fun openLanding() {
-        newRootScreen(LandingScreen(screenFactory.getLanding()), TrackingConstants.TRACKING_FRAGMENT_LANDING)
+        newRootScreen(LandingScreen(screenFactory.getLanding()), Tracking.TRACKING_FRAGMENT_LANDING)
     }
 
     override fun openPhotoReport() {
-        navigateTo(PhotoReportScreen(screenFactory.getPhotoReport()), TrackingConstants.TRACKING_FRAGMENT_PHOTO_REPORT)
+        navigateTo(PhotoReportScreen(screenFactory.getPhotoReport()), Tracking.TRACKING_FRAGMENT_PHOTO_REPORT)
     }
 
     private fun navigateTo(screen: SupportAppScreen, trackPageId: String) {

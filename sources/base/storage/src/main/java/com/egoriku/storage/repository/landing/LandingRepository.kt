@@ -12,7 +12,7 @@ class LandingRepository(private val landingDataSource: LandingDataSource) : ILan
 
         return when (landingResult) {
             is Result.Error -> return landingResult
-            is Result.Success -> Mapper.transformResult(landingResult.value)
+            is Result.Success -> LandingMapper.transformResult(landingResult.value)
         }
     }
 }

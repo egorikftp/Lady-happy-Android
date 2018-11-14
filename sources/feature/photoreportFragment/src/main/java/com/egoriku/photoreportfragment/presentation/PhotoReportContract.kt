@@ -1,6 +1,5 @@
 package com.egoriku.photoreportfragment.presentation
 
-import com.egoriku.core.model.IComplexPhotoReportModel
 import com.egoriku.ui.arch.pvm.BaseContract
 
 interface PhotoReportContract {
@@ -15,11 +14,5 @@ interface PhotoReportContract {
 
     interface Presenter : BaseContract.Presenter<View> {
         fun loadData()
-
-        fun onGetPhotoReportError(e: Throwable)
-        fun onGetPhotoReportSuccess(newsModel: IComplexPhotoReportModel)
-
-        fun onGetPhotoReportSuccessTracking()
-        fun onGetPhotoReportErrorTracking()
     }
 }

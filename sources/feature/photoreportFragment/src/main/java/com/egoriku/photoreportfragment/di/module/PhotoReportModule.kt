@@ -9,13 +9,12 @@ import com.egoriku.photoreportfragment.presentation.PhotoReportPresenter
 import dagger.Module
 import dagger.Provides
 
-
 @Module
-class PhotoReportModule {
+internal class PhotoReportModule {
 
     @Provides
     @FragmentScope
-    fun providesAllGoodsPresenter(
+    fun providesPhotoReportPresenter(
             newsUseCase: PhotoReportUseCase,
             analyticsInterface: IAnalytics
     ): PhotoReportContract.Presenter = PhotoReportPresenter(newsUseCase, analyticsInterface)
