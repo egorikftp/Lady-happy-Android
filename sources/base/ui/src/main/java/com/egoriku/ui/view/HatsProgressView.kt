@@ -4,23 +4,22 @@ import android.content.Context
 import android.graphics.drawable.Drawable
 import android.os.Build
 import android.util.AttributeSet
-import android.widget.ImageView
+import androidx.appcompat.widget.AppCompatImageView
 import androidx.vectordrawable.graphics.drawable.Animatable2Compat
 import androidx.vectordrawable.graphics.drawable.AnimatedVectorDrawableCompat
 import com.egoriku.ui.R
 import com.egoriku.ui.ktx.fromApi
 import com.egoriku.ui.ktx.toApi
 
-class HatsProgressView : ImageView {
+class HatsProgressView : AppCompatImageView {
 
     constructor(context: Context) : super(context)
     constructor(context: Context, attrs: AttributeSet) : super(context, attrs)
     constructor(context: Context, attrs: AttributeSet, defStyleAttr: Int) : super(context, attrs, defStyleAttr)
 
-    private val animatedVectorDrawable: AnimatedVectorDrawableCompat?
+    private var animatedVectorDrawable: AnimatedVectorDrawableCompat? = AnimatedVectorDrawableCompat.create(context, R.drawable.avd_hats_animation)
 
     init {
-        animatedVectorDrawable = AnimatedVectorDrawableCompat.create(context, R.drawable.avd_hats_animation)
         setImageDrawable(animatedVectorDrawable)
     }
 
@@ -36,12 +35,12 @@ class HatsProgressView : ImageView {
         }
     }
 
-    fun show() {
+    fun startAnimation() {
         animatedVectorDrawable?.registerAnimationCallback(animationCallback)
         animatedVectorDrawable?.start()
     }
 
-    fun hide() {
+    fun stopAnimation() {
         fromApi(Build.VERSION_CODES.N_MR1) {
             animatedVectorDrawable?.stop()
             animatedVectorDrawable?.unregisterAnimationCallback(animationCallback)
@@ -50,5 +49,14 @@ class HatsProgressView : ImageView {
         toApi(Build.VERSION_CODES.N_MR1) {
             post { animatedVectorDrawable?.stop() }
         }
+    }
+
+    override fun onDetachedFromWindow() {
+        super.onDetachedFromWindow()
+
+        unscheduleDrawable(animatedVectorDrawable)
+        animatedVectorDrawable?.clearAnimationCallbacks()
+        animatedVectorDrawable?.callback = null
+        animatedVectorDrawable = null
     }
 }
