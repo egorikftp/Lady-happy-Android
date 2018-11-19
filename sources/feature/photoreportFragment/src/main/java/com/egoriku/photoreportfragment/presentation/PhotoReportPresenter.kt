@@ -1,68 +1,76 @@
 package com.egoriku.photoreportfragment.presentation
 
-import com.egoriku.core.common.TrackingConstants
+import android.util.Log
 import com.egoriku.core.di.utils.IAnalytics
-import com.egoriku.core.model.IComplexPhotoReportModel
-import com.egoriku.core.usecase.AppObserver
-import com.egoriku.core.usecase.Params
+import com.egoriku.core.exception.FirestoreNetworkException
+import com.egoriku.core.exception.FirestoreParseException
+import com.egoriku.core.exception.NoSuchDocumentException
+import com.egoriku.core.firestore.Result
+import com.egoriku.core.model.IPhotoReportModel
 import com.egoriku.photoreportfragment.domain.interactor.PhotoReportUseCase
 import com.egoriku.ui.arch.pvm.BasePresenter
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
 import javax.inject.Inject
+import kotlin.coroutines.CoroutineContext
 
-class PhotoReportPresenter
+internal class PhotoReportPresenter
 @Inject constructor(
         private val photoReportUseCase: PhotoReportUseCase,
         private val analytics: IAnalytics
-) : BasePresenter<PhotoReportContract.View>(), PhotoReportContract.Presenter {
+) : BasePresenter<PhotoReportContract.View>(), PhotoReportContract.Presenter, CoroutineScope {
 
     private var screenModel = ScreenModel()
+    private val job = Job()
 
-    override fun onPresenterCreated() {
-        super.onPresenterCreated()
-        analytics.trackPageView(TrackingConstants.TRACKING_FRAGMENT_LANDING)
-    }
-
-    override fun onPresenterDestroy() {
-        photoReportUseCase.dispose()
-        super.onPresenterDestroy()
-    }
+    override val coroutineContext: CoroutineContext
+        get() = Dispatchers.Main + job
 
     override fun loadData() {
-        view?.showLoading()
-        if (screenModel.isPhotoReportsEmpty()) {
-            photoReportUseCase.execute(object : AppObserver<IComplexPhotoReportModel>() {
-                override fun onNext(t: IComplexPhotoReportModel) {
-                    onGetPhotoReportSuccessTracking()
-                    onGetPhotoReportSuccess(t)
-                }
+        when {
+            !screenModel.isEmpty() -> view?.render(screenModel)
+            else -> getPhotoReportData()
+        }
+    }
 
-                override fun onError(exception: Throwable) {
-                    onGetPhotoReportErrorTracking()
-                    onGetPhotoReportError(exception)
+    private fun getPhotoReportData() {
+        launch {
+            processResult(LoadState.PROGRESS)
+
+            val result: Result<List<IPhotoReportModel>> = photoReportUseCase.getPhotoReportInfo()
+
+            when (result) {
+                is Result.Success -> processResult(LoadState.NONE, result.value)
+
+                is Result.Error -> {
+                    when (result.exception) {
+                        is FirestoreNetworkException -> {
+                            Log.e("PhotoReportPresenter", "FirestoreNetworkException", result.exception)
+                            analytics.trackNoInternetPhotoReports()
+                        }
+                        is FirestoreParseException -> Log.e("PhotoReportPresenter", "FirestoreParseException", result.exception)
+                        is NoSuchDocumentException -> Log.e("PhotoReportPresenter", "NoSuchDocumentException", result.exception)
+                    }
+
+                    processResult(LoadState.ERROR_LOADING)
                 }
-            }, Params.EMPTY)
-        } else {
-            view?.let {
-                it.hideLoading()
-                it.render(screenModel)
             }
         }
     }
 
-    override fun onGetPhotoReportSuccess(newsModel: IComplexPhotoReportModel) {
-        screenModel.photoReports = newsModel.photoReports
+    private fun processResult(loadState: LoadState = LoadState.NONE, model: List<IPhotoReportModel>? = null) {
+        screenModel.let {
+            it.photoReports = model
+            it.loadState = loadState
 
-        view?.let {
-            it.hideLoading()
-            it.render(screenModel)
+            view?.render(it)
         }
     }
 
-    override fun onGetPhotoReportError(e: Throwable) {
-        view?.hideLoading()
+    override fun detachView() {
+        job.cancel()
+        super.detachView()
     }
-
-    override fun onGetPhotoReportSuccessTracking() = analytics.trackGetCategoriesSuccess(null)
-
-    override fun onGetPhotoReportErrorTracking() = analytics.trackGetCategoriesFail(null)
 }

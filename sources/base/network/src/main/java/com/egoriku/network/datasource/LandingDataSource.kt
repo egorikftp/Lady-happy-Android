@@ -2,7 +2,7 @@ package com.egoriku.network.datasource
 
 import com.egoriku.core.di.utils.IFirebaseFirestore
 import com.egoriku.network.data.entities.landing.LandingEntity
-import com.egoriku.network.firestore.awaitGetResult
+import com.egoriku.network.firestore.corouines.awaitGetResult
 import com.egoriku.core.firestore.Result
 import com.google.firebase.firestore.DocumentReference
 import javax.inject.Inject

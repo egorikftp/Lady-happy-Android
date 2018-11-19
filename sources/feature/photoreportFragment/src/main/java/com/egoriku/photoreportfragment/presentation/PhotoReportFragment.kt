@@ -83,9 +83,18 @@ class PhotoReportFragment : BaseInjectableFragment<PhotoReportContract.View, Pho
 
     override fun render(screenModel: ScreenModel) {
         val itemList = ItemList.create()
-                .add(photoReportHeaderController)
-                .addAll(screenModel.photoReports, photoReportCarouselController)
-                .addIf(screenModel.isPhotoReportsEmpty(), errorStateController)
+
+        when {
+            screenModel.loadState == LoadState.PROGRESS -> showLoading()
+            else -> hideLoading()
+        }
+
+        itemList.addIf(screenModel.isEmpty() && screenModel.loadState == LoadState.ERROR_LOADING, errorStateController)
+
+        screenModel.photoReports?.let {
+            itemList.add(photoReportHeaderController)
+                    .addAll(it, photoReportCarouselController)
+        }
 
         photoReportAdapter.setItems(itemList)
     }

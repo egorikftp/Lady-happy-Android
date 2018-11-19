@@ -1,9 +1,9 @@
 package com.egoriku.core.repository
 
-import com.egoriku.core.model.IComplexPhotoReportModel
-import io.reactivex.Observable
+import com.egoriku.core.firestore.Result
+import com.egoriku.core.model.IPhotoReportModel
 
 interface IPhotoReportRepository {
 
-    fun getPhotoReportInfo(): Observable<IComplexPhotoReportModel>
+    suspend fun getPhotoReport(): Result<List<IPhotoReportModel>>
 }

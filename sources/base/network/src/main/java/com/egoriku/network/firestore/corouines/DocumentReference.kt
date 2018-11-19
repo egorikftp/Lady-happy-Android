@@ -1,4 +1,4 @@
-package com.egoriku.network.firestore
+package com.egoriku.network.firestore.corouines
 
 import com.egoriku.core.exception.FirestoreNetworkException
 import com.egoriku.core.exception.FirestoreParseException
