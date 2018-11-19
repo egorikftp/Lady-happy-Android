@@ -28,12 +28,12 @@ dependencies {
     implementation project(':core')
     implementation project(':network')
 
-    implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.3.0'
+    implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.3.10'
 
     implementation 'io.reactivex.rxjava2:rxjava:2.2.3'
 
     kapt "com.google.dagger:dagger-compiler:2.19"
     implementation 'com.google.dagger:dagger:2.19'
 
-    implementation 'com.google.firebase:firebase-firestore:17.1.2'
+    implementation 'com.google.firebase:firebase-firestore:17.1.3'
 }
