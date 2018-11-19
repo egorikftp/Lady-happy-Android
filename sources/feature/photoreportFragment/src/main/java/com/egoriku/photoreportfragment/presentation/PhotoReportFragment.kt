@@ -9,10 +9,11 @@ import com.egoriku.core.actions.common.IMainActivityConnector
 import com.egoriku.core.di.findDependencies
 import com.egoriku.photoreportfragment.R
 import com.egoriku.photoreportfragment.di.PhotoReportFragmentComponent
-import com.egoriku.photoreportfragment.presentation.controller.ErrorStateController
 import com.egoriku.photoreportfragment.presentation.controller.PhotoReportCarouselController
 import com.egoriku.photoreportfragment.presentation.controller.PhotoReportHeaderController
 import com.egoriku.ui.arch.fragment.BaseInjectableFragment
+import com.egoriku.ui.controller.NoDataController
+import com.egoriku.ui.dsl.simpleOnScrollListener
 import com.egoriku.ui.ktx.gone
 import com.egoriku.ui.ktx.show
 import kotlinx.android.synthetic.main.fragment_photo_report.*
@@ -31,7 +32,7 @@ class PhotoReportFragment : BaseInjectableFragment<PhotoReportContract.View, Pho
 
     private var mainActivityConnector: IMainActivityConnector? = null
 
-    private lateinit var errorStateController: ErrorStateController
+    private lateinit var noDataController: NoDataController
     private lateinit var photoReportHeaderController: PhotoReportHeaderController
     private lateinit var photoReportCarouselController: PhotoReportCarouselController
 
@@ -48,11 +49,6 @@ class PhotoReportFragment : BaseInjectableFragment<PhotoReportContract.View, Pho
         mainActivityConnector = activity as IMainActivityConnector
     }
 
-    override fun onDetach() {
-        super.onDetach()
-        mainActivityConnector = null
-    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initRecyclerView()
@@ -66,16 +62,15 @@ class PhotoReportFragment : BaseInjectableFragment<PhotoReportContract.View, Pho
         recyclerViewAllGoods.apply {
             layoutManager = LinearLayoutManager(context)
             adapter = photoReportAdapter
-            addOnScrollListener(object : RecyclerView.OnScrollListener() {
-                override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-                    mainActivityConnector?.onScroll()
-                }
-            })
+
+            simpleOnScrollListener {
+                mainActivityConnector?.onScroll()
+            }
         }
 
-        errorStateController = ErrorStateController(onReloadClickListener = {
+        noDataController = NoDataController {
             presenter.loadData()
-        })
+        }
 
         photoReportHeaderController = PhotoReportHeaderController()
         photoReportCarouselController = PhotoReportCarouselController(viewPool)
@@ -89,7 +84,7 @@ class PhotoReportFragment : BaseInjectableFragment<PhotoReportContract.View, Pho
             else -> hideLoading()
         }
 
-        itemList.addIf(screenModel.isEmpty() && screenModel.loadState == LoadState.ERROR_LOADING, errorStateController)
+        itemList.addIf(screenModel.isEmpty() || screenModel.loadState == LoadState.ERROR_LOADING, noDataController)
 
         screenModel.photoReports?.let {
             itemList.add(photoReportHeaderController)
@@ -102,4 +97,9 @@ class PhotoReportFragment : BaseInjectableFragment<PhotoReportContract.View, Pho
     override fun showLoading() = progressView.show()
 
     override fun hideLoading() = progressView.gone()
+
+    override fun onDetach() {
+        super.onDetach()
+        mainActivityConnector = null
+    }
 }

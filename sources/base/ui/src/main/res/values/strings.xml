@@ -1,0 +1,5 @@
+<resources>
+    <string name="no_data_whoops">Whoops!</string>
+    <string name="no_data_try_again">Try again</string>
+    <string name="no_data_internet_connection">No Internet connection found. Check your connection \n\nOr</string>
+</resources>
