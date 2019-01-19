@@ -1,11 +1,11 @@
 package com.egoriku.settings.presentation
 
-import com.egoriku.core.di.utils.IAnalyticsHelper
+import com.egoriku.core.di.utils.IAnalytics
 import com.egoriku.ui.arch.pvm.BasePresenter
 import javax.inject.Inject
 
 internal class SettingsPagePresenter
-@Inject constructor(private val analyticsHelper: IAnalyticsHelper)
+@Inject constructor(private val analytics: IAnalytics)
     : BasePresenter<SettingsPageContract.View>(), SettingsPageContract.Presenter {
 
 

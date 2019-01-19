@@ -4,7 +4,6 @@ import android.content.Context
 import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.egoriku.core.actions.common.IMainActivityConnector
 import com.egoriku.core.di.findDependencies
 import com.egoriku.landingfragment.R
@@ -12,8 +11,12 @@ import com.egoriku.landingfragment.common.parallax.ParallaxScrollListener
 import com.egoriku.landingfragment.di.LandingFragmentComponent
 import com.egoriku.landingfragment.presentation.controller.*
 import com.egoriku.ui.arch.fragment.BaseInjectableFragment
+import com.egoriku.ui.controller.NoDataController
+import com.egoriku.ui.dsl.simpleOnScrollListener
 import com.egoriku.ui.ktx.browseUrl
-import kotlinx.android.synthetic.main.fragment_main_page.*
+import com.egoriku.ui.ktx.gone
+import com.egoriku.ui.ktx.show
+import kotlinx.android.synthetic.main.fragment_landing.*
 import ru.surfstudio.android.easyadapter.EasyAdapter
 import ru.surfstudio.android.easyadapter.ItemList
 import javax.inject.Inject
@@ -36,19 +39,16 @@ internal class LandingPageFragment : BaseInjectableFragment<LandingPageContract.
 
     private lateinit var headerController: HeaderController
     private lateinit var noDataController: NoDataController
-    private lateinit var progressController: ProgressController
     private lateinit var aboutController: AboutController
     private lateinit var quotesController: QuotesController
-    private lateinit var sectionsHeaderController: SectionsHeaderController
     private lateinit var ourTeamController: OurTeamController
+    private lateinit var sectionsHeaderController: SectionsHeaderController
 
-    private val onScrollListener = object : RecyclerView.OnScrollListener() {
-        override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-            mainActivityConnector?.onScroll()
-        }
+    private val onScrollListener = simpleOnScrollListener {
+        mainActivityConnector?.onScroll()
     }
 
-    override fun provideLayout(): Int = R.layout.fragment_main_page
+    override fun provideLayout(): Int = R.layout.fragment_landing
 
     override fun providePresenter(): LandingPageContract.Presenter = landingPagePresenter
 
@@ -57,11 +57,6 @@ internal class LandingPageFragment : BaseInjectableFragment<LandingPageContract.
     override fun onAttach(context: Context?) {
         super.onAttach(context)
         mainActivityConnector = activity as IMainActivityConnector
-    }
-
-    override fun onDetach() {
-        super.onDetach()
-        mainActivityConnector = null
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -81,7 +76,6 @@ internal class LandingPageFragment : BaseInjectableFragment<LandingPageContract.
         }
 
         headerController = HeaderController()
-        progressController = ProgressController()
         noDataController = NoDataController {
             presenter.retryLoading()
         }
@@ -99,8 +93,12 @@ internal class LandingPageFragment : BaseInjectableFragment<LandingPageContract.
     override fun render(screenModel: LandingScreenModel) {
         val itemList = ItemList.create()
 
+        when {
+            screenModel.loadState == LoadState.PROGRESS -> showProgress()
+            else -> hideProgress()
+        }
+
         itemList.addIf(screenModel.isEmpty() && screenModel.loadState == LoadState.ERROR_LOADING, noDataController)
-        itemList.addIf(screenModel.loadState == LoadState.PROGRESS, progressController)
 
         screenModel.landingModel?.let {
             itemList.add(headerController)
@@ -114,9 +112,23 @@ internal class LandingPageFragment : BaseInjectableFragment<LandingPageContract.
         landingAdapter.setItems(itemList)
     }
 
+    override fun showProgress() = with(hatsProgressAnimationView) {
+        startAnimation()
+        show()
+    }
+
+    override fun hideProgress() = with(hatsProgressAnimationView) {
+        stopAnimation()
+        gone()
+    }
+
+    override fun onDetach() {
+        super.onDetach()
+        mainActivityConnector = null
+    }
+
     override fun onDestroy() {
         super.onDestroy()
-
         parallaxScrollListener = null
     }
 }

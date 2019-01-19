@@ -7,4 +7,8 @@
     <string name="adapter_item_header_our_team">Наша команда</string>
 
     <string name="cc_adapter_item_main">Оливковая ветвь</string>
+
+    <string name="no_data_whoops">Упс!</string>
+    <string name="no_data_try_again">Попробовать снова</string>
+    <string name="no_data_internet_connection">Нет соединения с интернетом. Проверьет Ваше подключение \n\nИли</string>
 </resources>

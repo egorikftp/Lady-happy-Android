@@ -4,5 +4,10 @@
 
     <string name="adapter_item_header_quotes">What inspires us</string>
     <string name="adapter_item_header_our_team">Our team</string>
+
     <string name="cc_adapter_item_main">Olive Branch</string>
+
+    <string name="no_data_whoops">Whoops!</string>
+    <string name="no_data_try_again">Try again</string>
+    <string name="no_data_internet_connection">No Internet connection found. Check your connection \n\nOr</string>
 </resources>

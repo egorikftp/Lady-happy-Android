@@ -5,7 +5,7 @@ import com.egoriku.core.actions.ILandingFragmentAction
 import com.egoriku.core.actions.IMainActivityAction
 import com.egoriku.core.actions.IPhotoReportFragmentAction
 import com.egoriku.core.actions.ISettingsFragmentAction
-import com.egoriku.core.di.utils.IAnalyticsHelper
+import com.egoriku.core.di.utils.IAnalytics
 import com.egoriku.core.di.utils.IFirebaseFirestore
 import com.egoriku.core.di.utils.INavigationHolder
 import com.egoriku.core.di.utils.IRouter
@@ -25,7 +25,7 @@ interface DependenciesProvider {
 
     fun provideFirebaseFirestore(): IFirebaseFirestore
 
-    fun provideAnalyticsHelper(): IAnalyticsHelper
+    fun provideAnalyticsHelper(): IAnalytics
 
     fun provideRouter(): IRouter
 

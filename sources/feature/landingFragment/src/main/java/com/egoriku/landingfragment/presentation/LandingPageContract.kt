@@ -8,6 +8,10 @@ internal interface LandingPageContract {
         fun initViews()
 
         fun render(screenModel: LandingScreenModel)
+
+        fun showProgress()
+
+        fun hideProgress()
     }
 
     interface Presenter : BaseContract.Presenter<View> {

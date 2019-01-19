@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="no_data_whoops">Упс!</string>
+    <string name="no_data_try_again">Попробовать снова</string>
+    <string name="no_data_internet_connection">Нет соединения с интернетом. Проверьет Ваше подключение \n\nИли</string>
+</resources>

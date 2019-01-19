@@ -1,18 +1,28 @@
 package com.egoriku.landingfragment.presentation
 
-import com.egoriku.core.di.utils.IAnalyticsHelper
+import android.util.Log
+import com.egoriku.core.di.utils.IAnalytics
+import com.egoriku.core.exception.FirestoreNetworkException
+import com.egoriku.core.exception.FirestoreParseException
+import com.egoriku.core.exception.NoSuchDocumentException
+import com.egoriku.core.firestore.Result
 import com.egoriku.core.model.ILandingModel
-import com.egoriku.core.usecase.AppObserver
-import com.egoriku.core.usecase.Params
 import com.egoriku.landingfragment.domain.interactors.LandingUseCase
 import com.egoriku.ui.arch.pvm.BasePresenter
+import kotlinx.coroutines.*
 import javax.inject.Inject
+import kotlin.coroutines.CoroutineContext
 
 internal class LandingPagePresenter
-@Inject constructor(private val analyticsHelper: IAnalyticsHelper, private val landingUseCase: LandingUseCase)
-    : BasePresenter<LandingPageContract.View>(), LandingPageContract.Presenter {
+@Inject constructor(private val analytics: IAnalytics,
+                    private val landingUseCase: LandingUseCase)
+    : BasePresenter<LandingPageContract.View>(), LandingPageContract.Presenter, CoroutineScope {
 
     private var screenModel: LandingScreenModel = LandingScreenModel()
+    private val job = Job()
+
+    override val coroutineContext: CoroutineContext
+        get() = Dispatchers.Main + job
 
     override fun loadLandingData() {
         when {
@@ -21,17 +31,39 @@ internal class LandingPagePresenter
         }
     }
 
-    override fun retryLoading() = getLandingData()
-
     private fun getLandingData() {
-        processResult(LoadState.PROGRESS)
+        launch {
+            processResult(LoadState.PROGRESS)
 
-        landingUseCase.execute(object : AppObserver<ILandingModel>() {
-            override fun onNext(model: ILandingModel) = processResult(LoadState.NONE, model)
+            val result: Result<ILandingModel> = withContext(Dispatchers.IO) {
+                landingUseCase.getLandingInfo()
+            }
 
-            override fun onError(exception: Throwable) = processResult(LoadState.ERROR_LOADING)
-        }, Params.EMPTY)
+            when (result) {
+                is Result.Success -> processResult(LoadState.NONE, result.value)
+
+                is Result.Error -> {
+                    when (result.exception) {
+                        is FirestoreNetworkException -> {
+                            Log.e("LandingPagePresenter", "FirestoreNetworkException", result.exception)
+                            analytics.trackNoInternetLanding()
+                        }
+                        is FirestoreParseException -> Log.e("LandingPagePresenter", "FirestoreParseException", result.exception)
+                        is NoSuchDocumentException -> Log.e("LandingPagePresenter", "NoSuchDocumentException", result.exception)
+                    }
+
+                    processResult(LoadState.ERROR_LOADING)
+                }
+            }
+        }
     }
+
+    override fun detachView() {
+        job.cancel()
+        super.detachView()
+    }
+
+    override fun retryLoading() = getLandingData()
 
     private fun processResult(loadState: LoadState = LoadState.NONE, model: ILandingModel? = null) {
         screenModel.let {
