@@ -9,10 +9,7 @@ import com.egoriku.core.firestore.Result
 import com.egoriku.core.model.ILandingModel
 import com.egoriku.landingfragment.domain.interactors.LandingUseCase
 import com.egoriku.ui.arch.pvm.BasePresenter
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 import javax.inject.Inject
 import kotlin.coroutines.CoroutineContext
 
@@ -27,7 +24,6 @@ internal class LandingPagePresenter
     override val coroutineContext: CoroutineContext
         get() = Dispatchers.Main + job
 
-
     override fun loadLandingData() {
         when {
             !screenModel.isEmpty() -> view?.render(screenModel)
@@ -39,7 +35,9 @@ internal class LandingPagePresenter
         launch {
             processResult(LoadState.PROGRESS)
 
-            val result: Result<ILandingModel> = landingUseCase.getLandingInfo()
+            val result: Result<ILandingModel> = withContext(Dispatchers.IO) {
+                landingUseCase.getLandingInfo()
+            }
 
             when (result) {
                 is Result.Success -> processResult(LoadState.NONE, result.value)

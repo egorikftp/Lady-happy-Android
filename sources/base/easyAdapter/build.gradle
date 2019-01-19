@@ -19,6 +19,6 @@ android {
 }
 
 dependencies {
-    implementation 'androidx.annotation:annotation:1.0.0'
+    implementation 'androidx.annotation:annotation:1.0.1'
     implementation 'androidx.recyclerview:recyclerview:1.0.0'
 }

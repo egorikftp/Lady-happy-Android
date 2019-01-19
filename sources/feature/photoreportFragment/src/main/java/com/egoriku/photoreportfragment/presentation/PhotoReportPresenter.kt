@@ -9,10 +9,7 @@ import com.egoriku.core.firestore.Result
 import com.egoriku.core.model.IPhotoReportModel
 import com.egoriku.photoreportfragment.domain.interactor.PhotoReportUseCase
 import com.egoriku.ui.arch.pvm.BasePresenter
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 import javax.inject.Inject
 import kotlin.coroutines.CoroutineContext
 
@@ -39,7 +36,9 @@ internal class PhotoReportPresenter
         launch {
             processResult(LoadState.PROGRESS)
 
-            val result: Result<List<IPhotoReportModel>> = photoReportUseCase.getPhotoReportInfo()
+            val result: Result<List<IPhotoReportModel>> = withContext(Dispatchers.IO) {
+                photoReportUseCase.getPhotoReportInfo()
+            }
 
             when (result) {
                 is Result.Success -> processResult(LoadState.NONE, result.value)
