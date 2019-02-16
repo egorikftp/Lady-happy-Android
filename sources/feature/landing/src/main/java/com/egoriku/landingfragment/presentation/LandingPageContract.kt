@@ -2,7 +2,7 @@ package com.egoriku.landingfragment.presentation
 
 import com.egoriku.ladyhappy.arch.pvm.BaseContract
 
-internal interface LandingPageContract {
+interface LandingPageContract {
 
     interface View : BaseContract.View {
         fun initViews()
