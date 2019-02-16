@@ -75,7 +75,7 @@ dependencies {
     implementation project(':storage')
     implementation project(':featureActivityLaunch')
     implementation project(':featureActivityMain')
-    implementation project(':landingFragment')
+    implementation project(':landing')
     implementation project(':photoReport')
     implementation project(':settingsFragment')
 

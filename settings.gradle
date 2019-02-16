@@ -24,9 +24,9 @@ project(':featureActivityLaunch').projectDir = new File(rootDir, 'sources/featur
 include ':featureActivityMain'
 project(':featureActivityMain').projectDir = new File(rootDir, 'sources/feature/featureActivityMain')
 
-include ':landingFragment'
-project(':landingFragment').projectDir = new File(rootDir, 'sources/feature/landingFragment')
-//project(':landingFragment').projectDir = new File(rootDir, 'sources/feature/landingFragment/stub')
+include ':landing'
+project(':landing').projectDir = new File(rootDir, 'sources/feature/landing')
+//project(':landing').projectDir = new File(rootDir, 'sources/feature/landing/stub')
 
 include ':photoReport'
 project(':photoReport').projectDir = new File(rootDir, 'sources/feature/photoReport')
