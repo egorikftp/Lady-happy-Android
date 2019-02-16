@@ -1,7 +1,7 @@
 package com.egoriku.ladyhappy
 
 import com.egoriku.ladyhappy.featureprovider.AvailableFeatures
-import com.egoriku.landingfragment.presentation.LandingPageFragment
+import com.egoriku.landing.presentation.LandingPageFragment
 import com.egoriku.mainscreen.presentation.activity.MainActivity
 import com.egoriku.photoreportfragment.presentation.PhotoReportFragment
 import com.egoriku.settings.presentation.SettingBottomSheetDialogFragment
