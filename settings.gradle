@@ -29,6 +29,6 @@ include ':photoReport'
 project(':photoReport').projectDir = new File(rootDir, 'sources/feature/photoReport')
 //project(':photoReport').projectDir = new File(rootDir, 'sources/feature/photoReport/stub')
 
-include ':settingsFragment'
-project(':settingsFragment').projectDir = new File(rootDir, 'sources/feature/settingsFragment')
-//project(':settingsFragment').projectDir = new File(rootDir, 'sources/feature/settingsFragment/stub')
+include ':settings'
+project(':settings').projectDir = new File(rootDir, 'sources/feature/settings')
+//project(':settings').projectDir = new File(rootDir, 'sources/feature/settings/stub')

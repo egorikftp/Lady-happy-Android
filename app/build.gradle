@@ -76,7 +76,7 @@ dependencies {
     implementation project(':mainScreen')
     implementation project(':landing')
     implementation project(':photoReport')
-    implementation project(':settingsFragment')
+    implementation project(':settings')
 
     implementation('com.crashlytics.sdk.android:crashlytics:2.9.8@aar') {
         transitive = true
