@@ -6,8 +6,8 @@ import com.egoriku.core.exception.FirestoreNetworkException
 import com.egoriku.core.exception.FirestoreParseException
 import com.egoriku.core.exception.NoSuchDocumentException
 import com.egoriku.core.firestore.Result
-import com.egoriku.core.model.IPhotoReportModel
 import com.egoriku.photoreportfragment.domain.interactor.PhotoReportUseCase
+import com.egoriku.photoreportfragment.domain.model.PhotoReportModel
 import com.egoriku.ui.arch.pvm.BasePresenter
 import kotlinx.coroutines.*
 import javax.inject.Inject
@@ -36,7 +36,7 @@ internal class PhotoReportPresenter
         launch {
             processResult(LoadState.PROGRESS)
 
-            val result: Result<List<IPhotoReportModel>> = withContext(Dispatchers.IO) {
+            val result: Result<List<PhotoReportModel>> = withContext(Dispatchers.IO) {
                 photoReportUseCase.getPhotoReportInfo()
             }
 
@@ -59,7 +59,7 @@ internal class PhotoReportPresenter
         }
     }
 
-    private fun processResult(loadState: LoadState = LoadState.NONE, model: List<IPhotoReportModel>? = null) {
+    private fun processResult(loadState: LoadState = LoadState.NONE, model: List<PhotoReportModel>? = null) {
         screenModel.let {
             it.photoReports = model
             it.loadState = loadState

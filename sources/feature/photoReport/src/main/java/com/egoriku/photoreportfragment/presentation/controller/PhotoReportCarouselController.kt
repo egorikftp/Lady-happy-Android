@@ -5,8 +5,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.PagerSnapHelper
 import androidx.recyclerview.widget.RecyclerView
-import com.egoriku.core.model.IPhotoReportModel
 import com.egoriku.photoreportfragment.R
+import com.egoriku.photoreportfragment.domain.model.PhotoReportModel
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.adapter_item_photo_report_carousel.*
 import ru.surfstudio.android.easyadapter.EasyAdapter
@@ -14,19 +14,19 @@ import ru.surfstudio.android.easyadapter.ItemList
 import ru.surfstudio.android.easyadapter.controller.BindableItemController
 import ru.surfstudio.android.easyadapter.holder.BindableViewHolder
 
-class PhotoReportCarouselController(val viewPool: RecyclerView.RecycledViewPool) : BindableItemController<IPhotoReportModel, PhotoReportCarouselController.Holder>() {
+class PhotoReportCarouselController(val viewPool: RecyclerView.RecycledViewPool) : BindableItemController<PhotoReportModel, PhotoReportCarouselController.Holder>() {
 
     override fun createViewHolder(parent: ViewGroup) = Holder(parent)
 
-    override fun getItemId(data: IPhotoReportModel) = data.hashCode().toString()
+    override fun getItemId(data: PhotoReportModel) = data.hashCode().toString()
 
-    inner class Holder(parent: ViewGroup) : BindableViewHolder<IPhotoReportModel>(parent, R.layout.adapter_item_photo_report_carousel), LayoutContainer {
+    inner class Holder(parent: ViewGroup) : BindableViewHolder<PhotoReportModel>(parent, R.layout.adapter_item_photo_report_carousel), LayoutContainer {
 
         override val containerView: View?
             get() = itemView
 
         private val photoReportItemController: PhotoReportItemController = PhotoReportItemController()
-        private lateinit var newsModel: IPhotoReportModel
+        private lateinit var newsModel: PhotoReportModel
 
         init {
             reportCarouselRecyclerView.apply {
@@ -38,7 +38,7 @@ class PhotoReportCarouselController(val viewPool: RecyclerView.RecycledViewPool)
             pagerIndicator.attachToRecyclerView(reportCarouselRecyclerView)
         }
 
-        override fun bind(data: IPhotoReportModel) {
+        override fun bind(data: PhotoReportModel) {
             newsModel = data
 
             newsDateTextView.text = data.date

@@ -10,7 +10,6 @@ import com.egoriku.core.di.utils.IFirebaseFirestore
 import com.egoriku.core.di.utils.INavigationHolder
 import com.egoriku.core.di.utils.IRouter
 import com.egoriku.core.repository.ILandingRepository
-import com.egoriku.core.repository.IPhotoReportRepository
 
 interface ApplicationProvider :
         DependenciesProvider,
@@ -50,6 +49,4 @@ interface SettingsFeatureProvider {
 
 interface RepositoryProvider {
     fun provideLandingRepository(): ILandingRepository
-
-    fun providePhotoReportRepository(): IPhotoReportRepository
 }

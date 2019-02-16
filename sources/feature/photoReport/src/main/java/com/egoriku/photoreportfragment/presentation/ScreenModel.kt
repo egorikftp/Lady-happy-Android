@@ -1,10 +1,10 @@
 package com.egoriku.photoreportfragment.presentation
 
-import com.egoriku.core.model.IPhotoReportModel
+import com.egoriku.photoreportfragment.domain.model.PhotoReportModel
 
 class ScreenModel {
 
-    var photoReports: List<IPhotoReportModel>? = null
+    var photoReports: List<PhotoReportModel>? = null
 
     var loadState: LoadState = LoadState.NONE
 

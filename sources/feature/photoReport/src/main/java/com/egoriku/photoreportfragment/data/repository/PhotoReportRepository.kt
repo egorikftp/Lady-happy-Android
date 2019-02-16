@@ -1,14 +1,14 @@
-package com.egoriku.storage.repository.photoreport
+package com.egoriku.photoreportfragment.data.repository
 
 import com.egoriku.core.firestore.Result
-import com.egoriku.core.model.IPhotoReportModel
-import com.egoriku.core.repository.IPhotoReportRepository
-import com.egoriku.network.datasource.PhotoReportDataSource
+import com.egoriku.photoreportfragment.data.repository.datasource.PhotoReportDataSource
+import com.egoriku.photoreportfragment.data.mapper.PhotoReportMapper
+import com.egoriku.photoreportfragment.domain.model.PhotoReportModel
 
 class PhotoReportRepository(private val photoReportDataSource: PhotoReportDataSource)
     : IPhotoReportRepository {
 
-    override suspend fun getPhotoReport(): Result<List<IPhotoReportModel>> {
+    override suspend fun getPhotoReport(): Result<List<PhotoReportModel>> {
         val photoReportResult = photoReportDataSource.downloadPhotoReport()
 
         return when (photoReportResult) {
