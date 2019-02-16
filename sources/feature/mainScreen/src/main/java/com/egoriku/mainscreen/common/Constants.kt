@@ -1,4 +1,4 @@
-package com.egoriku.featureactivitymain.common
+package com.egoriku.mainscreen.common
 
 object Constants {
     const val EMPTY = ""

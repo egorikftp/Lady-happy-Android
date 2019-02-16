@@ -1,4 +1,4 @@
-package com.egoriku.featureactivitymain.presentation.view
+package com.egoriku.mainscreen.presentation.view
 
 import android.content.Context
 import android.graphics.Canvas
@@ -6,7 +6,7 @@ import android.graphics.Path
 import android.util.AttributeSet
 import android.widget.FrameLayout
 import androidx.annotation.FloatRange
-import com.egoriku.featureactivitymain.R
+import com.egoriku.mainscreen.R
 import com.egoriku.ladyhappy.extensions.colorCompat
 
 class RoundedTopFrameLayout

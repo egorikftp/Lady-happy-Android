@@ -1,4 +1,4 @@
-package com.egoriku.featureactivitymain.presentation.activity
+package com.egoriku.mainscreen.presentation.activity
 
 import android.os.Bundle
 import android.view.Menu
@@ -7,12 +7,12 @@ import androidx.annotation.IdRes
 import com.egoriku.core.common.IMainActivityConnector
 import com.egoriku.core.di.findDependencies
 import com.egoriku.core.di.utils.INavigationHolder
-import com.egoriku.featureactivitymain.R
-import com.egoriku.featureactivitymain.common.findBehavior
-import com.egoriku.featureactivitymain.di.MainActivityComponent
 import com.egoriku.ladyhappy.arch.activity.BaseInjectableActivity
 import com.egoriku.ladyhappy.extensions.consume
 import com.egoriku.ladyhappy.featureprovider.provider.FeatureScreen
+import com.egoriku.mainscreen.R
+import com.egoriku.mainscreen.common.findBehavior
+import com.egoriku.mainscreen.di.MainActivityComponent
 import kotlinx.android.synthetic.main.activity_main.*
 import ru.semper_viventem.backdrop.BackdropBehavior
 import ru.terrakok.cicerone.android.support.SupportAppNavigator

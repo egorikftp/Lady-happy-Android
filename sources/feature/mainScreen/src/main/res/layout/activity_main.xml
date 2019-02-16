@@ -29,7 +29,7 @@
 
     </LinearLayout>
 
-    <com.egoriku.featureactivitymain.presentation.view.RoundedTopFrameLayout
+    <com.egoriku.mainscreen.presentation.view.RoundedTopFrameLayout
         android:id="@+id/foregroundContainer"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

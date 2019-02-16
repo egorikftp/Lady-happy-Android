@@ -1,10 +1,10 @@
-package com.egoriku.featureactivitymain.presentation.activity
+package com.egoriku.mainscreen.presentation.activity
 
 import com.egoriku.core.di.utils.IAnalytics
 import com.egoriku.core.di.utils.IRouter
-import com.egoriku.featureactivitymain.common.Constants.Tracking
-import com.egoriku.featureactivitymain.presentation.screen.LandingScreen
-import com.egoriku.featureactivitymain.presentation.screen.PhotoReportScreen
+import com.egoriku.mainscreen.common.Constants.Tracking
+import com.egoriku.mainscreen.presentation.screen.LandingScreen
+import com.egoriku.mainscreen.presentation.screen.PhotoReportScreen
 import com.egoriku.ladyhappy.arch.pvm.BasePresenter
 import ru.terrakok.cicerone.android.support.SupportAppScreen
 import javax.inject.Inject

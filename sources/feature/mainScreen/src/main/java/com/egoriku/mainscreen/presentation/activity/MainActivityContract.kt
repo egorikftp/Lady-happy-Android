@@ -1,4 +1,4 @@
-package com.egoriku.featureactivitymain.presentation.activity
+package com.egoriku.mainscreen.presentation.activity
 
 import com.egoriku.ladyhappy.arch.pvm.BaseContract
 

@@ -1,6 +1,6 @@
 @file:Suppress("UNCHECKED_CAST")
 
-package com.egoriku.featureactivitymain.common
+package com.egoriku.mainscreen.common
 
 import android.view.View
 import androidx.coordinatorlayout.widget.CoordinatorLayout

@@ -1,4 +1,4 @@
-package com.egoriku.featureactivitymain.presentation.screen
+package com.egoriku.mainscreen.presentation.screen
 
 import androidx.fragment.app.Fragment
 import com.egoriku.ladyhappy.featureprovider.provider.FeatureScreen
