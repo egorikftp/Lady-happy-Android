@@ -6,7 +6,7 @@ import com.egoriku.featureactivitymain.common.Constants.Tracking
 import com.egoriku.featureactivitymain.presentation.screen.LandingScreen
 import com.egoriku.featureactivitymain.presentation.screen.PhotoReportScreen
 import com.egoriku.featureactivitymain.presentation.screen.ScreenFactory
-import com.egoriku.ui.arch.pvm.BasePresenter
+import com.egoriku.ladyhappy.arch.pvm.BasePresenter
 import ru.terrakok.cicerone.android.support.SupportAppScreen
 import javax.inject.Inject
 

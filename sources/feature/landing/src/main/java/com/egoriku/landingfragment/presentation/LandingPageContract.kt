@@ -1,6 +1,6 @@
 package com.egoriku.landingfragment.presentation
 
-import com.egoriku.ui.arch.pvm.BaseContract
+import com.egoriku.ladyhappy.arch.pvm.BaseContract
 
 internal interface LandingPageContract {
 

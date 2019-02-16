@@ -22,6 +22,7 @@ android {
 }
 
 dependencies {
+    implementation project(':arch')
     implementation project(':core')
     implementation project(':extensions')
     implementation project(':ui')

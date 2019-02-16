@@ -1,4 +1,4 @@
-package com.egoriku.ui.arch.pvm
+package com.egoriku.ladyhappy.arch.pvm
 
 import androidx.lifecycle.ViewModel
 

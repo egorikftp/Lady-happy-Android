@@ -6,8 +6,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.egoriku.ui.arch.pvm.BaseContract;
-import com.egoriku.ui.arch.pvm.BaseViewModel;
+import com.egoriku.ladyhappy.arch.pvm.BaseContract;
+import com.egoriku.ladyhappy.arch.pvm.BaseViewModel;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
 import androidx.annotation.LayoutRes;

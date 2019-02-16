@@ -11,7 +11,7 @@ import com.egoriku.photoreportfragment.R
 import com.egoriku.photoreportfragment.di.PhotoReportFragmentComponent
 import com.egoriku.photoreportfragment.presentation.controller.PhotoReportCarouselController
 import com.egoriku.photoreportfragment.presentation.controller.PhotoReportHeaderController
-import com.egoriku.ui.arch.fragment.BaseInjectableFragment
+import com.egoriku.ladyhappy.arch.fragment.BaseInjectableFragment
 import com.egoriku.ui.controller.NoDataController
 import com.egoriku.ui.dsl.simpleOnScrollListener
 import com.egoriku.ladyhappy.extensions.gone

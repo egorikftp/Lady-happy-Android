@@ -8,7 +8,7 @@ import com.egoriku.core.exception.NoSuchDocumentException
 import com.egoriku.network.firestore.Result
 import com.egoriku.landingfragment.domain.interactors.LandingUseCase
 import com.egoriku.landingfragment.domain.model.LandingModel
-import com.egoriku.ui.arch.pvm.BasePresenter
+import com.egoriku.ladyhappy.arch.pvm.BasePresenter
 import kotlinx.coroutines.*
 import javax.inject.Inject
 import kotlin.coroutines.CoroutineContext

@@ -1,6 +1,6 @@
 package com.egoriku.featureactivitymain.presentation.activity
 
-import com.egoriku.ui.arch.pvm.BaseContract
+import com.egoriku.ladyhappy.arch.pvm.BaseContract
 
 interface MainActivityContract {
 

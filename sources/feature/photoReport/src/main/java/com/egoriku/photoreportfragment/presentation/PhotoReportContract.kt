@@ -1,6 +1,6 @@
 package com.egoriku.photoreportfragment.presentation
 
-import com.egoriku.ui.arch.pvm.BaseContract
+import com.egoriku.ladyhappy.arch.pvm.BaseContract
 
 interface PhotoReportContract {
 

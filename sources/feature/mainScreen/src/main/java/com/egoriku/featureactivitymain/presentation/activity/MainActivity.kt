@@ -11,7 +11,7 @@ import com.egoriku.core.di.utils.INavigationHolder
 import com.egoriku.featureactivitymain.R
 import com.egoriku.featureactivitymain.common.findBehavior
 import com.egoriku.featureactivitymain.di.MainActivityComponent
-import com.egoriku.ui.arch.activity.BaseInjectableActivity
+import com.egoriku.ladyhappy.arch.activity.BaseInjectableActivity
 import com.egoriku.ladyhappy.extensions.consume
 import kotlinx.android.synthetic.main.activity_main.*
 import ru.semper_viventem.backdrop.BackdropBehavior

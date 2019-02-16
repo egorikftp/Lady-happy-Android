@@ -1,5 +1,8 @@
 include ':app'
 
+include ':arch'
+project(':arch').projectDir = new File(rootDir, 'sources/base/arch')
+
 include ':core'
 project(':core').projectDir = new File(rootDir, 'sources/base/core')
 

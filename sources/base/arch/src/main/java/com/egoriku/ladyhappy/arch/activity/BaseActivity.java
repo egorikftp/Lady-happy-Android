@@ -1,25 +1,23 @@
-package com.egoriku.ui.arch.fragment;
+package com.egoriku.ladyhappy.arch.activity;
 
 import android.os.Bundle;
-import android.view.View;
 
-import com.egoriku.ui.arch.pvm.BaseContract;
-import com.egoriku.ui.arch.pvm.BaseViewModel;
+import com.egoriku.ladyhappy.arch.pvm.BaseContract;
+import com.egoriku.ladyhappy.arch.pvm.BaseViewModel;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProviders;
 
-public abstract class BaseFragment<V extends BaseContract.View, P extends BaseContract.Presenter<V>>
-        extends Fragment implements BaseContract.View {
+public abstract class BaseActivity<V extends BaseContract.View, P extends BaseContract.Presenter<V>>
+        extends AppCompatActivity implements BaseContract.View {
 
     protected P presenter;
 
     @SuppressWarnings("unchecked")
     @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
         BaseViewModel<V, P> viewModel = ViewModelProviders.of(this).get(BaseViewModel.class);
 
         boolean isPresenterCreated = false;
@@ -28,17 +26,18 @@ public abstract class BaseFragment<V extends BaseContract.View, P extends BaseCo
             viewModel.setPresenter(providePresenter());
             isPresenterCreated = true;
         }
-
         presenter = viewModel.getPresenter();
         presenter.attachLifecycle(getLifecycle());
         presenter.attachView((V) this);
 
-        if (isPresenterCreated) presenter.onPresenterCreated();
+        if (isPresenterCreated) {
+            presenter.onPresenterCreated();
+        }
     }
 
     @Override
-    public void onDestroyView() {
-        super.onDestroyView();
+    protected void onDestroy() {
+        super.onDestroy();
         presenter.detachLifecycle(getLifecycle());
         presenter.detachView();
     }

@@ -8,7 +8,7 @@ import com.egoriku.core.exception.NoSuchDocumentException
 import com.egoriku.network.firestore.Result
 import com.egoriku.photoreportfragment.domain.interactor.PhotoReportUseCase
 import com.egoriku.photoreportfragment.domain.model.PhotoReportModel
-import com.egoriku.ui.arch.pvm.BasePresenter
+import com.egoriku.ladyhappy.arch.pvm.BasePresenter
 import kotlinx.coroutines.*
 import javax.inject.Inject
 import kotlin.coroutines.CoroutineContext

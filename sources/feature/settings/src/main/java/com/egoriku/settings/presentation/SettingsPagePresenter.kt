@@ -1,7 +1,7 @@
 package com.egoriku.settings.presentation
 
 import com.egoriku.core.di.utils.IAnalytics
-import com.egoriku.ui.arch.pvm.BasePresenter
+import com.egoriku.ladyhappy.arch.pvm.BasePresenter
 import javax.inject.Inject
 
 internal class SettingsPagePresenter
