@@ -13,8 +13,7 @@ import kotlin.coroutines.resumeWithException
 
 suspend inline fun <reified T> Query.awaitGet(): List<T> = get().awaitGet()
 
-suspend inline fun <reified T> Query.awaitGetResult(): Result<List<T>> =
-        wrapIntoResult { awaitGet<T>() }
+suspend inline fun <reified T> Query.awaitGetResult(): Result<List<T>> = wrapIntoResult { awaitGet<T>() }
 
 private suspend fun <T> awaitTaskQueryList(task: Task<QuerySnapshot>, type: Class<T>): List<T> =
         suspendCancellableCoroutine { continuation ->
