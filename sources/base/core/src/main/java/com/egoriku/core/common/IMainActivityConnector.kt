@@ -1,4 +1,4 @@
-package com.egoriku.core.actions.common
+package com.egoriku.core.common
 
 interface IMainActivityConnector {
 

@@ -25,6 +25,7 @@ dependencies {
     implementation project(':arch')
     implementation project(':core')
     implementation project(':extensions')
+    implementation project(':featureProvider')
     implementation project(':ui')
 
     implementation 'androidx.appcompat:appcompat:1.0.2'

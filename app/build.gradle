@@ -72,9 +72,10 @@ android {
 
 dependencies {
     implementation project(':core')
+    implementation project(':featureProvider')
+    implementation project(':landing')
     implementation project(':launchScreen')
     implementation project(':mainScreen')
-    implementation project(':landing')
     implementation project(':photoReport')
     implementation project(':settings')
 

@@ -4,8 +4,7 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.annotation.IdRes
-import com.egoriku.core.actions.ISettingsFragmentAction
-import com.egoriku.core.actions.common.IMainActivityConnector
+import com.egoriku.core.common.IMainActivityConnector
 import com.egoriku.core.di.findDependencies
 import com.egoriku.core.di.utils.INavigationHolder
 import com.egoriku.featureactivitymain.R
@@ -13,6 +12,7 @@ import com.egoriku.featureactivitymain.common.findBehavior
 import com.egoriku.featureactivitymain.di.MainActivityComponent
 import com.egoriku.ladyhappy.arch.activity.BaseInjectableActivity
 import com.egoriku.ladyhappy.extensions.consume
+import com.egoriku.ladyhappy.featureprovider.provider.FeatureScreen
 import kotlinx.android.synthetic.main.activity_main.*
 import ru.semper_viventem.backdrop.BackdropBehavior
 import ru.terrakok.cicerone.android.support.SupportAppNavigator
@@ -35,9 +35,6 @@ class MainActivity : BaseInjectableActivity<MainActivityContract.View, MainActiv
 
     @Inject
     lateinit var navigatorHolder: INavigationHolder
-
-    @Inject
-    lateinit var settingsFragmentAction: ISettingsFragmentAction
 
     private lateinit var backdropBehavior: BackdropBehavior
 
@@ -98,7 +95,7 @@ class MainActivity : BaseInjectableActivity<MainActivityContract.View, MainActiv
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         return when (item?.itemId) {
             R.id.menu_main_setting -> consume {
-                settingsFragmentAction.provideFragment().apply {
+                FeatureScreen.getSettingsFragment().apply {
                     show(supportFragmentManager, this.tag)
                 }
             }

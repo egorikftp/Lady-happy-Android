@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.egoriku.core.actions.common.IMainActivityConnector
+import com.egoriku.core.common.IMainActivityConnector
 import com.egoriku.core.di.findDependencies
 import com.egoriku.photoreportfragment.R
 import com.egoriku.photoreportfragment.di.PhotoReportFragmentComponent
@@ -22,10 +22,6 @@ import ru.surfstudio.android.easyadapter.ItemList
 import javax.inject.Inject
 
 class PhotoReportFragment : BaseInjectableFragment<PhotoReportContract.View, PhotoReportContract.Presenter>(), PhotoReportContract.View {
-
-    companion object {
-        fun newInstance() = PhotoReportFragment()
-    }
 
     @Inject
     lateinit var photoReportPresenter: PhotoReportContract.Presenter

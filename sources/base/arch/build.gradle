@@ -21,8 +21,9 @@ android {
 }
 
 dependencies {
+    implementation project(':extensions'
+    )
     implementation 'androidx.appcompat:appcompat:1.0.2'
-
     implementation Libs.kotlin_stdlib
 
     implementation 'androidx.lifecycle:lifecycle-extensions:2.0.0'

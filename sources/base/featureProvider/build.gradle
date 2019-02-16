@@ -1,6 +1,5 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion 28
@@ -11,6 +10,7 @@ android {
         versionCode 1
         versionName "1.0"
     }
+
     buildTypes {
         release {
             minifyEnabled true
@@ -20,8 +20,8 @@ android {
 }
 
 dependencies {
-    implementation project(':featureProvider')
+    implementation project(':extensions')
 
-    implementation 'androidx.appcompat:appcompat:1.0.2'
+    implementation 'androidx.fragment:fragment:1.0.0'
     implementation Libs.kotlin_stdlib
 }
