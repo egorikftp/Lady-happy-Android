@@ -5,9 +5,9 @@ import com.egoriku.core.di.utils.IAnalytics
 import com.egoriku.core.exception.FirestoreNetworkException
 import com.egoriku.core.exception.FirestoreParseException
 import com.egoriku.core.exception.NoSuchDocumentException
-import com.egoriku.core.firestore.Result
-import com.egoriku.core.model.ILandingModel
+import com.egoriku.network.firestore.Result
 import com.egoriku.landingfragment.domain.interactors.LandingUseCase
+import com.egoriku.landingfragment.domain.model.LandingModel
 import com.egoriku.ui.arch.pvm.BasePresenter
 import kotlinx.coroutines.*
 import javax.inject.Inject
@@ -35,7 +35,7 @@ internal class LandingPagePresenter
         launch {
             processResult(LoadState.PROGRESS)
 
-            val result: Result<ILandingModel> = withContext(Dispatchers.IO) {
+            val result: Result<LandingModel> = withContext(Dispatchers.IO) {
                 landingUseCase.getLandingInfo()
             }
 
@@ -65,7 +65,7 @@ internal class LandingPagePresenter
 
     override fun retryLoading() = getLandingData()
 
-    private fun processResult(loadState: LoadState = LoadState.NONE, model: ILandingModel? = null) {
+    private fun processResult(loadState: LoadState = LoadState.NONE, model: LandingModel? = null) {
         screenModel.let {
             it.landingModel = model
             it.loadState = loadState

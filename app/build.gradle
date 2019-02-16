@@ -72,7 +72,6 @@ android {
 
 dependencies {
     implementation project(':core')
-    implementation project(':storage')
     implementation project(':featureActivityLaunch')
     implementation project(':featureActivityMain')
     implementation project(':landing')

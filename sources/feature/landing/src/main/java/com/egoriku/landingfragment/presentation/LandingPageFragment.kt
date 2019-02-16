@@ -16,6 +16,7 @@ import com.egoriku.ui.controller.NoDataController
 import com.egoriku.ui.dsl.simpleOnScrollListener
 import com.egoriku.ladyhappy.extensions.gone
 import com.egoriku.ladyhappy.extensions.show
+import com.egoriku.landingfragment.data.entity.LandingEntity
 import kotlinx.android.synthetic.main.fragment_landing.*
 import ru.surfstudio.android.easyadapter.EasyAdapter
 import ru.surfstudio.android.easyadapter.ItemList

@@ -1,12 +1,12 @@
 package com.egoriku.landingfragment.presentation
 
-import com.egoriku.core.model.ILandingModel
+import com.egoriku.landingfragment.domain.model.LandingModel
 
 class LandingScreenModel {
 
     var loadState: LoadState = LoadState.NONE
 
-    var landingModel: ILandingModel? = null
+    var landingModel: LandingModel? = null
 
     fun isEmpty() = landingModel == null
 }

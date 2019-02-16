@@ -19,9 +19,9 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import androidx.appcompat.widget.AppCompatImageButton
 import androidx.core.content.ContextCompat
-import com.egoriku.core.model.ISocialModel
 import com.egoriku.landingfragment.R
 import com.egoriku.landingfragment.common.PredefinedResources
+import com.egoriku.landingfragment.domain.model.SocialModel
 import com.egoriku.ui.listeners.SimpleAnimationListener
 
 internal class SocialView : LinearLayout, View.OnClickListener {
@@ -201,7 +201,7 @@ internal class SocialView : LinearLayout, View.OnClickListener {
     }
 
     @SuppressLint("RestrictedApi")
-    fun setSocialModel(list: List<ISocialModel>) {
+    fun setSocialModel(list: List<SocialModel>) {
         list.forEach {
             addView(AppCompatImageButton(context).apply {
                 alpha = MIN_ALPHA

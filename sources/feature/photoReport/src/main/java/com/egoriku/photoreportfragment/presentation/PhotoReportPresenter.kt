@@ -5,7 +5,7 @@ import com.egoriku.core.di.utils.IAnalytics
 import com.egoriku.core.exception.FirestoreNetworkException
 import com.egoriku.core.exception.FirestoreParseException
 import com.egoriku.core.exception.NoSuchDocumentException
-import com.egoriku.core.firestore.Result
+import com.egoriku.network.firestore.Result
 import com.egoriku.photoreportfragment.domain.interactor.PhotoReportUseCase
 import com.egoriku.photoreportfragment.domain.model.PhotoReportModel
 import com.egoriku.ui.arch.pvm.BasePresenter

@@ -2,8 +2,8 @@ package com.egoriku.network.firestore.corouines
 
 import com.egoriku.core.exception.FirestoreNetworkException
 import com.egoriku.core.exception.FirestoreParseException
-import com.egoriku.core.firestore.Result
-import com.egoriku.core.firestore.wrapIntoResult
+import com.egoriku.network.firestore.Result
+import com.egoriku.network.firestore.wrapIntoResult
 import com.google.android.gms.tasks.Task
 import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.QuerySnapshot

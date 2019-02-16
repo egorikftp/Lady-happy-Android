@@ -1,6 +1,6 @@
 package com.egoriku.landingfragment.domain.interactors
 
-import com.egoriku.core.repository.ILandingRepository
+import com.egoriku.landingfragment.data.repository.ILandingRepository
 import javax.inject.Inject
 
 internal class LandingUseCase

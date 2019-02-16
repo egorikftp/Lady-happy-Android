@@ -1,6 +1,6 @@
 package com.egoriku.photoreportfragment.data.repository
 
-import com.egoriku.core.firestore.Result
+import com.egoriku.network.firestore.Result
 import com.egoriku.photoreportfragment.data.repository.datasource.PhotoReportDataSource
 import com.egoriku.photoreportfragment.data.mapper.PhotoReportMapper
 import com.egoriku.photoreportfragment.domain.model.PhotoReportModel

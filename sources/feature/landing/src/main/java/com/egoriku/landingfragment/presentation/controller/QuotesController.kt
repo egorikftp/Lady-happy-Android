@@ -3,10 +3,10 @@ package com.egoriku.landingfragment.presentation.controller
 import android.graphics.Matrix
 import android.view.View
 import android.view.ViewGroup
-import com.egoriku.core.model.IQuotesModel
 import com.egoriku.landingfragment.R
 import com.egoriku.landingfragment.common.parallax.IParallaxScrollListener
 import com.egoriku.landingfragment.common.parallax.ParallaxScrollListener
+import com.egoriku.landingfragment.domain.model.QuotesModel
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.adapter_item_quotes.*
 import kotlinx.android.synthetic.main.adapter_item_quotes.view.*
@@ -14,13 +14,13 @@ import ru.surfstudio.android.easyadapter.controller.BindableItemController
 import ru.surfstudio.android.easyadapter.holder.BindableViewHolder
 import java.util.*
 
-internal class QuotesController(val parallaxScrollListener: ParallaxScrollListener?) : BindableItemController<List<IQuotesModel>, QuotesController.Holder>() {
+internal class QuotesController(val parallaxScrollListener: ParallaxScrollListener?) : BindableItemController<List<QuotesModel>, QuotesController.Holder>() {
 
     override fun createViewHolder(parent: ViewGroup) = Holder(parent)
 
-    override fun getItemId(data: List<IQuotesModel>) = data.hashCode().toString()
+    override fun getItemId(data: List<QuotesModel>) = data.hashCode().toString()
 
-    inner class Holder(parent: ViewGroup) : BindableViewHolder<List<IQuotesModel>>(parent, R.layout.adapter_item_quotes),
+    inner class Holder(parent: ViewGroup) : BindableViewHolder<List<QuotesModel>>(parent, R.layout.adapter_item_quotes),
             IParallaxScrollListener, LayoutContainer {
 
         override val containerView: View?
@@ -29,7 +29,7 @@ internal class QuotesController(val parallaxScrollListener: ParallaxScrollListen
         private val random = Random()
         private var itemHeight = itemView.resources.getDimension(R.dimen.adapter_item_quotes_height).toInt()
 
-        private var quotesList = emptyList<IQuotesModel>()
+        private var quotesList = emptyList<QuotesModel>()
 
         init {
             parallaxScrollListener?.apply {
@@ -53,7 +53,7 @@ internal class QuotesController(val parallaxScrollListener: ParallaxScrollListen
             }
         }
 
-        override fun bind(data: List<IQuotesModel>) {
+        override fun bind(data: List<QuotesModel>) {
             quotesList = data
             updateQuote()
         }

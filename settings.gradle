@@ -6,9 +6,6 @@ project(':core').projectDir = new File(rootDir, 'sources/base/core')
 include ':extensions'
 project(':extensions').projectDir = new File(rootDir, 'sources/libraries/extensions')
 
-include ':storage'
-project(':storage').projectDir = new File(rootDir, 'sources/base/storage')
-
 include ':network'
 project(':network').projectDir = new File(rootDir, 'sources/base/network')
 

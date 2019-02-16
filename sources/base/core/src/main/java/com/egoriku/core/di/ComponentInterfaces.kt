@@ -9,14 +9,12 @@ import com.egoriku.core.di.utils.IAnalytics
 import com.egoriku.core.di.utils.IFirebaseFirestore
 import com.egoriku.core.di.utils.INavigationHolder
 import com.egoriku.core.di.utils.IRouter
-import com.egoriku.core.repository.ILandingRepository
 
 interface ApplicationProvider :
         DependenciesProvider,
         MainActivityFeatureProvider,
         LandingFeatureProvider,
         PhotoReportFeatureProvider,
-        RepositoryProvider,
         SettingsFeatureProvider
 
 interface DependenciesProvider {
@@ -45,8 +43,4 @@ interface PhotoReportFeatureProvider {
 
 interface SettingsFeatureProvider {
     fun provideSettingsFragment(): ISettingsFragmentAction
-}
-
-interface RepositoryProvider {
-    fun provideLandingRepository(): ILandingRepository
 }
