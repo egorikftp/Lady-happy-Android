@@ -1,4 +1,4 @@
-package com.egoriku.ui.ktx
+package com.egoriku.ladyhappy.extensions
 
 inline fun consume(f: () -> Unit): Boolean {
     f()

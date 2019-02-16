@@ -14,8 +14,8 @@ import com.egoriku.photoreportfragment.presentation.controller.PhotoReportHeader
 import com.egoriku.ui.arch.fragment.BaseInjectableFragment
 import com.egoriku.ui.controller.NoDataController
 import com.egoriku.ui.dsl.simpleOnScrollListener
-import com.egoriku.ui.ktx.gone
-import com.egoriku.ui.ktx.show
+import com.egoriku.ladyhappy.extensions.gone
+import com.egoriku.ladyhappy.extensions.show
 import kotlinx.android.synthetic.main.fragment_photo_report.*
 import ru.surfstudio.android.easyadapter.EasyAdapter
 import ru.surfstudio.android.easyadapter.ItemList

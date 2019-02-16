@@ -28,6 +28,7 @@ android {
 
 dependencies {
     implementation project(':core')
+    implementation project(':extensions')
     implementation project(':ui')
 
     implementation 'com.google.android.material:material:1.0.0'

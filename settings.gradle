@@ -3,6 +3,9 @@ include ':app'
 include ':core'
 project(':core').projectDir = new File(rootDir, 'sources/base/core')
 
+include ':extensions'
+project(':extensions').projectDir = new File(rootDir, 'sources/libraries/extensions')
+
 include ':storage'
 project(':storage').projectDir = new File(rootDir, 'sources/base/storage')
 

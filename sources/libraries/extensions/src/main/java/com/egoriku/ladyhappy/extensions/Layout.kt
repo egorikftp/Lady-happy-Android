@@ -1,4 +1,4 @@
-package com.egoriku.ui.ktx
+package com.egoriku.ladyhappy.extensions
 
 import android.view.LayoutInflater
 import android.view.View

@@ -7,7 +7,7 @@ import android.util.AttributeSet
 import android.widget.FrameLayout
 import androidx.annotation.FloatRange
 import com.egoriku.featureactivitymain.R
-import com.egoriku.ui.ktx.colorCompat
+import com.egoriku.ladyhappy.extensions.colorCompat
 
 class RoundedTopFrameLayout
 @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0

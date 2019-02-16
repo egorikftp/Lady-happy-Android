@@ -6,6 +6,7 @@ import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.egoriku.core.actions.common.IMainActivityConnector
 import com.egoriku.core.di.findDependencies
+import com.egoriku.ladyhappy.extensions.browseUrl
 import com.egoriku.landingfragment.R
 import com.egoriku.landingfragment.common.parallax.ParallaxScrollListener
 import com.egoriku.landingfragment.di.LandingFragmentComponent
@@ -13,9 +14,8 @@ import com.egoriku.landingfragment.presentation.controller.*
 import com.egoriku.ui.arch.fragment.BaseInjectableFragment
 import com.egoriku.ui.controller.NoDataController
 import com.egoriku.ui.dsl.simpleOnScrollListener
-import com.egoriku.ui.ktx.browseUrl
-import com.egoriku.ui.ktx.gone
-import com.egoriku.ui.ktx.show
+import com.egoriku.ladyhappy.extensions.gone
+import com.egoriku.ladyhappy.extensions.show
 import kotlinx.android.synthetic.main.fragment_landing.*
 import ru.surfstudio.android.easyadapter.EasyAdapter
 import ru.surfstudio.android.easyadapter.ItemList

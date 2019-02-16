@@ -1,4 +1,4 @@
-package com.egoriku.ui.ktx
+package com.egoriku.ladyhappy.extensions
 
 import android.content.ActivityNotFoundException
 import android.content.Context
@@ -26,7 +26,7 @@ fun Context.browseUrl(url: String, newTask: Boolean = false): Boolean = try {
 }
 
 inline fun <reified T : Any> Fragment.intentFor(vararg params: Pair<String, Any?>): Intent =
-        createIntent(requireActivity(), T::class.java, params)
+        com.egoriku.ladyhappy.extensions.createIntent(requireActivity(), T::class.java, params)
 
 fun <T> createIntent(ctx: Context, clazz: Class<out T>, params: Array<out Pair<String, Any?>>) =
         Intent(ctx, clazz).apply {

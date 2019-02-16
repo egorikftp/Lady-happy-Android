@@ -1,4 +1,4 @@
-package com.egoriku.ui.ktx
+package com.egoriku.ladyhappy.extensions.delegates
 
 import android.os.Bundle
 import kotlin.properties.ReadWriteProperty

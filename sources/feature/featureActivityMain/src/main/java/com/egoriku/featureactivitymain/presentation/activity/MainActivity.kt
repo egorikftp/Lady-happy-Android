@@ -12,7 +12,7 @@ import com.egoriku.featureactivitymain.R
 import com.egoriku.featureactivitymain.common.findBehavior
 import com.egoriku.featureactivitymain.di.MainActivityComponent
 import com.egoriku.ui.arch.activity.BaseInjectableActivity
-import com.egoriku.ui.ktx.consume
+import com.egoriku.ladyhappy.extensions.consume
 import kotlinx.android.synthetic.main.activity_main.*
 import ru.semper_viventem.backdrop.BackdropBehavior
 import ru.terrakok.cicerone.android.support.SupportAppNavigator
@@ -117,8 +117,8 @@ class MainActivity : BaseInjectableActivity<MainActivityContract.View, MainActiv
         presenter.onBackPressed()
     }
 
-    override fun onSaveInstanceState(outState: Bundle?) {
-        outState?.putInt(ARGS_MENU_ITEM, navigationView.checkedItem!!.itemId)
+    override fun onSaveInstanceState(outState: Bundle) {
+        outState.putInt(ARGS_MENU_ITEM, navigationView.checkedItem!!.itemId)
         super.onSaveInstanceState(outState)
     }
 

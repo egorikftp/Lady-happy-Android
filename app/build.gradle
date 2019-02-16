@@ -85,10 +85,10 @@ dependencies {
 
     implementation 'androidx.appcompat:appcompat:1.0.2'
 
-    implementation 'com.google.firebase:firebase-core:16.0.6'
-    implementation 'com.google.firebase:firebase-firestore:17.1.5'
+    implementation 'com.google.firebase:firebase-core:16.0.7'
+    implementation 'com.google.firebase:firebase-firestore:18.0.1'
 
-    implementation 'ru.terrakok.cicerone:cicerone:4.0.2'
+    implementation 'ru.terrakok.cicerone:cicerone:5.0.0'
 
     debugImplementation 'net.hockeyapp.android:HockeySDK:5.1.1'
     implementation Libs.kotlin_stdlib

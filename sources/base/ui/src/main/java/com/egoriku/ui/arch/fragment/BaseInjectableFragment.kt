@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.LayoutRes
 import com.egoriku.ui.arch.pvm.BaseContract
-import com.egoriku.ui.ktx.inflate
+import com.egoriku.ladyhappy.extensions.inflate
 
 abstract class BaseInjectableFragment<V : BaseContract.View, P : BaseContract.Presenter<V>> : BaseFragment<V, P>() {
 

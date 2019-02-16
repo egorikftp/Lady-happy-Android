@@ -1,4 +1,4 @@
-package com.egoriku.ui.ktx
+package com.egoriku.ladyhappy.extensions
 
 import android.content.Context
 import androidx.annotation.ColorRes

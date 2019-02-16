@@ -7,14 +7,13 @@ import android.os.Bundle
 import android.view.View
 import androidx.browser.customtabs.CustomTabsIntent
 import com.egoriku.core.di.findDependencies
+import com.egoriku.ladyhappy.extensions.colorCompat
 import com.egoriku.settings.R
 import com.egoriku.settings.di.SettingsFragmentComponent
 import com.egoriku.settings.presentation.base.BaseBottomSheetDialogFragment
-import com.egoriku.ui.ktx.colorCompat
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import kotlinx.android.synthetic.main.fragment_settings_bottom_sheet.*
 import javax.inject.Inject
-
 
 class SettingBottomSheetDialogFragment : BaseBottomSheetDialogFragment<SettingsPageContract.View, SettingsPageContract.Presenter>(), SettingsPageContract.View {
 

@@ -11,7 +11,6 @@ class FirebaseFirestore : IFirebaseFirestore {
         firebaseFirestore.apply {
             firestoreSettings = FirebaseFirestoreSettings.Builder()
                     .setPersistenceEnabled(true)
-                    .setTimestampsInSnapshotsEnabled(true)
                     .build()
         }
     }
