@@ -1,4 +1,4 @@
-package com.egoriku.photoreportfragment.presentation
+package com.egoriku.photoreport.presentation
 
 import android.content.Context
 import android.os.Bundle
@@ -7,15 +7,15 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.egoriku.core.common.IMainActivityConnector
 import com.egoriku.core.di.findDependencies
-import com.egoriku.photoreportfragment.R
-import com.egoriku.photoreportfragment.di.PhotoReportFragmentComponent
-import com.egoriku.photoreportfragment.presentation.controller.PhotoReportCarouselController
-import com.egoriku.photoreportfragment.presentation.controller.PhotoReportHeaderController
 import com.egoriku.ladyhappy.arch.fragment.BaseInjectableFragment
-import com.egoriku.ui.controller.NoDataController
-import com.egoriku.ui.dsl.simpleOnScrollListener
 import com.egoriku.ladyhappy.extensions.gone
 import com.egoriku.ladyhappy.extensions.show
+import com.egoriku.photoreport.R
+import com.egoriku.photoreport.di.PhotoReportFragmentComponent
+import com.egoriku.photoreport.presentation.controller.PhotoReportCarouselController
+import com.egoriku.photoreport.presentation.controller.PhotoReportHeaderController
+import com.egoriku.ui.controller.NoDataController
+import com.egoriku.ui.dsl.simpleOnScrollListener
 import kotlinx.android.synthetic.main.fragment_photo_report.*
 import ru.surfstudio.android.easyadapter.EasyAdapter
 import ru.surfstudio.android.easyadapter.ItemList

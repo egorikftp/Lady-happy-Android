@@ -1,12 +1,12 @@
-package com.egoriku.photoreportfragment.presentation.controller
+package com.egoriku.photoreport.presentation.controller
 
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.PagerSnapHelper
 import androidx.recyclerview.widget.RecyclerView
-import com.egoriku.photoreportfragment.R
-import com.egoriku.photoreportfragment.domain.model.PhotoReportModel
+import com.egoriku.photoreport.R
+import com.egoriku.photoreport.domain.model.PhotoReportModel
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.adapter_item_photo_report_carousel.*
 import ru.surfstudio.android.easyadapter.EasyAdapter

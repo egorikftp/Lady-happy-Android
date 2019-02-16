@@ -1,9 +1,9 @@
-package com.egoriku.photoreportfragment.data.repository
+package com.egoriku.photoreport.data.repository
 
 import com.egoriku.network.firestore.Result
-import com.egoriku.photoreportfragment.data.repository.datasource.PhotoReportDataSource
-import com.egoriku.photoreportfragment.data.mapper.PhotoReportMapper
-import com.egoriku.photoreportfragment.domain.model.PhotoReportModel
+import com.egoriku.photoreport.data.repository.datasource.PhotoReportDataSource
+import com.egoriku.photoreport.data.mapper.PhotoReportMapper
+import com.egoriku.photoreport.domain.model.PhotoReportModel
 
 class PhotoReportRepository(private val photoReportDataSource: PhotoReportDataSource)
     : IPhotoReportRepository {

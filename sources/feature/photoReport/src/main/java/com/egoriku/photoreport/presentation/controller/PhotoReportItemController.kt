@@ -1,4 +1,4 @@
-package com.egoriku.photoreportfragment.presentation.controller
+package com.egoriku.photoreport.presentation.controller
 
 import android.view.View
 import android.view.ViewGroup
@@ -6,7 +6,7 @@ import androidx.core.content.ContextCompat
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade
 import com.bumptech.glide.request.RequestOptions
-import com.egoriku.photoreportfragment.R
+import com.egoriku.photoreport.R
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.adapter_item_photo_report.view.*
 import ru.surfstudio.android.easyadapter.controller.BindableItemController

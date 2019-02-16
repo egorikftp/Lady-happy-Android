@@ -1,7 +1,7 @@
-package com.egoriku.photoreportfragment.data.repository
+package com.egoriku.photoreport.data.repository
 
 import com.egoriku.network.firestore.Result
-import com.egoriku.photoreportfragment.domain.model.PhotoReportModel
+import com.egoriku.photoreport.domain.model.PhotoReportModel
 
 interface IPhotoReportRepository {
 

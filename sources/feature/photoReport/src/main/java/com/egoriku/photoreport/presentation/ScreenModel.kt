@@ -1,6 +1,6 @@
-package com.egoriku.photoreportfragment.presentation
+package com.egoriku.photoreport.presentation
 
-import com.egoriku.photoreportfragment.domain.model.PhotoReportModel
+import com.egoriku.photoreport.domain.model.PhotoReportModel
 
 class ScreenModel {
 

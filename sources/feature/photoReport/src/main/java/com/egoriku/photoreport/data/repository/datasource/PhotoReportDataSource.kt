@@ -1,8 +1,8 @@
-package com.egoriku.photoreportfragment.data.repository.datasource
+package com.egoriku.photoreport.data.repository.datasource
 
 import com.egoriku.core.di.utils.IFirebaseFirestore
 import com.egoriku.network.firestore.corouines.awaitGetResult
-import com.egoriku.photoreportfragment.data.entity.PhotoReportEntity
+import com.egoriku.photoreport.data.entity.PhotoReportEntity
 import com.google.firebase.firestore.Query
 import javax.inject.Inject
 

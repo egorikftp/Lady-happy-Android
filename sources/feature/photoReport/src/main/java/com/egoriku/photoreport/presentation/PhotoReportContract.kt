@@ -1,4 +1,4 @@
-package com.egoriku.photoreportfragment.presentation
+package com.egoriku.photoreport.presentation
 
 import com.egoriku.ladyhappy.arch.pvm.BaseContract
 

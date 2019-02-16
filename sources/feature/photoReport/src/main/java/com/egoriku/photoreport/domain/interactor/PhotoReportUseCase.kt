@@ -1,6 +1,6 @@
-package com.egoriku.photoreportfragment.domain.interactor
+package com.egoriku.photoreport.domain.interactor
 
-import com.egoriku.photoreportfragment.data.repository.IPhotoReportRepository
+import com.egoriku.photoreport.data.repository.IPhotoReportRepository
 import javax.inject.Inject
 
 internal class PhotoReportUseCase

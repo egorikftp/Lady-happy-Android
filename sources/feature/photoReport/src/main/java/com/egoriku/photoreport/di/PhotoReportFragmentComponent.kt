@@ -1,9 +1,9 @@
-package com.egoriku.photoreportfragment.di
+package com.egoriku.photoreport.di
 
 import com.egoriku.core.di.ApplicationProvider
 import com.egoriku.core.di.FragmentScope
-import com.egoriku.photoreportfragment.di.module.PhotoReportModule
-import com.egoriku.photoreportfragment.presentation.PhotoReportFragment
+import com.egoriku.photoreport.di.module.PhotoReportModule
+import com.egoriku.photoreport.presentation.PhotoReportFragment
 import dagger.Component
 
 @FragmentScope
