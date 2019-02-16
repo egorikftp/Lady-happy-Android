@@ -13,7 +13,7 @@ include ':ui'
 project(':ui').projectDir = new File(rootDir, 'sources/base/ui')
 
 include ':easyAdapter'
-project(':easyAdapter').projectDir = new File(rootDir, 'sources/base/easyAdapter')
+project(':easyAdapter').projectDir = new File(rootDir, 'sources/libraries/easyAdapter')
 
 include ':launchScreen'
 project(':launchScreen').projectDir = new File(rootDir, 'sources/feature/launchScreen')
