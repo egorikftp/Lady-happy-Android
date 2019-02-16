@@ -18,8 +18,8 @@ project(':easyAdapter').projectDir = new File(rootDir, 'sources/base/easyAdapter
 include ':launchScreen'
 project(':launchScreen').projectDir = new File(rootDir, 'sources/feature/launchScreen')
 
-include ':featureActivityMain'
-project(':featureActivityMain').projectDir = new File(rootDir, 'sources/feature/featureActivityMain')
+include ':mainScreen'
+project(':mainScreen').projectDir = new File(rootDir, 'sources/feature/mainScreen')
 
 include ':landing'
 project(':landing').projectDir = new File(rootDir, 'sources/feature/landing')
