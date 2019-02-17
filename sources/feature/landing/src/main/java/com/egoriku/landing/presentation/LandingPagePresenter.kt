@@ -5,7 +5,7 @@ import com.egoriku.core.di.utils.IAnalytics
 import com.egoriku.core.exception.FirestoreNetworkException
 import com.egoriku.core.exception.FirestoreParseException
 import com.egoriku.core.exception.NoSuchDocumentException
-import com.egoriku.network.firestore.Result
+import com.egoriku.network.Result
 import com.egoriku.landing.domain.interactors.LandingUseCase
 import com.egoriku.landing.domain.model.LandingModel
 import com.egoriku.ladyhappy.arch.pvm.BasePresenter

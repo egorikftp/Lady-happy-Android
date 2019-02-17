@@ -1,6 +1,6 @@
 package com.egoriku.photoreport.data.mapper
 
-import com.egoriku.network.firestore.Result
+import com.egoriku.network.Result
 import com.egoriku.ladyhappy.extensions.common.toNewsDate
 import com.egoriku.photoreport.data.entity.PhotoReportEntity
 import com.egoriku.photoreport.domain.model.PhotoReportModel

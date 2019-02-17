@@ -9,7 +9,7 @@ import com.egoriku.landing.domain.model.LandingModel
 import com.egoriku.landing.domain.model.QuotesModel
 import com.egoriku.landing.domain.model.SocialModel
 import com.egoriku.landing.domain.model.TeamMemberModel
-import com.egoriku.network.firestore.Result
+import com.egoriku.network.Result
 
 object LandingMapper {
     fun transformResult(entity: LandingEntity): Result<LandingModel> =
