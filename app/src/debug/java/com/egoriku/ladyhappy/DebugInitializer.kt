@@ -3,7 +3,7 @@ package com.egoriku.ladyhappy
 import android.app.Activity
 import android.app.Application
 import android.os.Bundle
-import com.egoriku.core.actions.common.IMainActivityConnector
+import com.egoriku.core.common.IMainActivityConnector
 import net.hockeyapp.android.UpdateManager
 
 object DebugInitializer {

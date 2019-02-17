@@ -7,10 +7,4 @@ annotation class ApplicationScope
 annotation class ActivityScope
 
 @javax.inject.Scope
-annotation class ServiceScope
-
-@javax.inject.Scope
 annotation class FragmentScope
-
-@javax.inject.Scope
-annotation class ViewScope

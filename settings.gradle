@@ -1,10 +1,16 @@
 include ':app'
 
+include ':arch'
+project(':arch').projectDir = new File(rootDir, 'sources/base/arch')
+
 include ':core'
 project(':core').projectDir = new File(rootDir, 'sources/base/core')
 
-include ':storage'
-project(':storage').projectDir = new File(rootDir, 'sources/base/storage')
+include ':extensions'
+project(':extensions').projectDir = new File(rootDir, 'sources/libraries/extensions')
+
+include ':featureProvider'
+project(':featureProvider').projectDir = new File(rootDir, 'sources/base/featureProvider')
 
 include ':network'
 project(':network').projectDir = new File(rootDir, 'sources/base/network')
@@ -13,22 +19,22 @@ include ':ui'
 project(':ui').projectDir = new File(rootDir, 'sources/base/ui')
 
 include ':easyAdapter'
-project(':easyAdapter').projectDir = new File(rootDir, 'sources/base/easyAdapter')
+project(':easyAdapter').projectDir = new File(rootDir, 'sources/libraries/easyAdapter')
 
-include ':featureActivityLaunch'
-project(':featureActivityLaunch').projectDir = new File(rootDir, 'sources/feature/featureActivityLaunch')
+include ':launchScreen'
+project(':launchScreen').projectDir = new File(rootDir, 'sources/feature/launchScreen')
 
-include ':featureActivityMain'
-project(':featureActivityMain').projectDir = new File(rootDir, 'sources/feature/featureActivityMain')
+include ':mainScreen'
+project(':mainScreen').projectDir = new File(rootDir, 'sources/feature/mainScreen')
 
-include ':landingFragment'
-project(':landingFragment').projectDir = new File(rootDir, 'sources/feature/landingFragment')
-//project(':landingFragment').projectDir = new File(rootDir, 'sources/feature/landingFragment/stub')
+include ':landing'
+project(':landing').projectDir = new File(rootDir, 'sources/feature/landing')
+//project(':landing').projectDir = new File(rootDir, 'sources/feature/landing/stub')
 
-include ':photoreportFragment'
-project(':photoreportFragment').projectDir = new File(rootDir, 'sources/feature/photoreportFragment')
-//project(':photoreportFragment').projectDir = new File(rootDir, 'sources/feature/photoreportFragment/stub')
+include ':photoReport'
+project(':photoReport').projectDir = new File(rootDir, 'sources/feature/photoReport')
+//project(':photoReport').projectDir = new File(rootDir, 'sources/feature/photoReport/stub')
 
-include ':settingsFragment'
-project(':settingsFragment').projectDir = new File(rootDir, 'sources/feature/settingsFragment')
-//project(':settingsFragment').projectDir = new File(rootDir, 'sources/feature/settingsFragment/stub')
+include ':settings'
+project(':settings').projectDir = new File(rootDir, 'sources/feature/settings')
+//project(':settings').projectDir = new File(rootDir, 'sources/feature/settings/stub')
