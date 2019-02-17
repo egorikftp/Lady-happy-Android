@@ -1,7 +1,7 @@
 package com.egoriku.landing.data.repository
 
 import com.egoriku.landing.data.mapper.LandingMapper
-import com.egoriku.network.firestore.Result
+import com.egoriku.network.Result
 import com.egoriku.landing.data.repository.datasource.LandingDataSource
 import com.egoriku.landing.domain.model.LandingModel
 

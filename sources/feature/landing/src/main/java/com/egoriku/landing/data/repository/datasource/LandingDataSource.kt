@@ -1,8 +1,8 @@
 package com.egoriku.landing.data.repository.datasource
 
 import com.egoriku.core.di.utils.IFirebaseFirestore
-import com.egoriku.network.firestore.corouines.awaitGetResult
-import com.egoriku.network.firestore.Result
+import com.egoriku.network.firestore.awaitGetResult
+import com.egoriku.network.Result
 import com.egoriku.landing.data.entity.LandingEntity
 import com.google.firebase.firestore.DocumentReference
 import javax.inject.Inject

@@ -79,7 +79,7 @@ dependencies {
     implementation project(':photoReport')
     implementation project(':settings')
 
-    implementation('com.crashlytics.sdk.android:crashlytics:2.9.8@aar') {
+    implementation('com.crashlytics.sdk.android:crashlytics:2.9.9@aar') {
         transitive = true
     }
 

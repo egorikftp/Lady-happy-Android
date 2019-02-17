@@ -1,5 +1,7 @@
 package com.egoriku.network.firestore
 
+import com.egoriku.network.Result
+import com.egoriku.network.wrapIntoResult
 import com.google.android.gms.tasks.Task
 import kotlinx.coroutines.suspendCancellableCoroutine
 import kotlin.coroutines.resume
