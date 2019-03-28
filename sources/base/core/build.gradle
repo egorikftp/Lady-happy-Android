@@ -29,7 +29,7 @@ dependencies {
     implementation Libs.kotlin_stdlib
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.1.1'
 
-    implementation 'com.google.firebase:firebase-firestore:18.0.1'
+    implementation 'com.google.firebase:firebase-firestore:18.2.0'
 
     implementation 'ru.terrakok.cicerone:cicerone:5.0.0'
 }

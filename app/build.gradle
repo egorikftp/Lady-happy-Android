@@ -85,8 +85,8 @@ dependencies {
 
     implementation 'androidx.appcompat:appcompat:1.0.2'
 
-    implementation 'com.google.firebase:firebase-core:16.0.7'
-    implementation 'com.google.firebase:firebase-firestore:18.0.1'
+    implementation 'com.google.firebase:firebase-core:16.0.8'
+    implementation 'com.google.firebase:firebase-firestore:18.2.0'
 
     implementation 'ru.terrakok.cicerone:cicerone:5.0.0'
 
