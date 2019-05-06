@@ -1,5 +1,7 @@
 <resources>
-    <string name="navigation_view_landing">About us</string>
-    <string name="navigation_view_photo_report">Photo reports</string>
-    <string name="menu_settings">Setting</string>
+    <string name="navigation_view_landing">About</string>
+    <string name="navigation_view_landing_header">Brief information</string>
+
+    <string name="navigation_view_photo_report">Photos</string>
+    <string name="navigation_view_photo_report_header">Photo reports from company life</string>
 </resources>

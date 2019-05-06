@@ -2,7 +2,6 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'io.fabric'
-apply from: 'keys.gradle'
 
 def versionProp = loadProperties('version.properties')
 def version = versionProp['VERSION'] as int
@@ -42,12 +41,10 @@ android {
             shrinkResources true
             signingConfig signingConfigs.release
             proguardFiles 'proguard-rules.pro', getDefaultProguardFile('proguard-android-optimize.txt')
-            resValue("string", "hockey_app_id", "\"$hockey_app_id_debug\"")
         }
 
         debug {
             multiDexEnabled true
-            resValue("string", "hockey_app_id", "\"$hockey_app_id_debug\"")
         }
     }
 
@@ -90,7 +87,6 @@ dependencies {
 
     implementation 'ru.terrakok.cicerone:cicerone:5.0.0'
 
-    debugImplementation 'net.hockeyapp.android:HockeySDK:5.1.1'
     implementation Libs.kotlin_stdlib
 
     implementation 'com.google.dagger:dagger:2.21'

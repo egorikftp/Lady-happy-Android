@@ -12,5 +12,7 @@ class Router
 
     override fun newRootScreen(screen: Screen) = router.newRootScreen(screen)
 
+    override fun replaceScreen(screen: Screen) = router.replaceScreen(screen)
+
     override fun exit() = router.exit()
 }

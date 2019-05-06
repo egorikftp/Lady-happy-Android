@@ -2,38 +2,46 @@
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbarMainActivity"
+    <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/RoseTaupe"
-        app:contentInsetStartWithNavigation="0dp"
-        app:titleTextColor="@color/RealWhite" />
+        android:layout_height="wrap_content">
 
-    <LinearLayout
-        android:id="@+id/backContainer"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-        <com.google.android.material.navigation.NavigationView
-            android:id="@+id/navigationView"
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbarMainActivity"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/RoseTaupe"
-            app:itemBackground="@drawable/bg_menu_item"
-            app:itemTextColor="@color/RealWhite"
-            app:menu="@menu/navigation_menu" />
+            android:layout_height="?attr/actionBarSize"
+            android:focusable="true"
+            android:elevation="0dp"
+            android:focusableInTouchMode="true"
+            app:contentInsetEnd="0dp"
+            app:contentInsetLeft="0dp"
+            app:contentInsetRight="0dp"
+            app:contentInsetStart="0dp"
+            app:contentInsetStartWithNavigation="0dp"
+            app:layout_scrollFlags="scroll|enterAlways">
 
-    </LinearLayout>
+            <include layout="@layout/toolbar_content" />
+        </androidx.appcompat.widget.Toolbar>
+    </com.google.android.material.appbar.AppBarLayout>
 
-    <com.egoriku.mainscreen.presentation.view.RoundedTopFrameLayout
-        android:id="@+id/foregroundContainer"
+    <FrameLayout
+        android:id="@+id/container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_behavior="ru.semper_viventem.backdrop.BackdropBehavior" />
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:background="@color/RealWhite"
+        app:itemIconTint="@color/selector_bottom_navigation"
+        app:itemTextColor="@color/selector_bottom_navigation"
+        app:layout_behavior="@string/hide_bottom_view_on_scroll_behavior"
+        app:menu="@menu/navigation_menu" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
-

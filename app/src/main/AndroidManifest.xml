@@ -15,10 +15,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
-        <meta-data
-            android:name="net.hockeyapp.android.appIdentifier"
-            android:value="@string/hockey_app_id" />
     </application>
 
 </manifest>

@@ -5,10 +5,12 @@
 
         <item
             android:id="@+id/menuLanding"
+            android:icon="@drawable/ic_store_black"
             android:title="@string/navigation_view_landing" />
 
         <item
             android:id="@+id/menuPhotoReport"
+            android:icon="@drawable/ic_burst_mode"
             android:title="@string/navigation_view_photo_report" />
     </group>
 </menu>

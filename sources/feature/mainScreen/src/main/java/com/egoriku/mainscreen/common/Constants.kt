@@ -1,7 +1,6 @@
 package com.egoriku.mainscreen.common
 
-object Constants {
-    const val EMPTY = ""
+internal object Constants {
 
     object Tracking {
         const val TRACKING_FRAGMENT_LANDING = "tracking_fragment_landing"
