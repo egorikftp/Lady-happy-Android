@@ -76,21 +76,21 @@ dependencies {
     implementation project(':photoReport')
     implementation project(':settings')
 
-    implementation('com.crashlytics.sdk.android:crashlytics:2.9.9@aar') {
+    implementation('com.crashlytics.sdk.android:crashlytics:2.10.0@aar') {
         transitive = true
     }
 
     implementation 'androidx.appcompat:appcompat:1.0.2'
 
-    implementation 'com.google.firebase:firebase-core:16.0.8'
-    implementation 'com.google.firebase:firebase-firestore:18.2.0'
+    implementation 'com.google.firebase:firebase-core:16.0.9'
+    implementation 'com.google.firebase:firebase-firestore:19.0.0'
 
     implementation 'ru.terrakok.cicerone:cicerone:5.0.0'
 
     implementation Libs.kotlin_stdlib
 
-    implementation 'com.google.dagger:dagger:2.21'
-    kapt 'com.google.dagger:dagger-compiler:2.21'
+    implementation 'com.google.dagger:dagger:2.22.1'
+    kapt 'com.google.dagger:dagger-compiler:2.22.1'
 
     debugImplementation 'com.squareup.leakcanary:leakcanary-android:1.6.3'
     releaseImplementation 'com.squareup.leakcanary:leakcanary-android-no-op:1.6.3'

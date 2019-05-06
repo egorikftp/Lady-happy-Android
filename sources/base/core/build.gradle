@@ -24,12 +24,12 @@ android {
 }
 
 dependencies {
-    implementation 'com.google.dagger:dagger:2.21'
+    implementation 'com.google.dagger:dagger:2.22.1'
 
     implementation Libs.kotlin_stdlib
-    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.1.1'
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.2.1'
 
-    implementation 'com.google.firebase:firebase-firestore:18.2.0'
+    implementation 'com.google.firebase:firebase-firestore:19.0.0'
 
     implementation 'ru.terrakok.cicerone:cicerone:5.0.0'
 }
