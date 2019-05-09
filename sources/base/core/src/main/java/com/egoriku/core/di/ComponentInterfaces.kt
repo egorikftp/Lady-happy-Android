@@ -1,5 +1,6 @@
 package com.egoriku.core.di
 
+import androidx.lifecycle.ViewModelProvider
 import com.egoriku.core.IApplication
 import com.egoriku.core.di.utils.IAnalytics
 import com.egoriku.core.di.utils.IFirebaseFirestore
@@ -18,4 +19,6 @@ interface DependenciesProvider {
     fun provideRouter(): IRouter
 
     fun provideNavigationHolder(): INavigationHolder
+
+    fun provideViewModelProviderFactory(): ViewModelProvider.Factory
 }

@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="navigation_view_landing">O нас</string>
-    <string name="navigation_view_photo_report">Фотоотчеты</string>
-    <string name="menu_settings">Настройки</string>
+    <string name="navigation_view_landing_header">Краткая информация</string>
+
+    <string name="navigation_view_photo_report">Фото</string>
+    <string name="navigation_view_photo_report_header">Теплые моменты</string>
 </resources>

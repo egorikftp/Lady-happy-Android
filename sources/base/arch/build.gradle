@@ -21,8 +21,7 @@ android {
 }
 
 dependencies {
-    implementation project(':extensions'
-    )
+    implementation project(':extensions')
     implementation 'androidx.appcompat:appcompat:1.0.2'
     implementation Libs.kotlin_stdlib
 

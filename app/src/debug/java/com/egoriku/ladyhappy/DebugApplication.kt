@@ -10,7 +10,6 @@ open class DebugApplication : Application() {
     override fun onCreate() {
         super.onCreate()
         initLeakCanary()
-        DebugInitializer.register(this)
 
         // enableStrictMode()
     }

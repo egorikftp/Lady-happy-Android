@@ -1,46 +1,35 @@
 package com.egoriku.mainscreen.presentation.activity
 
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuItem
 import androidx.annotation.IdRes
-import com.egoriku.core.common.IMainActivityConnector
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import com.egoriku.core.di.findDependencies
 import com.egoriku.core.di.utils.INavigationHolder
-import com.egoriku.ladyhappy.arch.activity.BaseInjectableActivity
+import com.egoriku.ladyhappy.arch.activity.BaseActivity
 import com.egoriku.ladyhappy.extensions.consume
+import com.egoriku.ladyhappy.extensions.injectViewModel
 import com.egoriku.ladyhappy.featureprovider.provider.FeatureScreen
 import com.egoriku.mainscreen.R
-import com.egoriku.mainscreen.common.findBehavior
 import com.egoriku.mainscreen.di.MainActivityComponent
+import com.egoriku.mainscreen.presentation.screen.LandingScreen
+import com.egoriku.mainscreen.presentation.screen.PhotoReportScreen
 import kotlinx.android.synthetic.main.activity_main.*
-import ru.semper_viventem.backdrop.BackdropBehavior
+import kotlinx.android.synthetic.main.toolbar_content.*
 import ru.terrakok.cicerone.android.support.SupportAppNavigator
 import javax.inject.Inject
 
-class MainActivity : BaseInjectableActivity<MainActivityContract.View, MainActivityContract.Presenter>(), MainActivityContract.View,
-        IMainActivityConnector {
-
-    companion object {
-        private const val ARGS_MENU_ITEM = "selected_item"
-
-        private val MENU_LANDING = R.id.menuLanding
-        private val MENU_PHOTO_REPORT = R.id.menuPhotoReport
-
-        private val DEFAULT_MENU_ITEM = MENU_LANDING
-    }
+class MainActivity : BaseActivity() {
 
     @Inject
-    lateinit var mainActivityPresenter: MainActivityContract.Presenter
+    lateinit var viewModelFactory: ViewModelProvider.Factory
 
     @Inject
     lateinit var navigatorHolder: INavigationHolder
 
-    private lateinit var backdropBehavior: BackdropBehavior
+    private lateinit var viewModel: MainActivityViewModel
 
-    private val navigator = object : SupportAppNavigator(this, R.id.foregroundContainer) {}
-
-    override fun providePresenter() = mainActivityPresenter
+    private val navigator = object : SupportAppNavigator(this, R.id.container) {}
 
     override fun provideLayout(): Int = R.layout.activity_main
 
@@ -48,31 +37,35 @@ class MainActivity : BaseInjectableActivity<MainActivityContract.View, MainActiv
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setSupportActionBar(toolbarMainActivity)
 
-        backdropBehavior = foregroundContainer.findBehavior()
+        viewModel = injectViewModel(viewModelFactory)
 
-        with(backdropBehavior) {
-            attachBackContainer(R.id.backContainer)
-            attachToolbar(R.id.toolbarMainActivity)
-            setClosedIcon(R.drawable.ic_menu)
-            setOpenedIcon(R.drawable.ic_close)
-        }
+        viewModel.screen.observe(this, Observer {
+            headerBarLogoText.setText(it.pageTitle)
+        })
 
-        with(navigationView) {
-            setNavigationItemSelectedListener { item ->
-                checkMenuPosition(item.itemId)
-                backdropBehavior.close()
-                true
+        when (savedInstanceState) {
+            null -> viewModel.navigateTo(LandingScreen())
+            else -> with(savedInstanceState.getInt(KEY_SELECTED_MENU_ITEM)) {
+                bottomNavigation.selectedItemId = this
             }
         }
 
-        val currentMenuItem = savedInstanceState?.getInt(ARGS_MENU_ITEM) ?: DEFAULT_MENU_ITEM
-        setSupportActionBar(toolbarMainActivity)
+        with(bottomNavigation) {
+            setOnNavigationItemSelectedListener { item ->
+                consume {
+                    mapItemIdToScreen(item.itemId)
+                }
+            }
 
-        if (savedInstanceState == null) {
-            presenter.openLanding()
-            navigationView.setCheckedItem(currentMenuItem)
-            checkMenuPosition(navigationView.checkedItem!!.itemId)
+            setOnNavigationItemReselectedListener {}
+        }
+
+        settingsButton.setOnClickListener {
+            FeatureScreen.getSettingsFragment().apply {
+                show(supportFragmentManager, tag)
+            }
         }
     }
 
@@ -86,47 +79,28 @@ class MainActivity : BaseInjectableActivity<MainActivityContract.View, MainActiv
         super.onPause()
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        return consume {
-            menuInflater.inflate(R.menu.legal_menu, menu)
-        }
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        return when (item?.itemId) {
-            R.id.menu_main_setting -> consume {
-                FeatureScreen.getSettingsFragment().apply {
-                    show(supportFragmentManager, this.tag)
-                }
-            }
-            else -> return super.onOptionsItemSelected(item)
-        }
-    }
-
     override fun onBackPressed() {
-        if (backdropBehavior.close()) {
-            return
-        } else if (supportFragmentManager.backStackEntryCount == 1) {
+        if (supportFragmentManager.backStackEntryCount == 1) {
             finish()
             return
         }
 
-        presenter.onBackPressed()
+        viewModel.onBackPressed()
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
-        outState.putInt(ARGS_MENU_ITEM, navigationView.checkedItem!!.itemId)
+        outState.putInt(KEY_SELECTED_MENU_ITEM, bottomNavigation.selectedItemId)
         super.onSaveInstanceState(outState)
     }
 
-    private fun checkMenuPosition(@IdRes menuItemId: Int) {
+    private fun mapItemIdToScreen(@IdRes menuItemId: Int) {
         when (menuItemId) {
-            MENU_LANDING -> presenter.openLanding()
-            MENU_PHOTO_REPORT -> presenter.openPhotoReport()
+            R.id.menuLanding -> viewModel.navigateTo(LandingScreen())
+            R.id.menuPhotoReport -> viewModel.navigateTo(PhotoReportScreen())
         }
     }
 
-    override fun onScroll() {
-        backdropBehavior.close()
+    companion object {
+        private const val KEY_SELECTED_MENU_ITEM = "selected_item"
     }
 }

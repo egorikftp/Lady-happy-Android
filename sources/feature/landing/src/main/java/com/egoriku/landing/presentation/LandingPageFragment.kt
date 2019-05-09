@@ -1,10 +1,8 @@
 package com.egoriku.landing.presentation
 
-import android.content.Context
 import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.egoriku.core.common.IMainActivityConnector
 import com.egoriku.core.di.findDependencies
 import com.egoriku.ladyhappy.arch.fragment.BaseInjectableFragment
 import com.egoriku.ladyhappy.extensions.browseUrl
@@ -15,7 +13,6 @@ import com.egoriku.landing.common.parallax.ParallaxScrollListener
 import com.egoriku.landing.di.LandingFragmentComponent
 import com.egoriku.landing.presentation.controller.*
 import com.egoriku.ui.controller.NoDataController
-import com.egoriku.ui.dsl.simpleOnScrollListener
 import kotlinx.android.synthetic.main.fragment_landing.*
 import ru.surfstudio.android.easyadapter.EasyAdapter
 import ru.surfstudio.android.easyadapter.ItemList
@@ -26,7 +23,6 @@ class LandingPageFragment : BaseInjectableFragment<LandingPageContract.View, Lan
     @Inject
     lateinit var landingPagePresenter: LandingPageContract.Presenter
 
-    private var mainActivityConnector: IMainActivityConnector? = null
     private var parallaxScrollListener: ParallaxScrollListener? = null
 
     private val landingAdapter = EasyAdapter().apply {
@@ -40,20 +36,12 @@ class LandingPageFragment : BaseInjectableFragment<LandingPageContract.View, Lan
     private lateinit var ourTeamController: OurTeamController
     private lateinit var sectionsHeaderController: SectionsHeaderController
 
-    private val onScrollListener = simpleOnScrollListener {
-        mainActivityConnector?.onScroll()
-    }
-
     override fun provideLayout(): Int = R.layout.fragment_landing
 
     override fun providePresenter(): LandingPageContract.Presenter = landingPagePresenter
 
     override fun injectDependencies() = LandingFragmentComponent.init(findDependencies()).inject(this)
 
-    override fun onAttach(context: Context?) {
-        super.onAttach(context)
-        mainActivityConnector = activity as IMainActivityConnector
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -64,7 +52,6 @@ class LandingPageFragment : BaseInjectableFragment<LandingPageContract.View, Lan
         recyclerView.apply {
             layoutManager = LinearLayoutManager(context)
             adapter = landingAdapter
-            addOnScrollListener(onScrollListener)
         }
 
         parallaxScrollListener = ParallaxScrollListener().apply {
@@ -116,11 +103,6 @@ class LandingPageFragment : BaseInjectableFragment<LandingPageContract.View, Lan
     override fun hideProgress() = with(hatsProgressAnimationView) {
         stopAnimation()
         gone()
-    }
-
-    override fun onDetach() {
-        super.onDetach()
-        mainActivityConnector = null
     }
 
     override fun onDestroy() {

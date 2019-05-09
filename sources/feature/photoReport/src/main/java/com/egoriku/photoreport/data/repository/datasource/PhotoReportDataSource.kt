@@ -1,6 +1,7 @@
 package com.egoriku.photoreport.data.repository.datasource
 
 import com.egoriku.core.di.utils.IFirebaseFirestore
+import com.egoriku.network.firestore.awaitGetResult
 import com.egoriku.photoreport.data.entity.PhotoReportEntity
 import com.google.firebase.firestore.Query
 import javax.inject.Inject

@@ -1,4 +1,4 @@
-package com.egoriku.ui.dsl
+package com.egoriku.ladyhappy.extensions
 
 import androidx.recyclerview.widget.RecyclerView
 

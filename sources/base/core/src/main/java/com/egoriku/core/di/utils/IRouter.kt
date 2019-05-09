@@ -8,5 +8,7 @@ interface IRouter {
 
     fun newRootScreen(screen: Screen)
 
+    fun replaceScreen(screen: Screen)
+
     fun exit()
 }
