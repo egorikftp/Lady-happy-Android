@@ -89,8 +89,7 @@ dependencies {
     implementation Libs.firestore
     implementation Libs.kotlin
 
-    debugImplementation 'com.squareup.leakcanary:leakcanary-android:1.6.3'
-    releaseImplementation 'com.squareup.leakcanary:leakcanary-android-no-op:1.6.3'
+    debugImplementation Libs.leakCanary
 
     testImplementation Libs.junit
 }

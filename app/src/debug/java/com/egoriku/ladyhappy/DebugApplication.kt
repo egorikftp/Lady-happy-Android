@@ -2,23 +2,13 @@ package com.egoriku.ladyhappy
 
 import android.annotation.SuppressLint
 import android.os.StrictMode
-import com.squareup.leakcanary.LeakCanary
 
 @SuppressLint("Registered")
 open class DebugApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()
-        initLeakCanary()
-
-        // enableStrictMode()
-    }
-
-    private fun initLeakCanary() {
-        if (LeakCanary.isInAnalyzerProcess(this)) {
-            return
-        }
-        LeakCanary.install(this)
+        enableStrictMode()
     }
 
     private fun enableStrictMode() {
