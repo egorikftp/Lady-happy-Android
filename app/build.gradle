@@ -76,26 +76,23 @@ dependencies {
     implementation project(':photoReport')
     implementation project(':settings')
 
-    implementation('com.crashlytics.sdk.android:crashlytics:2.10.0@aar') {
+    implementation Libs.appcompat
+    implementation Libs.cicerone
+    implementation(Libs.crashlytics) {
         transitive = true
     }
 
-    implementation 'androidx.appcompat:appcompat:1.0.2'
+    implementation Libs.dagger
+    kapt Libs.daggerCompiler
 
-    implementation 'com.google.firebase:firebase-core:16.0.9'
-    implementation 'com.google.firebase:firebase-firestore:19.0.0'
-
-    implementation 'ru.terrakok.cicerone:cicerone:5.0.0'
-
-    implementation Libs.kotlin_stdlib
-
-    implementation 'com.google.dagger:dagger:2.22.1'
-    kapt 'com.google.dagger:dagger-compiler:2.22.1'
+    implementation Libs.firebaseCore
+    implementation Libs.firestore
+    implementation Libs.kotlin
 
     debugImplementation 'com.squareup.leakcanary:leakcanary-android:1.6.3'
     releaseImplementation 'com.squareup.leakcanary:leakcanary-android-no-op:1.6.3'
 
-    testImplementation 'junit:junit:4.12'
+    testImplementation Libs.junit
 }
 
 apply plugin: 'com.google.gms.google-services'

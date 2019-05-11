@@ -34,19 +34,18 @@ dependencies {
     implementation project(':network')
     implementation project(':ui')
 
-    implementation 'androidx.appcompat:appcompat:1.0.2'
-    implementation 'androidx.recyclerview:recyclerview:1.0.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.0.0-alpha5'
-    implementation 'com.google.firebase:firebase-firestore:19.0.0'
+    implementation Libs.appcompat
+    implementation Libs.constraintLayout
+    implementation Libs.coroutinesAndroid
 
-    kapt "com.google.dagger:dagger-compiler:2.22.1"
-    implementation 'com.google.dagger:dagger:2.22.1'
+    implementation Libs.dagger
+    kapt Libs.daggerCompiler
 
-    implementation 'com.github.bumptech.glide:glide:4.9.0'
-    kapt 'com.github.bumptech.glide:compiler:4.9.0'
+    implementation Libs.glide
+    kapt Libs.glideCompiler
 
-    implementation Libs.kotlin_stdlib
-    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.2.1'
-
-    implementation 'com.ryanjeffreybrooks:indefinitepagerindicator:1.0.10'
+    implementation Libs.kotlin
+    implementation Libs.firestore
+    implementation Libs.pageIndicator
+    implementation Libs.recyclerView
 }

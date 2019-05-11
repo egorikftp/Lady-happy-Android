@@ -30,15 +30,11 @@ dependencies {
     implementation project(':core')
     implementation project(':ui')
 
-    implementation 'com.google.android.material:material:1.0.0'
-    implementation 'androidx.browser:browser:1.0.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.0.0-alpha3'
+    implementation Libs.dagger
+    kapt Libs.daggerCompiler
 
-    kapt "com.google.dagger:dagger-compiler:2.21"
-    implementation 'com.google.dagger:dagger:2.21'
+    implementation Libs.kotlin
 
-    implementation 'androidx.lifecycle:lifecycle-extensions:2.0.0'
-    kapt 'androidx.lifecycle:lifecycle-compiler:2.0.0'
-
-    implementation Libs.kotlin_stdlib
+    kapt Libs.lifecycleCompiler
+    implementation Libs.lifecycleExt
 }

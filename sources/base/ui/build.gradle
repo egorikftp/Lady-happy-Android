@@ -29,9 +29,9 @@ dependencies {
     implementation project(':easyAdapter')
     implementation project(':extensions')
 
-    implementation 'androidx.appcompat:appcompat:1.0.2'
-    implementation 'androidx.recyclerview:recyclerview:1.0.0'
-    implementation 'androidx.vectordrawable:vectordrawable:1.0.1'
-    implementation 'com.google.android.material:material:1.0.0'
-
-    implementation Libs.kotlin_stdlib }
+    implementation Libs.appcompat
+    implementation Libs.kotlin
+    implementation Libs.material
+    implementation Libs.recyclerView
+    implementation Libs.vectorDrawable
+}
