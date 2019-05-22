@@ -13,7 +13,7 @@ object Version {
     const val glide = "4.9.0"
     const val junit = "4.12"
     const val kotlin = "1.3.31"
-    const val leakCanary = "2.0-alpha-1"
+    const val leakCanary = "2.0-alpha-2"
     const val lifecycle = "2.0.0"
     const val material = "1.0.0"
     const val pageIndicator = "1.0.10"
@@ -45,4 +45,21 @@ object Libs {
     const val pageIndicator = "com.ryanjeffreybrooks:indefinitepagerindicator:${Version.pageIndicator}"
     const val recyclerView = "androidx.recyclerview:recyclerview:${Version.recyclerView}"
     const val vectorDrawable = "androidx.vectordrawable:vectordrawable:${Version.vectorDrawable}"
+}
+
+object ClasspathVersion {
+    const val dexCount = "0.8.2"
+    const val fabric = "1.29.0"
+    const val googleServices = "4.2.0"
+    const val gradleTools = "3.4.1"
+    const val versionPlugin = "0.21.0"
+}
+
+object Plugins {
+    const val dexCount = "com.getkeepsafe.dexcount:dexcount-gradle-plugin:${ClasspathVersion.dexCount}"
+    const val fabric = "io.fabric.tools:gradle:${ClasspathVersion.fabric}"
+    const val googleServices = "com.google.gms:google-services:${ClasspathVersion.googleServices}"
+    const val gradleTools = "com.android.tools.build:gradle:${ClasspathVersion.gradleTools}"
+    const val kotlinGradle = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Version.kotlin}"
+    const val versionPlugin = "com.github.ben-manes:gradle-versions-plugin:${ClasspathVersion.versionPlugin}"
 }
