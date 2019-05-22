@@ -22,6 +22,6 @@ android {
 dependencies {
     implementation project(':featureProvider')
 
-    implementation 'androidx.appcompat:appcompat:1.0.2'
-    implementation Libs.kotlin_stdlib
+    implementation Libs.appcompat
+    implementation Libs.kotlin
 }

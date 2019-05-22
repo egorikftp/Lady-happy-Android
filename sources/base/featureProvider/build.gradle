@@ -22,6 +22,6 @@ android {
 dependencies {
     implementation project(':extensions')
 
-    implementation 'androidx.fragment:fragment:1.0.0'
-    implementation Libs.kotlin_stdlib
+    implementation Libs.fragment
+    implementation Libs.kotlin
 }

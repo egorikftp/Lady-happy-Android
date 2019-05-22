@@ -24,9 +24,8 @@ android {
 }
 
 dependencies {
-    implementation Libs.kotlin_stdlib
-    implementation 'androidx.fragment:fragment:1.0.0'
-
-    implementation 'androidx.lifecycle:lifecycle-extensions:2.0.0'
-    implementation 'androidx.recyclerview:recyclerview:1.0.0'
+    implementation Libs.fragment
+    implementation Libs.kotlin
+    implementation Libs.recyclerView
+    implementation Libs.lifecycleExt
 }
