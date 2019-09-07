@@ -30,6 +30,7 @@ dependencies {
     implementation project(':extensions')
 
     implementation Libs.appcompat
+    implementation Libs.constraintLayout
     implementation Libs.kotlin
     implementation Libs.material
     implementation Libs.recyclerView

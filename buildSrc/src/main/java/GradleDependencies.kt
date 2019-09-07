@@ -1,24 +1,24 @@
 object Version {
-    const val annotation = "1.0.2"
-    const val appcompat = "1.0.2"
+    const val annotation = "1.1.0"
+    const val appcompat = "1.1.0"
     const val browser = "1.0.0"
     const val cicerone = "5.0.0"
     const val constraintLayout = "2.0.0-beta1"
-    const val coroutinesAndroid = "1.2.1"
-    const val crashlytics = "2.10.0@aar"
-    const val dagger = "2.22.1"
-    const val firebaseCore = "16.0.9"
-    const val firestore = "19.0.0"
-    const val fragment = "1.0.0"
+    const val coroutinesAndroid = "1.3.1"
+    const val crashlytics = "2.10.1@aar"
+    const val dagger = "2.24"
+    const val firebaseCore = "17.2.0"
+    const val firestore = "21.0.0"
+    const val fragment = "1.1.0"
     const val glide = "4.9.0"
     const val junit = "4.12"
-    const val kotlin = "1.3.31"
+    const val kotlin = "1.3.50"
     const val leakCanary = "2.0-alpha-2"
-    const val lifecycle = "2.0.0"
+    const val lifecycle = "2.1.0"
     const val material = "1.0.0"
     const val pageIndicator = "1.0.10"
     const val recyclerView = "1.0.0"
-    const val vectorDrawable = "1.0.1"
+    const val vectorDrawable = "1.1.0"
 }
 
 object Libs {
@@ -49,10 +49,10 @@ object Libs {
 
 object ClasspathVersion {
     const val dexCount = "0.8.2"
-    const val fabric = "1.29.0"
-    const val googleServices = "4.2.0"
-    const val gradleTools = "3.4.1"
-    const val versionPlugin = "0.21.0"
+    const val fabric = "1.31.0"
+    const val googleServices = "4.3.2"
+    const val gradleTools = "3.5.0"
+    const val versionPlugin = "0.24.0"
 }
 
 object Plugins {
@@ -61,5 +61,4 @@ object Plugins {
     const val googleServices = "com.google.gms:google-services:${ClasspathVersion.googleServices}"
     const val gradleTools = "com.android.tools.build:gradle:${ClasspathVersion.gradleTools}"
     const val kotlinGradle = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Version.kotlin}"
-    const val versionPlugin = "com.github.ben-manes:gradle-versions-plugin:${ClasspathVersion.versionPlugin}"
 }
