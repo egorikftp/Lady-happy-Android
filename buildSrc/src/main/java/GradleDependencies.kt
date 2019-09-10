@@ -8,7 +8,7 @@ object Version {
     const val crashlytics = "2.10.1@aar"
     const val dagger = "2.24"
     const val firebaseCore = "17.2.0"
-    const val firestore = "21.0.0"
+    const val firestore = "21.1.0"
     const val fragment = "1.1.0"
     const val glide = "4.9.0"
     const val junit = "4.12"
@@ -52,7 +52,7 @@ object ClasspathVersion {
     const val fabric = "1.31.0"
     const val googleServices = "4.3.2"
     const val gradleTools = "3.5.0"
-    const val versionPlugin = "0.24.0"
+    const val versionPlugin = "0.25.0"
 }
 
 object Plugins {
