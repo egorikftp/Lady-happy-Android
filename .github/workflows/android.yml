@@ -17,7 +17,7 @@ jobs:
       with:
         java-version: 1.8
     - name: Copy google-services.json
-        run: ${{secrets.GOOGLE_SERVICES_JSON}} | base64 --decode > app/google-services.json
+        run: base64 --decode ${{ secrets.GOOGLE_SERVICES_JSON }} > app/google-services.json
     - name: Build with Gradle
         run: bash ./gradlew clean assembleDebug
 
