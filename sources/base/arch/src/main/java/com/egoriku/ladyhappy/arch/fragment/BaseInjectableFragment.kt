@@ -11,7 +11,7 @@ import com.egoriku.ladyhappy.extensions.inflate
 
 abstract class BaseInjectableFragment<V : BaseContract.View, P : BaseContract.Presenter<V>> : BaseFragment<V, P>() {
 
-    override fun onAttach(context: Context?) {
+    override fun onAttach(context: Context) {
         injectDependencies()
         super.onAttach(context)
     }
