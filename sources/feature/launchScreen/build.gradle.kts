@@ -1,5 +1,5 @@
 plugins {
-    id("com.egoriku.plugin")
+    id("com.egoriku.library")
 }
 
 dependencies {

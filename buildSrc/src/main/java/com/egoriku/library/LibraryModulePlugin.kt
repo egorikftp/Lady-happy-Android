@@ -1,14 +1,15 @@
-package com.egoriku.plugin
+package com.egoriku.library
 
 import Libs
-import com.android.build.gradle.LibraryExtension
+import com.android.build.gradle.BaseExtension
+import com.egoriku.implementation
 import org.gradle.api.JavaVersion
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.dependencies
 import org.gradle.kotlin.dsl.getByType
 
-class LibraryModulePlugin : Plugin<Project> {
+open class LibraryModulePlugin : Plugin<Project> {
 
     override fun apply(project: Project) {
         with(project) {
@@ -26,7 +27,7 @@ fun Project.configurePlugins() {
     }
 }
 
-fun Project.configureAndroidSection() = extensions.getByType<LibraryExtension>().run {
+fun Project.configureAndroidSection() = extensions.getByType<BaseExtension>().run {
     compileSdkVersion(28)
 
     defaultConfig {
@@ -50,5 +51,5 @@ fun Project.configureAndroidSection() = extensions.getByType<LibraryExtension>()
 }
 
 fun Project.configureDependencies() = dependencies {
-    add("implementation", Libs.kotlin)
+    implementation(Libs.kotlin)
 }
