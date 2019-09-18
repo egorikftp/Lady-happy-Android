@@ -43,5 +43,5 @@ class ProjectBean(
         private val isStub: Boolean = false
 ) {
     val path
-        get() = if(isStub) "$_path/stub" else _path
+        get() = if (isStub) "$_path/stub" else _path
 }
