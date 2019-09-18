@@ -1,16 +1,25 @@
+import com.egoriku.dependencies.SettingsProject
+import com.egoriku.ext.allowExperimentalExtensions
+import com.egoriku.ext.withLibraries
+import com.egoriku.ext.withProjects
+
 plugins {
     id("com.egoriku.library")
     id("kotlin-android-extensions")
 }
 
-dependencies {
-    implementation(project(":easyAdapter"))
-    implementation(project(":extensions"))
+allowExperimentalExtensions()
 
-    implementation(Libs.appcompat)
-    implementation(Libs.constraintLayout)
-    implementation(Libs.kotlin)
-    implementation(Libs.material)
-    implementation(Libs.recyclerView)
-    implementation(Libs.vectorDrawable)
-}
+withLibraries(
+        Libs.appcompat,
+        Libs.constraintLayout,
+        Libs.kotlin,
+        Libs.material,
+        Libs.recyclerView,
+        Libs.vectorDrawable
+)
+
+withProjects(
+        SettingsProject.easyAdapter,
+        SettingsProject.extensions
+)

@@ -1,3 +1,5 @@
+import com.egoriku.dependencies.SettingsProject
+
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
@@ -68,13 +70,13 @@ android {
 //apply plugin: 'com.getkeepsafe.dexcount'
 
 dependencies {
-    implementation project(':core')
-    implementation project(':featureProvider')
-    implementation project(':landing')
-    implementation project(':launchScreen')
-    implementation project(':mainScreen')
-    implementation project(':photoReport')
-    implementation project(':settings')
+    implementation project(SettingsProject.core)
+    implementation project(SettingsProject.featureProvider)
+    implementation project(SettingsProject.landing)
+    implementation project(SettingsProject.launchScreen)
+    implementation project(SettingsProject.mainScreen)
+    implementation project(SettingsProject.photoReport)
+    implementation project(SettingsProject.settings)
 
     implementation Libs.appcompat
     implementation Libs.cicerone
