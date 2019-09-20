@@ -41,6 +41,7 @@ fun Project.configureAndroidSection() = extensions.getByType<BaseExtension>().ru
         getByName("release") {
             isMinifyEnabled = true
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+            consumerProguardFiles("proguard-rules.pro")
         }
     }
 
