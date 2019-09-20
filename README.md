@@ -1,8 +1,6 @@
 # Lady Happy - handmade hats and accessories
 
-[![GitHub stars](https://img.shields.io/github/stars/egorikftp/Lady-happy.svg)](https://github.com/egorikftp/Lady-happy/stargazers) [![GitHub forks](https://img.shields.io/github/forks/egorikftp/Lady-happy.svg)](https://github.com/egorikftp/Lady-happy/network) [![GitHub license](https://img.shields.io/github/license/egorikftp/Lady-happy.svg)](https://github.com/egorikftp/Lady-happy/blob/dev/LICENSE)
-
-
+[![GitHub stars](https://img.shields.io/github/stars/egorikftp/Lady-happy.svg)](https://github.com/egorikftp/Lady-happy/stargazers) [![GitHub forks](https://img.shields.io/github/forks/egorikftp/Lady-happy.svg)](https://github.com/egorikftp/Lady-happy/network) [![GitHub license](https://img.shields.io/github/license/egorikftp/Lady-happy.svg)](https://github.com/egorikftp/Lady-happy/blob/dev/LICENSE) [![Build status](https://build.appcenter.ms/v0.1/apps/5c717ffd-1796-4c51-9ec5-c40fa19ed472/branches/dev/badge)](https://appcenter.ms)
 
 ![](app/src/main/res/mipmap-xxxhdpi/ic_launcher_round.png)
 
