@@ -89,7 +89,8 @@ withLibraries(
         Libs.appcompat,
         Libs.cicerone,
         Libs.firebaseCore,
-        Libs.firestore
+        Libs.firestore,
+        Libs.kotlin
 )
 
 dependencies {
