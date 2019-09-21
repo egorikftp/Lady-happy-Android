@@ -48,7 +48,6 @@ object Libs {
 }
 
 object ClasspathVersion {
-    const val dexCount = "0.8.2"
     const val fabric = "1.31.0"
     const val googleServices = "4.3.2"
     const val gradleTools = "3.5.0"
@@ -56,9 +55,14 @@ object ClasspathVersion {
 }
 
 object Plugins {
-    const val dexCount = "com.getkeepsafe.dexcount:dexcount-gradle-plugin:${ClasspathVersion.dexCount}"
     const val fabric = "io.fabric.tools:gradle:${ClasspathVersion.fabric}"
     const val googleServices = "com.google.gms:google-services:${ClasspathVersion.googleServices}"
     const val gradleTools = "com.android.tools.build:gradle:${ClasspathVersion.gradleTools}"
     const val kotlinGradle = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Version.kotlin}"
+}
+
+object ProjectVersion {
+    const val buildToolsVersion = "29.0.2"
+    const val compileSdkVersion = 29
+    const val minSdkVersion = 21
 }

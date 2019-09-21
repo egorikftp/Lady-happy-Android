@@ -1,6 +1,7 @@
 package com.egoriku.library
 
 import Libs
+import ProjectVersion
 import com.android.build.gradle.BaseExtension
 import com.egoriku.ext.implementation
 import org.gradle.api.JavaVersion
@@ -28,20 +29,17 @@ fun Project.configurePlugins() {
 }
 
 fun Project.configureAndroidSection() = extensions.getByType<BaseExtension>().run {
-    compileSdkVersion(28)
-
     defaultConfig {
-        minSdkVersion(21)
-        targetSdkVersion(28)
+        minSdkVersion(ProjectVersion.minSdkVersion)
+        compileSdkVersion(ProjectVersion.compileSdkVersion)
         versionCode = 1
         versionName = "1.0"
+        consumerProguardFiles("consumer-rules.pro")
     }
 
     buildTypes {
         getByName("release") {
             isMinifyEnabled = true
-            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
-            consumerProguardFiles("consumer-rules.pro")
         }
     }
 
