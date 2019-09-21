@@ -13,7 +13,6 @@ buildscript {
     }
 
     dependencies {
-        // classpath(Plugins.dexCount)
         classpath(Plugins.fabric)
         classpath(Plugins.googleServices)
         classpath(Plugins.gradleTools)

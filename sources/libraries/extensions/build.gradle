@@ -1,31 +1,10 @@
-apply plugin: 'com.android.library'
-apply plugin: 'kotlin-android'
-
-android {
-    compileSdkVersion 28
-
-    defaultConfig {
-        minSdkVersion 21
-        targetSdkVersion 28
-        versionCode 1
-        versionName "1.0"
-    }
-
-    buildTypes {
-        release {
-            minifyEnabled true
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-        }
-    }
-
-    lintOptions {
-        abortOnError false
-    }
+plugins {
+    id("com.egoriku.library")
 }
 
 dependencies {
-    implementation Libs.fragment
-    implementation Libs.kotlin
-    implementation Libs.recyclerView
-    implementation Libs.lifecycleExt
+    implementation(Libs.fragment)
+    implementation(Libs.kotlin)
+    implementation(Libs.recyclerView)
+    implementation(Libs.lifecycleExt)
 }
