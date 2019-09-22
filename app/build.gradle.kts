@@ -1,6 +1,6 @@
-
 import com.android.build.gradle.internal.api.BaseVariantOutputImpl
 import com.egoriku.dependencies.SettingsProject
+import com.egoriku.ext.implementation
 import com.egoriku.ext.propertyInt
 import com.egoriku.ext.withLibraries
 import com.egoriku.ext.withProjects
@@ -89,11 +89,11 @@ withLibraries(
         Libs.appcompat,
         Libs.cicerone,
         Libs.firebaseCore,
-        Libs.firestore,
-        Libs.kotlin
+        Libs.firestore
 )
 
 dependencies {
+    implementation(kotlin("stdlib-jdk7", Version.kotlin))
 
     implementation(Libs.crashlytics) {
         isTransitive = true

@@ -16,7 +16,7 @@ buildscript {
         classpath(Plugins.fabric)
         classpath(Plugins.googleServices)
         classpath(Plugins.gradleTools)
-        classpath(Plugins.kotlinGradle)
+        classpath(kotlin("gradle-plugin", version = Version.kotlin))
     }
 }
 
