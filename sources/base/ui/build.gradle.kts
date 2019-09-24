@@ -19,7 +19,6 @@ withProjects(
 withLibraries(
         Libs.appcompat,
         Libs.constraintLayout,
-        Libs.kotlin,
         Libs.material,
         Libs.recyclerView,
         Libs.vectorDrawable
