@@ -1,6 +1,6 @@
 package com.egoriku.dependencies
 
-object SettingsProject {
+object Modules {
 
     const val arch = ":arch"
     const val core = ":core"

@@ -1,22 +1,28 @@
+import com.egoriku.dependencies.Libs
+import com.egoriku.dependencies.Modules
+import com.egoriku.ext.andKapt
+import com.egoriku.ext.withKapt
+import com.egoriku.ext.withLibraries
+import com.egoriku.ext.withProjects
+
 plugins {
     id("com.egoriku.feature")
     id("kotlin-kapt")
 }
 
-dependencies {
-    implementation(project(":arch"))
-    implementation(project(":core"))
-    implementation(project(":extensions"))
-    implementation(project(":featureProvider"))
-    implementation(project(":ui"))
+withProjects(
+        Modules.arch,
+        Modules.core,
+        Modules.extensions,
+        Modules.featureProvider,
+        Modules.ui
+)
 
-    implementation(Libs.appcompat)
-    implementation(Libs.cicerone)
-    implementation(Libs.constraintLayout)
+withLibraries(
+        Libs.appcompat,
+        Libs.cicerone,
+        Libs.constraintLayout,
+        Libs.material
+)
 
-    implementation(Libs.dagger)
-    kapt(Libs.daggerCompiler)
-
-    implementation(Libs.kotlin)
-    implementation(Libs.material)
-}
+withKapt(Libs.dagger andKapt Libs.daggerCompiler)

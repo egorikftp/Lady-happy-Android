@@ -1,28 +1,34 @@
+import com.egoriku.dependencies.Libs
+import com.egoriku.dependencies.Modules
+import com.egoriku.ext.andKapt
+import com.egoriku.ext.withKapt
+import com.egoriku.ext.withLibraries
+import com.egoriku.ext.withProjects
+
 plugins {
     id("com.egoriku.feature")
     id("kotlin-kapt")
 }
 
-dependencies {
-    implementation(project(":arch"))
-    implementation(project(":core"))
-    implementation(project(":easyAdapter"))
-    implementation(project(":extensions"))
-    implementation(project(":network"))
-    implementation(project(":ui"))
+withProjects(
+        Modules.arch,
+        Modules.core,
+        Modules.easyAdapter,
+        Modules.extensions,
+        Modules.network,
+        Modules.ui
+)
 
-    implementation(Libs.appcompat)
-    implementation(Libs.constraintLayout)
-    implementation(Libs.coroutinesAndroid)
+withLibraries(
+        Libs.appcompat,
+        Libs.constraintLayout,
+        Libs.coroutinesAndroid,
+        Libs.firestore,
+        Libs.pageIndicator,
+        Libs.recyclerView
+)
 
-    implementation(Libs.dagger)
-    kapt(Libs.daggerCompiler)
-
-    implementation(Libs.glide)
-    kapt(Libs.glideCompiler)
-
-    implementation(Libs.kotlin)
-    implementation(Libs.firestore)
-    implementation(Libs.pageIndicator)
-    implementation(Libs.recyclerView)
-}
+withKapt(
+        Libs.dagger andKapt Libs.daggerCompiler,
+        Libs.glide andKapt Libs.glideCompiler
+)

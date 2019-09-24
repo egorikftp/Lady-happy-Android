@@ -1,4 +1,5 @@
-import com.egoriku.dependencies.SettingsProject
+import com.egoriku.dependencies.Libs
+import com.egoriku.dependencies.Modules
 import com.egoriku.ext.allowExperimentalExtensions
 import com.egoriku.ext.withLibraries
 import com.egoriku.ext.withProjects
@@ -10,6 +11,11 @@ plugins {
 
 allowExperimentalExtensions()
 
+withProjects(
+        Modules.easyAdapter,
+        Modules.extensions
+)
+
 withLibraries(
         Libs.appcompat,
         Libs.constraintLayout,
@@ -17,9 +23,4 @@ withLibraries(
         Libs.material,
         Libs.recyclerView,
         Libs.vectorDrawable
-)
-
-withProjects(
-        SettingsProject.easyAdapter,
-        SettingsProject.extensions
 )

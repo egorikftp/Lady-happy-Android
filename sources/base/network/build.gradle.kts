@@ -1,16 +1,20 @@
+import com.egoriku.dependencies.Libs
+import com.egoriku.dependencies.Modules
+import com.egoriku.ext.andKapt
+import com.egoriku.ext.withKapt
+import com.egoriku.ext.withLibraries
+import com.egoriku.ext.withProjects
+
 plugins {
     id("com.egoriku.library")
     id("kotlin-kapt")
 }
 
-dependencies {
-    implementation(project(":core"))
+withProjects(Modules.core)
 
-    implementation(Libs.coroutinesAndroid)
+withLibraries(
+        Libs.coroutinesAndroid,
+        Libs.firestore
+)
 
-    implementation(Libs.dagger)
-    kapt(Libs.daggerCompiler)
-
-    implementation(Libs.firestore)
-    implementation(Libs.kotlin)
-}
+withKapt(Libs.dagger andKapt Libs.daggerCompiler)

@@ -1,8 +1,8 @@
 package com.egoriku.library
 
-import Libs
-import ProjectVersion
+import com.egoriku.dependencies.versions.ProjectVersion
 import com.android.build.gradle.BaseExtension
+import com.egoriku.dependencies.Libs
 import com.egoriku.ext.implementation
 import org.gradle.api.JavaVersion
 import org.gradle.api.Plugin
