@@ -1,8 +1,11 @@
+import com.egoriku.dependencies.Libs
+import com.egoriku.ext.withLibraries
+
 plugins {
     id("com.egoriku.library")
 }
 
-dependencies {
-    implementation(Libs.annotation)
-    implementation(Libs.recyclerView)
-}
+withLibraries(
+    Libs.annotation,
+    Libs.recyclerView
+)

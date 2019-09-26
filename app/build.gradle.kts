@@ -1,9 +1,10 @@
 import com.android.build.gradle.internal.api.BaseVariantOutputImpl
-import com.egoriku.dependencies.SettingsProject
-import com.egoriku.ext.implementation
-import com.egoriku.ext.propertyInt
-import com.egoriku.ext.withLibraries
-import com.egoriku.ext.withProjects
+import com.egoriku.application.provideVersionCode
+import com.egoriku.application.provideVersionName
+import com.egoriku.dependencies.Libs
+import com.egoriku.dependencies.Modules
+import com.egoriku.dependencies.versions.ProjectVersion
+import com.egoriku.ext.*
 import org.jetbrains.kotlin.konan.file.File
 import org.jetbrains.kotlin.konan.properties.Properties
 import org.jetbrains.kotlin.konan.properties.loadProperties
@@ -16,13 +17,6 @@ plugins {
     id("io.fabric")
 }
 
-val properties: Properties = loadProperties("$rootDir/app/version.properties")
-val major = properties.propertyInt("VERSION")
-val minor = properties.propertyInt("SUB_VERSION")
-val patch = properties.propertyInt("BUILD_VERSION")
-val versionCodeFromProp = calcVersionCode(major, minor, patch)
-val versionNameFromProp = "$major.$minor.$patch"
-
 android {
     buildToolsVersion(ProjectVersion.buildToolsVersion)
     compileSdkVersion(ProjectVersion.compileSdkVersion)
@@ -30,8 +24,8 @@ android {
     defaultConfig {
         applicationId = "com.egoriku.ladyhappy"
         minSdkVersion(ProjectVersion.minSdkVersion)
-        versionCode = versionCodeFromProp
-        versionName = versionNameFromProp
+        versionCode = provideVersionCode()
+        versionName = provideVersionName()
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         resConfigs("en", "ru")
     }
@@ -76,31 +70,29 @@ android {
 }
 
 withProjects(
-        SettingsProject.core,
-        SettingsProject.featureProvider,
-        SettingsProject.landing,
-        SettingsProject.launchScreen,
-        SettingsProject.mainScreen,
-        SettingsProject.photoReport,
-        SettingsProject.settings
+        Modules.core,
+        Modules.featureProvider,
+        Modules.landing,
+        Modules.launchScreen,
+        Modules.mainScreen,
+        Modules.photoReport,
+        Modules.settings
 )
 
 withLibraries(
         Libs.appcompat,
         Libs.cicerone,
         Libs.firebaseCore,
-        Libs.firestore
+        Libs.firestore,
+        Libs.kotlin
 )
 
-dependencies {
-    implementation(kotlin("stdlib-jdk7", Version.kotlin))
+withKapt(Libs.dagger andKapt Libs.daggerCompiler)
 
+dependencies {
     implementation(Libs.crashlytics) {
         isTransitive = true
     }
-
-    implementation(Libs.dagger)
-    kapt(Libs.daggerCompiler)
 
     debugImplementation(Libs.leakCanary)
 
@@ -118,5 +110,3 @@ fun autoIncrementBuildVersionNumber() {
 
     properties.saveToFile(File("$rootDir/app/version.properties"))
 }
-
-fun calcVersionCode(major: Int, minor: Int, patch: Int): Int = major * 100000 + minor * 1000 + patch

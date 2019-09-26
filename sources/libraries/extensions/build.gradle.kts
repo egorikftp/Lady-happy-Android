@@ -6,8 +6,7 @@ plugins {
 }
 
 withLibraries(
-        Libs.cicerone,
-        Libs.coroutinesAndroid,
-        Libs.dagger,
-        Libs.firestore
+        Libs.fragment,
+        Libs.recyclerView,
+        Libs.lifecycleExt
 )

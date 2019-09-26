@@ -1,9 +1,9 @@
-import com.egoriku.dependencies.SettingsProject
+import com.egoriku.dependencies.Modules
 import com.egoriku.ext.registerModules
 
 include(":app")
 
 registerModules(
-        *SettingsProject.features,
-        *SettingsProject.libraries
+        *Modules.features,
+        *Modules.libraries
 )

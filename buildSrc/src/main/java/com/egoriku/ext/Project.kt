@@ -1,17 +1,27 @@
 package com.egoriku.ext
 
-import com.egoriku.getExtensionByName
-import com.egoriku.toExtensionAware
 import org.gradle.api.Project
+import org.gradle.api.plugins.ExtensionAware
 import org.gradle.kotlin.dsl.dependencies
 import org.gradle.kotlin.dsl.project
 import org.jetbrains.kotlin.gradle.internal.AndroidExtensionsExtension
 import org.jetbrains.kotlin.gradle.internal.CacheImplementation
 
+fun Project.toExtensionAware() = this as ExtensionAware
+
 fun Project.withLibraries(vararg libs: String) {
     dependencies {
         libs.forEach {
             implementation(it)
+        }
+    }
+}
+
+fun Project.withKapt(vararg libs: Pair<String, String>) {
+    dependencies {
+        libs.forEach {
+            implementation(it.first)
+            kapt(it.second)
         }
     }
 }
