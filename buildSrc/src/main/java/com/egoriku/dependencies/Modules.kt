@@ -8,6 +8,7 @@ object Modules {
     const val extensions = ":extensions"
     const val featureProvider = ":featureProvider"
     const val network = ":network"
+    const val navigation = ":navigation"
     const val ui = ":ui"
 
     const val landing = ":landing"
@@ -24,6 +25,7 @@ object Modules {
                 ProjectBean(extensions, "sources/libraries/extensions"),
                 ProjectBean(featureProvider, "sources/base/featureProvider"),
                 ProjectBean(network, "sources/base/network"),
+                ProjectBean(navigation, "sources/libraries/navigation"),
                 ProjectBean(ui, "sources/base/ui")
         )
 

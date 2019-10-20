@@ -9,14 +9,14 @@ import com.egoriku.core.di.utils.INavigationHolder
 import com.egoriku.ladyhappy.arch.activity.BaseActivity
 import com.egoriku.ladyhappy.extensions.consume
 import com.egoriku.ladyhappy.extensions.injectViewModel
-import com.egoriku.ladyhappy.featureprovider.provider.FeatureScreen
+import com.egoriku.ladyhappy.navigation.navigator.platform.ActivityScopeNavigator
 import com.egoriku.mainscreen.R
 import com.egoriku.mainscreen.di.MainActivityComponent
 import com.egoriku.mainscreen.presentation.screen.LandingScreen
 import com.egoriku.mainscreen.presentation.screen.PhotoReportScreen
+import com.egoriku.mainscreen.presentation.screen.SettingsScreen
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.toolbar_content.*
-import ru.terrakok.cicerone.android.support.SupportAppNavigator
 import javax.inject.Inject
 
 class MainActivity : BaseActivity() {
@@ -29,7 +29,7 @@ class MainActivity : BaseActivity() {
 
     private lateinit var viewModel: MainActivityViewModel
 
-    private val navigator = object : SupportAppNavigator(this, R.id.container) {}
+    private val navigator = ActivityScopeNavigator(this, R.id.container)
 
     override fun provideLayout(): Int = R.layout.activity_main
 
@@ -41,12 +41,12 @@ class MainActivity : BaseActivity() {
 
         viewModel = injectViewModel(viewModelFactory)
 
-        viewModel.screen.observe(this, Observer {
-            headerBarLogoText.setText(it.pageTitle)
+        viewModel.screenTitle.observe(this, Observer {
+            headerBarLogoText.setText(it)
         })
 
         when (savedInstanceState) {
-            null -> viewModel.navigateTo(LandingScreen())
+            null -> viewModel.replaceWith(LandingScreen())
             else -> with(savedInstanceState.getInt(KEY_SELECTED_MENU_ITEM)) {
                 bottomNavigation.selectedItemId = this
             }
@@ -63,9 +63,7 @@ class MainActivity : BaseActivity() {
         }
 
         settingsButton.setOnClickListener {
-            FeatureScreen.getSettingsFragment().apply {
-                show(supportFragmentManager, tag)
-            }
+            viewModel.navigateTo(SettingsScreen())
         }
     }
 
@@ -95,8 +93,8 @@ class MainActivity : BaseActivity() {
 
     private fun mapItemIdToScreen(@IdRes menuItemId: Int) {
         when (menuItemId) {
-            R.id.menuLanding -> viewModel.navigateTo(LandingScreen())
-            R.id.menuPhotoReport -> viewModel.navigateTo(PhotoReportScreen())
+            R.id.menuLanding -> viewModel.replaceWith(LandingScreen())
+            R.id.menuPhotoReport -> viewModel.replaceWith(PhotoReportScreen())
         }
     }
 

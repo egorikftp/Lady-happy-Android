@@ -15,13 +15,13 @@ withProjects(
         Modules.core,
         Modules.extensions,
         Modules.featureProvider,
+        Modules.navigation,
         Modules.ui
 )
 
 withLibraries(
         Libs.appcompat,
-        Libs.cicerone,
-        Libs.constraintLayout,
+        Libs.coreKtx,
         Libs.material
 )
 

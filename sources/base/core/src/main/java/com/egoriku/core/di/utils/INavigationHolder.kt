@@ -1,10 +1,10 @@
 package com.egoriku.core.di.utils
 
-import ru.terrakok.cicerone.Navigator
+import com.egoriku.ladyhappy.navigation.navigator.INavigator
 
 interface INavigationHolder {
 
-    fun setNavigator(navigator: Navigator)
+    fun setNavigator(navigator: INavigator)
 
     fun removeNavigator()
 }

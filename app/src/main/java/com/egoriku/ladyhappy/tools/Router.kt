@@ -1,18 +1,17 @@
 package com.egoriku.ladyhappy.tools
 
 import com.egoriku.core.di.utils.IRouter
-import ru.terrakok.cicerone.Router
-import ru.terrakok.cicerone.Screen
+import com.egoriku.ladyhappy.navigation.router.Router
+import com.egoriku.ladyhappy.navigation.screen.Screen
+
 import javax.inject.Inject
 
 class Router
 @Inject constructor(private val router: Router) : IRouter {
 
-    override fun navigateTo(screen: Screen) = router.navigateTo(screen)
+    override fun replaceScreen(screen: Screen) = router.replaceWith(screen)
 
-    override fun newRootScreen(screen: Screen) = router.newRootScreen(screen)
+    override fun addScreen(screen: Screen) = router.addScreen(screen)
 
-    override fun replaceScreen(screen: Screen) = router.replaceScreen(screen)
-
-    override fun exit() = router.exit()
+    override fun back() = router.back()
 }
