@@ -6,7 +6,7 @@ import com.egoriku.ladyhappy.navigation.command.Back
 import com.egoriku.ladyhappy.navigation.command.Command
 import com.egoriku.ladyhappy.navigation.command.Replace
 import com.egoriku.ladyhappy.navigation.navigator.INavigator
-import com.egoriku.ladyhappy.navigation.screen.Activity
+import com.egoriku.ladyhappy.navigation.screen.ActivityScreen
 import com.egoriku.ladyhappy.navigation.screen.FragmentScreen
 
 class LocalNavigator(
@@ -31,7 +31,7 @@ class LocalNavigator(
     private fun processReplace(command: Replace) {
         when (val screen = command.screen) {
             is FragmentScreen -> replaceFragment(screen)
-            is Activity -> replaceActivity(screen)
+            is ActivityScreen -> replaceActivity(screen)
         }
     }
 
@@ -50,7 +50,7 @@ class LocalNavigator(
                 .commit()
     }
 
-    private fun replaceActivity(screen: Activity) {
+    private fun replaceActivity(screen: ActivityScreen) {
         activity.startActivity(screen.intent)
         activity.finish()
     }

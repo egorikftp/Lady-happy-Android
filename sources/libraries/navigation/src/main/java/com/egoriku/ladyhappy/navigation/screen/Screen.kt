@@ -14,7 +14,7 @@ abstract class FragmentScreen : Screen() {
 
 }
 
-abstract class Activity : Screen() {
+abstract class ActivityScreen : Screen() {
 
     abstract val intent: Intent
 }
