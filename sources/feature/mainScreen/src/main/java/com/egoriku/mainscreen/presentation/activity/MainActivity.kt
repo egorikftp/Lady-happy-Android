@@ -31,7 +31,7 @@ class MainActivity : BaseActivity() {
 
     private val navigator = ActivityScopeNavigator(this, R.id.container)
 
-    override fun provideLayout(): Int = R.layout.activity_main
+    override val layoutId: Int = R.layout.activity_main
 
     override fun injectDependencies() = MainActivityComponent.init(findDependencies()).inject(this)
 
@@ -77,6 +77,7 @@ class MainActivity : BaseActivity() {
         super.onPause()
     }
 
+    //TODO use navigation library approach
     override fun onBackPressed() {
         if (supportFragmentManager.backStackEntryCount == 1) {
             finish()

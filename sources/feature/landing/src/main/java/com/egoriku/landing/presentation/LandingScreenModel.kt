@@ -2,15 +2,15 @@ package com.egoriku.landing.presentation
 
 import com.egoriku.landing.domain.model.LandingModel
 
-class LandingScreenModel {
-
-    var loadState: LoadState = LoadState.NONE
-
-    var landingModel: LandingModel? = null
+class LandingScreenModel(
+        val loadState: LoadState = LoadState.NONE,
+        val landingModel: LandingModel? = null
+) {
 
     fun isEmpty() = landingModel == null
 }
 
+//TODO use sealed classes
 enum class LoadState {
     NONE,
     PROGRESS,

@@ -6,16 +6,16 @@ import androidx.appcompat.app.AppCompatActivity
 
 abstract class BaseActivity : AppCompatActivity() {
 
+    @get:LayoutRes
+    abstract val layoutId: Int
+
     override fun onCreate(savedInstanceState: Bundle?) {
         injectDependencies()
 
         super.onCreate(savedInstanceState)
 
-        setContentView(provideLayout())
+        setContentView(layoutId)
     }
 
-    abstract fun injectDependencies()
-
-    @LayoutRes
-    abstract fun provideLayout(): Int
+    open fun injectDependencies() = Unit
 }

@@ -1,40 +1,43 @@
 package com.egoriku.landing.presentation
 
 import android.util.Log
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import com.egoriku.core.di.utils.IAnalytics
 import com.egoriku.core.exception.FirestoreNetworkException
 import com.egoriku.core.exception.FirestoreParseException
 import com.egoriku.core.exception.NoSuchDocumentException
-import com.egoriku.network.Result
 import com.egoriku.landing.domain.interactors.LandingUseCase
 import com.egoriku.landing.domain.model.LandingModel
-import com.egoriku.ladyhappy.arch.pvm.BasePresenter
+import com.egoriku.network.Result
 import kotlinx.coroutines.*
 import javax.inject.Inject
 import kotlin.coroutines.CoroutineContext
 
-internal class LandingPagePresenter
-@Inject constructor(private val analytics: IAnalytics,
-                    private val landingUseCase: LandingUseCase)
-    : BasePresenter<LandingPageContract.View>(), LandingPageContract.Presenter, CoroutineScope {
+class LandingViewModel
+@Inject constructor(
+        private val analytics: IAnalytics,
+        private val landingUseCase: LandingUseCase
+): ViewModel(), CoroutineScope {
 
-    private var screenModel: LandingScreenModel = LandingScreenModel()
     private val job = Job()
+    private val screenData = MutableLiveData<LandingScreenModel>()
+
+    val screenState: LiveData<LandingScreenModel> = screenData
 
     override val coroutineContext: CoroutineContext
         get() = Dispatchers.Main + job
 
-    override fun loadLandingData() {
-        when {
-            !screenModel.isEmpty() -> view?.render(screenModel)
-            else -> getLandingData()
-        }
+    init {
+        getLandingData()
     }
 
     private fun getLandingData() {
         launch {
             processResult(LoadState.PROGRESS)
 
+            //TODO move Dispatcher into usecase or repository
             val result: Result<LandingModel> = withContext(Dispatchers.IO) {
                 landingUseCase.getLandingInfo()
             }
@@ -58,19 +61,17 @@ internal class LandingPagePresenter
         }
     }
 
-    override fun detachView() {
+    override fun onCleared() {
         job.cancel()
-        super.detachView()
+        super.onCleared()
     }
 
-    override fun retryLoading() = getLandingData()
+    fun retryLoading() = getLandingData()
 
     private fun processResult(loadState: LoadState = LoadState.NONE, model: LandingModel? = null) {
-        screenModel.let {
-            it.landingModel = model
-            it.loadState = loadState
-
-            view?.render(it)
-        }
+        screenData.value = LandingScreenModel(
+                loadState = loadState,
+                landingModel = model
+        )
     }
 }

@@ -12,6 +12,9 @@ plugins {
 
 withProjects(Modules.extensions)
 
-withLibraries(Libs.appcompat)
+withLibraries(
+        Libs.appcompat,
+        Libs.material
+)
 
 withKapt(Libs.lifecycleExt andKapt Libs.lifecycleCompiler)
