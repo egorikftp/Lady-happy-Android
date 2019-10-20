@@ -11,7 +11,7 @@ import com.egoriku.ladyhappy.navigation.screen.ActivityScreen
 import com.egoriku.ladyhappy.navigation.screen.DialogFragmentScreen
 import com.egoriku.ladyhappy.navigation.screen.FragmentScreen
 
-class LocalNavigator(
+class ActivityScopeNavigator(
         private val activity: FragmentActivity,
         private val containerId: Int,
         private val fragmentManager: FragmentManager = activity.supportFragmentManager

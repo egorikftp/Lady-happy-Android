@@ -9,7 +9,7 @@ import com.egoriku.core.di.utils.INavigationHolder
 import com.egoriku.ladyhappy.arch.activity.BaseActivity
 import com.egoriku.ladyhappy.extensions.consume
 import com.egoriku.ladyhappy.extensions.injectViewModel
-import com.egoriku.ladyhappy.navigation.navigator.platform.LocalNavigator
+import com.egoriku.ladyhappy.navigation.navigator.platform.ActivityScopeNavigator
 import com.egoriku.mainscreen.R
 import com.egoriku.mainscreen.di.MainActivityComponent
 import com.egoriku.mainscreen.presentation.screen.LandingScreen
@@ -29,7 +29,7 @@ class MainActivity : BaseActivity() {
 
     private lateinit var viewModel: MainActivityViewModel
 
-    private val navigator = LocalNavigator(this, R.id.container)
+    private val navigator = ActivityScopeNavigator(this, R.id.container)
 
     override fun provideLayout(): Int = R.layout.activity_main
 

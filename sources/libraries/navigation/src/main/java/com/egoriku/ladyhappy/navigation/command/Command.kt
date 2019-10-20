@@ -8,4 +8,4 @@ class Replace(val screen: Screen): Command()
 
 class Add(val screen: Screen): Command()
 
-class Back() : Command()
+class Back : Command()

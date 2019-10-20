@@ -12,7 +12,6 @@ sealed class Screen {
 abstract class FragmentScreen : Screen() {
 
     abstract val fragment: Fragment
-
 }
 
 abstract class ActivityScreen : Screen() {
