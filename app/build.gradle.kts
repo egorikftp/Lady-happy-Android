@@ -1,3 +1,4 @@
+
 import com.android.build.gradle.internal.api.BaseVariantOutputImpl
 import com.egoriku.application.provideVersionCode
 import com.egoriku.application.provideVersionName
@@ -70,6 +71,7 @@ android {
 }
 
 withProjects(
+        Modules.catalog,
         Modules.core,
         Modules.featureProvider,
         Modules.landing,

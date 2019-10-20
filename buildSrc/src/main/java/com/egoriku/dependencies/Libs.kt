@@ -6,6 +6,7 @@ object Libs {
     const val annotation = "androidx.annotation:annotation:${LibrariesVersion.annotation}"
     const val appcompat = "androidx.appcompat:appcompat:${LibrariesVersion.appcompat}"
     const val browser = "androidx.browser:browser:${LibrariesVersion.browser}"
+    const val cardView = "androidx.cardview:cardview:${LibrariesVersion.cardView}"
     const val constraintLayout = "androidx.constraintlayout:constraintlayout:${LibrariesVersion.constraintLayout}"
     const val coreKtx = "androidx.core:core-ktx:${LibrariesVersion.coreKtx}"
     const val coroutinesAndroid = "org.jetbrains.kotlinx:kotlinx-coroutines-android:${LibrariesVersion.coroutinesAndroid}"

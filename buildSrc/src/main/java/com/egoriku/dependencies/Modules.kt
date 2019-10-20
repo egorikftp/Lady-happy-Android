@@ -11,6 +11,7 @@ object Modules {
     const val navigation = ":navigation"
     const val ui = ":ui"
 
+    const val catalog = ":catalog"
     const val landing = ":landing"
     const val launchScreen = ":launchScreen"
     const val mainScreen = ":mainScreen"
@@ -31,6 +32,7 @@ object Modules {
 
     val features
         get() = arrayOf(
+                ProjectBean(catalog, "sources/feature/catalog"),
                 ProjectBean(landing, "sources/feature/landing"),
                 ProjectBean(launchScreen, "sources/feature/launchScreen"),
                 ProjectBean(mainScreen, "sources/feature/mainScreen"),
