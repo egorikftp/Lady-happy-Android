@@ -13,7 +13,8 @@ import dagger.Component
     AppModule::class,
     NavigationModule::class,
     ViewModelModule::class,
-    LandingModule::class
+    LandingModule::class,
+    PhotoReportModule::class
 ])
 @ApplicationScope
 interface DependenciesComponent : DependenciesProvider {
