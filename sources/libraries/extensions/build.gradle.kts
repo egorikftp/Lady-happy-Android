@@ -8,5 +8,6 @@ plugins {
 withLibraries(
         Libs.fragment,
         Libs.recyclerView,
-        Libs.lifecycleExt
+        Libs.lifecycleExtensions,
+        Libs.viewModel
 )

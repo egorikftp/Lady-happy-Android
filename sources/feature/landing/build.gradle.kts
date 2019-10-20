@@ -25,7 +25,8 @@ withLibraries(
         Libs.coroutinesAndroid,
         Libs.firestore,
         Libs.material,
-        Libs.recyclerView
+        Libs.recyclerView,
+        Libs.viewModel
 )
 
 withKapt(
