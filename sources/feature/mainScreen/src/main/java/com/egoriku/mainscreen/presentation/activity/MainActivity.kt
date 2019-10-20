@@ -19,7 +19,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.toolbar_content.*
 import javax.inject.Inject
 
-class MainActivity : BaseActivity() {
+class MainActivity : BaseActivity(R.layout.activity_main) {
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
@@ -30,8 +30,6 @@ class MainActivity : BaseActivity() {
     private lateinit var viewModel: MainActivityViewModel
 
     private val navigator = ActivityScopeNavigator(this, R.id.container)
-
-    override val layoutId: Int = R.layout.activity_main
 
     override fun injectDependencies() = MainActivityComponent.init(findDependencies()).inject(this)
 
