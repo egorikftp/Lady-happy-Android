@@ -66,7 +66,7 @@ class PhotoReportFragment : BaseInjectableFragment<PhotoReportContract.View, Pho
             else -> hideLoading()
         }
 
-        itemList.addIf(screenModel.isEmpty() || screenModel.loadState == LoadState.ERROR_LOADING, noDataController)
+        itemList.addIf(screenModel.isEmpty() && screenModel.loadState == LoadState.ERROR_LOADING, noDataController)
 
         screenModel.photoReports?.let {
             itemList.add(photoReportHeaderController)
