@@ -75,13 +75,13 @@ withProjects(
         Modules.landing,
         Modules.launchScreen,
         Modules.mainScreen,
+        Modules.navigation,
         Modules.photoReport,
         Modules.settings
 )
 
 withLibraries(
         Libs.appcompat,
-        Libs.cicerone,
         Libs.firebaseCore,
         Libs.firestore,
         Libs.kotlin

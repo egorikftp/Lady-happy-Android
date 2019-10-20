@@ -1,14 +1,10 @@
 package com.egoriku.core.di.utils
 
-import ru.terrakok.cicerone.Screen
+import com.egoriku.ladyhappy.navigation.screen.Screen
 
 interface IRouter {
 
-    fun navigateTo(screen: Screen)
-
-    fun newRootScreen(screen: Screen)
-
     fun replaceScreen(screen: Screen)
 
-    fun exit()
+    fun back()
 }

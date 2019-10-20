@@ -5,7 +5,9 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.egoriku.core.di.utils.IAnalytics
 import com.egoriku.core.di.utils.IRouter
-import com.egoriku.mainscreen.presentation.screen.base.AppScreen
+import com.egoriku.ladyhappy.extensions.common.Constants.EMPTY
+import com.egoriku.ladyhappy.navigation.screen.Screen
+import com.egoriku.mainscreen.common.TRACKING_KEY
 import javax.inject.Inject
 
 class MainActivityViewModel
@@ -13,17 +15,16 @@ class MainActivityViewModel
         private val router: IRouter,
         private val analytics: IAnalytics) : ViewModel() {
 
-    private val currentScreen: MutableLiveData<AppScreen> = MutableLiveData()
+    private val currentScreen: MutableLiveData<Screen> = MutableLiveData()
 
-    val screen: LiveData<AppScreen>
-        get() = currentScreen
+    val screen: LiveData<Screen> = currentScreen
 
-    fun navigateTo(screen: AppScreen) {
+    fun replaceWith(screen: Screen) {
         currentScreen.value = screen
 
-        analytics.trackPageView(screen.trackingKey)
+        analytics.trackPageView(screen.arguments.getString(TRACKING_KEY) ?: EMPTY)
         router.replaceScreen(screen)
     }
 
-    fun onBackPressed() = router.exit()
+    fun onBackPressed() = router.back()
 }

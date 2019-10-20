@@ -1,18 +1,20 @@
 package com.egoriku.mainscreen.presentation.screen
 
-import androidx.fragment.app.Fragment
+import android.os.Bundle
+import androidx.core.os.bundleOf
 import com.egoriku.ladyhappy.featureprovider.provider.FeatureScreen
+import com.egoriku.ladyhappy.navigation.screen.FragmentScreen
 import com.egoriku.mainscreen.R
 import com.egoriku.mainscreen.common.Constants.Tracking
-import com.egoriku.mainscreen.presentation.screen.base.AppScreen
+import com.egoriku.mainscreen.common.TITLE_KEY
+import com.egoriku.mainscreen.common.TRACKING_KEY
 
-class PhotoReportScreen : AppScreen() {
+class PhotoReportScreen : FragmentScreen() {
 
-    override val pageTitle: Int
-        get() = R.string.navigation_view_photo_report_header
+    override val arguments: Bundle = bundleOf(
+            TITLE_KEY to R.string.navigation_view_photo_report_header,
+            TRACKING_KEY to Tracking.TRACKING_FRAGMENT_PHOTO_REPORT
+    )
 
-    override val trackingKey: String
-        get() = Tracking.TRACKING_FRAGMENT_PHOTO_REPORT
-
-    override fun getFragment(): Fragment = FeatureScreen.getPhotoReportFragment()
+    override val fragment = FeatureScreen.getPhotoReportFragment()
 }
