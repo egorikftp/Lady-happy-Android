@@ -1,6 +1,5 @@
 package com.egoriku.dependencies
 
-import com.android.sdklib.repository.legacy.remote.internal.packages.RemoteAddonPkgInfo
 import com.egoriku.dependencies.versions.LibrariesVersion
 
 object Libs {

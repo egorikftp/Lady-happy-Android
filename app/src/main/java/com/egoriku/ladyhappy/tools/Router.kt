@@ -11,5 +11,7 @@ class Router
 
     override fun replaceScreen(screen: Screen) = router.replaceWith(screen)
 
+    override fun addScreen(screen: Screen) = router.addScreen(screen)
+
     override fun back() = router.back()
 }

@@ -2,11 +2,13 @@ package com.egoriku.ladyhappy.navigation.navigator.platform
 
 import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.FragmentManager
+import com.egoriku.ladyhappy.navigation.command.Add
 import com.egoriku.ladyhappy.navigation.command.Back
 import com.egoriku.ladyhappy.navigation.command.Command
 import com.egoriku.ladyhappy.navigation.command.Replace
 import com.egoriku.ladyhappy.navigation.navigator.INavigator
 import com.egoriku.ladyhappy.navigation.screen.ActivityScreen
+import com.egoriku.ladyhappy.navigation.screen.DialogFragmentScreen
 import com.egoriku.ladyhappy.navigation.screen.FragmentScreen
 
 class LocalNavigator(
@@ -24,6 +26,7 @@ class LocalNavigator(
     private fun applyCommand(command: Command) {
         when (command) {
             is Replace -> processReplace(command)
+            is Add -> processAdd(command)
             is Back -> processBack()
         }
     }
@@ -32,6 +35,14 @@ class LocalNavigator(
         when (val screen = command.screen) {
             is FragmentScreen -> replaceFragment(screen)
             is ActivityScreen -> replaceActivity(screen)
+        }
+    }
+
+    private fun processAdd(command: Add) {
+        when (val screen = command.screen) {
+            is FragmentScreen -> TODO()
+            is ActivityScreen -> TODO()
+            is DialogFragmentScreen -> showDialogFragment(screen)
         }
     }
 
@@ -53,5 +64,9 @@ class LocalNavigator(
     private fun replaceActivity(screen: ActivityScreen) {
         activity.startActivity(screen.intent)
         activity.finish()
+    }
+
+    private fun showDialogFragment(screen: DialogFragmentScreen) = with(screen) {
+        dialogFragment.show(fragmentManager, tag)
     }
 }

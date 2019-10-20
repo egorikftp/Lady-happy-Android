@@ -6,5 +6,7 @@ interface IRouter {
 
     fun replaceScreen(screen: Screen)
 
+    fun addScreen(screen: Screen)
+
     fun back()
 }

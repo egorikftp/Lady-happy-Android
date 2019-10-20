@@ -9,13 +9,12 @@ import com.egoriku.core.di.utils.INavigationHolder
 import com.egoriku.ladyhappy.arch.activity.BaseActivity
 import com.egoriku.ladyhappy.extensions.consume
 import com.egoriku.ladyhappy.extensions.injectViewModel
-import com.egoriku.ladyhappy.featureprovider.provider.FeatureScreen
 import com.egoriku.ladyhappy.navigation.navigator.platform.LocalNavigator
 import com.egoriku.mainscreen.R
-import com.egoriku.mainscreen.common.TITLE_KEY
 import com.egoriku.mainscreen.di.MainActivityComponent
 import com.egoriku.mainscreen.presentation.screen.LandingScreen
 import com.egoriku.mainscreen.presentation.screen.PhotoReportScreen
+import com.egoriku.mainscreen.presentation.screen.SettingsScreen
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.toolbar_content.*
 import javax.inject.Inject
@@ -42,8 +41,8 @@ class MainActivity : BaseActivity() {
 
         viewModel = injectViewModel(viewModelFactory)
 
-        viewModel.screen.observe(this, Observer {
-            headerBarLogoText.setText(it.arguments.getInt(TITLE_KEY))
+        viewModel.screenTitle.observe(this, Observer {
+            headerBarLogoText.setText(it)
         })
 
         when (savedInstanceState) {
@@ -64,9 +63,7 @@ class MainActivity : BaseActivity() {
         }
 
         settingsButton.setOnClickListener {
-            FeatureScreen.getSettingsFragment().apply {
-                show(supportFragmentManager, tag)
-            }
+            viewModel.navigateTo(SettingsScreen())
         }
     }
 
