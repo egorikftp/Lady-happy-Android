@@ -21,7 +21,7 @@ import androidx.core.content.ContextCompat
 import com.egoriku.landing.R
 import com.egoriku.landing.common.PredefinedResources
 import com.egoriku.landing.domain.model.SocialModel
-import com.egoriku.ui.listeners.SimpleAnimationListener
+import com.egoriku.ladyhappy.extensions.listeners.SimpleAnimationListener
 
 internal class SocialView : LinearLayout, View.OnClickListener {
 

@@ -21,10 +21,10 @@ object Libs {
     const val junit = "junit:junit:${LibrariesVersion.junit}"
     const val kotlin = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${LibrariesVersion.kotlin}"
     const val leakCanary = "com.squareup.leakcanary:leakcanary-android:${LibrariesVersion.leakCanary}"
-    const val lifecycleExt = "androidx.lifecycle:lifecycle-extensions:${LibrariesVersion.lifecycle}"
-    const val lifecycleCompiler = "androidx.lifecycle:lifecycle-compiler:${LibrariesVersion.lifecycle}"
+    const val lifecycleExtensions = "androidx.lifecycle:lifecycle-extensions:${LibrariesVersion.lifecycleExtensions}"
     const val material = "com.google.android.material:material:${LibrariesVersion.material}"
     const val pageIndicator = "com.ryanjeffreybrooks:indefinitepagerindicator:${LibrariesVersion.pageIndicator}"
     const val recyclerView = "androidx.recyclerview:recyclerview:${LibrariesVersion.recyclerView}"
     const val vectorDrawable = "androidx.vectordrawable:vectordrawable:${LibrariesVersion.vectorDrawable}"
+    const val viewModel = "androidx.lifecycle:lifecycle-viewmodel:${LibrariesVersion.viewModel}"
 }

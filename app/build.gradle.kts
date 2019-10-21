@@ -78,12 +78,14 @@ withProjects(
         Modules.launchScreen,
         Modules.mainScreen,
         Modules.navigation,
+        Modules.network,
         Modules.photoReport,
         Modules.settings
 )
 
 withLibraries(
         Libs.appcompat,
+        Libs.coroutinesAndroid,
         Libs.firebaseCore,
         Libs.firestore,
         Libs.kotlin

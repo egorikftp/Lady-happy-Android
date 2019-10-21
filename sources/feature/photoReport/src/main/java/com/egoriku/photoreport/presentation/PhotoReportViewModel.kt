@@ -1,6 +1,9 @@
 package com.egoriku.photoreport.presentation
 
 import android.util.Log
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import com.egoriku.core.di.utils.IAnalytics
 import com.egoriku.core.exception.FirestoreNetworkException
 import com.egoriku.core.exception.FirestoreParseException
@@ -8,28 +11,26 @@ import com.egoriku.core.exception.NoSuchDocumentException
 import com.egoriku.network.Result
 import com.egoriku.photoreport.domain.interactor.PhotoReportUseCase
 import com.egoriku.photoreport.domain.model.PhotoReportModel
-import com.egoriku.ladyhappy.arch.pvm.BasePresenter
 import kotlinx.coroutines.*
 import javax.inject.Inject
 import kotlin.coroutines.CoroutineContext
 
-internal class PhotoReportPresenter
+class PhotoReportViewModel
 @Inject constructor(
         private val photoReportUseCase: PhotoReportUseCase,
         private val analytics: IAnalytics
-) : BasePresenter<PhotoReportContract.View>(), PhotoReportContract.Presenter, CoroutineScope {
+) : ViewModel(), CoroutineScope {
 
-    private var screenModel = ScreenModel()
     private val job = Job()
+    private val screenData = MutableLiveData<ScreenModel>()
+
+    val screenState: LiveData<ScreenModel> = screenData
 
     override val coroutineContext: CoroutineContext
         get() = Dispatchers.Main + job
 
-    override fun loadData() {
-        when {
-            !screenModel.isEmpty() -> view?.render(screenModel)
-            else -> getPhotoReportData()
-        }
+    init {
+        getPhotoReportData()
     }
 
     private fun getPhotoReportData() {
@@ -60,16 +61,16 @@ internal class PhotoReportPresenter
     }
 
     private fun processResult(loadState: LoadState = LoadState.NONE, model: List<PhotoReportModel>? = null) {
-        screenModel.let {
-            it.photoReports = model
-            it.loadState = loadState
-
-            view?.render(it)
-        }
+        screenData.value = ScreenModel(
+                photoReports = model,
+                loadState = loadState
+        )
     }
 
-    override fun detachView() {
+    fun retryLoading() = getPhotoReportData()
+
+    override fun onCleared() {
         job.cancel()
-        super.detachView()
+        super.onCleared()
     }
 }
