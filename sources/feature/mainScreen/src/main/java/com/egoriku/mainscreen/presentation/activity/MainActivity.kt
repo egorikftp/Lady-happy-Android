@@ -6,20 +6,25 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.egoriku.core.di.findDependencies
 import com.egoriku.core.di.utils.INavigationHolder
+import com.egoriku.core.feature.IFeatureProvider
 import com.egoriku.ladyhappy.arch.activity.BaseActivity
 import com.egoriku.ladyhappy.extensions.consume
 import com.egoriku.ladyhappy.extensions.injectViewModel
 import com.egoriku.ladyhappy.navigation.navigator.platform.ActivityScopeNavigator
 import com.egoriku.mainscreen.R
 import com.egoriku.mainscreen.di.MainActivityComponent
+import com.egoriku.mainscreen.presentation.screen.CatalogScreen
 import com.egoriku.mainscreen.presentation.screen.LandingScreen
 import com.egoriku.mainscreen.presentation.screen.PhotoReportScreen
 import com.egoriku.mainscreen.presentation.screen.SettingsScreen
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.toolbar_content.*
+import org.koin.android.ext.android.inject
 import javax.inject.Inject
 
 class MainActivity : BaseActivity(R.layout.activity_main) {
+
+    private val featureProvider: IFeatureProvider by inject()
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
@@ -44,7 +49,7 @@ class MainActivity : BaseActivity(R.layout.activity_main) {
         })
 
         when (savedInstanceState) {
-            null -> viewModel.replaceWith(LandingScreen())
+            null -> viewModel.replaceWith(CatalogScreen(featureProvider))
             else -> with(savedInstanceState.getInt(KEY_SELECTED_MENU_ITEM)) {
                 bottomNavigation.selectedItemId = this
             }
@@ -61,7 +66,7 @@ class MainActivity : BaseActivity(R.layout.activity_main) {
         }
 
         settingsButton.setOnClickListener {
-            viewModel.navigateTo(SettingsScreen())
+            viewModel.navigateTo(SettingsScreen(featureProvider))
         }
     }
 
@@ -92,8 +97,9 @@ class MainActivity : BaseActivity(R.layout.activity_main) {
 
     private fun mapItemIdToScreen(@IdRes menuItemId: Int) {
         when (menuItemId) {
-            R.id.menuLanding -> viewModel.replaceWith(LandingScreen())
-            R.id.menuPhotoReport -> viewModel.replaceWith(PhotoReportScreen())
+            R.id.menuLanding -> viewModel.replaceWith(LandingScreen(featureProvider))
+            R.id.menuPhotoReport -> viewModel.replaceWith(PhotoReportScreen(featureProvider))
+            R.id.menuCatalog -> viewModel.replaceWith(CatalogScreen(featureProvider))
         }
     }
 

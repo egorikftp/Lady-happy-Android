@@ -1,0 +1,3 @@
+<resources>
+    <dimen name="adapter_item_catalog_margin">8dp</dimen>
+</resources>

@@ -14,7 +14,6 @@ withProjects(
         Modules.arch,
         Modules.core,
         Modules.extensions,
-        Modules.featureProvider,
         Modules.navigation,
         Modules.ui
 )
@@ -22,6 +21,7 @@ withProjects(
 withLibraries(
         Libs.appcompat,
         Libs.coreKtx,
+        Libs.koinAndroidExt,
         Libs.material
 )
 

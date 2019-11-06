@@ -7,6 +7,13 @@ plugins {
     id("com.egoriku.library")
 }
 
-withProjects(Modules.featureProvider)
+withProjects(
+        Modules.core,
+        Modules.ui
+)
 
-withLibraries(Libs.appcompat)
+withLibraries(
+        Libs.appcompat,
+        Libs.material,
+        Libs.koinAndroidExt
+)

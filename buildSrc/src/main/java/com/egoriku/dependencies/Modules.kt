@@ -6,7 +6,6 @@ object Modules {
     const val core = ":core"
     const val easyAdapter = ":easyAdapter"
     const val extensions = ":extensions"
-    const val featureProvider = ":featureProvider"
     const val network = ":network"
     const val navigation = ":navigation"
     const val ui = ":ui"
@@ -24,7 +23,6 @@ object Modules {
                 ProjectBean(core, "sources/base/core"),
                 ProjectBean(easyAdapter, "sources/libraries/easyAdapter"),
                 ProjectBean(extensions, "sources/libraries/extensions"),
-                ProjectBean(featureProvider, "sources/base/featureProvider"),
                 ProjectBean(network, "sources/base/network"),
                 ProjectBean(navigation, "sources/libraries/navigation"),
                 ProjectBean(ui, "sources/base/ui")

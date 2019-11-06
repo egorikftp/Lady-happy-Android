@@ -1,1 +1,0 @@
--keep class com.egoriku.settings.presentation.SettingBottomSheetDialogFragment

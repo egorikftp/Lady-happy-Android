@@ -71,9 +71,9 @@ android {
 }
 
 withProjects(
+        Modules.arch,
         Modules.catalog,
         Modules.core,
-        Modules.featureProvider,
         Modules.landing,
         Modules.launchScreen,
         Modules.mainScreen,
@@ -88,7 +88,10 @@ withLibraries(
         Libs.coroutinesAndroid,
         Libs.firebaseCore,
         Libs.firestore,
-        Libs.kotlin
+        Libs.koinAndroid,
+        Libs.koinCore,
+        Libs.kotlin,
+        Libs.material
 )
 
 withKapt(Libs.dagger andKapt Libs.daggerCompiler)

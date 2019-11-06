@@ -5,5 +5,6 @@
         <item name="colorPrimaryDark">@color/RoseTaupeDark</item>
         <item name="colorAccent">@color/Terracota</item>
         <item name="android:textColorSecondary">@color/RealWhite</item>
+        <item name="android:navigationBarColor">@color/RoseTaupeDark</item>
     </style>
 </resources>

@@ -9,12 +9,12 @@ import com.egoriku.mainscreen.common.Constants.Tracking
 import com.egoriku.mainscreen.common.TITLE_KEY
 import com.egoriku.mainscreen.common.TRACKING_KEY
 
-class PhotoReportScreen(featureProvider: IFeatureProvider) : FragmentScreen() {
+class CatalogScreen(featureProvider: IFeatureProvider) : FragmentScreen() {
 
     override val arguments: Bundle = bundleOf(
-            TITLE_KEY to R.string.navigation_view_photo_report_header,
-            TRACKING_KEY to Tracking.TRACKING_FRAGMENT_PHOTO_REPORT
+            TITLE_KEY to R.string.navigation_view_catalog_header,
+            TRACKING_KEY to Tracking.TRACKING_FRAGMENT_CATALOG
     )
 
-    override val fragment = featureProvider.photoReportFragment
+    override val fragment = featureProvider.catalogFragment
 }

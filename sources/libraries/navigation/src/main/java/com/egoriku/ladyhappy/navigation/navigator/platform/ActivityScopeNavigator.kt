@@ -2,10 +2,7 @@ package com.egoriku.ladyhappy.navigation.navigator.platform
 
 import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.FragmentManager
-import com.egoriku.ladyhappy.navigation.command.Add
-import com.egoriku.ladyhappy.navigation.command.Back
-import com.egoriku.ladyhappy.navigation.command.Command
-import com.egoriku.ladyhappy.navigation.command.Replace
+import com.egoriku.ladyhappy.navigation.command.*
 import com.egoriku.ladyhappy.navigation.navigator.INavigator
 import com.egoriku.ladyhappy.navigation.screen.ActivityScreen
 import com.egoriku.ladyhappy.navigation.screen.DialogFragmentScreen

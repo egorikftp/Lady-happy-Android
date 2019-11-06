@@ -4,4 +4,7 @@
 
     <string name="navigation_view_photo_report">Photos</string>
     <string name="navigation_view_photo_report_header">Heartwarming moments</string>
+
+    <string name="navigation_view_catalog">Catalog</string>
+    <string name="navigation_view_catalog_header">Our goods</string>
 </resources>

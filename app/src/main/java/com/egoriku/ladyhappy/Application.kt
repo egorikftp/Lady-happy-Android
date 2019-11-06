@@ -4,6 +4,7 @@ import android.app.Application
 import com.egoriku.core.IApplication
 import com.egoriku.core.di.ApplicationProvider
 import com.egoriku.ladyhappy.di.AppComponent
+import com.egoriku.ladyhappy.koin.initKoin
 
 open class Application : Application(), IApplication {
 
@@ -12,6 +13,7 @@ open class Application : Application(), IApplication {
     override fun onCreate() {
         super.onCreate()
         appComponent.inject(this)
+        initKoin()
     }
 
     override fun getAppComponent(): ApplicationProvider = appComponent
