@@ -24,18 +24,21 @@ class WaveView @JvmOverloads constructor(
     private var y1Value = 0f
     private var y2Value = 0f
 
+    private var quadrant = 30
+
     private val wavePaint: Paint
+    private val path = Path()
 
     /**
      * @frequency - Then less the frequency more will be the number of waves
      */
-    private var frequency = 50
+    private val frequency = 50
+
     /**
      * @amplitude - Amplitude gives the height of wave
      */
-    private var amplitude = 10
-    private var quadrant = 30
-    private var path = Path()
+    private val amplitude = 10
+
 
     init {
         var waveColor: Int = Color.BLUE
@@ -56,8 +59,10 @@ class WaveView @JvmOverloads constructor(
 
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
+
         path.moveTo(0f, height.toFloat())
         path.lineTo(0f, quadrant.toFloat())
+
         var i = 0
 
         while (i < width + 10) {
@@ -69,6 +74,7 @@ class WaveView @JvmOverloads constructor(
         }
 
         path.lineTo(width.toFloat(), height.toFloat())
-        canvas.drawPath(path, wavePaint!!)
+
+        canvas.drawPath(path, wavePaint)
     }
 }
