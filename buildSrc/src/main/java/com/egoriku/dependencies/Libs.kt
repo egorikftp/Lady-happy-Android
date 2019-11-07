@@ -22,6 +22,8 @@ object Libs {
     const val junit = "junit:junit:${LibrariesVersion.junit}"
     const val koinAndroid = "org.koin:koin-android:${LibrariesVersion.koin}"
     const val koinAndroidExt = "org.koin:koin-android-ext:${LibrariesVersion.koin}"
+    const val koinScope = "org.koin:koin-androidx-scope:${LibrariesVersion.koin}"
+    const val koinViewModel = "org.koin:koin-androidx-viewmodel:${LibrariesVersion.koin}"
     const val koinCore = "org.koin:koin-core:${LibrariesVersion.koin}"
     const val kotlin = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${LibrariesVersion.kotlin}"
     const val leakCanary = "com.squareup.leakcanary:leakcanary-android:${LibrariesVersion.leakCanary}"

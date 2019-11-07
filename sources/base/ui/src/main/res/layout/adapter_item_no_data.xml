@@ -6,7 +6,7 @@
     android:animateLayoutChanges="true">
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/catalogTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -31,7 +31,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/catalogTitle" />
 
     <TextView
         android:id="@+id/textView2"
@@ -55,7 +55,7 @@
         app:layout_constraintGuide_percent="0.45" />
 
     <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/imageView"
+        android:id="@+id/lastItemImage1"
         android:layout_width="0dp"
         android:layout_height="100dp"
         android:layout_marginBottom="8dp"

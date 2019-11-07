@@ -24,6 +24,10 @@ withLibraries(
         Libs.circleImageView,
         Libs.constraintLayout,
         Libs.coreKtx,
+        Libs.koinAndroid,
+        Libs.koinCore,
+        Libs.koinScope,
+        Libs.koinViewModel,
         Libs.material,
         Libs.recyclerView
 )
