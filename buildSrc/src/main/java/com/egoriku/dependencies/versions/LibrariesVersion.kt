@@ -24,5 +24,5 @@ object LibrariesVersion {
     const val pageIndicator = "1.0.10"
     const val recyclerView = "1.0.0"
     const val vectorDrawable = "1.1.0"
-    const val viewModel = "2.1.0"
+    const val viewModel = "2.2.0-rc02"
 }

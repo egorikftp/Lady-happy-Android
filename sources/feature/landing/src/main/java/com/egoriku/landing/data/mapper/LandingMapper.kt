@@ -13,7 +13,7 @@ import com.egoriku.network.Result
 
 object LandingMapper {
     fun transformResult(entity: LandingEntity): Result<LandingModel> =
-            Result.Success(com.egoriku.landing.domain.model.LandingModel(
+            Result.Success(LandingModel(
                     aboutInfo = entity.aboutInfo ?: EMPTY,
                     quotes = transformQuotes(entity.quotes),
                     teamMembers = transformMember(entity.teamMembers)
@@ -21,7 +21,7 @@ object LandingMapper {
 
     private fun transformMember(teamMembers: List<TeamMemberEntity>?): List<TeamMemberModel> {
         return teamMembers?.map {
-            com.egoriku.landing.domain.model.TeamMemberModel(
+            TeamMemberModel(
                     profileImage = it.personImageUrl ?: EMPTY,
                     name = it.name ?: EMPTY,
                     skills = it.skills ?: EMPTY,
@@ -32,7 +32,7 @@ object LandingMapper {
 
     private fun transformSocialLinks(socialLinks: List<SocialEntity>?): List<SocialModel> {
         return socialLinks?.map {
-            com.egoriku.landing.domain.model.SocialModel(
+            SocialModel(
                     socialUrl = it.url ?: EMPTY,
                     type = it.type ?: EMPTY
             )
@@ -42,7 +42,7 @@ object LandingMapper {
 
     private fun transformQuotes(quotes: List<QuotesEntity>?): List<QuotesModel> {
         return quotes?.map {
-            com.egoriku.landing.domain.model.QuotesModel(
+            QuotesModel(
                     quote = it.quote ?: EMPTY,
                     author = it.author ?: EMPTY
             )

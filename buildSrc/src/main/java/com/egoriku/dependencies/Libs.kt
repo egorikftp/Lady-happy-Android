@@ -33,4 +33,5 @@ object Libs {
     const val recyclerView = "androidx.recyclerview:recyclerview:${LibrariesVersion.recyclerView}"
     const val vectorDrawable = "androidx.vectordrawable:vectordrawable:${LibrariesVersion.vectorDrawable}"
     const val viewModel = "androidx.lifecycle:lifecycle-viewmodel:${LibrariesVersion.viewModel}"
+    const val viewModelKtx = "androidx.lifecycle:lifecycle-viewmodel-ktx:${LibrariesVersion.viewModel}"
 }

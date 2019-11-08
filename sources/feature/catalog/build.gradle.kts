@@ -15,6 +15,7 @@ withProjects(
         Modules.core,
         Modules.easyAdapter,
         Modules.extensions,
+        Modules.network,
         Modules.ui
 )
 
@@ -24,12 +25,16 @@ withLibraries(
         Libs.circleImageView,
         Libs.constraintLayout,
         Libs.coreKtx,
+        Libs.coroutinesAndroid,
+        Libs.firestore,
         Libs.koinAndroid,
         Libs.koinCore,
         Libs.koinScope,
         Libs.koinViewModel,
         Libs.material,
-        Libs.recyclerView
+        Libs.recyclerView,
+        Libs.viewModel,
+        Libs.viewModelKtx
 )
 
 withKapt(
