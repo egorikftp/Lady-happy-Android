@@ -80,6 +80,7 @@ withProjects(
         Modules.navigation,
         Modules.network,
         Modules.photoReport,
+        Modules.rendering,
         Modules.settings
 )
 

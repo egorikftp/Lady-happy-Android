@@ -4,9 +4,12 @@ import android.graphics.drawable.ColorDrawable
 import android.view.View
 import android.view.ViewGroup
 import com.bumptech.glide.Glide
-import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade
+import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.bumptech.glide.load.resource.bitmap.BitmapTransitionOptions.withCrossFade
+import com.bumptech.glide.request.RequestOptions
 import com.egoriku.ladyhappy.catalog.R
 import com.egoriku.ladyhappy.catalog.domain.model.CatalogItem
+import com.egoriku.ladyhappy.catalog.presentation.glide.BlurTransformation
 import com.egoriku.ladyhappy.extensions.colorCompat
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.adapter_item_catalog.*
@@ -14,7 +17,7 @@ import ru.surfstudio.android.easyadapter.controller.BindableItemController
 import ru.surfstudio.android.easyadapter.holder.BindableViewHolder
 
 internal class CatalogController(
-        val onCatalogItemClick: (item: CatalogItem) -> Unit
+        private val onCatalogItemClick: (item: CatalogItem) -> Unit
 ) : BindableItemController<CatalogItem, CatalogController.Holder>() {
 
     override fun createViewHolder(parent: ViewGroup) = Holder(parent)
@@ -48,14 +51,26 @@ internal class CatalogController(
             catalogTitle.text = data.itemName
 
             Glide.with(itemView.context)
+                    .asBitmap()
                     .load(data.itemLogoUrl)
+                    .transition(withCrossFade())
+                    .placeholder(ColorDrawable(itemView.colorCompat(R.color.Placeholder)))
                     .into(catalogImage)
 
             lastItemsViewIds.forEachIndexed { index, imageView ->
                 Glide.with(itemView.context)
+                        .asBitmap()
                         .load(data.lastHatsImageUrl[index])
-                        .placeholder(ColorDrawable(itemView.colorCompat(R.color.RealBlack30)))
+                        .diskCacheStrategy(DiskCacheStrategy.ALL)
+                        .placeholder(ColorDrawable(itemView.colorCompat(R.color.Placeholder)))
                         .transition(withCrossFade())
+                        .thumbnail(
+                                Glide.with(itemView.context)
+                                        .asBitmap()
+                                        .transition(withCrossFade())
+                                        .load(data.lastHatsImageUrl[index])
+                                        .apply(RequestOptions().transform(BlurTransformation(radius = 25f)))
+                        )
                         .into(imageView)
             }
         }

@@ -5,7 +5,7 @@ import android.view.View
 import android.widget.Toast
 import android.widget.Toast.LENGTH_SHORT
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
+import androidx.lifecycle.observe
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.egoriku.ladyhappy.catalog.R
 import com.egoriku.ladyhappy.catalog.presentation.CatalogListViewModel
@@ -22,13 +22,13 @@ import kotlin.properties.Delegates
 
 class CatalogFragment : Fragment(R.layout.fragment_catalog) {
 
-    private val catalogAdapter = EasyAdapter().apply {
-        setFirstInvisibleItemEnabled(false)
-    }
-
     private val catalogViewModel: CatalogListViewModel by currentScope.viewModel(this)
 
     private var catalogController: CatalogController by Delegates.notNull()
+
+    private val catalogAdapter = EasyAdapter().apply {
+        setFirstInvisibleItemEnabled(false)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,9 +47,9 @@ class CatalogFragment : Fragment(R.layout.fragment_catalog) {
             addItemDecoration(MarginItemDecoration(context.resources.getDimension(R.dimen.adapter_item_catalog_margin).toInt()))
         }
 
-        catalogViewModel.catalogItems.observe(this, Observer {
+        catalogViewModel.catalogItems.observe(this) {
             render(it)
-        })
+        }
     }
 
     private fun render(screenState: CatalogScreenState) {

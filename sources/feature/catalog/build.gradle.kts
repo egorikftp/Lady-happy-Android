@@ -31,6 +31,7 @@ withLibraries(
         Libs.koinCore,
         Libs.koinScope,
         Libs.koinViewModel,
+        Libs.liveDataKtx,
         Libs.material,
         Libs.recyclerView,
         Libs.viewModel,
@@ -41,3 +42,10 @@ withKapt(
         Libs.dagger andKapt Libs.daggerCompiler,
         Libs.glide andKapt Libs.glideCompiler
 )
+
+//TODO move into plugin in Kotlin 1.3.60
+android {
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+}
