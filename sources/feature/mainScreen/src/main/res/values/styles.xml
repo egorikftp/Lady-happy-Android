@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
     <style name="MainActivityStyle" parent="Theme.MaterialComponents.Light.NoActionBar">
         <item name="colorPrimary">@color/RoseTaupe</item>
@@ -6,5 +6,7 @@
         <item name="colorAccent">@color/Terracota</item>
         <item name="android:textColorSecondary">@color/RealWhite</item>
         <item name="android:navigationBarColor">@color/RoseTaupeDark</item>
+        <item name="android:statusBarColor">@color/RealWhite</item>
+        <item name="android:windowLightStatusBar" tools:targetApi="m">true</item>
     </style>
 </resources>

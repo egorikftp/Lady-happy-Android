@@ -30,9 +30,11 @@ object Libs {
     const val lifecycleExtensions = "androidx.lifecycle:lifecycle-extensions:${LibrariesVersion.lifecycle}"
     const val liveDataKtx = "androidx.lifecycle:lifecycle-livedata-ktx:${LibrariesVersion.lifecycle}"
     const val material = "com.google.android.material:material:${LibrariesVersion.material}"
+    const val materialBeta = "com.google.android.material:material:${LibrariesVersion.materialBeta}"
     const val pageIndicator = "com.ryanjeffreybrooks:indefinitepagerindicator:${LibrariesVersion.pageIndicator}"
     const val recyclerView = "androidx.recyclerview:recyclerview:${LibrariesVersion.recyclerView}"
     const val vectorDrawable = "androidx.vectordrawable:vectordrawable:${LibrariesVersion.vectorDrawable}"
     const val viewModel = "androidx.lifecycle:lifecycle-viewmodel:${LibrariesVersion.lifecycle}"
     const val viewModelKtx = "androidx.lifecycle:lifecycle-viewmodel-ktx:${LibrariesVersion.lifecycle}"
+    const val viewPager2 = "androidx.viewpager2:viewpager2:${LibrariesVersion.viewPager2}"
 }

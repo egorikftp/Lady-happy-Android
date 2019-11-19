@@ -21,7 +21,9 @@ object LibrariesVersion {
     const val leakCanary = "2.0-beta-3"
     const val lifecycle = "2.2.0-rc02"
     const val material = "1.0.0"
+    const val materialBeta = "1.1.0-beta02"
     const val pageIndicator = "1.0.10"
     const val recyclerView = "1.0.0"
     const val vectorDrawable = "1.1.0"
+    const val viewPager2 = "1.0.0-rc01"
 }

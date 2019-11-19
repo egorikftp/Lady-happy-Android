@@ -121,13 +121,13 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:fontFamily="@font/raleway"
-            android:text="Hats type"
             android:textSize="21sp"
             app:layout_constraintBottom_toBottomOf="@+id/catalogImage"
             app:layout_constraintStart_toEndOf="@+id/catalogImage"
-            app:layout_constraintTop_toTopOf="@+id/catalogImage" />
+            app:layout_constraintTop_toTopOf="@+id/catalogImage"
+            tools:text="Hats type" />
 
-        <com.egoriku.ladyhappy.catalog.presentation.view.WaveView
+        <com.egoriku.ladyhappy.catalog.category.presentation.view.WaveView
             android:layout_width="0dp"
             android:layout_height="25dp"
             app:layout_constraintBottom_toBottomOf="parent"

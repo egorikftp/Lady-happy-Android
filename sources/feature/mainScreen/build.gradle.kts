@@ -21,8 +21,9 @@ withProjects(
 withLibraries(
         Libs.appcompat,
         Libs.coreKtx,
+        Libs.constraintLayout,
         Libs.koinAndroidExt,
-        Libs.material
+        Libs.materialBeta
 )
 
 withKapt(Libs.dagger andKapt Libs.daggerCompiler)

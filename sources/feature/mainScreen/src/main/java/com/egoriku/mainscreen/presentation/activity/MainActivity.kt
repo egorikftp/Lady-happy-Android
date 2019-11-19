@@ -1,5 +1,6 @@
 package com.egoriku.mainscreen.presentation.activity
 
+import android.graphics.Color
 import android.os.Bundle
 import androidx.annotation.IdRes
 import androidx.lifecycle.Observer
@@ -9,6 +10,7 @@ import com.egoriku.core.di.utils.INavigationHolder
 import com.egoriku.core.feature.IFeatureProvider
 import com.egoriku.ladyhappy.arch.activity.BaseActivity
 import com.egoriku.ladyhappy.extensions.consume
+import com.egoriku.ladyhappy.extensions.hasM
 import com.egoriku.ladyhappy.extensions.injectViewModel
 import com.egoriku.ladyhappy.navigation.navigator.platform.ActivityScopeNavigator
 import com.egoriku.mainscreen.R
@@ -40,6 +42,10 @@ class MainActivity : BaseActivity(R.layout.activity_main) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        if (!hasM()) {
+            window.statusBarColor = Color.BLACK
+        }
+
         setSupportActionBar(toolbarMainActivity)
 
         viewModel = injectViewModel(viewModelFactory)

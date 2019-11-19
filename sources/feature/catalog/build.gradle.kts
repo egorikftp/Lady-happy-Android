@@ -32,10 +32,11 @@ withLibraries(
         Libs.koinScope,
         Libs.koinViewModel,
         Libs.liveDataKtx,
-        Libs.material,
+        Libs.materialBeta,
         Libs.recyclerView,
         Libs.viewModel,
-        Libs.viewModelKtx
+        Libs.viewModelKtx,
+        Libs.viewPager2
 )
 
 withKapt(
