@@ -1,9 +1,9 @@
 package com.egoriku.landing.data.repository.datasource
 
 import com.egoriku.core.di.utils.IFirebaseFirestore
-import com.egoriku.network.firestore.awaitGetResult
-import com.egoriku.network.Result
 import com.egoriku.landing.data.entity.LandingEntity
+import com.egoriku.network.Result
+import com.egoriku.network.firestore.awaitResult
 import com.google.firebase.firestore.DocumentReference
 import javax.inject.Inject
 
@@ -15,7 +15,7 @@ class LandingDataSource
         const val DOCUMENT_PATH = "MCwd73rZNcwDE4yjP3bj"
     }
 
-    suspend fun downloadLanding(): Result<LandingEntity> = getLandingQuery().awaitGetResult()
+    suspend fun downloadLanding(): Result<LandingEntity> = getLandingQuery().awaitResult()
 
     private fun getLandingQuery(): DocumentReference = firebaseFirestore
             .getFirebase()

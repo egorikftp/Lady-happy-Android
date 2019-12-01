@@ -5,7 +5,7 @@ import android.content.Intent
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import com.egoriku.core.feature.IFeatureProvider
-import com.egoriku.ladyhappy.catalog.root.presentation.RootCatalogFragment
+import com.egoriku.ladyhappy.catalog.root.presentation.fragment.RootCatalogFragment
 import com.egoriku.landing.presentation.LandingPageFragment
 import com.egoriku.mainscreen.presentation.activity.MainActivity
 import com.egoriku.photoreport.presentation.PhotoReportFragment

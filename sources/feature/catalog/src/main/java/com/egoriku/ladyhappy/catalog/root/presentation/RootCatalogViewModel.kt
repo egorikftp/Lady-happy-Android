@@ -4,27 +4,21 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import kotlinx.coroutines.delay
+import com.egoriku.ladyhappy.catalog.root.domain.usecase.TabUseCase
 import kotlinx.coroutines.launch
 
-class RootCatalogViewModel : ViewModel() {
+class RootCatalogViewModel(
+        private val tabUseCase: TabUseCase
+) : ViewModel() {
 
-    private val _categories = MutableLiveData<List<String>>()
+    private val _screenModel = MutableLiveData<RootScreenModel>()
 
-    val categories: LiveData<List<String>> = _categories
+    val screenModel: LiveData<RootScreenModel> = _screenModel
 
     init {
         viewModelScope.launch {
-            delay(4000)
-
-            _categories.value = listOf(
-                    "Фетр",
-                    "Синамей",
-                    "Кринолин",
-                    "Вуалетки",
-                    "Войлок",
-                    "Реставрация"
-            )
+            _screenModel.value = RootScreenModel.Progress()
+            _screenModel.value = tabUseCase.loadTabs()
         }
     }
 }

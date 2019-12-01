@@ -1,6 +1,5 @@
 package com.egoriku.network.firestore
 
-import com.egoriku.core.exception.FirestoreNetworkException
 import com.egoriku.core.exception.FirestoreParseException
 import com.egoriku.network.Result
 import com.egoriku.network.wrapIntoResult
@@ -11,9 +10,13 @@ import kotlinx.coroutines.suspendCancellableCoroutine
 import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
 
+suspend inline fun <reified T> Query.awaitResult(): Result<List<T>> = wrapIntoResult { awaitGet<T>() }
+
 suspend inline fun <reified T> Query.awaitGet(): List<T> = get().awaitGet()
 
-suspend inline fun <reified T> Query.awaitGetResult(): Result<List<T>> = wrapIntoResult { awaitGet<T>() }
+suspend inline fun <reified T> Task<QuerySnapshot>.awaitGet(): List<T> = awaitGet(T::class.java)
+
+suspend fun <T> Task<QuerySnapshot>.awaitGet(type: Class<T>): List<T> = awaitTaskQueryList(this, type)
 
 private suspend fun <T> awaitTaskQueryList(task: Task<QuerySnapshot>, type: Class<T>): List<T> =
         suspendCancellableCoroutine { continuation ->
@@ -26,17 +29,12 @@ private suspend fun <T> awaitTaskQueryList(task: Task<QuerySnapshot>, type: Clas
                         continuation.resumeWithException(exception)
                     }
                 } else {
-                    continuation.resumeWithException(task.exception
-                            ?: FirestoreParseException("Failed to read task list: $task of type: $type"))
+                    continuation.resumeWithException(
+                            task.exception
+                                    ?: FirestoreParseException("Failed to read task list: $task of type: $type"))
                 }
-            }.addOnFailureListener {
-                continuation.resumeWithException(FirestoreNetworkException(it.message))
             }
         }
 
-suspend fun <T> Task<QuerySnapshot>.awaitGet(type: Class<T>): List<T> = awaitTaskQueryList(this, type)
-
-suspend inline fun <reified T> Task<QuerySnapshot>.awaitGet(): List<T> = this.awaitGet(T::class.java)
-
-suspend inline fun <reified T> Task<QuerySnapshot>.awaitGetResult(): Result<List<T>> =
-        wrapIntoResult { this.awaitGet<T>() }
+suspend inline fun <reified T> Task<QuerySnapshot>.awaitResult(): Result<List<T>> =
+        wrapIntoResult { awaitGet<T>() }

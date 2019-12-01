@@ -10,7 +10,7 @@ import com.egoriku.core.di.findDependencies
 import com.egoriku.ladyhappy.arch.fragment.BaseInjectableFragment
 import com.egoriku.ladyhappy.extensions.gone
 import com.egoriku.ladyhappy.extensions.injectViewModel
-import com.egoriku.ladyhappy.extensions.show
+import com.egoriku.ladyhappy.extensions.visible
 import com.egoriku.photoreport.R
 import com.egoriku.photoreport.di.PhotoReportFragmentComponent
 import com.egoriku.photoreport.presentation.controller.PhotoReportCarouselController
@@ -81,7 +81,7 @@ class PhotoReportFragment : BaseInjectableFragment(R.layout.fragment_photo_repor
         photoReportAdapter.setItems(itemList)
     }
 
-    private fun showLoading() = progressView.show()
+    private fun showLoading() = progressView.visible()
 
     private fun hideLoading() = progressView.gone()
 }

@@ -10,7 +10,7 @@ import com.egoriku.ladyhappy.arch.fragment.BaseInjectableFragment
 import com.egoriku.ladyhappy.extensions.browseUrl
 import com.egoriku.ladyhappy.extensions.gone
 import com.egoriku.ladyhappy.extensions.injectViewModel
-import com.egoriku.ladyhappy.extensions.show
+import com.egoriku.ladyhappy.extensions.visible
 import com.egoriku.landing.R
 import com.egoriku.landing.common.parallax.ParallaxScrollListener
 import com.egoriku.landing.di.LandingFragmentComponent
@@ -102,7 +102,7 @@ class LandingPageFragment : BaseInjectableFragment(R.layout.fragment_landing) {
 
     private fun showProgress() = with(hatsProgressAnimationView) {
         startAnimation()
-        show()
+        visible()
     }
 
     private fun hideProgress() = with(hatsProgressAnimationView) {
