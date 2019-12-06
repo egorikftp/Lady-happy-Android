@@ -1,21 +1,17 @@
 package com.egoriku.ladyhappy.arch.activity
 
 import android.os.Bundle
-import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
 
-abstract class BaseActivity : AppCompatActivity() {
+abstract class BaseActivity(
+        layoutId: Int
+) : AppCompatActivity(layoutId) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         injectDependencies()
 
         super.onCreate(savedInstanceState)
-
-        setContentView(provideLayout())
     }
 
-    abstract fun injectDependencies()
-
-    @LayoutRes
-    abstract fun provideLayout(): Int
+    open fun injectDependencies() = Unit
 }

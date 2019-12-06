@@ -1,3 +1,4 @@
+
 import com.android.build.gradle.internal.api.BaseVariantOutputImpl
 import com.egoriku.application.provideVersionCode
 import com.egoriku.application.provideVersionName
@@ -76,12 +77,14 @@ withProjects(
         Modules.launchScreen,
         Modules.mainScreen,
         Modules.navigation,
+        Modules.network,
         Modules.photoReport,
         Modules.settings
 )
 
 withLibraries(
         Libs.appcompat,
+        Libs.coroutinesAndroid,
         Libs.firebaseCore,
         Libs.firestore,
         Libs.kotlin

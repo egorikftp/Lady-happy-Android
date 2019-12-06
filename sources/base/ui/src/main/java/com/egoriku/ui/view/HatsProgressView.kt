@@ -7,6 +7,7 @@ import android.util.AttributeSet
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.vectordrawable.graphics.drawable.Animatable2Compat
 import androidx.vectordrawable.graphics.drawable.AnimatedVectorDrawableCompat
+import com.egoriku.ladyhappy.extensions.fromApi
 import com.egoriku.ladyhappy.extensions.toApi
 import com.egoriku.ui.R
 
@@ -24,7 +25,7 @@ class HatsProgressView : AppCompatImageView {
 
     private val animationCallback = object : Animatable2Compat.AnimationCallback() {
         override fun onAnimationEnd(dr: Drawable?) {
-            com.egoriku.ladyhappy.extensions.fromApi(Build.VERSION_CODES.N_MR1) {
+            fromApi(Build.VERSION_CODES.N_MR1) {
                 animatedVectorDrawable?.start()
             }
 
@@ -40,7 +41,7 @@ class HatsProgressView : AppCompatImageView {
     }
 
     fun stopAnimation() {
-        com.egoriku.ladyhappy.extensions.fromApi(Build.VERSION_CODES.N_MR1) {
+        fromApi(Build.VERSION_CODES.N_MR1) {
             animatedVectorDrawable?.stop()
             animatedVectorDrawable?.unregisterAnimationCallback(animationCallback)
         }

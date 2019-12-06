@@ -9,5 +9,6 @@ withLibraries(
         Libs.coreKtx,
         Libs.fragment,
         Libs.recyclerView,
-        Libs.lifecycleExt
+        Libs.lifecycleExtensions,
+        Libs.viewModel
 )

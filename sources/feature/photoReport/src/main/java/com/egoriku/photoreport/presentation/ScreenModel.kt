@@ -2,15 +2,14 @@ package com.egoriku.photoreport.presentation
 
 import com.egoriku.photoreport.domain.model.PhotoReportModel
 
-class ScreenModel {
-
-    var photoReports: List<PhotoReportModel>? = null
-
-    var loadState: LoadState = LoadState.NONE
-
+class ScreenModel(
+        val photoReports: List<PhotoReportModel>? = null,
+        val loadState: LoadState = LoadState.NONE
+) {
     fun isEmpty() = photoReports.isNullOrEmpty()
 }
 
+//todo use sealed classes
 enum class LoadState {
     NONE,
     PROGRESS,

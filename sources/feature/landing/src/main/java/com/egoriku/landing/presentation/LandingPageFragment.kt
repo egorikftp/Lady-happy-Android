@@ -2,11 +2,14 @@ package com.egoriku.landing.presentation
 
 import android.os.Bundle
 import android.view.View
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.egoriku.core.di.findDependencies
 import com.egoriku.ladyhappy.arch.fragment.BaseInjectableFragment
 import com.egoriku.ladyhappy.extensions.browseUrl
 import com.egoriku.ladyhappy.extensions.gone
+import com.egoriku.ladyhappy.extensions.injectViewModel
 import com.egoriku.ladyhappy.extensions.show
 import com.egoriku.landing.R
 import com.egoriku.landing.common.parallax.ParallaxScrollListener
@@ -18,10 +21,12 @@ import ru.surfstudio.android.easyadapter.EasyAdapter
 import ru.surfstudio.android.easyadapter.ItemList
 import javax.inject.Inject
 
-class LandingPageFragment : BaseInjectableFragment<LandingPageContract.View, LandingPageContract.Presenter>(), LandingPageContract.View {
+class LandingPageFragment : BaseInjectableFragment(R.layout.fragment_landing) {
 
     @Inject
-    lateinit var landingPagePresenter: LandingPageContract.Presenter
+    lateinit var viewModelFactory: ViewModelProvider.Factory
+
+    private lateinit var landingViewmodel: LandingViewModel
 
     private var parallaxScrollListener: ParallaxScrollListener? = null
 
@@ -36,19 +41,21 @@ class LandingPageFragment : BaseInjectableFragment<LandingPageContract.View, Lan
     private lateinit var ourTeamController: OurTeamController
     private lateinit var sectionsHeaderController: SectionsHeaderController
 
-    override fun provideLayout(): Int = R.layout.fragment_landing
-
-    override fun providePresenter(): LandingPageContract.Presenter = landingPagePresenter
-
     override fun injectDependencies() = LandingFragmentComponent.init(findDependencies()).inject(this)
-
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        landingViewmodel = injectViewModel(viewModelFactory)
+
+        landingViewmodel.screenState.observe(this, Observer {
+            render(it)
+        })
+
         initViews()
     }
 
-    override fun initViews() {
+    private fun initViews() {
         recyclerView.apply {
             layoutManager = LinearLayoutManager(context)
             adapter = landingAdapter
@@ -60,7 +67,7 @@ class LandingPageFragment : BaseInjectableFragment<LandingPageContract.View, Lan
 
         headerController = HeaderController()
         noDataController = NoDataController {
-            presenter.retryLoading()
+            landingViewmodel.retryLoading()
         }
 
         aboutController = AboutController()
@@ -69,11 +76,9 @@ class LandingPageFragment : BaseInjectableFragment<LandingPageContract.View, Lan
         ourTeamController = OurTeamController(parallaxScrollListener) {
             browseUrl(it)
         }
-
-        presenter.loadLandingData()
     }
 
-    override fun render(screenModel: LandingScreenModel) {
+    private fun render(screenModel: LandingScreenModel) {
         val itemList = ItemList.create()
 
         when {
@@ -95,12 +100,12 @@ class LandingPageFragment : BaseInjectableFragment<LandingPageContract.View, Lan
         landingAdapter.setItems(itemList)
     }
 
-    override fun showProgress() = with(hatsProgressAnimationView) {
+    private fun showProgress() = with(hatsProgressAnimationView) {
         startAnimation()
         show()
     }
 
-    override fun hideProgress() = with(hatsProgressAnimationView) {
+    private fun hideProgress() = with(hatsProgressAnimationView) {
         stopAnimation()
         gone()
     }
