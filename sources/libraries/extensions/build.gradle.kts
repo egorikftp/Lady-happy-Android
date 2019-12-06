@@ -6,6 +6,7 @@ plugins {
 }
 
 withLibraries(
+        Libs.coreKtx,
         Libs.fragment,
         Libs.recyclerView,
         Libs.lifecycleExt
