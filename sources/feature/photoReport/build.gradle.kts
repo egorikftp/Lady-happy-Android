@@ -10,6 +10,20 @@ plugins {
     id("kotlin-kapt")
 }
 
+android {
+    flavorDimensions("photoReport")
+
+    productFlavors {
+        create("full") {
+            dimension = "photoReport"
+        }
+
+        create("stub") {
+            dimension = "photoReport"
+        }
+    }
+}
+
 withProjects(
         Modules.arch,
         Modules.core,

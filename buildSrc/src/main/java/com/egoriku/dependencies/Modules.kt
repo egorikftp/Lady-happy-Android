@@ -43,9 +43,5 @@ object Modules {
 
 class ProjectBean(
         val name: String,
-        private val _path: String,
-        private val isStub: Boolean = false
-) {
-    val path
-        get() = if (isStub) "$_path/stub" else _path
-}
+        val path: String
+)
