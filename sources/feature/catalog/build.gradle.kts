@@ -4,13 +4,26 @@ import com.egoriku.ext.*
 
 plugins {
     id("com.egoriku.feature")
-    id("kotlin-kapt")
     id("kotlin-android-extensions")
+}
+
+android {
+    flavorDimensions("catalog")
+
+    productFlavors {
+        create("full") {
+            dimension = "catalog"
+        }
+
+        create("stub") {
+            dimension = "catalog"
+        }
+    }
 }
 
 allowExperimentalExtensions()
 
-withProjects(
+withProjectsFull(
         Modules.arch,
         Modules.core,
         Modules.easyAdapter,
@@ -19,7 +32,9 @@ withProjects(
         Modules.ui
 )
 
-withLibraries(
+forAll(Libs.koinCore)
+
+justForFull(
         Libs.appcompat,
         Libs.cardView,
         Libs.circleImageView,
@@ -27,8 +42,8 @@ withLibraries(
         Libs.coreKtx,
         Libs.coroutinesAndroid,
         Libs.firestore,
+        Libs.glide,
         Libs.koinAndroid,
-        Libs.koinCore,
         Libs.koinScope,
         Libs.koinViewModel,
         Libs.liveDataKtx,
@@ -39,10 +54,7 @@ withLibraries(
         Libs.viewPager2
 )
 
-withKapt(
-        Libs.dagger andKapt Libs.daggerCompiler,
-        Libs.glide andKapt Libs.glideCompiler
-)
+justForStub(Libs.fragment)
 
 //TODO move into plugin in Kotlin 1.3.60
 android {

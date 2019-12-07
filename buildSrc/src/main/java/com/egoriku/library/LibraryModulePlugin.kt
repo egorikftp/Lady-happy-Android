@@ -1,8 +1,8 @@
 package com.egoriku.library
 
-import com.egoriku.dependencies.versions.ProjectVersion
-import com.android.build.gradle.BaseExtension
+import com.android.build.gradle.LibraryExtension
 import com.egoriku.dependencies.Libs
+import com.egoriku.dependencies.versions.ProjectVersion
 import com.egoriku.ext.implementation
 import org.gradle.api.JavaVersion
 import org.gradle.api.Plugin
@@ -28,7 +28,7 @@ fun Project.configurePlugins() {
     }
 }
 
-fun Project.configureAndroidSection() = extensions.getByType<BaseExtension>().run {
+fun Project.configureAndroidSection() = extensions.getByType<LibraryExtension>().run {
     defaultConfig {
         minSdkVersion(ProjectVersion.minSdkVersion)
         compileSdkVersion(ProjectVersion.compileSdkVersion)

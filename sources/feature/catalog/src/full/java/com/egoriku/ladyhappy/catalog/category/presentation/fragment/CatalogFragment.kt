@@ -13,7 +13,7 @@ import com.egoriku.ladyhappy.catalog.category.presentation.CatalogScreenState
 import com.egoriku.ladyhappy.catalog.category.presentation.CatalogScreenState.Success
 import com.egoriku.ladyhappy.catalog.category.presentation.adapter.controller.CatalogController
 import com.egoriku.ladyhappy.catalog.category.presentation.adapter.decorator.MarginItemDecoration
-import kotlinx.android.synthetic.main.fragment_catalog.*
+import kotlinx.android.synthetic.full.fragment_catalog.*
 import org.koin.android.ext.android.getKoin
 import org.koin.core.qualifier.named
 import ru.surfstudio.android.easyadapter.EasyAdapter
@@ -49,7 +49,7 @@ class CatalogFragment : Fragment(R.layout.fragment_catalog) {
             addItemDecoration(MarginItemDecoration(context.resources.getDimension(R.dimen.adapter_item_catalog_margin).toInt()))
         }
 
-        catalogViewModel.catalogItems.observe(this) {
+        catalogViewModel.catalogItems.observe(viewLifecycleOwner) {
             render(it)
         }
     }
