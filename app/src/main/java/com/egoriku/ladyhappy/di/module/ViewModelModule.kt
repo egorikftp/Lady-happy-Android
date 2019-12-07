@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.egoriku.core.di.ViewModelKey
 import com.egoriku.ladyhappy.di.viewmodel.AppViewModelFactory
-import com.egoriku.landing.presentation.LandingViewModel
+import com.egoriku.ladyhappy.landing.presentation.LandingViewModel
 import com.egoriku.mainscreen.presentation.activity.MainActivityViewModel
 import com.egoriku.photoreport.presentation.PhotoReportViewModel
 import dagger.Binds
