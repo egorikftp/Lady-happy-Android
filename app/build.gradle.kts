@@ -57,19 +57,31 @@ android {
     flavorDimensions("app")
 
     productFlavors {
-        create("stub") {
-            dimension = "app"
-            missingDimensionStrategy("landing", "stub")
-        }
-
-        create("full") {
+        create("allFeatures") {
             dimension = "app"
             missingDimensionStrategy("landing", "full")
+            missingDimensionStrategy("photoReport", "full")
+        }
+
+        create("justLanding") {
+            dimension = "app"
+            missingDimensionStrategy("landing", "full")
+            missingDimensionStrategy("photoReport", "stub")
+        }
+
+        create("justPhotoReport") {
+            dimension = "app"
+            missingDimensionStrategy("landing", "stub")
+            missingDimensionStrategy("photoReport", "full")
         }
     }
 
     gradle.taskGraph.whenReady {
-        if (hasTask(":app:assembleDebug") || hasTask(":app:assembleRelease")) {
+        if (hasTask(":app:assembleAllFeaturesDebug")
+                || hasTask(":app:assembleAllFeaturesRelease")
+                || hasTask(":app:assembleJustLandingDebug")
+                || hasTask(":app:assembleJustPhotoReportDebug")
+        ) {
             autoIncrementBuildVersionNumber()
         }
     }
