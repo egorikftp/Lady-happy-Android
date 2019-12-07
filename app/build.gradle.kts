@@ -1,4 +1,3 @@
-
 import com.android.build.gradle.internal.api.BaseVariantOutputImpl
 import com.egoriku.application.provideVersionCode
 import com.egoriku.application.provideVersionName
@@ -52,6 +51,20 @@ android {
 
         getByName("debug") {
             multiDexEnabled = true
+        }
+    }
+
+    flavorDimensions("app")
+
+    productFlavors {
+        create("stub") {
+            dimension = "app"
+            missingDimensionStrategy("landing", "stub")
+        }
+
+        create("full") {
+            dimension = "app"
+            missingDimensionStrategy("landing", "full")
         }
     }
 

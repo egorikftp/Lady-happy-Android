@@ -10,6 +10,20 @@ plugins {
     id("kotlin-kapt")
 }
 
+android {
+    flavorDimensions("landing")
+
+    productFlavors {
+        create("full") {
+            dimension = "landing"
+        }
+
+        create("stub") {
+            dimension = "landing"
+        }
+    }
+}
+
 withProjects(
         Modules.arch,
         Modules.core,

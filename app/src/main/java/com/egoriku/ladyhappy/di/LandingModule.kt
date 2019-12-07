@@ -1,9 +1,10 @@
 package com.egoriku.ladyhappy.di
 
 import com.egoriku.core.di.utils.IFirebaseFirestore
-import com.egoriku.landing.data.repository.ILandingRepository
-import com.egoriku.landing.data.repository.LandingRepository
-import com.egoriku.landing.data.repository.datasource.LandingDataSource
+import com.egoriku.ladyhappy.landing.data.repository.ILandingRepository
+import com.egoriku.ladyhappy.landing.data.repository.LandingRepository
+import com.egoriku.ladyhappy.landing.data.repository.datasource.LandingDataSource
+
 import dagger.Module
 import dagger.Provides
 
