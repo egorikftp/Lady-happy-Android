@@ -59,20 +59,30 @@ android {
     productFlavors {
         create("allFeatures") {
             dimension = "app"
+            missingDimensionStrategy("catalog", "full")
             missingDimensionStrategy("landing", "full")
             missingDimensionStrategy("photoReport", "full")
         }
 
         create("justLanding") {
             dimension = "app"
+            missingDimensionStrategy("catalog", "stub")
             missingDimensionStrategy("landing", "full")
             missingDimensionStrategy("photoReport", "stub")
         }
 
         create("justPhotoReport") {
             dimension = "app"
+            missingDimensionStrategy("catalog", "stub")
             missingDimensionStrategy("landing", "stub")
             missingDimensionStrategy("photoReport", "full")
+        }
+
+        create("justCatalog") {
+            dimension = "app"
+            missingDimensionStrategy("catalog", "full")
+            missingDimensionStrategy("landing", "stub")
+            missingDimensionStrategy("photoReport", "stub")
         }
     }
 
@@ -81,6 +91,7 @@ android {
                 || hasTask(":app:assembleAllFeaturesRelease")
                 || hasTask(":app:assembleJustLandingDebug")
                 || hasTask(":app:assembleJustPhotoReportDebug")
+                || hasTask(":app:assembleJustCatalogDebug")
         ) {
             autoIncrementBuildVersionNumber()
         }

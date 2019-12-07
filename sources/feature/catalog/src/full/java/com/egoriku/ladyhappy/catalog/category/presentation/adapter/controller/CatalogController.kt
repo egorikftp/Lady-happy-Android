@@ -12,7 +12,7 @@ import com.egoriku.ladyhappy.catalog.category.domain.model.CatalogItem
 import com.egoriku.ladyhappy.catalog.category.presentation.glide.BlurTransformation
 import com.egoriku.ladyhappy.extensions.colorCompat
 import kotlinx.android.extensions.LayoutContainer
-import kotlinx.android.synthetic.main.adapter_item_catalog.*
+import kotlinx.android.synthetic.full.adapter_item_catalog.*
 import ru.surfstudio.android.easyadapter.controller.BindableItemController
 import ru.surfstudio.android.easyadapter.holder.BindableViewHolder
 

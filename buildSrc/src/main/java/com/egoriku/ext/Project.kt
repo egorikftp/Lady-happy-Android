@@ -9,6 +9,30 @@ import org.jetbrains.kotlin.gradle.internal.CacheImplementation
 
 fun Project.toExtensionAware() = this as ExtensionAware
 
+fun Project.justForFull(vararg libs: String) {
+    dependencies {
+        libs.forEach {
+            fullImplementation(it)
+        }
+    }
+}
+
+fun Project.justForStub(vararg libs: String) {
+    dependencies {
+        libs.forEach {
+            stubImplementation(it)
+        }
+    }
+}
+
+fun Project.forAll(vararg libs: String) {
+    dependencies {
+        libs.forEach {
+            implementation(it)
+        }
+    }
+}
+
 fun Project.withLibraries(vararg libs: String) {
     dependencies {
         libs.forEach {
@@ -22,6 +46,14 @@ fun Project.withKapt(vararg libs: Pair<String, String>) {
         libs.forEach {
             implementation(it.first)
             kapt(it.second)
+        }
+    }
+}
+
+fun Project.withProjectsFull(vararg projects: String) {
+    dependencies {
+        projects.forEach {
+            fullImplementation(project(it))
         }
     }
 }

@@ -15,7 +15,7 @@ import com.egoriku.ladyhappy.catalog.root.presentation.adapter.CatalogViewPagerA
 import com.egoriku.ladyhappy.extensions.gone
 import com.egoriku.ladyhappy.extensions.visible
 import com.google.android.material.tabs.TabLayoutMediator
-import kotlinx.android.synthetic.main.fragment_root_catalog.*
+import kotlinx.android.synthetic.full.fragment_root_catalog.*
 import org.koin.android.ext.android.getKoin
 import org.koin.core.qualifier.named
 
@@ -27,7 +27,7 @@ class RootCatalogFragment : Fragment(R.layout.fragment_root_catalog) {
     private val rootCatalogViewModel: RootCatalogViewModel = viewModelScope.get()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        rootCatalogViewModel.screenModel.observe(this) {
+        rootCatalogViewModel.screenModel.observe(viewLifecycleOwner) {
             when (it) {
                 is RootScreenModel.Progress -> {
                     tabLayout.gone()
