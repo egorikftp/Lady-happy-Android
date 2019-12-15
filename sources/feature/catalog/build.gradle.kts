@@ -8,6 +8,10 @@ plugins {
 }
 
 android {
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+
     flavorDimensions("catalog")
 
     productFlavors {
@@ -47,7 +51,7 @@ justForFull(
         Libs.koinScope,
         Libs.koinViewModel,
         Libs.liveDataKtx,
-        Libs.materialBeta,
+        Libs.material,
         Libs.recyclerView,
         Libs.viewModel,
         Libs.viewModelKtx,
@@ -55,10 +59,3 @@ justForFull(
 )
 
 justForStub(Libs.fragment)
-
-//TODO move into plugin in Kotlin 1.3.60
-android {
-    kotlinOptions {
-        jvmTarget = "1.8"
-    }
-}

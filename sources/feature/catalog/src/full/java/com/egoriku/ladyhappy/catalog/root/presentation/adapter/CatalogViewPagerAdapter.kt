@@ -1,8 +1,10 @@
 package com.egoriku.ladyhappy.catalog.root.presentation.adapter
 
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.egoriku.ladyhappy.catalog.category.presentation.fragment.CatalogFragment
+import com.egoriku.ladyhappy.catalog.subcategory.presentation.fragment.ARGUMENT_SUBCATEGORY
+import com.egoriku.ladyhappy.catalog.subcategory.presentation.fragment.SubcategoryFragment
 import com.egoriku.ladyhappy.catalog.root.domain.model.TabItem
 
 class CatalogViewPagerAdapter(
@@ -12,5 +14,9 @@ class CatalogViewPagerAdapter(
 
     override fun getItemCount(): Int = categories.size
 
-    override fun createFragment(position: Int): Fragment = CatalogFragment()
+    override fun createFragment(position: Int): Fragment = SubcategoryFragment().apply {
+        arguments = bundleOf(
+                ARGUMENT_SUBCATEGORY to categories[position].documentId
+        )
+    }
 }

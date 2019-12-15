@@ -16,15 +16,17 @@ import com.egoriku.ladyhappy.extensions.gone
 import com.egoriku.ladyhappy.extensions.visible
 import com.google.android.material.tabs.TabLayoutMediator
 import kotlinx.android.synthetic.full.fragment_root_catalog.*
-import org.koin.android.ext.android.getKoin
-import org.koin.core.qualifier.named
+import org.koin.androidx.scope.currentScope
+import org.koin.androidx.viewmodel.ext.android.viewModel
+import org.koin.core.parameter.parametersOf
 
 class RootCatalogFragment : Fragment(R.layout.fragment_root_catalog) {
 
     private lateinit var catalogViewPagerAdapter: FragmentStateAdapter
 
-    private val viewModelScope = getKoin().getOrCreateScope("RootCatalogFragment", named<RootCatalogFragment>())
-    private val rootCatalogViewModel: RootCatalogViewModel = viewModelScope.get()
+    private val rootCatalogViewModel: RootCatalogViewModel by viewModel {
+        parametersOf(currentScope.id)
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         rootCatalogViewModel.screenModel.observe(viewLifecycleOwner) {

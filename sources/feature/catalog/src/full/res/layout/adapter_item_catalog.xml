@@ -8,7 +8,7 @@
     android:focusable="true"
     android:foreground="?android:attr/selectableItemBackground"
     app:cardCornerRadius="10dp"
-    app:cardElevation="8dp"
+    app:cardElevation="4dp"
     app:cardPreventCornerOverlap="true">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -127,7 +127,7 @@
             app:layout_constraintTop_toTopOf="@+id/catalogImage"
             tools:text="Hats type" />
 
-        <com.egoriku.ladyhappy.catalog.category.presentation.view.WaveView
+        <com.egoriku.ladyhappy.catalog.subcategory.presentation.view.WaveView
             android:layout_width="0dp"
             android:layout_height="25dp"
             app:layout_constraintBottom_toBottomOf="parent"

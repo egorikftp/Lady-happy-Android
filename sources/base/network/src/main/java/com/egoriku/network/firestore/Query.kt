@@ -1,5 +1,6 @@
 package com.egoriku.network.firestore
 
+import android.util.Log
 import com.egoriku.core.exception.FirestoreParseException
 import com.egoriku.network.Result
 import com.egoriku.network.wrapIntoResult
@@ -26,6 +27,7 @@ private suspend fun <T> awaitTaskQueryList(task: Task<QuerySnapshot>, type: Clas
                         val data: List<T> = task.result?.toObjects(type).orEmpty()
                         continuation.resume(data)
                     } catch (exception: Exception) {
+                        Log.d("egorikftp", exception.toString())
                         continuation.resumeWithException(exception)
                     }
                 } else {
