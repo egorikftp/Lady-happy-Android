@@ -7,8 +7,8 @@ import android.graphics.Paint
 import android.graphics.Path
 import android.util.AttributeSet
 import android.view.View
-import androidx.core.content.withStyledAttributes
 import com.egoriku.ladyhappy.catalog.R
+import com.egoriku.ladyhappy.extensions.withStyledAttributes
 import kotlin.math.sin
 
 class WaveView @JvmOverloads constructor(
@@ -43,9 +43,9 @@ class WaveView @JvmOverloads constructor(
     init {
         var waveColor: Int = Color.BLUE
 
-        context.withStyledAttributes(
-                set = attrs,
-                attrs = R.styleable.WaveView
+        withStyledAttributes(
+                attributeSet = attrs,
+                styleArray = R.styleable.WaveView
         ) {
             waveColor = getColor(R.styleable.WaveView_waveFillColor, Color.BLUE)
         }

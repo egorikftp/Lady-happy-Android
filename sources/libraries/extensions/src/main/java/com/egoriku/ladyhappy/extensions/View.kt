@@ -5,6 +5,7 @@ package com.egoriku.ladyhappy.extensions
 import android.content.res.TypedArray
 import android.util.AttributeSet
 import android.view.View
+import androidx.core.content.withStyledAttributes
 
 inline fun View.gone() {
     if (visibility != View.GONE) visibility = View.GONE
