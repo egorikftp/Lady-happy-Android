@@ -40,7 +40,10 @@ class MozaikLayout : RelativeLayout {
     private fun initDimensions(context: Context, attrs: AttributeSet?) {
         maxSingleImageHeight = getDisplayHeight(context)
 
-        withStyledAttributes(attrs, R.styleable.MozaikLayout) {
+        withStyledAttributes(
+                attributeSet = attrs,
+                styleArray = R.styleable.MozaikLayout
+        ) {
             prefImageSize = getDimension(R.styleable.MozaikLayout_prefImageSize, context.resources.getDimension(R.dimen.pref_image_size)).toInt()
             spacing = getDimensionPixelSize(R.styleable.MozaikLayout_spacing, dpToPx(1f).toInt())
         }

@@ -1,6 +1,5 @@
 package com.egoriku.network.firestore
 
-import com.egoriku.core.exception.FirestoreNetworkException
 import com.egoriku.core.exception.FirestoreParseException
 import com.egoriku.core.exception.NoSuchDocumentException
 import com.egoriku.network.Result
@@ -10,7 +9,7 @@ import kotlinx.coroutines.suspendCancellableCoroutine
 import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
 
-suspend inline fun <reified T> DocumentReference.awaitGetResult(): Result<T> =
+suspend inline fun <reified T> DocumentReference.awaitResult(): Result<T> =
         wrapIntoResult {
             awaitGet(T::class.java)
         }
@@ -30,7 +29,5 @@ suspend fun <T> DocumentReference.awaitGet(type: Class<T>): T = suspendCancellab
         } else {
             continuation.resumeWithException(NoSuchDocumentException())
         }
-    }.addOnFailureListener {
-        continuation.resumeWithException(FirestoreNetworkException(it.message))
     }
 }

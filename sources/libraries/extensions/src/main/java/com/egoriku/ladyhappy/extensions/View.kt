@@ -1,21 +1,26 @@
+@file:Suppress("NOTHING_TO_INLINE")
+
 package com.egoriku.ladyhappy.extensions
 
 import android.content.res.TypedArray
 import android.util.AttributeSet
 import android.view.View
+import androidx.annotation.ColorRes
 import androidx.core.content.withStyledAttributes
 
-fun View.gone() {
+inline fun View.gone() {
     if (visibility != View.GONE) visibility = View.GONE
 }
 
-fun View.invisible() {
+inline fun View.invisible() {
     if (visibility != View.INVISIBLE) visibility = View.INVISIBLE
 }
 
-fun View.show() {
+inline fun View.visible() {
     if (visibility != View.VISIBLE) visibility = View.VISIBLE
 }
+
+fun View.colorCompat(@ColorRes colorInt: Int) = context.colorCompat(colorInt)
 
 fun View.withStyledAttributes(
         attributeSet: AttributeSet? = null,

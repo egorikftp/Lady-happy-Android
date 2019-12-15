@@ -15,7 +15,6 @@ open class DebugApplication : Application() {
         StrictMode.setThreadPolicy(StrictMode.ThreadPolicy.Builder()
                 .detectAll()
                 .penaltyLog()
-                .penaltyDialog()
                 .build())
     }
 }

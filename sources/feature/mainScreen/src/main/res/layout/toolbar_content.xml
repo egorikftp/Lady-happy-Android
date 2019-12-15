@@ -2,26 +2,25 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/min_touch_size"
-    tools:background="@color/RealBlack">
+    android:layout_height="@dimen/min_touch_size">
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/headerBarLogoText"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
         android:gravity="center"
-        android:textColor="@color/RealWhite"
+        android:textColor="@color/RealBlack"
+        android:textSize="26sp"
+        android:lines="1"
+        android:ellipsize="end"
         android:textStyle="bold"
-        app:autoSizeTextType="uniform"
         app:fontFamily="@font/montserrat"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/guideline2"
         app:layout_constraintStart_toStartOf="@+id/guideline"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
-        tools:text="Header" />
+        tools:text="Header Header Header Header" />
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/settingsButton"

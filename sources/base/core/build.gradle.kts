@@ -7,7 +7,10 @@ plugins {
     id("com.egoriku.library")
 }
 
-withProjects(Modules.navigation)
+withProjects(
+        Modules.arch,
+        Modules.navigation
+)
 
 withLibraries(
         Libs.coroutinesAndroid,

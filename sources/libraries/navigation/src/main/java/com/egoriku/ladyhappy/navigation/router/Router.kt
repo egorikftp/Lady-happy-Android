@@ -11,7 +11,7 @@ class Router : BaseRouter() {
         executeCommands(Replace(screen = screen))
     }
 
-    fun addScreen(screen: Screen){
+    fun addScreen(screen: Screen) {
         executeCommands(Add(screen = screen))
     }
 

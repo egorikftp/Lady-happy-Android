@@ -1,0 +1,5 @@
+<resources>
+    <declare-styleable name="WaveView">
+        <attr name="waveFillColor" format="reference" />
+    </declare-styleable>
+</resources>

@@ -4,6 +4,11 @@
     <group android:checkableBehavior="single">
 
         <item
+            android:id="@+id/menuCatalog"
+            android:icon="@drawable/ic_outline_menu"
+            android:title="@string/navigation_view_catalog" />
+
+        <item
             android:id="@+id/menuLanding"
             android:icon="@drawable/ic_store_black"
             android:title="@string/navigation_view_landing" />

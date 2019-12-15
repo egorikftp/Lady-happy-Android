@@ -1,4 +1,3 @@
-
 import com.android.build.gradle.internal.api.BaseVariantOutputImpl
 import com.egoriku.application.provideVersionCode
 import com.egoriku.application.provideVersionName
@@ -55,8 +54,45 @@ android {
         }
     }
 
+    flavorDimensions("app")
+
+    productFlavors {
+        create("allFeatures") {
+            dimension = "app"
+            missingDimensionStrategy("catalog", "full")
+            missingDimensionStrategy("landing", "full")
+            missingDimensionStrategy("photoReport", "full")
+        }
+
+        create("justLanding") {
+            dimension = "app"
+            missingDimensionStrategy("catalog", "stub")
+            missingDimensionStrategy("landing", "full")
+            missingDimensionStrategy("photoReport", "stub")
+        }
+
+        create("justPhotoReport") {
+            dimension = "app"
+            missingDimensionStrategy("catalog", "stub")
+            missingDimensionStrategy("landing", "stub")
+            missingDimensionStrategy("photoReport", "full")
+        }
+
+        create("justCatalog") {
+            dimension = "app"
+            missingDimensionStrategy("catalog", "full")
+            missingDimensionStrategy("landing", "stub")
+            missingDimensionStrategy("photoReport", "stub")
+        }
+    }
+
     gradle.taskGraph.whenReady {
-        if (hasTask(":app:assembleDebug") || hasTask(":app:assembleRelease")) {
+        if (hasTask(":app:assembleAllFeaturesDebug")
+                || hasTask(":app:assembleAllFeaturesRelease")
+                || hasTask(":app:assembleJustLandingDebug")
+                || hasTask(":app:assembleJustPhotoReportDebug")
+                || hasTask(":app:assembleJustCatalogDebug")
+        ) {
             autoIncrementBuildVersionNumber()
         }
     }
@@ -71,14 +107,16 @@ android {
 }
 
 withProjects(
+        Modules.arch,
+        Modules.catalog,
         Modules.core,
-        Modules.featureProvider,
         Modules.landing,
         Modules.launchScreen,
         Modules.mainScreen,
         Modules.navigation,
         Modules.network,
         Modules.photoReport,
+        Modules.rendering,
         Modules.settings
 )
 
@@ -87,7 +125,10 @@ withLibraries(
         Libs.coroutinesAndroid,
         Libs.firebaseCore,
         Libs.firestore,
-        Libs.kotlin
+        Libs.koinAndroid,
+        Libs.koinCore,
+        Libs.kotlin,
+        Libs.material
 )
 
 withKapt(Libs.dagger andKapt Libs.daggerCompiler)
@@ -108,8 +149,17 @@ apply {
 
 fun autoIncrementBuildVersionNumber() {
     val properties: Properties = loadProperties("$rootDir/app/version.properties")
+
     val newVersion = properties.propertyInt("BUILD_VERSION").inc()
-    properties["BUILD_VERSION"] = newVersion.toString()
+
+    if (newVersion == 1000) {
+        val subVersion = properties.propertyInt("SUB_VERSION").inc()
+
+        properties["SUB_VERSION"] = subVersion.toString()
+        properties["BUILD_VERSION"] = 0.toString()
+    } else {
+        properties["BUILD_VERSION"] = newVersion.toString()
+    }
 
     properties.saveToFile(File("$rootDir/app/version.properties"))
 }

@@ -17,5 +17,5 @@ abstract class BaseBottomSheetDialogFragment : BottomSheetDialogFragment() {
             inflater: LayoutInflater,
             container: ViewGroup?,
             savedInstanceState: Bundle?
-    ): View? = container?.inflate(layoutId)
+    ): View? = context?.inflate(layoutId)
 }

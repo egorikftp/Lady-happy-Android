@@ -5,4 +5,7 @@
 
     <string name="navigation_view_photo_report">Фото</string>
     <string name="navigation_view_photo_report_header">Теплые моменты</string>
+
+    <string name="navigation_view_catalog">Каталог</string>
+    <string name="navigation_view_catalog_header">Наши товары</string>
 </resources>
