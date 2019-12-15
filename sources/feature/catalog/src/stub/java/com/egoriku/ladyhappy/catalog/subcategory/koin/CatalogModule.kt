@@ -1,4 +1,4 @@
-package com.egoriku.ladyhappy.catalog.category.koin
+package com.egoriku.ladyhappy.catalog.subcategory.koin
 
 import org.koin.dsl.module
 
