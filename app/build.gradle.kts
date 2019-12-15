@@ -149,8 +149,17 @@ apply {
 
 fun autoIncrementBuildVersionNumber() {
     val properties: Properties = loadProperties("$rootDir/app/version.properties")
+
     val newVersion = properties.propertyInt("BUILD_VERSION").inc()
-    properties["BUILD_VERSION"] = newVersion.toString()
+
+    if (newVersion == 1000) {
+        val subVersion = properties.propertyInt("SUB_VERSION").inc()
+
+        properties["SUB_VERSION"] = subVersion.toString()
+        properties["BUILD_VERSION"] = 0.toString()
+    } else {
+        properties["BUILD_VERSION"] = newVersion.toString()
+    }
 
     properties.saveToFile(File("$rootDir/app/version.properties"))
 }
