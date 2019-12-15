@@ -5,6 +5,7 @@ package com.egoriku.ladyhappy.extensions
 import android.content.res.TypedArray
 import android.util.AttributeSet
 import android.view.View
+import androidx.annotation.ColorRes
 import androidx.core.content.withStyledAttributes
 
 inline fun View.gone() {
@@ -18,6 +19,8 @@ inline fun View.invisible() {
 inline fun View.visible() {
     if (visibility != View.VISIBLE) visibility = View.VISIBLE
 }
+
+fun View.colorCompat(@ColorRes colorInt: Int) = context.colorCompat(colorInt)
 
 fun View.withStyledAttributes(
         attributeSet: AttributeSet? = null,
