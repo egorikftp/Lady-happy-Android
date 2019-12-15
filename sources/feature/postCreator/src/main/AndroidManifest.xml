@@ -1,0 +1,19 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:dist="http://schemas.android.com/apk/distribution"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.egoriku.ladyhappy.postcreator">
+
+    <dist:module
+        dist:instant="false"
+        dist:title="@string/title_post_creator">
+        <dist:delivery>
+            <dist:on-demand />
+        </dist:delivery>
+        <dist:fusing dist:include="false" />
+    </dist:module>
+
+    <application tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name="com.egoriku.ladyhappy.postcreator.PostCreatorActivity" />
+    </application>
+</manifest>
+

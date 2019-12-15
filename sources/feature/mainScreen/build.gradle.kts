@@ -23,7 +23,8 @@ withLibraries(
         Libs.coreKtx,
         Libs.constraintLayout,
         Libs.koinAndroidExt,
-        Libs.material
+        Libs.material,
+        Libs.playCore
 )
 
 withKapt(Libs.dagger andKapt Libs.daggerCompiler)

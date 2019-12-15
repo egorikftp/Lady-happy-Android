@@ -1,5 +1,6 @@
 package com.egoriku.mainscreen.presentation.activity
 
+import android.content.Context
 import android.graphics.Color
 import android.os.Bundle
 import androidx.annotation.IdRes
@@ -9,16 +10,16 @@ import com.egoriku.core.di.findDependencies
 import com.egoriku.core.di.utils.INavigationHolder
 import com.egoriku.core.feature.IFeatureProvider
 import com.egoriku.ladyhappy.arch.activity.BaseActivity
-import com.egoriku.ladyhappy.extensions.consume
-import com.egoriku.ladyhappy.extensions.hasM
-import com.egoriku.ladyhappy.extensions.injectViewModel
+import com.egoriku.ladyhappy.extensions.*
 import com.egoriku.ladyhappy.navigation.navigator.platform.ActivityScopeNavigator
+import com.egoriku.mainscreen.BuildConfig
 import com.egoriku.mainscreen.R
 import com.egoriku.mainscreen.di.MainActivityComponent
 import com.egoriku.mainscreen.presentation.screen.CatalogScreen
 import com.egoriku.mainscreen.presentation.screen.LandingScreen
 import com.egoriku.mainscreen.presentation.screen.PhotoReportScreen
 import com.egoriku.mainscreen.presentation.screen.SettingsScreen
+import com.google.android.play.core.splitcompat.SplitCompat
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.toolbar_content.*
 import org.koin.android.ext.android.inject
@@ -74,6 +75,15 @@ class MainActivity : BaseActivity(R.layout.activity_main) {
         settingsButton.setOnClickListener {
             viewModel.navigateTo(SettingsScreen(featureProvider))
         }
+
+        if (BuildConfig.DEBUG) {
+            with(createPostButton) {
+                visible()
+                setOnClickListener {
+                    toast("Future implementation of dynamic feature")
+                }
+            }
+        }
     }
 
     override fun onResume() {
@@ -99,6 +109,11 @@ class MainActivity : BaseActivity(R.layout.activity_main) {
     override fun onSaveInstanceState(outState: Bundle) {
         outState.putInt(KEY_SELECTED_MENU_ITEM, bottomNavigation.selectedItemId)
         super.onSaveInstanceState(outState)
+    }
+
+    override fun attachBaseContext(base: Context) {
+        super.attachBaseContext(base)
+        SplitCompat.installActivity(this)
     }
 
     private fun mapItemIdToScreen(@IdRes menuItemId: Int) {

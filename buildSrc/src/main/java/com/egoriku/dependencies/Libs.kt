@@ -31,6 +31,7 @@ object Libs {
     const val liveDataKtx = "androidx.lifecycle:lifecycle-livedata-ktx:${LibrariesVersion.lifecycle}"
     const val material = "com.google.android.material:material:${LibrariesVersion.material}"
     const val pageIndicator = "com.ryanjeffreybrooks:indefinitepagerindicator:${LibrariesVersion.pageIndicator}"
+    const val playCore = "com.google.android.play:core:${LibrariesVersion.playCore}"
     const val recyclerView = "androidx.recyclerview:recyclerview:${LibrariesVersion.recyclerView}"
     const val vectorDrawable = "androidx.vectordrawable:vectordrawable:${LibrariesVersion.vectorDrawable}"
     const val viewModel = "androidx.lifecycle:lifecycle-viewmodel:${LibrariesVersion.lifecycle}"

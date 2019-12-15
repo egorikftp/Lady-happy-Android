@@ -1,4 +1,6 @@
+
 import com.android.build.gradle.internal.api.BaseVariantOutputImpl
+import com.egoriku.application.configureProductFlavors
 import com.egoriku.application.provideVersionCode
 import com.egoriku.application.provideVersionName
 import com.egoriku.dependencies.Libs
@@ -30,6 +32,8 @@ android {
         resConfigs("en", "ru")
     }
 
+    dynamicFeatures = mutableSetOf(Modules.postCreator)
+
     signingConfigs {
         create("release") {
             storeFile = file("lady_happy_key_store.jks")
@@ -44,7 +48,6 @@ android {
             isDebuggable = false
             multiDexEnabled = false
             isMinifyEnabled = true
-            isShrinkResources = true
             signingConfig = signingConfigs.getByName("release")
             proguardFiles("proguard-rules.pro", getDefaultProguardFile("proguard-android-optimize.txt"))
         }
@@ -54,37 +57,7 @@ android {
         }
     }
 
-    flavorDimensions("app")
-
-    productFlavors {
-        create("allFeatures") {
-            dimension = "app"
-            missingDimensionStrategy("catalog", "full")
-            missingDimensionStrategy("landing", "full")
-            missingDimensionStrategy("photoReport", "full")
-        }
-
-        create("justLanding") {
-            dimension = "app"
-            missingDimensionStrategy("catalog", "stub")
-            missingDimensionStrategy("landing", "full")
-            missingDimensionStrategy("photoReport", "stub")
-        }
-
-        create("justPhotoReport") {
-            dimension = "app"
-            missingDimensionStrategy("catalog", "stub")
-            missingDimensionStrategy("landing", "stub")
-            missingDimensionStrategy("photoReport", "full")
-        }
-
-        create("justCatalog") {
-            dimension = "app"
-            missingDimensionStrategy("catalog", "full")
-            missingDimensionStrategy("landing", "stub")
-            missingDimensionStrategy("photoReport", "stub")
-        }
-    }
+    configureProductFlavors()
 
     gradle.taskGraph.whenReady {
         if (hasTask(":app:assembleAllFeaturesDebug")
@@ -128,7 +101,8 @@ withLibraries(
         Libs.koinAndroid,
         Libs.koinCore,
         Libs.kotlin,
-        Libs.material
+        Libs.material,
+        Libs.playCore
 )
 
 withKapt(Libs.dagger andKapt Libs.daggerCompiler)

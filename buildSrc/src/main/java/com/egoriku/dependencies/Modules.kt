@@ -17,6 +17,7 @@ object Modules {
     const val launchScreen = ":launchScreen"
     const val mainScreen = ":mainScreen"
     const val photoReport = ":photoReport"
+    const val postCreator = ":postCreator"
     const val settings = ":settings"
 
     val libraries
@@ -39,6 +40,7 @@ object Modules {
                 ProjectBean(launchScreen, "sources/feature/launchScreen"),
                 ProjectBean(mainScreen, "sources/feature/mainScreen"),
                 ProjectBean(photoReport, "sources/feature/photoReport"),
+                ProjectBean(postCreator, "sources/feature/postCreator"),
                 ProjectBean(settings, "sources/feature/settings")
         )
 }
