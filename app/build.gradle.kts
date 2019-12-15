@@ -1,4 +1,3 @@
-
 import com.android.build.gradle.internal.api.BaseVariantOutputImpl
 import com.egoriku.application.configureProductFlavors
 import com.egoriku.application.provideVersionCode
