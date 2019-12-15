@@ -6,6 +6,7 @@ object Modules {
     const val core = ":core"
     const val easyAdapter = ":easyAdapter"
     const val extensions = ":extensions"
+    const val mozaik = ":mozaik"
     const val network = ":network"
     const val navigation = ":navigation"
     const val rendering = ":rendering"
@@ -24,6 +25,7 @@ object Modules {
                 ProjectBean(core, "sources/base/core"),
                 ProjectBean(easyAdapter, "sources/libraries/easyAdapter"),
                 ProjectBean(extensions, "sources/libraries/extensions"),
+                ProjectBean(mozaik, "sources/libraries/mozaik"),
                 ProjectBean(network, "sources/base/network"),
                 ProjectBean(navigation, "sources/libraries/navigation"),
                 ProjectBean(rendering, "sources/libraries/rendering"),
