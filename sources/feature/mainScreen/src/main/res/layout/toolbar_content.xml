@@ -8,11 +8,11 @@
         android:id="@+id/headerBarLogoText"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:ellipsize="end"
         android:gravity="center"
+        android:lines="1"
         android:textColor="@color/RealBlack"
         android:textSize="26sp"
-        android:lines="1"
-        android:ellipsize="end"
         android:textStyle="bold"
         app:fontFamily="@font/montserrat"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -35,6 +35,22 @@
         app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guideline2"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/createPostButton"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:padding="10dp"
+        android:scaleType="centerInside"
+        android:src="@drawable/ic_edit"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toStartOf="@+id/headerBarLogoText"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.constraintlayout.widget.Guideline
