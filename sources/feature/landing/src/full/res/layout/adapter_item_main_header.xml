@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="120dp"
+    android:layout_height="wrap_content"
     tools:background="@color/Terracota">
 
     <androidx.appcompat.widget.AppCompatTextView
@@ -27,18 +27,14 @@
         android:id="@+id/adapter_item_main_header_footer"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:adjustViewBounds="true"
-        android:cropToPadding="false"
-        android:paddingTop="8dp"
         android:contentDescription="@string/cc_adapter_item_main"
-        android:paddingBottom="8dp"
-        android:scaleType="fitStart"
+        android:layout_marginTop="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintDimensionRatio="2:1"
+        app:layout_constraintDimensionRatio="11:1"
         app:layout_constraintEnd_toStartOf="@+id/guideline_right"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/guideline_left"
         app:layout_constraintTop_toBottomOf="@+id/adapter_item_main_header_logo"
-        app:layout_constraintVertical_bias="0.51"
         app:srcCompat="@drawable/ic_footer" />
 
     <androidx.constraintlayout.widget.Guideline
