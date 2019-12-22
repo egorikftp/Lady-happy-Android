@@ -4,7 +4,7 @@
 
     <application>
         <activity
-            android:name="com.egoriku.mainscreen.presentation.activity.MainActivity"
+            android:name="com.egoriku.mainscreen.presentation.MainActivity"
             android:theme="@style/MainActivityStyle" />
     </application>
 </manifest>

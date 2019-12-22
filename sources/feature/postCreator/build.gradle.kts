@@ -1,4 +1,6 @@
 import com.egoriku.application.configureProductFlavors
+import com.egoriku.application.provideVersionCode
+import com.egoriku.application.provideVersionName
 import com.egoriku.dependencies.Libs
 import com.egoriku.dependencies.versions.ProjectVersion
 import com.egoriku.ext.withLibraries
@@ -13,8 +15,8 @@ android {
     defaultConfig {
         minSdkVersion(ProjectVersion.minSdkVersion)
         compileSdkVersion(ProjectVersion.compileSdkVersion)
-        versionCode = 1
-        versionName = "1.0"
+        versionCode = provideVersionCode()
+        versionName = provideVersionName()
     }
 
     configureProductFlavors()

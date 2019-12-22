@@ -1,4 +1,4 @@
-package com.egoriku.mainscreen.presentation.activity
+package com.egoriku.mainscreen.presentation
 
 import android.content.Context
 import android.graphics.Color
@@ -6,6 +6,7 @@ import android.os.Bundle
 import androidx.annotation.IdRes
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.observe
 import com.egoriku.core.di.findDependencies
 import com.egoriku.core.di.utils.INavigationHolder
 import com.egoriku.core.feature.IFeatureProvider
@@ -15,19 +16,19 @@ import com.egoriku.ladyhappy.navigation.navigator.platform.ActivityScopeNavigato
 import com.egoriku.mainscreen.BuildConfig
 import com.egoriku.mainscreen.R
 import com.egoriku.mainscreen.di.MainActivityComponent
-import com.egoriku.mainscreen.presentation.screen.CatalogScreen
-import com.egoriku.mainscreen.presentation.screen.LandingScreen
-import com.egoriku.mainscreen.presentation.screen.PhotoReportScreen
-import com.egoriku.mainscreen.presentation.screen.SettingsScreen
+import com.egoriku.mainscreen.presentation.dynamicfeature.DynamicFeatureViewModule
+import com.egoriku.mainscreen.presentation.screen.*
 import com.google.android.play.core.splitcompat.SplitCompat
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.toolbar_content.*
 import org.koin.android.ext.android.inject
+import org.koin.android.viewmodel.ext.android.viewModel
 import javax.inject.Inject
 
 class MainActivity : BaseActivity(R.layout.activity_main) {
 
     private val featureProvider: IFeatureProvider by inject()
+    private val featureViewModule: DynamicFeatureViewModule by viewModel()
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
@@ -80,7 +81,14 @@ class MainActivity : BaseActivity(R.layout.activity_main) {
             with(createPostButton) {
                 visible()
                 setOnClickListener {
-                    toast("Future implementation of dynamic feature")
+                    featureViewModule.installDynamicFeature(getString(R.string.title_post_creator))
+                }
+
+                featureViewModule.installStatus.observe(this@MainActivity) {
+                    when (it) {
+                        true -> onSuccessfulLoad()
+                        false -> toast("error")
+                    }
                 }
             }
         }
@@ -122,6 +130,10 @@ class MainActivity : BaseActivity(R.layout.activity_main) {
             R.id.menuPhotoReport -> viewModel.replaceWith(PhotoReportScreen(featureProvider))
             R.id.menuCatalog -> viewModel.replaceWith(CatalogScreen(featureProvider))
         }
+    }
+
+    private fun onSuccessfulLoad() {
+        viewModel.navigateTo(PostCreatorScreen())
     }
 
     companion object {

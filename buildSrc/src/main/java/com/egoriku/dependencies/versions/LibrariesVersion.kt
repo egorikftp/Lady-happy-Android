@@ -5,7 +5,7 @@ object LibrariesVersion {
     const val appcompat = "1.1.0"
     const val browser = "1.0.0"
     const val cardView = "1.0.0"
-    const val constraintLayout = "2.0.0-beta3"
+    const val constraintLayout = "2.0.0-beta4"
     const val coreKtx = "1.1.0"
     const val coroutinesAndroid = "1.3.3"
     const val circleImageView = "3.0.1"

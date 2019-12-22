@@ -1,4 +1,4 @@
-package com.egoriku.mainscreen.presentation.activity
+package com.egoriku.mainscreen.presentation
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

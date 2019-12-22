@@ -26,8 +26,10 @@
         android:id="@+id/settingsButton"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginEnd="6dp"
         android:clickable="true"
         android:focusable="true"
+        android:foreground="?attr/selectableItemBackgroundBorderless"
         android:padding="10dp"
         android:scaleType="centerInside"
         android:src="@drawable/ic_settings"
@@ -41,8 +43,10 @@
         android:id="@+id/createPostButton"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginStart="6dp"
         android:clickable="true"
         android:focusable="true"
+        android:foreground="?attr/selectableItemBackgroundBorderless"
         android:padding="10dp"
         android:scaleType="centerInside"
         android:src="@drawable/ic_edit"
@@ -51,7 +55,8 @@
         app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintEnd_toStartOf="@+id/headerBarLogoText"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="visible" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline"

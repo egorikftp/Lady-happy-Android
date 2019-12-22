@@ -3,7 +3,7 @@ package com.egoriku.mainscreen.di
 import com.egoriku.core.di.ActivityScope
 import com.egoriku.core.di.ApplicationProvider
 import com.egoriku.mainscreen.di.module.MainActivityModule
-import com.egoriku.mainscreen.presentation.activity.MainActivity
+import com.egoriku.mainscreen.presentation.MainActivity
 import dagger.Component
 
 @ActivityScope
