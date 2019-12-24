@@ -56,7 +56,7 @@ android {
         }
     }
 
-    configureProductFlavors()
+    configureProductFlavors(System.getenv("IS_APP_CENTER")!!.toBoolean())
 
     gradle.taskGraph.whenReady {
         if (hasTask(":app:assembleAllFeaturesDebug")

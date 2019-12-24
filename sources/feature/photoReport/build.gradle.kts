@@ -11,15 +11,21 @@ plugins {
 }
 
 android {
-    flavorDimensions("photoReport")
-
-    productFlavors {
-        create("full") {
-            dimension = "photoReport"
+    if (System.getenv("IS_APP_CENTER")!!.toBoolean()) {
+        sourceSets {
+            getByName("main").java.srcDirs("src/full/java")
         }
+    } else {
+        flavorDimensions("photoReport")
 
-        create("stub") {
-            dimension = "photoReport"
+        productFlavors {
+            create("full") {
+                dimension = "photoReport"
+            }
+
+            create("stub") {
+                dimension = "photoReport"
+            }
         }
     }
 }

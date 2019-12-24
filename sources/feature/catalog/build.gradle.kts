@@ -1,6 +1,8 @@
 import com.egoriku.dependencies.Libs
 import com.egoriku.dependencies.Modules
-import com.egoriku.ext.*
+import com.egoriku.ext.allowExperimentalExtensions
+import com.egoriku.ext.withLibraries
+import com.egoriku.ext.withProjects
 
 plugins {
     id("com.egoriku.feature")
@@ -12,22 +14,28 @@ android {
         jvmTarget = "1.8"
     }
 
-    flavorDimensions("catalog")
-
-    productFlavors {
-        create("full") {
-            dimension = "catalog"
+    if (System.getenv("IS_APP_CENTER")!!.toBoolean()) {
+        sourceSets {
+            getByName("main").java.srcDirs("src/full/java")
         }
+    } else {
+        flavorDimensions("catalog")
 
-        create("stub") {
-            dimension = "catalog"
+        productFlavors {
+            create("full") {
+                dimension = "catalog"
+            }
+
+            create("stub") {
+                dimension = "catalog"
+            }
         }
     }
 }
 
 allowExperimentalExtensions()
 
-withProjectsFull(
+withProjects(
         Modules.arch,
         Modules.core,
         Modules.easyAdapter,
@@ -36,9 +44,7 @@ withProjectsFull(
         Modules.ui
 )
 
-forAll(Libs.koinCore)
-
-justForFull(
+withLibraries(
         Libs.appcompat,
         Libs.cardView,
         Libs.circleImageView,
@@ -46,8 +52,10 @@ justForFull(
         Libs.coreKtx,
         Libs.coroutinesAndroid,
         Libs.firestore,
+        Libs.fragment,
         Libs.glide,
         Libs.koinAndroid,
+        Libs.koinCore,
         Libs.koinScope,
         Libs.koinViewModel,
         Libs.liveDataKtx,
@@ -57,5 +65,3 @@ justForFull(
         Libs.viewModelKtx,
         Libs.viewPager2
 )
-
-justForStub(Libs.fragment)

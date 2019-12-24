@@ -8,15 +8,21 @@ plugins {
 }
 
 android {
-    flavorDimensions("settings")
-
-    productFlavors {
-        create("full") {
-            dimension = "settings"
+    if (System.getenv("IS_APP_CENTER")!!.toBoolean()) {
+        sourceSets {
+            getByName("main").java.srcDirs("src/full/java")
         }
+    } else {
+        flavorDimensions("settings")
 
-        create("stub") {
-            dimension = "settings"
+        productFlavors {
+            create("full") {
+                dimension = "settings"
+            }
+
+            create("stub") {
+                dimension = "settings"
+            }
         }
     }
 }

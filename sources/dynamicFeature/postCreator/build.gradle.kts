@@ -19,7 +19,7 @@ android {
         versionName = provideVersionName()
     }
 
-    configureProductFlavors()
+    configureProductFlavors(System.getenv("IS_APP_CENTER")!!.toBoolean())
 }
 
 withLibraries(

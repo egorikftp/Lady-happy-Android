@@ -11,15 +11,21 @@ plugins {
 }
 
 android {
-    flavorDimensions("landing")
-
-    productFlavors {
-        create("full") {
-            dimension = "landing"
+    if (System.getenv("IS_APP_CENTER")!!.toBoolean()) {
+        sourceSets {
+            getByName("main").java.srcDirs("src/full/java")
         }
+    } else {
+        flavorDimensions("landing")
 
-        create("stub") {
-            dimension = "landing"
+        productFlavors {
+            create("full") {
+                dimension = "landing"
+            }
+
+            create("stub") {
+                dimension = "landing"
+            }
         }
     }
 }
