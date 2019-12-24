@@ -7,9 +7,9 @@ import androidx.fragment.app.Fragment
 import com.egoriku.core.feature.IFeatureProvider
 import com.egoriku.ladyhappy.catalog.root.presentation.fragment.RootCatalogFragment
 import com.egoriku.ladyhappy.landing.presentation.LandingPageFragment
+import com.egoriku.ladyhappy.settings.presentation.SettingFragment
 import com.egoriku.mainscreen.presentation.MainActivity
 import com.egoriku.photoreport.presentation.PhotoReportFragment
-import com.egoriku.settings.presentation.SettingFragment
 
 class FeatureProvider : IFeatureProvider {
 

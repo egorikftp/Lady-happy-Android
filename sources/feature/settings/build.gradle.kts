@@ -7,6 +7,20 @@ plugins {
     id("com.egoriku.feature")
 }
 
+android {
+    flavorDimensions("settings")
+
+    productFlavors {
+        create("full") {
+            dimension = "settings"
+        }
+
+        create("stub") {
+            dimension = "settings"
+        }
+    }
+}
+
 withProjects(
         Modules.arch,
         Modules.core,

@@ -1,4 +1,4 @@
-package com.egoriku.settings.presentation
+package com.egoriku.ladyhappy.settings.presentation
 
 import android.os.Bundle
 import android.view.View
@@ -8,8 +8,8 @@ import androidx.core.view.doOnPreDraw
 import androidx.fragment.app.Fragment
 import com.egoriku.ladyhappy.extensions.colorCompat
 import com.egoriku.ladyhappy.extensions.toUri
-import com.egoriku.settings.R
-import kotlinx.android.synthetic.main.fragment_settings.*
+import com.egoriku.ladyhappy.settings.R
+import kotlinx.android.synthetic.full.fragment_settings.*
 
 class SettingFragment : Fragment(R.layout.fragment_settings) {
 

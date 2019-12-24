@@ -35,6 +35,7 @@ fun AppExtension.configureProductFlavors() {
             missingDimensionStrategy("catalog", "full")
             missingDimensionStrategy("landing", "full")
             missingDimensionStrategy("photoReport", "full")
+            missingDimensionStrategy("settings", "full")
         }
 
         create("justLanding") {
@@ -42,6 +43,7 @@ fun AppExtension.configureProductFlavors() {
             missingDimensionStrategy("catalog", "stub")
             missingDimensionStrategy("landing", "full")
             missingDimensionStrategy("photoReport", "stub")
+            missingDimensionStrategy("settings", "stub")
         }
 
         create("justPhotoReport") {
@@ -49,6 +51,7 @@ fun AppExtension.configureProductFlavors() {
             missingDimensionStrategy("catalog", "stub")
             missingDimensionStrategy("landing", "stub")
             missingDimensionStrategy("photoReport", "full")
+            missingDimensionStrategy("settings", "stub")
         }
 
         create("justCatalog") {
@@ -56,6 +59,15 @@ fun AppExtension.configureProductFlavors() {
             missingDimensionStrategy("catalog", "full")
             missingDimensionStrategy("landing", "stub")
             missingDimensionStrategy("photoReport", "stub")
+            missingDimensionStrategy("settings", "stub")
+        }
+
+        create("justSettings") {
+            dimension = "app"
+            missingDimensionStrategy("catalog", "stub")
+            missingDimensionStrategy("landing", "stub")
+            missingDimensionStrategy("photoReport", "stub")
+            missingDimensionStrategy("settings", "full")
         }
     }
 }

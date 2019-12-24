@@ -64,6 +64,7 @@ android {
                 || hasTask(":app:assembleJustLandingDebug")
                 || hasTask(":app:assembleJustPhotoReportDebug")
                 || hasTask(":app:assembleJustCatalogDebug")
+                || hasTask(":app:assembleJustSettingsDebug")
         ) {
             autoIncrementBuildVersionNumber()
         }
