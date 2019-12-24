@@ -18,10 +18,3 @@ abstract class ActivityScreen : Screen() {
 
     abstract val intent: Intent
 }
-
-abstract class DialogFragmentScreen : Screen() {
-
-    abstract val dialogFragment: DialogFragment
-
-    abstract val tag: String
-}

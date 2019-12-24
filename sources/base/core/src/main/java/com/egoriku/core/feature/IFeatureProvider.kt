@@ -15,5 +15,5 @@ interface IFeatureProvider {
 
     val photoReportFragment: Fragment
 
-    val settingsDialogFragment: DialogFragment
+    val settingsFragment: Fragment
 }

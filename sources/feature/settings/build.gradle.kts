@@ -17,5 +17,6 @@ withProjects(
 withLibraries(
         Libs.browser,
         Libs.constraintLayout,
+        Libs.coreKtx,
         Libs.material
 )

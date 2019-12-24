@@ -9,7 +9,7 @@ import com.egoriku.ladyhappy.catalog.root.presentation.fragment.RootCatalogFragm
 import com.egoriku.ladyhappy.landing.presentation.LandingPageFragment
 import com.egoriku.mainscreen.presentation.MainActivity
 import com.egoriku.photoreport.presentation.PhotoReportFragment
-import com.egoriku.settings.presentation.SettingBottomSheetDialogFragment
+import com.egoriku.settings.presentation.SettingFragment
 
 class FeatureProvider : IFeatureProvider {
 
@@ -24,6 +24,6 @@ class FeatureProvider : IFeatureProvider {
     override val photoReportFragment: Fragment
         get() = PhotoReportFragment()
 
-    override val settingsDialogFragment: DialogFragment
-        get() = SettingBottomSheetDialogFragment()
+    override val settingsFragment: Fragment
+        get() = SettingFragment()
 }

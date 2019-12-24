@@ -3,20 +3,19 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="match_parent">
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/termsOfServiceButton"
         style="@style/Widget.MaterialComponents.Button.TextButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
         android:text="@string/terms_of_service"
+        android:textAllCaps="false"
         android:textColor="@color/RealBlack70"
         android:textSize="9sp"
         app:cornerRadius="10dp"
-        android:textAllCaps="false"
-        app:layout_constraintBottom_toTopOf="@+id/guideline"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/dot"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintHorizontal_chainStyle="packed"
@@ -28,34 +27,28 @@
         style="@style/Widget.MaterialComponents.Button.TextButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
         android:text="@string/privacy_policy"
         android:textAllCaps="false"
         android:textColor="@color/RealBlack70"
         android:textSize="9sp"
         app:cornerRadius="10dp"
-        app:layout_constraintBottom_toTopOf="@+id/guideline"
+        app:layout_constraintBottom_toBottomOf="@+id/termsOfServiceButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/dot"
+        app:layout_constraintTop_toTopOf="@+id/termsOfServiceButton"
         tools:ignore="SmallSp" />
 
     <TextView
         android:id="@+id/dot"
-        android:textColor="@color/RealBlack70"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/bullet_separator"
+        android:textColor="@color/RealBlack70"
         app:layout_constraintBottom_toBottomOf="@+id/termsOfServiceButton"
         app:layout_constraintEnd_toStartOf="@+id/privacyPolicyButton"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/termsOfServiceButton"
         app:layout_constraintTop_toTopOf="@+id/termsOfServiceButton" />
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.90" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -23,23 +23,6 @@
         tools:text="Header Header Header Header" />
 
     <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/settingsButton"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginEnd="6dp"
-        android:clickable="true"
-        android:focusable="true"
-        android:foreground="?attr/selectableItemBackgroundBorderless"
-        android:padding="10dp"
-        android:scaleType="centerInside"
-        android:src="@drawable/ic_settings"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintDimensionRatio="1:1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/guideline2"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/createPostButton"
         android:layout_width="0dp"
         android:layout_height="0dp"

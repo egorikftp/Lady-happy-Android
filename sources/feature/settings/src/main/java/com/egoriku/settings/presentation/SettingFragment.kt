@@ -1,26 +1,22 @@
 package com.egoriku.settings.presentation
 
-import android.app.Dialog
 import android.os.Bundle
 import android.view.View
 import androidx.browser.customtabs.CustomTabsIntent
-import com.egoriku.ladyhappy.arch.dialogfragment.BaseBottomSheetDialogFragment
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.view.doOnPreDraw
+import androidx.fragment.app.Fragment
 import com.egoriku.ladyhappy.extensions.colorCompat
 import com.egoriku.ladyhappy.extensions.toUri
 import com.egoriku.settings.R
-import com.google.android.material.bottomsheet.BottomSheetDialog
-import kotlinx.android.synthetic.main.fragment_settings_bottom_sheet.*
+import kotlinx.android.synthetic.main.fragment_settings.*
 
-class SettingBottomSheetDialogFragment : BaseBottomSheetDialogFragment() {
-
-    override val layoutId: Int = R.layout.fragment_settings_bottom_sheet
-
-    override fun getTheme(): Int = R.style.BottomSheetDialog
-
-    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog = BottomSheetDialog(requireContext(), theme)
+class SettingFragment : Fragment(R.layout.fragment_settings) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        applyBottomMargin()
 
         termsOfServiceButton.setOnClickListener {
             CustomTabsIntent.Builder().apply {
@@ -36,6 +32,16 @@ class SettingBottomSheetDialogFragment : BaseBottomSheetDialogFragment() {
                 setToolbarColor(colorCompat(R.color.RoseTaupe))
                 build().apply {
                     launchUrl(context, getString(R.string.privacy_policy_link).toUri())
+                }
+            }
+        }
+    }
+
+    private fun applyBottomMargin() {
+        requireActivity().findViewById<View>(R.id.bottomNavigation).doOnPreDraw {
+            with(termsOfServiceButton) {
+                layoutParams = (layoutParams as ConstraintLayout.LayoutParams).apply {
+                    bottomMargin = it.height * 2
                 }
             }
         }

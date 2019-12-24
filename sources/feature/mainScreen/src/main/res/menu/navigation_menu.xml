@@ -17,5 +17,10 @@
             android:id="@+id/menuPhotoReport"
             android:icon="@drawable/ic_burst_mode"
             android:title="@string/navigation_view_photo_report" />
+
+        <item
+            android:id="@+id/menuSettings"
+            android:icon="@drawable/ic_settings"
+            android:title="@string/navigation_view_settings" />
     </group>
 </menu>

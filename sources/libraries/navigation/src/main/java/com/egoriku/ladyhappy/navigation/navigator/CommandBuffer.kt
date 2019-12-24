@@ -9,8 +9,8 @@ class CommandBuffer : NavigatorHolder {
 
     private val pendingCommands: Queue<Array<out Command>> = LinkedList()
 
-    override fun setNavigator(INavigator: INavigator) {
-        this.navigator = INavigator
+    override fun setNavigator(navigator: INavigator) {
+        this.navigator = navigator
 
         while (!pendingCommands.isEmpty()) {
             executeCommands(pendingCommands.poll())

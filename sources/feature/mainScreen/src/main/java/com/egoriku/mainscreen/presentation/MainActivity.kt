@@ -73,10 +73,6 @@ class MainActivity : BaseActivity(R.layout.activity_main) {
             setOnNavigationItemReselectedListener {}
         }
 
-        settingsButton.setOnClickListener {
-            viewModel.navigateTo(SettingsScreen(featureProvider))
-        }
-
         if (BuildConfig.DEBUG) {
             with(createPostButton) {
                 visible()
@@ -129,6 +125,7 @@ class MainActivity : BaseActivity(R.layout.activity_main) {
             R.id.menuLanding -> viewModel.replaceWith(LandingScreen(featureProvider))
             R.id.menuPhotoReport -> viewModel.replaceWith(PhotoReportScreen(featureProvider))
             R.id.menuCatalog -> viewModel.replaceWith(CatalogScreen(featureProvider))
+            R.id.menuSettings -> viewModel.replaceWith(SettingsScreen(featureProvider))
         }
     }
 

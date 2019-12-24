@@ -8,7 +8,6 @@ import com.egoriku.ladyhappy.navigation.command.Command
 import com.egoriku.ladyhappy.navigation.command.Replace
 import com.egoriku.ladyhappy.navigation.navigator.INavigator
 import com.egoriku.ladyhappy.navigation.screen.ActivityScreen
-import com.egoriku.ladyhappy.navigation.screen.DialogFragmentScreen
 import com.egoriku.ladyhappy.navigation.screen.FragmentScreen
 
 class ActivityScopeNavigator(
@@ -41,8 +40,6 @@ class ActivityScopeNavigator(
     private fun processAdd(command: Add) {
         when (val screen = command.screen) {
             is FragmentScreen -> addFragment(screen)
-            is ActivityScreen -> TODO()
-            is DialogFragmentScreen -> showDialogFragment(screen)
         }
     }
 
@@ -72,9 +69,5 @@ class ActivityScopeNavigator(
     private fun replaceActivity(screen: ActivityScreen) {
         activity.startActivity(screen.intent)
         activity.finish()
-    }
-
-    private fun showDialogFragment(screen: DialogFragmentScreen) = with(screen) {
-        dialogFragment.show(fragmentManager, tag)
     }
 }
