@@ -13,7 +13,6 @@ import com.egoriku.core.feature.IFeatureProvider
 import com.egoriku.ladyhappy.arch.activity.BaseActivity
 import com.egoriku.ladyhappy.extensions.*
 import com.egoriku.ladyhappy.navigation.navigator.platform.ActivityScopeNavigator
-import com.egoriku.mainscreen.BuildConfig
 import com.egoriku.mainscreen.R
 import com.egoriku.mainscreen.databinding.ActivityMainBinding
 import com.egoriku.mainscreen.di.MainActivityComponent
@@ -77,18 +76,16 @@ class MainActivity : BaseActivity(0) {
             setOnNavigationItemReselectedListener {}
         }
 
-        if (BuildConfig.DEBUG) {
-            with(binding.toolbarContent.createPostButton) {
-                visible()
-                setOnClickListener {
-                    featureViewModule.installDynamicFeature(getString(R.string.title_post_creator))
-                }
+        with(binding.toolbarContent.createPostButton) {
+            visible()
+            setOnClickListener {
+                featureViewModule.installDynamicFeature(getString(R.string.title_post_creator))
+            }
 
-                featureViewModule.installStatus.observe(this@MainActivity) {
-                    when (it) {
-                        true -> onSuccessfulLoad()
-                        false -> toast("error")
-                    }
+            featureViewModule.installStatus.observe(this@MainActivity) {
+                when (it) {
+                    true -> onSuccessfulLoad()
+                    false -> toast("error")
                 }
             }
         }

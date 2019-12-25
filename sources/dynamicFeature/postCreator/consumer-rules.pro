@@ -1,1 +1,3 @@
--keep class com.egoriku.ladyhappy.postcreator.PostCreatorFragment
+-keep public class com.egoriku.ladyhappy.postcreator.** {
+  public protected *;
+}
