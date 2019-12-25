@@ -15,17 +15,18 @@ import com.egoriku.ladyhappy.extensions.*
 import com.egoriku.ladyhappy.navigation.navigator.platform.ActivityScopeNavigator
 import com.egoriku.mainscreen.BuildConfig
 import com.egoriku.mainscreen.R
+import com.egoriku.mainscreen.databinding.ActivityMainBinding
 import com.egoriku.mainscreen.di.MainActivityComponent
 import com.egoriku.mainscreen.presentation.dynamicfeature.DynamicFeatureViewModule
 import com.egoriku.mainscreen.presentation.screen.*
 import com.google.android.play.core.splitcompat.SplitCompat
-import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.toolbar_content.*
 import org.koin.android.ext.android.inject
 import org.koin.android.viewmodel.ext.android.viewModel
 import javax.inject.Inject
 
-class MainActivity : BaseActivity(R.layout.activity_main) {
+class MainActivity : BaseActivity(0) {
+
+    private lateinit var binding: ActivityMainBinding
 
     private val featureProvider: IFeatureProvider by inject()
     private val featureViewModule: DynamicFeatureViewModule by viewModel()
@@ -44,26 +45,29 @@ class MainActivity : BaseActivity(R.layout.activity_main) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
         if (!hasM()) {
             window.statusBarColor = Color.BLACK
         }
 
-        setSupportActionBar(toolbarMainActivity)
+        setSupportActionBar(binding.toolbarMainActivity)
 
         viewModel = injectViewModel(viewModelFactory)
 
         viewModel.screenTitle.observe(this, Observer {
-            headerBarLogoText.setText(it)
+            binding.toolbarContent.headerBarLogoText.setText(it)
         })
 
         when (savedInstanceState) {
             null -> viewModel.replaceWith(CatalogScreen(featureProvider))
             else -> with(savedInstanceState.getInt(KEY_SELECTED_MENU_ITEM)) {
-                bottomNavigation.selectedItemId = this
+                binding.bottomNavigation.selectedItemId = this
             }
         }
 
-        with(bottomNavigation) {
+        with(binding.bottomNavigation) {
             setOnNavigationItemSelectedListener { item ->
                 consume {
                     mapItemIdToScreen(item.itemId)
@@ -74,7 +78,7 @@ class MainActivity : BaseActivity(R.layout.activity_main) {
         }
 
         if (BuildConfig.DEBUG) {
-            with(createPostButton) {
+            with(binding.toolbarContent.createPostButton) {
                 visible()
                 setOnClickListener {
                     featureViewModule.installDynamicFeature(getString(R.string.title_post_creator))
@@ -111,7 +115,7 @@ class MainActivity : BaseActivity(R.layout.activity_main) {
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
-        outState.putInt(KEY_SELECTED_MENU_ITEM, bottomNavigation.selectedItemId)
+        outState.putInt(KEY_SELECTED_MENU_ITEM, binding.bottomNavigation.selectedItemId)
         super.onSaveInstanceState(outState)
     }
 

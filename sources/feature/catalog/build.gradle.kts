@@ -1,12 +1,11 @@
 import com.egoriku.dependencies.Libs
 import com.egoriku.dependencies.Modules
-import com.egoriku.ext.allowExperimentalExtensions
+import com.egoriku.ext.configureBuildFlavors
 import com.egoriku.ext.withLibraries
 import com.egoriku.ext.withProjects
 
 plugins {
-    id("com.egoriku.feature")
-    id("kotlin-android-extensions")
+    id("com.egoriku.library")
 }
 
 android {
@@ -14,26 +13,29 @@ android {
         jvmTarget = "1.8"
     }
 
-    if (System.getenv("IS_APP_CENTER")!!.toBoolean()) {
-        sourceSets {
-            getByName("main").java.srcDirs("src/full/java")
-        }
-    } else {
-        flavorDimensions("catalog")
+    configureBuildFlavors(
+            onLocalBuild = {
+                flavorDimensions("catalog")
 
-        productFlavors {
-            create("full") {
-                dimension = "catalog"
-            }
+                productFlavors {
+                    create("full") {
+                        dimension = "catalog"
+                    }
 
-            create("stub") {
-                dimension = "catalog"
+                    create("stub") {
+                        dimension = "catalog"
+                    }
+                }
+            },
+            onRemoteBuild = {
+                sourceSets {
+                    getByName("main").java.srcDirs("src/full/java")
+                    getByName("main").res.srcDirs("src/full/res")
+                    getByName("main").manifest.srcFile("src/full/AndroidManifest.xml")
+                }
             }
-        }
-    }
+    )
 }
-
-allowExperimentalExtensions()
 
 withProjects(
         Modules.arch,

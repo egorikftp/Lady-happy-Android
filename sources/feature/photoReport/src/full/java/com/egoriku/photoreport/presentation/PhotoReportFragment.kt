@@ -1,7 +1,9 @@
 package com.egoriku.photoreport.presentation
 
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -11,22 +13,22 @@ import com.egoriku.ladyhappy.arch.fragment.BaseInjectableFragment
 import com.egoriku.ladyhappy.extensions.gone
 import com.egoriku.ladyhappy.extensions.injectViewModel
 import com.egoriku.ladyhappy.extensions.visible
-import com.egoriku.photoreport.R
+import com.egoriku.photoreport.databinding.FragmentPhotoReportBinding
 import com.egoriku.photoreport.di.PhotoReportFragmentComponent
 import com.egoriku.photoreport.presentation.controller.PhotoReportCarouselController
 import com.egoriku.photoreport.presentation.controller.PhotoReportHeaderController
 import com.egoriku.ui.controller.NoDataController
-import kotlinx.android.synthetic.full.fragment_photo_report.*
 import ru.surfstudio.android.easyadapter.EasyAdapter
 import ru.surfstudio.android.easyadapter.ItemList
 import javax.inject.Inject
 
-class PhotoReportFragment : BaseInjectableFragment(R.layout.fragment_photo_report) {
+class PhotoReportFragment : BaseInjectableFragment(0) {
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
 
     private lateinit var viewModel: PhotoReportViewModel
+    private lateinit var binding: FragmentPhotoReportBinding
 
     private lateinit var noDataController: NoDataController
     private lateinit var photoReportHeaderController: PhotoReportHeaderController
@@ -35,6 +37,13 @@ class PhotoReportFragment : BaseInjectableFragment(R.layout.fragment_photo_repor
     private val photoReportAdapter = EasyAdapter()
 
     override fun injectDependencies() = PhotoReportFragmentComponent.init(findDependencies()).inject(this)
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        FragmentPhotoReportBinding.inflate(inflater, container, false).apply {
+            binding = this
+            return root
+        }
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         viewModel = injectViewModel(viewModelFactory)
@@ -50,7 +59,7 @@ class PhotoReportFragment : BaseInjectableFragment(R.layout.fragment_photo_repor
     private fun initRecyclerView() {
         val viewPool = RecyclerView.RecycledViewPool()
 
-        recyclerViewAllGoods.apply {
+        binding.recyclerViewAllGoods.apply {
             layoutManager = LinearLayoutManager(context)
             adapter = photoReportAdapter
         }
@@ -66,8 +75,8 @@ class PhotoReportFragment : BaseInjectableFragment(R.layout.fragment_photo_repor
     private fun render(screenModel: ScreenModel) {
         val itemList = ItemList.create()
 
-        when {
-            screenModel.loadState == LoadState.PROGRESS -> showLoading()
+        when (screenModel.loadState) {
+            LoadState.PROGRESS -> showLoading()
             else -> hideLoading()
         }
 
@@ -81,7 +90,7 @@ class PhotoReportFragment : BaseInjectableFragment(R.layout.fragment_photo_repor
         photoReportAdapter.setItems(itemList)
     }
 
-    private fun showLoading() = progressView.visible()
+    private fun showLoading() = binding.progressView.visible()
 
-    private fun hideLoading() = progressView.gone()
+    private fun hideLoading() = binding.progressView.gone()
 }

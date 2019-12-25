@@ -56,7 +56,14 @@ android {
         }
     }
 
-    configureProductFlavors(System.getenv("IS_APP_CENTER")!!.toBoolean())
+    configureBuildFlavors(
+            onLocalBuild = {
+                configureProductFlavors()
+            },
+            onRemoteBuild = {
+                println("It's app center build.")
+            }
+    )
 
     gradle.taskGraph.whenReady {
         if (hasTask(":app:assembleAllFeaturesDebug")

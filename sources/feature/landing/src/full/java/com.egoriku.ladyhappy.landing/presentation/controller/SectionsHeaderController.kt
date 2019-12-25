@@ -1,11 +1,9 @@
 package com.egoriku.ladyhappy.landing.presentation.controller
 
-import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.StringRes
-import com.egoriku.ladyhappy.landing.R
-import kotlinx.android.extensions.LayoutContainer
-import kotlinx.android.synthetic.full.adapter_item_section_header.*
+import com.egoriku.ladyhappy.extensions.inflater
+import com.egoriku.ladyhappy.landing.databinding.AdapterItemSectionHeaderBinding
 import ru.surfstudio.android.easyadapter.controller.BindableItemController
 import ru.surfstudio.android.easyadapter.holder.BindableViewHolder
 
@@ -13,15 +11,15 @@ internal class SectionsHeaderController : BindableItemController<Int, SectionsHe
 
     override fun getItemId(data: Int) = data.hashCode().toString()
 
-    override fun createViewHolder(parent: ViewGroup) = Holder(parent)
+    override fun createViewHolder(parent: ViewGroup) =
+            Holder(AdapterItemSectionHeaderBinding.inflate(parent.inflater(), parent, false))
 
-    inner class Holder(parent: ViewGroup) : BindableViewHolder<Int>(parent, R.layout.adapter_item_section_header), LayoutContainer {
-
-        override val containerView: View?
-            get() = itemView
+    inner class Holder(
+            private val itemBinding: AdapterItemSectionHeaderBinding
+    ) : BindableViewHolder<Int>(itemBinding.root) {
 
         override fun bind(@StringRes stringRes: Int) {
-            sectionHeader.text = itemView.context.getString(stringRes)
+            itemBinding.sectionHeader.text = itemView.context.getString(stringRes)
         }
     }
 }

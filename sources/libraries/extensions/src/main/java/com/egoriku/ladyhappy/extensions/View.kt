@@ -6,6 +6,7 @@ import android.content.res.TypedArray
 import android.util.AttributeSet
 import android.view.View
 import androidx.annotation.ColorRes
+import androidx.annotation.DrawableRes
 import androidx.core.content.withStyledAttributes
 
 inline fun View.gone() {
@@ -21,6 +22,8 @@ inline fun View.visible() {
 }
 
 fun View.colorCompat(@ColorRes colorInt: Int) = context.colorCompat(colorInt)
+
+fun View.drawableCompat(@DrawableRes drawableRes: Int) = context.drawableCompat(drawableRes)
 
 fun View.withStyledAttributes(
         attributeSet: AttributeSet? = null,

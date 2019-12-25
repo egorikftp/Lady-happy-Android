@@ -1,27 +1,25 @@
 package com.egoriku.ladyhappy.landing.presentation.controller
 
-import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import com.egoriku.ladyhappy.landing.R
-import kotlinx.android.extensions.LayoutContainer
-import kotlinx.android.synthetic.full.adapter_item_about.view.*
+import com.egoriku.ladyhappy.extensions.inflater
+import com.egoriku.ladyhappy.landing.databinding.AdapterItemAboutBinding
 import ru.surfstudio.android.easyadapter.controller.BindableItemController
 import ru.surfstudio.android.easyadapter.holder.BindableViewHolder
 
 internal class AboutController : BindableItemController<String, AboutController.Holder>() {
 
-    override fun createViewHolder(parent: ViewGroup) = Holder(parent)
+    override fun createViewHolder(parent: ViewGroup) =
+            Holder(AdapterItemAboutBinding.inflate(parent.inflater(), parent, false))
 
     override fun getItemId(data: String) = data.hashCode().toString()
 
-    inner class Holder(parent: ViewGroup) : BindableViewHolder<String>(parent, R.layout.adapter_item_about), LayoutContainer {
-
-        override val containerView: View
-            get() = itemView
+    inner class Holder(
+            private val itemBinding: AdapterItemAboutBinding
+    ) : BindableViewHolder<String>(itemBinding.root) {
 
         override fun bind(data: String) {
-            (itemView.about_content as TextView).text = data
+            (itemBinding.aboutContent as TextView).text = data
         }
     }
 }

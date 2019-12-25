@@ -1,10 +1,11 @@
 import com.egoriku.dependencies.Libs
+import com.egoriku.ext.withLibraries
 
 plugins {
     id("com.egoriku.library")
 }
 
-dependencies {
-    compileOnly(Libs.appcompat)
-    compileOnly(Libs.fragment)
-}
+withLibraries(
+        Libs.appcompat,
+        Libs.fragment
+)

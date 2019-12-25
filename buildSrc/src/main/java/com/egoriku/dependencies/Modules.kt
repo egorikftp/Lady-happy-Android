@@ -2,6 +2,8 @@ package com.egoriku.dependencies
 
 object Modules {
 
+    const val ladyHappy = ":app"
+
     const val arch = ":arch"
     const val core = ":core"
     const val easyAdapter = ":easyAdapter"
@@ -16,9 +18,13 @@ object Modules {
     const val landing = ":landing"
     const val launchScreen = ":launchScreen"
     const val mainScreen = ":mainScreen"
-    const val photoReport = ":photoReport"
     const val postCreator = ":postCreator"
     const val settings = ":settings"
+
+    const val photoReport = ":photoReport"
+
+    val applications
+        get() = arrayOf(ProjectBean(ladyHappy))
 
     val dynamicFeatures
         get() = arrayOf(ProjectBean(postCreator, "sources/dynamicFeature/postCreator"))
@@ -49,5 +55,5 @@ object Modules {
 
 class ProjectBean(
         val name: String,
-        val path: String
+        val path: String = ""
 )

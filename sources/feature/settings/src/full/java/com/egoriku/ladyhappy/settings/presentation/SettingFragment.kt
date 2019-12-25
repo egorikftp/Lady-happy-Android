@@ -1,7 +1,9 @@
 package com.egoriku.ladyhappy.settings.presentation
 
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import androidx.browser.customtabs.CustomTabsIntent
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.doOnPreDraw
@@ -9,16 +11,25 @@ import androidx.fragment.app.Fragment
 import com.egoriku.ladyhappy.extensions.colorCompat
 import com.egoriku.ladyhappy.extensions.toUri
 import com.egoriku.ladyhappy.settings.R
-import kotlinx.android.synthetic.full.fragment_settings.*
+import com.egoriku.ladyhappy.settings.databinding.FragmentSettingsBinding
 
-class SettingFragment : Fragment(R.layout.fragment_settings) {
+class SettingFragment : Fragment() {
+
+    private lateinit var binding: FragmentSettingsBinding
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        FragmentSettingsBinding.inflate(inflater, container, false).apply {
+            binding = this
+            return root
+        }
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         applyBottomMargin()
 
-        termsOfServiceButton.setOnClickListener {
+        binding.termsOfServiceButton.setOnClickListener {
             CustomTabsIntent.Builder().apply {
                 setToolbarColor(colorCompat(R.color.RoseTaupe))
                 build().apply {
@@ -27,7 +38,7 @@ class SettingFragment : Fragment(R.layout.fragment_settings) {
             }
         }
 
-        privacyPolicyButton.setOnClickListener {
+        binding.privacyPolicyButton.setOnClickListener {
             CustomTabsIntent.Builder().apply {
                 setToolbarColor(colorCompat(R.color.RoseTaupe))
                 build().apply {
@@ -39,7 +50,7 @@ class SettingFragment : Fragment(R.layout.fragment_settings) {
 
     private fun applyBottomMargin() {
         requireActivity().findViewById<View>(R.id.bottomNavigation).doOnPreDraw {
-            with(termsOfServiceButton) {
+            with(binding.termsOfServiceButton) {
                 layoutParams = (layoutParams as ConstraintLayout.LayoutParams).apply {
                     bottomMargin = it.height * 2
                 }
