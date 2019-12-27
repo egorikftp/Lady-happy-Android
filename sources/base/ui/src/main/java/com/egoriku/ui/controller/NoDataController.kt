@@ -1,23 +1,24 @@
 package com.egoriku.ui.controller
 
-import android.view.View
 import android.view.ViewGroup
-import com.egoriku.ui.R
-import kotlinx.android.extensions.LayoutContainer
-import kotlinx.android.synthetic.main.adapter_item_no_data.*
+import com.egoriku.ladyhappy.extensions.inflater
+import com.egoriku.ui.databinding.AdapterItemNoDataBinding
 import ru.surfstudio.android.easyadapter.controller.NoDataItemController
 import ru.surfstudio.android.easyadapter.holder.BaseViewHolder
 
-class NoDataController(private val retryListener: () -> Unit) : NoDataItemController<NoDataController.Holder>() {
+class NoDataController(
+        private val retryListener: () -> Unit
+) : NoDataItemController<NoDataController.Holder>() {
 
-    override fun createViewHolder(parent: ViewGroup): Holder = Holder(parent)
+    override fun createViewHolder(parent: ViewGroup) =
+            Holder(AdapterItemNoDataBinding.inflate(parent.inflater(), parent, false))
 
-    inner class Holder(parent: ViewGroup) : BaseViewHolder(parent, R.layout.adapter_item_no_data), LayoutContainer {
-        override val containerView: View?
-            get() = itemView
+    inner class Holder(
+            itemBinding: AdapterItemNoDataBinding
+    ) : BaseViewHolder(itemBinding.root) {
 
         init {
-            retryButton.setOnClickListener { retryListener.invoke() }
+            itemBinding.retryButton.setOnClickListener { retryListener() }
         }
     }
 }

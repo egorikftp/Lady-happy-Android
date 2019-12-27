@@ -1,36 +1,35 @@
 package com.egoriku.photoreport.presentation.controller
 
-import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade
 import com.bumptech.glide.request.RequestOptions
+import com.egoriku.ladyhappy.extensions.drawableCompat
+import com.egoriku.ladyhappy.extensions.inflater
 import com.egoriku.photoreport.R
-import kotlinx.android.extensions.LayoutContainer
-import kotlinx.android.synthetic.full.adapter_item_photo_report.view.*
+import com.egoriku.photoreport.databinding.AdapterItemPhotoReportBinding
 import ru.surfstudio.android.easyadapter.controller.BindableItemController
 import ru.surfstudio.android.easyadapter.holder.BindableViewHolder
 
 class PhotoReportItemController : BindableItemController<String, PhotoReportItemController.Holder>() {
 
-    override fun createViewHolder(parent: ViewGroup) = Holder(parent)
+    override fun createViewHolder(parent: ViewGroup) =
+            Holder(AdapterItemPhotoReportBinding.inflate(parent.inflater(), parent, false))
 
     override fun getItemId(data: String) = data.hashCode().toString()
 
-    inner class Holder(parent: ViewGroup) : BindableViewHolder<String>(parent, R.layout.adapter_item_photo_report), LayoutContainer {
+    inner class Holder(
+            private val itemBinding: AdapterItemPhotoReportBinding
+    ) : BindableViewHolder<String>(itemBinding.root) {
 
-        override val containerView: View?
-            get() = itemView
-
-        private val requestOptions = RequestOptions().placeholder(ContextCompat.getDrawable(itemView.context, R.color.RealBlack30))
+        private val requestOptions = RequestOptions().placeholder(itemView.drawableCompat(R.color.RealBlack30))
 
         override fun bind(data: String) {
             Glide.with(itemView.context)
                     .load(data)
                     .transition(withCrossFade())
                     .apply(requestOptions)
-                    .into(itemView.reportPhotoItem)
+                    .into(itemBinding.reportPhotoItem)
         }
     }
 }

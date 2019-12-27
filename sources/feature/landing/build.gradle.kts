@@ -1,27 +1,35 @@
 import com.egoriku.dependencies.Libs
 import com.egoriku.dependencies.Modules
-import com.egoriku.ext.andKapt
-import com.egoriku.ext.withKapt
-import com.egoriku.ext.withLibraries
-import com.egoriku.ext.withProjects
+import com.egoriku.ext.*
 
 plugins {
-    id("com.egoriku.feature")
+    id("com.egoriku.library")
     id("kotlin-kapt")
 }
 
 android {
-    flavorDimensions("landing")
+    configureBuildFlavors(
+            onLocalBuild = {
+                flavorDimensions("landing")
 
-    productFlavors {
-        create("full") {
-            dimension = "landing"
-        }
+                productFlavors {
+                    create("full") {
+                        dimension = "landing"
+                    }
 
-        create("stub") {
-            dimension = "landing"
-        }
-    }
+                    create("stub") {
+                        dimension = "landing"
+                    }
+                }
+            },
+            onRemoteBuild = {
+                sourceSets {
+                    getByName("main").java.srcDirs("src/full/java")
+                    getByName("main").res.srcDirs("src/full/res")
+                    getByName("main").manifest.srcFile("src/full/AndroidManifest.xml")
+                }
+            }
+    )
 }
 
 withProjects(

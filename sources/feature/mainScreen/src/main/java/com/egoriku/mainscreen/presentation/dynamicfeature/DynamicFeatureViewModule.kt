@@ -53,6 +53,7 @@ class DynamicFeatureViewModule(
                 SplitInstallSessionStatus.INSTALLING -> {
                 }
                 SplitInstallSessionStatus.INSTALLED -> {
+                    _installStatus.value = true
                 }
                 SplitInstallSessionStatus.FAILED -> {
                 }

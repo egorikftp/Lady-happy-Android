@@ -1,38 +1,8 @@
 package com.egoriku.ext
 
 import org.gradle.api.Project
-import org.gradle.api.plugins.ExtensionAware
 import org.gradle.kotlin.dsl.dependencies
 import org.gradle.kotlin.dsl.project
-import org.jetbrains.kotlin.gradle.dsl.KotlinJvmOptions
-import org.jetbrains.kotlin.gradle.internal.AndroidExtensionsExtension
-import org.jetbrains.kotlin.gradle.internal.CacheImplementation
-
-fun Project.toExtensionAware() = this as ExtensionAware
-
-fun Project.justForFull(vararg libs: String) {
-    dependencies {
-        libs.forEach {
-            fullImplementation(it)
-        }
-    }
-}
-
-fun Project.justForStub(vararg libs: String) {
-    dependencies {
-        libs.forEach {
-            stubImplementation(it)
-        }
-    }
-}
-
-fun Project.forAll(vararg libs: String) {
-    dependencies {
-        libs.forEach {
-            implementation(it)
-        }
-    }
-}
 
 fun Project.withLibraries(vararg libs: String) {
     dependencies {
@@ -51,14 +21,6 @@ fun Project.withKapt(vararg libs: Pair<String, String>) {
     }
 }
 
-fun Project.withProjectsFull(vararg projects: String) {
-    dependencies {
-        projects.forEach {
-            fullImplementation(project(it))
-        }
-    }
-}
-
 fun Project.withProjects(vararg projects: String) {
     dependencies {
         projects.forEach {
@@ -67,11 +29,11 @@ fun Project.withProjects(vararg projects: String) {
     }
 }
 
-fun Project.allowExperimentalExtensions() {
-    toExtensionAware()
-            .getExtensionByName<AndroidExtensionsExtension>("androidExtensions")
-            .run {
-                isExperimental = true
-                defaultCacheImplementation = CacheImplementation.SPARSE_ARRAY
-            }
+fun configureBuildFlavors(
+        onLocalBuild: () -> Unit,
+        onRemoteBuild: () -> Unit
+) = if (System.getenv("IS_APP_CENTER")?.toBoolean() == true) {
+    onRemoteBuild.invoke()
+} else {
+    onLocalBuild()
 }

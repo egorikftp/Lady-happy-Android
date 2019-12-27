@@ -6,7 +6,7 @@ import com.egoriku.ext.withLibraries
 import com.egoriku.ext.withProjects
 
 plugins {
-    id("com.egoriku.feature")
+    id("com.egoriku.library")
     id("kotlin-kapt")
 }
 

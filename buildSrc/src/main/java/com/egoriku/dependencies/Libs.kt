@@ -5,6 +5,7 @@ import com.egoriku.dependencies.versions.LibrariesVersion
 object Libs {
     const val annotation = "androidx.annotation:annotation:${LibrariesVersion.annotation}"
     const val appcompat = "androidx.appcompat:appcompat:${LibrariesVersion.appcompat}"
+    const val beagle = "com.github.pandulapeter.beagle:beagle:${LibrariesVersion.beagle}"
     const val browser = "androidx.browser:browser:${LibrariesVersion.browser}"
     const val cardView = "androidx.cardview:cardview:${LibrariesVersion.cardView}"
     const val circleImageView = "de.hdodenhof:circleimageview:${LibrariesVersion.circleImageView}"

@@ -1,18 +1,20 @@
 package com.egoriku.ladyhappy.catalog.subcategory.presentation.fragment
 
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
-import android.widget.Toast
+import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.observe
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.egoriku.ladyhappy.catalog.R
+import com.egoriku.ladyhappy.catalog.databinding.FragmentCatalogBinding
 import com.egoriku.ladyhappy.catalog.subcategory.presentation.SubCategoriesViewModel
 import com.egoriku.ladyhappy.catalog.subcategory.presentation.SubcategoryScreenState
 import com.egoriku.ladyhappy.catalog.subcategory.presentation.SubcategoryScreenState.Success
 import com.egoriku.ladyhappy.catalog.subcategory.presentation.adapter.controller.CatalogController
 import com.egoriku.ladyhappy.catalog.subcategory.presentation.adapter.decorator.MarginItemDecoration
-import kotlinx.android.synthetic.full.fragment_catalog.*
+import com.egoriku.ladyhappy.extensions.toast
 import org.koin.androidx.scope.currentScope
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
@@ -22,7 +24,9 @@ import kotlin.properties.Delegates
 
 const val ARGUMENT_SUBCATEGORY = "sub_category"
 
-class SubcategoryFragment : Fragment(R.layout.fragment_catalog) {
+class SubcategoryFragment : Fragment() {
+
+    private lateinit var binding: FragmentCatalogBinding
 
     private val catalogViewModel: SubCategoriesViewModel by viewModel {
         parametersOf(
@@ -37,6 +41,13 @@ class SubcategoryFragment : Fragment(R.layout.fragment_catalog) {
         setFirstInvisibleItemEnabled(false)
     }
 
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        FragmentCatalogBinding.inflate(inflater, container, false).apply {
+            binding = this
+            return root
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -47,10 +58,10 @@ class SubcategoryFragment : Fragment(R.layout.fragment_catalog) {
         super.onViewCreated(view, savedInstanceState)
 
         catalogController = CatalogController {
-            Toast.makeText(context, "Item ${it.itemName} was clicked", Toast.LENGTH_SHORT).show()
+            toast("Item ${it.itemName} was clicked")
         }
 
-        catalogRecyclerView.apply {
+        binding.catalogRecyclerView.apply {
             layoutManager = LinearLayoutManager(context)
             adapter = catalogAdapter
             addItemDecoration(MarginItemDecoration(context.resources.getDimension(R.dimen.adapter_item_catalog_margin).toInt()))

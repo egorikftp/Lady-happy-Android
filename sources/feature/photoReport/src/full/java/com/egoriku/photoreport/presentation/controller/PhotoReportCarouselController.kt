@@ -1,56 +1,56 @@
 package com.egoriku.photoreport.presentation.controller
 
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.PagerSnapHelper
 import androidx.recyclerview.widget.RecyclerView
-import com.egoriku.photoreport.R
+import com.egoriku.ladyhappy.extensions.inflater
+import com.egoriku.photoreport.databinding.AdapterItemPhotoReportCarouselBinding
 import com.egoriku.photoreport.domain.model.PhotoReportModel
-import kotlinx.android.extensions.LayoutContainer
-import kotlinx.android.synthetic.full.adapter_item_photo_report_carousel.*
 import ru.surfstudio.android.easyadapter.EasyAdapter
 import ru.surfstudio.android.easyadapter.ItemList
 import ru.surfstudio.android.easyadapter.controller.BindableItemController
 import ru.surfstudio.android.easyadapter.holder.BindableViewHolder
 
-class PhotoReportCarouselController(val viewPool: RecyclerView.RecycledViewPool) : BindableItemController<PhotoReportModel, PhotoReportCarouselController.Holder>() {
+class PhotoReportCarouselController(
+        private val viewPool: RecyclerView.RecycledViewPool
+) : BindableItemController<PhotoReportModel, PhotoReportCarouselController.Holder>() {
 
-    override fun createViewHolder(parent: ViewGroup) = Holder(parent)
+    override fun createViewHolder(parent: ViewGroup) =
+            Holder(AdapterItemPhotoReportCarouselBinding.inflate(parent.inflater(), parent, false))
 
     override fun getItemId(data: PhotoReportModel) = data.hashCode().toString()
 
-    inner class Holder(parent: ViewGroup) : BindableViewHolder<PhotoReportModel>(parent, R.layout.adapter_item_photo_report_carousel), LayoutContainer {
-
-        override val containerView: View?
-            get() = itemView
+    inner class Holder(
+            private val itemBinding: AdapterItemPhotoReportCarouselBinding
+    ) : BindableViewHolder<PhotoReportModel>(itemBinding.root) {
 
         private val photoReportItemController: PhotoReportItemController = PhotoReportItemController()
         private lateinit var newsModel: PhotoReportModel
 
         init {
-            reportCarouselRecyclerView.apply {
+            itemBinding.reportCarouselRecyclerView.apply {
                 layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
                 setRecycledViewPool(viewPool)
             }
 
-            PagerSnapHelper().attachToRecyclerView(reportCarouselRecyclerView)
-            pagerIndicator.attachToRecyclerView(reportCarouselRecyclerView)
+            PagerSnapHelper().attachToRecyclerView(itemBinding.reportCarouselRecyclerView)
+            itemBinding.pagerIndicator.attachToRecyclerView(itemBinding.reportCarouselRecyclerView)
         }
 
         override fun bind(data: PhotoReportModel) {
             newsModel = data
 
-            newsDateTextView.text = data.date
-            descriptionTextView.text = data.description
+            itemBinding.newsDateTextView.text = data.date
+            itemBinding.descriptionTextView.text = data.description
 
-            if (reportCarouselRecyclerView.adapter == null) {
-                reportCarouselRecyclerView.adapter = EasyAdapter().apply {
+            if (itemBinding.reportCarouselRecyclerView.adapter == null) {
+                itemBinding.reportCarouselRecyclerView.adapter = EasyAdapter().apply {
                     setFirstInvisibleItemEnabled(false)
                     setItems(ItemList.create().addAll(data.images, photoReportItemController))
                 }
             } else {
-                (reportCarouselRecyclerView.adapter as EasyAdapter)
+                (itemBinding.reportCarouselRecyclerView.adapter as EasyAdapter)
                         .setItems(ItemList.create().addAll(data.images, photoReportItemController))
             }
         }

@@ -7,6 +7,9 @@ import java.io.File
 fun Settings.registerModules(vararg libs: ProjectBean) {
     libs.forEach {
         include(it.name)
-        project(it.name).projectDir = File(rootDir, it.path)
+
+        if (it.path.isNotEmpty()) {
+            project(it.name).projectDir = File(rootDir, it.path)
+        }
     }
 }
