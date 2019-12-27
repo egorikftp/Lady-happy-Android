@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Дамское счастье</string>
+
+    <string name="adapter_item_about_us">О нас</string>
+    <string name="adapter_item_header_quotes">Что нас вдохновляет</string>
+
+    <string name="lady_happy">Дамское счастье</string>
+    <string name="adapter_item_header_our_team">Наша команда</string>
+
+    <string name="no_data_whoops">Упс!</string>
+    <string name="no_data_try_again">Попробовать снова</string>
+    <string name="no_data_internet_connection">Нет соединения с интернетом. Проверьет Ваше подключение \n\nИли</string>
+
+    <string name="navigation_view_landing">O нас</string>
+    <string name="navigation_view_landing_header">Краткая информация</string>
+
+    <string name="navigation_view_photo_report">Фото</string>
+    <string name="navigation_view_photo_report_header">Теплые моменты</string>
+
+    <string name="navigation_view_catalog">Каталог</string>
+    <string name="navigation_view_catalog_header">Наши товары</string>
+
+    <string name="navigation_view_settings">Настройки</string>
+    <string name="navigation_view_settings_header">Дополнительные функции</string>
+
+    <string name="adapter_item_news_header_text">Последние новости</string>
+
+    <string name="cc_adapter_item_main">Оливковая ветвь</string>
+    <string name="cd_adapter_item_photo_report">Фотография</string>
+
+    <string name="terms_of_service">Условия использования</string>
+    <string name="privacy_policy">Политика конфиденциальности</string>
+</resources>

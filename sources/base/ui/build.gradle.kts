@@ -9,7 +9,8 @@ plugins {
 
 withProjects(
         Libraries.easyAdapter,
-        Libraries.extensions
+        Libraries.extensions,
+        Libraries.localization
 )
 
 withLibraries(

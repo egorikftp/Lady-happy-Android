@@ -39,6 +39,7 @@ withProjects(
         Libraries.arch,
         Libraries.core,
         Libraries.extensions,
+        Libraries.localization,
         Libraries.ui
 )
 
