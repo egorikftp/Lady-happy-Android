@@ -1,5 +1,6 @@
 import com.egoriku.dependencies.Libs
 import com.egoriku.dependencies.Modules
+import com.egoriku.dependencies.Modules.Libraries
 import com.egoriku.ext.*
 
 plugins {
@@ -33,12 +34,12 @@ android {
 }
 
 withProjects(
-        Modules.arch,
-        Modules.core,
-        Modules.easyAdapter,
-        Modules.extensions,
-        Modules.network,
-        Modules.ui
+        Libraries.arch,
+        Libraries.core,
+        Libraries.easyAdapter,
+        Libraries.extensions,
+        Libraries.network,
+        Libraries.ui
 )
 
 withLibraries(

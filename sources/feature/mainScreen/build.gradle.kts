@@ -1,5 +1,6 @@
 import com.egoriku.dependencies.Libs
 import com.egoriku.dependencies.Modules
+import com.egoriku.dependencies.Modules.Libraries
 import com.egoriku.ext.andKapt
 import com.egoriku.ext.withKapt
 import com.egoriku.ext.withLibraries
@@ -17,11 +18,11 @@ android {
 }
 
 withProjects(
-        Modules.arch,
-        Modules.core,
-        Modules.extensions,
-        Modules.navigation,
-        Modules.ui
+        Libraries.arch,
+        Libraries.core,
+        Libraries.extensions,
+        Libraries.navigation,
+        Libraries.ui
 )
 
 withLibraries(

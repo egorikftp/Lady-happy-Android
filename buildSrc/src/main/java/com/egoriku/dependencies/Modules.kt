@@ -2,54 +2,68 @@ package com.egoriku.dependencies
 
 object Modules {
 
-    const val ladyHappy = ":app"
+    object Applications {
+        const val ladyHappy = ":app"
+    }
 
-    const val arch = ":arch"
-    const val core = ":core"
-    const val easyAdapter = ":easyAdapter"
-    const val extensions = ":extensions"
-    const val mozaik = ":mozaik"
-    const val network = ":network"
-    const val navigation = ":navigation"
-    const val rendering = ":rendering"
-    const val ui = ":ui"
+    object Features {
+        const val catalog = ":catalog"
+        const val landing = ":landing"
+        const val launchScreen = ":launchScreen"
+        const val mainScreen = ":mainScreen"
+        const val photoReport = ":photoReport"
+        const val settings = ":settings"
+    }
 
-    const val catalog = ":catalog"
-    const val landing = ":landing"
-    const val launchScreen = ":launchScreen"
-    const val mainScreen = ":mainScreen"
-    const val postCreator = ":postCreator"
-    const val settings = ":settings"
+    object DynamicFeatures {
+        const val postCreator = ":postCreator"
+    }
 
-    const val photoReport = ":photoReport"
+    object Libraries {
+        const val arch = ":arch"
+        const val core = ":core"
+        const val easyAdapter = ":easyAdapter"
+        const val extensions = ":extensions"
+        const val localization = ":localization"
+        const val mozaik = ":mozaik"
+        const val network = ":network"
+        const val navigation = ":navigation"
+        const val rendering = ":rendering"
+        const val ui = ":ui"
+    }
 
     val applications
-        get() = arrayOf(ProjectBean(ladyHappy))
+        get() = arrayOf(
+                ProjectBean(Applications.ladyHappy)
+        )
 
     val dynamicFeatures
-        get() = arrayOf(ProjectBean(postCreator, "sources/dynamicFeature/postCreator"))
+        get() = arrayOf(
+                ProjectBean(DynamicFeatures.postCreator, "sources/dynamicFeature/postCreator")
+        )
 
     val features
         get() = arrayOf(
-                ProjectBean(catalog, "sources/feature/catalog"),
-                ProjectBean(landing, "sources/feature/landing"),
-                ProjectBean(launchScreen, "sources/feature/launchScreen"),
-                ProjectBean(mainScreen, "sources/feature/mainScreen"),
-                ProjectBean(photoReport, "sources/feature/photoReport"),
-                ProjectBean(settings, "sources/feature/settings")
+                ProjectBean(Features.catalog, "sources/feature/catalog"),
+                ProjectBean(Features.landing, "sources/feature/landing"),
+                ProjectBean(Features.launchScreen, "sources/feature/launchScreen"),
+                ProjectBean(Features.mainScreen, "sources/feature/mainScreen"),
+                ProjectBean(Features.photoReport, "sources/feature/photoReport"),
+                ProjectBean(Features.settings, "sources/feature/settings")
         )
 
     val libraries
         get() = arrayOf(
-                ProjectBean(arch, "sources/base/arch"),
-                ProjectBean(core, "sources/base/core"),
-                ProjectBean(easyAdapter, "sources/libraries/easyAdapter"),
-                ProjectBean(extensions, "sources/libraries/extensions"),
-                ProjectBean(mozaik, "sources/libraries/mozaik"),
-                ProjectBean(network, "sources/base/network"),
-                ProjectBean(navigation, "sources/libraries/navigation"),
-                ProjectBean(rendering, "sources/libraries/rendering"),
-                ProjectBean(ui, "sources/base/ui")
+                ProjectBean(Libraries.arch, "sources/base/arch"),
+                ProjectBean(Libraries.core, "sources/base/core"),
+                ProjectBean(Libraries.easyAdapter, "sources/libraries/easyAdapter"),
+                ProjectBean(Libraries.extensions, "sources/libraries/extensions"),
+                ProjectBean(Libraries.localization, "sources/base/localization"),
+                ProjectBean(Libraries.mozaik, "sources/libraries/mozaik"),
+                ProjectBean(Libraries.network, "sources/base/network"),
+                ProjectBean(Libraries.navigation, "sources/libraries/navigation"),
+                ProjectBean(Libraries.rendering, "sources/libraries/rendering"),
+                ProjectBean(Libraries.ui, "sources/base/ui")
         )
 }
 

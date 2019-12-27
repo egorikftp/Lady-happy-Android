@@ -1,5 +1,6 @@
 import com.egoriku.dependencies.Libs
 import com.egoriku.dependencies.Modules
+import com.egoriku.dependencies.Modules.Libraries
 import com.egoriku.ext.configureBuildFlavors
 import com.egoriku.ext.withLibraries
 import com.egoriku.ext.withProjects
@@ -38,12 +39,12 @@ android {
 }
 
 withProjects(
-        Modules.arch,
-        Modules.core,
-        Modules.easyAdapter,
-        Modules.extensions,
-        Modules.network,
-        Modules.ui
+        Libraries.arch,
+        Libraries.core,
+        Libraries.easyAdapter,
+        Libraries.extensions,
+        Libraries.network,
+        Libraries.ui
 )
 
 withLibraries(

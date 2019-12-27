@@ -1,5 +1,5 @@
 import com.egoriku.dependencies.Libs
-import com.egoriku.dependencies.Modules
+import com.egoriku.dependencies.Modules.Libraries
 import com.egoriku.ext.withLibraries
 import com.egoriku.ext.withProjects
 
@@ -8,8 +8,8 @@ plugins {
 }
 
 withProjects(
-        Modules.easyAdapter,
-        Modules.extensions
+        Libraries.easyAdapter,
+        Libraries.extensions
 )
 
 withLibraries(
