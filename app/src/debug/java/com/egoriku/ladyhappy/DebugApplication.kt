@@ -13,6 +13,8 @@ open class DebugApplication : Application() {
         super.onCreate()
         enableStrictMode()
         setupCrashlytics()
+
+        BeagleDebugMenuInitializer().initWith(this)
     }
 
     private fun setupCrashlytics() {

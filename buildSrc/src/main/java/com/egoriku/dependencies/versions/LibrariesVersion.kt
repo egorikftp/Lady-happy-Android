@@ -3,6 +3,7 @@ package com.egoriku.dependencies.versions
 object LibrariesVersion {
     const val annotation = "1.1.0"
     const val appcompat = "1.1.0"
+    const val beagle = "1.3.1"
     const val browser = "1.0.0"
     const val cardView = "1.0.0"
     const val constraintLayout = "2.0.0-beta4"
