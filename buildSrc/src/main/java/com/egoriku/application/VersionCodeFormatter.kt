@@ -1,9 +1,7 @@
 package com.egoriku.application
 
 import com.android.build.gradle.AppExtension
-import com.android.build.gradle.internal.dsl.ProductFlavor
-import com.egoriku.ext.propertyInt
-import org.gradle.api.NamedDomainObjectContainer
+import com.egoriku.ext.*
 import org.gradle.api.Project
 import org.jetbrains.kotlin.konan.properties.Properties
 import org.jetbrains.kotlin.konan.properties.loadProperties
@@ -72,32 +70,4 @@ fun AppExtension.configureProductFlavors() {
             missingDimensionStrategy("settings", "full")
         }
     }
-}
-
-fun NamedDomainObjectContainer<ProductFlavor>.allFeatures(setup: ProductFlavor.() -> Unit) =
-        get("allFeatures", setup)
-
-fun NamedDomainObjectContainer<ProductFlavor>.justLanding(setup: ProductFlavor.() -> Unit) =
-        get("justLanding", setup)
-
-fun NamedDomainObjectContainer<ProductFlavor>.justPhotoReport(setup: ProductFlavor.() -> Unit) =
-        get("justPhotoReport", setup)
-
-fun NamedDomainObjectContainer<ProductFlavor>.justCatalog(setup: ProductFlavor.() -> Unit) =
-        get("justCatalog", setup)
-
-fun NamedDomainObjectContainer<ProductFlavor>.justSettings(setup: ProductFlavor.() -> Unit) =
-        get("justSettings", setup)
-
-fun NamedDomainObjectContainer<ProductFlavor>.full(setup: ProductFlavor.() -> Unit) =
-        get("full", setup)
-
-fun NamedDomainObjectContainer<ProductFlavor>.stub(setup: ProductFlavor.() -> Unit) =
-        get("stub", setup)
-
-private fun NamedDomainObjectContainer<ProductFlavor>.get(name: String, block: ProductFlavor.() -> Unit) {
-    when (val task = findByName(name)) {
-        null -> create(name)
-        else -> task
-    }.block()
 }

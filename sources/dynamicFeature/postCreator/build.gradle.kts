@@ -2,7 +2,6 @@ import com.egoriku.application.configureProductFlavors
 import com.egoriku.application.provideVersionCode
 import com.egoriku.application.provideVersionName
 import com.egoriku.dependencies.Libs
-import com.egoriku.dependencies.Modules
 import com.egoriku.dependencies.Modules.Applications
 import com.egoriku.dependencies.versions.ProjectVersion
 import com.egoriku.ext.configureBuildFlavors

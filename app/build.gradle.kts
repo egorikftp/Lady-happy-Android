@@ -6,7 +6,6 @@ import com.egoriku.dependencies.Libs
 import com.egoriku.dependencies.Modules.DynamicFeatures
 import com.egoriku.dependencies.Modules.Features
 import com.egoriku.dependencies.Modules.Libraries
-import com.egoriku.dependencies.Modules.dynamicFeatures
 import com.egoriku.dependencies.versions.ProjectVersion
 import com.egoriku.ext.*
 import org.jetbrains.kotlin.konan.file.File

@@ -9,10 +9,3 @@ fun DependencyHandler.implementation(dependency: Any) {
 fun DependencyHandler.kapt(dependencyNotation: Any) {
     add("kapt", dependencyNotation)
 }
-
-fun DependencyHandler.fullImplementation(dependencyNotation: Any) {
-    add("fullImplementation", dependencyNotation)
-}
-fun DependencyHandler.stubImplementation(dependencyNotation: Any) {
-    add("stubImplementation", dependencyNotation)
-}

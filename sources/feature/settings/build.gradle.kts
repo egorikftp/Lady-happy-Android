@@ -1,11 +1,6 @@
-import com.egoriku.application.full
-import com.egoriku.application.stub
 import com.egoriku.dependencies.Libs
 import com.egoriku.dependencies.Modules.Libraries
-import com.egoriku.ext.configureBuildFlavors
-import com.egoriku.ext.main
-import com.egoriku.ext.withLibraries
-import com.egoriku.ext.withProjects
+import com.egoriku.ext.*
 
 plugins {
     id("com.egoriku.library")

@@ -1,5 +1,3 @@
-import com.egoriku.application.full
-import com.egoriku.application.stub
 import com.egoriku.dependencies.Libs
 import com.egoriku.dependencies.Modules.Libraries
 import com.egoriku.ext.*
