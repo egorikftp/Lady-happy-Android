@@ -49,10 +49,14 @@ android {
             isMinifyEnabled = true
             signingConfig = signingConfigs.getByName("release")
             proguardFiles("proguard-rules.pro", getDefaultProguardFile("proguard-android-optimize.txt"))
+            extra["enableCrashlytics"] = true
+            extra["alwaysUpdateBuildId"] = true
         }
 
         getByName("debug") {
             multiDexEnabled = true
+            extra["enableCrashlytics"] = false
+            extra["alwaysUpdateBuildId"] = false
         }
     }
 
@@ -119,6 +123,7 @@ dependencies {
         isTransitive = true
     }
 
+    debugImplementation(Libs.beagle)
     debugImplementation(Libs.leakCanary)
 
     testImplementation(Libs.junit)
