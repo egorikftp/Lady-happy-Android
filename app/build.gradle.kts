@@ -6,6 +6,7 @@ import com.egoriku.dependencies.Libs
 import com.egoriku.dependencies.Modules.DynamicFeatures
 import com.egoriku.dependencies.Modules.Features
 import com.egoriku.dependencies.Modules.Libraries
+import com.egoriku.dependencies.Modules.dynamicFeatures
 import com.egoriku.dependencies.versions.ProjectVersion
 import com.egoriku.ext.*
 import org.jetbrains.kotlin.konan.file.File
@@ -36,7 +37,7 @@ android {
     dynamicFeatures = mutableSetOf(DynamicFeatures.postCreator)
 
     signingConfigs {
-        create("release") {
+        release {
             storeFile = file("lady_happy_key_store.jks")
             storePassword = System.getenv("KEY_STORE_PASSWORD")
             keyAlias = System.getenv("KEY_ALIAS")
@@ -45,7 +46,7 @@ android {
     }
 
     buildTypes {
-        getByName("release") {
+        release {
             isDebuggable = false
             multiDexEnabled = false
             isMinifyEnabled = true
@@ -55,7 +56,7 @@ android {
             extra["alwaysUpdateBuildId"] = true
         }
 
-        getByName("debug") {
+        debug {
             multiDexEnabled = true
             extra["enableCrashlytics"] = false
             extra["alwaysUpdateBuildId"] = false

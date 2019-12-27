@@ -1,6 +1,9 @@
+import com.egoriku.application.full
+import com.egoriku.application.stub
 import com.egoriku.dependencies.Libs
 import com.egoriku.dependencies.Modules.Libraries
 import com.egoriku.ext.configureBuildFlavors
+import com.egoriku.ext.main
 import com.egoriku.ext.withLibraries
 import com.egoriku.ext.withProjects
 
@@ -14,18 +17,18 @@ android {
                 flavorDimensions("settings")
 
                 productFlavors {
-                    create("full") {
+                    full {
                         dimension = "settings"
                     }
 
-                    create("stub") {
+                    stub {
                         dimension = "settings"
                     }
                 }
             },
             onRemoteBuild = {
                 sourceSets {
-                    with(getByName("main")) {
+                    main {
                         java.srcDirs("src/full/java")
                         res.srcDirs("src/full/res")
                         manifest.srcFile("src/full/AndroidManifest.xml")

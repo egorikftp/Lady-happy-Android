@@ -4,6 +4,7 @@ import com.android.build.gradle.LibraryExtension
 import com.egoriku.dependencies.Libs
 import com.egoriku.dependencies.versions.ProjectVersion
 import com.egoriku.ext.implementation
+import com.egoriku.ext.release
 import org.gradle.api.JavaVersion
 import org.gradle.api.Plugin
 import org.gradle.api.Project
@@ -38,7 +39,7 @@ fun Project.configureAndroidSection() = extensions.getByType<LibraryExtension>()
     }
 
     buildTypes {
-        getByName("release") {
+        release {
             isMinifyEnabled = true
         }
     }
