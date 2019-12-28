@@ -3,7 +3,9 @@ import com.egoriku.application.configureProductFlavors
 import com.egoriku.application.provideVersionCode
 import com.egoriku.application.provideVersionName
 import com.egoriku.dependencies.Libs
-import com.egoriku.dependencies.Modules
+import com.egoriku.dependencies.Modules.DynamicFeatures
+import com.egoriku.dependencies.Modules.Features
+import com.egoriku.dependencies.Modules.Libraries
 import com.egoriku.dependencies.versions.ProjectVersion
 import com.egoriku.ext.*
 import org.jetbrains.kotlin.konan.file.File
@@ -31,10 +33,10 @@ android {
         resConfigs("en", "ru")
     }
 
-    dynamicFeatures = mutableSetOf(Modules.postCreator)
+    dynamicFeatures = mutableSetOf(DynamicFeatures.postCreator)
 
     signingConfigs {
-        create("release") {
+        release {
             storeFile = file("lady_happy_key_store.jks")
             storePassword = System.getenv("KEY_STORE_PASSWORD")
             keyAlias = System.getenv("KEY_ALIAS")
@@ -43,7 +45,7 @@ android {
     }
 
     buildTypes {
-        getByName("release") {
+        release {
             isDebuggable = false
             multiDexEnabled = false
             isMinifyEnabled = true
@@ -53,7 +55,7 @@ android {
             extra["alwaysUpdateBuildId"] = true
         }
 
-        getByName("debug") {
+        debug {
             multiDexEnabled = true
             extra["enableCrashlytics"] = false
             extra["alwaysUpdateBuildId"] = false
@@ -91,17 +93,18 @@ android {
 }
 
 withProjects(
-        Modules.arch,
-        Modules.catalog,
-        Modules.core,
-        Modules.landing,
-        Modules.launchScreen,
-        Modules.mainScreen,
-        Modules.navigation,
-        Modules.network,
-        Modules.photoReport,
-        Modules.rendering,
-        Modules.settings
+        Features.catalog,
+        Features.landing,
+        Features.launchScreen,
+        Features.mainScreen,
+        Features.photoReport,
+        Features.settings,
+
+        Libraries.arch,
+        Libraries.core,
+        Libraries.navigation,
+        Libraries.network,
+        Libraries.rendering
 )
 
 withLibraries(

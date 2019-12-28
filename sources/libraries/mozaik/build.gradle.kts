@@ -1,5 +1,5 @@
 import com.egoriku.dependencies.Libs
-import com.egoriku.dependencies.Modules
+import com.egoriku.dependencies.Modules.Libraries
 import com.egoriku.ext.withLibraries
 import com.egoriku.ext.withProjects
 
@@ -12,5 +12,5 @@ withLibraries(
 )
 
 withProjects(
-        Modules.extensions
+        Libraries.extensions
 )

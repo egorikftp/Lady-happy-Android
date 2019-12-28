@@ -1,7 +1,7 @@
 package com.egoriku.application
 
 import com.android.build.gradle.AppExtension
-import com.egoriku.ext.propertyInt
+import com.egoriku.ext.*
 import org.gradle.api.Project
 import org.jetbrains.kotlin.konan.properties.Properties
 import org.jetbrains.kotlin.konan.properties.loadProperties
@@ -30,7 +30,7 @@ fun AppExtension.configureProductFlavors() {
     flavorDimensions("app")
 
     productFlavors {
-        create("allFeatures") {
+        allFeatures {
             dimension = "app"
             missingDimensionStrategy("catalog", "full")
             missingDimensionStrategy("landing", "full")
@@ -38,7 +38,7 @@ fun AppExtension.configureProductFlavors() {
             missingDimensionStrategy("settings", "full")
         }
 
-        create("justLanding") {
+        justLanding {
             dimension = "app"
             missingDimensionStrategy("catalog", "stub")
             missingDimensionStrategy("landing", "full")
@@ -46,7 +46,7 @@ fun AppExtension.configureProductFlavors() {
             missingDimensionStrategy("settings", "stub")
         }
 
-        create("justPhotoReport") {
+        justPhotoReport {
             dimension = "app"
             missingDimensionStrategy("catalog", "stub")
             missingDimensionStrategy("landing", "stub")
@@ -54,7 +54,7 @@ fun AppExtension.configureProductFlavors() {
             missingDimensionStrategy("settings", "stub")
         }
 
-        create("justCatalog") {
+        justCatalog {
             dimension = "app"
             missingDimensionStrategy("catalog", "full")
             missingDimensionStrategy("landing", "stub")
@@ -62,7 +62,7 @@ fun AppExtension.configureProductFlavors() {
             missingDimensionStrategy("settings", "stub")
         }
 
-        create("justSettings") {
+        justSettings {
             dimension = "app"
             missingDimensionStrategy("catalog", "stub")
             missingDimensionStrategy("landing", "stub")

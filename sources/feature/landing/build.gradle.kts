@@ -1,5 +1,5 @@
 import com.egoriku.dependencies.Libs
-import com.egoriku.dependencies.Modules
+import com.egoriku.dependencies.Modules.Libraries
 import com.egoriku.ext.*
 
 plugins {
@@ -13,32 +13,34 @@ android {
                 flavorDimensions("landing")
 
                 productFlavors {
-                    create("full") {
+                    full {
                         dimension = "landing"
                     }
 
-                    create("stub") {
+                    stub {
                         dimension = "landing"
                     }
                 }
             },
             onRemoteBuild = {
                 sourceSets {
-                    getByName("main").java.srcDirs("src/full/java")
-                    getByName("main").res.srcDirs("src/full/res")
-                    getByName("main").manifest.srcFile("src/full/AndroidManifest.xml")
+                    main {
+                        java.srcDirs("src/full/java")
+                        res.srcDirs("src/full/res")
+                        manifest.srcFile("src/full/AndroidManifest.xml")
+                    }
                 }
             }
     )
 }
 
 withProjects(
-        Modules.arch,
-        Modules.core,
-        Modules.easyAdapter,
-        Modules.extensions,
-        Modules.network,
-        Modules.ui
+        Libraries.arch,
+        Libraries.core,
+        Libraries.easyAdapter,
+        Libraries.extensions,
+        Libraries.network,
+        Libraries.ui
 )
 
 withLibraries(
