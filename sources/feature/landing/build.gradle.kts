@@ -47,7 +47,7 @@ withLibraries(
         Libs.appcompat,
         Libs.constraintLayout,
         Libs.coroutinesAndroid,
-        Libs.firestore,
+        Libs.firebaseFirestoreKtx,
         Libs.material,
         Libs.recyclerView,
         Libs.viewModel

@@ -53,7 +53,6 @@ internal class CatalogController(
             Glide.with(itemView.context)
                     .asBitmap()
                     .load(data.headerImage.full)
-                    .transition(withCrossFade())
                     .placeholder(ColorDrawable(itemView.colorCompat(R.color.Placeholder)))
                     .into(itemBinding.catalogImage)
 

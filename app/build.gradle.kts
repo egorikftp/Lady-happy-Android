@@ -101,7 +101,9 @@ withProjects(
         Features.settings,
 
         Libraries.arch,
+        Libraries.auth,
         Libraries.core,
+        Libraries.extensions,
         Libraries.navigation,
         Libraries.network,
         Libraries.rendering
@@ -110,8 +112,9 @@ withProjects(
 withLibraries(
         Libs.appcompat,
         Libs.coroutinesAndroid,
+        Libs.firebaseAuth,
         Libs.firebaseCore,
-        Libs.firestore,
+        Libs.firebaseFirestoreKtx,
         Libs.koinAndroid,
         Libs.koinCore,
         Libs.kotlin,

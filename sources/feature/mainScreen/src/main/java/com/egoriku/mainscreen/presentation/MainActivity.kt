@@ -20,7 +20,7 @@ import com.egoriku.mainscreen.presentation.dynamicfeature.DynamicFeatureViewModu
 import com.egoriku.mainscreen.presentation.screen.*
 import com.google.android.play.core.splitcompat.SplitCompat
 import org.koin.android.ext.android.inject
-import org.koin.android.viewmodel.ext.android.viewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import javax.inject.Inject
 
 class MainActivity : BaseActivity(0) {

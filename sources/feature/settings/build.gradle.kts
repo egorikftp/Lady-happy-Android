@@ -35,6 +35,7 @@ android {
 
 withProjects(
         Libraries.arch,
+        Libraries.auth,
         Libraries.core,
         Libraries.extensions,
         Libraries.localization,
@@ -45,5 +46,10 @@ withLibraries(
         Libs.browser,
         Libs.constraintLayout,
         Libs.coreKtx,
+        Libs.circleImageView,
+        Libs.koinCore,
+        Libs.koinScope,
+        Libs.koinViewModel,
+        Libs.liveDataKtx,
         Libs.material
 )

@@ -2,7 +2,6 @@ package com.egoriku.ladyhappy.tools
 
 import android.content.Context
 import android.content.Intent
-import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import com.egoriku.core.feature.IFeatureProvider
 import com.egoriku.ladyhappy.catalog.root.presentation.fragment.RootCatalogFragment

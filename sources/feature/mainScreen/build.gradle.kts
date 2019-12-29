@@ -10,12 +10,6 @@ plugins {
     id("kotlin-kapt")
 }
 
-android {
-    kotlinOptions {
-        jvmTarget = "1.8"
-    }
-}
-
 withProjects(
         Libraries.arch,
         Libraries.core,
@@ -28,7 +22,7 @@ withLibraries(
         Libs.appcompat,
         Libs.coreKtx,
         Libs.constraintLayout,
-        Libs.koinAndroidExt,
+        Libs.koinAndroidExperimental,
         Libs.liveDataKtx,
         Libs.material,
         Libs.playCore

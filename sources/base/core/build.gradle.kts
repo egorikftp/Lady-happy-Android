@@ -15,5 +15,5 @@ withProjects(
 withLibraries(
         Libs.coroutinesAndroid,
         Libs.dagger,
-        Libs.firestore
+        Libs.firebaseFirestoreKtx
 )

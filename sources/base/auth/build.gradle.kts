@@ -9,11 +9,11 @@ plugins {
 
 withProjects(
         Libraries.core,
-        Libraries.ui
+        Libraries.extensions
 )
 
 withLibraries(
-        Libs.appcompat,
-        Libs.material,
-        Libs.koinAndroidExperimental
+        Libs.firebaseAuth,
+        Libs.liveDataKtx,
+        Libs.liveDataCoreKtx
 )

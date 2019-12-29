@@ -29,6 +29,11 @@
     <string name="cc_adapter_item_main">Оливковая ветвь</string>
     <string name="cd_adapter_item_photo_report">Фотография</string>
 
+    <!-- Settings -->
     <string name="terms_of_service">Условия использования</string>
     <string name="privacy_policy">Политика конфиденциальности</string>
+
+    <string name="settings_login">Логин</string>
+    <string name="settings_log_out">Выйти</string>
+    <string name="settings_login_hint">Пожалуйста, войдите, чтобы получить доступ к дополнительным функциям</string>
 </resources>

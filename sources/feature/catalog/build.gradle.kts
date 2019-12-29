@@ -7,10 +7,6 @@ plugins {
 }
 
 android {
-    kotlinOptions {
-        jvmTarget = "1.8"
-    }
-
     configureBuildFlavors(
             onLocalBuild = {
                 flavorDimensions("catalog")
@@ -52,7 +48,7 @@ withLibraries(
         Libs.constraintLayout,
         Libs.coreKtx,
         Libs.coroutinesAndroid,
-        Libs.firestore,
+        Libs.firebaseFirestoreKtx,
         Libs.fragment,
         Libs.glide,
         Libs.koinAndroid,

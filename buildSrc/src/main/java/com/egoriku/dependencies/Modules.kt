@@ -21,6 +21,7 @@ object Modules {
 
     object Libraries {
         const val arch = ":arch"
+        const val auth = ":auth"
         const val core = ":core"
         const val easyAdapter = ":easyAdapter"
         const val extensions = ":extensions"
@@ -55,6 +56,7 @@ object Modules {
     val libraries
         get() = arrayOf(
                 ProjectBean(Libraries.arch, "sources/base/arch"),
+                ProjectBean(Libraries.auth, "sources/base/auth"),
                 ProjectBean(Libraries.core, "sources/base/core"),
                 ProjectBean(Libraries.easyAdapter, "sources/libraries/easyAdapter"),
                 ProjectBean(Libraries.extensions, "sources/libraries/extensions"),

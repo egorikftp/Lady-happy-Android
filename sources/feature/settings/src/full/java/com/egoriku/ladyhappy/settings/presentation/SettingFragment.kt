@@ -8,14 +8,26 @@ import androidx.browser.customtabs.CustomTabsIntent
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.doOnPreDraw
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.observe
+import com.egoriku.ladyhappy.auth.model.UserLoginState
 import com.egoriku.ladyhappy.extensions.colorCompat
+import com.egoriku.ladyhappy.extensions.drawableCompat
 import com.egoriku.ladyhappy.extensions.toUri
+import com.egoriku.ladyhappy.extensions.toast
 import com.egoriku.ladyhappy.settings.R
 import com.egoriku.ladyhappy.settings.databinding.FragmentSettingsBinding
+import com.egoriku.ladyhappy.settings.presentation.view.State
+import org.koin.androidx.scope.currentScope
+import org.koin.androidx.viewmodel.ext.android.viewModel
+import org.koin.core.parameter.parametersOf
 
 class SettingFragment : Fragment() {
 
     private lateinit var binding: FragmentSettingsBinding
+
+    private val viewModel: SettingsViewModel by viewModel {
+        parametersOf(currentScope.id)
+    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         FragmentSettingsBinding.inflate(inflater, container, false).apply {
@@ -26,6 +38,31 @@ class SettingFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        viewModel.userLoginState.observe(viewLifecycleOwner) {
+            when (it) {
+                is UserLoginState.NotLoggedIn -> {
+                    with(binding.loginView) {
+                        setState(State.NOT_LOGGED_IN)
+                        setProfileImage(drawableCompat(R.color.Terracota))
+                        onButtonClick {
+                            toast("login")
+                        }
+                    }
+                }
+
+                is UserLoginState.LoggedIn -> {
+                    with(binding.loginView) {
+                        setState(State.LOGGED_IN)
+                        setProfileImage(drawableCompat(R.color.RoseTaupe))
+                        setUserName(it.name)
+                        onButtonClick {
+                            viewModel.logOut()
+                        }
+                    }
+                }
+            }
+        }
 
         applyBottomMargin()
 
