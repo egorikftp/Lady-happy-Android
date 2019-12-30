@@ -16,9 +16,5 @@ interface DependenciesProvider {
 
     fun provideAnalyticsHelper(): IAnalytics
 
-    fun provideRouter(): IRouter
-
-    fun provideNavigationHolder(): INavigationHolder
-
     fun provideViewModelProviderFactory(): ViewModelProvider.Factory
 }

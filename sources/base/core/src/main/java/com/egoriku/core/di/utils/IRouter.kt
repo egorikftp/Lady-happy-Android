@@ -8,5 +8,7 @@ interface IRouter {
 
     fun addScreen(screen: Screen)
 
+    fun addScreenWithContainerId(screen: Screen, id: Int)
+
     fun back()
 }

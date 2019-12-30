@@ -13,6 +13,8 @@ interface IFeatureProvider {
 
     val landingFragment: Fragment
 
+    val loginFragment: Fragment
+
     val photoReportFragment: Fragment
 
     val settingsFragment: Fragment

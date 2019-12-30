@@ -5,8 +5,9 @@ import com.egoriku.ladyhappy.navigation.navigator.INavigator
 import com.egoriku.ladyhappy.navigation.navigator.NavigatorHolder
 import javax.inject.Inject
 
-class NavigationHolder
-@Inject constructor(private val navigatorHolder: NavigatorHolder) : INavigationHolder {
+class NavigationHolder(
+        private val navigatorHolder: NavigatorHolder
+) : INavigationHolder {
 
     override fun setNavigator(navigator: INavigator) = navigatorHolder.setNavigator(navigator)
 

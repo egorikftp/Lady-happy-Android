@@ -4,14 +4,12 @@ import com.egoriku.core.IApplication
 import com.egoriku.core.di.ApplicationScope
 import com.egoriku.core.di.DependenciesProvider
 import com.egoriku.ladyhappy.di.module.AppModule
-import com.egoriku.ladyhappy.di.module.NavigationModule
 import com.egoriku.ladyhappy.di.module.ViewModelModule
 import dagger.BindsInstance
 import dagger.Component
 
 @Component(modules = [
     AppModule::class,
-    NavigationModule::class,
     ViewModelModule::class,
     LandingModule::class,
     PhotoReportModule::class

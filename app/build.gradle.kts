@@ -96,6 +96,7 @@ withProjects(
         Features.catalog,
         Features.landing,
         Features.launchScreen,
+        Features.login,
         Features.mainScreen,
         Features.photoReport,
         Features.settings,

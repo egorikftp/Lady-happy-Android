@@ -24,7 +24,7 @@ fun Application.initKoin() {
 }
 
 val koinModules = listOf(
-        ApplicationModule.module,
+        applicationScopeModule,
         CatalogModule.module,
         MainScreenDependency.module,
         RootCatalogModule.module,

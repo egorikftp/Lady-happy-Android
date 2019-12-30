@@ -10,6 +10,7 @@ object Modules {
         const val catalog = ":catalog"
         const val landing = ":landing"
         const val launchScreen = ":launchScreen"
+        const val login = ":login"
         const val mainScreen = ":mainScreen"
         const val photoReport = ":photoReport"
         const val settings = ":settings"
@@ -48,6 +49,7 @@ object Modules {
                 ProjectBean(Features.catalog, "sources/feature/catalog"),
                 ProjectBean(Features.landing, "sources/feature/landing"),
                 ProjectBean(Features.launchScreen, "sources/feature/launchScreen"),
+                ProjectBean(Features.login, "sources/feature/login"),
                 ProjectBean(Features.mainScreen, "sources/feature/mainScreen"),
                 ProjectBean(Features.photoReport, "sources/feature/photoReport"),
                 ProjectBean(Features.settings, "sources/feature/settings")

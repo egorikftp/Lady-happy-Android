@@ -9,6 +9,7 @@ import com.egoriku.ladyhappy.navigation.command.Replace
 import com.egoriku.ladyhappy.navigation.navigator.INavigator
 import com.egoriku.ladyhappy.navigation.screen.ActivityScreen
 import com.egoriku.ladyhappy.navigation.screen.FragmentScreen
+import com.egoriku.ladyhappy.navigation.screen.Screen
 
 class ActivityScopeNavigator(
         private val activity: FragmentActivity,
@@ -39,7 +40,7 @@ class ActivityScopeNavigator(
 
     private fun processAdd(command: Add) {
         when (val screen = command.screen) {
-            is FragmentScreen -> addFragment(screen)
+            is FragmentScreen -> addFragment(screen, command.containerId)
         }
     }
 
@@ -51,12 +52,20 @@ class ActivityScopeNavigator(
         }
     }
 
-    private fun addFragment(screen: FragmentScreen) {
-        fragmentManager
-                .beginTransaction()
-                .add(containerId, screen.fragment, screen.fragment.javaClass.name)
-                .addToBackStack(screen.fragment.javaClass.name)
-                .commit()
+    private fun addFragment(screen: FragmentScreen, containerId: Int) {
+        if (containerId != 0) {
+            fragmentManager
+                    .beginTransaction()
+                    .add(containerId, screen.fragment, screen.fragment.javaClass.name)
+                    .addToBackStack(screen.fragment.javaClass.name)
+                    .commit()
+        } else {
+            fragmentManager
+                    .beginTransaction()
+                    .add(this.containerId, screen.fragment, screen.fragment.javaClass.name)
+                    .addToBackStack(screen.fragment.javaClass.name)
+                    .commit()
+        }
     }
 
     private fun replaceFragment(screen: FragmentScreen) {
