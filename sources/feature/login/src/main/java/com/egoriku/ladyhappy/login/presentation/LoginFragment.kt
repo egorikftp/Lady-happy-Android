@@ -17,7 +17,9 @@ import com.egoriku.ladyhappy.extensions.findColorIdByName
 import com.egoriku.ladyhappy.extensions.toast
 import com.egoriku.ladyhappy.login.R
 import com.egoriku.ladyhappy.login.databinding.FragmentLoginBinding
+import com.egoriku.ladyhappy.login.presentation.view.ElasticDragDismissFrameLayout
 import org.koin.android.ext.android.inject
+
 
 class LoginFragment : Fragment(R.layout.fragment_login) {
 
@@ -36,6 +38,16 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        binding.elasticLayout.addListener(
+                object : ElasticDragDismissFrameLayout.SystemChromeFader(requireActivity()) {
+
+                    override fun onDragDismissed() {
+                        super.onDragDismissed()
+
+                        router.back()
+                    }
+                })
 
         binding.closeView.setOnClickListener {
             router.back()
@@ -80,7 +92,7 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
 
                         with(binding.dontHaveAccount) {
                             text = builder
-                            movementMethod = LinkMovementMethod.getInstance();
+                            movementMethod = LinkMovementMethod.getInstance()
                         }
                     }
                 }
