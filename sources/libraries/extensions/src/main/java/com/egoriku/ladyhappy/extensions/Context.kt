@@ -13,3 +13,8 @@ fun Context.colorCompat(@ColorRes colorInt: Int) = ContextCompat.getColor(this, 
 fun Context.drawableCompat(@DrawableRes drawableRes: Int) = ContextCompat.getDrawable(this, drawableRes)
 
 fun Context.inflate(@LayoutRes layoutId: Int): View = LayoutInflater.from(this).inflate(layoutId, null)
+
+fun Context.findColorIdByName(name: String): Int = getResourceId(name, type = "color")
+
+fun Context.getResourceId(name: String, type: String): Int =
+        resources.getIdentifier(name, type, packageName)

@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="go_to_sign_up">Don\'t have account yet? <annotation clickColor="RoseTaupe">SIGN UP</annotation></string>
+</resources>

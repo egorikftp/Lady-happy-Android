@@ -18,5 +18,7 @@ withProjects(
 withLibraries(
         Libs.appcompat,
         Libs.constraintLayout,
+        Libs.koinCore,
+        Libs.koinViewModel,
         Libs.material
 )

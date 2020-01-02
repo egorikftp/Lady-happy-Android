@@ -3,6 +3,7 @@ package com.egoriku.ladyhappy.auth
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.egoriku.ladyhappy.auth.model.UserLoginState
+import com.egoriku.ladyhappy.extensions.common.Constants.EMPTY
 import com.egoriku.ladyhappy.extensions.logDm
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
@@ -18,7 +19,7 @@ class Authentication {
     val userLoginState: LiveData<UserLoginState> = _userLoginState
 
     init {
-        /*when (val user = auth.currentUser) {
+        when (val user = auth.currentUser) {
             null -> _userLoginState.value = UserLoginState.NotLoggedIn()
             else -> _userLoginState.value = UserLoginState.LoggedIn(
                     userId = user.uid,
@@ -27,15 +28,15 @@ class Authentication {
                     photoUrl = user.photoUrl?.toString() ?: EMPTY,
                     isEmailVerified = user.isEmailVerified
             )
-        }*/
+        }
 
-        _userLoginState.value = UserLoginState.LoggedIn(
-                userId = "",
-                name = "Mr Black",
-                email = "egoriktp@gmail.com",
-                photoUrl = "EMPTY",
-                isEmailVerified = true
-        )
+        /* _userLoginState.value = UserLoginState.LoggedIn(
+                 userId = "",
+                 name = "Mr Black",
+                 email = "egoriktp@gmail.com",
+                 photoUrl = "EMPTY",
+                 isEmailVerified = true
+         )*/
     }
 
     fun logOut() {
