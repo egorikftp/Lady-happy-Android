@@ -50,7 +50,7 @@ withLibraries(
         Libs.firebaseFirestoreKtx,
         Libs.material,
         Libs.recyclerView,
-        Libs.viewModel
+        Libs.viewModelKtx
 )
 
 withKapt(

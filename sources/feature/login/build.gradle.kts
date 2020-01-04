@@ -9,9 +9,11 @@ plugins {
 
 withProjects(
         Libraries.arch,
+        Libraries.auth,
         Libraries.core,
         Libraries.extensions,
         Libraries.navigation,
+        Libraries.network,
         Libraries.ui
 )
 
@@ -20,5 +22,7 @@ withLibraries(
         Libs.constraintLayout,
         Libs.koinCore,
         Libs.koinViewModel,
-        Libs.material
+        Libs.liveDataKtx,
+        Libs.material,
+        Libs.viewModelKtx
 )

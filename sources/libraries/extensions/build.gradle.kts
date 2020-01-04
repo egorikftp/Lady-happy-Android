@@ -10,5 +10,5 @@ withLibraries(
         Libs.fragment,
         Libs.recyclerView,
         Libs.lifecycleExtensions,
-        Libs.viewModel
+        Libs.viewModelKtx
 )

@@ -1,46 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.egoriku.ladyhappy.login.presentation.view.ElasticDragDismissFrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.egoriku.ui.view.ElasticDragDismissFrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
     android:id="@+id/elasticLayout"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    app:dragDismissDistance="@dimen/drag_dismiss_distance"
-    app:dragDismissScale="0.95"
     android:background="@color/RealWhite"
     android:clickable="true"
-    android:focusable="true">
+    android:focusable="true"
+    app:dragDismissDistance="220dp"
+    app:dragDismissScale="0.95">
 
     <androidx.core.widget.NestedScrollView
+        android:id="@+id/nestedScrollView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fillViewport="true">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
+            android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <com.google.android.material.appbar.MaterialToolbar
+            <ImageView
+                android:id="@+id/closeView"
                 android:layout_width="wrap_content"
-                android:layout_height="?attr/actionBarSize"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                app:contentInsetEnd="0dp"
-                app:contentInsetLeft="0dp"
-                app:contentInsetRight="0dp"
-                app:contentInsetStart="0dp"
-                app:contentInsetStartWithNavigation="0dp"
+                android:layout_marginTop="8dp"
+                android:focusable="false"
+                android:padding="8dp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_close" />
 
-                <ImageView
-                    android:id="@+id/closeView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:focusable="false"
-                    android:padding="8dp"
-                    app:srcCompat="@drawable/ic_close" />
-
-            </com.google.android.material.appbar.MaterialToolbar>
+            <ImageView
+                android:id="@+id/logo"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginBottom="32dp"
+                android:src="@drawable/ic_lady_happy_logo"
+                app:layout_constraintBottom_toTopOf="@+id/textInputEmail"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/closeView"
+                tools:viewBindingIgnore="true" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/textInputEmail"
@@ -61,9 +65,10 @@
                 app:startIconTint="@color/RoseTaupeDark">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/login_email"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Email"
+                    android:hint="@string/login_hint_email"
                     android:inputType="textWebEmailAddress|textEmailAddress"
                     android:nextFocusDown="@id/textInputPassword" />
 
@@ -90,9 +95,10 @@
                 app:startIconTint="@color/RoseTaupeDark">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/login_password"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Password"
+                    android:hint="@string/login_hint_password"
                     android:inputType="textPassword"
                     android:nextFocusDown="@id/signInButton" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -102,7 +108,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                app:layout_constraintGuide_percent="0.26" />
+                app:layout_constraintGuide_percent="0.35" />
 
             <TextView
                 android:id="@+id/forgotPassword"
@@ -110,7 +116,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:fontFamily="sans-serif-black"
-                android:text="Forgot password?"
+                android:text="@string/login_forgot_password"
                 android:textColor="@color/Terracota"
                 app:layout_constraintEnd_toEndOf="@+id/textInputPassword"
                 app:layout_constraintTop_toBottomOf="@+id/textInputPassword" />
@@ -122,7 +128,7 @@
                 android:layout_marginTop="24dp"
                 android:insetTop="0dp"
                 android:insetBottom="0dp"
-                android:text="Sign In"
+                android:text="@string/login_sign_in"
                 android:textAllCaps="true"
                 app:cornerRadius="40dp"
                 app:layout_constraintEnd_toEndOf="@+id/textInputPassword"
@@ -135,7 +141,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:fontFamily="sans-serif-light"
-                android:text="Or sign with"
+                android:text="@string/login_or_sign_with"
                 app:layout_constraintEnd_toEndOf="@+id/signInButton"
                 app:layout_constraintStart_toStartOf="@+id/signInButton"
                 app:layout_constraintTop_toBottomOf="@+id/signInButton" />
@@ -169,4 +175,25 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.core.widget.NestedScrollView>
-</com.egoriku.ladyhappy.login.presentation.view.ElasticDragDismissFrameLayout>
+
+    <FrameLayout
+        android:id="@+id/parentProgress"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/RealWhite38"
+        android:clickable="true"
+        android:focusable="true"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.core.widget.ContentLoadingProgressBar
+            android:id="@+id/contentLoadingProgressBar"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center" />
+    </FrameLayout>
+</com.egoriku.ui.view.ElasticDragDismissFrameLayout>

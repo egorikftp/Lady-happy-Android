@@ -90,6 +90,10 @@ android {
             }
         }
     }
+
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
 }
 
 withProjects(

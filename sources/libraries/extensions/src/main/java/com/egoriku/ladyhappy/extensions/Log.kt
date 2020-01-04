@@ -13,6 +13,6 @@ inline fun <reified T> T.logD(message: String? = EMPTY) {
 inline fun <reified T> T.logDm(message: String? = EMPTY) {
     when {
         message.isNullOrEmpty() -> Log.d("egorikftp", EMPTY)
-        else -> Log.d(T::class.java.simpleName, message)
+        else -> Log.d("egorikftp", message)
     }
 }

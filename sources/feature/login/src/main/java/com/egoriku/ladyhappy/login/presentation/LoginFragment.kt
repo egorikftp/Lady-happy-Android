@@ -5,26 +5,26 @@ import android.os.Bundle
 import android.text.*
 import android.text.Annotation
 import android.text.method.LinkMovementMethod
-import android.text.style.ClickableSpan
 import android.text.style.ForegroundColorSpan
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.observe
 import com.egoriku.core.di.utils.IRouter
-import com.egoriku.ladyhappy.extensions.colorCompat
-import com.egoriku.ladyhappy.extensions.findColorIdByName
-import com.egoriku.ladyhappy.extensions.toast
+import com.egoriku.ladyhappy.extensions.*
 import com.egoriku.ladyhappy.login.R
 import com.egoriku.ladyhappy.login.databinding.FragmentLoginBinding
-import com.egoriku.ladyhappy.login.presentation.view.ElasticDragDismissFrameLayout
+import com.egoriku.ladyhappy.login.presentation.util.ClickableSpan
 import org.koin.android.ext.android.inject
-
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class LoginFragment : Fragment(R.layout.fragment_login) {
 
     //TODO move to ViewModel
     private val router: IRouter by inject()
+
+    private val viewModel: LoginViewModel by viewModel()
 
     private lateinit var binding: FragmentLoginBinding
 
@@ -39,15 +39,9 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.elasticLayout.addListener(
-                object : ElasticDragDismissFrameLayout.SystemChromeFader(requireActivity()) {
-
-                    override fun onDragDismissed() {
-                        super.onDragDismissed()
-
-                        router.back()
-                    }
-                })
+        binding.elasticLayout.addListener {
+            router.back()
+        }
 
         binding.closeView.setOnClickListener {
             router.back()
@@ -57,9 +51,44 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
             toast("will be implemented soon")
         }
 
+        binding.signInButton.setOnClickListener {
+            viewModel.authWithEmailAndPassword(
+                    email = "egorikftp@gmail.com",
+                    password = "123456"
+            )
+
+            hideSoftKeyboard()
+        }
+
         initSignUpSpannable {
             toast("will be implemented soon")
         }
+
+        viewModel.currentState.observe(viewLifecycleOwner) {
+            when (it) {
+                is LoginState.Progress -> {
+                    binding.parentProgress.visible()
+                    binding.contentLoadingProgressBar.show()
+                }
+                is LoginState.Success -> {
+                    binding.parentProgress.gone()
+                    binding.contentLoadingProgressBar.hide()
+                    router.back()
+                }
+                is LoginState.Error -> {
+                    //TODO show error
+                    binding.parentProgress.gone()
+                    binding.contentLoadingProgressBar.hide()
+                    toast("error ${it.message}")
+                }
+            }
+        }
+    }
+
+    override fun onStop() {
+        super.onStop()
+        binding.elasticLayout.removeListener()
+        hideSoftKeyboard()
     }
 
     private fun initSignUpSpannable(onSpanClick: () -> Unit) {

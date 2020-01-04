@@ -9,11 +9,11 @@ plugins {
 
 withProjects(
         Libraries.core,
-        Libraries.extensions
+        Libraries.extensions,
+        Libraries.network
 )
 
 withLibraries(
         Libs.firebaseAuth,
-        Libs.liveDataKtx,
-        Libs.liveDataCoreKtx
+        Libs.liveDataKtx
 )

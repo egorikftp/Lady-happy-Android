@@ -4,9 +4,12 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.egoriku.ladyhappy.auth.model.UserLoginState
 import com.egoriku.ladyhappy.extensions.common.Constants.EMPTY
-import com.egoriku.ladyhappy.extensions.logDm
+import com.egoriku.network.Result
+import com.egoriku.network.firestore.awaitResult
+import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 
 class Authentication {
 
@@ -19,43 +22,35 @@ class Authentication {
     val userLoginState: LiveData<UserLoginState> = _userLoginState
 
     init {
+        invalidateUser()
+    }
+
+    private fun invalidateUser() {
         when (val user = auth.currentUser) {
-            null -> _userLoginState.value = UserLoginState.NotLoggedIn()
-            else -> _userLoginState.value = UserLoginState.LoggedIn(
+            null -> _userLoginState.postValue(UserLoginState.NotLoggedIn())
+            else -> _userLoginState.postValue(UserLoginState.LoggedIn(
                     userId = user.uid,
                     name = user.displayName ?: EMPTY,
                     email = user.email ?: EMPTY,
                     photoUrl = user.photoUrl?.toString() ?: EMPTY,
                     isEmailVerified = user.isEmailVerified
-            )
+            ))
         }
-
-        /* _userLoginState.value = UserLoginState.LoggedIn(
-                 userId = "",
-                 name = "Mr Black",
-                 email = "egoriktp@gmail.com",
-                 photoUrl = "EMPTY",
-                 isEmailVerified = true
-         )*/
     }
 
     fun logOut() {
-        //auth.signOut()
+        auth.signOut()
 
         _userLoginState.value = UserLoginState.NotLoggedIn()
     }
 
-    fun emailAuthentication(email: String, password: String) {
-        auth.createUserWithEmailAndPassword(email, password)
-                .addOnCompleteListener { task ->
-                    if (task.isSuccessful) {
-                        logDm("createUserWithEmail:success")
-                        val user: FirebaseUser? = auth.currentUser
-                        // updateUI(user);
-                    } else {
-                        logDm("createUserWithEmail:failure ${task.exception?.message}")
-                        // updateUI(null);
-                    }
-                }
+    suspend fun authWithEmailAndPassword(
+            email: String,
+            password: String
+    ): Result<AuthResult> = withContext(Dispatchers.IO) {
+        val result: Result<AuthResult> = auth.signInWithEmailAndPassword(email, password).awaitResult()
+        invalidateUser()
+
+        result
     }
 }

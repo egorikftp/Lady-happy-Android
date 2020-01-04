@@ -56,7 +56,7 @@ class SettingFragment : Fragment() {
                     with(binding.loginView) {
                         setState(State.LOGGED_IN)
                         setProfileImage(drawableCompat(R.color.RoseTaupe))
-                        setUserName(it.name)
+                        setUserName(if (it.name.isEmpty()) it.email else it.name)
                         onButtonClick {
                             viewModel.logOut()
                         }
@@ -71,7 +71,7 @@ class SettingFragment : Fragment() {
             CustomTabsIntent.Builder().apply {
                 setToolbarColor(colorCompat(R.color.RoseTaupe))
                 build().apply {
-                    launchUrl(context, getString(R.string.terms_of_service_link).toUri())
+                    launchUrl(requireContext(), getString(R.string.terms_of_service_link).toUri())
                 }
             }
         }
@@ -80,7 +80,7 @@ class SettingFragment : Fragment() {
             CustomTabsIntent.Builder().apply {
                 setToolbarColor(colorCompat(R.color.RoseTaupe))
                 build().apply {
-                    launchUrl(context, getString(R.string.privacy_policy_link).toUri())
+                    launchUrl(requireContext(), getString(R.string.privacy_policy_link).toUri())
                 }
             }
         }
