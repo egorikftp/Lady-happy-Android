@@ -10,4 +10,4 @@ inline fun fromApi(fromVersion: Int, inclusive: Boolean = true, action: () -> Un
     if (Build.VERSION.SDK_INT > fromVersion || (inclusive && Build.VERSION.SDK_INT == fromVersion)) action()
 }
 
-inline fun hasM() = Build.VERSION.SDK_INT >= Build.VERSION_CODES.M
+fun hasM() = Build.VERSION.SDK_INT >= Build.VERSION_CODES.M

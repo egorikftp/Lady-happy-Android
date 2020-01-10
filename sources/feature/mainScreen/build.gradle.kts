@@ -6,7 +6,8 @@ import com.egoriku.ext.withLibraries
 import com.egoriku.ext.withProjects
 
 plugins {
-    id("com.egoriku.library")
+    id("com.android.library")
+    id("HappyFeaturePlugin")
     id("kotlin-kapt")
 }
 
