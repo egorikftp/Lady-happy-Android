@@ -9,10 +9,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.egoriku.core.di.findDependencies
 import com.egoriku.ladyhappy.arch.fragment.BaseInjectableFragment
-import com.egoriku.ladyhappy.extensions.browseUrl
-import com.egoriku.ladyhappy.extensions.gone
-import com.egoriku.ladyhappy.extensions.injectViewModel
-import com.egoriku.ladyhappy.extensions.visible
+import com.egoriku.ladyhappy.extensions.*
 import com.egoriku.ladyhappy.landing.R
 import com.egoriku.ladyhappy.landing.common.parallax.ParallaxScrollListener
 import com.egoriku.ladyhappy.landing.databinding.FragmentLandingBinding
@@ -29,7 +26,7 @@ class LandingPageFragment : BaseInjectableFragment(0) {
     lateinit var viewModelFactory: ViewModelProvider.Factory
 
     private lateinit var landingViewModel: LandingViewModel
-    private lateinit var binding: FragmentLandingBinding
+    private var binding: FragmentLandingBinding by viewBindingLifecycle()
 
     private var parallaxScrollListener: ParallaxScrollListener? = null
 

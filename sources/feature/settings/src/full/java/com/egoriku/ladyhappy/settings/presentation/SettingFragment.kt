@@ -14,6 +14,7 @@ import com.egoriku.core.feature.IFeatureProvider
 import com.egoriku.ladyhappy.auth.model.UserLoginState
 import com.egoriku.ladyhappy.extensions.colorCompat
 import com.egoriku.ladyhappy.extensions.drawableCompat
+import com.egoriku.ladyhappy.extensions.viewBindingLifecycle
 import com.egoriku.ladyhappy.settings.R
 import com.egoriku.ladyhappy.settings.databinding.FragmentSettingsBinding
 import com.egoriku.ladyhappy.settings.presentation.screen.LoginScreen
@@ -23,7 +24,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class SettingFragment : Fragment() {
 
-    private lateinit var binding: FragmentSettingsBinding
+    private var binding: FragmentSettingsBinding by viewBindingLifecycle()
 
     private val viewModel: SettingsViewModel by viewModel()
     private val featureProvider: IFeatureProvider by inject()

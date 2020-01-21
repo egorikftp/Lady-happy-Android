@@ -12,8 +12,10 @@ fun Fragment.findColorIdByName(name: String): Int = requireContext().findColorId
 
 fun Fragment.hideSoftKeyboard(flag: Int = 0) {
     view?.let { view ->
-        view.windowToken?.let { windowToken ->
-            context?.inputWindowManager?.hideSoftInputFromWindow(windowToken, flag)
+        view.context?.inputWindowManager?.run {
+            if (isActive) {
+                hideSoftInputFromWindow(view.windowToken, flag)
+            }
         }
     }
 }

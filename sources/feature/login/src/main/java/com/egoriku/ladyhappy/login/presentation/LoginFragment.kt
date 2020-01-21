@@ -19,14 +19,14 @@ import com.egoriku.ladyhappy.login.presentation.util.ClickableSpan
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class LoginFragment : Fragment(R.layout.fragment_login) {
+class LoginFragment : Fragment() {
 
     //TODO move to ViewModel
     private val router: IRouter by inject()
 
     private val viewModel: LoginViewModel by viewModel()
 
-    private lateinit var binding: FragmentLoginBinding
+    private var binding: FragmentLoginBinding by viewBindingLifecycle()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         FragmentLoginBinding.inflate(inflater, container, false).apply {
@@ -38,10 +38,6 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        binding.elasticLayout.addListener {
-            router.back()
-        }
 
         binding.closeView.setOnClickListener {
             router.back()
@@ -87,7 +83,6 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
 
     override fun onStop() {
         super.onStop()
-        binding.elasticLayout.removeListener()
         hideSoftKeyboard()
     }
 

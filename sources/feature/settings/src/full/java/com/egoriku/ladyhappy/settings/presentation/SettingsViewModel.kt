@@ -14,7 +14,5 @@ class SettingsViewModel(
 
     fun logOut() = authentication.logOut()
 
-    fun navigateTo(screen: Screen, containerId: Int) {
-        router.addScreenWithContainerId(screen, containerId)
-    }
+    fun navigateTo(screen: Screen, containerId: Int) = router.addScreenWithContainerId(screen, containerId)
 }

@@ -9,7 +9,6 @@ import com.egoriku.ladyhappy.navigation.command.Replace
 import com.egoriku.ladyhappy.navigation.navigator.INavigator
 import com.egoriku.ladyhappy.navigation.screen.ActivityScreen
 import com.egoriku.ladyhappy.navigation.screen.FragmentScreen
-import com.egoriku.ladyhappy.navigation.screen.Screen
 
 class ActivityScopeNavigator(
         private val activity: FragmentActivity,

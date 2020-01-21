@@ -72,9 +72,5 @@ class BeagleLifecycleListener : SimpleActivityLifecycleCallbacks(), KoinComponen
         if (activity.javaClass.name == "leakcanary.internal.activity.LeakActivity") {
             return
         }
-
-        (activity as FragmentActivity)
-                .supportFragmentManager
-                .unregisterFragmentLifecycleCallbacks(fragmentLifecycleCallbacks)
     }
 }
