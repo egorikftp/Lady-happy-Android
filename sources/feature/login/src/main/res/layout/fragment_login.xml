@@ -16,39 +16,27 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <ImageView
-                android:id="@+id/closeView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:focusable="false"
-                android:padding="8dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/ic_close" />
+            android:layout_height="wrap_content">
 
             <ImageView
                 android:id="@+id/logo"
-                android:layout_width="wrap_content"
-                android:layout_height="0dp"
-                android:layout_marginTop="32dp"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_marginTop="64dp"
                 android:layout_marginBottom="32dp"
                 android:src="@drawable/ic_lady_happy_logo"
-                app:layout_constraintBottom_toTopOf="@+id/textInputEmail"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/closeView"
+                app:layout_constraintTop_toTopOf="parent"
                 tools:viewBindingIgnore="true" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/textInputEmail"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
+                android:layout_marginTop="64dp"
                 android:layout_marginEnd="32dp"
                 app:boxCornerRadiusBottomEnd="100dp"
                 app:boxCornerRadiusBottomStart="100dp"
@@ -57,7 +45,8 @@
                 app:endIconMode="clear_text"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/guideline"
+                app:layout_constraintTop_toBottomOf="@+id/logo"
+                app:layout_constraintWidth_max="350dp"
                 app:startIconDrawable="@drawable/ic_mail_outline"
                 app:startIconTint="@color/RoseTaupeDark">
 
@@ -88,6 +77,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textInputEmail"
+                app:layout_constraintWidth_max="350dp"
                 app:startIconDrawable="@drawable/ic_lock_outline"
                 app:startIconTint="@color/RoseTaupeDark">
 
@@ -99,13 +89,6 @@
                     android:inputType="textPassword"
                     android:nextFocusDown="@id/signInButton" />
             </com.google.android.material.textfield.TextInputLayout>
-
-            <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/guideline"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                app:layout_constraintGuide_percent="0.35" />
 
             <TextView
                 android:id="@+id/forgotPassword"
@@ -120,7 +103,7 @@
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/signInButton"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
                 android:insetTop="0dp"
@@ -130,34 +113,15 @@
                 app:cornerRadius="40dp"
                 app:layout_constraintEnd_toEndOf="@+id/textInputPassword"
                 app:layout_constraintStart_toStartOf="@+id/textInputPassword"
-                app:layout_constraintTop_toBottomOf="@+id/forgotPassword" />
-
-            <TextView
-                android:id="@+id/signWithText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:fontFamily="sans-serif-light"
-                android:text="@string/login_or_sign_with"
-                app:layout_constraintEnd_toEndOf="@+id/signInButton"
-                app:layout_constraintStart_toStartOf="@+id/signInButton"
-                app:layout_constraintTop_toBottomOf="@+id/signInButton" />
-
-            <ImageView
-                android:id="@+id/imageView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="@dimen/material_padding_8"
-                app:layout_constraintEnd_toEndOf="@+id/signWithText"
-                app:layout_constraintStart_toStartOf="@+id/signWithText"
-                app:layout_constraintTop_toBottomOf="@+id/signWithText"
-                app:srcCompat="@drawable/ic_google" />
+                app:layout_constraintTop_toBottomOf="@+id/forgotPassword"
+                app:layout_constraintWidth_min="150dp" />
 
             <TextView
                 android:id="@+id/dontHaveAccount"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
+                android:layout_marginTop="64dp"
                 android:layout_marginEnd="32dp"
                 android:layout_marginBottom="8dp"
                 android:fontFamily="sans-serif-light"
@@ -165,13 +129,23 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageView"
+                app:layout_constraintTop_toBottomOf="@+id/signInButton"
                 app:layout_constraintVertical_bias="1.0"
                 tools:text="@string/go_to_sign_up" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.core.widget.NestedScrollView>
+
+    <ImageView
+        android:id="@+id/closeView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:background="?selectableItemBackgroundBorderless"
+        android:padding="8dp"
+        app:srcCompat="@drawable/ic_close" />
 
     <FrameLayout
         android:id="@+id/parentProgress"

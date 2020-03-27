@@ -14,25 +14,23 @@ class BeagleDebugMenuInitializer {
 
         Beagle.imprint(this)
         Beagle.learn(
-                listOf(
-                        Trick.Text(
-                                id = "stub",
-                                text = ""
-                        ),
-                        Trick.Text(
-                                text = getString(R.string.application_name),
-                                isTitle = true
-                        ),
-                        Trick.Text(
-                                text = "v${BuildConfig.VERSION_NAME} (${BuildConfig.VERSION_CODE})"
-                        ),
-                        Trick.AppInfoButton(),
-                        Trick.Button(
-                                text = "Dump Leaks",
-                                onButtonPressed = {
-                                    LeakCanary.dumpHeap()
-                                }
-                        )
+                Trick.Text(
+                        id = "stub",
+                        text = ""
+                ),
+                Trick.Text(
+                        text = getString(R.string.application_name),
+                        isTitle = true
+                ),
+                Trick.Text(
+                        text = "v${BuildConfig.VERSION_NAME} (${BuildConfig.VERSION_CODE})"
+                ),
+                Trick.AppInfoButton(),
+                Trick.Button(
+                        text = "Dump Leaks",
+                        onButtonPressed = {
+                            LeakCanary.dumpHeap()
+                        }
                 )
         )
     }

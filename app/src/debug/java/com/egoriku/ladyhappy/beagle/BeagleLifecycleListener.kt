@@ -38,7 +38,7 @@ class BeagleLifecycleListener : SimpleActivityLifecycleCallbacks(), KoinComponen
                                 onItemSelected = { account ->
                                     view?.findViewById<EditText>(R.id.login_email)?.setText(account.name)
                                     view?.findViewById<EditText>(R.id.login_password)?.setText(account.password)
-                                    Beagle.dismiss(fragment.requireActivity())
+                                    Beagle.dismiss()
                                 }
                         )
                 )
@@ -57,20 +57,8 @@ class BeagleLifecycleListener : SimpleActivityLifecycleCallbacks(), KoinComponen
     override fun onActivityResumed(activity: Activity) {
         logDm("onActivityCreated ${activity::class.java.simpleName}")
 
-        if (activity.javaClass.name == "leakcanary.internal.activity.LeakActivity") {
-            return
-        }
-
         (activity as FragmentActivity)
                 .supportFragmentManager
                 .registerFragmentLifecycleCallbacks(fragmentLifecycleCallbacks, false)
-    }
-
-    override fun onActivityPaused(activity: Activity) {
-        logDm("onActivityDestroyed ${activity::class.java.simpleName}")
-
-        if (activity.javaClass.name == "leakcanary.internal.activity.LeakActivity") {
-            return
-        }
     }
 }

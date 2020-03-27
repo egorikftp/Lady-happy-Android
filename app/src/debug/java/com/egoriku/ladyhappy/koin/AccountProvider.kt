@@ -2,6 +2,7 @@ package com.egoriku.ladyhappy.koin
 
 import android.content.Context
 import com.egoriku.ladyhappy.beagle.Account
+import com.egoriku.ladyhappy.extensions.common.Constants.EMPTY
 import com.egoriku.ladyhappy.extensions.logDm
 import com.egoriku.ladyhappy.extensions.second
 import java.util.*
@@ -14,7 +15,7 @@ class AccountProvider(context: Context) {
     val accounts = mutableListOf<Account>()
 
     init {
-        if (context.assets?.list("")?.contains(koinPropertyFile) == true) {
+        if (context.assets?.list(EMPTY)?.contains(koinPropertyFile) == true) {
             runCatching {
                 val koinProperties = Properties()
 

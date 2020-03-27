@@ -24,5 +24,4 @@ class HappyFeaturePlugin : HappyLibraryPlugin() {
             }
         }
     }
-
 }
