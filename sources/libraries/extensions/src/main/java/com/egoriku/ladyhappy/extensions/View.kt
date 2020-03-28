@@ -24,7 +24,7 @@ inline fun View.visible() {
 fun View.colorCompat(@ColorRes colorInt: Int) = context.colorCompat(colorInt)
 
 fun View.drawableCompat(@DrawableRes drawableRes: Int) = context.drawableCompat(drawableRes)
-        ?: throw Exception("Wrong drawable id $drawableRes")
+        ?: throw IllegalArgumentException("Wrong drawable id $drawableRes")
 
 fun View.withStyledAttributes(
         attributeSet: AttributeSet? = null,
