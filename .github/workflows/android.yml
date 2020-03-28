@@ -19,4 +19,4 @@ jobs:
     - name: Copy google-services.json
       run: echo ${{ secrets.GOOGLE_SERVICES_JSON }} | base64 --decode > app/google-services.json
     - name: Execute gradle
-      run: bash ./gradlew clean assembleDebug
+      run: bash ./gradlew clean assembleAllFeaturesDebug
