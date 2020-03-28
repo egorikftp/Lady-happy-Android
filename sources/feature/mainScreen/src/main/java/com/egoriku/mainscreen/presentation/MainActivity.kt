@@ -58,7 +58,7 @@ class MainActivity : BaseActivity() {
         })
 
         when (savedInstanceState) {
-            null -> viewModel.replaceWith(SettingsScreen(featureProvider))
+            null -> viewModel.replaceWith(CatalogScreen(featureProvider))
             else -> with(savedInstanceState.getInt(KEY_SELECTED_MENU_ITEM)) {
                 binding.bottomNavigation.selectedItemId = this
             }
