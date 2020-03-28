@@ -48,7 +48,6 @@ withLibraries(
         Libs.browser,
         Libs.constraintLayout,
         Libs.coreKtx,
-        Libs.circleImageView,
         Libs.koinCore,
         Libs.koinScope,
         Libs.koinViewModel,

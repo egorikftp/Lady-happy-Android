@@ -41,9 +41,9 @@ class SettingFragment : Fragment() {
 
         viewModel.userLoginState.observe(viewLifecycleOwner) {
             when (it) {
-                is UserLoginState.NotLoggedIn -> {
+                is UserLoginState.Anon -> {
                     with(binding.loginView) {
-                        setState(State.NOT_LOGGED_IN)
+                        state = State.ANON
                         setProfileImage(drawableCompat(R.color.Terracota))
                         onButtonClick {
                             viewModel.navigateTo(
@@ -55,7 +55,7 @@ class SettingFragment : Fragment() {
 
                 is UserLoginState.LoggedIn -> {
                     with(binding.loginView) {
-                        setState(State.LOGGED_IN)
+                        state = State.LOGGED_IN
                         setProfileImage(drawableCompat(R.color.RoseTaupe))
                         setUserName(if (it.name.isEmpty()) it.email else it.name)
                         onButtonClick {

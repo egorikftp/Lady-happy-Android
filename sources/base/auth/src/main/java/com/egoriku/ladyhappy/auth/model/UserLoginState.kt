@@ -1,7 +1,7 @@
 package com.egoriku.ladyhappy.auth.model
 
 sealed class UserLoginState {
-    class NotLoggedIn : UserLoginState()
+    class Anon : UserLoginState()
 
     data class LoggedIn(
             val userId: String,

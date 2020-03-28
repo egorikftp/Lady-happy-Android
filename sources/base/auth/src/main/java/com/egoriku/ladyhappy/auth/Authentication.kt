@@ -27,7 +27,7 @@ class Authentication {
 
     private fun invalidateUser() {
         when (val user = auth.currentUser) {
-            null -> _userLoginState.postValue(UserLoginState.NotLoggedIn())
+            null -> _userLoginState.postValue(UserLoginState.Anon())
             else -> _userLoginState.postValue(UserLoginState.LoggedIn(
                     userId = user.uid,
                     name = user.displayName ?: EMPTY,
@@ -41,7 +41,7 @@ class Authentication {
     fun logOut() {
         auth.signOut()
 
-        _userLoginState.value = UserLoginState.NotLoggedIn()
+        _userLoginState.value = UserLoginState.Anon()
     }
 
     suspend fun authWithEmailAndPassword(

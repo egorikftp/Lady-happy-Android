@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.egoriku.core.di.utils.IRouter
 import com.egoriku.ladyhappy.auth.Authentication
 import com.egoriku.ladyhappy.extensions.common.Constants.EMPTY
 import com.egoriku.network.Result.Error
@@ -11,7 +12,8 @@ import com.egoriku.network.Result.Success
 import kotlinx.coroutines.launch
 
 class LoginViewModel(
-        private val authentication: Authentication
+        private val authentication: Authentication,
+        private val router: IRouter
 ) : ViewModel() {
 
     private val _currentState = MutableLiveData<LoginState>()
@@ -29,4 +31,6 @@ class LoginViewModel(
             }
         }
     }
+
+    fun processBack() = router.back()
 }

@@ -11,18 +11,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.observe
-import com.egoriku.core.di.utils.IRouter
 import com.egoriku.ladyhappy.extensions.*
 import com.egoriku.ladyhappy.login.R
 import com.egoriku.ladyhappy.login.databinding.FragmentLoginBinding
 import com.egoriku.ladyhappy.login.presentation.util.ClickableSpan
-import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class LoginFragment : Fragment() {
-
-    //TODO move to ViewModel
-    private val router: IRouter by inject()
 
     private val viewModel: LoginViewModel by viewModel()
 
@@ -40,7 +35,7 @@ class LoginFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.closeView.setOnClickListener {
-            router.back()
+            viewModel.processBack()
         }
 
         binding.forgotPassword.setOnClickListener {
@@ -69,7 +64,8 @@ class LoginFragment : Fragment() {
                 is LoginState.Success -> {
                     binding.parentProgress.gone()
                     binding.contentLoadingProgressBar.hide()
-                    router.back()
+
+                    viewModel.processBack()
                 }
                 is LoginState.Error -> {
                     //TODO show error

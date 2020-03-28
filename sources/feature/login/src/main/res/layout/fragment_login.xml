@@ -98,6 +98,7 @@
                 android:fontFamily="sans-serif-black"
                 android:text="@string/login_forgot_password"
                 android:textColor="@color/Terracota"
+                android:visibility="invisible"
                 app:layout_constraintEnd_toEndOf="@+id/textInputPassword"
                 app:layout_constraintTop_toBottomOf="@+id/textInputPassword" />
 
@@ -126,6 +127,7 @@
                 android:layout_marginBottom="8dp"
                 android:fontFamily="sans-serif-light"
                 android:gravity="center"
+                android:visibility="invisible"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
