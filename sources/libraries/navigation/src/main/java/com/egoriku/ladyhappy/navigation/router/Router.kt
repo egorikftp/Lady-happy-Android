@@ -15,6 +15,13 @@ class Router : BaseRouter() {
         executeCommands(Add(screen = screen))
     }
 
+    fun addScreenWithContainerId(screen: Screen, id: Int) {
+        executeCommands(Add(
+                screen = screen,
+                containerId = id
+        ))
+    }
+
     fun back() {
         executeCommands(Back())
     }

@@ -6,14 +6,9 @@ import com.egoriku.ext.withLibraries
 import com.egoriku.ext.withProjects
 
 plugins {
-    id("com.egoriku.library")
+    id("com.android.library")
+    id("HappyFeaturePlugin")
     id("kotlin-kapt")
-}
-
-android {
-    kotlinOptions {
-        jvmTarget = "1.8"
-    }
 }
 
 withProjects(
@@ -28,7 +23,7 @@ withLibraries(
         Libs.appcompat,
         Libs.coreKtx,
         Libs.constraintLayout,
-        Libs.koinAndroidExt,
+        Libs.koinAndroidExperimental,
         Libs.liveDataKtx,
         Libs.material,
         Libs.playCore

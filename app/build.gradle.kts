@@ -90,18 +90,30 @@ android {
             }
         }
     }
+
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
 }
 
 withProjects(
         Features.catalog,
         Features.landing,
         Features.launchScreen,
+        Features.login,
         Features.mainScreen,
         Features.photoReport,
         Features.settings,
 
         Libraries.arch,
+        Libraries.auth,
         Libraries.core,
+        Libraries.extensions,
         Libraries.navigation,
         Libraries.network,
         Libraries.rendering
@@ -110,8 +122,9 @@ withProjects(
 withLibraries(
         Libs.appcompat,
         Libs.coroutinesAndroid,
+        Libs.firebaseAuth,
         Libs.firebaseCore,
-        Libs.firestore,
+        Libs.firebaseFirestoreKtx,
         Libs.koinAndroid,
         Libs.koinCore,
         Libs.kotlin,

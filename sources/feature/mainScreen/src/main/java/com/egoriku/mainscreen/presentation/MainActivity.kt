@@ -20,21 +20,19 @@ import com.egoriku.mainscreen.presentation.dynamicfeature.DynamicFeatureViewModu
 import com.egoriku.mainscreen.presentation.screen.*
 import com.google.android.play.core.splitcompat.SplitCompat
 import org.koin.android.ext.android.inject
-import org.koin.android.viewmodel.ext.android.viewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import javax.inject.Inject
 
-class MainActivity : BaseActivity(0) {
+class MainActivity : BaseActivity() {
 
     private lateinit var binding: ActivityMainBinding
 
     private val featureProvider: IFeatureProvider by inject()
+    private val navigatorHolder: INavigationHolder by inject()
     private val featureViewModule: DynamicFeatureViewModule by viewModel()
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
-
-    @Inject
-    lateinit var navigatorHolder: INavigationHolder
 
     private lateinit var viewModel: MainActivityViewModel
 
@@ -101,13 +99,7 @@ class MainActivity : BaseActivity(0) {
         super.onPause()
     }
 
-    //TODO use navigation library approach
     override fun onBackPressed() {
-        if (supportFragmentManager.backStackEntryCount == 1) {
-            finish()
-            return
-        }
-
         viewModel.onBackPressed()
     }
 

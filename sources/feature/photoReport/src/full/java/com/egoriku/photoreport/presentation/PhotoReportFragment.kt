@@ -12,6 +12,7 @@ import com.egoriku.core.di.findDependencies
 import com.egoriku.ladyhappy.arch.fragment.BaseInjectableFragment
 import com.egoriku.ladyhappy.extensions.gone
 import com.egoriku.ladyhappy.extensions.injectViewModel
+import com.egoriku.ladyhappy.extensions.viewBindingLifecycle
 import com.egoriku.ladyhappy.extensions.visible
 import com.egoriku.photoreport.databinding.FragmentPhotoReportBinding
 import com.egoriku.photoreport.di.PhotoReportFragmentComponent
@@ -28,7 +29,7 @@ class PhotoReportFragment : BaseInjectableFragment(0) {
     lateinit var viewModelFactory: ViewModelProvider.Factory
 
     private lateinit var viewModel: PhotoReportViewModel
-    private lateinit var binding: FragmentPhotoReportBinding
+    private var binding: FragmentPhotoReportBinding by viewBindingLifecycle()
 
     private lateinit var noDataController: NoDataController
     private lateinit var photoReportHeaderController: PhotoReportHeaderController

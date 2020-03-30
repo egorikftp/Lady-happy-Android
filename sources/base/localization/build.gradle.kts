@@ -1,3 +1,4 @@
 plugins {
-    id("com.egoriku.library")
+    id("HappyLibraryPlugin")
+    id("com.android.library")
 }

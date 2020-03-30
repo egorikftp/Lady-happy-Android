@@ -3,14 +3,11 @@ import com.egoriku.dependencies.Modules.Libraries
 import com.egoriku.ext.*
 
 plugins {
-    id("com.egoriku.library")
+    id("HappyFeaturePlugin")
+    id("com.android.library")
 }
 
 android {
-    kotlinOptions {
-        jvmTarget = "1.8"
-    }
-
     configureBuildFlavors(
             onLocalBuild = {
                 flavorDimensions("catalog")
@@ -52,7 +49,7 @@ withLibraries(
         Libs.constraintLayout,
         Libs.coreKtx,
         Libs.coroutinesAndroid,
-        Libs.firestore,
+        Libs.firebaseFirestoreKtx,
         Libs.fragment,
         Libs.glide,
         Libs.koinAndroid,
@@ -62,7 +59,6 @@ withLibraries(
         Libs.liveDataKtx,
         Libs.material,
         Libs.recyclerView,
-        Libs.viewModel,
         Libs.viewModelKtx,
         Libs.viewPager2
 )

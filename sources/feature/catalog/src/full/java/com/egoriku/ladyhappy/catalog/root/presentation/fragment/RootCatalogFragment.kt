@@ -14,19 +14,21 @@ import com.egoriku.ladyhappy.catalog.root.presentation.RootScreenModel
 import com.egoriku.ladyhappy.catalog.root.presentation.adapter.CatalogViewPagerAdapter
 import com.egoriku.ladyhappy.extensions.gone
 import com.egoriku.ladyhappy.extensions.toast
+import com.egoriku.ladyhappy.extensions.viewBindingLifecycle
 import com.egoriku.ladyhappy.extensions.visible
 import com.google.android.material.tabs.TabLayoutMediator
-import org.koin.androidx.scope.currentScope
+import org.koin.androidx.scope.lifecycleScope
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
 
 class RootCatalogFragment : Fragment() {
 
-    private lateinit var binding: FragmentRootCatalogBinding
+    private var binding: FragmentRootCatalogBinding by viewBindingLifecycle()
+
     private lateinit var catalogViewPagerAdapter: FragmentStateAdapter
 
     private val rootCatalogViewModel: RootCatalogViewModel by viewModel {
-        parametersOf(currentScope.id)
+        parametersOf(lifecycleScope.id)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {

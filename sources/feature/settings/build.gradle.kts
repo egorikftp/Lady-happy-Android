@@ -3,7 +3,8 @@ import com.egoriku.dependencies.Modules.Libraries
 import com.egoriku.ext.*
 
 plugins {
-    id("com.egoriku.library")
+    id("HappyFeaturePlugin")
+    id("com.android.library")
 }
 
 android {
@@ -35,9 +36,11 @@ android {
 
 withProjects(
         Libraries.arch,
+        Libraries.auth,
         Libraries.core,
         Libraries.extensions,
         Libraries.localization,
+        Libraries.navigation,
         Libraries.ui
 )
 
@@ -45,5 +48,9 @@ withLibraries(
         Libs.browser,
         Libs.constraintLayout,
         Libs.coreKtx,
+        Libs.koinCore,
+        Libs.koinScope,
+        Libs.koinViewModel,
+        Libs.liveDataKtx,
         Libs.material
 )

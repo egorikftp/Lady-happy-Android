@@ -29,6 +29,11 @@ android {
                 println("It's app center build.")
             }
     )
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
 }
 
 withProjects(Applications.ladyHappy)

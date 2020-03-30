@@ -15,7 +15,8 @@ import com.egoriku.ladyhappy.catalog.subcategory.presentation.SubcategoryScreenS
 import com.egoriku.ladyhappy.catalog.subcategory.presentation.adapter.controller.CatalogController
 import com.egoriku.ladyhappy.catalog.subcategory.presentation.adapter.decorator.MarginItemDecoration
 import com.egoriku.ladyhappy.extensions.toast
-import org.koin.androidx.scope.currentScope
+import com.egoriku.ladyhappy.extensions.viewBindingLifecycle
+import org.koin.androidx.scope.lifecycleScope
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
 import ru.surfstudio.android.easyadapter.EasyAdapter
@@ -26,11 +27,11 @@ const val ARGUMENT_SUBCATEGORY = "sub_category"
 
 class SubcategoryFragment : Fragment() {
 
-    private lateinit var binding: FragmentCatalogBinding
+    private var binding: FragmentCatalogBinding by viewBindingLifecycle()
 
     private val catalogViewModel: SubCategoriesViewModel by viewModel {
         parametersOf(
-                currentScope.id,
+                lifecycleScope.id,
                 arguments?.getString(ARGUMENT_SUBCATEGORY)
         )
     }

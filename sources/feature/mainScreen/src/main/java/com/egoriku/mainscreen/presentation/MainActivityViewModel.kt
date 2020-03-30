@@ -9,12 +9,16 @@ import com.egoriku.ladyhappy.extensions.common.Constants.EMPTY
 import com.egoriku.ladyhappy.navigation.screen.Screen
 import com.egoriku.mainscreen.common.TITLE_KEY
 import com.egoriku.mainscreen.common.TRACKING_KEY
+import org.koin.core.KoinComponent
+import org.koin.core.inject
 import javax.inject.Inject
 
 class MainActivityViewModel
-@Inject constructor(
-        private val router: IRouter,
-        private val analytics: IAnalytics) : ViewModel() {
+@Inject constructor(private val analytics: IAnalytics)
+    : ViewModel(),
+        KoinComponent {
+
+    private val router: IRouter by inject()
 
     private val currentScreenTitle: MutableLiveData<Int> = MutableLiveData()
 

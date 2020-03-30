@@ -3,7 +3,8 @@ import com.egoriku.dependencies.Modules.Libraries
 import com.egoriku.ext.*
 
 plugins {
-    id("com.egoriku.library")
+    id("HappyFeaturePlugin")
+    id("com.android.library")
     id("kotlin-kapt")
 }
 
@@ -48,7 +49,7 @@ withLibraries(
         Libs.appcompat,
         Libs.constraintLayout,
         Libs.coroutinesAndroid,
-        Libs.firestore,
+        Libs.firebaseFirestoreKtx,
         Libs.pageIndicator,
         Libs.recyclerView
 )

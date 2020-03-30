@@ -6,16 +6,28 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.browser.customtabs.CustomTabsIntent
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.net.toUri
 import androidx.core.view.doOnPreDraw
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.observe
+import com.egoriku.core.feature.IFeatureProvider
+import com.egoriku.ladyhappy.auth.model.UserLoginState
 import com.egoriku.ladyhappy.extensions.colorCompat
-import com.egoriku.ladyhappy.extensions.toUri
+import com.egoriku.ladyhappy.extensions.drawableCompat
+import com.egoriku.ladyhappy.extensions.viewBindingLifecycle
 import com.egoriku.ladyhappy.settings.R
 import com.egoriku.ladyhappy.settings.databinding.FragmentSettingsBinding
+import com.egoriku.ladyhappy.settings.presentation.screen.LoginScreen
+import com.egoriku.ladyhappy.settings.presentation.view.State
+import org.koin.android.ext.android.inject
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class SettingFragment : Fragment() {
 
-    private lateinit var binding: FragmentSettingsBinding
+    private var binding: FragmentSettingsBinding by viewBindingLifecycle()
+
+    private val viewModel: SettingsViewModel by viewModel()
+    private val featureProvider: IFeatureProvider by inject()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         FragmentSettingsBinding.inflate(inflater, container, false).apply {
@@ -27,13 +39,40 @@ class SettingFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        viewModel.userLoginState.observe(viewLifecycleOwner) {
+            when (it) {
+                is UserLoginState.Anon -> {
+                    with(binding.loginView) {
+                        state = State.ANON
+                        setProfileImage(drawableCompat(R.color.Terracota))
+                        onButtonClick {
+                            viewModel.navigateTo(
+                                    LoginScreen(featureProvider), R.id.contentFullScreen
+                            )
+                        }
+                    }
+                }
+
+                is UserLoginState.LoggedIn -> {
+                    with(binding.loginView) {
+                        state = State.LOGGED_IN
+                        setProfileImage(drawableCompat(R.color.RoseTaupe))
+                        setUserName(if (it.name.isEmpty()) it.email else it.name)
+                        onButtonClick {
+                            viewModel.logOut()
+                        }
+                    }
+                }
+            }
+        }
+
         applyBottomMargin()
 
         binding.termsOfServiceButton.setOnClickListener {
             CustomTabsIntent.Builder().apply {
                 setToolbarColor(colorCompat(R.color.RoseTaupe))
                 build().apply {
-                    launchUrl(context, getString(R.string.terms_of_service_link).toUri())
+                    launchUrl(requireContext(), getString(R.string.terms_of_service_link).toUri())
                 }
             }
         }
@@ -42,7 +81,7 @@ class SettingFragment : Fragment() {
             CustomTabsIntent.Builder().apply {
                 setToolbarColor(colorCompat(R.color.RoseTaupe))
                 build().apply {
-                    launchUrl(context, getString(R.string.privacy_policy_link).toUri())
+                    launchUrl(requireContext(), getString(R.string.privacy_policy_link).toUri())
                 }
             }
         }

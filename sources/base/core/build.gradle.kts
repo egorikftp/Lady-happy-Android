@@ -4,7 +4,8 @@ import com.egoriku.ext.withLibraries
 import com.egoriku.ext.withProjects
 
 plugins {
-    id("com.egoriku.library")
+    id("HappyLibraryPlugin")
+    id("com.android.library")
 }
 
 withProjects(
@@ -15,5 +16,5 @@ withProjects(
 withLibraries(
         Libs.coroutinesAndroid,
         Libs.dagger,
-        Libs.firestore
+        Libs.firebaseFirestoreKtx
 )
