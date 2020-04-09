@@ -14,8 +14,10 @@ suspend inline fun <reified T> DocumentReference.awaitResult(): Result<T> =
             awaitGet(T::class.java)
         }
 
+suspend inline fun <reified T> DocumentReference.awaitGet(): T = awaitGet(T::class.java)
+
 suspend fun <T> DocumentReference.awaitGet(type: Class<T>): T = suspendCancellableCoroutine { continuation ->
-    this.get().addOnSuccessListener { snapshot ->
+    get().addOnSuccessListener { snapshot ->
         if (snapshot.exists()) {
             try {
                 val data: T? = snapshot.toObject(type)
@@ -29,5 +31,7 @@ suspend fun <T> DocumentReference.awaitGet(type: Class<T>): T = suspendCancellab
         } else {
             continuation.resumeWithException(NoSuchDocumentException())
         }
+    }.addOnFailureListener {
+        continuation.resumeWithException(it)
     }
 }

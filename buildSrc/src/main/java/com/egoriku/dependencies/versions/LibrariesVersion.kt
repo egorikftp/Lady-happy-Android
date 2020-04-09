@@ -25,7 +25,7 @@ object LibrariesVersion {
     const val material = "1.2.0-alpha05"
     const val pageIndicator = "1.0.10"
     const val playCore = "1.7.1"
-    const val recyclerView = "1.1.0"
+    const val recyclerView = "1.2.0-alpha02"
     const val vectorDrawable = "1.1.0"
     const val viewPager2 = "1.0.0"
 }

@@ -27,14 +27,14 @@ class Authentication {
 
     private fun invalidateUser() {
         when (val user = auth.currentUser) {
-            null -> _userLoginState.postValue(UserLoginState.Anon())
-            else -> _userLoginState.postValue(UserLoginState.LoggedIn(
+            null -> _userLoginState.value = UserLoginState.Anon()
+            else -> _userLoginState.value = UserLoginState.LoggedIn(
                     userId = user.uid,
                     name = user.displayName ?: EMPTY,
                     email = user.email ?: EMPTY,
                     photoUrl = user.photoUrl?.toString() ?: EMPTY,
                     isEmailVerified = user.isEmailVerified
-            ))
+            )
         }
     }
 
@@ -49,7 +49,10 @@ class Authentication {
             password: String
     ): Result<AuthResult> = withContext(Dispatchers.IO) {
         val result: Result<AuthResult> = auth.signInWithEmailAndPassword(email, password).awaitResult()
-        invalidateUser()
+
+        withContext(Dispatchers.Main) {
+            invalidateUser()
+        }
 
         result
     }
