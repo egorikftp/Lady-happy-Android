@@ -10,6 +10,7 @@ import com.egoriku.ladyhappy.settings.R
 import com.egoriku.ladyhappy.settings.databinding.AdapterItemFeaturesBinding
 import com.egoriku.ladyhappy.settings.domain.model.Feature
 import com.egoriku.ladyhappy.settings.domain.model.Section
+import com.egoriku.ladyhappy.settings.presentation.adapter.decorator.MarginItemDecoration
 
 class AvailableFeaturesAdapter(
         private val onFeatureClick: (feature: Feature) -> Unit
@@ -32,6 +33,10 @@ class AvailableFeaturesAdapter(
             binding.featuresRecyclerView.apply {
                 layoutManager = LinearLayoutManager(itemView.context, LinearLayoutManager.HORIZONTAL, false)
                 adapter = featureAdapter
+                addItemDecoration(
+                        MarginItemDecoration(
+                                binding.root.context.resources.getDimensionPixelOffset(R.dimen.material_padding_16))
+                )
             }
         }
 
