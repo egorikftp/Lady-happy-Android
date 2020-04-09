@@ -27,18 +27,13 @@ class FeatureAdapter(
 
         private fun AdapterItemFeatureBinding.bind(feature: Feature) {
             when (feature) {
-                is Feature.Stub -> {
-                    root.setOnClickListener(null)
-                    featureLogo.setImageDrawable(root.context.drawableCompat(R.drawable.bg_feature_stub))
-                }
-                else -> {
-                    root.setOnClickListener {
-                        onFeatureClick(feature)
-                    }
-
-                    featureLogo.setImageDrawable(root.context.drawableCompat(R.drawable.ic_create))
+                is Feature.Stub -> root.setOnClickListener(null)
+                else -> root.setOnClickListener {
+                    onFeatureClick(feature)
                 }
             }
+
+            featureLogo.setImageDrawable(root.context.drawableCompat(feature.iconResId))
         }
     }
 

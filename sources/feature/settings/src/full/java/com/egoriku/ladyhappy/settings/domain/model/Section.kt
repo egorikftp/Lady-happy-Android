@@ -1,6 +1,8 @@
 package com.egoriku.ladyhappy.settings.domain.model
 
+import androidx.annotation.DrawableRes
 import com.egoriku.ladyhappy.auth.model.UserLoginState
+import com.egoriku.ladyhappy.settings.R
 
 sealed class Section(open val position: Int) {
 
@@ -14,12 +16,21 @@ sealed class Section(open val position: Int) {
 }
 
 sealed class Feature(
-        open val isAvailable: Boolean
+        open val isAvailable: Boolean,
+
+        @DrawableRes
+        open val iconResId: Int
 ) {
 
     class PublishPosts(
             override val isAvailable: Boolean
-    ) : Feature(isAvailable)
+    ) : Feature(
+            isAvailable = isAvailable,
+            iconResId = R.drawable.ic_create
+    )
 
-    class Stub : Feature(isAvailable = true)
+    class Stub : Feature(
+            isAvailable = true,
+            iconResId = R.drawable.bg_feature_stub
+    )
 }
