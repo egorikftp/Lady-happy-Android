@@ -1,5 +1,6 @@
 package com.egoriku.ladyhappy.settings.presentation
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -13,12 +14,13 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.observe
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.MergeAdapter
+import com.egoriku.core.connector.IDynamicFeatureConnector
 import com.egoriku.core.feature.IFeatureProvider
 import com.egoriku.ladyhappy.extensions.colorCompat
-import com.egoriku.ladyhappy.extensions.toast
 import com.egoriku.ladyhappy.extensions.viewBindingLifecycle
 import com.egoriku.ladyhappy.settings.R
 import com.egoriku.ladyhappy.settings.databinding.FragmentSettingsBinding
+import com.egoriku.ladyhappy.settings.domain.model.Feature
 import com.egoriku.ladyhappy.settings.domain.model.Section
 import com.egoriku.ladyhappy.settings.presentation.adapter.AvailableFeaturesAdapter
 import com.egoriku.ladyhappy.settings.presentation.adapter.LoginAdapter
@@ -42,11 +44,18 @@ class SettingFragment : Fragment() {
     private var loginAdapter: LoginAdapter by Delegates.notNull()
     private var availableFeaturesAdapter: AvailableFeaturesAdapter by Delegates.notNull()
 
+    private var dynamicFeatureConnector: IDynamicFeatureConnector? = null
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         FragmentSettingsBinding.inflate(inflater, container, false).apply {
             binding = this
             return root
         }
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        dynamicFeatureConnector = activity as IDynamicFeatureConnector
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -60,7 +69,11 @@ class SettingFragment : Fragment() {
         }
 
         availableFeaturesAdapter = AvailableFeaturesAdapter {
-            toast(it.toString())
+            when (it) {
+                is Feature.PublishPosts -> {
+                    dynamicFeatureConnector?.installDynamicFeature(getString(R.string.title_post_creator))
+                }
+            }
         }
 
         mergeAdapter = MergeAdapter(loginAdapter, availableFeaturesAdapter)
@@ -75,6 +88,11 @@ class SettingFragment : Fragment() {
                 }
             }
         }
+    }
+
+    override fun onDetach() {
+        super.onDetach()
+        dynamicFeatureConnector = null
     }
 
     private fun FragmentSettingsBinding.initViews() {

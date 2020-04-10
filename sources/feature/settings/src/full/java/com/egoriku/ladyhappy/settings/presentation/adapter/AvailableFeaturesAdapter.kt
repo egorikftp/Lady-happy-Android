@@ -52,11 +52,11 @@ class AvailableFeaturesAdapter(
         override fun areItemsTheSame(
                 oldItem: Section.AvailableFeatures,
                 newItem: Section.AvailableFeatures
-        ): Boolean = oldItem.features.size == newItem.features.size
+        ) = oldItem.features.size == newItem.features.size
 
         override fun areContentsTheSame(
                 oldItem: Section.AvailableFeatures,
                 newItem: Section.AvailableFeatures
-        ): Boolean = oldItem.features == newItem.features
+        ) = oldItem.features == newItem.features
     }
 }

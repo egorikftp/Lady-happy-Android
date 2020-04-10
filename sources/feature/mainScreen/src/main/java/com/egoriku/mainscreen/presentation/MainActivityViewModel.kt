@@ -31,10 +31,7 @@ class MainActivityViewModel
         router.replaceScreen(screen)
     }
 
-    fun navigateTo(screen: Screen) {
-        analytics.trackPageView(screen.arguments.getString(TRACKING_KEY) ?: EMPTY)
-        router.addScreen(screen)
-    }
+    fun navigateTo(screen: Screen, containerId: Int) = router.addScreenWithContainerId(screen, containerId)
 
     fun onBackPressed() = router.back()
 }

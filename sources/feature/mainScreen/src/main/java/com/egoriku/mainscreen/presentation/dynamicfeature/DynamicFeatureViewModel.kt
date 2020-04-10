@@ -4,12 +4,13 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.egoriku.ladyhappy.extensions.Event
 import com.google.android.play.core.splitinstall.SplitInstallManagerFactory
 import com.google.android.play.core.splitinstall.SplitInstallRequest
 import com.google.android.play.core.splitinstall.SplitInstallStateUpdatedListener
 import com.google.android.play.core.splitinstall.model.SplitInstallSessionStatus
 
-class DynamicFeatureViewModule(
+class DynamicFeatureViewModel(
         application: Application
 ) : AndroidViewModel(application) {
 
@@ -17,17 +18,17 @@ class DynamicFeatureViewModule(
 
     private val listener = initSplitInstallStateUpdatedListener()
 
-    private val _installStatus = MutableLiveData<Boolean>()
+    private val _installStatus = MutableLiveData<Event<Boolean>>()
 
-    val installStatus: LiveData<Boolean> = _installStatus
+    val installStatus: LiveData<Event<Boolean>> = _installStatus
 
     init {
-        splitInstallManager.registerListener(listener);
+        splitInstallManager.registerListener(listener)
     }
 
     fun installDynamicFeature(name: String) {
         if (splitInstallManager.installedModules.contains(name)) {
-            _installStatus.value = true
+            _installStatus.value = Event(true)
             return
         }
 
@@ -53,7 +54,7 @@ class DynamicFeatureViewModule(
                 SplitInstallSessionStatus.INSTALLING -> {
                 }
                 SplitInstallSessionStatus.INSTALLED -> {
-                    _installStatus.value = true
+                    _installStatus.value = Event(true)
                 }
                 SplitInstallSessionStatus.FAILED -> {
                 }
