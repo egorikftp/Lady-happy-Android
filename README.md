@@ -55,7 +55,9 @@ Structure 🔍
 -------
 This project follows multi-module structure: 
 
-<img src="assets/modules/Lady%20happy%20modules.png" />
+<div align="center">
+    <img alt="Icon" src="assets/modules/Lady%20happy%20modules.png" width="700" />
+</div>
 
 
 License
