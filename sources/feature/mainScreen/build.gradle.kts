@@ -1,5 +1,4 @@
-import com.egoriku.dependencies.Libs
-import com.egoriku.dependencies.Modules.Libraries
+import Modules.Libraries
 import com.egoriku.ext.andKapt
 import com.egoriku.ext.withKapt
 import com.egoriku.ext.withLibraries

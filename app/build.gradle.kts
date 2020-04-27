@@ -2,10 +2,9 @@ import com.android.build.gradle.internal.api.BaseVariantOutputImpl
 import com.egoriku.application.configureProductFlavors
 import com.egoriku.application.provideVersionCode
 import com.egoriku.application.provideVersionName
-import com.egoriku.dependencies.Libs
-import com.egoriku.dependencies.Modules.DynamicFeatures
-import com.egoriku.dependencies.Modules.Features
-import com.egoriku.dependencies.Modules.Libraries
+import Modules.DynamicFeatures
+import Modules.Features
+import Modules.Libraries
 import com.egoriku.dependencies.versions.ProjectVersion
 import com.egoriku.ext.*
 import org.jetbrains.kotlin.konan.file.File

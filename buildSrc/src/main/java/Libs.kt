@@ -1,5 +1,3 @@
-package com.egoriku.dependencies
-
 import com.egoriku.dependencies.versions.LibrariesVersion
 
 object Libs {
