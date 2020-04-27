@@ -8,6 +8,12 @@ plugins {
 }
 
 android {
+    lintOptions {
+        isAbortOnError = false
+    }
+}
+
+android {
     configureBuildFlavors(
             onLocalBuild = {
                 flavorDimensions("settings")

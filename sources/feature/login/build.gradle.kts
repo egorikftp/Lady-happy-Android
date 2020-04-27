@@ -8,12 +8,6 @@ plugins {
     id("com.android.library")
 }
 
-android {
-    lintOptions {
-        isAbortOnError = false
-    }
-}
-
 withProjects(
         Libraries.arch,
         Libraries.auth,
