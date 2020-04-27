@@ -3,7 +3,7 @@ package com.egoriku.plugin
 import com.android.build.gradle.AppPlugin
 import com.android.build.gradle.BaseExtension
 import com.android.build.gradle.LibraryPlugin
-import com.egoriku.dependencies.Libs
+import Libs
 import com.egoriku.dependencies.versions.ProjectVersion
 import com.egoriku.ext.implementation
 import com.egoriku.ext.release

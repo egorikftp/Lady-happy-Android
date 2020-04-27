@@ -26,7 +26,7 @@ dependencies {
     implementation(gradleApi())
     implementation(localGroovy())
 
-    implementation("com.android.tools.build:gradle:3.6.1")
-    implementation(kotlin("gradle-plugin", "1.3.71"))
+    implementation("com.android.tools.build:gradle:3.6.3")
+    implementation(kotlin("gradle-plugin", "1.3.72"))
     implementation(kotlin("android-extensions"))
 }

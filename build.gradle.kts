@@ -1,9 +1,5 @@
 import com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask
 
-plugins {
-    id("com.github.ben-manes.versions") version ClasspathVersion.versionPlugin
-}
-
 buildscript {
     repositories {
         google()
@@ -13,10 +9,11 @@ buildscript {
     }
 
     dependencies {
-        classpath(Plugins.fabric)
-        classpath(Plugins.googleServices)
-        classpath(Plugins.gradleTools)
-        classpath(Plugins.kotlinGradle)
+        classpath(GradlePlugins.fabric)
+        classpath(GradlePlugins.googleServices)
+        classpath(GradlePlugins.gradleLibrariesVersion)
+        classpath(GradlePlugins.gradleTools)
+        classpath(GradlePlugins.kotlinGradle)
     }
 }
 
@@ -33,6 +30,8 @@ tasks {
         delete(buildDir)
     }
 }
+
+apply(plugin = "com.github.ben-manes.versions")
 
 tasks.named<DependencyUpdatesTask>("dependencyUpdates") {
     resolutionStrategy {

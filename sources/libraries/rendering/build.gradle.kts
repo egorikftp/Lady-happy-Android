@@ -1,4 +1,3 @@
-import com.egoriku.dependencies.Libs
 import com.egoriku.dependencies.versions.ProjectVersion
 import com.egoriku.ext.withLibraries
 

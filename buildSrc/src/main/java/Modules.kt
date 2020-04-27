@@ -1,5 +1,3 @@
-package com.egoriku.dependencies
-
 object Modules {
 
     object Applications {
