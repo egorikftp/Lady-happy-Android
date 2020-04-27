@@ -51,7 +51,7 @@
                 app:startIconTint="@color/RoseTaupeDark">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/login_email"
+                    android:id="@+id/loginEmail"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/login_hint_email"
@@ -82,7 +82,7 @@
                 app:startIconTint="@color/RoseTaupeDark">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/login_password"
+                    android:id="@+id/loginPassword"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/login_hint_password"
@@ -133,7 +133,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/signInButton"
                 app:layout_constraintVertical_bias="1.0"
-                tools:text="@string/go_to_sign_up" />
+                tools:text="@string/login_go_to_sign_up" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

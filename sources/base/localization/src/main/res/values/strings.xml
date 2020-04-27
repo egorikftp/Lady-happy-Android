@@ -36,4 +36,14 @@
     <string name="settings_log_out">Log out</string>
     <string name="settings_login_hint">Please log in to access additional functionality</string>
 
+    <!-- Login -->
+    <string name="login_go_to_sign_up">Don\'t have account yet? <annotation clickColor="RoseTaupe">SIGN UP</annotation></string>
+    <string name="login_hint_email">Email</string>
+    <string name="login_hint_password">Password</string>
+    <string name="login_forgot_password">Forgot password?</string>
+    <string name="login_sign_in">Sign In</string>
+    <string name="login_or_sign_with">Or sign with</string>
+    <string name="login_error_email_invalid">Email isn\'t valid</string>
+    <string name="login_error_email_empty">Please enter Email</string>
+    <string name="login_error_password_empty">Please enter Password</string>
 </resources>

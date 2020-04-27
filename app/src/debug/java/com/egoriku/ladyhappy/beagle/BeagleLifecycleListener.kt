@@ -36,8 +36,8 @@ class BeagleLifecycleListener : SimpleActivityLifecycleCallbacks(), KoinComponen
                                 items = accountProvider.accounts,
                                 isInitiallyExpanded = true,
                                 onItemSelected = { account ->
-                                    view?.findViewById<EditText>(R.id.login_email)?.setText(account.name)
-                                    view?.findViewById<EditText>(R.id.login_password)?.setText(account.password)
+                                    view?.findViewById<EditText>(R.id.loginEmail)?.setText(account.name)
+                                    view?.findViewById<EditText>(R.id.loginPassword)?.setText(account.password)
                                     Beagle.dismiss()
                                 }
                         )

@@ -19,7 +19,7 @@ object LibrariesVersion {
     const val glide = "4.11.0"
     const val junit = "4.13"
     const val koin = "2.1.5"
-    const val kotlin = "1.3.71"
+    const val kotlin = "1.3.72"
     const val leakCanary = "2.2"
     const val lifecycle = "2.2.0"
     const val material = "1.2.0-alpha05"

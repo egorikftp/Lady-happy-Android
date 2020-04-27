@@ -36,4 +36,15 @@
     <string name="settings_login">Логин</string>
     <string name="settings_log_out">Выйти</string>
     <string name="settings_login_hint">Пожалуйста, войдите, чтобы получить доступ к дополнительным функциям</string>
+
+    <!-- Login -->
+    <string name="login_go_to_sign_up">Еще нет аккаута? <annotation clickColor="RoseTaupe">ЗАРЕГИСТРИРОВАТЬСЯ</annotation></string>
+    <string name="login_hint_email">Email</string>
+    <string name="login_hint_password">Пароль</string>
+    <string name="login_forgot_password">Забыли пароль?</string>
+    <string name="login_sign_in">Войти</string>
+    <string name="login_or_sign_with">Или войти с</string>
+    <string name="login_error_email_invalid">Неверный Email</string>
+    <string name="login_error_email_empty">Пожалуйста введите Email</string>
+    <string name="login_error_password_empty">Пожалуйста введите пароль</string>
 </resources>
