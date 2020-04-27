@@ -2,17 +2,18 @@
     <img alt="Icon" src="app/src/main/res/mipmap-xxxhdpi/ic_launcher_round.png" width="200" />
 </div>
 
-<h3 align="center">
+<h2 align="center">
     Lady Happy - handmade hats and accessories
-</h3>
+</h2>
 
-[![GitHub stars](https://img.shields.io/github/stars/egorikftp/Lady-happy.svg)](https://github.com/egorikftp/Lady-happy/stargazers) 
-[![GitHub forks](https://img.shields.io/github/forks/egorikftp/Lady-happy.svg)](https://github.com/egorikftp/Lady-happy/network) 
-[![GitHub license](https://img.shields.io/github/license/egorikftp/Lady-happy.svg)](https://github.com/egorikftp/Lady-happy/blob/dev/LICENSE) 
-[![Build status](https://build.appcenter.ms/v0.1/apps/5c717ffd-1796-4c51-9ec5-c40fa19ed472/branches/dev/badge)](https://appcenter.ms)
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/a5b356b07d4e42a6bc7f72e4cae6831e)](https://www.codacy.com/manual/egorikftp/Lady-happy?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=egorikftp/Lady-happy&amp;utm_campaign=Badge_Grade)
-![Android CI](https://github.com/egorikftp/Lady-happy/workflows/Android%20CI/badge.svg)
 
+<p align="center">
+    <a target="_blank" href="https://github.com/egorikftp/Lady-happy/stargazers"><img src="https://img.shields.io/github/stars/egorikftp/Lady-happy.svg"></a>
+    <a href="https://github.com/egorikftp/Lady-happy/network"><img alt="API" src="https://img.shields.io/github/forks/egorikftp/Lady-happy.svg"/></a>
+    <a target="_blank" href="https://github.com/egorikftp/Lady-happy/blob/dev/LICENSE"><img src="https://img.shields.io/github/license/egorikftp/Lady-happy.svg"></a>
+    <a target="_blank" href="https://appcenter.ms"><img src="https://build.appcenter.ms/v0.1/apps/5c717ffd-1796-4c51-9ec5-c40fa19ed472/branches/dev/badge"></a>
+    <a href="https://www.codacy.com/manual/egorikftp/Lady-happy?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=egorikftp/Lady-happy&amp;utm_campaign=Badge_Grade"><img src="https://api.codacy.com/project/badge/Grade/a5b356b07d4e42a6bc7f72e4cae6831e"/></a>
+</p>
 
 Project characteristics 🚀
 -------
@@ -49,6 +50,14 @@ Find this repository useful? :heart:
 Support it by joining __[stargazers](https://github.com/egorikftp/lady-happy/stargazers)__ for this repository. :star: <br>
 And __[follow](https://github.com/egorikftp)__ me for my next creations! 🤩
 
+
+Structure 🔍
+-------
+This project follows multi-module structure: 
+
+<img src="assets/modules/Lady%20happy%20modules.png" />
+
+
 License
 -------
 
@@ -66,9 +75,3 @@ License
      See the License for the specific language governing permissions and
      limitations under the License.
 
-
-Structure 🔍
--------
-This project follows multi-module structure: 
-
-<img src="assets/modules/Lady%20happy%20modules.png" />
