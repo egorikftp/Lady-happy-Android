@@ -5,7 +5,7 @@ import com.egoriku.ladyhappy.login.R
 import com.google.android.material.textfield.TextInputLayout
 
 fun TextInputLayout.validateEmail(): Boolean {
-    val editText = editText ?: throw Throwable("EditText in TextInputLayout mustn't be null")
+    val editText = editText ?: throw IllegalArgumentException("EditText in TextInputLayout mustn't be null")
     val emailText = editText.text.toString()
 
     error = null
@@ -24,7 +24,7 @@ fun TextInputLayout.validateEmail(): Boolean {
 }
 
 fun TextInputLayout.validatePassword(): Boolean {
-    val editText = editText ?: throw Throwable("EditText in TextInputLayout mustn't be null")
+    val editText = editText ?: throw IllegalArgumentException("EditText in TextInputLayout mustn't be null")
     val passwordText = editText.text.toString()
 
     error = null
