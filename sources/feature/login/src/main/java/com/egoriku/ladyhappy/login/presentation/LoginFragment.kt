@@ -15,6 +15,8 @@ import com.egoriku.ladyhappy.extensions.*
 import com.egoriku.ladyhappy.login.R
 import com.egoriku.ladyhappy.login.databinding.FragmentLoginBinding
 import com.egoriku.ladyhappy.login.presentation.util.ClickableSpan
+import com.egoriku.ladyhappy.login.presentation.util.validateEmail
+import com.egoriku.ladyhappy.login.presentation.util.validatePassword
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class LoginFragment : Fragment() {
@@ -34,19 +36,30 @@ class LoginFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.closeView.setOnClickListener {
+        binding.bind()
+    }
+
+    private fun FragmentLoginBinding.bind() {
+        closeView.setOnClickListener {
             viewModel.processBack()
         }
 
-        binding.forgotPassword.setOnClickListener {
+        forgotPassword.setOnClickListener {
             toast("will be implemented soon")
         }
 
-        binding.signInButton.setOnClickListener {
-            viewModel.authWithEmailAndPassword(
-                    email = "egorikftp@gmail.com",
-                    password = "123456"
-            )
+        signInButton.setOnClickListener {
+            val isValid = fun(): Boolean {
+                return textInputEmail.validateEmail()
+                        && textInputPassword.validatePassword()
+            }
+
+            if (isValid()) {
+                viewModel.authWithEmailAndPassword(
+                        email = loginEmail.text.toString(),
+                        password = loginPassword.text.toString()
+                )
+            }
 
             hideSoftKeyboard()
         }
@@ -58,19 +71,19 @@ class LoginFragment : Fragment() {
         viewModel.currentState.observe(viewLifecycleOwner) {
             when (it) {
                 is LoginState.Progress -> {
-                    binding.parentProgress.visible()
-                    binding.contentLoadingProgressBar.show()
+                    parentProgress.visible()
+                    contentLoadingProgressBar.show()
                 }
                 is LoginState.Success -> {
-                    binding.parentProgress.gone()
-                    binding.contentLoadingProgressBar.hide()
+                    parentProgress.gone()
+                    contentLoadingProgressBar.hide()
 
                     viewModel.processBack()
                 }
                 is LoginState.Error -> {
                     //TODO show error
-                    binding.parentProgress.gone()
-                    binding.contentLoadingProgressBar.hide()
+                    parentProgress.gone()
+                    contentLoadingProgressBar.hide()
                     toast("error ${it.message}")
                 }
             }
@@ -83,7 +96,7 @@ class LoginFragment : Fragment() {
     }
 
     private fun initSignUpSpannable(onSpanClick: () -> Unit) {
-        val spannedString = getText(R.string.go_to_sign_up) as SpannedString
+        val spannedString = getText(R.string.login_go_to_sign_up) as SpannedString
 
         spannedString.getSpans(0, spannedString.length, Annotation::class.java)
                 .forEach { annotation ->

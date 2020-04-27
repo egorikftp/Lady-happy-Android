@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:clipChildren="false"
+    android:clipToPadding="false"
+    android:padding="5dp">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/featureLogo"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:background="@drawable/bg_feature_round"
+        android:clipToPadding="false"
+        android:elevation="1dp"
+        android:outlineProvider="background"
+        android:scaleType="center"
+        tools:src="@drawable/ic_create" />
+
+</FrameLayout>

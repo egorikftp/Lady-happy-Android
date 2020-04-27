@@ -11,7 +11,8 @@ import com.egoriku.ladyhappy.extensions.inflater
 import com.egoriku.ladyhappy.extensions.visible
 import com.egoriku.ladyhappy.settings.R
 import com.egoriku.ladyhappy.settings.databinding.ViewLoginBinding
-import com.egoriku.ladyhappy.settings.presentation.view.State.NONE
+import com.egoriku.ladyhappy.settings.presentation.view.State.ANON
+import com.egoriku.ladyhappy.settings.presentation.view.State.LOGGED_IN
 
 class LoginView : ConstraintLayout {
 
@@ -21,15 +22,21 @@ class LoginView : ConstraintLayout {
 
     private val binding = ViewLoginBinding.inflate(inflater(), this)
 
-    var state: State = NONE
+    var state: State = ANON
         set(value) {
             field = value
 
             setState()
         }
 
+    init {
+        if (isInEditMode) {
+            state = LOGGED_IN
+        }
+    }
+
     private fun setState() = when (state) {
-        State.LOGGED_IN -> {
+        LOGGED_IN -> {
             with(binding) {
                 loginHint.gone()
                 loginButton.text = getString(R.string.settings_log_out)
@@ -37,7 +44,7 @@ class LoginView : ConstraintLayout {
             }
         }
 
-        State.ANON -> {
+        ANON -> {
             with(binding) {
                 userName.gone()
                 loginHint.visible()
@@ -68,5 +75,5 @@ class LoginView : ConstraintLayout {
 }
 
 enum class State {
-    LOGGED_IN, ANON, NONE
+    LOGGED_IN, ANON
 }

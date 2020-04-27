@@ -6,7 +6,7 @@ import android.os.Bundle
 import androidx.annotation.IdRes
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.observe
+import com.egoriku.core.connector.IDynamicFeatureConnector
 import com.egoriku.core.di.findDependencies
 import com.egoriku.core.di.utils.INavigationHolder
 import com.egoriku.core.feature.IFeatureProvider
@@ -16,20 +16,20 @@ import com.egoriku.ladyhappy.navigation.navigator.platform.ActivityScopeNavigato
 import com.egoriku.mainscreen.R
 import com.egoriku.mainscreen.databinding.ActivityMainBinding
 import com.egoriku.mainscreen.di.MainActivityComponent
-import com.egoriku.mainscreen.presentation.dynamicfeature.DynamicFeatureViewModule
+import com.egoriku.mainscreen.presentation.dynamicfeature.DynamicFeatureViewModel
 import com.egoriku.mainscreen.presentation.screen.*
 import com.google.android.play.core.splitcompat.SplitCompat
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import javax.inject.Inject
 
-class MainActivity : BaseActivity() {
+class MainActivity : BaseActivity(), IDynamicFeatureConnector {
 
     private lateinit var binding: ActivityMainBinding
 
     private val featureProvider: IFeatureProvider by inject()
     private val navigatorHolder: INavigationHolder by inject()
-    private val featureViewModule: DynamicFeatureViewModule by viewModel()
+    private val dynamicFeatureViewModel: DynamicFeatureViewModel by viewModel()
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
@@ -74,19 +74,12 @@ class MainActivity : BaseActivity() {
             setOnNavigationItemReselectedListener {}
         }
 
-        with(binding.toolbarContent.createPostButton) {
-            visible()
-            setOnClickListener {
-                featureViewModule.installDynamicFeature(getString(R.string.title_post_creator))
+        dynamicFeatureViewModel.installStatus.observe(this, EventObserver {
+            when (it) {
+                true -> onSuccessfulLoad()
+                false -> toast("error")
             }
-
-            featureViewModule.installStatus.observe(this@MainActivity) {
-                when (it) {
-                    true -> onSuccessfulLoad()
-                    false -> toast("error")
-                }
-            }
-        }
+        })
     }
 
     override fun onResume() {
@@ -113,6 +106,9 @@ class MainActivity : BaseActivity() {
         SplitCompat.installActivity(this)
     }
 
+    override fun installDynamicFeature(featureName: String) =
+            dynamicFeatureViewModel.installDynamicFeature(featureName)
+
     private fun mapItemIdToScreen(@IdRes menuItemId: Int) {
         when (menuItemId) {
             R.id.menuLanding -> viewModel.replaceWith(LandingScreen(featureProvider))
@@ -123,7 +119,7 @@ class MainActivity : BaseActivity() {
     }
 
     private fun onSuccessfulLoad() {
-        viewModel.navigateTo(PostCreatorScreen())
+        viewModel.navigateTo(screen = PostCreatorScreen(), containerId = R.id.contentFullScreen)
     }
 
     companion object {

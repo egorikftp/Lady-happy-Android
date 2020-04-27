@@ -22,25 +22,6 @@
         app:layout_constraintVertical_bias="0.0"
         tools:text="Header Header Header Header" />
 
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/createPostButton"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="6dp"
-        android:clickable="true"
-        android:focusable="true"
-        android:foreground="?attr/selectableItemBackgroundBorderless"
-        android:padding="10dp"
-        android:scaleType="centerInside"
-        android:src="@drawable/ic_edit"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintDimensionRatio="1:1"
-        app:layout_constraintEnd_toStartOf="@+id/headerBarLogoText"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:visibility="visible" />
-
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline"
         android:layout_width="wrap_content"
