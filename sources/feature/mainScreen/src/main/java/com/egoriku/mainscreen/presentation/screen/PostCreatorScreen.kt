@@ -11,5 +11,5 @@ class PostCreatorScreen : FragmentScreen() {
     override val arguments: Bundle = bundleOf()
 
     override val fragment: Fragment
-        get() = getClassByName("com.egoriku.ladyhappy.postcreator.PostCreatorFragment")
+        get() = getClassByName("com.egoriku.ladyhappy.postcreator.presentation.fragment.PostCreatorFragment")
 }

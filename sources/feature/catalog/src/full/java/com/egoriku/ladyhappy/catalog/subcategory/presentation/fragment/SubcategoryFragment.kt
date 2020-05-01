@@ -13,9 +13,9 @@ import com.egoriku.ladyhappy.catalog.subcategory.presentation.SubCategoriesViewM
 import com.egoriku.ladyhappy.catalog.subcategory.presentation.SubcategoryScreenState
 import com.egoriku.ladyhappy.catalog.subcategory.presentation.SubcategoryScreenState.Success
 import com.egoriku.ladyhappy.catalog.subcategory.presentation.adapter.controller.CatalogController
-import com.egoriku.ladyhappy.catalog.subcategory.presentation.adapter.decorator.MarginItemDecoration
 import com.egoriku.ladyhappy.extensions.toast
 import com.egoriku.ladyhappy.extensions.viewBindingLifecycle
+import com.egoriku.ui.decorator.MarginItemDecoration
 import org.koin.androidx.scope.lifecycleScope
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf

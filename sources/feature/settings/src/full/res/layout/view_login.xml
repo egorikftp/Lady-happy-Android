@@ -7,15 +7,14 @@
     android:animateLayoutChanges="true"
     tools:parentTag="androidx.constraintlayout.widget.ConstraintLayout">
 
-    <androidx.constraintlayout.utils.widget.ImageFilterView
+    <ImageView
         android:id="@+id/profileImage"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:layout_marginTop="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:round="100dp"
         tools:src="@tools:sample/avatars" />
 
     <com.google.android.material.button.MaterialButton

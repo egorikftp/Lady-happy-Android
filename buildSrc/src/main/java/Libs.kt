@@ -1,6 +1,7 @@
 import com.egoriku.dependencies.versions.LibrariesVersion
 
 object Libs {
+    //const val activity = "androidx.activity:activity-ktx:${LibrariesVersion.activity}"
     const val annotation = "androidx.annotation:annotation:${LibrariesVersion.annotation}"
     const val appcompat = "androidx.appcompat:appcompat:${LibrariesVersion.appcompat}"
     const val beagle = "com.github.pandulapeter.beagle:beagle:${LibrariesVersion.beagle}"
@@ -20,6 +21,7 @@ object Libs {
     const val glide = "com.github.bumptech.glide:glide:${LibrariesVersion.glide}"
     const val glideCompiler = "com.github.bumptech.glide:compiler:${LibrariesVersion.glide}"
     const val junit = "junit:junit:${LibrariesVersion.junit}"
+    const val imageCompressor = "id.zelory:compressor:${LibrariesVersion.imageCompressor}"
     const val koinAndroid = "org.koin:koin-android:${LibrariesVersion.koin}"
     const val koinAndroidExperimental = "org.koin:koin-androidx-ext:${LibrariesVersion.koin}"
     const val koinCore = "org.koin:koin-core:${LibrariesVersion.koin}"

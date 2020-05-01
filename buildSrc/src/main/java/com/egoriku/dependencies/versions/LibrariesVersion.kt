@@ -1,6 +1,7 @@
 package com.egoriku.dependencies.versions
 
 object LibrariesVersion {
+    const val activity = "1.2.0-alpha04"
     const val annotation = "1.1.0"
     const val appcompat = "1.1.0"
     const val beagle = "1.10.2"
@@ -15,9 +16,10 @@ object LibrariesVersion {
     const val firebaseAuth = "19.3.1"
     const val firebaseCore = "17.4.0"
     const val firebaseFirestore = "21.3.1"
-    const val fragment = "1.2.4"
+    const val fragment = "1.3.0-alpha04"
     const val glide = "4.11.0"
     const val junit = "4.13"
+    const val imageCompressor = "3.0.0"
     const val koin = "2.1.5"
     const val kotlin = "1.3.72"
     const val leakCanary = "2.2"

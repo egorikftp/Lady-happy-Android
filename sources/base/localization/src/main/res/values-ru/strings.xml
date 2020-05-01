@@ -47,4 +47,7 @@
     <string name="login_error_email_invalid">Неверный Email</string>
     <string name="login_error_email_empty">Пожалуйста введите Email</string>
     <string name="login_error_password_empty">Пожалуйста введите пароль</string>
+
+    <!-- Post Creator -->
+    <string name="post_creator_images_count">%1$s из 10</string>
 </resources>
