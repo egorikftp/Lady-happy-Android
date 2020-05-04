@@ -17,6 +17,7 @@ import com.egoriku.mainscreen.R
 import com.egoriku.mainscreen.databinding.ActivityMainBinding
 import com.egoriku.mainscreen.di.MainActivityComponent
 import com.egoriku.mainscreen.presentation.dynamicfeature.DynamicFeatureViewModel
+import com.egoriku.mainscreen.presentation.inAppUpdates.InAppUpdate
 import com.egoriku.mainscreen.presentation.screen.*
 import com.google.android.play.core.splitcompat.SplitCompat
 import org.koin.android.ext.android.inject
@@ -28,6 +29,7 @@ class MainActivity : BaseActivity(), IDynamicFeatureConnector {
     private lateinit var binding: ActivityMainBinding
 
     private val featureProvider: IFeatureProvider by inject()
+    private val inAppUpdate: InAppUpdate by inject()
     private val navigatorHolder: INavigationHolder by inject()
     private val dynamicFeatureViewModel: DynamicFeatureViewModel by viewModel()
 
@@ -44,6 +46,8 @@ class MainActivity : BaseActivity(), IDynamicFeatureConnector {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        inAppUpdate.init(this)
 
         if (!hasM()) {
             window.statusBarColor = Color.BLACK
