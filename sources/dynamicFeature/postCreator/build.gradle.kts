@@ -67,5 +67,6 @@ withLibraries(
         Libs.material,
         Libs.playCore,
         Libs.recyclerView,
+        Libs.viewBindingDelegates,
         Libs.viewModelKtx
 )

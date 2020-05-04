@@ -1,6 +1,10 @@
 <resources>
     <string name="application_name">Lady\'s Happy</string>
 
+    <!-- Common -->
+    <string name="ok">Ok</string>
+    <string name="cancel">Cancel</string>
+
     <string name="adapter_item_about_us">About us</string>
     <string name="lady_happy">Lady\'s Happy</string>
 
@@ -49,4 +53,5 @@
 
     <!-- Post Creator -->
     <string name="post_creator_images_count">%1$s from 10</string>
+    <string name="post_creator_categories_dialog_title">Choose category</string>
 </resources>

@@ -132,7 +132,7 @@
             android:layout_height="25dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:waveFillColor="@color/RealWhite" />
+            app:waveFillColor="?attr/colorSurface" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>

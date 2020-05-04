@@ -2,6 +2,10 @@
 <resources>
     <string name="application_name">Дамское счастье</string>
 
+    <!-- Common -->
+    <string name="ok">Да</string>
+    <string name="cancel">Отмена</string>
+
     <string name="adapter_item_about_us">О нас</string>
     <string name="adapter_item_header_quotes">Что нас вдохновляет</string>
 
@@ -50,4 +54,6 @@
 
     <!-- Post Creator -->
     <string name="post_creator_images_count">%1$s из 10</string>
+    <string name="post_creator_categories_dialog_title">Выберите категорию</string>
+
 </resources>

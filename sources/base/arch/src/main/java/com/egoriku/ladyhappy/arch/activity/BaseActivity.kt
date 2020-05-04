@@ -3,7 +3,7 @@ package com.egoriku.ladyhappy.arch.activity
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 
-abstract class BaseActivity : AppCompatActivity() {
+abstract class BaseActivity(resId: Int) : AppCompatActivity(resId) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         injectDependencies()

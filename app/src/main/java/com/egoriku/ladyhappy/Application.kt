@@ -1,5 +1,7 @@
 package com.egoriku.ladyhappy
 
+import androidx.appcompat.app.AppCompatDelegate
+import androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM
 import com.egoriku.core.IApplication
 import com.egoriku.core.di.ApplicationProvider
 import com.egoriku.ladyhappy.di.AppComponent
@@ -14,6 +16,8 @@ open class Application : SplitCompatApplication(), IApplication {
         super.onCreate()
         appComponent.inject(this)
         initKoin()
+
+        AppCompatDelegate.setDefaultNightMode(MODE_NIGHT_FOLLOW_SYSTEM)
     }
 
     override fun getAppComponent(): ApplicationProvider = appComponent

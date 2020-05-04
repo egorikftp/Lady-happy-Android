@@ -11,7 +11,7 @@
         android:ellipsize="end"
         android:gravity="center"
         android:lines="1"
-        android:textColor="@color/RealBlack"
+        android:textColor="?attr/colorOnSurface"
         android:textSize="26sp"
         android:textStyle="bold"
         app:fontFamily="@font/montserrat"

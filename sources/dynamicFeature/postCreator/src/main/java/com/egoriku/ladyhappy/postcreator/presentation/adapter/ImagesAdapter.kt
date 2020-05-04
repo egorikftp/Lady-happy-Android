@@ -8,9 +8,11 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
+import com.egoriku.ladyhappy.extensions.drawableCompat
 import com.egoriku.ladyhappy.extensions.inflater
 import com.egoriku.ladyhappy.postcreator.databinding.AdapterItemImageBinding
 import com.egoriku.ladyhappy.postcreator.domain.model.ImageItem
+import com.egoriku.ui.R as R_ui
 
 class ImagesAdapter(
         private val onAddImageClick: (item: ImageItem) -> Unit
@@ -34,6 +36,7 @@ class ImagesAdapter(
 
             Glide.with(context)
                     .load(item.uri)
+                    .placeholder(context.drawableCompat(R_ui.color.Placeholder))
                     .apply(RequestOptions()
                             .transform(
                                     CenterCrop(),

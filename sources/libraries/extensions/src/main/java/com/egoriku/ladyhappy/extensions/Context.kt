@@ -7,14 +7,21 @@ import android.graphics.ImageDecoder
 import android.net.Uri
 import android.os.Build
 import android.provider.MediaStore
+import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import android.view.inputmethod.InputMethodManager
+import androidx.annotation.AttrRes
 import androidx.annotation.ColorRes
 import androidx.annotation.DrawableRes
 import androidx.annotation.LayoutRes
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.content.ContextCompat
+
+fun Context.colorAttribute(@AttrRes attribute: Int) = TypedValue().let {
+    theme.resolveAttribute(attribute, it, true)
+    it.data
+}
 
 fun Context.colorCompat(@ColorRes colorInt: Int) = ContextCompat.getColor(this, colorInt)
 

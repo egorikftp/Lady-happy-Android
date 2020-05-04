@@ -6,6 +6,7 @@ buildscript {
         jcenter()
         mavenCentral()
         maven(url = "https://maven.fabric.io/public")
+        maven(url = "https://jitpack.io")
     }
 
     dependencies {

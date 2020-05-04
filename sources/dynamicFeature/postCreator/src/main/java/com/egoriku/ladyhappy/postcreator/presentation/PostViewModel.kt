@@ -6,6 +6,7 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.egoriku.ladyhappy.postcreator.domain.model.ImageItem
+import com.egoriku.ladyhappy.postcreator.domain.predefined.CategoryModel
 
 class PostViewModel(
         androidApplication: Application
@@ -34,5 +35,9 @@ class PostViewModel(
         images.remove(item)
 
         _images.value = images
+    }
+
+    fun updateCategory(category: CategoryModel) {
+
     }
 }

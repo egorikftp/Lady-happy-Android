@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/RealWhite"
+    android:background="?attr/android:colorBackground"
     android:clickable="false">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -28,6 +28,7 @@
             android:layout_marginLeft="@dimen/material_padding_16"
             android:layout_marginTop="@dimen/material_padding_16"
             android:text="Добавьте фотографии"
+            android:textColor="?attr/colorOnSurface"
             android:textSize="15sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/postToolbar"
@@ -53,8 +54,7 @@
             app:layout_constraintBottom_toBottomOf="@+id/icon"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/icon"
-            tools:text="0 из 9"
-            tools:textColor="@color/RealBlack" />
+            tools:text="0 из 9" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/postImagesRecycler"
@@ -83,7 +83,7 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/materialTextView"
+            android:id="@+id/chooseCategory"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/material_padding_16"
@@ -97,6 +97,21 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/postTitleInput" />
 
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/chooseSubCategory"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/material_padding_16"
+            android:layout_marginTop="@dimen/material_padding_16"
+            android:layout_marginEnd="@dimen/material_padding_16"
+            android:paddingTop="@dimen/material_padding_16"
+            android:paddingBottom="@dimen/material_padding_16"
+            android:text="Подкатегория"
+            app:drawableEndCompat="@drawable/ic_arrow_right"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/chooseCategory" />
+
         <com.google.android.material.button.MaterialButton
             android:id="@+id/postPublishButton"
             style="@style/Widget.MaterialComponents.Button"
@@ -108,7 +123,8 @@
             android:text="Опубликовать запись"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/materialTextView" />
+            app:layout_constraintTop_toBottomOf="@+id/chooseSubCategory"
+            app:layout_constraintWidth_min="150dp" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>

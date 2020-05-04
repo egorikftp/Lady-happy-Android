@@ -1,12 +1,11 @@
 package com.egoriku.ladyhappy.catalog.subcategory.presentation.fragment
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.observe
 import androidx.recyclerview.widget.LinearLayoutManager
+import by.kirich1409.viewbindingdelegate.viewBinding
 import com.egoriku.ladyhappy.catalog.R
 import com.egoriku.ladyhappy.catalog.databinding.FragmentCatalogBinding
 import com.egoriku.ladyhappy.catalog.subcategory.presentation.SubCategoriesViewModel
@@ -14,7 +13,6 @@ import com.egoriku.ladyhappy.catalog.subcategory.presentation.SubcategoryScreenS
 import com.egoriku.ladyhappy.catalog.subcategory.presentation.SubcategoryScreenState.Success
 import com.egoriku.ladyhappy.catalog.subcategory.presentation.adapter.controller.CatalogController
 import com.egoriku.ladyhappy.extensions.toast
-import com.egoriku.ladyhappy.extensions.viewBindingLifecycle
 import com.egoriku.ui.decorator.MarginItemDecoration
 import org.koin.androidx.scope.lifecycleScope
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -25,9 +23,9 @@ import kotlin.properties.Delegates
 
 const val ARGUMENT_SUBCATEGORY = "sub_category"
 
-class SubcategoryFragment : Fragment() {
+class SubcategoryFragment : Fragment(R.layout.fragment_catalog) {
 
-    private var binding: FragmentCatalogBinding by viewBindingLifecycle()
+    private val binding: FragmentCatalogBinding by viewBinding()
 
     private val catalogViewModel: SubCategoriesViewModel by viewModel {
         parametersOf(
@@ -40,13 +38,6 @@ class SubcategoryFragment : Fragment() {
 
     private val catalogAdapter = EasyAdapter().apply {
         setFirstInvisibleItemEnabled(false)
-    }
-
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        FragmentCatalogBinding.inflate(inflater, container, false).apply {
-            binding = this
-            return root
-        }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

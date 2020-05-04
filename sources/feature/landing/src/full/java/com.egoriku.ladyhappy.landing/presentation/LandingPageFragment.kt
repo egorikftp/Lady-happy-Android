@@ -1,15 +1,17 @@
 package com.egoriku.ladyhappy.landing.presentation
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import by.kirich1409.viewbindingdelegate.viewBinding
 import com.egoriku.core.di.findDependencies
 import com.egoriku.ladyhappy.arch.fragment.BaseInjectableFragment
-import com.egoriku.ladyhappy.extensions.*
+import com.egoriku.ladyhappy.extensions.browseUrl
+import com.egoriku.ladyhappy.extensions.gone
+import com.egoriku.ladyhappy.extensions.injectViewModel
+import com.egoriku.ladyhappy.extensions.visible
 import com.egoriku.ladyhappy.landing.R
 import com.egoriku.ladyhappy.landing.common.parallax.ParallaxScrollListener
 import com.egoriku.ladyhappy.landing.databinding.FragmentLandingBinding
@@ -20,13 +22,13 @@ import ru.surfstudio.android.easyadapter.EasyAdapter
 import ru.surfstudio.android.easyadapter.ItemList
 import javax.inject.Inject
 
-class LandingPageFragment : BaseInjectableFragment(0) {
+class LandingPageFragment : BaseInjectableFragment(R.layout.fragment_landing) {
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
 
     private lateinit var landingViewModel: LandingViewModel
-    private var binding: FragmentLandingBinding by viewBindingLifecycle()
+    private val binding: FragmentLandingBinding by viewBinding()
 
     private var parallaxScrollListener: ParallaxScrollListener? = null
 
@@ -42,13 +44,6 @@ class LandingPageFragment : BaseInjectableFragment(0) {
     private lateinit var sectionsHeaderController: SectionsHeaderController
 
     override fun injectDependencies() = LandingFragmentComponent.init(findDependencies()).inject(this)
-
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        FragmentLandingBinding.inflate(inflater, container, false).apply {
-            binding = this
-            return root
-        }
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
