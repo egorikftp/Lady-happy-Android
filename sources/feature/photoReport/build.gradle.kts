@@ -50,7 +50,8 @@ withLibraries(
         Libs.coroutinesAndroid,
         Libs.firebaseFirestoreKtx,
         Libs.pageIndicator,
-        Libs.recyclerView
+        Libs.recyclerView,
+        Libs.viewBindingDelegates
 )
 
 withKapt(

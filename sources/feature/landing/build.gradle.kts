@@ -50,6 +50,7 @@ withLibraries(
         Libs.firebaseFirestoreKtx,
         Libs.material,
         Libs.recyclerView,
+        Libs.viewBindingDelegates,
         Libs.viewModelKtx
 )
 

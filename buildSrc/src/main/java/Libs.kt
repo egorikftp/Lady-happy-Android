@@ -35,6 +35,7 @@ object Libs {
     const val playCore = "com.google.android.play:core:${LibrariesVersion.playCore}"
     const val recyclerView = "androidx.recyclerview:recyclerview:${LibrariesVersion.recyclerView}"
     const val vectorDrawable = "androidx.vectordrawable:vectordrawable:${LibrariesVersion.vectorDrawable}"
+    const val viewBindingDelegates = "com.github.kirich1409:ViewBindingPropertyDelegate:${LibrariesVersion.viewBindingDelegates}"
     const val viewModelKtx = "androidx.lifecycle:lifecycle-viewmodel-ktx:${LibrariesVersion.lifecycle}"
     const val viewPager2 = "androidx.viewpager2:viewpager2:${LibrariesVersion.viewPager2}"
 }

@@ -1,19 +1,18 @@
 package com.egoriku.photoreport.presentation
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import by.kirich1409.viewbindingdelegate.viewBinding
 import com.egoriku.core.di.findDependencies
 import com.egoriku.ladyhappy.arch.fragment.BaseInjectableFragment
 import com.egoriku.ladyhappy.extensions.gone
 import com.egoriku.ladyhappy.extensions.injectViewModel
-import com.egoriku.ladyhappy.extensions.viewBindingLifecycle
 import com.egoriku.ladyhappy.extensions.visible
+import com.egoriku.photoreport.R
 import com.egoriku.photoreport.databinding.FragmentPhotoReportBinding
 import com.egoriku.photoreport.di.PhotoReportFragmentComponent
 import com.egoriku.photoreport.presentation.controller.PhotoReportCarouselController
@@ -23,13 +22,14 @@ import ru.surfstudio.android.easyadapter.EasyAdapter
 import ru.surfstudio.android.easyadapter.ItemList
 import javax.inject.Inject
 
-class PhotoReportFragment : BaseInjectableFragment(0) {
+class PhotoReportFragment : BaseInjectableFragment(R.layout.fragment_photo_report) {
+
+    private val binding: FragmentPhotoReportBinding by viewBinding()
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
 
     private lateinit var viewModel: PhotoReportViewModel
-    private var binding: FragmentPhotoReportBinding by viewBindingLifecycle()
 
     private lateinit var noDataController: NoDataController
     private lateinit var photoReportHeaderController: PhotoReportHeaderController
@@ -38,13 +38,6 @@ class PhotoReportFragment : BaseInjectableFragment(0) {
     private val photoReportAdapter = EasyAdapter()
 
     override fun injectDependencies() = PhotoReportFragmentComponent.init(findDependencies()).inject(this)
-
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        FragmentPhotoReportBinding.inflate(inflater, container, false).apply {
-            binding = this
-            return root
-        }
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         viewModel = injectViewModel(viewModelFactory)
