@@ -1,6 +1,8 @@
 package com.egoriku.mainscreen.presentation
 
+import android.app.Activity
 import android.content.Context
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import androidx.annotation.IdRes
@@ -19,7 +21,9 @@ import com.egoriku.mainscreen.databinding.ActivityMainBinding
 import com.egoriku.mainscreen.di.MainActivityComponent
 import com.egoriku.mainscreen.presentation.dynamicfeature.DynamicFeatureViewModel
 import com.egoriku.mainscreen.presentation.inAppUpdates.InAppUpdate
+import com.egoriku.mainscreen.presentation.inAppUpdates.UPDATE_FLEXIBLE_REQUEST_CODE
 import com.egoriku.mainscreen.presentation.screen.*
+import com.google.android.play.core.install.model.ActivityResult
 import com.google.android.play.core.splitcompat.SplitCompat
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -89,6 +93,17 @@ class MainActivity : BaseActivity(R.layout.activity_main), IDynamicFeatureConnec
                 false -> toast("error")
             }
         })
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == UPDATE_FLEXIBLE_REQUEST_CODE) {
+            when (resultCode) {
+                Activity.RESULT_OK -> logDm("onActivityResult ok")
+                Activity.RESULT_CANCELED -> logDm("onActivityResult cancel")
+                ActivityResult.RESULT_IN_APP_UPDATE_FAILED -> logDm("onActivityResult failed")
+            }
+        }
     }
 
     override fun onResume() {
