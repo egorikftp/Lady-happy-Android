@@ -24,5 +24,6 @@ withLibraries(
         Libs.koinViewModel,
         Libs.liveDataKtx,
         Libs.material,
+        Libs.viewBindingDelegates,
         Libs.viewModelKtx
 )

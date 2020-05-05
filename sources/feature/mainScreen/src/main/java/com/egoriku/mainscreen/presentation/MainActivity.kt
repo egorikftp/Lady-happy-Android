@@ -6,6 +6,7 @@ import android.os.Bundle
 import androidx.annotation.IdRes
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import by.kirich1409.viewbindingdelegate.viewBinding
 import com.egoriku.core.connector.IDynamicFeatureConnector
 import com.egoriku.core.di.findDependencies
 import com.egoriku.core.di.utils.INavigationHolder
@@ -24,9 +25,9 @@ import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import javax.inject.Inject
 
-class MainActivity : BaseActivity(), IDynamicFeatureConnector {
+class MainActivity : BaseActivity(R.layout.activity_main), IDynamicFeatureConnector {
 
-    private lateinit var binding: ActivityMainBinding
+    private val binding: ActivityMainBinding by viewBinding(R.id.contentFullScreen)
 
     private val featureProvider: IFeatureProvider by inject()
     private val inAppUpdate: InAppUpdate by inject()
@@ -44,7 +45,6 @@ class MainActivity : BaseActivity(), IDynamicFeatureConnector {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         inAppUpdate.init(this)

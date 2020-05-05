@@ -25,7 +25,8 @@ withLibraries(
         Libs.koinAndroidExperimental,
         Libs.liveDataKtx,
         Libs.material,
-        Libs.playCore
+        Libs.playCore,
+        Libs.viewBindingDelegates
 )
 
 withKapt(Libs.dagger andKapt Libs.daggerCompiler)

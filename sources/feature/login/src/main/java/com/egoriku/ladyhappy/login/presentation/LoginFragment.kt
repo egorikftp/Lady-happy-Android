@@ -6,11 +6,10 @@ import android.text.*
 import android.text.Annotation
 import android.text.method.LinkMovementMethod
 import android.text.style.ForegroundColorSpan
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.observe
+import by.kirich1409.viewbindingdelegate.viewBinding
 import com.egoriku.ladyhappy.extensions.*
 import com.egoriku.ladyhappy.login.R
 import com.egoriku.ladyhappy.login.databinding.FragmentLoginBinding
@@ -19,19 +18,11 @@ import com.egoriku.ladyhappy.login.presentation.util.validateEmail
 import com.egoriku.ladyhappy.login.presentation.util.validatePassword
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class LoginFragment : Fragment() {
+class LoginFragment : Fragment(R.layout.fragment_login) {
+
+    private val binding: FragmentLoginBinding by viewBinding()
 
     private val viewModel: LoginViewModel by viewModel()
-
-    private var binding: FragmentLoginBinding by viewBindingLifecycle()
-
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        FragmentLoginBinding.inflate(inflater, container, false).apply {
-            binding = this
-
-            return root
-        }
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
