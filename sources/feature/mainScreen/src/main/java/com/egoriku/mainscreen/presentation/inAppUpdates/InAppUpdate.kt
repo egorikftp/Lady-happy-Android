@@ -59,15 +59,6 @@ class InAppUpdate(
             when (appUpdateInfo.updateAvailability()) {
                 UpdateAvailability.UPDATE_AVAILABLE -> {
                     when {
-                        appUpdateInfo.isUpdateTypeAllowed(AppUpdateType.IMMEDIATE) -> {
-                            logDm("AppUpdateType.IMMEDIATE")
-                            appUpdateManager.startUpdateFlowForResult(
-                                    appUpdateInfo,
-                                    AppUpdateType.IMMEDIATE,
-                                    activity,
-                                    UPDATE_IMMEDIATE_REQUEST_CODE
-                            )
-                        }
                         appUpdateInfo.isUpdateTypeAllowed(AppUpdateType.FLEXIBLE) -> {
                             logDm("AppUpdateType.FLEXIBLE")
                             appUpdateManager.registerListener(installStateUpdatedListener)
