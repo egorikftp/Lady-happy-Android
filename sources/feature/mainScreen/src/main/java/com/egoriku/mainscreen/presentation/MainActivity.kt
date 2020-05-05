@@ -24,15 +24,17 @@ import com.google.android.play.core.splitcompat.SplitCompat
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import javax.inject.Inject
+import kotlin.properties.Delegates
 
 class MainActivity : BaseActivity(R.layout.activity_main), IDynamicFeatureConnector {
 
     private val binding: ActivityMainBinding by viewBinding(R.id.contentFullScreen)
 
     private val featureProvider: IFeatureProvider by inject()
-    private val inAppUpdate: InAppUpdate by inject()
     private val navigatorHolder: INavigationHolder by inject()
     private val dynamicFeatureViewModel: DynamicFeatureViewModel by viewModel()
+
+    private var inAppUpdate: InAppUpdate by Delegates.notNull()
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
@@ -47,7 +49,10 @@ class MainActivity : BaseActivity(R.layout.activity_main), IDynamicFeatureConnec
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        inAppUpdate.init(this)
+        inAppUpdate = InAppUpdate(
+                activity = this,
+                parentView = binding.bottomNavigation
+        )
 
         if (!hasM()) {
             window.statusBarColor = Color.BLACK
@@ -96,9 +101,7 @@ class MainActivity : BaseActivity(R.layout.activity_main), IDynamicFeatureConnec
         super.onPause()
     }
 
-    override fun onBackPressed() {
-        viewModel.onBackPressed()
-    }
+    override fun onBackPressed() = viewModel.onBackPressed()
 
     override fun onSaveInstanceState(outState: Bundle) {
         outState.putInt(KEY_SELECTED_MENU_ITEM, binding.bottomNavigation.selectedItemId)

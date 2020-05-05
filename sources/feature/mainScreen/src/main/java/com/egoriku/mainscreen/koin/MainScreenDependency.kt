@@ -10,8 +10,4 @@ val mainActivityModule = module {
     viewModel {
         DynamicFeatureViewModel(androidApplication())
     }
-
-    single {
-        InAppUpdate(androidApplication())
-    }
 }
