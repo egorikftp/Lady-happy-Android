@@ -74,3 +74,8 @@
 -keepclassmembernames class kotlinx.** {
     volatile <fields>;
 }
+
+#Temp fix
+-keep class * implements androidx.viewbinding.ViewBinding {
+     public static *** bind(android.view.View);
+}
