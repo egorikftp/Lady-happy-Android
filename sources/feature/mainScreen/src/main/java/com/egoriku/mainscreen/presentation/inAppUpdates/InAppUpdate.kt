@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.OnLifecycleEvent
+import com.egoriku.ladyhappy.extensions.logDm
 import com.egoriku.mainscreen.R
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.play.core.appupdate.AppUpdateManagerFactory
@@ -29,8 +30,12 @@ class InAppUpdate(
 
     private var installStateUpdatedListener: InstallStateUpdatedListener = InstallStateUpdatedListener { installState ->
         when (installState.installStatus()) {
-            InstallStatus.DOWNLOADED -> showDownloadFinishedSnackBar()
+            InstallStatus.DOWNLOADED -> {
+                logDm("InstallStatus.DOWNLOADED")
+                showDownloadFinishedSnackBar()
+            }
             InstallStatus.FAILED -> {
+                logDm("InstallStatus.DOWNLOADED")
                 Snackbar.make(
                         parentView,
                         activity.getString(R.string.in_app_update_download_failed),
@@ -55,6 +60,7 @@ class InAppUpdate(
                 UpdateAvailability.UPDATE_AVAILABLE -> {
                     when {
                         appUpdateInfo.isUpdateTypeAllowed(AppUpdateType.IMMEDIATE) -> {
+                            logDm("AppUpdateType.IMMEDIATE")
                             appUpdateManager.startUpdateFlowForResult(
                                     appUpdateInfo,
                                     AppUpdateType.IMMEDIATE,
@@ -63,6 +69,7 @@ class InAppUpdate(
                             )
                         }
                         appUpdateInfo.isUpdateTypeAllowed(AppUpdateType.FLEXIBLE) -> {
+                            logDm("AppUpdateType.FLEXIBLE")
                             appUpdateManager.registerListener(installStateUpdatedListener)
 
                             appUpdateManager.startUpdateFlowForResult(
@@ -75,6 +82,8 @@ class InAppUpdate(
                     }
                 }
             }
+        }.addOnFailureListener {
+            logDm("addOnFailureListener $it")
         }
     }
 
@@ -86,6 +95,7 @@ class InAppUpdate(
             when (appUpdateInfo.updateAvailability()) {
                 UpdateAvailability.UPDATE_AVAILABLE -> {
                     if (appUpdateInfo.isUpdateTypeAllowed(AppUpdateType.FLEXIBLE)) {
+                        logDm("AppUpdateType.FLEXIBLE 1")
                         if (appUpdateInfo.installStatus() == InstallStatus.DOWNLOADED) {
                             showDownloadFinishedSnackBar()
                         }
@@ -93,6 +103,7 @@ class InAppUpdate(
                 }
 
                 UpdateAvailability.DEVELOPER_TRIGGERED_UPDATE_IN_PROGRESS -> {
+                    logDm("DEVELOPER_TRIGGERED_UPDATE_IN_PROGRESS")
                     if (appUpdateInfo.isUpdateTypeAllowed(AppUpdateType.IMMEDIATE)) {
                         appUpdateManager.startUpdateFlowForResult(
                                 appUpdateInfo,
