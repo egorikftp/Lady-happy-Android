@@ -14,7 +14,6 @@ import com.google.android.play.core.install.model.AppUpdateType
 import com.google.android.play.core.install.model.InstallStatus
 import com.google.android.play.core.install.model.UpdateAvailability
 
-const val UPDATE_IMMEDIATE_REQUEST_CODE = 4502
 const val UPDATE_FLEXIBLE_REQUEST_CODE = 6708
 
 class InAppUpdate(
@@ -95,12 +94,12 @@ class InAppUpdate(
 
                 UpdateAvailability.DEVELOPER_TRIGGERED_UPDATE_IN_PROGRESS -> {
                     logDm("DEVELOPER_TRIGGERED_UPDATE_IN_PROGRESS")
-                    if (appUpdateInfo.isUpdateTypeAllowed(AppUpdateType.IMMEDIATE)) {
+                    if (appUpdateInfo.isUpdateTypeAllowed(AppUpdateType.FLEXIBLE)) {
                         appUpdateManager.startUpdateFlowForResult(
                                 appUpdateInfo,
-                                AppUpdateType.IMMEDIATE,
+                                AppUpdateType.FLEXIBLE,
                                 activity,
-                                UPDATE_IMMEDIATE_REQUEST_CODE
+                                UPDATE_FLEXIBLE_REQUEST_CODE
                         )
                     }
                 }
