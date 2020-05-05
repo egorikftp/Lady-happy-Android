@@ -58,6 +58,7 @@ withLibraries(
         Libs.liveDataKtx,
         Libs.material,
         Libs.recyclerView,
+        Libs.viewBindingDelegates,
         Libs.viewModelKtx,
         Libs.viewPager2
 )

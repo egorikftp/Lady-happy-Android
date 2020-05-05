@@ -1,12 +1,12 @@
 package com.egoriku.ladyhappy.catalog.root.presentation.fragment
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.observe
 import androidx.viewpager2.adapter.FragmentStateAdapter
+import by.kirich1409.viewbindingdelegate.viewBinding
+import com.egoriku.ladyhappy.catalog.R
 import com.egoriku.ladyhappy.catalog.databinding.FragmentRootCatalogBinding
 import com.egoriku.ladyhappy.catalog.root.domain.model.TabItem
 import com.egoriku.ladyhappy.catalog.root.presentation.RootCatalogViewModel
@@ -14,28 +14,20 @@ import com.egoriku.ladyhappy.catalog.root.presentation.RootScreenModel
 import com.egoriku.ladyhappy.catalog.root.presentation.adapter.CatalogViewPagerAdapter
 import com.egoriku.ladyhappy.extensions.gone
 import com.egoriku.ladyhappy.extensions.toast
-import com.egoriku.ladyhappy.extensions.viewBindingLifecycle
 import com.egoriku.ladyhappy.extensions.visible
 import com.google.android.material.tabs.TabLayoutMediator
 import org.koin.androidx.scope.lifecycleScope
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
 
-class RootCatalogFragment : Fragment() {
+class RootCatalogFragment : Fragment(R.layout.fragment_root_catalog) {
 
-    private var binding: FragmentRootCatalogBinding by viewBindingLifecycle()
+    private val binding: FragmentRootCatalogBinding by viewBinding()
 
     private lateinit var catalogViewPagerAdapter: FragmentStateAdapter
 
     private val rootCatalogViewModel: RootCatalogViewModel by viewModel {
         parametersOf(lifecycleScope.id)
-    }
-
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        FragmentRootCatalogBinding.inflate(inflater, container, false).apply {
-            binding = this
-            return root
-        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

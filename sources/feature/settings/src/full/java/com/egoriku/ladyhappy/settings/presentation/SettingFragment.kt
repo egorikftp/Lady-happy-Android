@@ -2,9 +2,7 @@ package com.egoriku.ladyhappy.settings.presentation
 
 import android.content.Context
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.annotation.StringRes
 import androidx.browser.customtabs.CustomTabsIntent
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -14,10 +12,10 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.observe
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.MergeAdapter
+import by.kirich1409.viewbindingdelegate.viewBinding
 import com.egoriku.core.connector.IDynamicFeatureConnector
 import com.egoriku.core.feature.IFeatureProvider
 import com.egoriku.ladyhappy.extensions.colorCompat
-import com.egoriku.ladyhappy.extensions.viewBindingLifecycle
 import com.egoriku.ladyhappy.settings.R
 import com.egoriku.ladyhappy.settings.databinding.FragmentSettingsBinding
 import com.egoriku.ladyhappy.settings.domain.model.Feature
@@ -32,9 +30,9 @@ import org.koin.androidx.scope.lifecycleScope
 import org.koin.androidx.viewmodel.scope.viewModel
 import kotlin.properties.Delegates
 
-class SettingFragment : Fragment() {
+class SettingFragment : Fragment(R.layout.fragment_settings) {
 
-    private var binding: FragmentSettingsBinding by viewBindingLifecycle()
+    private val binding: FragmentSettingsBinding by viewBinding()
 
     private val viewModel: SettingsViewModel by lifecycleScope.viewModel(this)
     private val featureProvider: IFeatureProvider by inject()
@@ -45,13 +43,6 @@ class SettingFragment : Fragment() {
     private var availableFeaturesAdapter: AvailableFeaturesAdapter by Delegates.notNull()
 
     private var dynamicFeatureConnector: IDynamicFeatureConnector? = null
-
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        FragmentSettingsBinding.inflate(inflater, container, false).apply {
-            binding = this
-            return root
-        }
-    }
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
