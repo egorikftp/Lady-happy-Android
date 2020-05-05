@@ -4,6 +4,7 @@ import com.egoriku.ladyhappy.Application
 import com.egoriku.ladyhappy.BuildConfig
 import com.egoriku.ladyhappy.R
 import com.pandulapeter.beagle.Beagle
+import com.pandulapeter.beagleCore.configuration.Behavior
 import com.pandulapeter.beagleCore.configuration.Trick
 import leakcanary.LeakCanary
 
@@ -12,7 +13,12 @@ class BeagleDebugMenuInitializer {
     fun initWith(application: Application) = with(application) {
         registerActivityLifecycleCallbacks(BeagleLifecycleListener())
 
-        Beagle.imprint(this)
+        Beagle.imprint(
+                application = this,
+                behavior = Behavior(
+                        packageName = "com.egoriku"
+                )
+        )
         Beagle.learn(
                 Trick.Text(
                         id = "stub",

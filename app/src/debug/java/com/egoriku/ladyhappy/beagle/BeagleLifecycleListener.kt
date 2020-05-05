@@ -57,8 +57,9 @@ class BeagleLifecycleListener : SimpleActivityLifecycleCallbacks(), KoinComponen
     override fun onActivityResumed(activity: Activity) {
         logDm("onActivityCreated ${activity::class.java.simpleName}")
 
-        (activity as FragmentActivity)
-                .supportFragmentManager
-                .registerFragmentLifecycleCallbacks(fragmentLifecycleCallbacks, false)
+        if (activity is FragmentActivity) {
+            activity.supportFragmentManager
+                    .registerFragmentLifecycleCallbacks(fragmentLifecycleCallbacks, false)
+        }
     }
 }
