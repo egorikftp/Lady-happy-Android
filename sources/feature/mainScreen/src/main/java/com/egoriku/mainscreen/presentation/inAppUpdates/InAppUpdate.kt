@@ -92,7 +92,7 @@ class InAppUpdate(
                     }
                 }
 
-                UpdateAvailability.DEVELOPER_TRIGGERED_UPDATE_IN_PROGRESS -> {
+               /* UpdateAvailability.DEVELOPER_TRIGGERED_UPDATE_IN_PROGRESS -> {
                     logDm("DEVELOPER_TRIGGERED_UPDATE_IN_PROGRESS")
                     if (appUpdateInfo.isUpdateTypeAllowed(AppUpdateType.FLEXIBLE)) {
                         appUpdateManager.startUpdateFlowForResult(
@@ -102,7 +102,7 @@ class InAppUpdate(
                                 UPDATE_FLEXIBLE_REQUEST_CODE
                         )
                     }
-                }
+                }*/
             }
         }
     }
@@ -118,6 +118,8 @@ class InAppUpdate(
         ).apply {
             anchorView = parentView
             setAction(activity.getString(R.string.in_app_update_restart)) {
+                unsubscribe()
+
                 appUpdateManager.completeUpdate()
             }
             show()
