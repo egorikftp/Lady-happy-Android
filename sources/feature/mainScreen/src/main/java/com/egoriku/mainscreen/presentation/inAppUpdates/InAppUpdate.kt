@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.egoriku.ladyhappy.extensions.Event
 import com.egoriku.ladyhappy.extensions.logDm
 import com.egoriku.mainscreen.presentation.inAppUpdates.InAppUpdateState.*
 import com.google.android.play.core.appupdate.AppUpdateInfo
@@ -24,21 +25,21 @@ sealed class InAppUpdateState {
 class InAppUpdate(context: Context) {
 
     private val appUpdateManager = AppUpdateManagerFactory.create(context)
-    private val _status = MutableLiveData<InAppUpdateState>()
+    private val _status = MutableLiveData<Event<InAppUpdateState>>()
 
     private var updateInfo: AppUpdateInfo? = null
 
-    val status: LiveData<InAppUpdateState> = _status
+    val status: LiveData<Event<InAppUpdateState>> = _status
 
     private val installStateUpdatedListener: InstallStateUpdatedListener = InstallStateUpdatedListener { installState ->
         when (installState.installStatus()) {
             InstallStatus.DOWNLOADED -> {
                 logDm("InstallStatus.DOWNLOADED")
-                _status.value = Downloaded
+                _status.value = Event(Downloaded)
             }
             InstallStatus.FAILED -> {
                 logDm("InstallStatus.FAILED")
-                _status.value = OnFailed
+                _status.value = Event(OnFailed)
             }
             InstallStatus.CANCELED -> {
                 logDm("InstallStatus.CANCELED")
@@ -76,7 +77,7 @@ class InAppUpdate(context: Context) {
                                     logDm("AppUpdateType.FLEXIBLE")
                                     appUpdateManager.registerListener(installStateUpdatedListener)
 
-                                    _status.value = RequestFlowUpdate
+                                    _status.value = Event(RequestFlowUpdate)
                                 }
                             }
                         }
@@ -109,7 +110,7 @@ class InAppUpdate(context: Context) {
                             if (appUpdateInfo.isUpdateTypeAllowed(AppUpdateType.FLEXIBLE)) {
                                 if (appUpdateInfo.installStatus() == InstallStatus.DOWNLOADED) {
                                     logDm("ON_RESUME: InstallStatus.DOWNLOADED")
-                                    _status.value = Downloaded
+                                    _status.value = Event(Downloaded)
                                 }
                             }
                         }
@@ -130,6 +131,7 @@ class InAppUpdate(context: Context) {
     fun startUpdateFlow(activity: Activity) {
         logDm("startUpdateFlow")
         updateInfo ?: return
+        logDm("startUpdateFlow 1")
 
         appUpdateManager.startUpdateFlowForResult(
                 updateInfo,

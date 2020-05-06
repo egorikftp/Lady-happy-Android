@@ -8,7 +8,6 @@ import android.os.Bundle
 import androidx.annotation.IdRes
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.observe
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.egoriku.core.connector.IDynamicFeatureConnector
 import com.egoriku.core.di.findDependencies
@@ -147,7 +146,7 @@ class MainActivity : BaseActivity(R.layout.activity_main), IDynamicFeatureConnec
     private fun initInAppUpdate() {
         inAppUpdate.init()
 
-        inAppUpdate.status.observe(this) { status ->
+        inAppUpdate.status.observe(this, EventObserver { status ->
             when (status) {
                 is OnFailed -> {
                     Snackbar.make(
@@ -180,7 +179,7 @@ class MainActivity : BaseActivity(R.layout.activity_main), IDynamicFeatureConnec
                     inAppUpdate.startUpdateFlow(this)
                 }
             }
-        }
+        })
     }
 
     companion object {
