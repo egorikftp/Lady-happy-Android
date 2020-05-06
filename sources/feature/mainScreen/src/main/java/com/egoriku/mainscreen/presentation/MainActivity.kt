@@ -176,7 +176,7 @@ class MainActivity : BaseActivity(R.layout.activity_main), IDynamicFeatureConnec
                     }
                 }
                 is RequestFlowUpdate -> {
-                    inAppUpdate.startUpdateFlow(this)
+                    inAppUpdate.startUpdateFlow(this, status.updateInfo)
                 }
             }
         })

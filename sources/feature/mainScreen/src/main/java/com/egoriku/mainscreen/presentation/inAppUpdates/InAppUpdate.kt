@@ -19,15 +19,13 @@ const val UPDATE_FLEXIBLE_REQUEST_CODE = 6708
 sealed class InAppUpdateState {
     object OnFailed : InAppUpdateState()
     object Downloaded : InAppUpdateState()
-    object RequestFlowUpdate : InAppUpdateState()
+    data class RequestFlowUpdate(val updateInfo: AppUpdateInfo) : InAppUpdateState()
 }
 
 class InAppUpdate(context: Context) {
 
     private val appUpdateManager = AppUpdateManagerFactory.create(context)
     private val _status = MutableLiveData<Event<InAppUpdateState>>()
-
-    private var updateInfo: AppUpdateInfo? = null
 
     val status: LiveData<Event<InAppUpdateState>> = _status
 
@@ -56,9 +54,6 @@ class InAppUpdate(context: Context) {
             InstallStatus.PENDING -> {
                 logDm("InstallStatus.PENDING")
             }
-            InstallStatus.REQUIRES_UI_INTENT -> {
-                logDm("InstallStatus.REQUIRES_UI_INTENT")
-            }
             InstallStatus.UNKNOWN -> {
                 logDm("InstallStatus.UNKNOWN")
             }
@@ -77,7 +72,7 @@ class InAppUpdate(context: Context) {
                                     logDm("AppUpdateType.FLEXIBLE")
                                     appUpdateManager.registerListener(installStateUpdatedListener)
 
-                                    _status.value = Event(RequestFlowUpdate)
+                                    _status.value = Event(RequestFlowUpdate(appUpdateInfo))
                                 }
                             }
                         }
@@ -102,8 +97,6 @@ class InAppUpdate(context: Context) {
 
         appUpdateManager.appUpdateInfo
                 .addOnSuccessListener { appUpdateInfo ->
-                    updateInfo = appUpdateInfo
-
                     when (appUpdateInfo.updateAvailability()) {
                         UpdateAvailability.UPDATE_AVAILABLE -> {
                             logDm("ON_RESUME: UpdateAvailability.UPDATE_AVAILABLE")
@@ -128,10 +121,8 @@ class InAppUpdate(context: Context) {
                 }
     }
 
-    fun startUpdateFlow(activity: Activity) {
+    fun startUpdateFlow(activity: Activity, updateInfo: AppUpdateInfo) {
         logDm("startUpdateFlow")
-        updateInfo ?: return
-        logDm("startUpdateFlow 1")
 
         appUpdateManager.startUpdateFlowForResult(
                 updateInfo,
