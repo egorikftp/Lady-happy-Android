@@ -47,6 +47,27 @@ class InAppUpdate(
                     show()
                 }
             }
+            InstallStatus.CANCELED -> {
+                logDm("InstallStatus.CANCELED")
+            }
+            InstallStatus.DOWNLOADING -> {
+                logDm("InstallStatus.DOWNLOADING")
+            }
+            InstallStatus.INSTALLED -> {
+                logDm("InstallStatus.INSTALLED")
+            }
+            InstallStatus.INSTALLING -> {
+                logDm("InstallStatus.INSTALLING")
+            }
+            InstallStatus.PENDING -> {
+                logDm("InstallStatus.PENDING")
+            }
+            InstallStatus.REQUIRES_UI_INTENT -> {
+                logDm("InstallStatus.REQUIRES_UI_INTENT")
+            }
+            InstallStatus.UNKNOWN -> {
+                logDm("InstallStatus.UNKNOWN")
+            }
         }
     }
 
@@ -57,6 +78,7 @@ class InAppUpdate(
         appUpdateInfoTask.addOnSuccessListener { appUpdateInfo ->
             when (appUpdateInfo.updateAvailability()) {
                 UpdateAvailability.UPDATE_AVAILABLE -> {
+                    logDm("ON_CREATE: UpdateAvailability.UPDATE_AVAILABLE")
                     when {
                         appUpdateInfo.isUpdateTypeAllowed(AppUpdateType.FLEXIBLE) -> {
                             logDm("AppUpdateType.FLEXIBLE")
@@ -71,6 +93,15 @@ class InAppUpdate(
                         }
                     }
                 }
+                UpdateAvailability.DEVELOPER_TRIGGERED_UPDATE_IN_PROGRESS -> {
+                    logDm("ON_CREATE: UpdateAvailability.DEVELOPER_TRIGGERED_UPDATE_IN_PROGRESS")
+                }
+                UpdateAvailability.UNKNOWN -> {
+                    logDm("ON_CREATE: UpdateAvailability.UNKNOWN")
+                }
+                UpdateAvailability.UPDATE_NOT_AVAILABLE -> {
+                    logDm("ON_CREATE: UpdateAvailability.UPDATE_NOT_AVAILABLE")
+                }
             }
         }.addOnFailureListener {
             logDm("addOnFailureListener $it")
@@ -79,32 +110,41 @@ class InAppUpdate(
 
     @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
     private fun checkStatus() {
-        val appUpdateInfoTask = appUpdateManager.appUpdateInfo
+        appUpdateManager.registerListener(installStateUpdatedListener)
 
-        appUpdateInfoTask.addOnSuccessListener { appUpdateInfo ->
-            when (appUpdateInfo.updateAvailability()) {
-                UpdateAvailability.UPDATE_AVAILABLE -> {
-                    if (appUpdateInfo.isUpdateTypeAllowed(AppUpdateType.FLEXIBLE)) {
-                        logDm("AppUpdateType.FLEXIBLE 1")
-                        if (appUpdateInfo.installStatus() == InstallStatus.DOWNLOADED) {
-                            showDownloadFinishedSnackBar()
+        appUpdateManager.appUpdateInfo
+                .addOnSuccessListener { appUpdateInfo ->
+                    when (appUpdateInfo.updateAvailability()) {
+                        UpdateAvailability.UPDATE_AVAILABLE -> {
+                            logDm("ON_RESUME: UpdateAvailability.UPDATE_AVAILABLE")
+                            if (appUpdateInfo.isUpdateTypeAllowed(AppUpdateType.FLEXIBLE)) {
+                                if (appUpdateInfo.installStatus() == InstallStatus.DOWNLOADED) {
+                                    logDm("ON_RESUME: InstallStatus.DOWNLOADED")
+                                    showDownloadFinishedSnackBar()
+                                }
+                            }
+                        }
+
+                        UpdateAvailability.DEVELOPER_TRIGGERED_UPDATE_IN_PROGRESS -> {
+                            logDm("ON_RESUME: UpdateAvailability.DEVELOPER_TRIGGERED_UPDATE_IN_PROGRESS")
+
+                            /*if (appUpdateInfo.isUpdateTypeAllowed(AppUpdateType.FLEXIBLE)) {
+                                appUpdateManager.startUpdateFlowForResult(
+                                        appUpdateInfo,
+                                        AppUpdateType.FLEXIBLE,
+                                        activity,
+                                        UPDATE_FLEXIBLE_REQUEST_CODE
+                                )
+                            }*/
+                        }
+                        UpdateAvailability.UNKNOWN -> {
+                            logDm("ON_RESUME: UpdateAvailability.UNKNOWN")
+                        }
+                        UpdateAvailability.UPDATE_NOT_AVAILABLE -> {
+                            logDm("ON_RESUME: UpdateAvailability.UPDATE_NOT_AVAILABLE")
                         }
                     }
                 }
-
-               /* UpdateAvailability.DEVELOPER_TRIGGERED_UPDATE_IN_PROGRESS -> {
-                    logDm("DEVELOPER_TRIGGERED_UPDATE_IN_PROGRESS")
-                    if (appUpdateInfo.isUpdateTypeAllowed(AppUpdateType.FLEXIBLE)) {
-                        appUpdateManager.startUpdateFlowForResult(
-                                appUpdateInfo,
-                                AppUpdateType.FLEXIBLE,
-                                activity,
-                                UPDATE_FLEXIBLE_REQUEST_CODE
-                        )
-                    }
-                }*/
-            }
-        }
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_PAUSE)

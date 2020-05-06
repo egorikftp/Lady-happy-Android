@@ -55,7 +55,6 @@
 
 -dontwarn com.crashlytics.**
 
-
 ### Coroutines
 # ServiceLoader support
 -keepnames class kotlinx.coroutines.internal.MainDispatcherFactory {}
@@ -64,9 +63,4 @@
 # Most of volatile fields are updated with AFU and should not be mangled
 -keepclassmembernames class kotlinx.** {
     volatile <fields>;
-}
-
-#Temp fix
--keep class * implements androidx.viewbinding.ViewBinding {
-     public static *** bind(android.view.View);
 }
