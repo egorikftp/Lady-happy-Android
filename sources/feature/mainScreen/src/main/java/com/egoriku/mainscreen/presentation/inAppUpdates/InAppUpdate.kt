@@ -1,13 +1,12 @@
 package com.egoriku.mainscreen.presentation.inAppUpdates
 
-import android.view.View
-import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.LifecycleObserver
-import androidx.lifecycle.OnLifecycleEvent
+import android.app.Activity
+import android.content.Context
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import com.egoriku.ladyhappy.extensions.logDm
-import com.egoriku.mainscreen.R
-import com.google.android.material.snackbar.Snackbar
+import com.egoriku.mainscreen.presentation.inAppUpdates.InAppUpdateState.*
+import com.google.android.play.core.appupdate.AppUpdateInfo
 import com.google.android.play.core.appupdate.AppUpdateManagerFactory
 import com.google.android.play.core.install.InstallStateUpdatedListener
 import com.google.android.play.core.install.model.AppUpdateType
@@ -16,36 +15,30 @@ import com.google.android.play.core.install.model.UpdateAvailability
 
 const val UPDATE_FLEXIBLE_REQUEST_CODE = 6708
 
-class InAppUpdate(
-        private val activity: AppCompatActivity,
-        private val parentView: View
-) : LifecycleObserver {
+sealed class InAppUpdateState {
+    object OnFailed : InAppUpdateState()
+    object Downloaded : InAppUpdateState()
+    object RequestFlowUpdate : InAppUpdateState()
+}
 
-    init {
-        activity.lifecycle.addObserver(this)
-    }
+class InAppUpdate(context: Context) {
 
-    private val appUpdateManager = AppUpdateManagerFactory.create(activity.applicationContext)
+    private val appUpdateManager = AppUpdateManagerFactory.create(context)
+    private val _status = MutableLiveData<InAppUpdateState>()
 
-    private var installStateUpdatedListener: InstallStateUpdatedListener = InstallStateUpdatedListener { installState ->
+    private var updateInfo: AppUpdateInfo? = null
+
+    val status: LiveData<InAppUpdateState> = _status
+
+    private val installStateUpdatedListener: InstallStateUpdatedListener = InstallStateUpdatedListener { installState ->
         when (installState.installStatus()) {
             InstallStatus.DOWNLOADED -> {
                 logDm("InstallStatus.DOWNLOADED")
-                showDownloadFinishedSnackBar()
+                _status.value = Downloaded
             }
             InstallStatus.FAILED -> {
-                logDm("InstallStatus.DOWNLOADED")
-                Snackbar.make(
-                        parentView,
-                        activity.getString(R.string.in_app_update_download_failed),
-                        Snackbar.LENGTH_LONG
-                ).apply {
-                    anchorView = parentView
-                    setAction(activity.getString(R.string.in_app_update_retry)) {
-                        init()
-                    }
-                    show()
-                }
+                logDm("InstallStatus.FAILED")
+                _status.value = OnFailed
             }
             InstallStatus.CANCELED -> {
                 logDm("InstallStatus.CANCELED")
@@ -71,71 +64,58 @@ class InAppUpdate(
         }
     }
 
-    @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
-    private fun init() {
-        val appUpdateInfoTask = appUpdateManager.appUpdateInfo
+    fun init() {
+        logDm("init")
+        appUpdateManager.appUpdateInfo
+                .addOnSuccessListener { appUpdateInfo ->
+                    when (appUpdateInfo.updateAvailability()) {
+                        UpdateAvailability.UPDATE_AVAILABLE -> {
+                            logDm("ON_CREATE: UpdateAvailability.UPDATE_AVAILABLE")
+                            when {
+                                appUpdateInfo.isUpdateTypeAllowed(AppUpdateType.FLEXIBLE) -> {
+                                    logDm("AppUpdateType.FLEXIBLE")
+                                    appUpdateManager.registerListener(installStateUpdatedListener)
 
-        appUpdateInfoTask.addOnSuccessListener { appUpdateInfo ->
-            when (appUpdateInfo.updateAvailability()) {
-                UpdateAvailability.UPDATE_AVAILABLE -> {
-                    logDm("ON_CREATE: UpdateAvailability.UPDATE_AVAILABLE")
-                    when {
-                        appUpdateInfo.isUpdateTypeAllowed(AppUpdateType.FLEXIBLE) -> {
-                            logDm("AppUpdateType.FLEXIBLE")
-                            appUpdateManager.registerListener(installStateUpdatedListener)
-
-                            appUpdateManager.startUpdateFlowForResult(
-                                    appUpdateInfo,
-                                    AppUpdateType.FLEXIBLE,
-                                    activity,
-                                    UPDATE_FLEXIBLE_REQUEST_CODE
-                            )
+                                    _status.value = RequestFlowUpdate
+                                }
+                            }
+                        }
+                        UpdateAvailability.DEVELOPER_TRIGGERED_UPDATE_IN_PROGRESS -> {
+                            logDm("ON_CREATE: UpdateAvailability.DEVELOPER_TRIGGERED_UPDATE_IN_PROGRESS")
+                        }
+                        UpdateAvailability.UNKNOWN -> {
+                            logDm("ON_CREATE: UpdateAvailability.UNKNOWN")
+                        }
+                        UpdateAvailability.UPDATE_NOT_AVAILABLE -> {
+                            logDm("ON_CREATE: UpdateAvailability.UPDATE_NOT_AVAILABLE")
                         }
                     }
+                }.addOnFailureListener {
+                    logDm("addOnFailureListener $it")
                 }
-                UpdateAvailability.DEVELOPER_TRIGGERED_UPDATE_IN_PROGRESS -> {
-                    logDm("ON_CREATE: UpdateAvailability.DEVELOPER_TRIGGERED_UPDATE_IN_PROGRESS")
-                }
-                UpdateAvailability.UNKNOWN -> {
-                    logDm("ON_CREATE: UpdateAvailability.UNKNOWN")
-                }
-                UpdateAvailability.UPDATE_NOT_AVAILABLE -> {
-                    logDm("ON_CREATE: UpdateAvailability.UPDATE_NOT_AVAILABLE")
-                }
-            }
-        }.addOnFailureListener {
-            logDm("addOnFailureListener $it")
-        }
     }
 
-    @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
-    private fun checkStatus() {
+    fun checkStatus() {
+        logDm("checkStatus")
         appUpdateManager.registerListener(installStateUpdatedListener)
 
         appUpdateManager.appUpdateInfo
                 .addOnSuccessListener { appUpdateInfo ->
+                    updateInfo = appUpdateInfo
+
                     when (appUpdateInfo.updateAvailability()) {
                         UpdateAvailability.UPDATE_AVAILABLE -> {
                             logDm("ON_RESUME: UpdateAvailability.UPDATE_AVAILABLE")
                             if (appUpdateInfo.isUpdateTypeAllowed(AppUpdateType.FLEXIBLE)) {
                                 if (appUpdateInfo.installStatus() == InstallStatus.DOWNLOADED) {
                                     logDm("ON_RESUME: InstallStatus.DOWNLOADED")
-                                    showDownloadFinishedSnackBar()
+                                    _status.value = Downloaded
                                 }
                             }
                         }
 
                         UpdateAvailability.DEVELOPER_TRIGGERED_UPDATE_IN_PROGRESS -> {
                             logDm("ON_RESUME: UpdateAvailability.DEVELOPER_TRIGGERED_UPDATE_IN_PROGRESS")
-
-                            /*if (appUpdateInfo.isUpdateTypeAllowed(AppUpdateType.FLEXIBLE)) {
-                                appUpdateManager.startUpdateFlowForResult(
-                                        appUpdateInfo,
-                                        AppUpdateType.FLEXIBLE,
-                                        activity,
-                                        UPDATE_FLEXIBLE_REQUEST_CODE
-                                )
-                            }*/
                         }
                         UpdateAvailability.UNKNOWN -> {
                             logDm("ON_RESUME: UpdateAvailability.UNKNOWN")
@@ -147,22 +127,26 @@ class InAppUpdate(
                 }
     }
 
-    @OnLifecycleEvent(Lifecycle.Event.ON_PAUSE)
-    fun unsubscribe() = appUpdateManager.unregisterListener(installStateUpdatedListener)
+    fun startUpdateFlow(activity: Activity) {
+        logDm("startUpdateFlow")
+        updateInfo ?: return
 
-    private fun showDownloadFinishedSnackBar() {
-        Snackbar.make(
-                parentView,
-                activity.getString(R.string.in_app_update_download_finished),
-                Snackbar.LENGTH_INDEFINITE
-        ).apply {
-            anchorView = parentView
-            setAction(activity.getString(R.string.in_app_update_restart)) {
-                unsubscribe()
+        appUpdateManager.startUpdateFlowForResult(
+                updateInfo,
+                AppUpdateType.FLEXIBLE,
+                activity,
+                UPDATE_FLEXIBLE_REQUEST_CODE
+        )
+    }
 
-                appUpdateManager.completeUpdate()
-            }
-            show()
-        }
+    fun unsubscribe() {
+        logDm("unsubscribe")
+        appUpdateManager.unregisterListener(installStateUpdatedListener)
+    }
+
+    fun completeUpdate() {
+        logDm("completeUpdate")
+        unsubscribe()
+        appUpdateManager.completeUpdate()
     }
 }
