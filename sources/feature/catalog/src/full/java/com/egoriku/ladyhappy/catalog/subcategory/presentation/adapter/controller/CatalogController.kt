@@ -48,7 +48,7 @@ internal class CatalogController(
         override fun bind(data: SubCategoryItem) {
             subCategoryItem = data
 
-            itemBinding.catalogTitle.text = data.itemName
+            itemBinding.catalogTitle.text = data.name
 
             Glide.with(itemView.context)
                     .asBitmap()
@@ -56,7 +56,7 @@ internal class CatalogController(
                     .placeholder(ColorDrawable(itemView.colorCompat(R.color.Placeholder)))
                     .into(itemBinding.catalogImage)
 
-            data.lastHats.forEachIndexed { index, s ->
+            /*data.lastHats.forEachIndexed { index, s ->
                 Glide.with(itemView.context)
                         .asBitmap()
                         .load(s)
@@ -71,7 +71,7 @@ internal class CatalogController(
                                         .apply(RequestOptions().transform(BlurTransformation(radius = 25f)))
                         )
                         .into(lastItemsViewIds[index])
-            }
+            }*/
         }
     }
 }

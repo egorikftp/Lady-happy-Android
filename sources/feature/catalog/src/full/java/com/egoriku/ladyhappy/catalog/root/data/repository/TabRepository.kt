@@ -12,6 +12,7 @@ class TabRepository(private val firebase: IFirebaseFirestore) {
     suspend fun load(): Result<List<TabEntity>> = withContext(Dispatchers.IO) {
         firebase.getFirebase()
                 .collection("categories")
+                .orderBy("id")
                 .awaitResult<TabEntity>()
     }
 }

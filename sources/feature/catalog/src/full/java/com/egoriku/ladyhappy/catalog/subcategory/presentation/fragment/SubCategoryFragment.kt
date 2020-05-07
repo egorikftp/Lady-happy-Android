@@ -13,7 +13,9 @@ import com.egoriku.ladyhappy.catalog.subcategory.presentation.SubcategoryScreenS
 import com.egoriku.ladyhappy.catalog.subcategory.presentation.SubcategoryScreenState.Success
 import com.egoriku.ladyhappy.catalog.subcategory.presentation.adapter.controller.CatalogController
 import com.egoriku.ladyhappy.catalog.subcategory.presentation.adapter.decorator.MarginItemDecoration
+import com.egoriku.ladyhappy.extensions.gone
 import com.egoriku.ladyhappy.extensions.toast
+import com.egoriku.ladyhappy.extensions.visible
 import org.koin.androidx.scope.lifecycleScope
 import org.koin.androidx.viewmodel.scope.viewModel
 import org.koin.core.parameter.parametersOf
@@ -41,7 +43,7 @@ class SubCategoryFragment : Fragment(R.layout.fragment_catalog) {
         super.onViewCreated(view, savedInstanceState)
 
         catalogController = CatalogController {
-            toast("Item ${it.itemName} was clicked")
+            toast("Item ${it.name} was clicked")
         }
 
         binding.catalogRecyclerView.apply {
@@ -58,14 +60,14 @@ class SubCategoryFragment : Fragment(R.layout.fragment_catalog) {
     private fun render(screenState: SubcategoryScreenState) {
         when (screenState) {
             is Success -> {
+                binding.noItemsView.gone()
                 catalogAdapter.setItems(
                         ItemList.create()
                                 .addAll(screenState.screenData, catalogController)
                 )
             }
-
             is Error -> {
-                //TODO handle error state
+                binding.noItemsView.visible()
             }
         }
     }

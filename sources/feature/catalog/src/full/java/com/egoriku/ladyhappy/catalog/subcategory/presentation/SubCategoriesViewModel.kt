@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.egoriku.ladyhappy.catalog.subcategory.domain.usecase.CatalogUseCase
+import com.egoriku.ladyhappy.extensions.logDm
 import com.egoriku.network.Result.Success
 import kotlinx.coroutines.launch
 
@@ -19,9 +20,15 @@ class SubCategoriesViewModel(
 
     init {
         viewModelScope.launch {
-            when (val result = catalogUseCase.loadSubCategories("documentId")) {
-                is Success -> _catalogItems.value = SubcategoryScreenState.Success(result.value)
-                is Error -> _catalogItems.value = SubcategoryScreenState.Error()
+            when (val result = catalogUseCase.loadSubCategories(categoryId)) {
+                is Success -> {
+                    logDm("Success ${result.value}")
+                    _catalogItems.value = SubcategoryScreenState.Success(result.value)
+                }
+                is Error -> {
+                    logDm("Error ${result.message}")
+                    _catalogItems.value = SubcategoryScreenState.Error
+                }
             }
         }
     }
