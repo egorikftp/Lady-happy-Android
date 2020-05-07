@@ -14,7 +14,7 @@ import com.google.android.play.core.install.model.AppUpdateType
 import com.google.android.play.core.install.model.InstallStatus
 import com.google.android.play.core.install.model.UpdateAvailability
 
-const val UPDATE_FLEXIBLE_REQUEST_CODE = 6708
+const val UPDATE_REQUEST_CODE = 6708
 
 sealed class InAppUpdateState {
     object OnFailed : InAppUpdateState()
@@ -60,7 +60,7 @@ class InAppUpdate(context: Context) {
         }
     }
 
-    fun init() {
+    fun checkForUpdates() {
         logDm("init")
         appUpdateManager.appUpdateInfo
                 .addOnSuccessListener { appUpdateInfo ->
@@ -70,14 +70,20 @@ class InAppUpdate(context: Context) {
                             when {
                                 appUpdateInfo.isUpdateTypeAllowed(AppUpdateType.FLEXIBLE) -> {
                                     logDm("AppUpdateType.FLEXIBLE")
-                                    appUpdateManager.registerListener(installStateUpdatedListener)
-
                                     _status.value = Event(RequestFlowUpdate(appUpdateInfo))
                                 }
                             }
                         }
                         UpdateAvailability.DEVELOPER_TRIGGERED_UPDATE_IN_PROGRESS -> {
                             logDm("ON_CREATE: UpdateAvailability.DEVELOPER_TRIGGERED_UPDATE_IN_PROGRESS")
+                            appUpdateManager.registerListener(installStateUpdatedListener)
+
+                            logDm("ON_CREATE: install status: ${appUpdateInfo.installStatus()}")
+
+                            if (appUpdateInfo.installStatus() == InstallStatus.DOWNLOADED) {
+                                logDm("ON_CREATE: UpdateAvailability.DEVELOPER_TRIGGERED_UPDATE_IN_PROGRESS - InstallStatus.DOWNLOADED")
+                                _status.value = Event(Downloaded)
+                            }
                         }
                         UpdateAvailability.UNKNOWN -> {
                             logDm("ON_CREATE: UpdateAvailability.UNKNOWN")
@@ -91,44 +97,14 @@ class InAppUpdate(context: Context) {
                 }
     }
 
-    fun checkStatus() {
-        logDm("checkStatus")
-        appUpdateManager.registerListener(installStateUpdatedListener)
-
-        appUpdateManager.appUpdateInfo
-                .addOnSuccessListener { appUpdateInfo ->
-                    when (appUpdateInfo.updateAvailability()) {
-                        UpdateAvailability.UPDATE_AVAILABLE -> {
-                            logDm("ON_RESUME: UpdateAvailability.UPDATE_AVAILABLE")
-                            if (appUpdateInfo.isUpdateTypeAllowed(AppUpdateType.FLEXIBLE)) {
-                                if (appUpdateInfo.installStatus() == InstallStatus.DOWNLOADED) {
-                                    logDm("ON_RESUME: InstallStatus.DOWNLOADED")
-                                    _status.value = Event(Downloaded)
-                                }
-                            }
-                        }
-
-                        UpdateAvailability.DEVELOPER_TRIGGERED_UPDATE_IN_PROGRESS -> {
-                            logDm("ON_RESUME: UpdateAvailability.DEVELOPER_TRIGGERED_UPDATE_IN_PROGRESS")
-                        }
-                        UpdateAvailability.UNKNOWN -> {
-                            logDm("ON_RESUME: UpdateAvailability.UNKNOWN")
-                        }
-                        UpdateAvailability.UPDATE_NOT_AVAILABLE -> {
-                            logDm("ON_RESUME: UpdateAvailability.UPDATE_NOT_AVAILABLE")
-                        }
-                    }
-                }
-    }
-
     fun startUpdateFlow(activity: Activity, updateInfo: AppUpdateInfo) {
         logDm("startUpdateFlow")
-
+        appUpdateManager.registerListener(installStateUpdatedListener)
         appUpdateManager.startUpdateFlowForResult(
                 updateInfo,
                 AppUpdateType.FLEXIBLE,
                 activity,
-                UPDATE_FLEXIBLE_REQUEST_CODE
+                UPDATE_REQUEST_CODE
         )
     }
 

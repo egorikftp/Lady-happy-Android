@@ -6,8 +6,8 @@ import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import androidx.annotation.IdRes
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.observe
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.egoriku.core.connector.IDynamicFeatureConnector
 import com.egoriku.core.di.findDependencies
@@ -22,7 +22,7 @@ import com.egoriku.mainscreen.di.MainActivityComponent
 import com.egoriku.mainscreen.presentation.dynamicfeature.DynamicFeatureViewModel
 import com.egoriku.mainscreen.presentation.inAppUpdates.InAppUpdate
 import com.egoriku.mainscreen.presentation.inAppUpdates.InAppUpdateState.*
-import com.egoriku.mainscreen.presentation.inAppUpdates.UPDATE_FLEXIBLE_REQUEST_CODE
+import com.egoriku.mainscreen.presentation.inAppUpdates.UPDATE_REQUEST_CODE
 import com.egoriku.mainscreen.presentation.screen.*
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.play.core.install.model.ActivityResult
@@ -61,14 +61,19 @@ class MainActivity : BaseActivity(R.layout.activity_main), IDynamicFeatureConnec
 
         viewModel = injectViewModel(viewModelFactory)
 
-        viewModel.screenTitle.observe(this, Observer {
+        viewModel.screenTitle.observe(this) {
             binding.toolbarContent.headerBarLogoText.setText(it)
-        })
+        }
 
         when (savedInstanceState) {
-            null -> viewModel.replaceWith(CatalogScreen(featureProvider))
-            else -> with(savedInstanceState.getInt(KEY_SELECTED_MENU_ITEM)) {
-                binding.bottomNavigation.selectedItemId = this
+            null -> {
+                viewModel.replaceWith(CatalogScreen(featureProvider))
+                initInAppUpdate()
+            }
+            else -> {
+                with(savedInstanceState.getInt(KEY_SELECTED_MENU_ITEM)) {
+                    binding.bottomNavigation.selectedItemId = this
+                }
             }
         }
 
@@ -88,31 +93,41 @@ class MainActivity : BaseActivity(R.layout.activity_main), IDynamicFeatureConnec
                 false -> toast("error")
             }
         })
-
-        initInAppUpdate()
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == UPDATE_FLEXIBLE_REQUEST_CODE) {
+        if (requestCode == UPDATE_REQUEST_CODE) {
             when (resultCode) {
-                Activity.RESULT_OK -> logDm("onActivityResult ok")
-                Activity.RESULT_CANCELED -> logDm("onActivityResult cancel")
-                ActivityResult.RESULT_IN_APP_UPDATE_FAILED -> logDm("onActivityResult failed")
+                Activity.RESULT_OK -> {
+                    logDm("onActivityResult ok")
+                    viewModel.trackInAppUpdateSuccess()
+                }
+                Activity.RESULT_CANCELED -> {
+                    logDm("onActivityResult cancel")
+                    viewModel.trackInAppUpdateCanceled()
+                }
+                ActivityResult.RESULT_IN_APP_UPDATE_FAILED -> {
+                    viewModel.trackInAppUpdateFailed()
+                    logDm("onActivityResult failed")
+                }
             }
         }
     }
 
     override fun onResume() {
         super.onResume()
-        inAppUpdate.checkStatus()
         navigatorHolder.setNavigator(navigator)
     }
 
     override fun onPause() {
-        inAppUpdate.unsubscribe()
         navigatorHolder.removeNavigator()
         super.onPause()
+    }
+
+    override fun onDestroy() {
+        inAppUpdate.unsubscribe()
+        super.onDestroy()
     }
 
     override fun onBackPressed() = viewModel.onBackPressed()
@@ -144,7 +159,7 @@ class MainActivity : BaseActivity(R.layout.activity_main), IDynamicFeatureConnec
     }
 
     private fun initInAppUpdate() {
-        inAppUpdate.init()
+        inAppUpdate.checkForUpdates()
 
         inAppUpdate.status.observe(this, EventObserver { status ->
             when (status) {
@@ -157,7 +172,7 @@ class MainActivity : BaseActivity(R.layout.activity_main), IDynamicFeatureConnec
                         anchorView = binding.bottomNavigation
                         setAction(context.getString(R.string.in_app_update_retry)) {
                             logDm("OnFailed: init")
-                            inAppUpdate.init()
+                            inAppUpdate.checkForUpdates()
                         }
                         show()
                     }
