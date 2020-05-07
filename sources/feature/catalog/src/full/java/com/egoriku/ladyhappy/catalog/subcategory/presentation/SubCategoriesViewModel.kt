@@ -10,7 +10,7 @@ import kotlinx.coroutines.launch
 
 class SubCategoriesViewModel(
         private val catalogUseCase: CatalogUseCase,
-        private val documentId: String
+        private val categoryId: Int
 ) : ViewModel() {
 
     private val _catalogItems = MutableLiveData<SubcategoryScreenState>()
@@ -19,7 +19,7 @@ class SubCategoriesViewModel(
 
     init {
         viewModelScope.launch {
-            when (val result = catalogUseCase.loadSubCategories(documentId)) {
+            when (val result = catalogUseCase.loadSubCategories("documentId")) {
                 is Success -> _catalogItems.value = SubcategoryScreenState.Success(result.value)
                 is Error -> _catalogItems.value = SubcategoryScreenState.Error()
             }

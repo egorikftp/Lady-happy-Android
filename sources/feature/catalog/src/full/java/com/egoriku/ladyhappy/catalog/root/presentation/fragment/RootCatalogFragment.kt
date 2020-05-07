@@ -17,8 +17,7 @@ import com.egoriku.ladyhappy.extensions.toast
 import com.egoriku.ladyhappy.extensions.visible
 import com.google.android.material.tabs.TabLayoutMediator
 import org.koin.androidx.scope.lifecycleScope
-import org.koin.androidx.viewmodel.ext.android.viewModel
-import org.koin.core.parameter.parametersOf
+import org.koin.androidx.viewmodel.scope.viewModel
 
 class RootCatalogFragment : Fragment(R.layout.fragment_root_catalog) {
 
@@ -26,9 +25,7 @@ class RootCatalogFragment : Fragment(R.layout.fragment_root_catalog) {
 
     private lateinit var catalogViewPagerAdapter: FragmentStateAdapter
 
-    private val rootCatalogViewModel: RootCatalogViewModel by viewModel {
-        parametersOf(lifecycleScope.id)
-    }
+    private val rootCatalogViewModel: RootCatalogViewModel by lifecycleScope.viewModel(this)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         rootCatalogViewModel.screenModel.observe(viewLifecycleOwner) {
@@ -59,7 +56,7 @@ class RootCatalogFragment : Fragment(R.layout.fragment_root_catalog) {
         binding.viewPager.adapter = catalogViewPagerAdapter
 
         TabLayoutMediator(binding.tabLayout, binding.viewPager) { tab, position ->
-            tab.text = tabData[position].name
+            tab.text = tabData[position].categoryName
         }.attach()
     }
 }

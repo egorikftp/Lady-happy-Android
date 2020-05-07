@@ -15,35 +15,26 @@ import com.egoriku.ladyhappy.catalog.subcategory.presentation.adapter.controller
 import com.egoriku.ladyhappy.catalog.subcategory.presentation.adapter.decorator.MarginItemDecoration
 import com.egoriku.ladyhappy.extensions.toast
 import org.koin.androidx.scope.lifecycleScope
-import org.koin.androidx.viewmodel.ext.android.viewModel
+import org.koin.androidx.viewmodel.scope.viewModel
 import org.koin.core.parameter.parametersOf
 import ru.surfstudio.android.easyadapter.EasyAdapter
 import ru.surfstudio.android.easyadapter.ItemList
 import kotlin.properties.Delegates
 
-const val ARGUMENT_SUBCATEGORY = "sub_category"
+const val ARGUMENT_CATEGORY_ID = "category_id"
 
-class SubcategoryFragment : Fragment(R.layout.fragment_catalog) {
+class SubCategoryFragment : Fragment(R.layout.fragment_catalog) {
 
     private val binding: FragmentCatalogBinding by viewBinding()
 
-    private val catalogViewModel: SubCategoriesViewModel by viewModel {
-        parametersOf(
-                lifecycleScope.id,
-                arguments?.getString(ARGUMENT_SUBCATEGORY)
-        )
+    private val catalogViewModel: SubCategoriesViewModel by lifecycleScope.viewModel(this) {
+        parametersOf(arguments?.getInt(ARGUMENT_CATEGORY_ID))
     }
 
     private var catalogController: CatalogController by Delegates.notNull()
 
     private val catalogAdapter = EasyAdapter().apply {
         setFirstInvisibleItemEnabled(false)
-    }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        catalogViewModel
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

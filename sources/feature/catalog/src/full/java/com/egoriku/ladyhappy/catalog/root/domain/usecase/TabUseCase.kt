@@ -21,11 +21,10 @@ class TabUseCase(private val tabRepository: TabRepository) {
         is Error -> RootScreenModel.Error()
     }
 
-    private fun TabEntity.mapOrNull() = if (id != null && name != null && documentId != null) {
+    private fun TabEntity.mapOrNull() = if (id != null && name != null) {
         TabItem(
-                id = id,
-                name = name,
-                documentId = documentId
+                categoryId = id,
+                categoryName = name
         )
     } else null
 }

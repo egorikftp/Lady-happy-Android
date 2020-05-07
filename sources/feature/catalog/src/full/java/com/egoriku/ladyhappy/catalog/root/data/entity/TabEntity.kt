@@ -11,8 +11,4 @@ class TabEntity {
     @PropertyName("name")
     @JvmField
     val name: String? = null
-
-    @PropertyName("documentId")
-    @JvmField
-    val documentId: String? = null
 }
