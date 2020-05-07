@@ -24,7 +24,6 @@ import com.egoriku.mainscreen.presentation.inAppUpdates.InAppUpdate
 import com.egoriku.mainscreen.presentation.inAppUpdates.InAppUpdateState.*
 import com.egoriku.mainscreen.presentation.inAppUpdates.UPDATE_REQUEST_CODE
 import com.egoriku.mainscreen.presentation.screen.*
-import com.google.android.material.snackbar.Snackbar
 import com.google.android.play.core.install.model.ActivityResult
 import com.google.android.play.core.splitcompat.SplitCompat
 import org.koin.android.ext.android.inject
@@ -97,19 +96,13 @@ class MainActivity : BaseActivity(R.layout.activity_main), IDynamicFeatureConnec
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == UPDATE_REQUEST_CODE) {
-            when (resultCode) {
-                Activity.RESULT_OK -> {
-                    logDm("onActivityResult ok")
-                    viewModel.trackInAppUpdateSuccess()
-                }
-                Activity.RESULT_CANCELED -> {
-                    logDm("onActivityResult cancel")
-                    viewModel.trackInAppUpdateCanceled()
-                }
-                ActivityResult.RESULT_IN_APP_UPDATE_FAILED -> {
-                    viewModel.trackInAppUpdateFailed()
-                    logDm("onActivityResult failed")
+
+        when (requestCode) {
+            UPDATE_REQUEST_CODE -> {
+                when (resultCode) {
+                    Activity.RESULT_OK -> viewModel.trackInAppUpdateSuccess()
+                    Activity.RESULT_CANCELED -> viewModel.trackInAppUpdateCanceled()
+                    ActivityResult.RESULT_IN_APP_UPDATE_FAILED -> viewModel.trackInAppUpdateFailed()
                 }
             }
         }
@@ -164,30 +157,19 @@ class MainActivity : BaseActivity(R.layout.activity_main), IDynamicFeatureConnec
         inAppUpdate.status.observe(this, EventObserver { status ->
             when (status) {
                 is OnFailed -> {
-                    Snackbar.make(
-                            binding.bottomNavigation,
-                            getString(R.string.in_app_update_download_failed),
-                            Snackbar.LENGTH_LONG
-                    ).apply {
-                        anchorView = binding.bottomNavigation
-                        setAction(context.getString(R.string.in_app_update_retry)) {
-                            logDm("OnFailed: init")
-                            inAppUpdate.checkForUpdates()
-                        }
-                        show()
+                    binding.bottomNavigation.longSnackbar(
+                            message = R.string.in_app_update_download_failed,
+                            actionText = R.string.in_app_update_retry
+                    ) {
+                        inAppUpdate.checkForUpdates()
                     }
                 }
                 is Downloaded -> {
-                    Snackbar.make(
-                            binding.bottomNavigation,
-                            getString(R.string.in_app_update_download_finished),
-                            Snackbar.LENGTH_INDEFINITE
-                    ).apply {
-                        anchorView = binding.bottomNavigation
-                        setAction(context.getString(R.string.in_app_update_restart)) {
-                            inAppUpdate.completeUpdate()
-                        }
-                        show()
+                    binding.bottomNavigation.indefiniteSnackBar(
+                            message = R.string.in_app_update_download_finished,
+                            actionText = R.string.in_app_update_restart
+                    ) {
+                        inAppUpdate.completeUpdate()
                     }
                 }
                 is RequestFlowUpdate -> {

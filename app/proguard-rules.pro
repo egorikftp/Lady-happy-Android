@@ -1,6 +1,6 @@
 -dontskipnonpubliclibraryclassmembers
--flattenpackagehierarchy ''
--dump class_files.txt
+-flattenpackagehierarchy
+#-dump class_files.txt
 #-printseeds seeds.txt
 #-printusage unused.txt
 #-printconfiguration "build/outputs/mapping/configuration.txt"
@@ -23,6 +23,15 @@
     public <init>(android.content.Context, android.util.AttributeSet);
     public <init>(android.content.Context, android.util.AttributeSet, int);
     public void set*(...);
+}
+
+-assumenosideeffects class android.util.Log {
+    public static *** d(...);
+    public static *** v(...);
+    public static *** i(...);
+    public static *** e(...);
+    public static *** w(...);
+    public static *** wtf(...);
 }
 
 -keepnames @com.google.android.gms.common.annotation.KeepName class *

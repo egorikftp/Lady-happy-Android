@@ -8,7 +8,8 @@ plugins {
 withLibraries(
         Libs.coreKtx,
         Libs.fragment,
-        Libs.recyclerView,
         Libs.lifecycleExtensions,
+        Libs.material,
+        Libs.recyclerView,
         Libs.viewModelKtx
 )
