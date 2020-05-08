@@ -10,9 +10,7 @@ import org.koin.dsl.module
 
 val subcategoryModule = module {
     scope<SubCategoryFragment> {
-        scoped {
-            CatalogUseCase(subcategoryRepository = get())
-        }
+        scoped { CatalogUseCase(subcategoryRepository = get()) }
         scoped { SubcategoryRepository(subcategoryDataSource = get()) }
         scoped { SubcategoryDataSource(firebase = get()) }
 
