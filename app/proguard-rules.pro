@@ -1,6 +1,6 @@
 -dontskipnonpubliclibraryclassmembers
--flattenpackagehierarchy ''
--dump class_files.txt
+-flattenpackagehierarchy
+#-dump class_files.txt
 #-printseeds seeds.txt
 #-printusage unused.txt
 #-printconfiguration "build/outputs/mapping/configuration.txt"
@@ -64,7 +64,6 @@
 
 -dontwarn com.crashlytics.**
 
-
 ### Coroutines
 # ServiceLoader support
 -keepnames class kotlinx.coroutines.internal.MainDispatcherFactory {}
@@ -73,9 +72,4 @@
 # Most of volatile fields are updated with AFU and should not be mangled
 -keepclassmembernames class kotlinx.** {
     volatile <fields>;
-}
-
-#Temp fix
--keep class * implements androidx.viewbinding.ViewBinding {
-     public static *** bind(android.view.View);
 }

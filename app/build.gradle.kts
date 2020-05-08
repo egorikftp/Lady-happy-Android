@@ -85,7 +85,7 @@ android {
     applicationVariants.all {
         outputs.all {
             if (this is BaseVariantOutputImpl) {
-                outputFileName = "${"Lady Happy"}.${name}_${versionName}.apk"
+                outputFileName = "${"Lady_Happy"}.${name}_${versionName}.apk"
             }
         }
     }

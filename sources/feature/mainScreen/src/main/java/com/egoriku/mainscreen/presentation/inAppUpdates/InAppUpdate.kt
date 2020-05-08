@@ -1,125 +1,78 @@
 package com.egoriku.mainscreen.presentation.inAppUpdates
 
-import android.view.View
-import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.LifecycleObserver
-import androidx.lifecycle.OnLifecycleEvent
-import com.egoriku.mainscreen.R
-import com.google.android.material.snackbar.Snackbar
+import android.annotation.SuppressLint
+import android.app.Activity
+import android.content.Context
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import com.egoriku.ladyhappy.extensions.Event
+import com.egoriku.mainscreen.presentation.inAppUpdates.InAppUpdateState.*
+import com.google.android.play.core.appupdate.AppUpdateInfo
 import com.google.android.play.core.appupdate.AppUpdateManagerFactory
 import com.google.android.play.core.install.InstallStateUpdatedListener
 import com.google.android.play.core.install.model.AppUpdateType
 import com.google.android.play.core.install.model.InstallStatus
 import com.google.android.play.core.install.model.UpdateAvailability
 
-const val UPDATE_IMMEDIATE_REQUEST_CODE = 4502
-const val UPDATE_FLEXIBLE_REQUEST_CODE = 6708
+const val UPDATE_REQUEST_CODE = 6708
 
-class InAppUpdate(
-        private val activity: AppCompatActivity,
-        private val parentView: View
-) : LifecycleObserver {
+sealed class InAppUpdateState {
+    object OnFailed : InAppUpdateState()
+    object Downloaded : InAppUpdateState()
+    data class RequestFlowUpdate(val updateInfo: AppUpdateInfo) : InAppUpdateState()
+}
 
-    init {
-        activity.lifecycle.addObserver(this)
-    }
+class InAppUpdate(context: Context) {
 
-    private val appUpdateManager = AppUpdateManagerFactory.create(activity.applicationContext)
+    private val appUpdateManager = AppUpdateManagerFactory.create(context)
+    private val _status = MutableLiveData<Event<InAppUpdateState>>()
 
-    private var installStateUpdatedListener: InstallStateUpdatedListener = InstallStateUpdatedListener { installState ->
+    val status: LiveData<Event<InAppUpdateState>> = _status
+
+    @SuppressLint("SwitchIntDef")
+    private val installStateUpdatedListener: InstallStateUpdatedListener = InstallStateUpdatedListener { installState ->
         when (installState.installStatus()) {
-            InstallStatus.DOWNLOADED -> showDownloadFinishedSnackBar()
-            InstallStatus.FAILED -> {
-                Snackbar.make(
-                        parentView,
-                        activity.getString(R.string.in_app_update_download_failed),
-                        Snackbar.LENGTH_LONG
-                ).apply {
-                    anchorView = parentView
-                    setAction(activity.getString(R.string.in_app_update_retry)) {
-                        init()
-                    }
-                    show()
-                }
-            }
+            InstallStatus.DOWNLOADED -> _status.value = Event(Downloaded)
+            InstallStatus.FAILED -> _status.value = Event(OnFailed)
         }
     }
 
-    @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
-    private fun init() {
-        val appUpdateInfoTask = appUpdateManager.appUpdateInfo
-
-        appUpdateInfoTask.addOnSuccessListener { appUpdateInfo ->
-            when (appUpdateInfo.updateAvailability()) {
-                UpdateAvailability.UPDATE_AVAILABLE -> {
-                    when {
-                        appUpdateInfo.isUpdateTypeAllowed(AppUpdateType.IMMEDIATE) -> {
-                            appUpdateManager.startUpdateFlowForResult(
-                                    appUpdateInfo,
-                                    AppUpdateType.IMMEDIATE,
-                                    activity,
-                                    UPDATE_IMMEDIATE_REQUEST_CODE
-                            )
+    @SuppressLint("SwitchIntDef")
+    fun checkForUpdates() {
+        appUpdateManager.appUpdateInfo
+                .addOnSuccessListener { appUpdateInfo ->
+                    when (appUpdateInfo.updateAvailability()) {
+                        UpdateAvailability.UPDATE_AVAILABLE -> {
+                            if (appUpdateInfo.isUpdateTypeAllowed(AppUpdateType.FLEXIBLE)) {
+                                _status.value = Event(RequestFlowUpdate(appUpdateInfo))
+                            }
                         }
-                        appUpdateInfo.isUpdateTypeAllowed(AppUpdateType.FLEXIBLE) -> {
-                            appUpdateManager.registerListener(installStateUpdatedListener)
-
-                            appUpdateManager.startUpdateFlowForResult(
-                                    appUpdateInfo,
-                                    AppUpdateType.FLEXIBLE,
-                                    activity,
-                                    UPDATE_FLEXIBLE_REQUEST_CODE
-                            )
+                        UpdateAvailability.DEVELOPER_TRIGGERED_UPDATE_IN_PROGRESS -> {
+                            when (InstallStatus.DOWNLOADED) {
+                                appUpdateInfo.installStatus() -> _status.value = Event(Downloaded)
+                                else -> appUpdateManager.registerListener(installStateUpdatedListener)
+                            }
                         }
                     }
                 }
-            }
-        }
     }
 
-    @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
-    private fun checkStatus() {
-        val appUpdateInfoTask = appUpdateManager.appUpdateInfo
-
-        appUpdateInfoTask.addOnSuccessListener { appUpdateInfo ->
-            when (appUpdateInfo.updateAvailability()) {
-                UpdateAvailability.UPDATE_AVAILABLE -> {
-                    if (appUpdateInfo.isUpdateTypeAllowed(AppUpdateType.FLEXIBLE)) {
-                        if (appUpdateInfo.installStatus() == InstallStatus.DOWNLOADED) {
-                            showDownloadFinishedSnackBar()
-                        }
-                    }
-                }
-
-                UpdateAvailability.DEVELOPER_TRIGGERED_UPDATE_IN_PROGRESS -> {
-                    if (appUpdateInfo.isUpdateTypeAllowed(AppUpdateType.IMMEDIATE)) {
-                        appUpdateManager.startUpdateFlowForResult(
-                                appUpdateInfo,
-                                AppUpdateType.IMMEDIATE,
-                                activity,
-                                UPDATE_IMMEDIATE_REQUEST_CODE
-                        )
-                    }
-                }
-            }
-        }
+    fun startUpdateFlow(activity: Activity, updateInfo: AppUpdateInfo) {
+        appUpdateManager.registerListener(installStateUpdatedListener)
+        appUpdateManager.startUpdateFlowForResult(
+                updateInfo,
+                AppUpdateType.FLEXIBLE,
+                activity,
+                UPDATE_REQUEST_CODE
+        )
     }
 
-    @OnLifecycleEvent(Lifecycle.Event.ON_PAUSE)
-    fun unsubscribe() = appUpdateManager.unregisterListener(installStateUpdatedListener)
+    fun unsubscribe() {
+        appUpdateManager.unregisterListener(installStateUpdatedListener)
+    }
 
-    private fun showDownloadFinishedSnackBar() {
-        Snackbar.make(
-                parentView,
-                activity.getString(R.string.in_app_update_download_finished),
-                Snackbar.LENGTH_INDEFINITE
-        ).apply {
-            anchorView = parentView
-            setAction(activity.getString(R.string.in_app_update_restart)) {
-                appUpdateManager.completeUpdate()
-            }
-            show()
-        }
+    fun completeUpdate() {
+        unsubscribe()
+        appUpdateManager.completeUpdate()
     }
 }
