@@ -16,7 +16,29 @@ class SubCategoryEntity {
     @JvmField
     val categoryName: String = EMPTY
 
+    @PropertyName("isPopular")
+    @JvmField
+    val isPopular: Boolean = false
+
     @PropertyName("images")
     @JvmField
-    val images: Map<String, String> = emptyMap()
+    val images: List<Image> = emptyList()
+
+    @PropertyName("count")
+    @JvmField
+    val count: Int = 0
+}
+
+class Image {
+    @PropertyName("h")
+    @JvmField
+    val height: Int = -1
+
+    @PropertyName("w")
+    @JvmField
+    val width: Int = -1
+
+    @PropertyName("url")
+    @JvmField
+    val url: String = EMPTY
 }

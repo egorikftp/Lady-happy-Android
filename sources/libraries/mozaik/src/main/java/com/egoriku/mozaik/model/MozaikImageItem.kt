@@ -2,13 +2,15 @@ package com.egoriku.mozaik.model
 
 import com.egoriku.mozaik.calculator.PostImagePosition
 
-class MozaikImageItem(val photo: Photo) {
+class MozaikImageItem(
+        val width: Int = 0,
+        val height: Int = 0,
+        sizes: PhotoSizes
+) {
 
-    var position: PostImagePosition? = null
+    internal var position: PostImagePosition? = null
+    internal val aspectRatio: Float = width.toFloat() / height.toFloat()
 
-    val width: Int = photo.width
-    val height: Int = photo.height
-    val aspectRatio: Float = width.toFloat() / height.toFloat()
-
-    fun getPreviewUrl(): String = photo.sizes.preview.url
+    val previewUrl = sizes.preview
+    val originalUrl = sizes.original
 }

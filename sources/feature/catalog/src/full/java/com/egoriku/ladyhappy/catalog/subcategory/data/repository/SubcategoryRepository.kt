@@ -10,7 +10,13 @@ class SubcategoryRepository(private val subcategoryDataSource: SubcategoryDataSo
 
     suspend fun fetchSubCategories(categoryId: Int): Result<List<SubCategoryEntity>> = withContext(Dispatchers.IO) {
         runCatching {
-            Result.Success(subcategoryDataSource.fetch(categoryId))
+            val value = subcategoryDataSource.fetch(categoryId)
+
+            if (value.isEmpty()) {
+                Result.Error(Exception("Empty response"))
+            } else {
+                Result.Success(value)
+            }
         }.getOrElse {
             Result.Error(it)
         }

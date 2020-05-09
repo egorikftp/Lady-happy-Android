@@ -2,14 +2,14 @@ package com.egoriku.mozaik.binder
 
 import android.view.View
 import android.widget.ImageView
-import com.bumptech.glide.Glide
+import com.egoriku.ladyhappy.extensions.gone
 import com.egoriku.ladyhappy.extensions.inflate
 import com.egoriku.mozaik.MozaikLayout
 import com.egoriku.mozaik.R
 import com.egoriku.mozaik.model.MozaikImageItem
 
-class PhotosBinder(
-        private val callback: (photos: List<MozaikImageItem>, index: Int) -> Unit
+class NonClickablePhotosBinder(
+        val onImageLoad: ((view: ImageView, image: MozaikImageItem) -> Unit)
 ) {
 
     private class Holder(itemView: View) {
@@ -39,30 +39,12 @@ class PhotosBinder(
             val holder = view.tag as Holder
 
             if (childPosition < photos.size) {
-                val image = photos[childPosition]
+                val image: MozaikImageItem = photos[childPosition]
 
-                holder.imageView.setOnClickListener {
-                    openImages(photos, childPosition)
-                }
-
-                val url = image.previewUrl
-
-                if (url.isNotEmpty()) {
-                    Glide.with(container.context)
-                            .load(url)
-                            .placeholder(R.drawable.bg_gray)
-                            .into(holder.imageView)
-                    view.visibility = View.VISIBLE
-                } else {
-                    view.visibility = View.GONE
-                }
+                onImageLoad(holder.imageView, image)
             } else {
-                view.visibility = View.GONE
+                view.gone()
             }
         }
-    }
-
-    private fun openImages(photos: List<MozaikImageItem>, index: Int) {
-        callback(photos, index)
     }
 }

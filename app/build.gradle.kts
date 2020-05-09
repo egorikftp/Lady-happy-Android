@@ -113,6 +113,7 @@ withProjects(
         Libraries.auth,
         Libraries.core,
         Libraries.extensions,
+        Libraries.mozaik,
         Libraries.navigation,
         Libraries.network,
         Libraries.rendering

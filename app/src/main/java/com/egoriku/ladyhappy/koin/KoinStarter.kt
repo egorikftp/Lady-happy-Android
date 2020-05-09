@@ -2,7 +2,7 @@ package com.egoriku.ladyhappy.koin
 
 import android.app.Application
 import com.egoriku.ladyhappy.BuildConfig
-import com.egoriku.ladyhappy.catalog.root.koin.categoriesModule
+import com.egoriku.ladyhappy.catalog.categories.koin.categoriesModule
 import com.egoriku.ladyhappy.catalog.subcategory.koin.subcategoryModule
 import com.egoriku.ladyhappy.login.koin.loginModule
 import com.egoriku.ladyhappy.settings.koin.settingsModule
