@@ -16,6 +16,7 @@
         android:layout_marginTop="@dimen/material_padding_16"
         android:layout_marginEnd="@dimen/material_padding_16"
         app:cardCornerRadius="10dp"
+        app:cardElevation="0dp"
         app:cardPreventCornerOverlap="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -23,7 +24,7 @@
         tools:viewBindingIgnore="true">
 
         <com.egoriku.mozaik.MozaikLayout
-            android:id="@+id/mozaik_layout"
+            android:id="@+id/mozaikLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toTopOf="parent"

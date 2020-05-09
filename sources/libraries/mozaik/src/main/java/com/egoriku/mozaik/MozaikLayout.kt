@@ -116,7 +116,6 @@ class MozaikLayout : RelativeLayout {
         return prefRowCount
     }
 
-
     private fun convertPxtoDip(pixel: Int): Int {
         val scale = density
         return ((pixel - 0.5f) / scale).toInt()
@@ -163,6 +162,9 @@ class MozaikLayout : RelativeLayout {
 
     fun setPhotos(photos: List<MozaikImageItem>) {
         this.photos = photos
+        this.photos.forEach {
+            it.position = null
+        }
         layoutParamsCalculator = null
     }
 
