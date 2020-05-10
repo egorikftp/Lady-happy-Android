@@ -121,6 +121,7 @@ withProjects(
 
 withLibraries(
         Libs.appcompat,
+        Libs.coreKtx,
         Libs.coroutinesAndroid,
         Libs.firebaseAuth,
         Libs.firebaseCore,

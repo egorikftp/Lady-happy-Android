@@ -12,6 +12,7 @@ import com.egoriku.ladyhappy.catalog.R
 import com.egoriku.ladyhappy.catalog.databinding.FragmentCatalogBinding
 import com.egoriku.ladyhappy.catalog.subcategory.presentation.SubCategoriesViewModel
 import com.egoriku.ladyhappy.catalog.subcategory.presentation.SubcategoryScreenState
+import com.egoriku.ladyhappy.catalog.subcategory.presentation.SubcategoryScreenState.Error
 import com.egoriku.ladyhappy.catalog.subcategory.presentation.SubcategoryScreenState.Success
 import com.egoriku.ladyhappy.catalog.subcategory.presentation.controller.SubCategoryController
 import com.egoriku.ladyhappy.extensions.gone
@@ -67,9 +68,7 @@ class SubCategoryFragment : Fragment(R.layout.fragment_catalog) {
                                 .addAll(screenState.screenData, subcategoryController)
                 )
             }
-            is Error -> {
-                binding.noItemsView.visible()
-            }
+            is Error -> binding.noItemsView.visible()
         }
     }
 }

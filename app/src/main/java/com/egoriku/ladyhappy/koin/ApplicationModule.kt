@@ -18,6 +18,7 @@ val applicationScopeModule = module {
 
     single { Authentication() }
 
+    //single<IAppPreferences> { AppPreferences(androidContext()) }
     single<IBlurRendering> { BlurRendering(androidContext()) }
     single<IFirebaseFirestore> { FirebaseFirestore() }
 

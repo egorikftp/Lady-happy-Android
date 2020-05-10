@@ -7,7 +7,6 @@ import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.FragmentManager
 import com.egoriku.ladyhappy.R
 import com.egoriku.ladyhappy.extensions.listeners.SimpleActivityLifecycleCallbacks
-import com.egoriku.ladyhappy.extensions.logDm
 import com.egoriku.ladyhappy.koin.AccountProvider
 import com.egoriku.ladyhappy.login.presentation.LoginFragment
 import com.pandulapeter.beagle.Beagle
@@ -24,8 +23,6 @@ class BeagleLifecycleListener : SimpleActivityLifecycleCallbacks(), KoinComponen
     private val fragmentLifecycleCallbacks = object : FragmentManager.FragmentLifecycleCallbacks() {
 
         override fun onFragmentResumed(fm: FragmentManager, fragment: Fragment) {
-            logDm("onFragmentResumed ${fragment::class.java.simpleName}")
-
             if (fragment is LoginFragment) {
                 val view = fragment.view
 
@@ -46,8 +43,6 @@ class BeagleLifecycleListener : SimpleActivityLifecycleCallbacks(), KoinComponen
         }
 
         override fun onFragmentPaused(fm: FragmentManager, fragment: Fragment) {
-            logDm("onFragmentDestroyed ${fragment::class.java.simpleName}")
-
             if (fragment is LoginFragment) {
                 Beagle.forget(ID_ACCOUNTS)
             }
@@ -55,8 +50,6 @@ class BeagleLifecycleListener : SimpleActivityLifecycleCallbacks(), KoinComponen
     }
 
     override fun onActivityResumed(activity: Activity) {
-        logDm("onActivityCreated ${activity::class.java.simpleName}")
-
         if (activity is FragmentActivity) {
             activity.supportFragmentManager
                     .registerFragmentLifecycleCallbacks(fragmentLifecycleCallbacks, false)
