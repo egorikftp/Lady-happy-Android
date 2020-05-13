@@ -9,7 +9,8 @@ withLibraries(
         Libs.appcompat,
         Libs.coreKtx,
         Libs.fragment,
-        Libs.recyclerView,
         Libs.lifecycleExtensions,
+        Libs.material,
+        Libs.recyclerView,
         Libs.viewModelKtx
 )

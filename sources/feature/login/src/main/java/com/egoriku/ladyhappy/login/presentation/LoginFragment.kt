@@ -20,9 +20,9 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class LoginFragment : Fragment(R.layout.fragment_login) {
 
-    private val viewModel: LoginViewModel by viewModel()
-
     private val binding: FragmentLoginBinding by viewBinding()
+
+    private val viewModel: LoginViewModel by viewModel()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

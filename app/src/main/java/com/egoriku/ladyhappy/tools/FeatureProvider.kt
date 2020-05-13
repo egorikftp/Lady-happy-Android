@@ -4,7 +4,7 @@ import android.content.Context
 import android.content.Intent
 import androidx.fragment.app.Fragment
 import com.egoriku.core.feature.IFeatureProvider
-import com.egoriku.ladyhappy.catalog.root.presentation.fragment.RootCatalogFragment
+import com.egoriku.ladyhappy.catalog.categories.presentation.fragment.CategoriesFragment
 import com.egoriku.ladyhappy.landing.presentation.LandingPageFragment
 import com.egoriku.ladyhappy.login.presentation.LoginFragment
 import com.egoriku.ladyhappy.settings.presentation.SettingFragment
@@ -16,7 +16,7 @@ class FeatureProvider : IFeatureProvider {
     override fun getMainActivityIntent(context: Context) = Intent(context, MainActivity::class.java)
 
     override val catalogFragment: Fragment
-        get() = RootCatalogFragment()
+        get() = CategoriesFragment()
 
     override val landingFragment: Fragment
         get() = LandingPageFragment()

@@ -6,4 +6,8 @@ interface IAnalytics {
 
     fun trackNoInternetLanding()
     fun trackNoInternetPhotoReports()
+
+    fun inAppUpdateCanceled()
+    fun inAppUpdateFailed()
+    fun inAppUpdateSuccess()
 }

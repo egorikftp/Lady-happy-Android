@@ -7,10 +7,9 @@ import com.egoriku.ladyhappy.extensions.inflate
 import com.egoriku.mozaik.MozaikLayout
 import com.egoriku.mozaik.R
 import com.egoriku.mozaik.model.MozaikImageItem
-import com.egoriku.mozaik.model.Photo
 
 class PhotosBinder(
-        private val callback: (photos: List<Photo>, index: Int) -> Unit
+        private val callback: (photos: List<MozaikImageItem>, index: Int) -> Unit
 ) {
 
     private class Holder(itemView: View) {
@@ -46,7 +45,7 @@ class PhotosBinder(
                     openImages(photos, childPosition)
                 }
 
-                val url = image.getPreviewUrl()
+                val url = image.previewUrl
 
                 if (url.isNotEmpty()) {
                     Glide.with(container.context)
@@ -64,6 +63,6 @@ class PhotosBinder(
     }
 
     private fun openImages(photos: List<MozaikImageItem>, index: Int) {
-        callback(photos.map { it.photo }, index)
+        callback(photos, index)
     }
 }

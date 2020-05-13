@@ -6,5 +6,5 @@ sealed class SubcategoryScreenState {
 
     class Success(val screenData: List<SubCategoryItem>) : SubcategoryScreenState()
 
-    class Error : SubcategoryScreenState()
+    object Error : SubcategoryScreenState()
 }

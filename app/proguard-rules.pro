@@ -1,6 +1,6 @@
 -dontskipnonpubliclibraryclassmembers
--flattenpackagehierarchy ''
--dump class_files.txt
+-flattenpackagehierarchy
+#-dump class_files.txt
 #-printseeds seeds.txt
 #-printusage unused.txt
 #-printconfiguration "build/outputs/mapping/configuration.txt"
@@ -63,7 +63,6 @@
 -keep public class * extends java.lang.Exception
 
 -dontwarn com.crashlytics.**
-
 
 ### Coroutines
 # ServiceLoader support

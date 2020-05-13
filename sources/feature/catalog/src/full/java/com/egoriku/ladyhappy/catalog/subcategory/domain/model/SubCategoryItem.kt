@@ -1,7 +1,10 @@
 package com.egoriku.ladyhappy.catalog.subcategory.domain.model
 
+import com.egoriku.mozaik.model.MozaikImageItem
+
 data class SubCategoryItem(
-        val headerImage: Image,
-        val itemName: String,
-        val lastHats: List<HatModel>
+        val name: String,
+        val isPopular: Boolean,
+        val count: Int,
+        val images: List<MozaikImageItem>
 )

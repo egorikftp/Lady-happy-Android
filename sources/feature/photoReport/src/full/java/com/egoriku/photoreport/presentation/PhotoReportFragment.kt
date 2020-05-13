@@ -24,11 +24,12 @@ import javax.inject.Inject
 
 class PhotoReportFragment : BaseInjectableFragment(R.layout.fragment_photo_report) {
 
+    private val binding: FragmentPhotoReportBinding by viewBinding()
+
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
 
     private lateinit var viewModel: PhotoReportViewModel
-    private val binding: FragmentPhotoReportBinding by viewBinding()
 
     private lateinit var noDataController: NoDataController
     private lateinit var photoReportHeaderController: PhotoReportHeaderController

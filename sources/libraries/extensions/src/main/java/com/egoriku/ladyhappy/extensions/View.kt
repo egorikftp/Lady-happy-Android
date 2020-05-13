@@ -7,7 +7,9 @@ import android.util.AttributeSet
 import android.view.View
 import androidx.annotation.ColorRes
 import androidx.annotation.DrawableRes
+import androidx.annotation.StringRes
 import androidx.core.content.withStyledAttributes
+import com.google.android.material.snackbar.Snackbar
 
 inline fun View.gone() {
     if (visibility != View.GONE) visibility = View.GONE
@@ -39,3 +41,25 @@ fun View.withStyledAttributes(
         defStyleRes = defStyleRes,
         block = block
 )
+
+inline fun View.indefiniteSnackBar(
+        @StringRes message: Int,
+        @StringRes actionText: Int,
+        anchorView: View = this,
+        noinline action: (View) -> Unit
+) = Snackbar
+        .make(this, message, Snackbar.LENGTH_INDEFINITE)
+        .setAnchorView(anchorView)
+        .setAction(actionText, action)
+        .show()
+
+inline fun View.longSnackbar(
+        @StringRes message: Int,
+        @StringRes actionText: Int,
+        anchorView: View = this,
+        noinline action: (View) -> Unit
+) = Snackbar
+        .make(this, message, Snackbar.LENGTH_LONG)
+        .setAnchorView(anchorView)
+        .setAction(actionText, action)
+        .show()

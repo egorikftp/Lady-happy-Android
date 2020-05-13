@@ -15,8 +15,7 @@ import javax.inject.Inject
 
 class MainActivityViewModel
 @Inject constructor(private val analytics: IAnalytics)
-    : ViewModel(),
-        KoinComponent {
+    : ViewModel(), KoinComponent {
 
     private val router: IRouter by inject()
 
@@ -34,4 +33,10 @@ class MainActivityViewModel
     fun navigateTo(screen: Screen, containerId: Int) = router.addScreenWithContainerId(screen, containerId)
 
     fun onBackPressed() = router.back()
+
+    fun trackInAppUpdateCanceled() = analytics.inAppUpdateCanceled()
+
+    fun trackInAppUpdateFailed() = analytics.inAppUpdateFailed()
+
+    fun trackInAppUpdateSuccess() = analytics.inAppUpdateSuccess()
 }
