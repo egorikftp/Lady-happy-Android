@@ -4,7 +4,7 @@
         <item name="colorPrimary">@color/RoseTaupe</item>
         <item name="colorPrimaryDark">@color/RoseTaupeDark</item>
         <item name="colorAccent">@color/Terracota</item>
-        <item name="android:textColorSecondary">@color/RealWhite</item>
+        <item name="android:textColorSecondary">@color/RealBlack</item>
         <item name="android:navigationBarColor">@color/RoseTaupeDark</item>
         <item name="android:statusBarColor">@color/RealWhite</item>
         <item name="android:windowLightStatusBar" tools:targetApi="m">true</item>

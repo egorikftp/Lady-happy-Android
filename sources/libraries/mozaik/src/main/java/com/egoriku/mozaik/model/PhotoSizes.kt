@@ -1,9 +1,8 @@
 package com.egoriku.mozaik.model
 
-class PhotoSizes(
-        val preview: Size,
-        val original: Size
-) {
+import com.egoriku.ladyhappy.extensions.common.Constants.EMPTY
 
-    class Size(val url: String)
-}
+class PhotoSizes(
+        val preview: String = EMPTY,
+        val original: String = EMPTY
+)

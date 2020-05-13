@@ -113,6 +113,7 @@ withProjects(
         Libraries.auth,
         Libraries.core,
         Libraries.extensions,
+        Libraries.mozaik,
         Libraries.navigation,
         Libraries.network,
         Libraries.rendering
@@ -120,6 +121,7 @@ withProjects(
 
 withLibraries(
         Libs.appcompat,
+        Libs.coreKtx,
         Libs.coroutinesAndroid,
         Libs.firebaseAuth,
         Libs.firebaseCore,

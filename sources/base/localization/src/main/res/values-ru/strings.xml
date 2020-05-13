@@ -35,6 +35,10 @@
     <string name="in_app_update_download_failed">Не удалось скачать обновление</string>
     <string name="in_app_update_retry">Повторить</string>
 
+    <!-- Catalog screen -->
+    <string name="catalog_images_count">%1$s работы</string>
+    <string name="catalog_empty_response">Шляпки скоро появятся</string>
+
     <!-- Settings -->
     <string name="terms_of_service">Условия использования</string>
     <string name="privacy_policy">Политика конфиденциальности</string>

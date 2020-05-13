@@ -34,6 +34,10 @@
     <string name="in_app_update_download_failed">Failed to download an update</string>
     <string name="in_app_update_retry">Retry</string>
 
+    <!-- Catalog screen -->
+    <string name="catalog_images_count">%1$s items</string>
+    <string name="catalog_empty_response">Hats will be available soon</string>
+
     <!-- Settings -->
     <string name="terms_of_service">Terms of Service</string>
     <string name="privacy_policy">Privacy Policy</string>

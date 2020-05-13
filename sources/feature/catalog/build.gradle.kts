@@ -37,6 +37,7 @@ withProjects(
         Libraries.core,
         Libraries.easyAdapter,
         Libraries.extensions,
+        Libraries.mozaik,
         Libraries.network,
         Libraries.ui
 )
