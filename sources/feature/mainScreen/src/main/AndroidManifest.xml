@@ -3,8 +3,6 @@
     package="com.egoriku.mainscreen">
 
     <application>
-        <activity
-            android:name="com.egoriku.mainscreen.presentation.MainActivity"
-            android:theme="@style/MainActivityStyle" />
+        <activity android:name="com.egoriku.mainscreen.presentation.MainActivity" />
     </application>
 </manifest>

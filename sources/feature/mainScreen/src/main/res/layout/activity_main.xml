@@ -28,9 +28,7 @@
                 app:contentInsetRight="0dp"
                 app:contentInsetStart="0dp"
                 app:contentInsetStartWithNavigation="0dp"
-                app:layout_scrollFlags="scroll|enterAlways"
-                app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-                app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+                app:layout_scrollFlags="scroll|enterAlways">
 
                 <include
                     android:id="@+id/toolbarContent"
@@ -50,8 +48,6 @@
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
             android:background="?attr/colorSurface"
-            app:itemIconTint="@color/selector_bottom_navigation"
-            app:itemTextColor="@color/selector_bottom_navigation"
             app:layout_behavior="@string/hide_bottom_view_on_scroll_behavior"
             app:menu="@menu/navigation_menu" />
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
