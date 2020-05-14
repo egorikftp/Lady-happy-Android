@@ -26,7 +26,6 @@
         android:layout_marginTop="8dp"
         android:text="@string/no_data_try_again"
         android:textAllCaps="false"
-        android:textColor="@color/RealBlack70"
         app:cornerRadius="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_chainStyle="packed"

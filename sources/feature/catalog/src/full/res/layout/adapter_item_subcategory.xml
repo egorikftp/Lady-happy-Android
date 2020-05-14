@@ -29,7 +29,7 @@
             android:layout_height="wrap_content"
             app:layout_constraintTop_toTopOf="parent"
             app:spacing="4dp"
-            tools:background="@color/RealBlack70"
+            tools:background="@color/RealBlack"
             tools:layout_height="150dp" />
     </androidx.cardview.widget.CardView>
 
@@ -45,7 +45,8 @@
         android:typeface="sans"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cardView"
-        tools:text="Hats type" />
+        tools:text="Hats type"
+        tools:textColor="@color/RealBlack" />
 
     <TextView
         android:id="@+id/sub_category_size"
