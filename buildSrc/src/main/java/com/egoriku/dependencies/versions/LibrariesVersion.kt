@@ -16,6 +16,7 @@ object LibrariesVersion {
     const val firebaseAuth = "19.3.1"
     const val firebaseCore = "17.4.0"
     const val firebaseFirestore = "21.3.1"
+    const val firebasePerformance = "19.0.7"
     const val fragment = "1.3.0-alpha04"
     const val glide = "4.11.0"
     const val junit = "4.13"
@@ -41,6 +42,7 @@ object ProjectVersion {
 
 object ClasspathVersion {
     const val fabric = "1.31.2"
+    const val firebasePerformance = "1.3.1"
     const val googleServices = "4.3.3"
     const val gradleLibrariesVersion = "0.28.0"
     const val gradleTools = "3.6.3"

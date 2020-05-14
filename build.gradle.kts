@@ -11,6 +11,7 @@ buildscript {
 
     dependencies {
         classpath(GradlePlugins.fabric)
+        classpath(GradlePlugins.firebasePerformance)
         classpath(GradlePlugins.googleServices)
         classpath(GradlePlugins.gradleLibrariesVersion)
         classpath(GradlePlugins.gradleTools)

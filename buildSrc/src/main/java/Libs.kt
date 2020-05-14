@@ -17,6 +17,7 @@ object Libs {
     const val firebaseAuth = "com.google.firebase:firebase-auth:${LibrariesVersion.firebaseAuth}"
     const val firebaseCore = "com.google.firebase:firebase-core:${LibrariesVersion.firebaseCore}"
     const val firebaseFirestoreKtx = "com.google.firebase:firebase-firestore-ktx:${LibrariesVersion.firebaseFirestore}"
+    const val firebasePerformance = "com.google.firebase:firebase-perf:${LibrariesVersion.firebasePerformance}"
     const val fragment = "androidx.fragment:fragment:${LibrariesVersion.fragment}"
     const val glide = "com.github.bumptech.glide:glide:${LibrariesVersion.glide}"
     const val glideCompiler = "com.github.bumptech.glide:compiler:${LibrariesVersion.glide}"
