@@ -1,5 +1,6 @@
 package com.egoriku.ladyhappy.catalog.subcategory.presentation.controller
 
+import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import com.bumptech.glide.Glide
@@ -16,7 +17,8 @@ import ru.surfstudio.android.easyadapter.holder.BindableViewHolder
 import kotlin.properties.Delegates
 
 internal class SubCategoryController(
-        private val onCatalogItemClick: (item: SubCategoryItem) -> Unit
+        private val onCatalogItemClick: (item: SubCategoryItem) -> Unit,
+        private val onTrendingClick: (view: View) -> Unit
 ) : BindableItemController<SubCategoryItem, SubCategoryController.Holder>() {
 
     override fun createViewHolder(parent: ViewGroup) =
@@ -25,8 +27,8 @@ internal class SubCategoryController(
     override fun getItemId(data: SubCategoryItem) = data.hashCode().toString()
 
     inner class Holder(
-            private val itemBinding: AdapterItemSubcategoryBinding
-    ) : BindableViewHolder<SubCategoryItem>(itemBinding.root) {
+            private val binding: AdapterItemSubcategoryBinding
+    ) : BindableViewHolder<SubCategoryItem>(binding.root) {
 
         private var subCategoryItem: SubCategoryItem by Delegates.notNull()
 
@@ -42,12 +44,16 @@ internal class SubCategoryController(
             itemView.setOnClickListener {
                 onCatalogItemClick(subCategoryItem)
             }
+
+            binding.trending.setOnClickListener {
+                onTrendingClick(it)
+            }
         }
 
         override fun bind(data: SubCategoryItem) {
             subCategoryItem = data
 
-            itemBinding.bind(data)
+            binding.bind(data)
         }
 
         private fun AdapterItemSubcategoryBinding.bind(data: SubCategoryItem) {

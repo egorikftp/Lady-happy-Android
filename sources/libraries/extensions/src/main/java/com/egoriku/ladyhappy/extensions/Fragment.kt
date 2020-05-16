@@ -6,7 +6,7 @@ import androidx.annotation.ColorRes
 import androidx.annotation.DrawableRes
 import androidx.fragment.app.Fragment
 
-fun Fragment.colorAttribute(@AttrRes attribute: Int) = requireContext().colorAttribute(attribute)
+fun Fragment.colorFromAttr(@AttrRes attribute: Int) = requireContext().colorFromAttr(attribute)
 
 fun Fragment.colorCompat(@ColorRes colorInt: Int) = requireContext().colorCompat(colorInt)
 

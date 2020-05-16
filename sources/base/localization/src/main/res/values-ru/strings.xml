@@ -42,6 +42,7 @@
     <!-- Catalog screen -->
     <string name="catalog_images_count">%1$s работы</string>
     <string name="catalog_empty_response">Шляпки скоро появятся</string>
+    <string name="catalog_trending_hint">Популярная модель</string>
 
     <!-- Settings -->
     <string name="terms_of_service">Условия использования</string>

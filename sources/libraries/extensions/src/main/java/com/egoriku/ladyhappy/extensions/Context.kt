@@ -18,7 +18,7 @@ import androidx.annotation.LayoutRes
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.content.ContextCompat
 
-fun Context.colorAttribute(@AttrRes attribute: Int) = TypedValue().let {
+fun Context.colorFromAttr(@AttrRes attribute: Int) = TypedValue().let {
     theme.resolveAttribute(attribute, it, true)
     it.data
 }

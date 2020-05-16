@@ -44,6 +44,7 @@ withProjects(
 
 withLibraries(
         Libs.appcompat,
+        Libs.balloon,
         Libs.cardView,
         Libs.circleImageView,
         Libs.constraintLayout,

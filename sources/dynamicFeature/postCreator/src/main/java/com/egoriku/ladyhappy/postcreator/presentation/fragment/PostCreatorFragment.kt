@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.MergeAdapter
 import androidx.recyclerview.widget.RecyclerView.HORIZONTAL
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.egoriku.core.di.utils.IRouter
-import com.egoriku.ladyhappy.extensions.colorAttribute
+import com.egoriku.ladyhappy.extensions.colorFromAttr
 import com.egoriku.ladyhappy.extensions.colorStateListCompat
 import com.egoriku.ladyhappy.extensions.toast
 import com.egoriku.ladyhappy.postcreator.R
@@ -89,12 +89,12 @@ class PostCreatorFragment : Fragment(R.layout.fragment_post_creator),
 
         binding.apply {
             if (size > 10) {
-                postImagesCount.setTextColor(colorAttribute(R_ui.attr.colorPrimary))
+                postImagesCount.setTextColor(colorFromAttr(R_ui.attr.colorPrimary))
                 postImagesCount.setTypeface(null, Typeface.BOLD)
 
                 icon.imageTintList = colorStateListCompat(R_ui.color.RoseTaupe)
             } else {
-                postImagesCount.setTextColor(colorAttribute(R_ui.attr.colorOnSurface))
+                postImagesCount.setTextColor(colorFromAttr(R_ui.attr.colorOnSurface))
                 postImagesCount.setTypeface(null, Typeface.NORMAL)
 
                 icon.imageTintList = colorStateListCompat(R_ui.color.RealBlack)

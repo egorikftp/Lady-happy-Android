@@ -41,6 +41,7 @@
     <!-- Catalog screen -->
     <string name="catalog_images_count">%1$s items</string>
     <string name="catalog_empty_response">Hats will be available soon</string>
+    <string name="catalog_trending_hint">Popular category</string>
 
     <!-- Settings -->
     <string name="terms_of_service">Terms of Service</string>
