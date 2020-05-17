@@ -6,6 +6,13 @@ admin.initializeApp();
 const db = admin.firestore();
 
 /**
+ * Deploy command:
+ *
+ *  firebase deploy --only functions
+ *  
+ */
+
+/**
  * Cloud function, increment count of specific category.
  */
 exports.subcategoryOnCreate = functions.firestore
