@@ -35,7 +35,6 @@ android {
 
 withProjects(
         Libraries.core,
-        Libraries.easyAdapter,
         Libraries.extensions,
         Libraries.mozaik,
         Libraries.network,
@@ -50,6 +49,7 @@ withLibraries(
         Libs.constraintLayout,
         Libs.coreKtx,
         Libs.coroutinesAndroid,
+        Libs.easyAdapter,
         Libs.firebaseFirestoreKtx,
         Libs.fragment,
         Libs.glide,

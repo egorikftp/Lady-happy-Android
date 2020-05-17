@@ -15,6 +15,7 @@ object Libs {
     const val crashlytics = "com.crashlytics.sdk.android:crashlytics:${LibrariesVersion.crashlytics}"
     const val dagger = "com.google.dagger:dagger:${LibrariesVersion.dagger}"
     const val daggerCompiler = "com.google.dagger:dagger-compiler:${LibrariesVersion.dagger}"
+    const val easyAdapter = "ru.surfstudio.android:easyadapter:${LibrariesVersion.easyAdapter}"
     const val firebaseAuth = "com.google.firebase:firebase-auth:${LibrariesVersion.firebaseAuth}"
     const val firebaseCore = "com.google.firebase:firebase-core:${LibrariesVersion.firebaseCore}"
     const val firebaseFirestoreKtx = "com.google.firebase:firebase-firestore-ktx:${LibrariesVersion.firebaseFirestore}"

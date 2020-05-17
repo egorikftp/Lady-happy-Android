@@ -14,6 +14,7 @@ object LibrariesVersion {
     const val circleImageView = "3.1.0"
     const val crashlytics = "2.10.1@aar"
     const val dagger = "2.27"
+    const val easyAdapter = "1.1.0-alpha.9"
     const val firebaseAuth = "19.3.1"
     const val firebaseCore = "17.4.0"
     const val firebaseFirestore = "21.3.1"

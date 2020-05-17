@@ -41,9 +41,7 @@ class SubCategoryFragment : Fragment(R.layout.fragment_catalog) {
 
     private var subcategoryController: SubCategoryController by Delegates.notNull()
 
-    private val catalogAdapter = EasyAdapter().apply {
-        setFirstInvisibleItemEnabled(false)
-    }
+    private val catalogAdapter = EasyAdapter()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
