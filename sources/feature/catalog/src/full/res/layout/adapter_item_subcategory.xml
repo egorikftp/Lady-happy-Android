@@ -31,6 +31,26 @@
             app:spacing="4dp"
             tools:background="@color/RealBlack"
             tools:layout_height="150dp" />
+
+        <FrameLayout
+            android:id="@+id/trending"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_gravity="end"
+            android:layout_marginTop="@dimen/material_padding_8"
+            android:layout_marginEnd="@dimen/material_padding_8"
+            android:background="@drawable/bg_trending_round"
+            android:visibility="gone"
+            tools:visibility="visible">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:importantForAccessibility="no"
+                android:padding="7dp"
+                app:srcCompat="@drawable/ic_fire" />
+        </FrameLayout>
     </androidx.cardview.widget.CardView>
 
     <TextView

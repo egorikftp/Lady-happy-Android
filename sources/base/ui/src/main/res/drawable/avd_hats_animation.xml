@@ -11,7 +11,7 @@
             <path
                     android:name="path"
                     android:pathData="M 24.1 23.8 C 24.1 23.8 10.8 20.2 5.2 25.1 C 0.8 29 -2.9 39 13.4 47.8 C 29.7 56.6 54.6 39.1 61.8 37.9 C 69 36.7 74.1 38 74 37.8 C 73.9 37.6 77.8 44.6 80.7 43 C 83.5 41.4 78.9 36.6 74.7 33.6 C 70.5 30.6 58.7 23.6 58.7 23.6 C 58.7 23.6 60.1 1.8 41.8 1.8 C 21.4 1.8 24.1 23.8 24.1 23.8 Z"
-                    android:fillColor="#000"
+                android:fillColor="?attr/colorOnSurface"
                     android:strokeWidth="1"/>
         </vector>
     </aapt:attr>

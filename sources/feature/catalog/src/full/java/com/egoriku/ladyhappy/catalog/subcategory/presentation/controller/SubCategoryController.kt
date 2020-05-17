@@ -9,7 +9,9 @@ import com.egoriku.ladyhappy.catalog.R
 import com.egoriku.ladyhappy.catalog.databinding.AdapterItemSubcategoryBinding
 import com.egoriku.ladyhappy.catalog.subcategory.domain.model.SubCategoryItem
 import com.egoriku.ladyhappy.extensions.drawableCompat
+import com.egoriku.ladyhappy.extensions.gone
 import com.egoriku.ladyhappy.extensions.inflater
+import com.egoriku.ladyhappy.extensions.visible
 import com.egoriku.mozaik.binder.NonClickablePhotosBinder
 import com.egoriku.mozaik.model.MozaikImageItem
 import ru.surfstudio.android.easyadapter.controller.BindableItemController
@@ -64,6 +66,11 @@ internal class SubCategoryController(
 
             subCategoryTitle.text = data.name
             subCategorySize.text = String.format(root.context.getString(R.string.catalog_images_count), data.count)
+
+            when {
+                data.isPopular -> trending.visible()
+                else -> trending.gone()
+            }
         }
     }
 }
