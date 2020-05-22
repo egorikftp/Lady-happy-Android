@@ -10,6 +10,7 @@ class SubcategoryDataSource(private val firebase: IFirebaseFirestore) {
         return firebase.getFirebase()
                 .collection("subcategories")
                 .whereEqualTo("categoryId", categoryId)
+                .orderBy("subCategoryId")
                 .awaitGet()
     }
 }

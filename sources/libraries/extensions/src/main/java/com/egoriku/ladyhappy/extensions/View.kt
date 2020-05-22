@@ -5,6 +5,7 @@ package com.egoriku.ladyhappy.extensions
 import android.content.res.TypedArray
 import android.util.AttributeSet
 import android.view.View
+import androidx.annotation.AttrRes
 import androidx.annotation.ColorRes
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
@@ -24,6 +25,8 @@ inline fun View.visible() {
 }
 
 fun View.colorCompat(@ColorRes colorInt: Int) = context.colorCompat(colorInt)
+
+fun View.colorFromAttr(@AttrRes attribute: Int) = context.colorFromAttr(attribute)
 
 fun View.drawableCompat(@DrawableRes drawableRes: Int) = context.drawableCompat(drawableRes)
         ?: throw IllegalArgumentException("Wrong drawable id $drawableRes")

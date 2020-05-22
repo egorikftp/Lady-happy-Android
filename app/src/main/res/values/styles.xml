@@ -29,5 +29,7 @@
         <item name="android:navigationBarColor">@color/RealWhite</item>
         <item name="android:statusBarColor">@color/RealWhite</item>
         <item name="android:windowLightStatusBar" tools:targetApi="m">true</item>
+
+        <item name="colorPlaceholder">@color/Placeholder</item>
     </style>
 </resources>

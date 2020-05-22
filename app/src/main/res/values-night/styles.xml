@@ -22,5 +22,6 @@
         <item name="colorError">@color/Red</item>
         <item name="colorOnError">#272D33</item>
 
+        <item name="colorPlaceholder">#383C40</item>
     </style>
 </resources>

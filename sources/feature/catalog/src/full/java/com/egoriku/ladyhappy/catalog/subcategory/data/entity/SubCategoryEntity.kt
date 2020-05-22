@@ -24,9 +24,9 @@ class SubCategoryEntity {
     @JvmField
     val images: List<Image> = emptyList()
 
-    @PropertyName("count")
+    @PropertyName("publishedCount")
     @JvmField
-    val count: Int = 0
+    val publishedCount: Int = 0
 }
 
 class Image {

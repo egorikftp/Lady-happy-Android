@@ -5,6 +5,6 @@ import com.egoriku.mozaik.model.MozaikImageItem
 data class SubCategoryItem(
         val name: String,
         val isPopular: Boolean,
-        val count: Int,
+        val publishedCount: Int,
         val images: List<MozaikImageItem>
 )
