@@ -1,6 +1,6 @@
 package com.egoriku.plugin
 
-import com.android.build.gradle.BaseExtension
+import com.android.build.gradle.LibraryExtension
 import com.android.build.gradle.LibraryPlugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.getByType
@@ -14,9 +14,9 @@ class HappyFeaturePlugin : HappyLibraryPlugin() {
             plugins.all {
                 when (this) {
                     is LibraryPlugin -> {
-                        extensions.getByType<BaseExtension>().run {
-                            viewBinding {
-                                isEnabled = true
+                        extensions.getByType<LibraryExtension>().run {
+                            buildFeatures {
+                                viewBinding = true
                             }
                         }
                     }
