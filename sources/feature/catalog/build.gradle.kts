@@ -35,7 +35,6 @@ android {
 
 withProjects(
         Libraries.core,
-        Libraries.easyAdapter,
         Libraries.extensions,
         Libraries.mozaik,
         Libraries.network,
@@ -44,11 +43,13 @@ withProjects(
 
 withLibraries(
         Libs.appcompat,
+        Libs.balloon,
         Libs.cardView,
         Libs.circleImageView,
         Libs.constraintLayout,
         Libs.coreKtx,
         Libs.coroutinesAndroid,
+        Libs.easyAdapter,
         Libs.firebaseFirestoreKtx,
         Libs.fragment,
         Libs.glide,

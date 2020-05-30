@@ -20,7 +20,7 @@
                 android:id="@+id/toolbarMainActivity"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                android:background="@color/RealWhite"
+                android:background="?attr/colorSurface"
                 android:focusable="true"
                 android:focusableInTouchMode="true"
                 app:contentInsetEnd="0dp"
@@ -28,9 +28,7 @@
                 app:contentInsetRight="0dp"
                 app:contentInsetStart="0dp"
                 app:contentInsetStartWithNavigation="0dp"
-                app:layout_scrollFlags="scroll|enterAlways"
-                app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-                app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+                app:layout_scrollFlags="scroll|enterAlways">
 
                 <include
                     android:id="@+id/toolbarContent"
@@ -49,9 +47,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
-            android:background="@color/RealWhite"
-            app:itemIconTint="@color/selector_bottom_navigation"
-            app:itemTextColor="@color/selector_bottom_navigation"
+            android:background="?attr/colorSurface"
             app:layout_behavior="@string/hide_bottom_view_on_scroll_behavior"
             app:menu="@menu/navigation_menu" />
     </androidx.coordinatorlayout.widget.CoordinatorLayout>

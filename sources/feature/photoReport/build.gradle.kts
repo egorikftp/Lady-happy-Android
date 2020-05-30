@@ -37,7 +37,6 @@ android {
 withProjects(
         Libraries.arch,
         Libraries.core,
-        Libraries.easyAdapter,
         Libraries.extensions,
         Libraries.localization,
         Libraries.network,
@@ -48,6 +47,7 @@ withLibraries(
         Libs.appcompat,
         Libs.constraintLayout,
         Libs.coroutinesAndroid,
+        Libs.easyAdapter,
         Libs.firebaseFirestoreKtx,
         Libs.pageIndicator,
         Libs.recyclerView,

@@ -2,6 +2,10 @@
 <resources>
     <string name="application_name">Дамское счастье</string>
 
+    <!-- Common -->
+    <string name="ok">Да</string>
+    <string name="cancel">Отмена</string>
+
     <string name="adapter_item_about_us">О нас</string>
     <string name="adapter_item_header_quotes">Что нас вдохновляет</string>
 
@@ -38,6 +42,7 @@
     <!-- Catalog screen -->
     <string name="catalog_images_count">%1$s работы</string>
     <string name="catalog_empty_response">Шляпки скоро появятся</string>
+    <string name="catalog_trending_hint">Популярная модель</string>
 
     <!-- Settings -->
     <string name="terms_of_service">Условия использования</string>
@@ -57,4 +62,9 @@
     <string name="login_error_email_invalid">Неверный Email</string>
     <string name="login_error_email_empty">Пожалуйста введите Email</string>
     <string name="login_error_password_empty">Пожалуйста введите пароль</string>
+
+    <!-- Post Creator -->
+    <string name="post_creator_images_count">%1$s из 10</string>
+    <string name="post_creator_categories_dialog_title">Выберите категорию</string>
+
 </resources>

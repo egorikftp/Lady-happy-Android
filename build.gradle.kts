@@ -6,10 +6,12 @@ buildscript {
         jcenter()
         mavenCentral()
         maven(url = "https://maven.fabric.io/public")
+        maven(url = "https://jitpack.io")
     }
 
     dependencies {
         classpath(GradlePlugins.fabric)
+        classpath(GradlePlugins.firebasePerformance)
         classpath(GradlePlugins.googleServices)
         classpath(GradlePlugins.gradleLibrariesVersion)
         classpath(GradlePlugins.gradleTools)
@@ -22,6 +24,7 @@ allprojects {
         google()
         jcenter()
         maven(url = "https://jitpack.io")
+        maven(url = "https://artifactory.surfstudio.ru/artifactory/libs-release-local")
     }
 }
 

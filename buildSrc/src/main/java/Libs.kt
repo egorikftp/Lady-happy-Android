@@ -1,8 +1,10 @@
 import com.egoriku.dependencies.versions.LibrariesVersion
 
 object Libs {
+    //const val activity = "androidx.activity:activity-ktx:${LibrariesVersion.activity}"
     const val annotation = "androidx.annotation:annotation:${LibrariesVersion.annotation}"
     const val appcompat = "androidx.appcompat:appcompat:${LibrariesVersion.appcompat}"
+    const val balloon = "com.github.skydoves:balloon:${LibrariesVersion.balloon}"
     const val beagle = "com.github.pandulapeter.beagle:beagle:${LibrariesVersion.beagle}"
     const val browser = "androidx.browser:browser:${LibrariesVersion.browser}"
     const val cardView = "androidx.cardview:cardview:${LibrariesVersion.cardView}"
@@ -13,13 +15,16 @@ object Libs {
     const val crashlytics = "com.crashlytics.sdk.android:crashlytics:${LibrariesVersion.crashlytics}"
     const val dagger = "com.google.dagger:dagger:${LibrariesVersion.dagger}"
     const val daggerCompiler = "com.google.dagger:dagger-compiler:${LibrariesVersion.dagger}"
+    const val easyAdapter = "ru.surfstudio.android:easyadapter:${LibrariesVersion.easyAdapter}"
     const val firebaseAuth = "com.google.firebase:firebase-auth:${LibrariesVersion.firebaseAuth}"
     const val firebaseCore = "com.google.firebase:firebase-core:${LibrariesVersion.firebaseCore}"
     const val firebaseFirestoreKtx = "com.google.firebase:firebase-firestore-ktx:${LibrariesVersion.firebaseFirestore}"
+    const val firebasePerformance = "com.google.firebase:firebase-perf:${LibrariesVersion.firebasePerformance}"
     const val fragment = "androidx.fragment:fragment:${LibrariesVersion.fragment}"
     const val glide = "com.github.bumptech.glide:glide:${LibrariesVersion.glide}"
     const val glideCompiler = "com.github.bumptech.glide:compiler:${LibrariesVersion.glide}"
     const val junit = "junit:junit:${LibrariesVersion.junit}"
+    const val imageCompressor = "id.zelory:compressor:${LibrariesVersion.imageCompressor}"
     const val koinAndroid = "org.koin:koin-android:${LibrariesVersion.koin}"
     const val koinAndroidExperimental = "org.koin:koin-androidx-ext:${LibrariesVersion.koin}"
     const val koinCore = "org.koin:koin-core:${LibrariesVersion.koin}"

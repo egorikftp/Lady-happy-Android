@@ -1,6 +1,10 @@
 <resources>
     <string name="application_name">Lady\'s Happy</string>
 
+    <!-- Common -->
+    <string name="ok">Ok</string>
+    <string name="cancel">Cancel</string>
+
     <string name="adapter_item_about_us">About us</string>
     <string name="lady_happy">Lady\'s Happy</string>
 
@@ -37,6 +41,7 @@
     <!-- Catalog screen -->
     <string name="catalog_images_count">%1$s items</string>
     <string name="catalog_empty_response">Hats will be available soon</string>
+    <string name="catalog_trending_hint">Popular category</string>
 
     <!-- Settings -->
     <string name="terms_of_service">Terms of Service</string>
@@ -56,4 +61,8 @@
     <string name="login_error_email_invalid">Email isn\'t valid</string>
     <string name="login_error_email_empty">Please enter Email</string>
     <string name="login_error_password_empty">Please enter Password</string>
+
+    <!-- Post Creator -->
+    <string name="post_creator_images_count">%1$s from 10</string>
+    <string name="post_creator_categories_dialog_title">Choose category</string>
 </resources>

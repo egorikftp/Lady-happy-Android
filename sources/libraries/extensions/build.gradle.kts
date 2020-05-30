@@ -6,6 +6,7 @@ plugins {
 }
 
 withLibraries(
+        Libs.appcompat,
         Libs.coreKtx,
         Libs.fragment,
         Libs.lifecycleExtensions,

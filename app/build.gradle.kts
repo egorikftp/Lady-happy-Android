@@ -1,10 +1,10 @@
+import Modules.DynamicFeatures
+import Modules.Features
+import Modules.Libraries
 import com.android.build.gradle.internal.api.BaseVariantOutputImpl
 import com.egoriku.application.configureProductFlavors
 import com.egoriku.application.provideVersionCode
 import com.egoriku.application.provideVersionName
-import Modules.DynamicFeatures
-import Modules.Features
-import Modules.Libraries
 import com.egoriku.dependencies.versions.ProjectVersion
 import com.egoriku.ext.*
 import org.jetbrains.kotlin.konan.file.File
@@ -17,10 +17,10 @@ plugins {
     id("kotlin-android")
     id("kotlin-kapt")
     id("io.fabric")
+    id("com.google.firebase.firebase-perf")
 }
 
 android {
-    buildToolsVersion(ProjectVersion.buildToolsVersion)
     compileSdkVersion(ProjectVersion.compileSdkVersion)
 
     defaultConfig {
@@ -126,6 +126,7 @@ withLibraries(
         Libs.firebaseAuth,
         Libs.firebaseCore,
         Libs.firebaseFirestoreKtx,
+        Libs.firebasePerformance,
         Libs.koinAndroid,
         Libs.koinCore,
         Libs.kotlin,

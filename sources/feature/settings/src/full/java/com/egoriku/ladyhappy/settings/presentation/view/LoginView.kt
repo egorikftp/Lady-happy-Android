@@ -1,7 +1,6 @@
 package com.egoriku.ladyhappy.settings.presentation.view
 
 import android.content.Context
-import android.graphics.Bitmap
 import android.graphics.drawable.Drawable
 import android.util.AttributeSet
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -57,10 +56,6 @@ class LoginView : ConstraintLayout {
 
     fun setProfileImage(drawable: Drawable) {
         binding.profileImage.setImageDrawable(drawable)
-    }
-
-    fun setProfileImage(drawable: Bitmap) {
-        binding.profileImage.setImageBitmap(drawable)
     }
 
     fun onButtonClick(block: () -> Unit) {

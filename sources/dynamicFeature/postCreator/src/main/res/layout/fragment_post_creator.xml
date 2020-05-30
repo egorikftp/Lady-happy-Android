@@ -1,17 +1,130 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/RealWhite"
-    android:clickable="false"
-    android:orientation="vertical">
+    android:background="?attr/android:colorBackground"
+    android:clickable="false">
 
-    <TextView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:gravity="center"
-        android:text="This is dynamic feature"
-        android:textSize="27sp" />
+        android:layout_height="match_parent">
 
-</RelativeLayout>
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/postToolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:navigationIcon="@drawable/ic_close"
+            app:title="Создание записи" />
+
+        <TextView
+            android:id="@+id/postTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/material_padding_16"
+            android:layout_marginTop="@dimen/material_padding_16"
+            android:text="Добавьте фотографии"
+            android:textColor="?attr/colorOnSurface"
+            android:textSize="15sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/postToolbar"
+            tools:ignore="RtlHardcoded" />
+
+        <ImageView
+            android:id="@+id/icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            app:layout_constraintBottom_toBottomOf="@+id/postTitle"
+            app:layout_constraintEnd_toStartOf="@+id/postImagesCount"
+            app:layout_constraintTop_toTopOf="@+id/postTitle"
+            app:srcCompat="@drawable/ic_image"
+            tools:viewBindingIgnore="true" />
+
+        <TextView
+            android:id="@+id/postImagesCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/material_padding_16"
+            android:textSize="15sp"
+            app:layout_constraintBottom_toBottomOf="@+id/icon"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/icon"
+            tools:text="0 из 9" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/postImagesRecycler"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/postTitle" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/postTitleInput"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/material_padding_16"
+            android:layout_marginEnd="@dimen/material_padding_16"
+            app:endIconMode="clear_text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/postImagesRecycler">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Название работы" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/chooseCategory"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/material_padding_16"
+            android:layout_marginTop="@dimen/material_padding_16"
+            android:layout_marginEnd="@dimen/material_padding_16"
+            android:paddingTop="@dimen/material_padding_16"
+            android:paddingBottom="@dimen/material_padding_16"
+            android:text="Категория"
+            app:drawableEndCompat="@drawable/ic_arrow_right"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/postTitleInput" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/chooseSubCategory"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/material_padding_16"
+            android:layout_marginTop="@dimen/material_padding_16"
+            android:layout_marginEnd="@dimen/material_padding_16"
+            android:paddingTop="@dimen/material_padding_16"
+            android:paddingBottom="@dimen/material_padding_16"
+            android:text="Подкатегория"
+            app:drawableEndCompat="@drawable/ic_arrow_right"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/chooseCategory" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/postPublishButton"
+            style="@style/Widget.MaterialComponents.Button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/material_padding_16"
+            android:layout_marginTop="@dimen/material_padding_16"
+            android:layout_marginEnd="@dimen/material_padding_16"
+            android:text="Опубликовать запись"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/chooseSubCategory"
+            app:layout_constraintWidth_min="150dp" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>

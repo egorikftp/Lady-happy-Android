@@ -34,8 +34,8 @@ class SettingFragment : Fragment(R.layout.fragment_settings) {
 
     private val binding: FragmentSettingsBinding by viewBinding()
 
-    private val viewModel: SettingsViewModel by lifecycleScope.viewModel(this)
     private val featureProvider: IFeatureProvider by inject()
+    private val viewModel: SettingsViewModel by lifecycleScope.viewModel(this)
 
     private var mergeAdapter: MergeAdapter by Delegates.notNull()
 

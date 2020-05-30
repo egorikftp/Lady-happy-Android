@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="TabLayoutTextAppearance">
-        <item name="android:textSize">22sp</item>
-        <item name="android:fontFamily">@font/montserrat</item>
-        <item name="android:textStyle">bold</item>
+    <style name="TextAppearance.TabLayout" parent="TextAppearance.MaterialComponents.Button">
+        <item name="textAllCaps">false</item>
     </style>
-
 </resources>

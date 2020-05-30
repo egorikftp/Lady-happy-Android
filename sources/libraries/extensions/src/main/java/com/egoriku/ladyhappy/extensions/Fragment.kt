@@ -1,10 +1,16 @@
 package com.egoriku.ladyhappy.extensions
 
+import android.content.res.ColorStateList
+import androidx.annotation.AttrRes
 import androidx.annotation.ColorRes
 import androidx.annotation.DrawableRes
 import androidx.fragment.app.Fragment
 
+fun Fragment.colorFromAttr(@AttrRes attribute: Int) = requireContext().colorFromAttr(attribute)
+
 fun Fragment.colorCompat(@ColorRes colorInt: Int) = requireContext().colorCompat(colorInt)
+
+fun Fragment.colorStateListCompat(@ColorRes resId: Int): ColorStateList? = requireContext().colorStateListCompat(resId)
 
 fun Fragment.drawableCompat(@DrawableRes drawableRes: Int) = requireContext().drawableCompat(drawableRes)
 

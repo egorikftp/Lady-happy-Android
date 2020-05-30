@@ -8,7 +8,6 @@ plugins {
 }
 
 withProjects(
-        Libraries.easyAdapter,
         Libraries.extensions,
         Libraries.localization
 )
@@ -16,6 +15,7 @@ withProjects(
 withLibraries(
         Libs.appcompat,
         Libs.constraintLayout,
+        Libs.easyAdapter,
         Libs.material,
         Libs.recyclerView,
         Libs.vectorDrawable

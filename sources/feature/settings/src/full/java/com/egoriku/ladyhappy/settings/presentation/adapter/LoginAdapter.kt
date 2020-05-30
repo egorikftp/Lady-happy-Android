@@ -30,7 +30,7 @@ internal class LoginAdapter(
                 is UserLoginState.Anon -> {
                     binding.loginView.apply {
                         state = State.ANON
-                        setProfileImage(drawableCompat(R.color.Terracota))
+                        setProfileImage(drawableCompat(R.drawable.ic_profile_stub))
                         onButtonClick {
                             onItemClick(State.ANON)
                         }
@@ -40,7 +40,7 @@ internal class LoginAdapter(
                 is UserLoginState.LoggedIn -> {
                     binding.loginView.apply {
                         state = State.LOGGED_IN
-                        setProfileImage(drawableCompat(R.color.RoseTaupe))
+                        setProfileImage(drawableCompat(R.drawable.ic_profile_stub))
                         setUserName(if (model.state.name.isEmpty()) model.state.email else model.state.name)
                         onButtonClick {
                             onItemClick(State.LOGGED_IN)

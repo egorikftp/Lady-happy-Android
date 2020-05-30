@@ -15,9 +15,11 @@ import com.egoriku.ladyhappy.catalog.subcategory.presentation.SubcategoryScreenS
 import com.egoriku.ladyhappy.catalog.subcategory.presentation.SubcategoryScreenState.Error
 import com.egoriku.ladyhappy.catalog.subcategory.presentation.SubcategoryScreenState.Success
 import com.egoriku.ladyhappy.catalog.subcategory.presentation.controller.SubCategoryController
+import com.egoriku.ladyhappy.catalog.subcategory.presentation.controller.balloon.ViewHolderBalloonFactory
 import com.egoriku.ladyhappy.extensions.gone
 import com.egoriku.ladyhappy.extensions.toast
 import com.egoriku.ladyhappy.extensions.visible
+import com.skydoves.balloon.balloon
 import org.koin.androidx.scope.lifecycleScope
 import org.koin.androidx.viewmodel.scope.viewModel
 import org.koin.core.parameter.parametersOf
@@ -31,22 +33,27 @@ class SubCategoryFragment : Fragment(R.layout.fragment_catalog) {
 
     private val binding: FragmentCatalogBinding by viewBinding()
 
+    private val viewHolderBalloon by balloon(ViewHolderBalloonFactory::class)
+
     private val catalogViewModel: SubCategoriesViewModel by lifecycleScope.viewModel(this) {
         parametersOf(arguments?.getInt(ARGUMENT_CATEGORY_ID))
     }
 
     private var subcategoryController: SubCategoryController by Delegates.notNull()
 
-    private val catalogAdapter = EasyAdapter().apply {
-        setFirstInvisibleItemEnabled(false)
-    }
+    private val catalogAdapter = EasyAdapter()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        subcategoryController = SubCategoryController {
-            toast("Item ${it.name} was clicked")
-        }
+        subcategoryController = SubCategoryController(
+                onCatalogItemClick = {
+                    toast("Item ${it.name} was clicked")
+                },
+                onTrendingClick = {
+                    viewHolderBalloon?.showAlignLeft(it)
+                }
+        )
 
         binding.catalogRecyclerView.apply {
             layoutManager = LinearLayoutManager(context)

@@ -80,7 +80,6 @@ object Modules {
                 ProjectBean(Libraries.arch, "sources/base/arch"),
                 ProjectBean(Libraries.auth, "sources/base/auth"),
                 ProjectBean(Libraries.core, "sources/base/core"),
-                ProjectBean(Libraries.easyAdapter, "sources/libraries/easyAdapter"),
                 ProjectBean(Libraries.extensions, "sources/libraries/extensions"),
                 ProjectBean(Libraries.localization, "sources/base/localization"),
                 ProjectBean(Libraries.mozaik, "sources/libraries/mozaik"),

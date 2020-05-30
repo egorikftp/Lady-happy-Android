@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/RealWhite"
+    android:background="?attr/android:colorBackground"
     android:clickable="true"
     android:focusable="true">
 
@@ -48,7 +48,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/logo"
                 app:layout_constraintWidth_max="350dp"
                 app:startIconDrawable="@drawable/ic_mail_outline"
-                app:startIconTint="@color/RoseTaupeDark">
+                app:startIconTint="?attr/colorPrimary">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/loginEmail"
@@ -73,13 +73,12 @@
                 app:boxCornerRadiusTopEnd="100dp"
                 app:boxCornerRadiusTopStart="100dp"
                 app:endIconMode="password_toggle"
-                app:endIconTint="@color/RoseTaupeDark"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textInputEmail"
                 app:layout_constraintWidth_max="350dp"
                 app:startIconDrawable="@drawable/ic_lock_outline"
-                app:startIconTint="@color/RoseTaupeDark">
+                app:startIconTint="?attr/colorPrimary">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/loginPassword"
