@@ -60,8 +60,8 @@ withLibraries(
         Libs.koinCore,
         Libs.koinScope,
         Libs.koinViewModel,
-        Libs.liveDataKtx,
+        Libs.liveData,
         Libs.material,
         Libs.viewBindingDelegates,
-        Libs.viewModelKtx
+        Libs.viewModel
 )

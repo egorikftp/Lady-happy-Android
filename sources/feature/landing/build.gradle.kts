@@ -51,7 +51,7 @@ withLibraries(
         Libs.material,
         Libs.recyclerView,
         Libs.viewBindingDelegates,
-        Libs.viewModelKtx
+        Libs.viewModel
 )
 
 withKapt(

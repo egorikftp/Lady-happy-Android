@@ -12,5 +12,5 @@ withLibraries(
         Libs.lifecycleExtensions,
         Libs.material,
         Libs.recyclerView,
-        Libs.viewModelKtx
+        Libs.viewModel
 )

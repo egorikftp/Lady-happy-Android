@@ -23,7 +23,7 @@ withLibraries(
         Libs.coreKtx,
         Libs.constraintLayout,
         Libs.koinAndroidExperimental,
-        Libs.liveDataKtx,
+        Libs.liveData,
         Libs.material,
         Libs.playCore,
         Libs.viewBindingDelegates

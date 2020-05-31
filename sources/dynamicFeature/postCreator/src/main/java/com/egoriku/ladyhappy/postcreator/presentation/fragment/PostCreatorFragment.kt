@@ -22,6 +22,7 @@ import com.egoriku.ladyhappy.postcreator.domain.model.ImageItem
 import com.egoriku.ladyhappy.postcreator.domain.predefined.PredefinedData
 import com.egoriku.ladyhappy.postcreator.koin.postModule
 import com.egoriku.ladyhappy.postcreator.presentation.PostViewModel
+import com.egoriku.ladyhappy.postcreator.presentation.ScreenState
 import com.egoriku.ladyhappy.postcreator.presentation.adapter.AddImageAdapter
 import com.egoriku.ladyhappy.postcreator.presentation.adapter.ImagesAdapter
 import com.egoriku.ladyhappy.postcreator.presentation.dialogs.CategoriesDialog
@@ -82,6 +83,17 @@ class PostCreatorFragment : Fragment(R.layout.fragment_post_creator),
 
             updateImagesCount(it)
         }
+
+        viewModel.screenState.observe(viewLifecycleOwner) {
+            binding.processViewState(it)
+        }
+    }
+
+    private fun FragmentPostCreatorBinding.processViewState(state: ScreenState) {
+        when (state.category) {
+            null -> chooseCategory.reset()
+            else -> chooseCategory.setPrimary(state.category.name)
+        }
     }
 
     private fun updateImagesCount(list: List<ImageItem>) {
@@ -111,7 +123,7 @@ class PostCreatorFragment : Fragment(R.layout.fragment_post_creator),
 
     override fun onValueChanged(dialogResult: DialogResult) {
         when (dialogResult) {
-            is DialogResult.Categories -> viewModel.updateCategory(dialogResult.category)
+            is DialogResult.Category -> viewModel.updateCategory(dialogResult.category)
         }
     }
 
@@ -126,10 +138,16 @@ class PostCreatorFragment : Fragment(R.layout.fragment_post_creator),
             addItemDecoration(VerticalMarginItemDecoration(resources.getDimensionPixelSize(R.dimen.posts_images_margin)))
         }
 
-        chooseCategory.setOnClickListener {
-            //TODO make a local router
-            CategoriesDialog.newInstance(PredefinedData.categoriesName)
-                    .show(childFragmentManager, null)
+        with(chooseCategory) {
+            setOnClickListener {
+                //TODO make a local router
+                CategoriesDialog.newInstance(PredefinedData.categoriesName)
+                        .show(childFragmentManager, null)
+            }
+
+            onClearIconClickListener = {
+                viewModel.updateCategory(null)
+            }
         }
 
         chooseSubCategory.setOnClickListener {

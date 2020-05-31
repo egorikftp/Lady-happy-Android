@@ -28,6 +28,8 @@ fun View.colorCompat(@ColorRes colorInt: Int) = context.colorCompat(colorInt)
 
 fun View.colorFromAttr(@AttrRes attribute: Int) = context.colorFromAttr(attribute)
 
+inline fun View.resIdFromAttr(@AttrRes attr: Int) = context.resIdFromAttr(attr)
+
 fun View.drawableCompat(@DrawableRes drawableRes: Int) = context.drawableCompat(drawableRes)
         ?: throw IllegalArgumentException("Wrong drawable id $drawableRes")
 
@@ -56,7 +58,7 @@ inline fun View.indefiniteSnackBar(
         .setAction(actionText, action)
         .show()
 
-inline fun View.longSnackbar(
+inline fun View.longSnackBar(
         @StringRes message: Int,
         @StringRes actionText: Int,
         anchorView: View = this,
@@ -66,3 +68,9 @@ inline fun View.longSnackbar(
         .setAnchorView(anchorView)
         .setAction(actionText, action)
         .show()
+
+inline fun View.addRipple() {
+    isClickable = true
+
+    setBackgroundResource(resIdFromAttr(android.R.attr.selectableItemBackground))
+}

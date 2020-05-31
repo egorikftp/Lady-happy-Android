@@ -63,10 +63,10 @@ withLibraries(
         Libs.koinAndroid,
         Libs.koinViewModel,
         Libs.kotlin,
-        Libs.liveDataKtx,
+        Libs.liveData,
         Libs.material,
         Libs.playCore,
         Libs.recyclerView,
         Libs.viewBindingDelegates,
-        Libs.viewModelKtx
+        Libs.viewModel
 )

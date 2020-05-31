@@ -22,8 +22,8 @@ withLibraries(
         Libs.constraintLayout,
         Libs.koinCore,
         Libs.koinViewModel,
-        Libs.liveDataKtx,
+        Libs.liveData,
         Libs.material,
         Libs.viewBindingDelegates,
-        Libs.viewModelKtx
+        Libs.viewModel
 )

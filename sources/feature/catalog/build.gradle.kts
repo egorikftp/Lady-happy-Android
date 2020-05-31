@@ -57,10 +57,10 @@ withLibraries(
         Libs.koinCore,
         Libs.koinScope,
         Libs.koinViewModel,
-        Libs.liveDataKtx,
+        Libs.liveData,
         Libs.material,
         Libs.recyclerView,
         Libs.viewBindingDelegates,
-        Libs.viewModelKtx,
+        Libs.viewModel,
         Libs.viewPager2
 )

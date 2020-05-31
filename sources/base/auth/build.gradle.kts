@@ -15,5 +15,5 @@ withProjects(
 
 withLibraries(
         Libs.firebaseAuth,
-        Libs.liveDataKtx
+        Libs.liveData
 )
