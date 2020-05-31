@@ -26,6 +26,7 @@ This project brings to the table set of best practices, tools, and solutions:
 * CI/CD ([AppCenter](https://appcenter.ms/users/egorikftp/apps/Lady-Happy-Beta))
 * Dependency Injection ([Koin](https://github.com/InsertKoinIO/koin))
 * Material Design
+* Dark Theme
 
 
 Built With 🛠
