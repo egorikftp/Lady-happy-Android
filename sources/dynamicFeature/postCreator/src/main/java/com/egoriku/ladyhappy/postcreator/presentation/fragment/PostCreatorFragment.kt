@@ -12,9 +12,7 @@ import androidx.recyclerview.widget.MergeAdapter
 import androidx.recyclerview.widget.RecyclerView.HORIZONTAL
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.egoriku.core.di.utils.IRouter
-import com.egoriku.ladyhappy.extensions.colorFromAttr
-import com.egoriku.ladyhappy.extensions.colorStateListCompat
-import com.egoriku.ladyhappy.extensions.toast
+import com.egoriku.ladyhappy.extensions.*
 import com.egoriku.ladyhappy.postcreator.R
 import com.egoriku.ladyhappy.postcreator.databinding.FragmentPostCreatorBinding
 import com.egoriku.ladyhappy.postcreator.domain.dialog.DialogResult
@@ -26,6 +24,7 @@ import com.egoriku.ladyhappy.postcreator.presentation.ScreenState
 import com.egoriku.ladyhappy.postcreator.presentation.adapter.AddImageAdapter
 import com.egoriku.ladyhappy.postcreator.presentation.adapter.ImagesAdapter
 import com.egoriku.ladyhappy.postcreator.presentation.dialogs.CategoriesDialog
+import com.egoriku.ladyhappy.postcreator.presentation.dialogs.SubCategoriesDialog
 import com.egoriku.ladyhappy.postcreator.presentation.dialogs.listener.DialogValueChangeListener
 import com.egoriku.ui.decorator.VerticalMarginItemDecoration
 import com.google.android.play.core.splitcompat.SplitCompat
@@ -89,13 +88,6 @@ class PostCreatorFragment : Fragment(R.layout.fragment_post_creator),
         }
     }
 
-    private fun FragmentPostCreatorBinding.processViewState(state: ScreenState) {
-        when (state.category) {
-            null -> chooseCategory.reset()
-            else -> chooseCategory.setPrimary(state.category.name)
-        }
-    }
-
     private fun updateImagesCount(list: List<ImageItem>) {
         val size = list.size
 
@@ -124,6 +116,7 @@ class PostCreatorFragment : Fragment(R.layout.fragment_post_creator),
     override fun onValueChanged(dialogResult: DialogResult) {
         when (dialogResult) {
             is DialogResult.Category -> viewModel.updateCategory(dialogResult.category)
+            is DialogResult.SubCategory -> viewModel.updateSubCategory(dialogResult.subCategory)
         }
     }
 
@@ -138,24 +131,50 @@ class PostCreatorFragment : Fragment(R.layout.fragment_post_creator),
             addItemDecoration(VerticalMarginItemDecoration(resources.getDimensionPixelSize(R.dimen.posts_images_margin)))
         }
 
-        with(chooseCategory) {
-            setOnClickListener {
-                //TODO make a local router
-                CategoriesDialog.newInstance(PredefinedData.categoriesName)
-                        .show(childFragmentManager, null)
-            }
-
-            onClearIconClickListener = {
-                viewModel.updateCategory(null)
-            }
+        chooseCategory.setOnClickListener {
+            //TODO make a local router
+            CategoriesDialog.newInstance(PredefinedData.getCategoriesNames())
+                    .show(childFragmentManager, null)
         }
 
-        chooseSubCategory.setOnClickListener {
-            toast("Soon")
+        chooseCategory.onClearIconClickListener = {
+            viewModel.updateCategory(category = null)
+        }
+
+        chooseSubCategory.onClearIconClickListener = {
+            viewModel.updateCategory(category = null)
+            viewModel.updateSubCategory(subCategory = null)
         }
 
         postPublishButton.setOnClickListener {
             toast("Will upload post")
+        }
+    }
+
+    private fun FragmentPostCreatorBinding.processViewState(state: ScreenState) {
+        when (val category = state.category) {
+            null -> {
+                chooseCategory.reset()
+                chooseSubCategory.gone()
+                chooseSubCategory.reset()
+            }
+            else -> {
+                chooseCategory.setPrimary(category.name)
+
+                with(chooseSubCategory) {
+                    chooseSubCategory.reset()
+                    visible()
+                    setOnClickListener {
+                        SubCategoriesDialog.newInstance(PredefinedData.getSubCategoriesNames(category.categoryId))
+                                .show(childFragmentManager, null)
+                    }
+                }
+            }
+        }
+
+        when (val subCategory = state.subCategory) {
+            null -> chooseSubCategory.reset()
+            else -> chooseSubCategory.setPrimary(subCategory.name)
         }
     }
 }
