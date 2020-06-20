@@ -3,8 +3,12 @@ import com.egoriku.ext.withLibraries
 import com.egoriku.ext.withProjects
 
 plugins {
-    id("HappyFeaturePlugin")
+    id("HappyXPlugin")
     id("com.android.library")
+}
+
+happyPlugin {
+    viewBindingEnabled = true
 }
 
 withProjects(

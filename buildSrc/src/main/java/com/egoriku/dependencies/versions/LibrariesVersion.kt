@@ -12,11 +12,12 @@ object LibrariesVersion {
     const val core = "1.3.0"
     const val coroutinesAndroid = "1.3.6"
     const val circleImageView = "3.1.0"
-    const val crashlytics = "2.10.1@aar"
     const val dagger = "2.28"
     const val easyAdapter = "1.0.0"
     const val firebaseAuth = "19.3.1"
+    const val firebaseAnalytics = "17.4.2"
     const val firebaseCore = "17.4.0"
+    const val firebaseCrashlytics = "17.0.0"
     const val firebaseFirestore = "21.3.1"
     const val firebasePerformance = "19.0.7"
     const val fragment = "1.3.0-alpha05"
@@ -42,7 +43,7 @@ object ProjectVersion {
 }
 
 object ClasspathVersion {
-    const val fabric = "1.31.2"
+    const val firebaseCrashlytics = "2.1.1"
     const val firebasePerformance = "1.3.1"
     const val googleServices = "4.3.3"
     const val gradleLibrariesVersion = "0.28.0"

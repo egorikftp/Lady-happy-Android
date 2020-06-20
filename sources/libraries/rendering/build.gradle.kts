@@ -2,7 +2,7 @@ import com.egoriku.dependencies.versions.ProjectVersion
 import com.egoriku.ext.withLibraries
 
 plugins {
-    id("HappyLibraryPlugin")
+    id("HappyXPlugin")
     id("com.android.library")
 }
 

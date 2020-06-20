@@ -5,9 +5,13 @@ import com.egoriku.ext.withLibraries
 import com.egoriku.ext.withProjects
 
 plugins {
+    id("HappyXPlugin")
     id("com.android.library")
-    id("HappyFeaturePlugin")
     id("kotlin-kapt")
+}
+
+happyPlugin {
+    viewBindingEnabled = true
 }
 
 withProjects(

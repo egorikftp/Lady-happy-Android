@@ -10,14 +10,9 @@ repositories {
 
 gradlePlugin {
     plugins {
-        register("HappyLibraryPlugin") {
-            id = "HappyLibraryPlugin"
-            implementationClass = "com.egoriku.plugin.HappyLibraryPlugin"
-        }
-
-        register("HappyFeaturePlugin") {
-            id = "HappyFeaturePlugin"
-            implementationClass = "com.egoriku.plugin.HappyFeaturePlugin"
+        register("HappyXPlugin") {
+            id = "HappyXPlugin"
+            implementationClass = "com.egoriku.plugin.HappyXPlugin"
         }
     }
 }

@@ -16,8 +16,8 @@ plugins {
     id("com.android.application")
     id("kotlin-android")
     id("kotlin-kapt")
-    id("io.fabric")
     id("com.google.firebase.firebase-perf")
+    id("com.google.firebase.crashlytics")
 }
 
 android {
@@ -125,7 +125,7 @@ withLibraries(
         Libs.coroutinesAndroid,
         Libs.firebaseAuth,
         Libs.firebaseCore,
-        Libs.firebaseFirestoreKtx,
+        Libs.firebaseFirestore,
         Libs.firebasePerformance,
         Libs.koinAndroid,
         Libs.koinCore,
@@ -137,9 +137,8 @@ withLibraries(
 withKapt(Libs.dagger andKapt Libs.daggerCompiler)
 
 dependencies {
-    implementation(Libs.crashlytics) {
-        isTransitive = true
-    }
+    implementation(Libs.firebaseAnalytics)
+    implementation(Libs.firebaseCrashlytics)
 
     debugImplementation(Libs.beagle)
     debugImplementation(Libs.leakCanary)
