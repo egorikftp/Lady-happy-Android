@@ -4,8 +4,7 @@ import com.egoriku.ladyhappy.catalog.subcategory.data.entity.Image
 import com.egoriku.ladyhappy.catalog.subcategory.data.entity.SubCategoryEntity
 import com.egoriku.ladyhappy.catalog.subcategory.data.repository.SubcategoryRepository
 import com.egoriku.ladyhappy.catalog.subcategory.domain.model.SubCategoryItem
-import com.egoriku.mozaik.model.MozaikImageItem
-import com.egoriku.mozaik.model.PhotoSizes
+import com.egoriku.mozaik.model.MozaikItem
 import com.egoriku.network.Result
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -21,11 +20,11 @@ class CatalogUseCase(private val subcategoryRepository: SubcategoryRepository) {
         )
     }
 
-    private val imageTransform: (Image) -> MozaikImageItem = { image: Image ->
-        MozaikImageItem(
+    private val imageTransform: (Image) -> MozaikItem = { image: Image ->
+        MozaikItem(
                 width = image.width,
                 height = image.height,
-                sizes = PhotoSizes(original = image.url)
+                url = image.url
         )
     }
 

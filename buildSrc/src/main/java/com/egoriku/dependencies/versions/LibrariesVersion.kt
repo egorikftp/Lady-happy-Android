@@ -47,5 +47,5 @@ object ClasspathVersion {
     const val firebasePerformance = "1.3.1"
     const val googleServices = "4.3.3"
     const val gradleLibrariesVersion = "0.28.0"
-    const val gradleTools = "4.0.0"
+    const val gradleTools = "4.0.1"
 }

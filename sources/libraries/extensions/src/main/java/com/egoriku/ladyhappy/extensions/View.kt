@@ -11,6 +11,7 @@ import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.core.content.withStyledAttributes
 import com.google.android.material.snackbar.Snackbar
+import kotlin.math.roundToInt
 
 inline fun View.gone() {
     if (visibility != View.GONE) visibility = View.GONE
@@ -74,3 +75,6 @@ inline fun View.addRipple() {
 
     setBackgroundResource(resIdFromAttr(android.R.attr.selectableItemBackground))
 }
+
+fun View.pxToDp(value: Int): Int =
+        (value.toFloat() / context.resources.displayMetrics.density).roundToInt()

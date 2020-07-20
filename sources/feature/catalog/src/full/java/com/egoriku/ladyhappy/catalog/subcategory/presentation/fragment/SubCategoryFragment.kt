@@ -17,6 +17,7 @@ import com.egoriku.ladyhappy.catalog.subcategory.presentation.SubcategoryScreenS
 import com.egoriku.ladyhappy.catalog.subcategory.presentation.controller.SubCategoryController
 import com.egoriku.ladyhappy.catalog.subcategory.presentation.controller.balloon.ViewHolderBalloonFactory
 import com.egoriku.ladyhappy.extensions.gone
+import com.egoriku.ladyhappy.extensions.logD
 import com.egoriku.ladyhappy.extensions.toast
 import com.egoriku.ladyhappy.extensions.visible
 import com.skydoves.balloon.balloon
@@ -48,7 +49,7 @@ class SubCategoryFragment : Fragment(R.layout.fragment_catalog) {
 
         subcategoryController = SubCategoryController(
                 onCatalogItemClick = {
-                    toast("Item ${it.name} was clicked")
+                    logD("Item ${it.name} was clicked")
                 },
                 onTrendingClick = {
                     viewHolderBalloon?.showAlignLeft(it)
