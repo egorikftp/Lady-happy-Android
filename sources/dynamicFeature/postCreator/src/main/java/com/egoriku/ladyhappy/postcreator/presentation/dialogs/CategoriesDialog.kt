@@ -2,11 +2,8 @@ package com.egoriku.ladyhappy.postcreator.presentation.dialogs
 
 import android.content.Context
 import android.os.Bundle
-import android.widget.ListView
-import androidx.appcompat.app.AlertDialog
-import com.egoriku.ladyhappy.extensions.toast
+import com.egoriku.ladyhappy.extensions.dataBySelectedPosition
 import com.egoriku.ladyhappy.postcreator.domain.dialog.DialogResult
-import com.egoriku.ladyhappy.postcreator.domain.predefined.CategoryModel
 import com.egoriku.ladyhappy.postcreator.presentation.dialogs.listener.DialogValueChangeListener
 import com.egoriku.ui.dialog.BaseDialogFragment
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
@@ -40,12 +37,8 @@ class CategoriesDialog : BaseDialogFragment() {
     override fun onPositiveButtonClick() {
         super.onPositiveButtonClick()
 
-        val lw: ListView = (dialog as AlertDialog).listView
-        val checkedItem: Any = lw.adapter.getItem(lw.checkedItemPosition)
-
-        listener?.onValueChanged(DialogResult.Categories(CategoryModel("kek", emptyList())))
-
-        toast("positive")
+        val checkedItemName = dataBySelectedPosition<String>()
+        listener?.onValueChanged(DialogResult.Category(checkedItemName))
     }
 
     companion object {

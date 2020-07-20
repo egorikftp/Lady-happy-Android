@@ -2,7 +2,7 @@ import com.egoriku.dependencies.versions.ClasspathVersion
 import com.egoriku.dependencies.versions.LibrariesVersion
 
 object GradlePlugins {
-    const val fabric = "io.fabric.tools:gradle:${ClasspathVersion.fabric}"
+    const val firebaseCrashlytics = "com.google.firebase:firebase-crashlytics-gradle:${ClasspathVersion.firebaseCrashlytics}"
     const val firebasePerformance = "com.google.firebase:perf-plugin:${ClasspathVersion.firebasePerformance}"
     const val googleServices = "com.google.gms:google-services:${ClasspathVersion.googleServices}"
     const val gradleTools = "com.android.tools.build:gradle:${ClasspathVersion.gradleTools}"

@@ -2,8 +2,12 @@ import Modules.Libraries
 import com.egoriku.ext.*
 
 plugins {
-    id("HappyFeaturePlugin")
+    id("HappyXPlugin")
     id("com.android.library")
+}
+
+happyPlugin {
+    viewBindingEnabled = true
 }
 
 android {
@@ -56,12 +60,12 @@ withLibraries(
         Libs.coreKtx,
         Libs.circleImageView,
         Libs.easyAdapter,
-        Libs.firebaseFirestoreKtx,
+        Libs.firebaseFirestore,
         Libs.koinCore,
         Libs.koinScope,
         Libs.koinViewModel,
-        Libs.liveDataKtx,
+        Libs.liveData,
         Libs.material,
         Libs.viewBindingDelegates,
-        Libs.viewModelKtx
+        Libs.viewModel
 )

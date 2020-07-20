@@ -20,16 +20,14 @@
         app:cardPreventCornerOverlap="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_height="150dp">
 
         <com.egoriku.mozaik.MozaikLayout
             android:id="@+id/mozaikLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="parent"
-            app:spacing="4dp"
-            tools:background="@color/RealBlack"
-            tools:layout_height="150dp" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <FrameLayout
             android:id="@+id/trending"

@@ -3,7 +3,7 @@ import com.egoriku.ext.withLibraries
 import com.egoriku.ext.withProjects
 
 plugins {
-    id("HappyLibraryPlugin")
+    id("HappyXPlugin")
     id("com.android.library")
 }
 
@@ -15,5 +15,5 @@ withProjects(
 
 withLibraries(
         Libs.firebaseAuth,
-        Libs.liveDataKtx
+        Libs.liveData
 )

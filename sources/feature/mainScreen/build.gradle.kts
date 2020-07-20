@@ -5,9 +5,13 @@ import com.egoriku.ext.withLibraries
 import com.egoriku.ext.withProjects
 
 plugins {
+    id("HappyXPlugin")
     id("com.android.library")
-    id("HappyFeaturePlugin")
     id("kotlin-kapt")
+}
+
+happyPlugin {
+    viewBindingEnabled = true
 }
 
 withProjects(
@@ -23,7 +27,7 @@ withLibraries(
         Libs.coreKtx,
         Libs.constraintLayout,
         Libs.koinAndroidExperimental,
-        Libs.liveDataKtx,
+        Libs.liveData,
         Libs.material,
         Libs.playCore,
         Libs.viewBindingDelegates

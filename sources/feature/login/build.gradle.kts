@@ -3,8 +3,12 @@ import com.egoriku.ext.withLibraries
 import com.egoriku.ext.withProjects
 
 plugins {
-    id("HappyFeaturePlugin")
+    id("HappyXPlugin")
     id("com.android.library")
+}
+
+happyPlugin {
+    viewBindingEnabled = true
 }
 
 withProjects(
@@ -22,8 +26,8 @@ withLibraries(
         Libs.constraintLayout,
         Libs.koinCore,
         Libs.koinViewModel,
-        Libs.liveDataKtx,
+        Libs.liveData,
         Libs.material,
         Libs.viewBindingDelegates,
-        Libs.viewModelKtx
+        Libs.viewModel
 )

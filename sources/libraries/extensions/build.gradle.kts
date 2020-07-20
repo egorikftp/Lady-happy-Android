@@ -1,7 +1,7 @@
 import com.egoriku.ext.withLibraries
 
 plugins {
-    id("HappyLibraryPlugin")
+    id("HappyXPlugin")
     id("com.android.library")
 }
 
@@ -12,5 +12,5 @@ withLibraries(
         Libs.lifecycleExtensions,
         Libs.material,
         Libs.recyclerView,
-        Libs.viewModelKtx
+        Libs.viewModel
 )

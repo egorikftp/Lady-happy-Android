@@ -1,198 +1,96 @@
 package com.egoriku.mozaik
 
-import android.app.Activity
 import android.content.Context
 import android.util.AttributeSet
-import android.util.DisplayMetrics
-import android.util.TypedValue
-import android.view.View
-import android.widget.RelativeLayout
-import com.egoriku.ladyhappy.extensions.withStyledAttributes
-import com.egoriku.mozaik.calculator.MatrixCalculator
-import com.egoriku.mozaik.calculator.MatrixCalculator.Libra
-import com.egoriku.mozaik.calculator.MozaikLayoutParamsCalculator
-import com.egoriku.mozaik.model.MozaikImageItem
-import kotlin.math.roundToInt
+import android.view.ViewGroup
+import android.widget.ImageView
+import com.egoriku.ladyhappy.extensions.pxToDp
+import com.egoriku.mozaik.model.MozaikItem
+import com.egoriku.mozaik.strategy.StrategyResolver
+import com.egoriku.mozaik.strategy.internal.model.Rect
+import com.egoriku.mozaik.strategy.internal.model.StrategyData
 
-class MozaikLayout : RelativeLayout {
+class MozaikLayout @JvmOverloads constructor(
+        context: Context,
+        attrs: AttributeSet? = null,
+        defStyleAttr: Int = 0
+) : ViewGroup(context, attrs, defStyleAttr) {
 
-    private var photos: List<MozaikImageItem> = mutableListOf()
-
-    private var layoutParamsCalculator: MozaikLayoutParamsCalculator? = null
-
-    private var maxSingleImageHeight = 0
-    private var prefImageSize = 0
-    private var spacing = 0
-
-    private val density: Float = resources.displayMetrics.density
-
-    private val libra: Libra = object : Libra {
-        override fun getWeight(index: Int): Float = photos[index].aspectRatio
+    init {
+        setWillNotDraw(false)
     }
 
-    constructor(context: Context) : this(context, null)
-    constructor(context: Context, attrs: AttributeSet?) : this(context, attrs, 0)
+    private val strategyData = StrategyData(dividerSize = pxToDp(20))
 
-    constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : super(context, attrs, defStyleAttr) {
-        initDimensions(context, attrs)
-    }
+    var onViewReady: ((view: ImageView, url: String) -> Unit)? = null
 
-    private fun initDimensions(context: Context, attrs: AttributeSet?) {
-        maxSingleImageHeight = getDisplayHeight(context)
+    var dividerSize: Int = 0
+        set(value) {
+            field = value
 
-        withStyledAttributes(
-                attributeSet = attrs,
-                styleArray = R.styleable.MozaikLayout
-        ) {
-            prefImageSize = getDimension(R.styleable.MozaikLayout_prefImageSize, context.resources.getDimension(R.dimen.pref_image_size)).toInt()
-            spacing = getDimensionPixelSize(R.styleable.MozaikLayout_spacing, dpToPx(1f).toInt())
+            strategyData.dividerSize = value
+
+            requestLayout()
+            invalidate()
         }
-    }
-
-    private fun initCalculator(parentWidth: Int) {
-        val matrix = createMatrix(parentWidth)
-        layoutParamsCalculator = MozaikLayoutParamsCalculator(matrix, photos, parentWidth, spacing)
-    }
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec)
+
         val parentWidth = MeasureSpec.getSize(widthMeasureSpec)
 
-        if (photos.size == 1) {
-            val parent = getChildAt(0)
-            val parentParams = getLayoutParamsForSingleImage(photos[0], parent.layoutParams as LayoutParams, parentWidth)
-            parent.measure(parentParams.width, parentParams.height)
-        } else {
-            if (layoutParamsCalculator == null) {
-                initCalculator(parentWidth)
-            }
-            photos.indices.forEach { item ->
-                val image = photos[item]
-                val parent = getChildAt(item)
+        strategyData.parentWidth = parentWidth
 
-                if (parent.visibility == View.GONE) {
-                    return@forEach
-                }
+        StrategyResolver
+                .resolveBySize(childCount)
+                .calculateWith(strategyData)
 
-                if (image.position == null) {
-                    image.position = layoutParamsCalculator?.getPostImagePosition(item)
-                }
+        for (i in 0 until childCount) {
+            val childAt = getChildAt(i)
+            val rect = strategyData.rect[i]
 
-                val position = image.position
-
-                if (position != null) {
-                    (parent.layoutParams as LayoutParams).apply {
-                        width = position.sizeX
-                        height = position.sizeY
-                        topMargin = position.marginY
-                        leftMargin = position.marginX
-                    }
-
-                    parent.measure(position.sizeX, position.sizeY)
-                }
-            }
+            childAt.measure(
+                    MeasureSpec.makeMeasureSpec(rect.width(), MeasureSpec.UNSPECIFIED),
+                    MeasureSpec.makeMeasureSpec(rect.height(), MeasureSpec.UNSPECIFIED)
+            )
         }
-        super.onMeasure(widthMeasureSpec, heightMeasureSpec)
-    }
 
-    private fun createMatrix(maxWidth: Int): Array<IntArray> {
-        val prefRowCount = getPreferedRowCount(maxWidth)
-        val matrixCalculator = MatrixCalculator(photos.size, libra)
-        return matrixCalculator.calculate(prefRowCount)
-    }
-
-    private fun getPreferedRowCount(maxWidthPx: Int): Int {
-        val dpPerProportion = (prefImageSize / density).toInt()
-        var proportionDpSum = 0
-        for (image in photos) {
-            val proportion = image.aspectRatio
-            proportionDpSum = (proportionDpSum + proportion * dpPerProportion).toInt()
-        }
-        val maxContainerWidthDp = convertPxtoDip(maxWidthPx)
-        var prefRowCount = (proportionDpSum.toDouble() / maxContainerWidthDp.toDouble()).roundToInt()
-        if (prefRowCount == 0) {
-            prefRowCount = 1
-        }
-        return prefRowCount
-    }
-
-    private fun convertPxtoDip(pixel: Int): Int {
-        val scale = density
-        return ((pixel - 0.5f) / scale).toInt()
+        setMeasuredDimension(parentWidth, strategyData.parentHeight)
     }
 
     override fun onLayout(changed: Boolean, left: Int, top: Int, right: Int, bottom: Int) {
-        if (photos.size == 1) {
-            val parent = getChildAt(0)
-            val params = getLayoutParamsForSingleImage(photos[0], parent.layoutParams as LayoutParams, width)
-            parent.layout(params.leftMargin, params.topMargin, params.rightMargin, params.bottomMargin)
-        } else {
-            if (layoutParamsCalculator == null) {
-                initCalculator(width)
-            }
+        if (childCount != 0) {
+            for (i in 0 until childCount) {
+                val childAt = getChildAt(i)
+                val rect = strategyData.rect[i]
 
-            photos.indices.forEach { item ->
-                val postImage = photos[item]
-                val parent = getChildAt(item)
+                childAt.layout(
+                        rect.left + paddingLeft,
+                        rect.top + paddingTop,
+                        rect.right + paddingLeft,
+                        rect.bottom + paddingTop
+                )
 
-                if (parent.visibility == View.GONE) {
-                    return@forEach
-                }
+                val url = strategyData.mozaikItems[i].url
 
-                if (postImage.position == null) {
-                    postImage.position = layoutParamsCalculator?.getPostImagePosition(item)
-                }
-
-                val position = postImage.position
-
-                if (position != null) {
-                    val params = (parent.layoutParams as LayoutParams).apply {
-                        width = position.sizeX
-                        height = position.sizeY
-                        topMargin = position.marginY
-                        leftMargin = position.marginX
-                    }
-
-                    parent.layout(position.marginX, position.marginY, params.rightMargin, params.bottomMargin)
+                if (url.isNotEmpty()) {
+                    onViewReady?.invoke(childAt as ImageView, url)
                 }
             }
         }
-        super.onLayout(changed, left, top, right, bottom)
     }
 
-    fun setPhotos(photos: List<MozaikImageItem>) {
-        this.photos = photos
-        this.photos.forEach {
-            it.position = null
+    fun setItems(items: List<MozaikItem>) {
+        removeAllViews()
+
+        items.forEachIndexed { _, _ ->
+            addView(ImageView(context))
         }
-        layoutParamsCalculator = null
-    }
 
-    private fun dpToPx(dp: Float): Float {
-        return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, context.resources.displayMetrics)
-    }
+        strategyData.rect = List(items.size) { Rect() }
+        strategyData.mozaikItems = items
 
-    private fun getLayoutParamsForSingleImage(photo: MozaikImageItem, params: LayoutParams, maxWidth: Int): LayoutParams {
-        val coef = photo.width.toDouble() / photo.height.toDouble()
-        var measuredwidth = maxWidth
-        var measuredheight = (maxWidth / coef).toInt()
-
-        if (maxSingleImageHeight < measuredheight) {
-            measuredheight = maxSingleImageHeight
-            measuredwidth = (measuredheight * coef).toInt()
-        }
-        params.height = measuredheight
-        params.width = measuredwidth
-        return params
-    }
-
-    companion object {
-        private fun getDisplayHeight(context: Context): Int {
-            val display = (context as Activity).windowManager.defaultDisplay
-            val outMetrics = DisplayMetrics()
-            display.getMetrics(outMetrics)
-
-            return outMetrics.heightPixels
-        }
+        requestLayout()
+        invalidate()
     }
 }

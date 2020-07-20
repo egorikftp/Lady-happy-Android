@@ -11,6 +11,7 @@ import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.core.content.withStyledAttributes
 import com.google.android.material.snackbar.Snackbar
+import kotlin.math.roundToInt
 
 inline fun View.gone() {
     if (visibility != View.GONE) visibility = View.GONE
@@ -27,6 +28,8 @@ inline fun View.visible() {
 fun View.colorCompat(@ColorRes colorInt: Int) = context.colorCompat(colorInt)
 
 fun View.colorFromAttr(@AttrRes attribute: Int) = context.colorFromAttr(attribute)
+
+inline fun View.resIdFromAttr(@AttrRes attr: Int) = context.resIdFromAttr(attr)
 
 fun View.drawableCompat(@DrawableRes drawableRes: Int) = context.drawableCompat(drawableRes)
         ?: throw IllegalArgumentException("Wrong drawable id $drawableRes")
@@ -56,7 +59,7 @@ inline fun View.indefiniteSnackBar(
         .setAction(actionText, action)
         .show()
 
-inline fun View.longSnackbar(
+inline fun View.longSnackBar(
         @StringRes message: Int,
         @StringRes actionText: Int,
         anchorView: View = this,
@@ -66,3 +69,12 @@ inline fun View.longSnackbar(
         .setAnchorView(anchorView)
         .setAction(actionText, action)
         .show()
+
+inline fun View.addRipple() {
+    isClickable = true
+
+    setBackgroundResource(resIdFromAttr(android.R.attr.selectableItemBackground))
+}
+
+fun View.pxToDp(value: Int): Int =
+        (value.toFloat() / context.resources.displayMetrics.density).roundToInt()
