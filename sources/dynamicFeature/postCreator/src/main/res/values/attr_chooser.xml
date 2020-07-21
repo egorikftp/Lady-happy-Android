@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="ChooserView">
+        <attr name="hintText" format="string" />
+        <attr name="iconDefault" format="reference" />
+        <attr name="iconClear" format="reference" />
+    </declare-styleable>
+</resources>

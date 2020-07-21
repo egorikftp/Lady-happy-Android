@@ -2,9 +2,13 @@ import Modules.Libraries
 import com.egoriku.ext.*
 
 plugins {
-    id("HappyFeaturePlugin")
+    id("HappyXPlugin")
     id("com.android.library")
     id("kotlin-kapt")
+}
+
+happyPlugin {
+    viewBindingEnabled = true
 }
 
 android {
@@ -47,11 +51,11 @@ withLibraries(
         Libs.constraintLayout,
         Libs.coroutinesAndroid,
         Libs.easyAdapter,
-        Libs.firebaseFirestoreKtx,
+        Libs.firebaseFirestore,
         Libs.material,
         Libs.recyclerView,
         Libs.viewBindingDelegates,
-        Libs.viewModelKtx
+        Libs.viewModel
 )
 
 withKapt(

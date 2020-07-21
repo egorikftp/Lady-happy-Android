@@ -67,4 +67,5 @@
     <!-- Post Creator -->
     <string name="post_creator_images_count">%1$s from 10</string>
     <string name="post_creator_categories_dialog_title">Choose category</string>
+    <string name="post_creator_subcategories_categories_dialog_title">Choose subcategory</string>
 </resources>

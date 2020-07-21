@@ -5,12 +5,11 @@ buildscript {
         google()
         jcenter()
         mavenCentral()
-        maven(url = "https://maven.fabric.io/public")
         maven(url = "https://jitpack.io")
     }
 
     dependencies {
-        classpath(GradlePlugins.fabric)
+        classpath(GradlePlugins.firebaseCrashlytics)
         classpath(GradlePlugins.firebasePerformance)
         classpath(GradlePlugins.googleServices)
         classpath(GradlePlugins.gradleLibrariesVersion)

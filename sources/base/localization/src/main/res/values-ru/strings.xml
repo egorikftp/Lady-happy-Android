@@ -68,5 +68,6 @@
     <!-- Post Creator -->
     <string name="post_creator_images_count">%1$s из 10</string>
     <string name="post_creator_categories_dialog_title">Выберите категорию</string>
+    <string name="post_creator_subcategories_categories_dialog_title">Выберите подкатегорию</string>
 
 </resources>

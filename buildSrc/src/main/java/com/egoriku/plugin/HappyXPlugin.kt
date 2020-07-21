@@ -1,23 +1,24 @@
 package com.egoriku.plugin
 
-import com.android.build.gradle.AppPlugin
-import com.android.build.gradle.BaseExtension
-import com.android.build.gradle.LibraryPlugin
 import Libs
+import com.android.build.gradle.AppPlugin
+import com.android.build.gradle.LibraryPlugin
 import com.egoriku.dependencies.versions.ProjectVersion
 import com.egoriku.ext.implementation
+import com.egoriku.ext.libraryExtension
 import com.egoriku.ext.release
+import com.egoriku.plugin.extension.MyPluginExtension
 import org.gradle.api.JavaVersion
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.api.plugins.JavaPlugin
+import org.gradle.kotlin.dsl.create
 import org.gradle.kotlin.dsl.dependencies
-import org.gradle.kotlin.dsl.getByType
 import org.jetbrains.kotlin.gradle.plugin.KotlinBasePluginWrapper
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
-open class HappyLibraryPlugin : Plugin<Project> {
-   
+open class HappyXPlugin : Plugin<Project> {
+
     override fun apply(project: Project) {
         with(project) {
             plugins.all {
@@ -42,6 +43,22 @@ open class HappyLibraryPlugin : Plugin<Project> {
                 }
             }
         }
+
+        val config = project.extensions.create<MyPluginExtension>("happyPlugin")
+
+        project.afterEvaluate {
+            plugins.all {
+                when (this) {
+                    is LibraryPlugin -> {
+                        libraryExtension.run {
+                            buildFeatures {
+                                viewBinding = config.viewBindingEnabled
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 
     private fun Project.addCommonPlugins() {
@@ -49,7 +66,7 @@ open class HappyLibraryPlugin : Plugin<Project> {
     }
 }
 
-fun Project.addAndroidLibrarySection() = extensions.getByType<BaseExtension>().run {
+fun Project.addAndroidLibrarySection() = libraryExtension.run {
     defaultConfig {
         minSdkVersion(ProjectVersion.minSdkVersion)
         compileSdkVersion(ProjectVersion.compileSdkVersion)

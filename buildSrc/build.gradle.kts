@@ -10,14 +10,9 @@ repositories {
 
 gradlePlugin {
     plugins {
-        register("HappyLibraryPlugin") {
-            id = "HappyLibraryPlugin"
-            implementationClass = "com.egoriku.plugin.HappyLibraryPlugin"
-        }
-
-        register("HappyFeaturePlugin") {
-            id = "HappyFeaturePlugin"
-            implementationClass = "com.egoriku.plugin.HappyFeaturePlugin"
+        register("HappyXPlugin") {
+            id = "HappyXPlugin"
+            implementationClass = "com.egoriku.plugin.HappyXPlugin"
         }
     }
 }
@@ -26,7 +21,7 @@ dependencies {
     implementation(gradleApi())
     implementation(localGroovy())
 
-    implementation("com.android.tools.build:gradle:4.0.0")
+    implementation("com.android.tools.build:gradle:4.0.1")
     implementation(kotlin("gradle-plugin", "1.3.72"))
     implementation(kotlin("android-extensions"))
 }

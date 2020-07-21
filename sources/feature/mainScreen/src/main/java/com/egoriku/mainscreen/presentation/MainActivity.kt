@@ -170,7 +170,7 @@ class MainActivity : BaseActivity(R.layout.activity_main), IDynamicFeatureConnec
         inAppUpdate.status.observe(this, EventObserver { status ->
             when (status) {
                 is OnFailed -> {
-                    binding.bottomNavigation.longSnackbar(
+                    binding.bottomNavigation.longSnackBar(
                             message = R.string.in_app_update_download_failed,
                             actionText = R.string.in_app_update_retry
                     ) {

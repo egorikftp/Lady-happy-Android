@@ -82,32 +82,26 @@
                 android:hint="Название работы" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textview.MaterialTextView
+        <com.egoriku.ladyhappy.postcreator.presentation.view.ChooserView
             android:id="@+id/chooseCategory"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/material_padding_16"
             android:layout_marginTop="@dimen/material_padding_16"
-            android:layout_marginEnd="@dimen/material_padding_16"
-            android:paddingTop="@dimen/material_padding_16"
-            android:paddingBottom="@dimen/material_padding_16"
-            android:text="Категория"
-            app:drawableEndCompat="@drawable/ic_arrow_right"
+            app:hintText="Категория"
+            app:iconClear="@drawable/ic_close"
+            app:iconDefault="@drawable/ic_arrow_right"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/postTitleInput" />
 
-        <com.google.android.material.textview.MaterialTextView
+        <com.egoriku.ladyhappy.postcreator.presentation.view.ChooserView
             android:id="@+id/chooseSubCategory"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/material_padding_16"
             android:layout_marginTop="@dimen/material_padding_16"
-            android:layout_marginEnd="@dimen/material_padding_16"
-            android:paddingTop="@dimen/material_padding_16"
-            android:paddingBottom="@dimen/material_padding_16"
-            android:text="Подкатегория"
-            app:drawableEndCompat="@drawable/ic_arrow_right"
+            app:hintText="Подкатегория"
+            app:iconClear="@drawable/ic_close"
+            app:iconDefault="@drawable/ic_arrow_right"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/chooseCategory" />

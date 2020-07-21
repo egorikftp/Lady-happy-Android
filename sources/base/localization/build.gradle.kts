@@ -1,4 +1,4 @@
 plugins {
-    id("HappyLibraryPlugin")
+    id("HappyXPlugin")
     id("com.android.library")
 }
