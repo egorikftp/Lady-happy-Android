@@ -9,12 +9,10 @@ import com.egoriku.ladyhappy.navigation.screen.Screen
 import com.egoriku.ladyhappy.settings.domain.model.Section
 import com.egoriku.ladyhappy.settings.domain.usecase.AuthenticationUseCase
 import com.egoriku.ladyhappy.settings.domain.usecase.SectionsUseCase
-import kotlinx.coroutines.InternalCoroutinesApi
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import java.util.concurrent.ConcurrentHashMap
 
-@OptIn(InternalCoroutinesApi::class)
 class SettingsViewModel(
         private val router: IRouter,
         private val sectionsUseCase: SectionsUseCase,

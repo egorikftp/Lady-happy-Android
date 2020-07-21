@@ -7,8 +7,8 @@ import android.view.View
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.observe
+import androidx.recyclerview.widget.ConcatAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.MergeAdapter
 import androidx.recyclerview.widget.RecyclerView.HORIZONTAL
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.egoriku.core.di.utils.IRouter
@@ -50,7 +50,7 @@ class PostCreatorFragment : Fragment(R.layout.fragment_post_creator),
 
     private val viewModel: PostViewModel by lifecycleScope.viewModel(this)
 
-    private val mergeAdapter = MergeAdapter()
+    private val mergeAdapter = ConcatAdapter()
     private var imagesAdapter: ImagesAdapter by Delegates.notNull()
 
     private val imageChooserContract = registerForActivityResult(ActivityResultContracts.GetMultipleContents()) {
