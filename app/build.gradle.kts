@@ -55,6 +55,8 @@ android {
         }
 
         debug {
+            applicationIdSuffix = ".debug"
+            versionNameSuffix = "-debug"
             multiDexEnabled = true
             extra["enableCrashlytics"] = false
             extra["alwaysUpdateBuildId"] = false
