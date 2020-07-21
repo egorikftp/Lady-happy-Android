@@ -2,7 +2,6 @@ package com.egoriku.core.feature
 
 import android.content.Context
 import android.content.Intent
-import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 
 interface IFeatureProvider {
@@ -18,4 +17,6 @@ interface IFeatureProvider {
     val photoReportFragment: Fragment
 
     val settingsFragment: Fragment
+
+    fun searchFragment(searchQuery: String): Fragment
 }

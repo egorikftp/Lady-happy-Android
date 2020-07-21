@@ -3,6 +3,12 @@
     package="com.egoriku.mainscreen">
 
     <application>
-        <activity android:name="com.egoriku.mainscreen.presentation.MainActivity" />
+        <activity android:name="com.egoriku.mainscreen.presentation.MainActivity">
+            <intent-filter>
+                <action android:name="com.google.android.gms.actions.SEARCH_ACTION" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
     </application>
 </manifest>

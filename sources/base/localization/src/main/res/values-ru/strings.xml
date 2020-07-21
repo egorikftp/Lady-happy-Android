@@ -25,6 +25,8 @@
     <string name="navigation_view_catalog">Каталог</string>
     <string name="navigation_view_catalog_header">Наши товары</string>
 
+    <string name="navigation_view_search_header">Поиск</string>
+
     <string name="navigation_view_settings">Настройки</string>
     <string name="navigation_view_settings_header">Дополнительные функции</string>
 

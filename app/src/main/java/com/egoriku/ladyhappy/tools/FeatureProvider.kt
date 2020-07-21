@@ -5,6 +5,7 @@ import android.content.Intent
 import androidx.fragment.app.Fragment
 import com.egoriku.core.feature.IFeatureProvider
 import com.egoriku.ladyhappy.catalog.categories.presentation.fragment.CategoriesFragment
+import com.egoriku.ladyhappy.catalog.categories.presentation.fragment.SearchFragment
 import com.egoriku.ladyhappy.landing.presentation.LandingPageFragment
 import com.egoriku.ladyhappy.login.presentation.LoginFragment
 import com.egoriku.ladyhappy.settings.presentation.SettingFragment
@@ -29,4 +30,6 @@ class FeatureProvider : IFeatureProvider {
 
     override val settingsFragment: Fragment
         get() = SettingFragment()
+
+    override fun searchFragment(searchQuery: String): Fragment = SearchFragment.newInstance(searchQuery)
 }

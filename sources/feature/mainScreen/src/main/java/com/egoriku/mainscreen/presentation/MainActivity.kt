@@ -1,10 +1,12 @@
 package com.egoriku.mainscreen.presentation
 
 import android.app.Activity
+import android.app.SearchManager
 import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
+import android.util.Log
 import androidx.annotation.IdRes
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.observe
@@ -29,6 +31,8 @@ import com.google.android.play.core.splitcompat.SplitCompat
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import javax.inject.Inject
+
+private const val ACTION_SEARCH = "com.google.android.gms.actions.SEARCH_ACTION"
 
 class MainActivity : BaseActivity(R.layout.activity_main), IDynamicFeatureConnector {
 
@@ -92,6 +96,8 @@ class MainActivity : BaseActivity(R.layout.activity_main), IDynamicFeatureConnec
                 false -> toast("error")
             }
         })
+
+        intent?.handleIntent()
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -137,6 +143,13 @@ class MainActivity : BaseActivity(R.layout.activity_main), IDynamicFeatureConnec
 
     override fun installDynamicFeature(featureName: String) =
             dynamicFeatureViewModel.installDynamicFeature(featureName)
+
+    private fun Intent.handleIntent() {
+        if (ACTION_SEARCH == action) {
+            val searchQuery = getStringExtra(SearchManager.QUERY)
+            viewModel.replaceWith(SearchScreen(featureProvider, searchQuery))
+        }
+    }
 
     private fun mapItemIdToScreen(@IdRes menuItemId: Int) {
         when (menuItemId) {
