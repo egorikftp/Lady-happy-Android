@@ -12,13 +12,11 @@ import com.egoriku.ladyhappy.catalog.R
 import com.egoriku.ladyhappy.catalog.databinding.FragmentCatalogBinding
 import com.egoriku.ladyhappy.catalog.subcategory.presentation.SubCategoriesViewModel
 import com.egoriku.ladyhappy.catalog.subcategory.presentation.SubcategoryScreenState
-import com.egoriku.ladyhappy.catalog.subcategory.presentation.SubcategoryScreenState.Error
-import com.egoriku.ladyhappy.catalog.subcategory.presentation.SubcategoryScreenState.Success
+import com.egoriku.ladyhappy.catalog.subcategory.presentation.SubcategoryScreenState.*
 import com.egoriku.ladyhappy.catalog.subcategory.presentation.controller.SubCategoryController
 import com.egoriku.ladyhappy.catalog.subcategory.presentation.controller.balloon.ViewHolderBalloonFactory
 import com.egoriku.ladyhappy.extensions.gone
 import com.egoriku.ladyhappy.extensions.logD
-import com.egoriku.ladyhappy.extensions.toast
 import com.egoriku.ladyhappy.extensions.visible
 import com.skydoves.balloon.balloon
 import org.koin.androidx.scope.lifecycleScope
@@ -63,20 +61,28 @@ class SubCategoryFragment : Fragment(R.layout.fragment_catalog) {
         }
 
         catalogViewModel.subcategoryItems.observe(viewLifecycleOwner) {
-            render(it)
+            binding.render(it)
         }
     }
 
-    private fun render(screenState: SubcategoryScreenState) {
+    private fun FragmentCatalogBinding.render(screenState: SubcategoryScreenState) {
         when (screenState) {
             is Success -> {
-                binding.noItemsView.gone()
+                noItemsView.gone()
+                progressBar.gone()
                 catalogAdapter.setItems(
                         ItemList.create()
                                 .addAll(screenState.screenData, subcategoryController)
                 )
             }
-            is Error -> binding.noItemsView.visible()
+            is Error -> {
+                noItemsView.visible()
+                progressBar.gone()
+            }
+            is Loading -> {
+                noItemsView.gone()
+                progressBar.visible()
+            }
         }
     }
 }

@@ -5,7 +5,7 @@ import com.android.build.gradle.internal.api.BaseVariantOutputImpl
 import com.egoriku.application.configureProductFlavors
 import com.egoriku.application.provideVersionCode
 import com.egoriku.application.provideVersionName
-import com.egoriku.dependencies.versions.ProjectVersion
+import com.egoriku.versions.ProjectVersion
 import com.egoriku.ext.*
 import org.jetbrains.kotlin.konan.file.File
 import org.jetbrains.kotlin.konan.properties.Properties

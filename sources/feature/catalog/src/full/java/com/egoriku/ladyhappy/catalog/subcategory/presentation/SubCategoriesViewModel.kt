@@ -12,6 +12,8 @@ class SubCategoriesViewModel(
 ) : ViewModel() {
 
     val subcategoryItems: LiveData<SubcategoryScreenState> = liveData {
+        emit(SubcategoryScreenState.Loading)
+
         when (val result = catalogUseCase.loadSubCategories(categoryId)) {
             is Result.Success -> emit(SubcategoryScreenState.Success(result.value))
             is Result.Error -> emit(SubcategoryScreenState.Error)
