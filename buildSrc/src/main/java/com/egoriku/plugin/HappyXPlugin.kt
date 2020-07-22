@@ -3,11 +3,11 @@ package com.egoriku.plugin
 import Libs
 import com.android.build.gradle.AppPlugin
 import com.android.build.gradle.LibraryPlugin
-import com.egoriku.dependencies.versions.ProjectVersion
 import com.egoriku.ext.implementation
-import com.egoriku.ext.libraryExtension
 import com.egoriku.ext.release
 import com.egoriku.plugin.extension.MyPluginExtension
+import com.egoriku.plugin.internal.libraryExtension
+import com.egoriku.versions.ProjectVersion
 import org.gradle.api.JavaVersion
 import org.gradle.api.Plugin
 import org.gradle.api.Project

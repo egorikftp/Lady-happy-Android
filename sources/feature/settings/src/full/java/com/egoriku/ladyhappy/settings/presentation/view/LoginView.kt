@@ -50,8 +50,6 @@ class LoginView : ConstraintLayout {
                 loginButton.text = getString(R.string.settings_login)
             }
         }
-        else -> {
-        }
     }
 
     fun setProfileImage(drawable: Drawable) {

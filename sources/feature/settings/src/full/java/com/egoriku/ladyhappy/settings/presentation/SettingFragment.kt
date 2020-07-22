@@ -10,8 +10,8 @@ import androidx.core.net.toUri
 import androidx.core.view.doOnPreDraw
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.observe
+import androidx.recyclerview.widget.ConcatAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.MergeAdapter
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.egoriku.core.connector.IDynamicFeatureConnector
 import com.egoriku.core.feature.IFeatureProvider
@@ -37,7 +37,7 @@ class SettingFragment : Fragment(R.layout.fragment_settings) {
     private val featureProvider: IFeatureProvider by inject()
     private val viewModel: SettingsViewModel by lifecycleScope.viewModel(this)
 
-    private var mergeAdapter: MergeAdapter by Delegates.notNull()
+    private var mergeAdapter: ConcatAdapter by Delegates.notNull()
 
     private var loginAdapter: LoginAdapter by Delegates.notNull()
     private var availableFeaturesAdapter: AvailableFeaturesAdapter by Delegates.notNull()
@@ -67,7 +67,7 @@ class SettingFragment : Fragment(R.layout.fragment_settings) {
             }
         }
 
-        mergeAdapter = MergeAdapter(loginAdapter, availableFeaturesAdapter)
+        mergeAdapter = ConcatAdapter(loginAdapter, availableFeaturesAdapter)
 
         binding.initViews()
 

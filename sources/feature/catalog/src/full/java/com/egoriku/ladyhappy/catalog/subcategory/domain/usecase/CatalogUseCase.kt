@@ -6,8 +6,6 @@ import com.egoriku.ladyhappy.catalog.subcategory.data.repository.SubcategoryRepo
 import com.egoriku.ladyhappy.catalog.subcategory.domain.model.SubCategoryItem
 import com.egoriku.mozaik.model.MozaikItem
 import com.egoriku.network.Result
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
 
 class CatalogUseCase(private val subcategoryRepository: SubcategoryRepository) {
 
@@ -32,10 +30,7 @@ class CatalogUseCase(private val subcategoryRepository: SubcategoryRepository) {
             when (val subcategories = subcategoryRepository.fetchSubCategories(categoryId)) {
                 is Result.Error -> Result.Error(Exception("Response empty"))
                 is Result.Success -> Result.Success(
-                        withContext(Dispatchers.Default) {
-                            subcategories.value
-                                    .map(entityTransform)
-                        }
+                        subcategories.value.map(entityTransform)
                 )
             }
 }

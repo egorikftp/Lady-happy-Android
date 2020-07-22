@@ -24,10 +24,12 @@
                 android:layout_height="150dp"
                 android:layout_marginTop="64dp"
                 android:layout_marginBottom="32dp"
-                android:src="@drawable/ic_lady_happy_logo"
+                android:importantForAccessibility="no"
+                android:src="@drawable/ic_logo"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
+                app:tint="?attr/colorOnSurface"
                 tools:viewBindingIgnore="true" />
 
             <com.google.android.material.textfield.TextInputLayout

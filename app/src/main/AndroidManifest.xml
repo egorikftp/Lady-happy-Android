@@ -1,11 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.egoriku.ladyhappy">
+    xmlns:dist="http://schemas.android.com/apk/distribution"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.egoriku.ladyhappy"
+    android:targetSandboxVersion="2"
+    tools:targetApi="26">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <uses-permission android:name="android.permission.WAKE_LOCK" />
+
+    <!-- Instruct the Play Store to create an instant app from our bundle. -->
+    <dist:module dist:instant="true" />
 
     <application
         android:name=".Application"

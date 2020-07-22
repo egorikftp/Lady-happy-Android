@@ -1,7 +1,6 @@
-import com.egoriku.dependencies.versions.LibrariesVersion
+import com.egoriku.versions.LibrariesVersion
 
 object Libs {
-    //const val activity = "androidx.activity:activity-ktx:${LibrariesVersion.activity}"
     const val annotation = "androidx.annotation:annotation:${LibrariesVersion.annotation}"
     const val appcompat = "androidx.appcompat:appcompat:${LibrariesVersion.appcompat}"
     const val balloon = "com.github.skydoves:balloon:${LibrariesVersion.balloon}"
