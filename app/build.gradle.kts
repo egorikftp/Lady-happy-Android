@@ -2,7 +2,6 @@ import Modules.DynamicFeatures
 import Modules.Features
 import Modules.Libraries
 import com.android.build.gradle.internal.api.BaseVariantOutputImpl
-import com.egoriku.application.configureProductFlavors
 import com.egoriku.application.provideVersionCode
 import com.egoriku.application.provideVersionName
 import com.egoriku.versions.ProjectVersion
@@ -62,15 +61,6 @@ android {
             extra["alwaysUpdateBuildId"] = false
         }
     }
-
-    configureBuildFlavors(
-            onLocalBuild = {
-                configureProductFlavors()
-            },
-            onRemoteBuild = {
-                println("It's app center build.")
-            }
-    )
 
     gradle.taskGraph.whenReady {
         if (hasTask(":app:assembleAllFeaturesDebug")

@@ -1,5 +1,8 @@
 import Modules.Libraries
-import com.egoriku.ext.*
+import com.egoriku.ext.andKapt
+import com.egoriku.ext.withKapt
+import com.egoriku.ext.withLibraries
+import com.egoriku.ext.withProjects
 
 plugins {
     id("HappyXPlugin")
@@ -9,33 +12,6 @@ plugins {
 
 happyPlugin {
     viewBindingEnabled = true
-}
-
-android {
-    configureBuildFlavors(
-            onLocalBuild = {
-                flavorDimensions("photoReport")
-
-                productFlavors {
-                    full {
-                        dimension = "photoReport"
-                    }
-
-                    stub {
-                        dimension = "photoReport"
-                    }
-                }
-            },
-            onRemoteBuild = {
-                sourceSets {
-                    main {
-                        java.srcDirs("src/full/java")
-                        res.srcDirs("src/full/res")
-                        manifest.srcFile("src/full/AndroidManifest.xml")
-                    }
-                }
-            }
-    )
 }
 
 withProjects(

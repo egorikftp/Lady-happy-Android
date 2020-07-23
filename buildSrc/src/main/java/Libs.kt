@@ -28,7 +28,6 @@ object Libs {
     const val koinAndroid = "org.koin:koin-android:${LibrariesVersion.koin}"
     const val koinAndroidExperimental = "org.koin:koin-androidx-ext:${LibrariesVersion.koin}"
     const val koinCore = "org.koin:koin-core:${LibrariesVersion.koin}"
-    const val koinFragment = "koin-androidx-fragment:${LibrariesVersion.koin}"
     const val koinScope = "org.koin:koin-androidx-scope:${LibrariesVersion.koin}"
     const val koinViewModel = "org.koin:koin-androidx-viewmodel:${LibrariesVersion.koin}"
     const val kotlin = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${LibrariesVersion.kotlin}"

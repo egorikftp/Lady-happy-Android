@@ -2,7 +2,6 @@ package com.egoriku.ext
 
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.dependencies
-import org.gradle.kotlin.dsl.project
 
 fun Project.withLibraries(vararg libs: String) {
     dependencies {
@@ -27,13 +26,4 @@ fun Project.withProjects(vararg projects: String) {
             implementation(project(it))
         }
     }
-}
-
-fun configureBuildFlavors(
-        onLocalBuild: () -> Unit,
-        onRemoteBuild: () -> Unit
-) = if (System.getenv("IS_APP_CENTER")?.toBoolean() == true) {
-    onRemoteBuild.invoke()
-} else {
-    onLocalBuild()
 }
