@@ -12,7 +12,7 @@ class CatalogUseCase(private val subcategoryRepository: SubcategoryRepository) {
     private val entityTransform: (SubCategoryEntity) -> SubCategoryItem = { entity: SubCategoryEntity ->
         SubCategoryItem(
                 images = entity.images.map(imageTransform),
-                name = entity.categoryName,
+                name = entity.subCategoryName,
                 isPopular = entity.isPopular,
                 publishedCount = entity.publishedCount
         )
@@ -30,7 +30,9 @@ class CatalogUseCase(private val subcategoryRepository: SubcategoryRepository) {
             when (val subcategories = subcategoryRepository.fetchSubCategories(categoryId)) {
                 is ResultOf.Failure -> ResultOf.Failure(Exception("Response empty"))
                 is ResultOf.Success -> ResultOf.Success(
-                        subcategories.value.map(entityTransform)
+                        subcategories.value
+                                .filterNot { it.images.isEmpty() }
+                                .map(entityTransform)
                 )
             }
 }

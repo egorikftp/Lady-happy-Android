@@ -14,7 +14,7 @@ class SubCategoryEntity {
 
     @PropertyName("name")
     @JvmField
-    val categoryName: String = EMPTY
+    val subCategoryName: String = EMPTY
 
     @PropertyName("isPopular")
     @JvmField
