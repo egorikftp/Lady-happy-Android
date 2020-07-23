@@ -61,21 +61,22 @@ class MozaikLayout @JvmOverloads constructor(
     override fun onLayout(changed: Boolean, left: Int, top: Int, right: Int, bottom: Int) {
         if (childCount != 0) {
             for (i in 0 until childCount) {
-                val childAt = getChildAt(i)
                 val rect = strategyData.rect[i]
 
-                childAt.layout(
+                getChildAt(i).layout(
                         rect.left + paddingLeft,
                         rect.top + paddingTop,
                         rect.right + paddingLeft,
                         rect.bottom + paddingTop
                 )
+            }
+        }
 
-                val url = strategyData.mozaikItems[i].url
+        for (i in 0 until childCount) {
+            val url = strategyData.mozaikItems[i].url
 
-                if (url.isNotEmpty()) {
-                    onViewReady?.invoke(childAt as ImageView, url)
-                }
+            if (url.isNotEmpty()) {
+                onViewReady?.invoke(getChildAt(i) as ImageView, url)
             }
         }
     }

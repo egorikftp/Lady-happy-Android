@@ -7,11 +7,11 @@ import androidx.lifecycle.observe
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.egoriku.ladyhappy.catalog.R
-import com.egoriku.ladyhappy.catalog.databinding.FragmentCategoriesBinding
 import com.egoriku.ladyhappy.catalog.categories.domain.model.TabItem
 import com.egoriku.ladyhappy.catalog.categories.presentation.RootCatalogViewModel
 import com.egoriku.ladyhappy.catalog.categories.presentation.RootScreenModel
 import com.egoriku.ladyhappy.catalog.categories.presentation.adapter.CatalogViewPagerAdapter
+import com.egoriku.ladyhappy.catalog.databinding.FragmentCategoriesBinding
 import com.egoriku.ladyhappy.extensions.gone
 import com.egoriku.ladyhappy.extensions.toast
 import com.egoriku.ladyhappy.extensions.visible
@@ -39,7 +39,7 @@ class CategoriesFragment : Fragment(R.layout.fragment_categories) {
                     binding.progressView.gone()
                     binding.tabLayout.visible()
 
-                    setupTabLayout(it.data)
+                    binding.setupTabLayout(it.data)
                 }
 
                 is RootScreenModel.Error -> {
@@ -50,12 +50,13 @@ class CategoriesFragment : Fragment(R.layout.fragment_categories) {
         }
     }
 
-    private fun setupTabLayout(tabData: List<TabItem>) {
-        catalogViewPagerAdapter = CatalogViewPagerAdapter(this, tabData)
+    private fun FragmentCategoriesBinding.setupTabLayout(tabData: List<TabItem>) {
+        catalogViewPagerAdapter = CatalogViewPagerAdapter(this@CategoriesFragment, tabData)
 
-        binding.viewPager.adapter = catalogViewPagerAdapter
+        viewPager.adapter = catalogViewPagerAdapter
+        viewPager.offscreenPageLimit = 3
 
-        TabLayoutMediator(binding.tabLayout, binding.viewPager) { tab, position ->
+        TabLayoutMediator(tabLayout, viewPager) { tab, position ->
             tab.text = tabData[position].categoryName
         }.attach()
     }

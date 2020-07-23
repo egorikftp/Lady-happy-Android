@@ -55,7 +55,9 @@ class SubCategoryFragment : Fragment(R.layout.fragment_catalog) {
         )
 
         binding.catalogRecyclerView.apply {
-            layoutManager = LinearLayoutManager(context)
+            layoutManager = LinearLayoutManager(context).apply {
+                initialPrefetchItemCount = 7
+            }
             adapter = catalogAdapter
             addItemDecoration(DividerItemDecoration(requireContext(), VERTICAL))
         }
