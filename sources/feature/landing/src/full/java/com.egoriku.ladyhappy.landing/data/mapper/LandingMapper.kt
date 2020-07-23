@@ -9,11 +9,11 @@ import com.egoriku.ladyhappy.landing.domain.model.LandingModel
 import com.egoriku.ladyhappy.landing.domain.model.QuotesModel
 import com.egoriku.ladyhappy.landing.domain.model.SocialModel
 import com.egoriku.ladyhappy.landing.domain.model.TeamMemberModel
-import com.egoriku.network.Result
+import com.egoriku.network.ResultOf
 
 object LandingMapper {
-    fun transformResult(entity: LandingEntity): Result<LandingModel> =
-            Result.Success(LandingModel(
+    fun transformResult(entity: LandingEntity): ResultOf<LandingModel> =
+            ResultOf.Success(LandingModel(
                     aboutInfo = entity.aboutInfo ?: EMPTY,
                     quotes = transformQuotes(entity.quotes),
                     teamMembers = transformMember(entity.teamMembers)

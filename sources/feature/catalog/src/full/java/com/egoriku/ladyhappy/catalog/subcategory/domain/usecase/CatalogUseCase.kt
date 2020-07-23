@@ -5,7 +5,7 @@ import com.egoriku.ladyhappy.catalog.subcategory.data.entity.SubCategoryEntity
 import com.egoriku.ladyhappy.catalog.subcategory.data.repository.SubcategoryRepository
 import com.egoriku.ladyhappy.catalog.subcategory.domain.model.SubCategoryItem
 import com.egoriku.mozaik.model.MozaikItem
-import com.egoriku.network.Result
+import com.egoriku.network.ResultOf
 
 class CatalogUseCase(private val subcategoryRepository: SubcategoryRepository) {
 
@@ -26,10 +26,10 @@ class CatalogUseCase(private val subcategoryRepository: SubcategoryRepository) {
         )
     }
 
-    suspend fun loadSubCategories(categoryId: Int): Result<List<SubCategoryItem>> =
+    suspend fun loadSubCategories(categoryId: Int): ResultOf<List<SubCategoryItem>> =
             when (val subcategories = subcategoryRepository.fetchSubCategories(categoryId)) {
-                is Result.Error -> Result.Error(Exception("Response empty"))
-                is Result.Success -> Result.Success(
+                is ResultOf.Failure -> ResultOf.Failure(Exception("Response empty"))
+                is ResultOf.Success -> ResultOf.Success(
                         subcategories.value.map(entityTransform)
                 )
             }

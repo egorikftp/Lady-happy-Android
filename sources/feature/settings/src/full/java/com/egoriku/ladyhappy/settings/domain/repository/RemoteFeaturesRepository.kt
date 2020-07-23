@@ -4,8 +4,8 @@ import com.egoriku.ladyhappy.settings.data.datasource.PublishPostsFeatureDataSou
 import com.egoriku.ladyhappy.settings.domain.model.Feature
 import com.egoriku.ladyhappy.settings.domain.model.FeatureType
 import com.egoriku.ladyhappy.settings.domain.model.FeatureType.PUBLISH_POSTS
-import com.egoriku.network.Result.Error
-import com.egoriku.network.Result.Success
+import com.egoriku.network.ResultOf.Failure
+import com.egoriku.network.ResultOf.Success
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
@@ -20,7 +20,7 @@ class RemoteFeaturesRepository(
     private suspend fun loadPublishPostsFeature() = withContext(Dispatchers.IO) {
         when (val result = publishPostsFeatureDataSource.load()) {
             is Success -> Feature.PublishPosts(isAvailable = result.value.isAvailable)
-            is Error -> Feature.PublishPosts(false)
+            is Failure -> Feature.PublishPosts(false)
         }
     }
 }

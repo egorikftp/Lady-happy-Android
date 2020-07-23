@@ -8,7 +8,7 @@ import com.egoriku.core.di.utils.IAnalytics
 import com.egoriku.core.exception.FirestoreNetworkException
 import com.egoriku.core.exception.FirestoreParseException
 import com.egoriku.core.exception.NoSuchDocumentException
-import com.egoriku.network.Result
+import com.egoriku.network.ResultOf
 import com.egoriku.photoreport.domain.interactor.PhotoReportUseCase
 import com.egoriku.photoreport.domain.model.PhotoReportModel
 import kotlinx.coroutines.*
@@ -37,21 +37,21 @@ class PhotoReportViewModel
         launch {
             processResult(LoadState.PROGRESS)
 
-            val result: Result<List<PhotoReportModel>> = withContext(Dispatchers.IO) {
+            val resultOf: ResultOf<List<PhotoReportModel>> = withContext(Dispatchers.IO) {
                 photoReportUseCase.getPhotoReportInfo()
             }
 
-            when (result) {
-                is Result.Success -> processResult(LoadState.NONE, result.value)
+            when (resultOf) {
+                is ResultOf.Success -> processResult(LoadState.NONE, resultOf.value)
 
-                is Result.Error -> {
-                    when (result.exception) {
+                is ResultOf.Failure -> {
+                    when (resultOf.throwable) {
                         is FirestoreNetworkException -> {
-                            Log.e("PhotoReportPresenter", "FirestoreNetworkException", result.exception)
+                            Log.e("PhotoReportPresenter", "FirestoreNetworkException", resultOf.throwable)
                             analytics.trackNoInternetPhotoReports()
                         }
-                        is FirestoreParseException -> Log.e("PhotoReportPresenter", "FirestoreParseException", result.exception)
-                        is NoSuchDocumentException -> Log.e("PhotoReportPresenter", "NoSuchDocumentException", result.exception)
+                        is FirestoreParseException -> Log.e("PhotoReportPresenter", "FirestoreParseException", resultOf.throwable)
+                        is NoSuchDocumentException -> Log.e("PhotoReportPresenter", "NoSuchDocumentException", resultOf.throwable)
                     }
 
                     processResult(LoadState.ERROR_LOADING)

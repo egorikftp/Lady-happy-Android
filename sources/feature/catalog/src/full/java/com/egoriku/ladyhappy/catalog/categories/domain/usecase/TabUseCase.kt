@@ -4,8 +4,8 @@ import com.egoriku.ladyhappy.catalog.categories.data.entity.TabEntity
 import com.egoriku.ladyhappy.catalog.categories.data.repository.TabRepository
 import com.egoriku.ladyhappy.catalog.categories.domain.model.TabItem
 import com.egoriku.ladyhappy.catalog.categories.presentation.RootScreenModel
-import com.egoriku.network.Result.Error
-import com.egoriku.network.Result.Success
+import com.egoriku.network.ResultOf.Failure
+import com.egoriku.network.ResultOf.Success
 
 class TabUseCase(private val tabRepository: TabRepository) {
 
@@ -18,7 +18,7 @@ class TabUseCase(private val tabRepository: TabRepository) {
                 else -> RootScreenModel.Success(list.mapNotNull { it.mapOrNull() })
             }
         }
-        is Error -> RootScreenModel.Error()
+        is Failure -> RootScreenModel.Error()
     }
 
     private fun TabEntity.mapOrNull() = if (id != null && name != null) {

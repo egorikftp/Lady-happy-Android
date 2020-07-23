@@ -10,7 +10,7 @@ import com.egoriku.core.exception.FirestoreParseException
 import com.egoriku.core.exception.NoSuchDocumentException
 import com.egoriku.ladyhappy.landing.domain.interactors.LandingUseCase
 import com.egoriku.ladyhappy.landing.domain.model.LandingModel
-import com.egoriku.network.Result
+import com.egoriku.network.ResultOf
 import kotlinx.coroutines.*
 import javax.inject.Inject
 import kotlin.coroutines.CoroutineContext
@@ -38,21 +38,21 @@ class LandingViewModel
             processResult(LoadState.PROGRESS)
 
             //TODO move Dispatcher into usecase or repository
-            val result: Result<LandingModel> = withContext(Dispatchers.IO) {
+            val resultOf: ResultOf<LandingModel> = withContext(Dispatchers.IO) {
                 landingUseCase.getLandingInfo()
             }
 
-            when (result) {
-                is Result.Success -> processResult(LoadState.NONE, result.value)
+            when (resultOf) {
+                is ResultOf.Success -> processResult(LoadState.NONE, resultOf.value)
 
-                is Result.Error -> {
-                    when (result.exception) {
+                is ResultOf.Failure -> {
+                    when (resultOf.throwable) {
                         is FirestoreNetworkException -> {
-                            Log.e("LandingPagePresenter", "FirestoreNetworkException", result.exception)
+                            Log.e("LandingPagePresenter", "FirestoreNetworkException", resultOf.throwable)
                             analytics.trackNoInternetLanding()
                         }
-                        is FirestoreParseException -> Log.e("LandingPagePresenter", "FirestoreParseException", result.exception)
-                        is NoSuchDocumentException -> Log.e("LandingPagePresenter", "NoSuchDocumentException", result.exception)
+                        is FirestoreParseException -> Log.e("LandingPagePresenter", "FirestoreParseException", resultOf.throwable)
+                        is NoSuchDocumentException -> Log.e("LandingPagePresenter", "NoSuchDocumentException", resultOf.throwable)
                     }
 
                     processResult(LoadState.ERROR_LOADING)

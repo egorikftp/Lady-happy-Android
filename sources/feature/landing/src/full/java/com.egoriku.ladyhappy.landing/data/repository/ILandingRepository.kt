@@ -1,9 +1,9 @@
 package com.egoriku.ladyhappy.landing.data.repository
 
 import com.egoriku.ladyhappy.landing.domain.model.LandingModel
-import com.egoriku.network.Result
+import com.egoriku.network.ResultOf
 
 interface ILandingRepository {
 
-    suspend fun getLanding(): Result<LandingModel>
+    suspend fun getLanding(): ResultOf<LandingModel>
 }

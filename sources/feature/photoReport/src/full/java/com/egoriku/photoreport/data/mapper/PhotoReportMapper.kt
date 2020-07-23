@@ -1,14 +1,14 @@
 package com.egoriku.photoreport.data.mapper
 
-import com.egoriku.network.Result
 import com.egoriku.ladyhappy.extensions.common.toNewsDate
+import com.egoriku.network.ResultOf
 import com.egoriku.photoreport.data.entity.PhotoReportEntity
 import com.egoriku.photoreport.domain.model.PhotoReportModel
 
 object PhotoReportMapper {
 
     fun transform(entity: List<PhotoReportEntity>) =
-            Result.Success(
+            ResultOf.Success(
                     entity.map {
                         transformToModel(it)
                     })

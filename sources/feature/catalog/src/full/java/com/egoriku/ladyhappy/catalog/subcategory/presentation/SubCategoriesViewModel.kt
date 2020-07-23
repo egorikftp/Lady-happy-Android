@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
 import com.egoriku.ladyhappy.catalog.subcategory.domain.usecase.CatalogUseCase
-import com.egoriku.network.Result
+import com.egoriku.network.ResultOf
 
 class SubCategoriesViewModel(
         private val catalogUseCase: CatalogUseCase,
@@ -15,8 +15,8 @@ class SubCategoriesViewModel(
         emit(SubcategoryScreenState.Loading)
 
         when (val result = catalogUseCase.loadSubCategories(categoryId)) {
-            is Result.Success -> emit(SubcategoryScreenState.Success(result.value))
-            is Result.Error -> emit(SubcategoryScreenState.Error)
+            is ResultOf.Success -> emit(SubcategoryScreenState.Success(result.value))
+            is ResultOf.Failure -> emit(SubcategoryScreenState.Error)
         }
     }
 }

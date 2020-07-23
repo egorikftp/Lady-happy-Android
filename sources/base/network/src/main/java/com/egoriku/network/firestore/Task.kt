@@ -1,13 +1,13 @@
 package com.egoriku.network.firestore
 
-import com.egoriku.network.Result
+import com.egoriku.network.ResultOf
 import com.egoriku.network.wrapIntoResult
 import com.google.android.gms.tasks.Task
 import kotlinx.coroutines.suspendCancellableCoroutine
 import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
 
-suspend inline fun <T> Task<T>.awaitResult(): Result<T> = wrapIntoResult { this.await() }
+suspend inline fun <T> Task<T>.awaitResult(): ResultOf<T> = wrapIntoResult { this.await() }
 
 suspend fun <T> Task<T>.await(): T = suspendCancellableCoroutine { continuation ->
     addOnCompleteListener { task ->
