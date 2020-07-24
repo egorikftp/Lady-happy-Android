@@ -1,19 +1,34 @@
 package com.egoriku.photoreport.data.repository
 
+import com.egoriku.core.di.utils.IFirebaseFirestore
 import com.egoriku.network.ResultOf
-import com.egoriku.photoreport.data.mapper.PhotoReportMapper
-import com.egoriku.photoreport.data.repository.datasource.PhotoReportDataSource
-import com.egoriku.photoreport.domain.model.PhotoReportModel
+import com.egoriku.network.firestore.awaitGet
+import com.egoriku.photoreport.data.entity.PhotoReportEntity
+import com.google.firebase.firestore.Query
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 
-class PhotoReportRepository(private val photoReportDataSource: PhotoReportDataSource)
-    : IPhotoReportRepository {
+private const val COLLECTION_KEY_NEWS = "news"
+private const val QUERY_DATE = "date"
 
-    override suspend fun getPhotoReport(): ResultOf<List<PhotoReportModel>> {
-        val photoReportResult = photoReportDataSource.downloadPhotoReport()
+class PhotoReportRepository(private val firebaseFirestore: IFirebaseFirestore) {
 
-        return when (photoReportResult) {
-            is ResultOf.Failure -> return photoReportResult
-            is ResultOf.Success -> PhotoReportMapper.transform(photoReportResult.value)
+    suspend fun getPhotoReport(): ResultOf<List<PhotoReportEntity>> = withContext(Dispatchers.IO) {
+        runCatching {
+            val value = firebaseFirestore
+                    .getFirebase()
+                    .collection(COLLECTION_KEY_NEWS)
+                    .orderBy(QUERY_DATE, Query.Direction.DESCENDING)
+                    .awaitGet<PhotoReportEntity>()
+
+            if (value.isEmpty()) {
+                ResultOf.Failure(Exception("Empty response"))
+            } else {
+                ResultOf.Success(value)
+            }
+        }.getOrElse {
+            ResultOf.Failure(it)
         }
     }
+
 }

@@ -1,13 +1,10 @@
 import Modules.Libraries
-import com.egoriku.ext.andKapt
-import com.egoriku.ext.withKapt
 import com.egoriku.ext.withLibraries
 import com.egoriku.ext.withProjects
 
 plugins {
     id("HappyXPlugin")
     id("com.android.library")
-    id("kotlin-kapt")
 }
 
 happyPlugin {
@@ -29,12 +26,11 @@ withLibraries(
         Libs.coroutinesAndroid,
         Libs.easyAdapter,
         Libs.firebaseFirestore,
+        Libs.glide,
+        Libs.koinCore,
+        Libs.koinViewModel,
         Libs.pageIndicator,
         Libs.recyclerView,
-        Libs.viewBindingDelegates
-)
-
-withKapt(
-        Libs.dagger andKapt Libs.daggerCompiler,
-        Libs.glide andKapt Libs.glideCompiler
+        Libs.viewBindingDelegates,
+        Libs.viewModel
 )

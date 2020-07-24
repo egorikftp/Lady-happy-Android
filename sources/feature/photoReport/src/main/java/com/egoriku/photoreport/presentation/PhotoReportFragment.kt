@@ -2,47 +2,38 @@ package com.egoriku.photoreport.presentation
 
 import android.os.Bundle
 import android.view.View
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import by.kirich1409.viewbindingdelegate.viewBinding
-import com.egoriku.core.di.findDependencies
-import com.egoriku.ladyhappy.arch.fragment.BaseInjectableFragment
 import com.egoriku.ladyhappy.extensions.gone
-import com.egoriku.ladyhappy.extensions.injectViewModel
 import com.egoriku.ladyhappy.extensions.visible
 import com.egoriku.photoreport.R
 import com.egoriku.photoreport.databinding.FragmentPhotoReportBinding
-import com.egoriku.photoreport.di.PhotoReportFragmentComponent
 import com.egoriku.photoreport.presentation.controller.PhotoReportCarouselController
 import com.egoriku.photoreport.presentation.controller.PhotoReportHeaderController
 import com.egoriku.ui.controller.NoDataController
+import org.koin.androidx.scope.lifecycleScope
+import org.koin.androidx.viewmodel.scope.viewModel
 import ru.surfstudio.android.easyadapter.EasyAdapter
 import ru.surfstudio.android.easyadapter.ItemList
-import javax.inject.Inject
 
-class PhotoReportFragment : BaseInjectableFragment(R.layout.fragment_photo_report) {
+class PhotoReportFragment : Fragment(R.layout.fragment_photo_report) {
 
     private val binding: FragmentPhotoReportBinding by viewBinding()
 
-    @Inject
-    lateinit var viewModelFactory: ViewModelProvider.Factory
+    private val viewModel: PhotoReportViewModel by lifecycleScope.viewModel(this)
 
-    private lateinit var viewModel: PhotoReportViewModel
+    private val photoReportAdapter = EasyAdapter()
 
     private lateinit var noDataController: NoDataController
     private lateinit var photoReportHeaderController: PhotoReportHeaderController
     private lateinit var photoReportCarouselController: PhotoReportCarouselController
 
-    private val photoReportAdapter = EasyAdapter()
-
-    override fun injectDependencies() = PhotoReportFragmentComponent.init(findDependencies()).inject(this)
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        viewModel = injectViewModel(viewModelFactory)
-
         super.onViewCreated(view, savedInstanceState)
+
         initRecyclerView()
 
         viewModel.screenState.observe(viewLifecycleOwner, Observer {

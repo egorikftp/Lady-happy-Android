@@ -22,7 +22,8 @@ class PhotoReportItemController : BindableItemController<String, PhotoReportItem
             private val itemBinding: AdapterItemPhotoReportBinding
     ) : BindableViewHolder<String>(itemBinding.root) {
 
-        private val requestOptions = RequestOptions().placeholder(itemView.drawableCompat(R.color.RealBlack30))
+        private val requestOptions = RequestOptions()
+                .placeholder(itemView.drawableCompat(R.color.Placeholder))
 
         override fun bind(data: String) {
             Glide.with(itemView.context)

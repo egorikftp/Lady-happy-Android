@@ -4,44 +4,34 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.egoriku.core.di.utils.IAnalytics
 import com.egoriku.core.exception.FirestoreNetworkException
 import com.egoriku.core.exception.FirestoreParseException
 import com.egoriku.core.exception.NoSuchDocumentException
 import com.egoriku.network.ResultOf
-import com.egoriku.photoreport.domain.interactor.PhotoReportUseCase
 import com.egoriku.photoreport.domain.model.PhotoReportModel
-import kotlinx.coroutines.*
-import javax.inject.Inject
-import kotlin.coroutines.CoroutineContext
+import com.egoriku.photoreport.domain.usecase.PhotoReportUseCase
+import kotlinx.coroutines.launch
 
-class PhotoReportViewModel
-@Inject constructor(
+class PhotoReportViewModel(
         private val photoReportUseCase: PhotoReportUseCase,
         private val analytics: IAnalytics
-) : ViewModel(), CoroutineScope {
+) : ViewModel() {
 
-    private val job = Job()
     private val screenData = MutableLiveData<ScreenModel>()
 
     val screenState: LiveData<ScreenModel> = screenData
-
-    override val coroutineContext: CoroutineContext
-        get() = Dispatchers.Main + job
 
     init {
         getPhotoReportData()
     }
 
     private fun getPhotoReportData() {
-        launch {
+        viewModelScope.launch {
             processResult(LoadState.PROGRESS)
 
-            val resultOf: ResultOf<List<PhotoReportModel>> = withContext(Dispatchers.IO) {
-                photoReportUseCase.getPhotoReportInfo()
-            }
-
-            when (resultOf) {
+            when (val resultOf = photoReportUseCase.getPhotoReportInfo()) {
                 is ResultOf.Success -> processResult(LoadState.NONE, resultOf.value)
 
                 is ResultOf.Failure -> {
@@ -68,9 +58,4 @@ class PhotoReportViewModel
     }
 
     fun retryLoading() = getPhotoReportData()
-
-    override fun onCleared() {
-        job.cancel()
-        super.onCleared()
-    }
 }

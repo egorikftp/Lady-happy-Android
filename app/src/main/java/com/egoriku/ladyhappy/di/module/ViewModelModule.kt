@@ -6,7 +6,6 @@ import com.egoriku.core.di.ViewModelKey
 import com.egoriku.ladyhappy.di.viewmodel.AppViewModelFactory
 import com.egoriku.ladyhappy.landing.presentation.LandingViewModel
 import com.egoriku.mainscreen.presentation.MainActivityViewModel
-import com.egoriku.photoreport.presentation.PhotoReportViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
@@ -26,9 +25,4 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(LandingViewModel::class)
     abstract fun provideLandingViewModel(landingViewModel: LandingViewModel): ViewModel
-
-    @Binds
-    @IntoMap
-    @ViewModelKey(PhotoReportViewModel::class)
-    abstract fun providePhotoReportViewModel(photoReportViewModel: PhotoReportViewModel): ViewModel
 }
