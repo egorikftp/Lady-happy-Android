@@ -14,7 +14,6 @@ import org.jetbrains.kotlin.konan.properties.saveToFile
 plugins {
     id("com.android.application")
     id("kotlin-android")
-    id("kotlin-kapt")
     id("com.google.firebase.firebase-perf")
     id("com.google.firebase.crashlytics")
 }
