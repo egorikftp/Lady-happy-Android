@@ -6,13 +6,13 @@ import android.view.ViewGroup
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade
 import com.bumptech.glide.request.RequestOptions
+import com.egoriku.extensions.colorFromAttr
+import com.egoriku.extensions.gone
+import com.egoriku.extensions.inflater
+import com.egoriku.extensions.visible
 import com.egoriku.ladyhappy.catalog.R
 import com.egoriku.ladyhappy.catalog.databinding.AdapterItemSubcategoryBinding
 import com.egoriku.ladyhappy.catalog.subcategory.domain.model.SubCategoryItem
-import com.egoriku.ladyhappy.extensions.colorFromAttr
-import com.egoriku.ladyhappy.extensions.gone
-import com.egoriku.ladyhappy.extensions.inflater
-import com.egoriku.ladyhappy.extensions.visible
 import ru.surfstudio.android.easyadapter.controller.BindableItemController
 import ru.surfstudio.android.easyadapter.holder.BindableViewHolder
 import kotlin.properties.Delegates

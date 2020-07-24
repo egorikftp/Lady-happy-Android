@@ -12,7 +12,6 @@ happyPlugin {
 }
 
 withProjects(
-        Libraries.arch,
         Libraries.core,
         Libraries.extensions,
         Libraries.localization,
@@ -27,7 +26,7 @@ withLibraries(
         Libs.easyAdapter,
         Libs.firebaseFirestore,
         Libs.glide,
-        Libs.koinCore,
+        Libs.koinAndroid,
         Libs.koinViewModel,
         Libs.pageIndicator,
         Libs.recyclerView,

@@ -18,7 +18,6 @@ android {
 }
 
 withProjects(
-        Libraries.arch,
         Libraries.auth,
         Libraries.core,
         Libraries.extensions,
@@ -35,8 +34,7 @@ withLibraries(
         Libs.circleImageView,
         Libs.easyAdapter,
         Libs.firebaseFirestore,
-        Libs.koinCore,
-        Libs.koinScope,
+        Libs.koinAndroid,
         Libs.koinViewModel,
         Libs.liveData,
         Libs.material,

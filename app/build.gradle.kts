@@ -101,7 +101,6 @@ withProjects(
         Features.photoReport,
         Features.settings,
 
-        Libraries.arch,
         Libraries.auth,
         Libraries.core,
         Libraries.extensions,
@@ -121,13 +120,10 @@ withLibraries(
         Libs.firebasePerformance,
         Libs.firebaseRemoteConfig,
         Libs.koinAndroid,
-        Libs.koinCore,
         Libs.kotlin,
         Libs.material,
         Libs.playCore
 )
-
-withKapt(Libs.dagger andKapt Libs.daggerCompiler)
 
 dependencies {
     implementation(Libs.firebaseAnalytics)

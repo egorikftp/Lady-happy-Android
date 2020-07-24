@@ -1,11 +1,10 @@
 package com.egoriku.ladyhappy.tools
 
-import com.egoriku.core.di.utils.INavigationHolder
+import com.egoriku.core.INavigationHolder
 import com.egoriku.ladyhappy.navigation.navigator.INavigator
 import com.egoriku.ladyhappy.navigation.navigator.NavigatorHolder
-import javax.inject.Inject
 
-class NavigationHolder(
+internal class NavigationHolder(
         private val navigatorHolder: NavigatorHolder
 ) : INavigationHolder {
 

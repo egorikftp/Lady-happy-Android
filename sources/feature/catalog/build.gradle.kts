@@ -32,8 +32,6 @@ withLibraries(
         Libs.fragment,
         Libs.glide,
         Libs.koinAndroid,
-        Libs.koinCore,
-        Libs.koinScope,
         Libs.koinViewModel,
         Libs.liveData,
         Libs.material,

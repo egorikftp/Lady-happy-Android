@@ -1,6 +1,6 @@
 package com.egoriku.ladyhappy.catalog.categories.data.repository
 
-import com.egoriku.core.di.utils.IFirebaseFirestore
+import com.egoriku.core.IFirebaseFirestore
 import com.egoriku.ladyhappy.catalog.categories.data.entity.TabEntity
 import com.egoriku.network.ResultOf
 import com.egoriku.network.firestore.awaitResult

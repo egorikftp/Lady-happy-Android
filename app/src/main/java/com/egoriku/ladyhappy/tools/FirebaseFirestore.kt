@@ -1,10 +1,11 @@
 package com.egoriku.ladyhappy.tools
 
-import com.egoriku.core.di.utils.IFirebaseFirestore
+import com.egoriku.core.IFirebaseFirestore
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.FirebaseFirestoreSettings
 
-class FirebaseFirestore : IFirebaseFirestore {
+internal class FirebaseFirestore : IFirebaseFirestore {
+
     private val firebaseFirestore by lazy { FirebaseFirestore.getInstance() }
 
     init {

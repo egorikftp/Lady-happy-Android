@@ -1,8 +1,8 @@
 package com.egoriku.network.firestore
 
-import com.egoriku.core.exception.FirestoreParseException
-import com.egoriku.core.exception.NoSuchDocumentException
 import com.egoriku.network.ResultOf
+import com.egoriku.network.exception.FirestoreParseException
+import com.egoriku.network.exception.NoSuchDocumentException
 import com.egoriku.network.wrapIntoResult
 import com.google.firebase.firestore.DocumentReference
 import kotlinx.coroutines.suspendCancellableCoroutine

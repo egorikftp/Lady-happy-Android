@@ -1,8 +1,8 @@
 package com.egoriku.network.firestore
 
 import android.util.Log
-import com.egoriku.core.exception.FirestoreParseException
 import com.egoriku.network.ResultOf
+import com.egoriku.network.exception.FirestoreParseException
 import com.egoriku.network.wrapIntoResult
 import com.google.android.gms.tasks.Task
 import com.google.firebase.firestore.Query

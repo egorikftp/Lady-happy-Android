@@ -4,7 +4,7 @@ import android.content.Context
 import android.util.AttributeSet
 import android.view.ViewGroup
 import android.widget.ImageView
-import com.egoriku.ladyhappy.extensions.pxToDp
+import com.egoriku.extensions.pxToDp
 import com.egoriku.mozaik.model.MozaikItem
 import com.egoriku.mozaik.strategy.StrategyResolver
 import com.egoriku.mozaik.strategy.internal.model.Rect

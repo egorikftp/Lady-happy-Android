@@ -1,7 +1,6 @@
 package com.egoriku.ladyhappy.koin
 
-import com.egoriku.core.di.utils.*
-import com.egoriku.core.feature.IFeatureProvider
+import com.egoriku.core.*
 import com.egoriku.ladyhappy.auth.Authentication
 import com.egoriku.ladyhappy.navigation.NavigateMe
 import com.egoriku.ladyhappy.navigation.router.Router

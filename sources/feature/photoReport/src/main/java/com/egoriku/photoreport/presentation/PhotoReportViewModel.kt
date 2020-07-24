@@ -5,11 +5,11 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.egoriku.core.di.utils.IAnalytics
-import com.egoriku.core.exception.FirestoreNetworkException
-import com.egoriku.core.exception.FirestoreParseException
-import com.egoriku.core.exception.NoSuchDocumentException
+import com.egoriku.core.IAnalytics
 import com.egoriku.network.ResultOf
+import com.egoriku.network.exception.FirestoreNetworkException
+import com.egoriku.network.exception.FirestoreParseException
+import com.egoriku.network.exception.NoSuchDocumentException
 import com.egoriku.photoreport.domain.model.PhotoReportModel
 import com.egoriku.photoreport.domain.usecase.PhotoReportUseCase
 import kotlinx.coroutines.launch

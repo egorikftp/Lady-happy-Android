@@ -11,15 +11,6 @@ fun Project.withLibraries(vararg libs: String) {
     }
 }
 
-fun Project.withKapt(vararg libs: Pair<String, String>) {
-    dependencies {
-        libs.forEach {
-            implementation(it.first)
-            kapt(it.second)
-        }
-    }
-}
-
 fun Project.withProjects(vararg projects: String) {
     dependencies {
         projects.forEach {

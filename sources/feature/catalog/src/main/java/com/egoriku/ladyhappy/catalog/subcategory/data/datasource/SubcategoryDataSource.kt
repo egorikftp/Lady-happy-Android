@@ -1,6 +1,6 @@
 package com.egoriku.ladyhappy.catalog.subcategory.data.datasource
 
-import com.egoriku.core.di.utils.IFirebaseFirestore
+import com.egoriku.core.IFirebaseFirestore
 import com.egoriku.ladyhappy.catalog.subcategory.data.entity.SubCategoryEntity
 import com.egoriku.network.firestore.awaitGet
 

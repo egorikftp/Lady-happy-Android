@@ -5,7 +5,7 @@ import android.view.Gravity
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.transition.Slide
-import com.egoriku.core.feature.IFeatureProvider
+import com.egoriku.core.IFeatureProvider
 import com.egoriku.ladyhappy.navigation.screen.FragmentScreen
 
 class LoginScreen(

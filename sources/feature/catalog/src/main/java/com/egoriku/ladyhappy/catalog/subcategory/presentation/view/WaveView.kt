@@ -7,8 +7,8 @@ import android.graphics.Paint
 import android.graphics.Path
 import android.util.AttributeSet
 import android.view.View
+import com.egoriku.extensions.withStyledAttributes
 import com.egoriku.ladyhappy.catalog.R
-import com.egoriku.ladyhappy.extensions.withStyledAttributes
 import kotlin.math.sin
 
 class WaveView @JvmOverloads constructor(

@@ -5,7 +5,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.egoriku.ladyhappy.extensions.inflater
+import com.egoriku.extensions.inflater
 import com.egoriku.ladyhappy.settings.R
 import com.egoriku.ladyhappy.settings.databinding.AdapterItemFeaturesBinding
 import com.egoriku.ladyhappy.settings.domain.model.Feature

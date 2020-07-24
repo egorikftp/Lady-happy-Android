@@ -1,12 +1,10 @@
 package com.egoriku.ladyhappy.tools
 
 import android.content.Context
-import com.egoriku.core.di.utils.IAnalytics
+import com.egoriku.core.IAnalytics
 import com.google.firebase.analytics.FirebaseAnalytics
-import javax.inject.Inject
 
-class Analytics
-@Inject constructor(context: Context) : IAnalytics {
+internal class Analytics(context: Context) : IAnalytics {
 
     private val analytics: FirebaseAnalytics by lazy { FirebaseAnalytics.getInstance(context) }
 

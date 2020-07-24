@@ -4,10 +4,10 @@ import android.content.Context
 import android.graphics.drawable.Drawable
 import android.util.AttributeSet
 import androidx.constraintlayout.widget.ConstraintLayout
-import com.egoriku.ladyhappy.extensions.getString
-import com.egoriku.ladyhappy.extensions.gone
-import com.egoriku.ladyhappy.extensions.inflater
-import com.egoriku.ladyhappy.extensions.visible
+import com.egoriku.extensions.getString
+import com.egoriku.extensions.gone
+import com.egoriku.extensions.inflater
+import com.egoriku.extensions.visible
 import com.egoriku.ladyhappy.settings.R
 import com.egoriku.ladyhappy.settings.databinding.ViewLoginBinding
 import com.egoriku.ladyhappy.settings.presentation.view.State.ANON

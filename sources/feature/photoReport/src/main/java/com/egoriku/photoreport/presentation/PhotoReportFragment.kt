@@ -7,8 +7,8 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import by.kirich1409.viewbindingdelegate.viewBinding
-import com.egoriku.ladyhappy.extensions.gone
-import com.egoriku.ladyhappy.extensions.visible
+import com.egoriku.extensions.gone
+import com.egoriku.extensions.visible
 import com.egoriku.photoreport.R
 import com.egoriku.photoreport.databinding.FragmentPhotoReportBinding
 import com.egoriku.photoreport.presentation.controller.PhotoReportCarouselController

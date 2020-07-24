@@ -4,9 +4,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.egoriku.core.di.utils.IRouter
+import com.egoriku.core.IRouter
+import com.egoriku.extensions.common.Constants.EMPTY
 import com.egoriku.ladyhappy.auth.Authentication
-import com.egoriku.ladyhappy.extensions.common.Constants.EMPTY
 import com.egoriku.network.ResultOf.Failure
 import com.egoriku.network.ResultOf.Success
 import kotlinx.coroutines.launch

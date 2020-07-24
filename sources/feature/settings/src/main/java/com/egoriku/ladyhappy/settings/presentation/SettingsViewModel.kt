@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.egoriku.core.di.utils.IRouter
+import com.egoriku.core.IRouter
 import com.egoriku.ladyhappy.navigation.screen.Screen
 import com.egoriku.ladyhappy.settings.domain.model.Section
 import com.egoriku.ladyhappy.settings.domain.usecase.AuthenticationUseCase

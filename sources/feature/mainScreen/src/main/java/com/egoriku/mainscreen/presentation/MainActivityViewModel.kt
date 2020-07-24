@@ -3,9 +3,9 @@ package com.egoriku.mainscreen.presentation
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.egoriku.core.di.utils.IAnalytics
-import com.egoriku.core.di.utils.IRouter
-import com.egoriku.ladyhappy.extensions.common.Constants.EMPTY
+import com.egoriku.core.IAnalytics
+import com.egoriku.core.IRouter
+import com.egoriku.extensions.common.Constants.EMPTY
 import com.egoriku.ladyhappy.navigation.screen.Screen
 import com.egoriku.mainscreen.common.TITLE_KEY
 import com.egoriku.mainscreen.common.TRACKING_KEY

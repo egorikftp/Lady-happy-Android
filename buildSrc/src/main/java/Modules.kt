@@ -19,7 +19,6 @@ object Modules {
     }
 
     object Libraries {
-        const val arch = ":arch"
         const val auth = ":auth"
         const val core = ":core"
         const val easyAdapter = ":easyAdapter"

@@ -2,8 +2,8 @@ package com.egoriku.ladyhappy.auth
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.egoriku.extensions.common.Constants.EMPTY
 import com.egoriku.ladyhappy.auth.model.UserLoginState
-import com.egoriku.ladyhappy.extensions.common.Constants.EMPTY
 import com.egoriku.network.ResultOf
 import com.egoriku.network.firestore.awaitResult
 import com.google.firebase.auth.AuthResult

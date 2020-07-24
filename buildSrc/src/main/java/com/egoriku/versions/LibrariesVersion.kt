@@ -11,7 +11,6 @@ object LibrariesVersion {
     const val core = "1.3.0"
     const val coroutinesAndroid = "1.3.8"
     const val circleImageView = "3.1.0"
-    const val dagger = "2.28.1"
     const val easyAdapter = "2.0.0"
     const val firebaseAnalytics = "17.4.4"
     const val firebaseAuth = "19.3.2"

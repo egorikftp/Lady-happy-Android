@@ -10,7 +10,7 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.observe
 import by.kirich1409.viewbindingdelegate.viewBinding
-import com.egoriku.ladyhappy.extensions.*
+import com.egoriku.extensions.*
 import com.egoriku.ladyhappy.login.R
 import com.egoriku.ladyhappy.login.databinding.FragmentLoginBinding
 import com.egoriku.ladyhappy.login.presentation.util.ClickableSpan

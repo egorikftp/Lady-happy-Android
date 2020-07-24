@@ -5,7 +5,7 @@ import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.graphics.Paint
 import com.bumptech.glide.load.engine.bitmap_recycle.BitmapPool
-import com.egoriku.core.di.utils.IBlurRendering
+import com.egoriku.core.IBlurRendering
 import org.koin.core.KoinComponent
 import org.koin.core.inject
 

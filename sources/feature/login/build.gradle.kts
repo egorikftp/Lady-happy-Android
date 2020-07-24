@@ -12,7 +12,6 @@ happyPlugin {
 }
 
 withProjects(
-        Libraries.arch,
         Libraries.auth,
         Libraries.core,
         Libraries.extensions,
@@ -24,7 +23,7 @@ withProjects(
 withLibraries(
         Libs.appcompat,
         Libs.constraintLayout,
-        Libs.koinCore,
+        Libs.koinAndroid,
         Libs.koinViewModel,
         Libs.liveData,
         Libs.material,
