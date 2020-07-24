@@ -5,7 +5,6 @@ import androidx.lifecycle.ViewModelProvider
 import com.egoriku.core.di.ViewModelKey
 import com.egoriku.ladyhappy.di.viewmodel.AppViewModelFactory
 import com.egoriku.ladyhappy.landing.presentation.LandingViewModel
-import com.egoriku.mainscreen.presentation.MainActivityViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
@@ -15,11 +14,6 @@ abstract class ViewModelModule {
 
     @Binds
     abstract fun bindViewModelFactory(factory: AppViewModelFactory): ViewModelProvider.Factory
-
-    @Binds
-    @IntoMap
-    @ViewModelKey(MainActivityViewModel::class)
-    abstract fun provideMaindActivityViewModel(mainActivityViewModel: MainActivityViewModel): ViewModel
 
     @Binds
     @IntoMap
