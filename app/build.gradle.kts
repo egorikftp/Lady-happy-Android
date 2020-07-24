@@ -56,20 +56,22 @@ android {
         debug {
             applicationIdSuffix = ".debug"
             versionNameSuffix = "-debug"
+
+            isMinifyEnabled = false
             multiDexEnabled = true
             extra["enableCrashlytics"] = false
             extra["alwaysUpdateBuildId"] = false
+
+            withGroovyBuilder {
+                "FirebasePerformance" {
+                    invokeMethod("setInstrumentationEnabled", false)
+                }
+            }
         }
     }
 
     gradle.taskGraph.whenReady {
-        if (hasTask(":app:assembleAllFeaturesDebug")
-                || hasTask(":app:assembleAllFeaturesRelease")
-                || hasTask(":app:assembleJustLandingDebug")
-                || hasTask(":app:assembleJustPhotoReportDebug")
-                || hasTask(":app:assembleJustCatalogDebug")
-                || hasTask(":app:assembleJustSettingsDebug")
-        ) {
+        if (hasTask(":app:assembleDebug")) {
             autoIncrementBuildVersionNumber()
         }
     }
