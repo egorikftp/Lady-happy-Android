@@ -19,6 +19,7 @@ object LibrariesVersion {
     const val firebaseCrashlytics = "17.1.1"
     const val firebaseFirestore = "21.5.0"
     const val firebasePerformance = "19.0.8"
+    const val firebaseRemoteConfig = "19.2.0"
     const val fragment = "1.3.0-alpha06"
     const val glide = "4.11.0"
     const val junit = "4.13"

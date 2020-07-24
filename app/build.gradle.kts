@@ -4,8 +4,8 @@ import Modules.Libraries
 import com.android.build.gradle.internal.api.BaseVariantOutputImpl
 import com.egoriku.application.provideVersionCode
 import com.egoriku.application.provideVersionName
-import com.egoriku.versions.ProjectVersion
 import com.egoriku.ext.*
+import com.egoriku.versions.ProjectVersion
 import org.jetbrains.kotlin.konan.file.File
 import org.jetbrains.kotlin.konan.properties.Properties
 import org.jetbrains.kotlin.konan.properties.loadProperties
@@ -119,6 +119,7 @@ withLibraries(
         Libs.firebaseCore,
         Libs.firebaseFirestore,
         Libs.firebasePerformance,
+        Libs.firebaseRemoteConfig,
         Libs.koinAndroid,
         Libs.koinCore,
         Libs.kotlin,
