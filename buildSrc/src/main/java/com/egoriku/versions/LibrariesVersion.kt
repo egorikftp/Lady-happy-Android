@@ -8,7 +8,7 @@ object LibrariesVersion {
     const val browser = "1.2.0"
     const val cardView = "1.0.0"
     const val constraintLayout = "2.0.0-beta8"
-    const val core = "1.3.0"
+    const val core = "1.3.1"
     const val coroutinesAndroid = "1.3.8"
     const val circleImageView = "3.1.0"
     const val easyAdapter = "2.0.0"
@@ -32,7 +32,7 @@ object LibrariesVersion {
     const val playCore = "1.7.3"
     const val recyclerView = "1.2.0-alpha04"
     const val vectorDrawable = "1.1.0"
-    const val viewBindingDelegates = "1.0.0-beta1"
+    const val viewBindingDelegates = "1.0.0"
     const val viewPager2 = "1.0.0"
 }
 
