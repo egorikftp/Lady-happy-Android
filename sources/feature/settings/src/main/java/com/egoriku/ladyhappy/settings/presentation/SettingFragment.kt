@@ -3,11 +3,6 @@ package com.egoriku.ladyhappy.settings.presentation
 import android.content.Context
 import android.os.Bundle
 import android.view.View
-import androidx.annotation.StringRes
-import androidx.browser.customtabs.CustomTabsIntent
-import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.core.net.toUri
-import androidx.core.view.doOnPreDraw
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.observe
 import androidx.recyclerview.widget.ConcatAdapter
@@ -15,7 +10,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.egoriku.core.IFeatureProvider
 import com.egoriku.core.connector.IDynamicFeatureConnector
-import com.egoriku.extensions.colorCompat
 import com.egoriku.ladyhappy.settings.R
 import com.egoriku.ladyhappy.settings.databinding.FragmentSettingsBinding
 import com.egoriku.ladyhappy.settings.domain.model.Feature
@@ -101,32 +95,6 @@ class SettingFragment : Fragment(R.layout.fragment_settings) {
         settingsRecyclerView.apply {
             layoutManager = LinearLayoutManager(context)
             adapter = concatAdapter
-        }
-
-        applyBottomMargin()
-
-        termsOfServiceButton.setOnClickListener {
-            initCustomTab(urlRes = R.string.terms_of_service_link)
-        }
-
-        privacyPolicyButton.setOnClickListener {
-            initCustomTab(urlRes = R.string.privacy_policy_link)
-        }
-    }
-
-    private fun initCustomTab(@StringRes urlRes: Int) = CustomTabsIntent.Builder()
-            .setToolbarColor(colorCompat(R.color.RoseTaupe))
-            .build().run {
-                launchUrl(requireContext(), getString(urlRes).toUri())
-            }
-
-    private fun applyBottomMargin() {
-        requireActivity().findViewById<View>(R.id.bottomNavigation).doOnPreDraw {
-            with(binding.termsOfServiceButton) {
-                layoutParams = (layoutParams as ConstraintLayout.LayoutParams).apply {
-                    bottomMargin = it.height * 2
-                }
-            }
         }
     }
 }

@@ -45,7 +45,7 @@ withProjects(
 withLibraries(
         Libs.appcompat,
         Libs.constraintLayout,
-        Libs.coreKtx,
+        Libs.core,
         Libs.coroutinesAndroid,
         Libs.imageCompressor,
         Libs.glide,

@@ -11,7 +11,7 @@ object Libs {
     const val cardView = "androidx.cardview:cardview:${LibrariesVersion.cardView}"
     const val circleImageView = "de.hdodenhof:circleimageview:${LibrariesVersion.circleImageView}"
     const val constraintLayout = "androidx.constraintlayout:constraintlayout:${LibrariesVersion.constraintLayout}"
-    const val coreKtx = "androidx.core:core-ktx:${LibrariesVersion.core}"
+    const val core = "androidx.core:core-ktx:${LibrariesVersion.core}"
     const val coroutinesAndroid = "org.jetbrains.kotlinx:kotlinx-coroutines-android:${LibrariesVersion.coroutinesAndroid}"
 
     const val easyAdapter = "ru.surfstudio.android:easyadapter:${LibrariesVersion.easyAdapter}"

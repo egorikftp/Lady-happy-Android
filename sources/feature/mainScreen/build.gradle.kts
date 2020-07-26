@@ -21,7 +21,7 @@ withProjects(
 
 withLibraries(
         Libs.appcompat,
-        Libs.coreKtx,
+        Libs.core,
         Libs.constraintLayout,
         Libs.koinAndroid,
         Libs.koinViewModel,

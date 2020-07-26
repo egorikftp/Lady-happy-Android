@@ -1,19 +1,16 @@
 package com.egoriku.ladyhappy.login.presentation
 
-import android.graphics.Typeface
 import android.os.Bundle
-import android.text.*
-import android.text.Annotation
-import android.text.method.LinkMovementMethod
-import android.text.style.ForegroundColorSpan
 import android.view.View
+import androidx.annotation.StringRes
+import androidx.browser.customtabs.CustomTabsIntent
+import androidx.core.net.toUri
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.observe
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.egoriku.extensions.*
 import com.egoriku.ladyhappy.login.R
 import com.egoriku.ladyhappy.login.databinding.FragmentLoginBinding
-import com.egoriku.ladyhappy.login.presentation.util.ClickableSpan
 import com.egoriku.ladyhappy.login.presentation.util.validateEmail
 import com.egoriku.ladyhappy.login.presentation.util.validatePassword
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -55,8 +52,12 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
             hideSoftKeyboard()
         }
 
-        initSignUpSpannable {
-            toast("will be implemented soon")
+        termsOfServiceButton.setOnClickListener {
+            initCustomTab(urlRes = R.string.terms_of_service_link)
+        }
+
+        privacyPolicyButton.setOnClickListener {
+            initCustomTab(urlRes = R.string.privacy_policy_link)
         }
 
         viewModel.currentState.observe(viewLifecycleOwner) {
@@ -86,39 +87,9 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
         hideSoftKeyboard()
     }
 
-    private fun initSignUpSpannable(onSpanClick: () -> Unit) {
-        val spannedString = getText(R.string.login_go_to_sign_up) as SpannedString
-
-        spannedString.getSpans(0, spannedString.length, Annotation::class.java)
-                .forEach { annotation ->
-                    if (annotation.key == "clickColor") {
-                        val builder = SpannableStringBuilder(spannedString).apply {
-                            val spanStart = getSpanStart(annotation)
-                            val spanEnd = getSpanEnd(annotation)
-
-                            setSpan(object : ClickableSpan() {
-                                override fun onClick(widget: View) = onSpanClick()
-
-                                override fun updateDrawState(ds: TextPaint) {
-                                    super.updateDrawState(ds)
-                                    ds.apply {
-                                        isUnderlineText = false
-                                        typeface = Typeface.DEFAULT_BOLD
-                                    }
-                                }
-                            }, spanStart, spanEnd, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
-
-                            setSpan(
-                                    ForegroundColorSpan(colorCompat(findColorIdByName(annotation.value))),
-                                    spanStart, spanEnd, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
-                            )
-                        }
-
-                        with(binding.dontHaveAccount) {
-                            text = builder
-                            movementMethod = LinkMovementMethod.getInstance()
-                        }
-                    }
-                }
-    }
+    private fun initCustomTab(@StringRes urlRes: Int) = CustomTabsIntent.Builder()
+            .setToolbarColor(colorCompat(R.color.RoseTaupe))
+            .build().run {
+                launchUrl(requireContext(), getString(urlRes).toUri())
+            }
 }

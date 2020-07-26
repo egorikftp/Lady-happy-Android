@@ -113,7 +113,7 @@ withProjects(
 
 withLibraries(
         Libs.appcompat,
-        Libs.coreKtx,
+        Libs.core,
         Libs.coroutinesAndroid,
         Libs.firebaseAuth,
         Libs.firebaseCore,

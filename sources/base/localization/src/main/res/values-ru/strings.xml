@@ -59,7 +59,6 @@
     <string name="settings_theme_battery">Учитывать режим энергосбережения</string>
 
     <!-- Login -->
-    <string name="login_go_to_sign_up">Еще нет аккаута? <annotation clickColor="RoseTaupe">ЗАРЕГИСТРИРОВАТЬСЯ</annotation></string>
     <string name="login_hint_email">Email</string>
     <string name="login_hint_password">Пароль</string>
     <string name="login_forgot_password">Забыли пароль?</string>

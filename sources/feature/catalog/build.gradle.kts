@@ -25,7 +25,7 @@ withLibraries(
         Libs.cardView,
         Libs.circleImageView,
         Libs.constraintLayout,
-        Libs.coreKtx,
+        Libs.core,
         Libs.coroutinesAndroid,
         Libs.easyAdapter,
         Libs.firebaseFirestore,
