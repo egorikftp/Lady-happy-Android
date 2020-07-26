@@ -14,13 +14,14 @@ happyPlugin {
 withProjects(
         Libraries.core,
         Libraries.extensions,
+        Libraries.network,
         Libraries.navigation,
         Libraries.ui
 )
 
 withLibraries(
         Libs.appcompat,
-        Libs.coreKtx,
+        Libs.core,
         Libs.constraintLayout,
         Libs.koinAndroid,
         Libs.koinViewModel,

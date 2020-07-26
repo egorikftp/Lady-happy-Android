@@ -3,11 +3,6 @@ package com.egoriku.ladyhappy.settings.presentation
 import android.content.Context
 import android.os.Bundle
 import android.view.View
-import androidx.annotation.StringRes
-import androidx.browser.customtabs.CustomTabsIntent
-import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.core.net.toUri
-import androidx.core.view.doOnPreDraw
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.observe
 import androidx.recyclerview.widget.ConcatAdapter
@@ -15,13 +10,14 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.egoriku.core.IFeatureProvider
 import com.egoriku.core.connector.IDynamicFeatureConnector
-import com.egoriku.extensions.colorCompat
 import com.egoriku.ladyhappy.settings.R
 import com.egoriku.ladyhappy.settings.databinding.FragmentSettingsBinding
 import com.egoriku.ladyhappy.settings.domain.model.Feature
 import com.egoriku.ladyhappy.settings.domain.model.Section
 import com.egoriku.ladyhappy.settings.presentation.adapter.AvailableFeaturesAdapter
 import com.egoriku.ladyhappy.settings.presentation.adapter.LoginAdapter
+import com.egoriku.ladyhappy.settings.presentation.adapter.SettingItemAdapter
+import com.egoriku.ladyhappy.settings.presentation.dialog.theme.ThemeSettingDialogFragment
 import com.egoriku.ladyhappy.settings.presentation.screen.LoginScreen
 import com.egoriku.ladyhappy.settings.presentation.view.State.ANON
 import com.egoriku.ladyhappy.settings.presentation.view.State.LOGGED_IN
@@ -37,10 +33,11 @@ class SettingFragment : Fragment(R.layout.fragment_settings) {
     private val featureProvider: IFeatureProvider by inject()
     private val viewModel: SettingsViewModel by lifecycleScope.viewModel(this)
 
-    private var mergeAdapter: ConcatAdapter by Delegates.notNull()
+    private var concatAdapter: ConcatAdapter by Delegates.notNull()
 
     private var loginAdapter: LoginAdapter by Delegates.notNull()
     private var availableFeaturesAdapter: AvailableFeaturesAdapter by Delegates.notNull()
+    private var settingsAdapter: SettingItemAdapter by Delegates.notNull()
 
     private var dynamicFeatureConnector: IDynamicFeatureConnector? = null
 
@@ -67,7 +64,14 @@ class SettingFragment : Fragment(R.layout.fragment_settings) {
             }
         }
 
-        mergeAdapter = ConcatAdapter(loginAdapter, availableFeaturesAdapter)
+        settingsAdapter = SettingItemAdapter {
+            when (it) {
+                R.string.settings_theme_title -> ThemeSettingDialogFragment()
+                        .show(childFragmentManager, null)
+            }
+        }
+
+        concatAdapter = ConcatAdapter(loginAdapter, availableFeaturesAdapter, settingsAdapter)
 
         binding.initViews()
 
@@ -76,6 +80,7 @@ class SettingFragment : Fragment(R.layout.fragment_settings) {
                 when (section) {
                     is Section.Login -> loginAdapter.submitList(listOf(section))
                     is Section.AvailableFeatures -> availableFeaturesAdapter.submitList(listOf(section))
+                    is Section.Settings -> settingsAdapter.submitList(section.setting)
                 }
             }
         }
@@ -89,33 +94,7 @@ class SettingFragment : Fragment(R.layout.fragment_settings) {
     private fun FragmentSettingsBinding.initViews() {
         settingsRecyclerView.apply {
             layoutManager = LinearLayoutManager(context)
-            adapter = mergeAdapter
-        }
-
-        applyBottomMargin()
-
-        termsOfServiceButton.setOnClickListener {
-            initCustomTab(urlRes = R.string.terms_of_service_link)
-        }
-
-        privacyPolicyButton.setOnClickListener {
-            initCustomTab(urlRes = R.string.privacy_policy_link)
-        }
-    }
-
-    private fun initCustomTab(@StringRes urlRes: Int) = CustomTabsIntent.Builder()
-            .setToolbarColor(colorCompat(R.color.RoseTaupe))
-            .build().run {
-                launchUrl(requireContext(), getString(urlRes).toUri())
-            }
-
-    private fun applyBottomMargin() {
-        requireActivity().findViewById<View>(R.id.bottomNavigation).doOnPreDraw {
-            with(binding.termsOfServiceButton) {
-                layoutParams = (layoutParams as ConstraintLayout.LayoutParams).apply {
-                    bottomMargin = it.height * 2
-                }
-            }
+            adapter = concatAdapter
         }
     }
 }

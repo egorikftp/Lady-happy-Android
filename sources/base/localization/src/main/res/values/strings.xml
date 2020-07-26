@@ -51,8 +51,13 @@
     <string name="settings_log_out">Log out</string>
     <string name="settings_login_hint">Please log in to access additional functionality</string>
 
+    <string name="settings_theme_title">Choose theme</string>
+    <string name="settings_theme_system">System default</string>
+    <string name="settings_theme_light">Light</string>
+    <string name="settings_theme_dark">Dark</string>
+    <string name="settings_theme_battery">Set by Battery Saver</string>
+
     <!-- Login -->
-    <string name="login_go_to_sign_up">Don\'t have account yet? <annotation clickColor="RoseTaupe">SIGN UP</annotation></string>
     <string name="login_hint_email">Email</string>
     <string name="login_hint_password">Password</string>
     <string name="login_forgot_password">Forgot password?</string>

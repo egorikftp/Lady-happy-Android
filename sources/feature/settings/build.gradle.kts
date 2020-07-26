@@ -28,9 +28,8 @@ withProjects(
 )
 
 withLibraries(
-        Libs.browser,
         Libs.constraintLayout,
-        Libs.coreKtx,
+        Libs.core,
         Libs.circleImageView,
         Libs.easyAdapter,
         Libs.firebaseFirestore,

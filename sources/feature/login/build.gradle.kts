@@ -22,7 +22,9 @@ withProjects(
 
 withLibraries(
         Libs.appcompat,
+        Libs.browser,
         Libs.constraintLayout,
+        Libs.core,
         Libs.koinAndroid,
         Libs.koinViewModel,
         Libs.liveData,

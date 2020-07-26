@@ -4,11 +4,11 @@ import android.app.Dialog
 import android.content.DialogInterface
 import android.os.Bundle
 import android.view.KeyEvent
-import androidx.fragment.app.DialogFragment
+import androidx.appcompat.app.AppCompatDialogFragment
 import com.egoriku.ui.R
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
-abstract class BaseDialogFragment : DialogFragment(),
+abstract class BaseDialogFragment : AppCompatDialogFragment(),
         DialogInterface.OnClickListener {
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {

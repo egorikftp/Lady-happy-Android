@@ -10,6 +10,10 @@ inline fun <reified T> T.logD(message: String? = EMPTY) {
     }
 }
 
+inline fun <reified T> T.logE(throwable: Throwable? = null) {
+    Log.e(T::class.java.simpleName, EMPTY, throwable)
+}
+
 inline fun <reified T> T.logDm(message: String? = EMPTY) {
     when {
         message.isNullOrEmpty() -> Log.d("egorikftp", EMPTY)

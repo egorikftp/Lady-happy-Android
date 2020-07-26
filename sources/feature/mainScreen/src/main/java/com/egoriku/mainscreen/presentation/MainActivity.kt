@@ -7,11 +7,13 @@ import android.graphics.Color
 import android.os.Bundle
 import androidx.annotation.IdRes
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.lifecycle.observe
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.egoriku.core.IFeatureProvider
 import com.egoriku.core.INavigationHolder
 import com.egoriku.core.connector.IDynamicFeatureConnector
+import com.egoriku.core.sharedmodel.toNightMode
 import com.egoriku.extensions.*
 import com.egoriku.ladyhappy.navigation.navigator.platform.ActivityScopeNavigator
 import com.egoriku.mainscreen.R
@@ -32,12 +34,11 @@ class MainActivity : AppCompatActivity(R.layout.activity_main), IDynamicFeatureC
     private val binding: ActivityMainBinding by viewBinding(R.id.contentFullScreen)
 
     private val featureProvider: IFeatureProvider by inject()
+    private val inAppUpdate: InAppUpdate by inject()
     private val navigatorHolder: INavigationHolder by inject()
 
     private val dynamicFeatureViewModel: DynamicFeatureViewModel by lifecycleScope.viewModel(this)
     private val viewModel: MainActivityViewModel by lifecycleScope.viewModel(this)
-
-    private val inAppUpdate: InAppUpdate by lifecycleScope.inject()
 
     private val navigator = ActivityScopeNavigator(this, R.id.container)
 
@@ -83,6 +84,10 @@ class MainActivity : AppCompatActivity(R.layout.activity_main), IDynamicFeatureC
                 false -> toast("error")
             }
         })
+
+        viewModel.theme.observe(this) {
+            AppCompatDelegate.setDefaultNightMode(it.toNightMode())
+        }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

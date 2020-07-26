@@ -7,9 +7,7 @@ plugins {
     id("com.android.library")
 }
 
-withProjects(
-        Libraries.core
-)
+withProjects(Libraries.extensions)
 
 withLibraries(
         Libs.coroutinesAndroid,
