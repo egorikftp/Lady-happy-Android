@@ -51,6 +51,7 @@
     <string name="settings_log_out">Log out</string>
     <string name="settings_login_hint">Please log in to access additional functionality</string>
 
+    <string name="settings_section_header">App settings</string>
     <string name="settings_theme_title">Choose theme</string>
     <string name="settings_theme_system">System default</string>
     <string name="settings_theme_light">Light</string>

@@ -52,6 +52,7 @@
     <string name="settings_log_out">Выйти</string>
     <string name="settings_login_hint">Пожалуйста, войдите, чтобы получить доступ к дополнительным функциям</string>
 
+    <string name="settings_section_header">Настройки приложения</string>
     <string name="settings_theme_title">Выберите тему</string>
     <string name="settings_theme_system">Системное значение по умолчанию</string>
     <string name="settings_theme_light">Светлый режим</string>

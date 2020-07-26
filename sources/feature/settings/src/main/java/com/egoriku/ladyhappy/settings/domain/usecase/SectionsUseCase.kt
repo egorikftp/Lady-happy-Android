@@ -28,13 +28,14 @@ class SectionsUseCase(private val remoteFeaturesRepository: RemoteFeaturesReposi
         }
     }
 
-    private fun settingsSection(): Section.Settings {
-        return Section.Settings(
-                listOf(
-                        SettingItem(textResId = R.string.settings_theme_title)
-                )
-        )
-    }
+    private fun settingsSection(): Section.Settings = Section.Settings(
+            listOf(
+                    SettingItem(
+                            headerResId = R.string.settings_section_header,
+                            bodyResId = R.string.settings_theme_title
+                    )
+            )
+    )
 
     private suspend fun featuresSection(): List<Feature> {
         val publishPosts = remoteFeaturesRepository.loadFeature(FeatureType.PUBLISH_POSTS)

@@ -20,7 +20,10 @@ sealed class Section(open val position: Int) {
     ) : Section(position = 2)
 }
 
-data class SettingItem(@StringRes val textResId: Int)
+data class SettingItem(
+        @StringRes val headerResId: Int = -1,
+        @StringRes val bodyResId: Int
+)
 
 sealed class Feature(
         open val isAvailable: Boolean,
