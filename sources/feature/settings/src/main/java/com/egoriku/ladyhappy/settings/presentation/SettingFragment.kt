@@ -22,6 +22,8 @@ import com.egoriku.ladyhappy.settings.domain.model.Feature
 import com.egoriku.ladyhappy.settings.domain.model.Section
 import com.egoriku.ladyhappy.settings.presentation.adapter.AvailableFeaturesAdapter
 import com.egoriku.ladyhappy.settings.presentation.adapter.LoginAdapter
+import com.egoriku.ladyhappy.settings.presentation.adapter.SettingItemAdapter
+import com.egoriku.ladyhappy.settings.presentation.dialog.theme.ThemeSettingDialogFragment
 import com.egoriku.ladyhappy.settings.presentation.screen.LoginScreen
 import com.egoriku.ladyhappy.settings.presentation.view.State.ANON
 import com.egoriku.ladyhappy.settings.presentation.view.State.LOGGED_IN
@@ -37,10 +39,11 @@ class SettingFragment : Fragment(R.layout.fragment_settings) {
     private val featureProvider: IFeatureProvider by inject()
     private val viewModel: SettingsViewModel by lifecycleScope.viewModel(this)
 
-    private var mergeAdapter: ConcatAdapter by Delegates.notNull()
+    private var concatAdapter: ConcatAdapter by Delegates.notNull()
 
     private var loginAdapter: LoginAdapter by Delegates.notNull()
     private var availableFeaturesAdapter: AvailableFeaturesAdapter by Delegates.notNull()
+    private var settingsAdapter: SettingItemAdapter by Delegates.notNull()
 
     private var dynamicFeatureConnector: IDynamicFeatureConnector? = null
 
@@ -67,7 +70,14 @@ class SettingFragment : Fragment(R.layout.fragment_settings) {
             }
         }
 
-        mergeAdapter = ConcatAdapter(loginAdapter, availableFeaturesAdapter)
+        settingsAdapter = SettingItemAdapter {
+            when (it) {
+                R.string.settings_theme_title -> ThemeSettingDialogFragment()
+                        .show(childFragmentManager, null)
+            }
+        }
+
+        concatAdapter = ConcatAdapter(loginAdapter, availableFeaturesAdapter, settingsAdapter)
 
         binding.initViews()
 
@@ -76,6 +86,7 @@ class SettingFragment : Fragment(R.layout.fragment_settings) {
                 when (section) {
                     is Section.Login -> loginAdapter.submitList(listOf(section))
                     is Section.AvailableFeatures -> availableFeaturesAdapter.submitList(listOf(section))
+                    is Section.Settings -> settingsAdapter.submitList(section.setting)
                 }
             }
         }
@@ -89,7 +100,7 @@ class SettingFragment : Fragment(R.layout.fragment_settings) {
     private fun FragmentSettingsBinding.initViews() {
         settingsRecyclerView.apply {
             layoutManager = LinearLayoutManager(context)
-            adapter = mergeAdapter
+            adapter = concatAdapter
         }
 
         applyBottomMargin()

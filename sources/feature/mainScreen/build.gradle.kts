@@ -14,6 +14,7 @@ happyPlugin {
 withProjects(
         Libraries.core,
         Libraries.extensions,
+        Libraries.network,
         Libraries.navigation,
         Libraries.ui
 )

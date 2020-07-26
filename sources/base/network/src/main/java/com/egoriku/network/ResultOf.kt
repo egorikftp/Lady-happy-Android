@@ -16,3 +16,7 @@ inline fun <reified T> ResultOf<T>.doIfSuccess(callback: (value: T) -> Unit) {
         callback(value)
     }
 }
+
+fun <T> ResultOf<T>.successOr(fallback: T): T {
+    return (this as? ResultOf.Success<T>)?.value ?: fallback
+}

@@ -14,9 +14,10 @@ val applicationScopeModule = module {
 
     single { Authentication() }
 
-    //single<IAppPreferences> { AppPreferences(androidContext()) }
+    single<IAppPreferences> { AppPreferences(androidContext()) }
     single<IAnalytics> { Analytics(androidContext()) }
     single<IBlurRendering> { BlurRendering(androidContext()) }
+    single<IDispatchers> { Dispatchers() }
     single<IFirebaseFirestore> { FirebaseFirestore() }
     single<IRemoteConfig> { RemoteConfig() }
 

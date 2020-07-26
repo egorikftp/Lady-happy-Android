@@ -1,3 +1,10 @@
 package com.egoriku.core
 
-interface IAppPreferences
+import kotlinx.coroutines.flow.Flow
+
+interface IAppPreferences {
+
+    var selectedTheme: String
+
+    var observableSelectedTheme: Flow<String>
+}

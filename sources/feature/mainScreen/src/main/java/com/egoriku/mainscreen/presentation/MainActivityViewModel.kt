@@ -9,11 +9,14 @@ import com.egoriku.extensions.common.Constants.EMPTY
 import com.egoriku.ladyhappy.navigation.screen.Screen
 import com.egoriku.mainscreen.common.TITLE_KEY
 import com.egoriku.mainscreen.common.TRACKING_KEY
+import com.egoriku.mainscreen.presentation.delegate.IThemedActivityDelegate
 
 class MainActivityViewModel(
         private val analytics: IAnalytics,
-        private val router: IRouter
-) : ViewModel() {
+        private val router: IRouter,
+        private val themedDelegate: IThemedActivityDelegate
+) : ViewModel(),
+        IThemedActivityDelegate by themedDelegate {
 
     private val currentScreenTitle: MutableLiveData<Int> = MutableLiveData()
 

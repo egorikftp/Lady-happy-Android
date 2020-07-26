@@ -10,6 +10,7 @@ plugins {
 withProjects(Libraries.navigation)
 
 withLibraries(
+        Libs.appcompat,
         Libs.coroutinesAndroid,
         Libs.firebaseFirestore
 )
