@@ -2,11 +2,10 @@ import Modules.DynamicFeatures
 import Modules.Features
 import Modules.Libraries
 import com.android.build.gradle.internal.api.BaseVariantOutputImpl
-import com.egoriku.application.configureProductFlavors
 import com.egoriku.application.provideVersionCode
 import com.egoriku.application.provideVersionName
-import com.egoriku.versions.ProjectVersion
 import com.egoriku.ext.*
+import com.egoriku.versions.ProjectVersion
 import org.jetbrains.kotlin.konan.file.File
 import org.jetbrains.kotlin.konan.properties.Properties
 import org.jetbrains.kotlin.konan.properties.loadProperties
@@ -15,7 +14,6 @@ import org.jetbrains.kotlin.konan.properties.saveToFile
 plugins {
     id("com.android.application")
     id("kotlin-android")
-    id("kotlin-kapt")
     id("com.google.firebase.firebase-perf")
     id("com.google.firebase.crashlytics")
 }
@@ -57,29 +55,22 @@ android {
         debug {
             applicationIdSuffix = ".debug"
             versionNameSuffix = "-debug"
+
+            isMinifyEnabled = false
             multiDexEnabled = true
             extra["enableCrashlytics"] = false
             extra["alwaysUpdateBuildId"] = false
+
+            withGroovyBuilder {
+                "FirebasePerformance" {
+                    invokeMethod("setInstrumentationEnabled", false)
+                }
+            }
         }
     }
 
-    configureBuildFlavors(
-            onLocalBuild = {
-                configureProductFlavors()
-            },
-            onRemoteBuild = {
-                println("It's app center build.")
-            }
-    )
-
     gradle.taskGraph.whenReady {
-        if (hasTask(":app:assembleAllFeaturesDebug")
-                || hasTask(":app:assembleAllFeaturesRelease")
-                || hasTask(":app:assembleJustLandingDebug")
-                || hasTask(":app:assembleJustPhotoReportDebug")
-                || hasTask(":app:assembleJustCatalogDebug")
-                || hasTask(":app:assembleJustSettingsDebug")
-        ) {
+        if (hasTask(":app:assembleDebug")) {
             autoIncrementBuildVersionNumber()
         }
     }
@@ -111,7 +102,6 @@ withProjects(
         Features.photoReport,
         Features.settings,
 
-        Libraries.arch,
         Libraries.auth,
         Libraries.core,
         Libraries.extensions,
@@ -129,14 +119,12 @@ withLibraries(
         Libs.firebaseCore,
         Libs.firebaseFirestore,
         Libs.firebasePerformance,
+        Libs.firebaseRemoteConfig,
         Libs.koinAndroid,
-        Libs.koinCore,
         Libs.kotlin,
         Libs.material,
         Libs.playCore
 )
-
-withKapt(Libs.dagger andKapt Libs.daggerCompiler)
 
 dependencies {
     implementation(Libs.firebaseAnalytics)

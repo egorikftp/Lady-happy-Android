@@ -3,8 +3,8 @@ package com.egoriku.ladyhappy.postcreator.presentation.adapter
 import android.view.ViewGroup
 import androidx.core.net.toUri
 import androidx.recyclerview.widget.RecyclerView
-import com.egoriku.ladyhappy.extensions.common.Constants.EMPTY
-import com.egoriku.ladyhappy.extensions.inflater
+import com.egoriku.extensions.common.Constants.EMPTY
+import com.egoriku.extensions.inflater
 import com.egoriku.ladyhappy.postcreator.R
 import com.egoriku.ladyhappy.postcreator.databinding.AdapterItemAddImageBinding
 import com.egoriku.ladyhappy.postcreator.domain.model.ImageItem

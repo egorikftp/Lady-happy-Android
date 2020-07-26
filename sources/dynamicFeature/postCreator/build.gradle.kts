@@ -1,12 +1,10 @@
 import Modules.Applications
 import Modules.Libraries
-import com.egoriku.application.configureProductFlavors
 import com.egoriku.application.provideVersionCode
 import com.egoriku.application.provideVersionName
-import com.egoriku.versions.ProjectVersion
-import com.egoriku.ext.configureBuildFlavors
 import com.egoriku.ext.withLibraries
 import com.egoriku.ext.withProjects
+import com.egoriku.versions.ProjectVersion
 
 plugins {
     id("com.android.dynamic-feature")
@@ -20,15 +18,6 @@ android {
         versionCode = provideVersionCode()
         versionName = provideVersionName()
     }
-
-    configureBuildFlavors(
-            onLocalBuild = {
-                configureProductFlavors()
-            },
-            onRemoteBuild = {
-                println("It's app center build.")
-            }
-    )
 
     kotlinOptions {
         jvmTarget = "1.8"

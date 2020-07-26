@@ -5,10 +5,10 @@ import android.graphics.drawable.Drawable
 import android.util.AttributeSet
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.updatePadding
-import com.egoriku.ladyhappy.extensions.addRipple
-import com.egoriku.ladyhappy.extensions.getDimen
-import com.egoriku.ladyhappy.extensions.inflater
-import com.egoriku.ladyhappy.extensions.withStyledAttributes
+import com.egoriku.extensions.addRipple
+import com.egoriku.extensions.getDimen
+import com.egoriku.extensions.inflater
+import com.egoriku.extensions.withStyledAttributes
 import com.egoriku.ladyhappy.postcreator.R
 import com.egoriku.ladyhappy.postcreator.databinding.ViewChooserBinding
 import com.egoriku.ui.R as R_ui

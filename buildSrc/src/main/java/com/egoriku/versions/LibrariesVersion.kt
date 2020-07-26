@@ -8,10 +8,9 @@ object LibrariesVersion {
     const val browser = "1.2.0"
     const val cardView = "1.0.0"
     const val constraintLayout = "2.0.0-beta8"
-    const val core = "1.3.0"
+    const val core = "1.3.1"
     const val coroutinesAndroid = "1.3.8"
     const val circleImageView = "3.1.0"
-    const val dagger = "2.28.1"
     const val easyAdapter = "2.0.0"
     const val firebaseAnalytics = "17.4.4"
     const val firebaseAuth = "19.3.2"
@@ -19,6 +18,7 @@ object LibrariesVersion {
     const val firebaseCrashlytics = "17.1.1"
     const val firebaseFirestore = "21.5.0"
     const val firebasePerformance = "19.0.8"
+    const val firebaseRemoteConfig = "19.2.0"
     const val fragment = "1.3.0-alpha06"
     const val glide = "4.11.0"
     const val junit = "4.13"
@@ -32,7 +32,7 @@ object LibrariesVersion {
     const val playCore = "1.7.3"
     const val recyclerView = "1.2.0-alpha04"
     const val vectorDrawable = "1.1.0"
-    const val viewBindingDelegates = "1.0.0-beta1"
+    const val viewBindingDelegates = "1.0.0"
     const val viewPager2 = "1.0.0"
 }
 

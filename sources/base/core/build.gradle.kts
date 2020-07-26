@@ -7,13 +7,9 @@ plugins {
     id("com.android.library")
 }
 
-withProjects(
-        Libraries.arch,
-        Libraries.navigation
-)
+withProjects(Libraries.navigation)
 
 withLibraries(
         Libs.coroutinesAndroid,
-        Libs.dagger,
         Libs.firebaseFirestore
 )

@@ -11,8 +11,8 @@ import androidx.recyclerview.widget.ConcatAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView.HORIZONTAL
 import by.kirich1409.viewbindingdelegate.viewBinding
-import com.egoriku.core.di.utils.IRouter
-import com.egoriku.ladyhappy.extensions.*
+import com.egoriku.core.IRouter
+import com.egoriku.extensions.*
 import com.egoriku.ladyhappy.postcreator.R
 import com.egoriku.ladyhappy.postcreator.databinding.FragmentPostCreatorBinding
 import com.egoriku.ladyhappy.postcreator.domain.dialog.DialogResult

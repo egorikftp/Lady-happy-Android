@@ -24,7 +24,7 @@ This project brings to the table set of best practices, tools, and solutions:
 * [Android Jetpack](https://developer.android.com/jetpack)
 * Single-activity architecture
 * CI/CD ([AppCenter](https://appcenter.ms/users/egorikftp/apps/Lady-Happy-Beta))
-* Dependency Injection ([Koin](https://github.com/InsertKoinIO/koin))
+* Dependency Injection ([Koin](https://github.com/InsertKoinIO/com.egoriku.landing.koin))
 * Material Design
 * Dark Theme
 
@@ -37,7 +37,7 @@ Built With 🛠
   - [LiveData](https://developer.android.com/topic/libraries/architecture/livedata) - Data objects that notify views when the underlying data changes
   - [ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel) - Stores UI-related data that isn't destroyed on UI changes
 - [Material Components for Android](https://github.com/material-components/material-components-android) - Modular and customizable Material Design UI components for Android
-- [Koin](https://github.com/InsertKoinIO/koin) - Dependency Injection Framework
+- [Koin](https://github.com/InsertKoinIO/com.egoriku.landing.koin) - Dependency Injection Framework
 - [Google Analytics](https://firebase.google.com/docs/analytics) - Free app measurement solution that provides insight on app usage and user engagement
 - [Firebase Crashlytics](https://firebase.google.com/docs/analytics) - Lightweight, realtime crash reporter that helps you track, prioritize, and fix stability issues that erode your app quality
 

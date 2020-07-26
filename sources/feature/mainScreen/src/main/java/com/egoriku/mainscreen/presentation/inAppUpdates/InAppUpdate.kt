@@ -5,7 +5,7 @@ import android.app.Activity
 import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.egoriku.ladyhappy.extensions.Event
+import com.egoriku.extensions.Event
 import com.egoriku.mainscreen.presentation.inAppUpdates.InAppUpdateState.*
 import com.google.android.play.core.appupdate.AppUpdateInfo
 import com.google.android.play.core.appupdate.AppUpdateManagerFactory

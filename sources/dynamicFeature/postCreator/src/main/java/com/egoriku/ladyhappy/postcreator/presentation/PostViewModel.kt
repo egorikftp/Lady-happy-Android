@@ -4,7 +4,7 @@ import android.net.Uri
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.egoriku.ladyhappy.extensions.valueOrThrow
+import com.egoriku.extensions.valueOrThrow
 import com.egoriku.ladyhappy.postcreator.domain.model.ImageItem
 import com.egoriku.ladyhappy.postcreator.domain.predefined.PredefinedData
 

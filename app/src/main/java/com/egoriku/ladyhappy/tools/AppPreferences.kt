@@ -5,13 +5,13 @@ import android.content.Context.MODE_PRIVATE
 import android.content.SharedPreferences
 import androidx.annotation.WorkerThread
 import androidx.core.content.edit
-import com.egoriku.core.preferences.IAppPreferences
+import com.egoriku.core.IAppPreferences
 import kotlin.properties.ReadWriteProperty
 import kotlin.reflect.KProperty
 
 private const val PREFERENCES_NAME = "app_settings"
 
-class AppPreferences(context: Context) : IAppPreferences {
+internal class AppPreferences(context: Context) : IAppPreferences {
 
     private val prefs: Lazy<SharedPreferences> = lazy { // Lazy to prevent IO access to main thread.
         context.applicationContext.getSharedPreferences(

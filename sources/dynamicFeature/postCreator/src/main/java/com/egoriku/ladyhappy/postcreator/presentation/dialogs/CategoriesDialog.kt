@@ -2,7 +2,7 @@ package com.egoriku.ladyhappy.postcreator.presentation.dialogs
 
 import android.content.Context
 import android.os.Bundle
-import com.egoriku.ladyhappy.extensions.dataBySelectedPosition
+import com.egoriku.extensions.dataBySelectedPosition
 import com.egoriku.ladyhappy.postcreator.domain.dialog.DialogResult
 import com.egoriku.ladyhappy.postcreator.presentation.dialogs.listener.DialogValueChangeListener
 import com.egoriku.ui.dialog.BaseDialogFragment

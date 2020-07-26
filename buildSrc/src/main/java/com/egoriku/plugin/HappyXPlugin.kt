@@ -3,6 +3,7 @@ package com.egoriku.plugin
 import Libs
 import com.android.build.gradle.AppPlugin
 import com.android.build.gradle.LibraryPlugin
+import com.egoriku.ext.debug
 import com.egoriku.ext.implementation
 import com.egoriku.ext.release
 import com.egoriku.plugin.extension.MyPluginExtension
@@ -78,6 +79,10 @@ fun Project.addAndroidLibrarySection() = libraryExtension.run {
     buildTypes {
         release {
             isMinifyEnabled = true
+        }
+
+        debug {
+            isMinifyEnabled = false
         }
     }
 

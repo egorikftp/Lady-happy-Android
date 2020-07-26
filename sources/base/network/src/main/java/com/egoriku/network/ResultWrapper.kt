@@ -1,7 +1,7 @@
 package com.egoriku.network
 
-inline fun <T> wrapIntoResult(coroutineBlock: () -> T): Result<T> = try {
-    Result.Success(coroutineBlock())
+inline fun <T> wrapIntoResult(coroutineBlock: () -> T): ResultOf<T> = try {
+    ResultOf.Success(coroutineBlock())
 } catch (exception: Exception) {
-    Result.Error(exception)
+    ResultOf.Failure(exception)
 }

@@ -4,11 +4,11 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.egoriku.core.di.utils.IRouter
+import com.egoriku.core.IRouter
+import com.egoriku.extensions.common.Constants.EMPTY
 import com.egoriku.ladyhappy.auth.Authentication
-import com.egoriku.ladyhappy.extensions.common.Constants.EMPTY
-import com.egoriku.network.Result.Error
-import com.egoriku.network.Result.Success
+import com.egoriku.network.ResultOf.Failure
+import com.egoriku.network.ResultOf.Success
 import kotlinx.coroutines.launch
 
 class LoginViewModel(
@@ -26,7 +26,7 @@ class LoginViewModel(
 
             when (val result = authentication.authWithEmailAndPassword(email, password)) {
                 is Success -> _currentState.value = LoginState.Success()
-                is Error -> _currentState.value = LoginState.Error(result.exception.message
+                is Failure -> _currentState.value = LoginState.Error(result.throwable.message
                         ?: EMPTY)
             }
         }
