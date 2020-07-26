@@ -1,8 +1,9 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
-
+<resources>
     <style name="AppTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+
         <item name="android:statusBarColor">#272D33</item>
-        <item name="android:windowLightStatusBar" tools:targetApi="m">false</item>
+        <item name="android:windowLightStatusBar">false</item>
 
         <item name="colorPrimaryVariant">@color/RoseTaupeDark</item>
         <item name="colorSecondaryVariant">@color/TerracotaDark</item>
