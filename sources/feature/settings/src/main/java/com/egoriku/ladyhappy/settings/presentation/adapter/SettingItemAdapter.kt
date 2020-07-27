@@ -8,10 +8,10 @@ import com.egoriku.extensions.inflater
 import com.egoriku.extensions.visible
 import com.egoriku.ladyhappy.settings.R
 import com.egoriku.ladyhappy.settings.databinding.AdapterItemSettingBinding
-import com.egoriku.ladyhappy.settings.domain.model.SettingItem
+import com.egoriku.ladyhappy.settings.domain.model.setting.SettingItem
 
 internal class SettingItemAdapter(
-        private val onItemClick: (textResId: Int) -> Unit
+        private val onItemClick: (settingItem: SettingItem) -> Unit
 ) : ListAdapter<SettingItem, SettingItemAdapter.VH>(DiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
@@ -26,21 +26,30 @@ internal class SettingItemAdapter(
         fun bind(model: SettingItem) = binding.bind(model)
 
         private fun AdapterItemSettingBinding.bind(model: SettingItem) {
-            if (model.headerResId != -1) {
-                header.visible()
-                header.setText(model.headerResId)
-            }
-
-            body.setText(model.bodyResId)
-            body.setOnClickListener {
-                onItemClick(model.bodyResId)
+            when (model) {
+                is SettingItem.Header -> {
+                    header.visible()
+                    header.setText(model.stringResource)
+                }
+                is SettingItem.NonClickable -> {
+                    body.visible()
+                    body.text = model.resource
+                    body.isClickable = true
+                }
+                else -> {
+                    body.visible()
+                    body.setText(model.stringResource)
+                    body.setOnClickListener {
+                        onItemClick(model)
+                    }
+                }
             }
         }
     }
 
     internal class DiffCallback : DiffUtil.ItemCallback<SettingItem>() {
 
-        override fun areItemsTheSame(oldItem: SettingItem, newItem: SettingItem) = oldItem.bodyResId == newItem.bodyResId
+        override fun areItemsTheSame(oldItem: SettingItem, newItem: SettingItem) = oldItem == newItem
 
         override fun areContentsTheSame(oldItem: SettingItem, newItem: SettingItem) = oldItem == newItem
     }

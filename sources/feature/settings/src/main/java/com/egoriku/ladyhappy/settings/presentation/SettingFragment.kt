@@ -14,6 +14,7 @@ import com.egoriku.ladyhappy.settings.R
 import com.egoriku.ladyhappy.settings.databinding.FragmentSettingsBinding
 import com.egoriku.ladyhappy.settings.domain.model.Feature
 import com.egoriku.ladyhappy.settings.domain.model.Section
+import com.egoriku.ladyhappy.settings.domain.model.setting.SettingItem
 import com.egoriku.ladyhappy.settings.presentation.adapter.AvailableFeaturesAdapter
 import com.egoriku.ladyhappy.settings.presentation.adapter.LoginAdapter
 import com.egoriku.ladyhappy.settings.presentation.adapter.SettingItemAdapter
@@ -66,8 +67,7 @@ class SettingFragment : Fragment(R.layout.fragment_settings) {
 
         settingsAdapter = SettingItemAdapter {
             when (it) {
-                R.string.settings_theme_title -> ThemeSettingDialogFragment()
-                        .show(childFragmentManager, null)
+                is SettingItem.Theme -> ThemeSettingDialogFragment().show(childFragmentManager, null)
             }
         }
 
