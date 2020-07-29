@@ -10,6 +10,7 @@ import com.egoriku.ladyhappy.settings.presentation.SettingFragment
 import com.egoriku.landing.presentation.LandingPageFragment
 import com.egoriku.mainscreen.presentation.MainActivity
 import com.egoriku.photoreport.presentation.PhotoReportFragment
+import com.egoriku.usedLibraries.presentation.UsedLibrariesFragment
 
 internal class FeatureProvider : IFeatureProvider {
 
@@ -29,4 +30,7 @@ internal class FeatureProvider : IFeatureProvider {
 
     override val settingsFragment: Fragment
         get() = SettingFragment()
+
+    override val usedLibrariesFragment: Fragment
+        get() = UsedLibrariesFragment()
 }

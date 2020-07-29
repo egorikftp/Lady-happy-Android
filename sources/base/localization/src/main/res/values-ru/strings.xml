@@ -26,7 +26,7 @@
     <string name="navigation_view_catalog_header">Наши товары</string>
 
     <string name="navigation_view_settings">Настройки</string>
-    <string name="navigation_view_settings_header">Дополнительные функции</string>
+    <string name="navigation_view_settings_header">Доп. функции</string>
 
     <string name="adapter_item_news_header_text">Последние новости</string>
 
@@ -78,4 +78,10 @@
     <string name="post_creator_categories_dialog_title">Выберите категорию</string>
     <string name="post_creator_subcategories_categories_dialog_title">Выберите подкатегорию</string>
 
+    <!-- Used Libraries -->
+    <string name="used_libraries_prefix_the" />
+    <string name="used_libraries_prefix_open_source">это open source приложение,</string>
+    <string name="used_libraries_prefix_uses">и использует эти open source библиотеки</string>
+    <string name="used_libraries_follow_github">Мы на GitHub!</string>
+    <string name="used_libraries_error_loading">Open-source библиотеки не найдены</string>
 </resources>

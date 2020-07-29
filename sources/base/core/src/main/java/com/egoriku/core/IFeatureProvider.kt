@@ -17,4 +17,6 @@ interface IFeatureProvider {
     val photoReportFragment: Fragment
 
     val settingsFragment: Fragment
+
+    val usedLibrariesFragment: Fragment
 }

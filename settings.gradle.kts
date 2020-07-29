@@ -34,6 +34,7 @@ object Modules {
         const val mainScreen = ":mainScreen"
         const val photoReport = ":photoReport"
         const val settings = ":settings"
+        const val usedLibraries = ":usedLibraries"
     }
 
     object DynamicFeatures {
@@ -71,7 +72,8 @@ object Modules {
                 ProjectBean(Features.login, "sources/feature/login"),
                 ProjectBean(Features.mainScreen, "sources/feature/mainScreen"),
                 ProjectBean(Features.photoReport, "sources/feature/photoReport"),
-                ProjectBean(Features.settings, "sources/feature/settings")
+                ProjectBean(Features.settings, "sources/feature/settings"),
+                ProjectBean(Features.usedLibraries, "sources/feature/usedLibraries")
         )
 
     val libraries

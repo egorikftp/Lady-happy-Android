@@ -76,4 +76,11 @@
     <string name="post_creator_images_count">%1$s from 10</string>
     <string name="post_creator_categories_dialog_title">Choose category</string>
     <string name="post_creator_subcategories_categories_dialog_title">Choose subcategory</string>
+
+    <!-- Used Libraries -->
+    <string name="used_libraries_prefix_the">The</string>
+    <string name="used_libraries_prefix_open_source">is a open source app,</string>
+    <string name="used_libraries_prefix_uses">and uses these open source libraries</string>
+    <string name="used_libraries_follow_github">Follow us on GitHub!</string>
+    <string name="used_libraries_error_loading">Open-source libraries not found</string>
 </resources>

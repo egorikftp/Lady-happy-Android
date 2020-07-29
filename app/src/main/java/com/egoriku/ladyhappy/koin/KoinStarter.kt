@@ -9,6 +9,7 @@ import com.egoriku.ladyhappy.settings.koin.settingsModule
 import com.egoriku.landing.koin.landingModule
 import com.egoriku.mainscreen.koin.mainActivityModule
 import com.egoriku.photoreport.koin.photoReportModule
+import com.egoriku.usedLibraries.koin.usedLibrariesModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidFileProperties
 import org.koin.android.ext.koin.androidLogger
@@ -37,5 +38,6 @@ val koinModules = listOf(
         mainActivityModule,
         photoReportModule,
         settingsModule,
-        subcategoryModule
+        subcategoryModule,
+        usedLibrariesModule
 )
