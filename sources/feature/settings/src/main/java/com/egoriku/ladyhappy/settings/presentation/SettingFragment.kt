@@ -14,11 +14,13 @@ import com.egoriku.ladyhappy.settings.R
 import com.egoriku.ladyhappy.settings.databinding.FragmentSettingsBinding
 import com.egoriku.ladyhappy.settings.domain.model.Feature
 import com.egoriku.ladyhappy.settings.domain.model.Section
+import com.egoriku.ladyhappy.settings.domain.model.setting.SettingItem
 import com.egoriku.ladyhappy.settings.presentation.adapter.AvailableFeaturesAdapter
 import com.egoriku.ladyhappy.settings.presentation.adapter.LoginAdapter
 import com.egoriku.ladyhappy.settings.presentation.adapter.SettingItemAdapter
 import com.egoriku.ladyhappy.settings.presentation.dialog.theme.ThemeSettingDialogFragment
 import com.egoriku.ladyhappy.settings.presentation.screen.LoginScreen
+import com.egoriku.ladyhappy.settings.presentation.screen.UsedLibrariesScreen
 import com.egoriku.ladyhappy.settings.presentation.view.State.ANON
 import com.egoriku.ladyhappy.settings.presentation.view.State.LOGGED_IN
 import org.koin.android.ext.android.inject
@@ -66,8 +68,8 @@ class SettingFragment : Fragment(R.layout.fragment_settings) {
 
         settingsAdapter = SettingItemAdapter {
             when (it) {
-                R.string.settings_theme_title -> ThemeSettingDialogFragment()
-                        .show(childFragmentManager, null)
+                is SettingItem.Theme -> ThemeSettingDialogFragment().show(childFragmentManager, null)
+                is SettingItem.UsedLibraries -> viewModel.navigateTo(UsedLibrariesScreen(featureProvider), R.id.contentFullScreen)
             }
         }
 

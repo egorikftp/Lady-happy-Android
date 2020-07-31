@@ -20,6 +20,7 @@ val applicationScopeModule = module {
     single<IDispatchers> { Dispatchers() }
     single<IFirebaseFirestore> { FirebaseFirestore() }
     single<IRemoteConfig> { RemoteConfig() }
+    single<IStringResource> { StringResource(androidContext()) }
 
     single { NavigateMe.create() }
     single<INavigationHolder> { NavigationHolder(get<NavigateMe<Router>>().navigatorHolder) }

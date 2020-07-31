@@ -16,6 +16,7 @@ plugins {
     id("kotlin-android")
     id("com.google.firebase.firebase-perf")
     id("com.google.firebase.crashlytics")
+    id("com.google.android.gms.oss-licenses-plugin")
 }
 
 android {
@@ -101,6 +102,7 @@ withProjects(
         Features.mainScreen,
         Features.photoReport,
         Features.settings,
+        Features.usedLibraries,
 
         Libraries.auth,
         Libraries.core,

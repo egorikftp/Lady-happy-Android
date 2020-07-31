@@ -16,6 +16,7 @@ buildscript {
         classpath(GradlePlugins.firebaseCrashlytics)
         classpath(GradlePlugins.firebasePerformance)
         classpath(GradlePlugins.googleServices)
+        classpath(GradlePlugins.googleOssLicenses)
         classpath(GradlePlugins.gradleTools)
         classpath(GradlePlugins.kotlinGradle)
     }

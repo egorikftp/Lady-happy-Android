@@ -12,6 +12,7 @@ object Modules {
         const val mainScreen = ":mainScreen"
         const val photoReport = ":photoReport"
         const val settings = ":settings"
+        const val usedLibraries = ":usedLibraries"
     }
 
     object DynamicFeatures {

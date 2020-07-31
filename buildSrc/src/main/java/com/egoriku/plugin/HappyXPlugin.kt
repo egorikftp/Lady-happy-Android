@@ -8,6 +8,7 @@ import com.egoriku.ext.implementation
 import com.egoriku.ext.release
 import com.egoriku.plugin.extension.MyPluginExtension
 import com.egoriku.plugin.internal.libraryExtension
+import com.egoriku.plugin.internal.androidExtensions
 import com.egoriku.versions.ProjectVersion
 import org.gradle.api.JavaVersion
 import org.gradle.api.Plugin
@@ -15,6 +16,7 @@ import org.gradle.api.Project
 import org.gradle.api.plugins.JavaPlugin
 import org.gradle.kotlin.dsl.create
 import org.gradle.kotlin.dsl.dependencies
+import org.jetbrains.kotlin.gradle.internal.AndroidExtensionsFeature
 import org.jetbrains.kotlin.gradle.plugin.KotlinBasePluginWrapper
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
@@ -54,6 +56,14 @@ open class HappyXPlugin : Plugin<Project> {
                         libraryExtension.run {
                             buildFeatures {
                                 viewBinding = config.viewBindingEnabled
+                            }
+                        }
+
+                        if (config.kotlinParcelize) {
+                            plugins.apply("kotlin-android-extensions")
+
+                            androidExtensions {
+                                features = setOf(AndroidExtensionsFeature.PARCELIZE.featureName)
                             }
                         }
                     }

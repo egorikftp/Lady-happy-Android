@@ -1,9 +1,9 @@
 package com.egoriku.ladyhappy.settings.domain.model
 
 import androidx.annotation.DrawableRes
-import androidx.annotation.StringRes
 import com.egoriku.ladyhappy.auth.model.UserLoginState
 import com.egoriku.ladyhappy.settings.R
+import com.egoriku.ladyhappy.settings.domain.model.setting.SettingItem
 
 sealed class Section(open val position: Int) {
 
@@ -19,8 +19,6 @@ sealed class Section(open val position: Int) {
             val setting: List<SettingItem>
     ) : Section(position = 2)
 }
-
-data class SettingItem(@StringRes val textResId: Int)
 
 sealed class Feature(
         open val isAvailable: Boolean,

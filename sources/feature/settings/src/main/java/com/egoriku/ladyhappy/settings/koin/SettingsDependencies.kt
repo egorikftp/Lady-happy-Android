@@ -22,7 +22,12 @@ val settingsModule = module {
 
         scoped { RemoteFeaturesRepository(publishPostsFeatureDataSource = get()) }
 
-        scoped { SectionsUseCase(remoteFeaturesRepository = get()) }
+        scoped {
+            SectionsUseCase(
+                    remoteFeaturesRepository = get(),
+                    stringResource = get()
+            )
+        }
         scoped { AuthenticationUseCase(authentication = get()) }
 
         viewModel {
