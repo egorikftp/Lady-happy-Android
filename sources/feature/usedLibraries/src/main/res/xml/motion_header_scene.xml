@@ -58,7 +58,7 @@
             <PropertySet android:alpha="1" />
         </Constraint>
 
-        <Constraint android:id="@+id/contributorInvite">
+        <Constraint android:id="@+id/linkToGithub">
             <PropertySet android:alpha="1" />
         </Constraint>
 
@@ -106,7 +106,7 @@
             <PropertySet android:alpha="0" />
         </Constraint>
 
-        <Constraint android:id="@+id/contributorInvite">
+        <Constraint android:id="@+id/linkToGithub">
             <PropertySet android:alpha="0" />
         </Constraint>
 

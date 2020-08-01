@@ -8,7 +8,8 @@
     android:background="?attr/android:colorBackground"
     android:clickable="true"
     android:focusable="true"
-    app:layoutDescription="@xml/motion_header_scene">
+    app:layoutDescription="@xml/motion_header_scene"
+    tools:background="@color/RealWhite">
 
     <View
         android:id="@+id/toolbar"
@@ -33,17 +34,9 @@
         style="@style/TextAppearance.MaterialComponents.Body1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginRight="4dp"
         android:gravity="start|center_vertical"
         android:text="@string/used_libraries_prefix_the"
         android:textAppearance="?textAppearanceBody1"
-        app:layout_constraintBottom_toTopOf="@id/andUsesThese"
-        app:layout_constraintHorizontal_chainStyle="packed"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@id/title"
-        app:layout_constraintTop_toTopOf="@id/toolbar"
-        app:layout_constraintVertical_bias="0.3"
-        app:layout_constraintVertical_chainStyle="packed"
         tools:textColor="@color/RealBlack" />
 
     <TextView
@@ -54,9 +47,6 @@
         android:gravity="start|center_vertical"
         android:text="@string/application_name"
         android:textAppearance="?textAppearanceBody1"
-        app:layout_constraintLeft_toRightOf="@id/the"
-        app:layout_constraintRight_toLeftOf="@id/openSource"
-        app:layout_constraintTop_toTopOf="@id/the"
         tools:textColor="@color/RealBlack" />
 
     <TextView
@@ -83,9 +73,6 @@
         android:gravity="start|center_vertical"
         android:text="@string/used_libraries_prefix_open_source"
         android:textAppearance="?textAppearanceBody1"
-        app:layout_constraintLeft_toRightOf="@id/title"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="@id/the"
         tools:textColor="@color/RealBlack" />
 
     <TextView
@@ -96,14 +83,10 @@
         android:gravity="start|center_vertical"
         android:text="@string/used_libraries_prefix_uses"
         android:textAppearance="?textAppearanceBody1"
-        app:layout_constraintBottom_toBottomOf="@id/toolbar"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/the"
         tools:textColor="@color/RealBlack" />
 
     <Button
-        android:id="@+id/contributorInvite"
+        android:id="@+id/linkToGithub"
         style="@style/Widget.MaterialComponents.Button.OutlinedButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -133,5 +116,21 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.helper.widget.Flow
+        android:id="@+id/flow"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginHorizontal="32dp"
+        app:constraint_referenced_ids="the, title, openSource, andUsesThese"
+        app:flow_horizontalGap="4sp"
+        app:flow_horizontalStyle="packed"
+        app:flow_verticalAlign="center"
+        app:flow_verticalStyle="packed"
+        app:flow_wrapMode="chain"
+        app:layout_constraintBottom_toTopOf="@+id/linkToGithub"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/toolbar" />
 
 </androidx.constraintlayout.motion.widget.MotionLayout>

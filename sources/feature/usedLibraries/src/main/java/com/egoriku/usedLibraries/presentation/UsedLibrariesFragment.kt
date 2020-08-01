@@ -57,7 +57,7 @@ class UsedLibrariesFragment : Fragment(R.layout.fragment_used_libraries) {
             addItemDecoration(DividerItemDecoration(context, VERTICAL))
         }
 
-        contributorInvite.setOnClickListener {
+        linkToGithub.setOnClickListener {
             browseUrl(getString(R.string.github_link))
         }
 
