@@ -103,7 +103,7 @@
                 app:layout_constraintEnd_toEndOf="@+id/textInputPassword"
                 app:layout_constraintTop_toBottomOf="@+id/textInputPassword" />
 
-            <com.google.android.material.button.MaterialButton
+            <Button
                 android:id="@+id/signInButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -118,7 +118,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/forgotPassword"
                 app:layout_constraintWidth_min="150dp" />
 
-            <com.google.android.material.button.MaterialButton
+            <Button
                 android:id="@+id/termsOfServiceButton"
                 style="@style/Widget.MaterialComponents.Button.TextButton"
                 android:layout_width="wrap_content"
@@ -135,7 +135,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 tools:ignore="SmallSp" />
 
-            <com.google.android.material.button.MaterialButton
+            <Button
                 android:id="@+id/privacyPolicyButton"
                 style="@style/Widget.MaterialComponents.Button.TextButton"
                 android:layout_width="wrap_content"

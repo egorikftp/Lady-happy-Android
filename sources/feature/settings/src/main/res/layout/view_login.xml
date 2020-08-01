@@ -17,7 +17,7 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:src="@tools:sample/avatars" />
 
-    <com.google.android.material.button.MaterialButton
+    <Button
         android:id="@+id/loginButton"
         style="@style/Widget.MaterialComponents.Button.OutlinedButton"
         android:layout_width="wrap_content"
@@ -29,11 +29,12 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/userName"
-        tools:text="@string/settings_login" />
+        tools:text="@string/settings_login"
+        tools:textColor="@color/RealBlack" />
 
     <TextView
         android:id="@+id/loginHint"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
@@ -42,12 +43,15 @@
         android:layout_marginRight="16dp"
         android:layout_marginBottom="8dp"
         android:fontFamily="sans-serif-light"
+        android:gravity="center"
+        android:maxLines="2"
         android:text="@string/settings_login_hint"
         android:textColor="?attr/colorOnSurface"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/loginButton"
+        tools:textColor="@color/RealBlack"
         tools:viewBindingIgnore="true" />
 
     <TextView
@@ -66,5 +70,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/profileImage"
         tools:text="egorikftp@gmail.com"
+        tools:textColor="@color/RealBlack"
         tools:visibility="visible" />
 </merge>
