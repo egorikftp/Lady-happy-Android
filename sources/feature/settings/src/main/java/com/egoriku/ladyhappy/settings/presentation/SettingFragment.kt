@@ -69,7 +69,9 @@ class SettingFragment : Fragment(R.layout.fragment_settings) {
         settingsAdapter = SettingItemAdapter {
             when (it) {
                 is SettingItem.Theme -> ThemeSettingDialogFragment().show(childFragmentManager, null)
-                is SettingItem.UsedLibraries -> viewModel.navigateTo(UsedLibrariesScreen(featureProvider), R.id.contentFullScreen)
+                is SettingItem.UsedLibraries -> {
+                    viewModel.navigateTo(UsedLibrariesScreen(featureProvider), R.id.contentFullScreen)
+                }
             }
         }
 

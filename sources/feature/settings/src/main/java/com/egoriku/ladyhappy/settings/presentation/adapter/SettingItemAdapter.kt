@@ -54,4 +54,3 @@ internal class SettingItemAdapter(
         override fun areContentsTheSame(oldItem: SettingItem, newItem: SettingItem) = oldItem == newItem
     }
 }
-

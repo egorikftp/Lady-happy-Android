@@ -27,7 +27,7 @@ abstract class UseCase<in P, R>(private val coroutineDispatcher: CoroutineDispat
                 }
             }
         } catch (e: Exception) {
-            logE(e)
+            logE(e.message, e)
             ResultOf.Failure(e)
         }
     }

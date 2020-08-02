@@ -24,7 +24,9 @@ suspend fun <T> DocumentReference.awaitGet(type: Class<T>): T = suspendCancellab
                 data?.let {
                     continuation.resume(it)
                 }
-                        ?: continuation.resumeWithException(FirestoreParseException("Failed to get document from $this of type: $type"))
+                        ?: continuation.resumeWithException(
+                                FirestoreParseException("Failed to get document from $this of type: $type")
+                        )
             } catch (exception: Exception) {
                 continuation.resumeWithException(exception)
             }

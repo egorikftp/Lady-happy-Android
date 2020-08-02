@@ -66,7 +66,8 @@ internal class QuotesController(
 
                 val min = min(itemView.top + itemView.translationY.toInt() + itemHeight, recyclerViewHeight)
                 val intrinsicHeightDrawable = itemBinding.quotesBackground.drawable.intrinsicHeight
-                val max = (1.0f - max(0, min) * 1.0f / recyclerViewHeight) * (-(intrinsicHeightDrawable - itemHeight)).toFloat()
+                val max = (1.0f - max(0, min) * 1.0f / recyclerViewHeight) *
+                        (-(intrinsicHeightDrawable - itemHeight)).toFloat()
 
                 val rectDrawable = itemBinding.quotesBackground.drawable.bounds
                 val leftOffset = (itemBinding.quotesBackground.measuredWidth - rectDrawable.width()) / 2f

@@ -1,11 +1,11 @@
 package com.egoriku.photoreport.presentation
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.egoriku.core.IAnalytics
+import com.egoriku.extensions.logE
 import com.egoriku.network.ResultOf
 import com.egoriku.network.exception.FirestoreNetworkException
 import com.egoriku.network.exception.FirestoreParseException
@@ -37,11 +37,11 @@ class PhotoReportViewModel(
                 is ResultOf.Failure -> {
                     when (resultOf.throwable) {
                         is FirestoreNetworkException -> {
-                            Log.e("PhotoReportPresenter", "FirestoreNetworkException", resultOf.throwable)
+                            logE("FirestoreNetworkException", resultOf.throwable)
                             analytics.trackNoInternetPhotoReports()
                         }
-                        is FirestoreParseException -> Log.e("PhotoReportPresenter", "FirestoreParseException", resultOf.throwable)
-                        is NoSuchDocumentException -> Log.e("PhotoReportPresenter", "NoSuchDocumentException", resultOf.throwable)
+                        is FirestoreParseException -> logE("FirestoreParseException", resultOf.throwable)
+                        is NoSuchDocumentException -> logE("NoSuchDocumentException", resultOf.throwable)
                     }
 
                     processResult(LoadState.ERROR_LOADING)

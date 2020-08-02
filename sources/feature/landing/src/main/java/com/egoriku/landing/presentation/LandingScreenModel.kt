@@ -10,7 +10,7 @@ class LandingScreenModel(
     fun isEmpty() = landingModel == null
 }
 
-//TODO use sealed classes
+// TODO use sealed classes
 enum class LoadState {
     NONE,
     PROGRESS,

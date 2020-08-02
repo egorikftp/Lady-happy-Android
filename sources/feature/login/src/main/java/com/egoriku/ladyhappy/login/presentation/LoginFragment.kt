@@ -37,12 +37,9 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
         }
 
         signInButton.setOnClickListener {
-            val isValid = fun(): Boolean {
-                return textInputEmail.validateEmail()
-                        && textInputPassword.validatePassword()
-            }
+            val isValid = binding.validate()
 
-            if (isValid()) {
+            if (isValid) {
                 viewModel.authWithEmailAndPassword(
                         email = loginEmail.text.toString(),
                         password = loginPassword.text.toString()
@@ -73,7 +70,7 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
                     viewModel.processBack()
                 }
                 is LoginState.Error -> {
-                    //TODO show error
+                    // TODO show error
                     parentProgress.gone()
                     contentLoadingProgressBar.hide()
                     toast("error ${it.message}")
@@ -81,6 +78,9 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
             }
         }
     }
+
+    fun FragmentLoginBinding.validate(): Boolean =
+            textInputEmail.validateEmail() && textInputPassword.validatePassword()
 
     override fun onStop() {
         super.onStop()

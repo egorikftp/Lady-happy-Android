@@ -12,4 +12,6 @@ inline fun fromApi(fromVersion: Int, inclusive: Boolean = true, action: () -> Un
 
 fun hasM() = Build.VERSION.SDK_INT >= Build.VERSION_CODES.M
 
+fun hasP() = Build.VERSION.SDK_INT >= Build.VERSION_CODES.P
+
 fun hasQ() = Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q

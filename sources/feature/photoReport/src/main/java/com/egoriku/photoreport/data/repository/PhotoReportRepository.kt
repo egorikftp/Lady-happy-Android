@@ -30,5 +30,4 @@ class PhotoReportRepository(private val firebaseFirestore: IFirebaseFirestore) {
             ResultOf.Failure(it)
         }
     }
-
 }

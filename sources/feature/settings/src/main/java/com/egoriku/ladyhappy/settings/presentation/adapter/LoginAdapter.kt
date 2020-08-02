@@ -58,4 +58,3 @@ internal class LoginAdapter(
         override fun areContentsTheSame(oldItem: Login, newItem: Login) = oldItem == newItem
     }
 }
-

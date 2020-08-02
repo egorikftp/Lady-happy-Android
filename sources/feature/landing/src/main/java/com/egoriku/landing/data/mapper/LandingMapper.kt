@@ -36,7 +36,6 @@ object LandingMapper {
                     socialUrl = it.url ?: EMPTY,
                     type = it.type ?: EMPTY
             )
-
         } ?: emptyList()
     }
 

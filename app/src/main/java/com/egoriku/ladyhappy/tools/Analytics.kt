@@ -6,19 +6,19 @@ import com.google.firebase.analytics.FirebaseAnalytics
 
 internal class Analytics(context: Context) : IAnalytics {
 
-    private val analytics: FirebaseAnalytics by lazy { FirebaseAnalytics.getInstance(context) }
+    private val firebaseAnalytics: FirebaseAnalytics by lazy { FirebaseAnalytics.getInstance(context) }
 
-    override fun trackPageView(view: String) = analytics.logEvent(view, null)
+    override fun trackPageView(view: String) = firebaseAnalytics.logEvent(view, null)
 
-    override fun trackNoInternetLanding() = analytics.logEvent(ERROR_NO_INTERNET_LANDING, null)
+    override fun trackNoInternetLanding() = firebaseAnalytics.logEvent(ERROR_NO_INTERNET_LANDING, null)
 
-    override fun trackNoInternetPhotoReports() = analytics.logEvent(ERROR_NO_INTERNET_PHOTO_REPORTS, null)
+    override fun trackNoInternetPhotoReports() = firebaseAnalytics.logEvent(ERROR_NO_INTERNET_PHOTO_REPORTS, null)
 
-    override fun inAppUpdateCanceled() = analytics.logEvent(IN_APP_UPDATE_CANCELED, null)
+    override fun inAppUpdateCanceled() = firebaseAnalytics.logEvent(IN_APP_UPDATE_CANCELED, null)
 
-    override fun inAppUpdateFailed() = analytics.logEvent(IN_APP_UPDATE_FAILED, null)
+    override fun inAppUpdateFailed() = firebaseAnalytics.logEvent(IN_APP_UPDATE_FAILED, null)
 
-    override fun inAppUpdateSuccess() = analytics.logEvent(IN_APP_UPDATE_SUCCESS, null)
+    override fun inAppUpdateSuccess() = firebaseAnalytics.logEvent(IN_APP_UPDATE_SUCCESS, null)
 
     companion object {
         const val ERROR_NO_INTERNET_LANDING = "error_no_internet_landing"

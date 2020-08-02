@@ -18,10 +18,10 @@ internal class Proportion(
         divider = divider
     )
 
-    private val proportion = width.toFloat() / height.toFloat()
+    private val imageProportion = width.toFloat() / height.toFloat()
 
     private inline fun resize(width: Int): Point {
-        val h = (width.toFloat() / proportion).roundToInt()
+        val h = (width.toFloat() / imageProportion).roundToInt()
 
         return Point(width, h)
     }

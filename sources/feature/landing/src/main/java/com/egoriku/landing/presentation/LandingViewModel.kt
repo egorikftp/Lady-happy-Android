@@ -1,11 +1,11 @@
 package com.egoriku.landing.presentation
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.egoriku.core.IAnalytics
+import com.egoriku.extensions.logE
 import com.egoriku.landing.domain.model.LandingModel
 import com.egoriku.landing.domain.usecase.LandingUseCase
 import com.egoriku.network.ResultOf
@@ -17,7 +17,7 @@ import kotlinx.coroutines.launch
 class LandingViewModel(
         private val analytics: IAnalytics,
         private val landingUseCase: LandingUseCase
-): ViewModel() {
+) : ViewModel() {
 
     private val screenData = MutableLiveData<LandingScreenModel>()
 
@@ -37,11 +37,11 @@ class LandingViewModel(
                 is ResultOf.Failure -> {
                     when (resultOf.throwable) {
                         is FirestoreNetworkException -> {
-                            Log.e("LandingPagePresenter", "FirestoreNetworkException", resultOf.throwable)
+                            logE("FirestoreNetworkException", resultOf.throwable)
                             analytics.trackNoInternetLanding()
                         }
-                        is FirestoreParseException -> Log.e("LandingPagePresenter", "FirestoreParseException", resultOf.throwable)
-                        is NoSuchDocumentException -> Log.e("LandingPagePresenter", "NoSuchDocumentException", resultOf.throwable)
+                        is FirestoreParseException -> logE("FirestoreParseException", resultOf.throwable)
+                        is NoSuchDocumentException -> logE("NoSuchDocumentException", resultOf.throwable)
                     }
 
                     processResult(LoadState.ERROR_LOADING)

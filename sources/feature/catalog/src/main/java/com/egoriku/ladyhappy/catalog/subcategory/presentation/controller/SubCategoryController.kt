@@ -17,6 +17,8 @@ import ru.surfstudio.android.easyadapter.controller.BindableItemController
 import ru.surfstudio.android.easyadapter.holder.BindableViewHolder
 import kotlin.properties.Delegates
 
+private const val CROSSFADE_DURATION = 100
+
 internal class SubCategoryController(
         private val onCatalogItemClick: (item: SubCategoryItem) -> Unit,
         private val onTrendingClick: (view: View) -> Unit
@@ -41,7 +43,7 @@ internal class SubCategoryController(
                 Glide.with(itemView.context)
                         .load(url)
                         .placeholder(colorDrawable)
-                        .transition(withCrossFade(100))
+                        .transition(withCrossFade(CROSSFADE_DURATION))
                         .apply(options)
                         .into(view)
             }
@@ -75,7 +77,10 @@ internal class SubCategoryController(
             }
 
             subCategoryTitle.text = data.name
-            subCategorySize.text = String.format(root.context.getString(R.string.catalog_images_count), data.publishedCount)
+            subCategorySize.text = String.format(
+                    root.context.getString(R.string.catalog_images_count),
+                    data.publishedCount
+            )
         }
     }
 }

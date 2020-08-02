@@ -6,20 +6,22 @@ import com.google.firebase.ktx.Firebase
 import com.google.firebase.remoteconfig.ktx.remoteConfig
 import com.google.firebase.remoteconfig.ktx.remoteConfigSettings
 
+private const val FETCH_TIME = 3600
+
 internal class RemoteConfig : IRemoteConfig {
 
-    private val remoteConfig = Firebase.remoteConfig
+    private val firebaseRemoteConfig = Firebase.remoteConfig
 
     private val configSettings = remoteConfigSettings {
-        minimumFetchIntervalInSeconds = 3600
+        minimumFetchIntervalInSeconds = FETCH_TIME
     }
 
     init {
-        remoteConfig.setConfigSettingsAsync(configSettings)
-        remoteConfig.setDefaultsAsync(R.xml.remote_defaults)
+        firebaseRemoteConfig.setConfigSettingsAsync(configSettings)
+        firebaseRemoteConfig.setDefaultsAsync(R.xml.remote_defaults)
     }
 
     override fun fetch() {
-        remoteConfig.fetchAndActivate()
+        firebaseRemoteConfig.fetchAndActivate()
     }
 }

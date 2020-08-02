@@ -19,6 +19,8 @@ import com.google.android.material.tabs.TabLayoutMediator
 import org.koin.androidx.scope.lifecycleScope
 import org.koin.androidx.viewmodel.scope.viewModel
 
+private const val OFFSET_PAGE_LIMIT = 3
+
 class CategoriesFragment : Fragment(R.layout.fragment_categories) {
 
     private val binding: FragmentCategoriesBinding by viewBinding()
@@ -54,7 +56,7 @@ class CategoriesFragment : Fragment(R.layout.fragment_categories) {
         catalogViewPagerAdapter = CatalogViewPagerAdapter(this@CategoriesFragment, tabData)
 
         viewPager.adapter = catalogViewPagerAdapter
-        viewPager.offscreenPageLimit = 3
+        viewPager.offscreenPageLimit = OFFSET_PAGE_LIMIT
 
         TabLayoutMediator(tabLayout, viewPager) { tab, position ->
             tab.text = tabData[position].categoryName

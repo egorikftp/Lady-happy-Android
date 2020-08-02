@@ -17,7 +17,7 @@ class HatsProgressView : AppCompatImageView {
     constructor(context: Context, attrs: AttributeSet) : super(context, attrs)
     constructor(context: Context, attrs: AttributeSet, defStyleAttr: Int) : super(context, attrs, defStyleAttr)
 
-    private var animatedVectorDrawable: AnimatedVectorDrawableCompat? = AnimatedVectorDrawableCompat.create(context, R.drawable.avd_hats_animation)
+    private var animatedVectorDrawable = AnimatedVectorDrawableCompat.create(context, R.drawable.avd_hats_animation)
 
     init {
         setImageDrawable(animatedVectorDrawable)

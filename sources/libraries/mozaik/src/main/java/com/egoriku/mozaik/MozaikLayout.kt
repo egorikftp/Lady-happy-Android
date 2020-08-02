@@ -10,6 +10,8 @@ import com.egoriku.mozaik.strategy.StrategyResolver
 import com.egoriku.mozaik.strategy.internal.model.Rect
 import com.egoriku.mozaik.strategy.internal.model.StrategyData
 
+private const val DIVIDER_SIZE = 20
+
 class MozaikLayout @JvmOverloads constructor(
         context: Context,
         attrs: AttributeSet? = null,
@@ -20,7 +22,7 @@ class MozaikLayout @JvmOverloads constructor(
         setWillNotDraw(false)
     }
 
-    private val strategyData = StrategyData(dividerSize = pxToDp(20))
+    private val strategyData = StrategyData(dividerSize = pxToDp(DIVIDER_SIZE))
 
     var onViewReady: ((view: ImageView, url: String) -> Unit)? = null
 
