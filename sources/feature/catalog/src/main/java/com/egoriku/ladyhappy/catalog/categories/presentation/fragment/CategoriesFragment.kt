@@ -1,5 +1,6 @@
 package com.egoriku.ladyhappy.catalog.categories.presentation.fragment
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
@@ -52,6 +53,7 @@ class CategoriesFragment : Fragment(R.layout.fragment_categories) {
         }
     }
 
+    @SuppressLint("WrongConstant")
     private fun FragmentCategoriesBinding.setupTabLayout(tabData: List<TabItem>) {
         catalogViewPagerAdapter = CatalogViewPagerAdapter(this@CategoriesFragment, tabData)
 
