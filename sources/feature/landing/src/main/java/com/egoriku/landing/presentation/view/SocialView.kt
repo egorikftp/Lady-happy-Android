@@ -16,9 +16,9 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import androidx.appcompat.widget.AppCompatImageButton
 import androidx.core.content.ContextCompat
-import androidx.core.widget.ImageViewCompat
 import com.egoriku.extensions.firstChild
 import com.egoriku.extensions.listeners.SimpleAnimationListener
+import com.egoriku.extensions.setImageTintList
 import com.egoriku.landing.R
 import com.egoriku.landing.common.PredefinedResources
 import com.egoriku.landing.domain.model.SocialModel
@@ -206,7 +206,7 @@ internal class SocialView : LinearLayout, View.OnClickListener {
                 scaleType = ImageView.ScaleType.FIT_CENTER
                 setImageResource(PredefinedResources.getDrawableByType(it.type))
                 setBackgroundResource(R.drawable.bg_social_view)
-                ImageViewCompat.setImageTintList(this, ContextCompat.getColorStateList(context, R.color.selector_social_icon))
+                setImageTintList(R.color.selector_social_icon)
             }, LayoutParams.WRAP_CONTENT)
         }
     }
