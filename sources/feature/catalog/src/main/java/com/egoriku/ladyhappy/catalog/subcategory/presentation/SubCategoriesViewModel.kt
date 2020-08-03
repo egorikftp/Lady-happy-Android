@@ -6,10 +6,7 @@ import androidx.lifecycle.liveData
 import com.egoriku.ladyhappy.catalog.subcategory.domain.usecase.CatalogUseCase
 import com.egoriku.network.ResultOf
 
-class SubCategoriesViewModel(
-        private val catalogUseCase: CatalogUseCase,
-        private val categoryId: Int
-) : ViewModel() {
+class SubCategoriesViewModel(private val catalogUseCase: CatalogUseCase, private val categoryId: Int) : ViewModel() {
 
     val subcategoryItems: LiveData<SubcategoryScreenState> = liveData {
         emit(SubcategoryScreenState.Loading)

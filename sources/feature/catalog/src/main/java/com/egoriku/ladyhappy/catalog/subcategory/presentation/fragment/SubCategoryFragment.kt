@@ -15,7 +15,6 @@ import com.egoriku.ladyhappy.catalog.R
 import com.egoriku.ladyhappy.catalog.databinding.FragmentCatalogBinding
 import com.egoriku.ladyhappy.catalog.subcategory.presentation.SubCategoriesViewModel
 import com.egoriku.ladyhappy.catalog.subcategory.presentation.SubcategoryScreenState
-import com.egoriku.ladyhappy.catalog.subcategory.presentation.SubcategoryScreenState.*
 import com.egoriku.ladyhappy.catalog.subcategory.presentation.controller.SubCategoryController
 import com.egoriku.ladyhappy.catalog.subcategory.presentation.controller.balloon.ViewHolderBalloonFactory
 import com.skydoves.balloon.balloon
@@ -26,6 +25,7 @@ import ru.surfstudio.android.easyadapter.EasyAdapter
 import ru.surfstudio.android.easyadapter.ItemList
 import kotlin.properties.Delegates
 
+private const val INITIAL_PREFETCH_COUNT = 7
 const val ARGUMENT_CATEGORY_ID = "category_id"
 
 class SubCategoryFragment : Fragment(R.layout.fragment_catalog) {
@@ -56,7 +56,7 @@ class SubCategoryFragment : Fragment(R.layout.fragment_catalog) {
 
         binding.catalogRecyclerView.apply {
             layoutManager = LinearLayoutManager(context).apply {
-                initialPrefetchItemCount = 7
+                initialPrefetchItemCount = INITIAL_PREFETCH_COUNT
             }
             adapter = catalogAdapter
             addItemDecoration(DividerItemDecoration(requireContext(), VERTICAL))
@@ -69,20 +69,20 @@ class SubCategoryFragment : Fragment(R.layout.fragment_catalog) {
 
     private fun FragmentCatalogBinding.render(screenState: SubcategoryScreenState) {
         when (screenState) {
-            is Success -> {
-                noItemsView.gone()
+            is SubcategoryScreenState.Success -> {
+                errorView.gone()
                 progressBar.gone()
                 catalogAdapter.setItems(
                         ItemList.create()
                                 .addAll(screenState.screenData, subcategoryController)
                 )
             }
-            is Error -> {
-                noItemsView.visible()
+            is SubcategoryScreenState.Error -> {
+                errorView.visible()
                 progressBar.gone()
             }
-            is Loading -> {
-                noItemsView.gone()
+            is SubcategoryScreenState.Loading -> {
+                errorView.gone()
                 progressBar.visible()
             }
         }

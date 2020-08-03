@@ -2,6 +2,7 @@
 
 package com.egoriku.extensions
 
+import android.content.res.ColorStateList
 import android.content.res.TypedArray
 import android.util.AttributeSet
 import android.view.View
@@ -26,6 +27,8 @@ inline fun View.visible() {
 }
 
 fun View.colorCompat(@ColorRes colorInt: Int) = context.colorCompat(colorInt)
+
+fun View.colorStateListCompat(@ColorRes resId: Int): ColorStateList? = context.colorStateListCompat(resId)
 
 fun View.colorFromAttr(@AttrRes attribute: Int) = context.colorFromAttr(attribute)
 

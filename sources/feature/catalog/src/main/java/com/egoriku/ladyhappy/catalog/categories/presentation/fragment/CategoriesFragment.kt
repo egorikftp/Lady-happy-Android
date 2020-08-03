@@ -1,11 +1,13 @@
 package com.egoriku.ladyhappy.catalog.categories.presentation.fragment
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.observe
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import by.kirich1409.viewbindingdelegate.viewBinding
+import com.egoriku.core.feature.CatalogFeature
 import com.egoriku.extensions.gone
 import com.egoriku.extensions.toast
 import com.egoriku.extensions.visible
@@ -19,7 +21,9 @@ import com.google.android.material.tabs.TabLayoutMediator
 import org.koin.androidx.scope.lifecycleScope
 import org.koin.androidx.viewmodel.scope.viewModel
 
-class CategoriesFragment : Fragment(R.layout.fragment_categories) {
+private const val OFFSET_PAGE_LIMIT = 3
+
+class CategoriesFragment : Fragment(R.layout.fragment_categories), CatalogFeature {
 
     private val binding: FragmentCategoriesBinding by viewBinding()
 
@@ -50,11 +54,12 @@ class CategoriesFragment : Fragment(R.layout.fragment_categories) {
         }
     }
 
+    @SuppressLint("WrongConstant")
     private fun FragmentCategoriesBinding.setupTabLayout(tabData: List<TabItem>) {
         catalogViewPagerAdapter = CatalogViewPagerAdapter(this@CategoriesFragment, tabData)
 
         viewPager.adapter = catalogViewPagerAdapter
-        viewPager.offscreenPageLimit = 3
+        viewPager.offscreenPageLimit = OFFSET_PAGE_LIMIT
 
         TabLayoutMediator(tabLayout, viewPager) { tab, position ->
             tab.text = tabData[position].categoryName

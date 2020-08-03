@@ -9,7 +9,7 @@ class ScreenModel(
     fun isEmpty() = photoReports.isNullOrEmpty()
 }
 
-//todo use sealed classes
+// TODO use sealed classes
 enum class LoadState {
     NONE,
     PROGRESS,

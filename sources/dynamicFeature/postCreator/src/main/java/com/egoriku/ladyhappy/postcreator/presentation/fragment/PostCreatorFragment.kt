@@ -37,6 +37,8 @@ import kotlin.properties.Delegates
 import com.egoriku.ladyhappy.localization.R as R_localization
 import com.egoriku.ui.R as R_ui
 
+private const val MAX_IMAGES_SIZE = 10
+
 class PostCreatorFragment : Fragment(R.layout.fragment_post_creator),
         DialogValueChangeListener {
 
@@ -92,7 +94,7 @@ class PostCreatorFragment : Fragment(R.layout.fragment_post_creator),
         val size = list.size
 
         binding.apply {
-            if (size > 10) {
+            if (size > MAX_IMAGES_SIZE) {
                 postImagesCount.setTextColor(colorFromAttr(R_ui.attr.colorPrimary))
                 postImagesCount.setTypeface(null, Typeface.BOLD)
 
@@ -128,11 +130,13 @@ class PostCreatorFragment : Fragment(R.layout.fragment_post_creator),
         postImagesRecycler.apply {
             layoutManager = LinearLayoutManager(context, HORIZONTAL, false)
             adapter = mergeAdapter
-            addItemDecoration(VerticalMarginItemDecoration(resources.getDimensionPixelSize(R.dimen.posts_images_margin)))
+            addItemDecoration(
+                    VerticalMarginItemDecoration(resources.getDimensionPixelSize(R.dimen.posts_images_margin))
+            )
         }
 
         chooseCategory.setOnClickListener {
-            //TODO make a local router
+            // TODO make a local router
             CategoriesDialog.newInstance(PredefinedData.getCategoriesNames())
                     .show(childFragmentManager, null)
         }

@@ -6,16 +6,15 @@ import android.view.ViewGroup
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade
 import com.bumptech.glide.request.RequestOptions
-import com.egoriku.extensions.colorFromAttr
-import com.egoriku.extensions.gone
-import com.egoriku.extensions.inflater
-import com.egoriku.extensions.visible
+import com.egoriku.extensions.*
 import com.egoriku.ladyhappy.catalog.R
 import com.egoriku.ladyhappy.catalog.databinding.AdapterItemSubcategoryBinding
 import com.egoriku.ladyhappy.catalog.subcategory.domain.model.SubCategoryItem
 import ru.surfstudio.android.easyadapter.controller.BindableItemController
 import ru.surfstudio.android.easyadapter.holder.BindableViewHolder
 import kotlin.properties.Delegates
+
+private const val CROSSFADE_DURATION = 100
 
 internal class SubCategoryController(
         private val onCatalogItemClick: (item: SubCategoryItem) -> Unit,
@@ -41,7 +40,7 @@ internal class SubCategoryController(
                 Glide.with(itemView.context)
                         .load(url)
                         .placeholder(colorDrawable)
-                        .transition(withCrossFade(100))
+                        .transition(withCrossFade(CROSSFADE_DURATION))
                         .apply(options)
                         .into(view)
             }
@@ -75,7 +74,11 @@ internal class SubCategoryController(
             }
 
             subCategoryTitle.text = data.name
-            subCategorySize.text = String.format(root.context.getString(R.string.catalog_images_count), data.publishedCount)
+            subCategorySize.text = root.context.getQuantityStringZero(
+                    pluralResId = R.plurals.catalog_images_count,
+                    zeroResId = R.string.catalog_images_count_zero,
+                    quantity = data.publishedCount
+            )
         }
     }
 }

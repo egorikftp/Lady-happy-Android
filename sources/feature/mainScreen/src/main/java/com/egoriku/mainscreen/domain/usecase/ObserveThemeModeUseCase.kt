@@ -1,10 +1,10 @@
 package com.egoriku.mainscreen.domain.usecase
 
-import android.os.Build
 import com.egoriku.core.IAppPreferences
 import com.egoriku.core.IDispatchers
 import com.egoriku.core.sharedmodel.Theme
 import com.egoriku.core.sharedmodel.themeFromStorageKey
+import com.egoriku.extensions.hasQ
 import com.egoriku.network.ResultOf
 import com.egoriku.network.usecase.FlowUseCase
 import kotlinx.coroutines.flow.Flow
@@ -19,7 +19,7 @@ class ObserveThemeModeUseCase(
             preferences.observableSelectedTheme.map {
                 val theme = themeFromStorageKey(it)
                         ?: when {
-                            Build.VERSION.SDK_INT >= 29 -> Theme.SYSTEM
+                            hasQ() -> Theme.SYSTEM
                             else -> Theme.BATTERY_SAVER
                         }
                 ResultOf.Success(theme)

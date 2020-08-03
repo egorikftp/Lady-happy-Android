@@ -9,18 +9,24 @@ import com.skydoves.balloon.Balloon
 import com.skydoves.balloon.BalloonAnimation
 import com.skydoves.balloon.createBalloon
 
+private const val ALPHA = 0.9f
+private const val ARROW_SIZE = 7
+private const val CORNER_RADIUS = 4f
+private const val HEIGHT = 40
+private const val PADDING = 8
+
 class ViewHolderBalloonFactory : Balloon.Factory() {
 
     override fun create(
             context: Context,
             lifecycle: LifecycleOwner?
     ): Balloon = createBalloon(context) {
-        setPaddingRight(8)
-        setPaddingLeft(8)
-        setArrowSize(7)
-        setHeight(40)
-        setCornerRadius(4f)
-        setAlpha(0.9f)
+        setPaddingRight(PADDING)
+        setPaddingLeft(PADDING)
+        setArrowSize(ARROW_SIZE)
+        setHeight(HEIGHT)
+        setCornerRadius(CORNER_RADIUS)
+        setAlpha(ALPHA)
         textTypeface = Typeface.BOLD
         setTextResource(R.string.catalog_trending_hint)
         setTextColorResource(R.color.RealBlack)

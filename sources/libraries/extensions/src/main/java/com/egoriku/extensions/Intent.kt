@@ -35,8 +35,7 @@ fun <T> createIntent(ctx: Context, clazz: Class<out T>, params: Array<out Pair<S
 
 private fun fillIntentArguments(intent: Intent, params: Array<out Pair<String, Any?>>) {
     params.forEach {
-        val value = it.second
-        when (value) {
+        when (val value = it.second) {
             null -> intent.putExtra(it.first, null as Serializable?)
             is Int -> intent.putExtra(it.first, value)
             is Long -> intent.putExtra(it.first, value)
@@ -54,7 +53,9 @@ private fun fillIntentArguments(intent: Intent, params: Array<out Pair<String, A
                 value.isArrayOf<CharSequence>() -> intent.putExtra(it.first, value)
                 value.isArrayOf<String>() -> intent.putExtra(it.first, value)
                 value.isArrayOf<Parcelable>() -> intent.putExtra(it.first, value)
-                else -> throw RuntimeException("Intent extra ${it.first} has wrong type ${value.javaClass.name}")
+                else -> throw IllegalArgumentException(
+                        "Intent extra ${it.first} has wrong type ${value.javaClass.name}"
+                )
             }
             is IntArray -> intent.putExtra(it.first, value)
             is LongArray -> intent.putExtra(it.first, value)
@@ -63,7 +64,9 @@ private fun fillIntentArguments(intent: Intent, params: Array<out Pair<String, A
             is CharArray -> intent.putExtra(it.first, value)
             is ShortArray -> intent.putExtra(it.first, value)
             is BooleanArray -> intent.putExtra(it.first, value)
-            else -> throw RuntimeException("Intent extra ${it.first} has wrong type ${value.javaClass.name}")
+            else -> throw IllegalArgumentException(
+                    "Intent extra ${it.first} has wrong type ${value.javaClass.name}"
+            )
         }
         return@forEach
     }

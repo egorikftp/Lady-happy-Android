@@ -6,15 +6,15 @@ import com.google.firebase.firestore.FirebaseFirestoreSettings
 
 internal class FirebaseFirestore : IFirebaseFirestore {
 
-    private val firebaseFirestore by lazy { FirebaseFirestore.getInstance() }
+    private val firestore by lazy { FirebaseFirestore.getInstance() }
 
     init {
-        firebaseFirestore.apply {
+        firestore.apply {
             firestoreSettings = FirebaseFirestoreSettings.Builder()
                     .setPersistenceEnabled(true)
                     .build()
         }
     }
 
-    override fun getFirebase(): FirebaseFirestore = firebaseFirestore
+    override fun getFirebase(): FirebaseFirestore = firestore
 }

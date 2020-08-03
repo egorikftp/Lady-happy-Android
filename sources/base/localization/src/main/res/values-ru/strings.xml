@@ -40,8 +40,16 @@
     <string name="in_app_update_retry">Повторить</string>
 
     <!-- Catalog screen -->
-    <string name="catalog_images_count">%1$s работы</string>
-    <string name="catalog_empty_response">Шляпки скоро появятся</string>
+    <string name="catalog_images_count_zero">Работы пока-что не добавлены</string>
+    <plurals name="catalog_images_count">
+        <item quantity="zero">Работы пока-что не добавлены</item>
+        <item quantity="one">%1$d работа</item>
+        <item quantity="two">%1$d работы</item>
+        <item quantity="few">%1$d работы</item>
+        <item quantity="many">%1$d работ</item>
+        <item quantity="other">%1$d работ</item>
+    </plurals>
+    <string name="catalog_error_response">Произошла ошибка во время загрузки</string>
     <string name="catalog_trending_hint">Популярная модель</string>
 
     <!-- Settings -->

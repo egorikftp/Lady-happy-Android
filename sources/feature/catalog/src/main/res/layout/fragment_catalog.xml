@@ -15,10 +15,10 @@
         tools:listitem="@layout/adapter_item_subcategory" />
 
     <TextView
-        android:id="@+id/noItemsView"
+        android:id="@+id/errorView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/catalog_empty_response"
+        android:text="@string/catalog_error_response"
         android:textSize="20sp"
         android:visibility="gone"
         app:fontFamily="@font/raleway"

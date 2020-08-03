@@ -8,5 +8,5 @@ sealed class SubcategoryScreenState {
 
     object Error : SubcategoryScreenState()
 
-    object Loading: SubcategoryScreenState()
+    object Loading : SubcategoryScreenState()
 }

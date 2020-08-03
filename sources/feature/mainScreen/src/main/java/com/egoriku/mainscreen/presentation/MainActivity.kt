@@ -13,6 +13,10 @@ import by.kirich1409.viewbindingdelegate.viewBinding
 import com.egoriku.core.IFeatureProvider
 import com.egoriku.core.INavigationHolder
 import com.egoriku.core.connector.IDynamicFeatureConnector
+import com.egoriku.core.feature.AboutUsFeature
+import com.egoriku.core.feature.CatalogFeature
+import com.egoriku.core.feature.PhotoReportsFeature
+import com.egoriku.core.feature.SettingsFeature
 import com.egoriku.core.sharedmodel.toNightMode
 import com.egoriku.extensions.*
 import com.egoriku.ladyhappy.navigation.navigator.platform.ActivityScopeNavigator
@@ -88,6 +92,8 @@ class MainActivity : AppCompatActivity(R.layout.activity_main), IDynamicFeatureC
         viewModel.theme.observe(this) {
             AppCompatDelegate.setDefaultNightMode(it.toNightMode())
         }
+
+        expandAppBarLayoutInPage()
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -173,6 +179,16 @@ class MainActivity : AppCompatActivity(R.layout.activity_main), IDynamicFeatureC
                 }
             }
         })
+    }
+
+    private fun expandAppBarLayoutInPage() {
+        supportFragmentManager.addFragmentOnAttachListener { _, fragment ->
+            when (fragment) {
+                is CatalogFeature, is AboutUsFeature, is PhotoReportsFeature, is SettingsFeature -> {
+                    binding.appBarLayout.setExpanded(true)
+                }
+            }
+        }
     }
 
     companion object {

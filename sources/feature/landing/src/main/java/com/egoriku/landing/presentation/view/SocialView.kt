@@ -5,7 +5,6 @@ import android.animation.AnimatorListenerAdapter
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
 import android.animation.PropertyValuesHolder.ofFloat
-import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.drawable.ColorDrawable
 import android.util.AttributeSet
@@ -19,6 +18,7 @@ import androidx.appcompat.widget.AppCompatImageButton
 import androidx.core.content.ContextCompat
 import com.egoriku.extensions.firstChild
 import com.egoriku.extensions.listeners.SimpleAnimationListener
+import com.egoriku.extensions.setImageTintList
 import com.egoriku.landing.R
 import com.egoriku.landing.common.PredefinedResources
 import com.egoriku.landing.domain.model.SocialModel
@@ -105,7 +105,7 @@ internal class SocialView : LinearLayout, View.OnClickListener {
 
     private fun applyItemWidth() {
         for (i in 0 until childCount) {
-            (getChildAt(i).layoutParams as LinearLayout.LayoutParams).apply {
+            (getChildAt(i).layoutParams as LayoutParams).apply {
                 width = itemSideSize
                 height = itemSideSize
                 leftMargin = itemPadding
@@ -170,7 +170,6 @@ internal class SocialView : LinearLayout, View.OnClickListener {
             }
 
             startAnimation(animation)
-
         } else {
             val animation = AlphaAnimation(MAX_ALPHA, MIN_ALPHA).apply {
                 duration = ANIMATION_DURATION * 2
@@ -199,7 +198,6 @@ internal class SocialView : LinearLayout, View.OnClickListener {
         onClickListener(v.tag.toString())
     }
 
-    @SuppressLint("RestrictedApi")
     fun setSocialModel(list: List<SocialModel>) {
         list.forEach {
             addView(AppCompatImageButton(context).apply {
@@ -208,7 +206,7 @@ internal class SocialView : LinearLayout, View.OnClickListener {
                 scaleType = ImageView.ScaleType.FIT_CENTER
                 setImageResource(PredefinedResources.getDrawableByType(it.type))
                 setBackgroundResource(R.drawable.bg_social_view)
-                supportImageTintList = ContextCompat.getColorStateList(context, R.color.selector_social_icon)
+                setImageTintList(R.color.selector_social_icon)
             }, LayoutParams.WRAP_CONTENT)
         }
     }

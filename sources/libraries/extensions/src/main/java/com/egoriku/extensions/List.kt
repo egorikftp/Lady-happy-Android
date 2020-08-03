@@ -1,7 +1,8 @@
 package com.egoriku.extensions
 
 fun <T> List<T>.second(): T {
-    if (isEmpty())
-        throw NoSuchElementException("List is empty.")
-    return this[1]
+    when {
+        isEmpty() -> throw NoSuchElementException("List is empty.")
+        else -> return this[1]
+    }
 }

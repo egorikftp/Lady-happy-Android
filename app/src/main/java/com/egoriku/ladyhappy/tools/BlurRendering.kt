@@ -7,10 +7,10 @@ import com.egoriku.ladyhappy.rendering.RenderScriptGaussianBlur
 
 internal class BlurRendering(context: Context) : IBlurRendering {
 
-    private val blurRendering = RenderScriptGaussianBlur(context)
+    private val gaussianBlur = RenderScriptGaussianBlur(context)
 
     override fun applyBlur(
             radius: Float,
             bitmap: Bitmap
-    ): Bitmap = blurRendering.gaussianBlur(radius, bitmap)
+    ): Bitmap = gaussianBlur.gaussianBlur(radius, bitmap)
 }

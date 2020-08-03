@@ -31,4 +31,3 @@ open class Application : SplitCompatApplication() {
         }
     }
 }
-

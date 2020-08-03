@@ -4,6 +4,6 @@ import com.egoriku.usedLibraries.domain.model.License
 
 sealed class ScreenState {
 
-    data class Success(val licenses: List<License>): ScreenState()
-    object Error: ScreenState()
+    data class Success(val licenses: List<License>) : ScreenState()
+    object Error : ScreenState()
 }

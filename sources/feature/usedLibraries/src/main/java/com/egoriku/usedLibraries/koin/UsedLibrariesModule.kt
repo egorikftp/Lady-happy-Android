@@ -9,7 +9,7 @@ import org.koin.dsl.module
 
 val usedLibrariesModule = module {
 
-    scope<UsedLibrariesFragment>{
+    scope<UsedLibrariesFragment> {
         scoped {
             LicenseUseCase(androidContext())
         }
