@@ -7,6 +7,7 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import by.kirich1409.viewbindingdelegate.viewBinding
+import com.egoriku.core.feature.PhotoReportsFeature
 import com.egoriku.extensions.gone
 import com.egoriku.extensions.visible
 import com.egoriku.photoreport.R
@@ -19,7 +20,7 @@ import org.koin.androidx.viewmodel.scope.viewModel
 import ru.surfstudio.android.easyadapter.EasyAdapter
 import ru.surfstudio.android.easyadapter.ItemList
 
-class PhotoReportFragment : Fragment(R.layout.fragment_photo_report) {
+class PhotoReportFragment : Fragment(R.layout.fragment_photo_report), PhotoReportsFeature {
 
     private val binding: FragmentPhotoReportBinding by viewBinding()
 

@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.observe
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import by.kirich1409.viewbindingdelegate.viewBinding
+import com.egoriku.core.feature.CatalogFeature
 import com.egoriku.extensions.gone
 import com.egoriku.extensions.toast
 import com.egoriku.extensions.visible
@@ -22,7 +23,7 @@ import org.koin.androidx.viewmodel.scope.viewModel
 
 private const val OFFSET_PAGE_LIMIT = 3
 
-class CategoriesFragment : Fragment(R.layout.fragment_categories) {
+class CategoriesFragment : Fragment(R.layout.fragment_categories), CatalogFeature {
 
     private val binding: FragmentCategoriesBinding by viewBinding()
 

@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import by.kirich1409.viewbindingdelegate.viewBinding
+import com.egoriku.core.feature.AboutUsFeature
 import com.egoriku.extensions.browseUrl
 import com.egoriku.extensions.gone
 import com.egoriku.extensions.visible
@@ -19,7 +20,7 @@ import org.koin.androidx.viewmodel.scope.viewModel
 import ru.surfstudio.android.easyadapter.EasyAdapter
 import ru.surfstudio.android.easyadapter.ItemList
 
-class LandingPageFragment : Fragment(R.layout.fragment_landing) {
+class LandingPageFragment : Fragment(R.layout.fragment_landing), AboutUsFeature {
 
     private val landingViewModel: LandingViewModel by lifecycleScope.viewModel(this)
 

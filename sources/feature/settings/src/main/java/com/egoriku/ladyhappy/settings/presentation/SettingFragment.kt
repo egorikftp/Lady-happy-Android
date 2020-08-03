@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.egoriku.core.IFeatureProvider
 import com.egoriku.core.connector.IDynamicFeatureConnector
+import com.egoriku.core.feature.SettingsFeature
 import com.egoriku.ladyhappy.settings.R
 import com.egoriku.ladyhappy.settings.databinding.FragmentSettingsBinding
 import com.egoriku.ladyhappy.settings.domain.model.Feature
@@ -28,7 +29,7 @@ import org.koin.androidx.scope.lifecycleScope
 import org.koin.androidx.viewmodel.scope.viewModel
 import kotlin.properties.Delegates
 
-class SettingFragment : Fragment(R.layout.fragment_settings) {
+class SettingFragment : Fragment(R.layout.fragment_settings), SettingsFeature {
 
     private val binding: FragmentSettingsBinding by viewBinding()
 

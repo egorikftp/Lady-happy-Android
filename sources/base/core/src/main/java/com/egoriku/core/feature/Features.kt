@@ -1,0 +1,6 @@
+package com.egoriku.core.feature
+
+interface CatalogFeature
+interface AboutUsFeature
+interface PhotoReportsFeature
+interface SettingsFeature
