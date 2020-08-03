@@ -1,0 +1,22 @@
+<resources>
+    <color name="statusBarColor">#272D33</color>
+
+    <color name="colorPrimary">@color/RoseTaupe</color>
+    <color name="colorPrimaryVariant">@color/RoseTaupeDark</color>
+    <color name="colorOnPrimary">#E5E1DD</color>
+
+    <color name="colorSecondary">@color/Terracota</color>
+    <color name="colorSecondaryVariant">@color/TerracotaDark</color>
+    <color name="colorOnSecondary">#272D33</color>
+
+    <color name="colorBackground">#272D33</color>
+    <color name="colorOnBackground">#E5E1DD</color>
+
+    <color name="colorSurface">#272D33</color>
+    <color name="colorOnSurface">#E5E1DD</color>
+
+    <color name="colorError">@color/Red</color>
+    <color name="colorOnError">#272D33</color>
+
+    <color name="colorPlaceholder">#383C40</color>
+</resources>

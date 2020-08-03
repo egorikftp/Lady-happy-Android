@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="statusBarColor">@color/transparent</color>
+
+    <color name="colorPrimary">@color/RoseTaupe</color>
+    <color name="colorPrimaryVariant">@color/RoseTaupeDark</color>
+    <color name="colorOnPrimary">@color/RealWhite</color>
+
+    <color name="colorSecondary">@color/Terracota</color>
+    <color name="colorSecondaryVariant">@color/Terracota</color>
+    <color name="colorOnSecondary">@color/RealBlack</color>
+
+    <color name="colorBackground">@color/RealWhite</color>
+    <color name="colorOnBackground">@color/RealBlack</color>
+
+    <color name="colorSurface">@color/RealWhite</color>
+    <color name="colorOnSurface">@color/RealBlack</color>
+
+    <color name="colorError">@color/Red</color>
+    <color name="colorOnError">@color/RealWhite</color>
+
+    <color name="colorPlaceholder">@color/Placeholder</color>
+</resources>

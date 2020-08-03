@@ -1,25 +1,7 @@
 <resources>
-    <style name="AppTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-        <item name="android:navigationBarColor">@android:color/transparent</item>
 
-        <item name="colorPrimary">@color/RoseTaupe</item>
-        <item name="colorPrimaryVariant">@color/RoseTaupeDark</item>
-        <item name="colorSecondary">@color/Terracota</item>
-        <item name="colorSecondaryVariant">@color/TerracotaDark</item>
-
-        <item name="android:colorBackground">@color/RealWhite</item>
-        <item name="colorSurface">@color/RealWhite</item>
-        <item name="colorError">@color/Red</item>
-
-        <item name="colorOnPrimary">@color/RealWhite</item>
-        <item name="colorOnSecondary">@color/RealBlack</item>
-        <item name="colorOnBackground">@color/RealBlack</item>
-        <item name="colorOnSurface">@color/RealBlack</item>
-        <item name="colorOnError">@color/RealWhite</item>
-
-        <item name="android:statusBarColor">@color/RealWhite</item>
-        <item name="android:windowLightStatusBar">true</item>
-
-        <item name="colorPlaceholder">@color/Placeholder</item>
+    <style name="AppTheme" parent="Base.AppTheme">
+        <!-- Use a transparent nav bar on API 29, as the system is responsible for applying context background protection -->
+        <item name="android:navigationBarColor">@color/transparent</item>
     </style>
 </resources>
