@@ -39,7 +39,15 @@
     <string name="in_app_update_retry">Retry</string>
 
     <!-- Catalog screen -->
-    <string name="catalog_images_count">%1$s items</string>
+    <string name="catalog_images_count_zero">No items have been added yet</string>
+    <plurals name="catalog_images_count">
+        <item quantity="zero">No items have been added yet</item>
+        <item quantity="one">%1$d item</item>
+        <item quantity="two">%1$d items</item>
+        <item quantity="few">%1$d items</item>
+        <item quantity="many">%1$d items</item>
+        <item quantity="other">%1$d items</item>
+    </plurals>
     <string name="catalog_empty_response">Hats will be available soon</string>
     <string name="catalog_trending_hint">Popular category</string>
 

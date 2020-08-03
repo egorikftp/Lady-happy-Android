@@ -6,10 +6,7 @@ import android.view.ViewGroup
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade
 import com.bumptech.glide.request.RequestOptions
-import com.egoriku.extensions.colorFromAttr
-import com.egoriku.extensions.gone
-import com.egoriku.extensions.inflater
-import com.egoriku.extensions.visible
+import com.egoriku.extensions.*
 import com.egoriku.ladyhappy.catalog.R
 import com.egoriku.ladyhappy.catalog.databinding.AdapterItemSubcategoryBinding
 import com.egoriku.ladyhappy.catalog.subcategory.domain.model.SubCategoryItem
@@ -77,9 +74,10 @@ internal class SubCategoryController(
             }
 
             subCategoryTitle.text = data.name
-            subCategorySize.text = String.format(
-                    root.context.getString(R.string.catalog_images_count),
-                    data.publishedCount
+            subCategorySize.text = root.context.getQuantityStringZero(
+                    pluralResId = R.plurals.catalog_images_count,
+                    zeroResId = R.string.catalog_images_count_zero,
+                    quantity = data.publishedCount
             )
         }
     }

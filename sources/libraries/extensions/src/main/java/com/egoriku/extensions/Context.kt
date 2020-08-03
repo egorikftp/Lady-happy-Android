@@ -8,9 +8,7 @@ import android.net.Uri
 import android.provider.MediaStore
 import android.util.TypedValue
 import android.view.inputmethod.InputMethodManager
-import androidx.annotation.AttrRes
-import androidx.annotation.ColorRes
-import androidx.annotation.DrawableRes
+import androidx.annotation.*
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.content.ContextCompat
 
@@ -49,4 +47,16 @@ fun Context.bitmapFromUri(uri: Uri): Bitmap {
     } else {
         MediaStore.Images.Media.getBitmap(contentResolver, uri)
     }
+}
+
+fun Context.getQuantityStringZero(
+        @PluralsRes
+        pluralResId: Int,
+        @StringRes
+        zeroResId: Int = -1,
+        quantity: Int
+): String = if (zeroResId != -1 && quantity == 0) {
+    resources.getString(zeroResId)
+} else {
+    resources.getQuantityString(pluralResId, quantity, quantity)
 }
