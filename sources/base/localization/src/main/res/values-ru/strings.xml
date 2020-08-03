@@ -49,7 +49,7 @@
         <item quantity="many">%1$d работ</item>
         <item quantity="other">%1$d работ</item>
     </plurals>
-    <string name="catalog_empty_response">Шляпки скоро появятся</string>
+    <string name="catalog_error_response">Произошла ошибка во время загрузки</string>
     <string name="catalog_trending_hint">Популярная модель</string>
 
     <!-- Settings -->

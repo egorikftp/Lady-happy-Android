@@ -70,7 +70,7 @@ class SubCategoryFragment : Fragment(R.layout.fragment_catalog) {
     private fun FragmentCatalogBinding.render(screenState: SubcategoryScreenState) {
         when (screenState) {
             is SubcategoryScreenState.Success -> {
-                noItemsView.gone()
+                errorView.gone()
                 progressBar.gone()
                 catalogAdapter.setItems(
                         ItemList.create()
@@ -78,11 +78,11 @@ class SubCategoryFragment : Fragment(R.layout.fragment_catalog) {
                 )
             }
             is SubcategoryScreenState.Error -> {
-                noItemsView.visible()
+                errorView.visible()
                 progressBar.gone()
             }
             is SubcategoryScreenState.Loading -> {
-                noItemsView.gone()
+                errorView.gone()
                 progressBar.visible()
             }
         }
