@@ -22,6 +22,5 @@ jobs:
       run: bash ./gradlew clean assembleDebug
     - name: Run lint
       run: bash ./gradlew check
-   
     - name: Detekt
       uses: bash ./gradlew detekt
