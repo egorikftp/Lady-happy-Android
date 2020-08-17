@@ -42,177 +42,177 @@ object PredefinedData {
     )
 
     val allSubCategories = listOf(
-            SubCategory(
+            SubCategoryModel(
                     name = "Шляпка-таблетка",
                     categoryId = 1,
                     subCategoryId = 1
             ),
-            SubCategory(
+            SubCategoryModel(
                     name = "Накладка-менингитка",
                     categoryId = 1,
                     subCategoryId = 2
             ),
-            SubCategory(
+            SubCategoryModel(
                     name = "Федора",
                     categoryId = 2,
                     subCategoryId = 1
             ),
-            SubCategory(
+            SubCategoryModel(
                     name = "Трилби",
                     categoryId = 2,
                     subCategoryId = 2
             ),
-            SubCategory(
+            SubCategoryModel(
                     name = "Клош фактурный",
                     categoryId = 2,
                     subCategoryId = 3
             ),
-            SubCategory(
+            SubCategoryModel(
                     name = "Клош гладкий (шапочка)",
                     categoryId = 2,
                     subCategoryId = 4
             ),
-            SubCategory(
+            SubCategoryModel(
                     name = "Канотье",
                     categoryId = 2,
                     subCategoryId = 5
             ),
-            SubCategory(
+            SubCategoryModel(
                     name = "Маркиза",
                     categoryId = 2,
                     subCategoryId = 6
             ),
-            SubCategory(
+            SubCategoryModel(
                     name = "Амазонка",
                     categoryId = 2,
                     subCategoryId = 7
             ),
-            SubCategory(
+            SubCategoryModel(
                     name = "Кепи",
                     categoryId = 2,
                     subCategoryId = 8
             ),
-            SubCategory(
+            SubCategoryModel(
                     name = "Шляпка широкополая с мягкими полями",
                     categoryId = 2,
                     subCategoryId = 9
             ),
-            SubCategory(
+            SubCategoryModel(
                     name = "Чалма",
                     categoryId = 2,
                     subCategoryId = 10
             ),
-            SubCategory(
+            SubCategoryModel(
                     name = "Шляпка в стиле Ар-нуво",
                     categoryId = 2,
                     subCategoryId = 11
             ),
-            SubCategory(
+            SubCategoryModel(
                     name = "Берет",
                     categoryId = 2,
                     subCategoryId = 12
             ),
-            SubCategory(
+            SubCategoryModel(
                     name = "Шляпка-Сатурн",
                     categoryId = 2,
                     subCategoryId = 13
             ),
-            SubCategory(
+            SubCategoryModel(
                     name = "Жокейка, бейсболка",
                     categoryId = 2,
                     subCategoryId = 14
             ),
-            SubCategory(
+            SubCategoryModel(
                     name = "Шляпка тирольская",
                     categoryId = 2,
                     subCategoryId = 15
             ),
-            SubCategory(
+            SubCategoryModel(
                     name = "Котелок",
                     categoryId = 2,
                     subCategoryId = 16
             ),
-            SubCategory(
+            SubCategoryModel(
                     name = "Колокол",
                     categoryId = 2,
                     subCategoryId = 17
             ),
-            SubCategory(
+            SubCategoryModel(
                     name = "Таблетка",
                     categoryId = 2,
                     subCategoryId = 18
             ),
-            SubCategory(
+            SubCategoryModel(
                     name = "Шляпка",
                     categoryId = 3,
                     subCategoryId = 1
             ),
-            SubCategory(
+            SubCategoryModel(
                     name = "Мини-шляпка",
                     categoryId = 3,
                     subCategoryId = 2
             ),
-            SubCategory(
+            SubCategoryModel(
                     name = "Вуалетка",
                     categoryId = 3,
                     subCategoryId = 3
             ),
-            SubCategory(
+            SubCategoryModel(
                     name = "Броши",
                     categoryId = 3,
                     subCategoryId = 4
             ),
-            SubCategory(
+            SubCategoryModel(
                     name = "Аксессуар",
                     categoryId = 3,
                     subCategoryId = 5
             ),
-            SubCategory(
+            SubCategoryModel(
                     name = "Вуалетка",
                     categoryId = 4,
                     subCategoryId = 1
             ),
-            SubCategory(
+            SubCategoryModel(
                     name = "Броши",
                     categoryId = 4,
                     subCategoryId = 2
             ),
-            SubCategory(
+            SubCategoryModel(
                     name = "Вуалетки",
                     categoryId = 5,
                     subCategoryId = 1
             ),
-            SubCategory(
+            SubCategoryModel(
                     name = "Шляпки",
                     categoryId = 5,
                     subCategoryId = 2
             ),
-            SubCategory(
+            SubCategoryModel(
                     name = "Мини-шляпки",
                     categoryId = 6,
                     subCategoryId = 1
             ),
-            SubCategory(
+            SubCategoryModel(
                     name = "Броши",
                     categoryId = 6,
                     subCategoryId = 2
             ),
-            SubCategory(
+            SubCategoryModel(
                     name = "Шапочки",
                     categoryId = 6,
                     subCategoryId = 3
             ),
-            SubCategory(
+            SubCategoryModel(
                     name = "Реставрации",
                     categoryId = 7,
                     subCategoryId = 1
             ),
-            SubCategory(
+            SubCategoryModel(
                     name = "Коробки",
                     categoryId = 8,
                     subCategoryId = 1
             ),
-            SubCategory(
+            SubCategoryModel(
                     name = "Берет",
                     categoryId = 9,
                     subCategoryId = 1

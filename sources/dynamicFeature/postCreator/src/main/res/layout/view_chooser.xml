@@ -35,7 +35,6 @@
         android:id="@+id/rightIcon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="?android:selectableItemBackgroundBorderless"
         android:importantForAccessibility="no"
         android:padding="@dimen/material_padding_8"
         app:layout_constraintBottom_toBottomOf="@+id/primary_text_view"

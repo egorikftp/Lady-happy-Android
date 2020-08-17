@@ -1,4 +1,4 @@
-package com.egoriku.ladyhappy.postcreator.presentation.adapter
+package com.egoriku.ladyhappy.postcreator.presentation.section.adapter
 
 import android.view.ViewGroup
 import androidx.core.net.toUri

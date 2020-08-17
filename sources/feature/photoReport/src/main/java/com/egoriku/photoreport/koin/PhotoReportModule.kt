@@ -10,7 +10,7 @@ import org.koin.dsl.module
 val photoReportModule = module {
 
     scope<PhotoReportFragment> {
-        scoped { PhotoReportRepository(firebaseFirestore = get()) }
+        scoped { PhotoReportRepository(firebase = get()) }
         scoped { PhotoReportUseCase(photoReportRepository = get()) }
 
         viewModel {

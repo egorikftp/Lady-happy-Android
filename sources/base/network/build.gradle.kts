@@ -11,5 +11,6 @@ withProjects(Libraries.extensions)
 
 withLibraries(
         Libs.coroutinesAndroid,
-        Libs.firebaseFirestore
+        Libs.firebaseFirestore,
+        Libs.firebaseStorage
 )

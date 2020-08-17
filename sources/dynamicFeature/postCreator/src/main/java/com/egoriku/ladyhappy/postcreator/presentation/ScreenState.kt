@@ -1,9 +1,9 @@
 package com.egoriku.ladyhappy.postcreator.presentation
 
-import com.egoriku.ladyhappy.postcreator.domain.predefined.CategoryModel
-import com.egoriku.ladyhappy.postcreator.domain.predefined.SubCategory
+import com.egoriku.ladyhappy.postcreator.presentation.model.Chooser
+import com.egoriku.ladyhappy.postcreator.presentation.model.ImageSection
 
 data class ScreenState(
-        val category: CategoryModel? = null,
-        val subCategory: SubCategory? = null
+        var imagesSection: ImageSection = ImageSection(),
+        val chooser: List<Chooser> = listOf()
 )

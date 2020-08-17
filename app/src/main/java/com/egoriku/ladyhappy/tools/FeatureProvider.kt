@@ -4,7 +4,7 @@ import android.content.Context
 import android.content.Intent
 import androidx.fragment.app.Fragment
 import com.egoriku.core.IFeatureProvider
-import com.egoriku.ladyhappy.catalog.categories.presentation.fragment.CategoriesFragment
+import com.egoriku.extensions.getClassByName
 import com.egoriku.ladyhappy.login.presentation.LoginFragment
 import com.egoriku.ladyhappy.settings.presentation.SettingFragment
 import com.egoriku.landing.presentation.LandingPageFragment
@@ -17,7 +17,7 @@ internal class FeatureProvider : IFeatureProvider {
     override fun getMainActivityIntent(context: Context) = Intent(context, MainActivity::class.java)
 
     override val catalogFragment: Fragment
-        get() = CategoriesFragment()
+        get() = getClassByName("com.egoriku.ladyhappy.postcreator.presentation.fragment.PostCreatorFragment")
 
     override val landingFragment: Fragment
         get() = LandingPageFragment()
