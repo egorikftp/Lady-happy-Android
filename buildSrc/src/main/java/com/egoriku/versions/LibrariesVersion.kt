@@ -30,7 +30,7 @@ object LibrariesVersion {
     const val lifecycle = "2.2.0"
     const val material = "1.2.0"
     const val pageIndicator = "1.0.10"
-    const val playCore = "1.8.0"
+    const val playCore = "1.8.1"
     const val recyclerView = "1.2.0-alpha05"
     const val vectorDrawable = "1.1.0"
     const val viewBindingDelegates = "1.0.0"

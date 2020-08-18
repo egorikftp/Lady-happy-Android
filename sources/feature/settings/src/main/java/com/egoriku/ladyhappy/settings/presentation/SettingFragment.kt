@@ -24,6 +24,7 @@ import com.egoriku.ladyhappy.settings.presentation.screen.LoginScreen
 import com.egoriku.ladyhappy.settings.presentation.screen.UsedLibrariesScreen
 import com.egoriku.ladyhappy.settings.presentation.view.State.ANON
 import com.egoriku.ladyhappy.settings.presentation.view.State.LOGGED_IN
+import com.egoriku.ladyhappy.settings.presentation.viewmodel.ReviewViewModel
 import org.koin.android.ext.android.inject
 import org.koin.androidx.scope.lifecycleScope
 import org.koin.androidx.viewmodel.scope.viewModel
@@ -34,7 +35,9 @@ class SettingFragment : Fragment(R.layout.fragment_settings), SettingsFeature {
     private val binding: FragmentSettingsBinding by viewBinding()
 
     private val featureProvider: IFeatureProvider by inject()
-    private val viewModel: SettingsViewModel by lifecycleScope.viewModel(this)
+
+    private val reviewViewModel: ReviewViewModel by lifecycleScope.viewModel(this)
+    private val settingsViewModel: SettingsViewModel by lifecycleScope.viewModel(this)
 
     private var concatAdapter: ConcatAdapter by Delegates.notNull()
 
@@ -54,8 +57,8 @@ class SettingFragment : Fragment(R.layout.fragment_settings), SettingsFeature {
 
         loginAdapter = LoginAdapter {
             when (it) {
-                ANON -> viewModel.navigateTo(LoginScreen(featureProvider), R.id.contentFullScreen)
-                LOGGED_IN -> viewModel.logOut()
+                ANON -> settingsViewModel.navigateTo(LoginScreen(featureProvider), R.id.contentFullScreen)
+                LOGGED_IN -> settingsViewModel.logOut()
             }
         }
 
@@ -71,7 +74,12 @@ class SettingFragment : Fragment(R.layout.fragment_settings), SettingsFeature {
             when (it) {
                 is SettingItem.Theme -> ThemeSettingDialogFragment().show(childFragmentManager, null)
                 is SettingItem.UsedLibraries -> {
-                    viewModel.navigateTo(UsedLibrariesScreen(featureProvider), R.id.contentFullScreen)
+                    settingsViewModel.navigateTo(UsedLibrariesScreen(featureProvider), R.id.contentFullScreen)
+                }
+                is SettingItem.Review -> {
+                    reviewViewModel.startReview { reviewInfo, reviewManager ->
+                        reviewManager.launchReviewFlow(requireActivity(), reviewInfo)
+                    }
                 }
             }
         }
@@ -80,7 +88,7 @@ class SettingFragment : Fragment(R.layout.fragment_settings), SettingsFeature {
 
         binding.initViews()
 
-        viewModel.screenData.observe(viewLifecycleOwner) {
+        settingsViewModel.screenData.observe(owner = viewLifecycleOwner) {
             it.forEach { (_, section) ->
                 when (section) {
                     is Section.Login -> loginAdapter.submitList(listOf(section))
@@ -89,6 +97,8 @@ class SettingFragment : Fragment(R.layout.fragment_settings), SettingsFeature {
                 }
             }
         }
+
+        reviewViewModel.preWarmReview()
     }
 
     override fun onDetach() {

@@ -63,6 +63,7 @@
     <string name="settings_section_about">About app</string>
     <string name="settings_app_version">Version: %1$s</string>
     <string name="settings_used_libraries">Open-source licences</string>
+    <string name="settings_review">Rate us</string>
 
     <string name="settings_theme_title">Choose theme</string>
     <string name="settings_theme_system">System default</string>

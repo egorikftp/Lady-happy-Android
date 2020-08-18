@@ -43,7 +43,7 @@ object Libs {
     const val material = "com.google.android.material:material:${LibrariesVersion.material}"
 
     const val pageIndicator = "com.ryanjeffreybrooks:indefinitepagerindicator:${LibrariesVersion.pageIndicator}"
-    const val playCore = "com.google.android.play:core:${LibrariesVersion.playCore}"
+    const val playCore = "com.google.android.play:core-ktx:${LibrariesVersion.playCore}"
 
     const val recyclerView = "androidx.recyclerview:recyclerview:${LibrariesVersion.recyclerView}"
 

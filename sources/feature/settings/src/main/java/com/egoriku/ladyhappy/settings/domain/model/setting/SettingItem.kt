@@ -9,4 +9,5 @@ sealed class SettingItem(@StringRes open val stringResource: Int) {
 
     data class Theme(override val stringResource: Int) : SettingItem(stringResource)
     data class UsedLibraries(override val stringResource: Int) : SettingItem(stringResource)
+    data class Review(override val stringResource: Int) : SettingItem(stringResource)
 }
