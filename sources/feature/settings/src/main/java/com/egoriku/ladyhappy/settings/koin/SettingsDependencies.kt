@@ -11,6 +11,9 @@ import com.egoriku.ladyhappy.settings.presentation.SettingFragment
 import com.egoriku.ladyhappy.settings.presentation.SettingsViewModel
 import com.egoriku.ladyhappy.settings.presentation.dialog.theme.ThemeSettingDialogFragment
 import com.egoriku.ladyhappy.settings.presentation.dialog.theme.ThemeViewModel
+import com.egoriku.ladyhappy.settings.presentation.viewmodel.ReviewViewModel
+import com.google.android.play.core.review.ReviewManagerFactory
+import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
@@ -30,12 +33,18 @@ val settingsModule = module {
         }
         scoped { AuthenticationUseCase(authentication = get()) }
 
+        scoped { ReviewManagerFactory.create(androidContext()) }
+
         viewModel {
             SettingsViewModel(
                     router = get(),
                     sectionsUseCase = get(),
                     authenticationUseCase = get()
             )
+        }
+
+        viewModel {
+            ReviewViewModel(reviewManager = get())
         }
     }
 

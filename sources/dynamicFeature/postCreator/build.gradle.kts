@@ -9,6 +9,7 @@ import com.egoriku.versions.ProjectVersion
 plugins {
     id("com.android.dynamic-feature")
     id("kotlin-android")
+    id("kotlin-android-extensions")
 }
 
 android {
@@ -39,6 +40,7 @@ withProjects(
         Libraries.core,
         Libraries.extensions,
         Libraries.localization,
+        Libraries.network,
         Libraries.ui
 )
 
@@ -47,8 +49,10 @@ withLibraries(
         Libs.constraintLayout,
         Libs.core,
         Libs.coroutinesAndroid,
-        Libs.imageCompressor,
+        Libs.firebaseStorage,
+        Libs.fragment,
         Libs.glide,
+        Libs.imageCompressor,
         Libs.koinAndroid,
         Libs.koinViewModel,
         Libs.kotlin,

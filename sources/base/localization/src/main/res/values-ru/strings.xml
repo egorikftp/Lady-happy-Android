@@ -64,6 +64,7 @@
     <string name="settings_section_about">О приложении</string>
     <string name="settings_app_version">Версия: %1$s</string>
     <string name="settings_used_libraries">Лицензии ПО с открытым исходным кодом</string>
+    <string name="settings_review">Оценить приложение</string>
 
     <string name="settings_theme_title">Выберите тему</string>
     <string name="settings_theme_system">Системное значение по умолчанию</string>

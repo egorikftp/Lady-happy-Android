@@ -10,7 +10,7 @@ import org.koin.dsl.module
 val landingModule = module {
 
     scope<LandingPageFragment> {
-        scoped { LandingRepository(firebaseFirestore = get()) }
+        scoped { LandingRepository(firebase = get()) }
         scoped { LandingUseCase(landRepository = get()) }
 
         viewModel {

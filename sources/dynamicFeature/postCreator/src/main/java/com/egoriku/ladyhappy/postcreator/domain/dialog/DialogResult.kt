@@ -1,12 +1,16 @@
 package com.egoriku.ladyhappy.postcreator.domain.dialog
 
-sealed class DialogResult {
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
 
-    data class Category(
-            val category: String
-    ) : DialogResult()
+sealed class DialogResult : Parcelable {
 
-    data class SubCategory(
-            val subCategory: String
-    ) : DialogResult()
+    @Parcelize
+    data class Category(val category: String) : DialogResult()
+
+    @Parcelize
+    data class SubCategory(val subCategory: String) : DialogResult()
+
+    @Parcelize
+    data class Color(val color: String) : DialogResult()
 }

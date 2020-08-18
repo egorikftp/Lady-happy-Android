@@ -23,6 +23,7 @@ object Libs {
     const val firebaseFirestore = "com.google.firebase:firebase-firestore-ktx:${LibrariesVersion.firebaseFirestore}"
     const val firebasePerformance = "com.google.firebase:firebase-perf:${LibrariesVersion.firebasePerformance}"
     const val firebaseRemoteConfig = "com.google.firebase:firebase-config-ktx:${LibrariesVersion.firebaseRemoteConfig}"
+    const val firebaseStorage = "com.google.firebase:firebase-storage-ktx:${LibrariesVersion.firebaseStorage}"
     const val fragment = "androidx.fragment:fragment-ktx:${LibrariesVersion.fragment}"
 
     const val glide = "com.github.bumptech.glide:glide:${LibrariesVersion.glide}"
@@ -42,7 +43,7 @@ object Libs {
     const val material = "com.google.android.material:material:${LibrariesVersion.material}"
 
     const val pageIndicator = "com.ryanjeffreybrooks:indefinitepagerindicator:${LibrariesVersion.pageIndicator}"
-    const val playCore = "com.google.android.play:core:${LibrariesVersion.playCore}"
+    const val playCore = "com.google.android.play:core-ktx:${LibrariesVersion.playCore}"
 
     const val recyclerView = "androidx.recyclerview:recyclerview:${LibrariesVersion.recyclerView}"
 

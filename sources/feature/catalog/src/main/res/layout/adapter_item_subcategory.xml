@@ -87,7 +87,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="@dimen/material_padding_16"
         android:importantForAccessibility="no"
-        android:tint="@color/Gray"
+        app:tint="@color/Gray"
         app:layout_constraintBottom_toBottomOf="@+id/sub_category_title"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/sub_category_title"

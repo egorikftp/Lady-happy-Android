@@ -38,8 +38,9 @@ class SectionsUseCase(
                     SettingItem.Theme(stringResource = R.string.settings_theme_title),
 
                     SettingItem.Header(stringResource = R.string.settings_section_about),
-                    SettingItem.NonClickable(resource = stringResource.currentVersion),
-                    SettingItem.UsedLibraries(stringResource = R.string.settings_used_libraries)
+                    SettingItem.UsedLibraries(stringResource = R.string.settings_used_libraries),
+                    SettingItem.Review(stringResource = R.string.settings_review),
+                    SettingItem.NonClickable(resource = stringResource.currentVersion)
             )
     )
 

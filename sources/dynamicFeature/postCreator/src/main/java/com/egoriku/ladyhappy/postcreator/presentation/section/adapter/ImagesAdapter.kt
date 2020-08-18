@@ -1,4 +1,4 @@
-package com.egoriku.ladyhappy.postcreator.presentation.adapter
+package com.egoriku.ladyhappy.postcreator.presentation.section.adapter
 
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -15,7 +15,7 @@ import com.egoriku.ladyhappy.postcreator.domain.model.ImageItem
 import com.egoriku.ui.R as R_ui
 
 class ImagesAdapter(
-        private val onAddImageClick: (item: ImageItem) -> Unit
+        private val onRemoveImageClick: (item: ImageItem) -> Unit
 ) : ListAdapter<ImageItem, ImagesAdapter.VH>(DiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
@@ -27,7 +27,7 @@ class ImagesAdapter(
 
         init {
             binding.removeImage.setOnClickListener {
-                onAddImageClick(getItem(bindingAdapterPosition))
+                onRemoveImageClick(getItem(bindingAdapterPosition))
             }
         }
 

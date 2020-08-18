@@ -122,6 +122,7 @@ withLibraries(
         Libs.firebaseFirestore,
         Libs.firebasePerformance,
         Libs.firebaseRemoteConfig,
+        Libs.firebaseStorage,
         Libs.koinAndroid,
         Libs.kotlin,
         Libs.material,
