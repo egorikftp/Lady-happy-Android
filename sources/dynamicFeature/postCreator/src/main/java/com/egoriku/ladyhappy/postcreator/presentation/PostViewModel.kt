@@ -102,7 +102,7 @@ class PostViewModel(
 
     fun publishPost() {
         viewModelScope.launch {
-            //val uploadedImages = uploadImagesUseCase(_images.valueOrThrow())
+            // val uploadedImages = uploadImagesUseCase(_images.valueOrThrow())
         }
     }
 

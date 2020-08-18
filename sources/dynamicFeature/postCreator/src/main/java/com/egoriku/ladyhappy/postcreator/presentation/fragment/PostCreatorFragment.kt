@@ -103,11 +103,14 @@ class PostCreatorFragment : Fragment(R.layout.fragment_post_creator) {
     }
 
     private fun processChooserItemClick(chooser: Chooser) = when (chooser.type) {
-        Type.CATEGORY -> CategoriesDialog.newInstance(PredefinedData.getCategoriesNames()).show(childFragmentManager, null)
-        Type.SUBCATEGORY -> SubCategoriesDialog.newInstance(PredefinedData.getSubCategoriesNames(chooser.optionalData))
-                .show(childFragmentManager, null)
+        Type.CATEGORY -> {
+            CategoriesDialog.newInstance(PredefinedData.getCategoriesNames()).show(childFragmentManager, null)
+        }
+        Type.SUBCATEGORY -> {
+            SubCategoriesDialog.newInstance(PredefinedData.getSubCategoriesNames(chooser.optionalData))
+                    .show(childFragmentManager, null)
+        }
         Type.COLOR -> {
-            // TODO: 8/7/20
         }
     }
 

@@ -45,7 +45,9 @@ class ImagesSectionAdapter(
             binding.imagesRecycler.apply {
                 layoutManager = LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
                 adapter = concatAdapter
-                addItemDecoration(VerticalMarginItemDecoration(resources.getDimensionPixelSize(R.dimen.posts_images_margin)))
+                addItemDecoration(
+                        VerticalMarginItemDecoration(resources.getDimensionPixelSize(R.dimen.posts_images_margin))
+                )
             }
         }
 
@@ -73,7 +75,10 @@ class ImagesSectionAdapter(
                 icon.imageTintList = context.colorStateListCompat(R_ui.color.RealBlack)
             }
 
-            postImagesCount.text = String.format(context.getString(R_localization.string.post_creator_images_count), list.size)
+            postImagesCount.text = String.format(
+                    context.getString(R_localization.string.post_creator_images_count),
+                    list.size
+            )
         }
     }
 
