@@ -63,7 +63,10 @@ class PostCreatorFragment : Fragment(R.layout.fragment_post_creator) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        childFragmentManager.setFragmentResultListener(CHOOSER_KEY, viewLifecycleOwner) { s, result ->
+        childFragmentManager.setFragmentResultListener(
+                requestKey = CHOOSER_KEY,
+                lifecycleOwner = viewLifecycleOwner
+        ) { _, result ->
             when (val dialogResult = result.getParcelable<DialogResult>(BUNDLE_KEY)) {
                 is DialogResult.Category -> viewModel.setCategory(dialogResult.category)
                 is DialogResult.SubCategory -> viewModel.updateSubCategory(dialogResult.subCategory)
@@ -93,7 +96,7 @@ class PostCreatorFragment : Fragment(R.layout.fragment_post_creator) {
         concatAdapter.addAdapter(imagesSectionAdapter)
         concatAdapter.addAdapter(chooserSectionAdapter)
 
-        viewModel.screenState.observe(viewLifecycleOwner) {
+        viewModel.screenState.observe(owner = viewLifecycleOwner) {
             chooserSectionAdapter.submitList(it.chooser)
             imagesSectionAdapter.submitList(listOf(it.imagesSection))
         }
