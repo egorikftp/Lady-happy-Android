@@ -11,6 +11,7 @@ import by.kirich1409.viewbindingdelegate.viewBinding
 import com.egoriku.core.IFeatureProvider
 import com.egoriku.core.connector.IDynamicFeatureConnector
 import com.egoriku.core.feature.SettingsFeature
+import com.egoriku.extensions.toast
 import com.egoriku.ladyhappy.settings.R
 import com.egoriku.ladyhappy.settings.databinding.FragmentSettingsBinding
 import com.egoriku.ladyhappy.settings.domain.model.Feature
@@ -79,6 +80,15 @@ class SettingFragment : Fragment(R.layout.fragment_settings), SettingsFeature {
                 is SettingItem.Review -> {
                     reviewViewModel.startReview { reviewInfo, reviewManager ->
                         reviewManager.launchReviewFlow(requireActivity(), reviewInfo)
+                                .addOnSuccessListener {
+                                    toast("Thanks for the feedback!")
+                                }
+                                .addOnFailureListener { it ->
+                                    toast("Failed: ${it.message}")
+                                }
+                                .addOnCompleteListener {
+                                    toast("Completed")
+                                }
                     }
                 }
             }

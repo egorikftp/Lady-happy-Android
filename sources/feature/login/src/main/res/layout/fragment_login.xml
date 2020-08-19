@@ -133,6 +133,8 @@
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintHorizontal_chainStyle="packed"
                 app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/signInButton"
+                app:layout_constraintVertical_bias="1"
                 tools:ignore="SmallSp" />
 
             <Button
