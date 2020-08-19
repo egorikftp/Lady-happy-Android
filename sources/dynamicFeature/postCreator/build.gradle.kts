@@ -1,37 +1,17 @@
+
 import Modules.Applications
 import Modules.Libraries
-import com.egoriku.application.provideVersionCode
-import com.egoriku.application.provideVersionName
 import com.egoriku.ext.withLibraries
 import com.egoriku.ext.withProjects
-import com.egoriku.versions.ProjectVersion
 
 plugins {
+    id("HappyXPlugin")
     id("com.android.dynamic-feature")
-    id("kotlin-android")
-    id("kotlin-android-extensions")
 }
 
-android {
-    defaultConfig {
-        minSdkVersion(ProjectVersion.minSdkVersion)
-        compileSdkVersion(ProjectVersion.compileSdkVersion)
-        versionCode = provideVersionCode()
-        versionName = provideVersionName()
-    }
-
-    kotlinOptions {
-        jvmTarget = "1.8"
-    }
-
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
-    }
-
-    viewBinding {
-        isEnabled = true
-    }
+happyPlugin {
+    kotlinParcelize = true
+    viewBindingEnabled = true
 }
 
 withProjects(

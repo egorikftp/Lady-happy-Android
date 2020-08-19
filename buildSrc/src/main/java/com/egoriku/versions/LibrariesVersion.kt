@@ -38,7 +38,7 @@ object LibrariesVersion {
 }
 
 object ProjectVersion {
-    const val compileSdkVersion = 29
+    const val compileSdkVersion = 30
     const val minSdkVersion = 21
 }
 
