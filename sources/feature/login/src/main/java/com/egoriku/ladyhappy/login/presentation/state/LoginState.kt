@@ -1,4 +1,4 @@
-package com.egoriku.ladyhappy.login.presentation
+package com.egoriku.ladyhappy.login.presentation.state
 
 sealed class LoginState {
 

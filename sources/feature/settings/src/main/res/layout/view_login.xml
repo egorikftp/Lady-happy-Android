@@ -7,14 +7,17 @@
     android:animateLayoutChanges="true"
     tools:parentTag="androidx.constraintlayout.widget.ConstraintLayout">
 
-    <ImageView
+    <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/profileImage"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_marginTop="8dp"
+        android:background="@drawable/bg_round_shape"
+        android:elevation="3dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:shapeAppearanceOverlay="@style/circleImageView"
         tools:src="@tools:sample/avatars" />
 
     <Button
@@ -64,6 +67,7 @@
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
         android:fontFamily="sans-serif"
+        android:textAppearance="?textAppearanceBody1"
         android:textColor="?attr/colorOnSurface"
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"

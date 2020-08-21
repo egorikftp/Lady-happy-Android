@@ -4,14 +4,13 @@ import android.content.Context
 import android.graphics.drawable.Drawable
 import android.util.AttributeSet
 import androidx.constraintlayout.widget.ConstraintLayout
-import com.egoriku.extensions.getString
-import com.egoriku.extensions.gone
-import com.egoriku.extensions.inflater
-import com.egoriku.extensions.visible
+import com.bumptech.glide.Glide
+import com.egoriku.extensions.*
 import com.egoriku.ladyhappy.settings.R
 import com.egoriku.ladyhappy.settings.databinding.ViewLoginBinding
 import com.egoriku.ladyhappy.settings.presentation.view.State.ANON
 import com.egoriku.ladyhappy.settings.presentation.view.State.LOGGED_IN
+
 
 class LoginView : ConstraintLayout {
 
@@ -54,6 +53,16 @@ class LoginView : ConstraintLayout {
 
     fun setProfileImage(drawable: Drawable) {
         binding.profileImage.setImageDrawable(drawable)
+    }
+
+    fun setProfileImageUrl(url: String) {
+        if (url.isEmpty()) {
+            binding.profileImage.setImageDrawable(drawableCompat(R.drawable.ic_profile_stub))
+        } else {
+            Glide.with(binding.profileImage.context)
+                    .load(url)
+                    .into(binding.profileImage)
+        }
     }
 
     fun onButtonClick(block: () -> Unit) {

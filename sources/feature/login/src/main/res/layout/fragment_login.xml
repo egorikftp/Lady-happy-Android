@@ -56,6 +56,7 @@
                     android:id="@+id/loginEmail"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:autofillHints="emailAddress"
                     android:hint="@string/login_hint_email"
                     android:inputType="textWebEmailAddress|textEmailAddress"
                     android:nextFocusDown="@id/textInputPassword" />
@@ -86,6 +87,7 @@
                     android:id="@+id/loginPassword"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:autofillHints="password"
                     android:hint="@string/login_hint_password"
                     android:inputType="textPassword"
                     android:nextFocusDown="@id/signInButton" />
@@ -117,6 +119,17 @@
                 app:layout_constraintStart_toStartOf="@+id/textInputPassword"
                 app:layout_constraintTop_toBottomOf="@+id/forgotPassword"
                 app:layout_constraintWidth_min="150dp" />
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/signInButtonWithGoogle"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_marginTop="24dp"
+                android:background="?android:selectableItemBackgroundBorderless"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/signInButton"
+                app:srcCompat="@drawable/ic_google" />
 
             <Button
                 android:id="@+id/termsOfServiceButton"
