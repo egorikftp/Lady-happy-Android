@@ -42,6 +42,10 @@ internal class AppPreferences(context: Context) : IAppPreferences {
         }
     }
 
+    override var launchCount: Int by IntPreference(prefs, "launch_count", 0)
+
+    override var lastAskForReview: Long by LongPreference(prefs, "last_ask_for_review", 0L)
+
     override var selectedTheme by StringPreference(prefs, PREF_DARK_MODE_ENABLED, Theme.SYSTEM.storageKey)
 
     override var observableSelectedTheme: Flow<String>
@@ -78,5 +82,37 @@ class BooleanPreference(
 
     override fun setValue(thisRef: Any, property: KProperty<*>, value: Boolean) {
         preferences.value.edit { putBoolean(name, value) }
+    }
+}
+
+class IntPreference(
+        private val preferences: Lazy<SharedPreferences>,
+        private val name: String,
+        private val defaultValue: Int
+) : ReadWriteProperty<Any, Int> {
+
+    @WorkerThread
+    override fun getValue(thisRef: Any, property: KProperty<*>): Int {
+        return preferences.value.getInt(name, defaultValue)
+    }
+
+    override fun setValue(thisRef: Any, property: KProperty<*>, value: Int) {
+        preferences.value.edit { putInt(name, value) }
+    }
+}
+
+class LongPreference(
+        private val preferences: Lazy<SharedPreferences>,
+        private val name: String,
+        private val defaultValue: Long
+) : ReadWriteProperty<Any, Long> {
+
+    @WorkerThread
+    override fun getValue(thisRef: Any, property: KProperty<*>): Long {
+        return preferences.value.getLong(name, defaultValue)
+    }
+
+    override fun setValue(thisRef: Any, property: KProperty<*>, value: Long) {
+        preferences.value.edit { putLong(name, value) }
     }
 }

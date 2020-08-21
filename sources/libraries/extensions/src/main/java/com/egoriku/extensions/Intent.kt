@@ -9,7 +9,7 @@ import android.os.Parcelable
 import androidx.fragment.app.Fragment
 import java.io.Serializable
 
-fun Fragment.browseUrl(url: String, newTask: Boolean = false): Boolean = requireActivity().browseUrl(url, newTask)
+fun Fragment.browseUrl(url: String, newTask: Boolean = false): Boolean = requireContext().browseUrl(url, newTask)
 
 fun Context.browseUrl(url: String, newTask: Boolean = false): Boolean = try {
     startActivity(Intent(Intent.ACTION_VIEW).apply {

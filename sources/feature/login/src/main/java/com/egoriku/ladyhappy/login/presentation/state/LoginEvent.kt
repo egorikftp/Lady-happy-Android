@@ -5,7 +5,7 @@ import androidx.activity.result.IntentSenderRequest
 
 sealed class LoginEvent {
 
-    data class OneTap(val eventSenderRequest: IntentSenderRequest): LoginEvent()
+    data class OneTap(val eventSenderRequest: IntentSenderRequest) : LoginEvent()
 
-    data class SignWithGoogle(val signInIntent: Intent): LoginEvent()
+    data class SignWithGoogle(val signInIntent: Intent) : LoginEvent()
 }

@@ -11,7 +11,6 @@ import com.egoriku.ladyhappy.settings.databinding.ViewLoginBinding
 import com.egoriku.ladyhappy.settings.presentation.view.State.ANON
 import com.egoriku.ladyhappy.settings.presentation.view.State.LOGGED_IN
 
-
 class LoginView : ConstraintLayout {
 
     constructor(context: Context) : super(context)

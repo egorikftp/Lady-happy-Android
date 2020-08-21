@@ -36,7 +36,6 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
 
             if (idToken != null) {
                 viewModel.authWithToken(idToken)
-
             }
         } catch (e: ApiException) {
             logE(throwable = e)
