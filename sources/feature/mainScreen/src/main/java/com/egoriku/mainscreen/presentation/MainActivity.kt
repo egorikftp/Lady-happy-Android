@@ -23,6 +23,7 @@ import com.egoriku.ladyhappy.navigation.navigator.platform.ActivityScopeNavigato
 import com.egoriku.mainscreen.R
 import com.egoriku.mainscreen.databinding.ActivityMainBinding
 import com.egoriku.mainscreen.presentation.dynamicfeature.DynamicFeatureViewModel
+import com.egoriku.mainscreen.presentation.inAppReview.ReviewViewModel
 import com.egoriku.mainscreen.presentation.inAppUpdates.InAppUpdate
 import com.egoriku.mainscreen.presentation.inAppUpdates.InAppUpdateState.*
 import com.egoriku.mainscreen.presentation.inAppUpdates.UPDATE_REQUEST_CODE
@@ -42,6 +43,7 @@ class MainActivity : AppCompatActivity(R.layout.activity_main), IDynamicFeatureC
     private val navigatorHolder: INavigationHolder by inject()
 
     private val dynamicFeatureViewModel: DynamicFeatureViewModel by lifecycleScope.viewModel(this)
+    private val reviewViewModel: ReviewViewModel by lifecycleScope.viewModel(this)
     private val viewModel: MainActivityViewModel by lifecycleScope.viewModel(this)
 
     private val navigator = ActivityScopeNavigator(this, R.id.container)
@@ -56,7 +58,7 @@ class MainActivity : AppCompatActivity(R.layout.activity_main), IDynamicFeatureC
 
         setSupportActionBar(binding.toolbarMainActivity)
 
-        viewModel.screenTitle.observe(this) {
+        viewModel.screenTitle.observe(owner = this) {
             binding.toolbarContent.headerBarLogoText.setText(it)
         }
 
@@ -89,8 +91,12 @@ class MainActivity : AppCompatActivity(R.layout.activity_main), IDynamicFeatureC
             }
         })
 
-        viewModel.theme.observe(this) {
+        viewModel.theme.observe(owner = this) {
             AppCompatDelegate.setDefaultNightMode(it.toNightMode())
+        }
+
+        reviewViewModel.submitReview { reviewInfo, reviewManager ->
+            reviewManager.launchReviewFlow(this, reviewInfo)
         }
 
         expandAppBarLayoutInPage()

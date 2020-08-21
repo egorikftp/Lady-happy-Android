@@ -70,7 +70,7 @@ object FileUtil {
         return requireNotNull(name)
     }
 
-    private fun rename(file: File, newName: String?): File {
+    private fun rename(file: File, newName: String): File {
         val newFile = File(file.parent, newName)
         if (newFile != file) {
             if (newFile.exists() && newFile.delete()) {

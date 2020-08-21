@@ -8,6 +8,7 @@ import com.egoriku.network.ResultOf
 import com.egoriku.network.firestore.awaitResult
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.GoogleAuthProvider
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
@@ -49,6 +50,18 @@ class Authentication {
             password: String
     ): ResultOf<AuthResult> = withContext(Dispatchers.IO) {
         val resultOf: ResultOf<AuthResult> = auth.signInWithEmailAndPassword(email, password).awaitResult()
+
+        withContext(Dispatchers.Main) {
+            invalidateUser()
+        }
+
+        resultOf
+    }
+
+    suspend fun authWithToken(tokenId: String): ResultOf<AuthResult> = withContext(Dispatchers.IO) {
+        val credential = GoogleAuthProvider.getCredential(tokenId, null)
+
+        val resultOf: ResultOf<AuthResult> = auth.signInWithCredential(credential).awaitResult()
 
         withContext(Dispatchers.Main) {
             invalidateUser()

@@ -1,6 +1,7 @@
 package com.egoriku.ladyhappy
 
 import androidx.appcompat.app.AppCompatDelegate
+import com.egoriku.core.IAppPreferences
 import com.egoriku.core.IRemoteConfig
 import com.egoriku.core.sharedmodel.Theme
 import com.egoriku.core.sharedmodel.toNightMode
@@ -13,6 +14,7 @@ import org.koin.android.ext.android.inject
 
 open class Application : SplitCompatApplication() {
 
+    private val appPreferences: IAppPreferences by inject()
     private val currentGetThemeUseCase: GetThemeUseCase by inject()
     private val remoteConfig: IRemoteConfig by inject()
 
@@ -29,5 +31,7 @@ open class Application : SplitCompatApplication() {
         }.also {
             AppCompatDelegate.setDefaultNightMode(it.toNightMode())
         }
+
+        appPreferences.launchCount = appPreferences.launchCount.inc()
     }
 }

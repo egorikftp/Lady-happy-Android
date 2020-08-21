@@ -44,6 +44,7 @@ object Libs {
 
     const val pageIndicator = "com.ryanjeffreybrooks:indefinitepagerindicator:${LibrariesVersion.pageIndicator}"
     const val playCore = "com.google.android.play:core-ktx:${LibrariesVersion.playCore}"
+    const val playServicesAuth = "com.google.android.gms:play-services-auth:${LibrariesVersion.playServicesAuth}"
 
     const val recyclerView = "androidx.recyclerview:recyclerview:${LibrariesVersion.recyclerView}"
 

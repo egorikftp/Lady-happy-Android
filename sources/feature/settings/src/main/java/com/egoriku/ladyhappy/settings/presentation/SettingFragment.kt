@@ -1,5 +1,6 @@
 package com.egoriku.ladyhappy.settings.presentation
 
+import android.content.ActivityNotFoundException
 import android.content.Context
 import android.os.Bundle
 import android.view.View
@@ -11,7 +12,7 @@ import by.kirich1409.viewbindingdelegate.viewBinding
 import com.egoriku.core.IFeatureProvider
 import com.egoriku.core.connector.IDynamicFeatureConnector
 import com.egoriku.core.feature.SettingsFeature
-import com.egoriku.extensions.toast
+import com.egoriku.extensions.browseUrl
 import com.egoriku.ladyhappy.settings.R
 import com.egoriku.ladyhappy.settings.databinding.FragmentSettingsBinding
 import com.egoriku.ladyhappy.settings.domain.model.Feature
@@ -25,7 +26,6 @@ import com.egoriku.ladyhappy.settings.presentation.screen.LoginScreen
 import com.egoriku.ladyhappy.settings.presentation.screen.UsedLibrariesScreen
 import com.egoriku.ladyhappy.settings.presentation.view.State.ANON
 import com.egoriku.ladyhappy.settings.presentation.view.State.LOGGED_IN
-import com.egoriku.ladyhappy.settings.presentation.viewmodel.ReviewViewModel
 import org.koin.android.ext.android.inject
 import org.koin.androidx.scope.lifecycleScope
 import org.koin.androidx.viewmodel.scope.viewModel
@@ -37,7 +37,6 @@ class SettingFragment : Fragment(R.layout.fragment_settings), SettingsFeature {
 
     private val featureProvider: IFeatureProvider by inject()
 
-    private val reviewViewModel: ReviewViewModel by lifecycleScope.viewModel(this)
     private val settingsViewModel: SettingsViewModel by lifecycleScope.viewModel(this)
 
     private var concatAdapter: ConcatAdapter by Delegates.notNull()
@@ -78,18 +77,7 @@ class SettingFragment : Fragment(R.layout.fragment_settings), SettingsFeature {
                     settingsViewModel.navigateTo(UsedLibrariesScreen(featureProvider), R.id.contentFullScreen)
                 }
                 is SettingItem.Review -> {
-                    reviewViewModel.startReview { reviewInfo, reviewManager ->
-                        reviewManager.launchReviewFlow(requireActivity(), reviewInfo)
-                                .addOnSuccessListener {
-                                    toast("Thanks for the feedback!")
-                                }
-                                .addOnFailureListener { it ->
-                                    toast("Failed: ${it.message}")
-                                }
-                                .addOnCompleteListener {
-                                    toast("Completed")
-                                }
-                    }
+                    openPlayStore()
                 }
             }
         }
@@ -107,13 +95,21 @@ class SettingFragment : Fragment(R.layout.fragment_settings), SettingsFeature {
                 }
             }
         }
-
-        reviewViewModel.preWarmReview()
     }
 
     override fun onDetach() {
         super.onDetach()
         dynamicFeatureConnector = null
+    }
+
+    private fun openPlayStore() {
+        val appPackageName: String = requireContext().packageName
+
+        try {
+            browseUrl("market://details?id=$appPackageName")
+        } catch (exception: ActivityNotFoundException) {
+            browseUrl("https://play.google.com/store/apps/details?id=$appPackageName")
+        }
     }
 
     private fun FragmentSettingsBinding.initViews() {

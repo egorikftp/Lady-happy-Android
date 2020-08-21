@@ -29,6 +29,7 @@ withLibraries(
         Libs.koinViewModel,
         Libs.liveData,
         Libs.material,
+        Libs.playServicesAuth,
         Libs.viewBindingDelegates,
         Libs.viewModel
 )

@@ -5,4 +5,9 @@
         <item name="cornerFamily">rounded</item>
         <item name="cornerRadius">8dp</item>
     </style>
+
+    <style name="circleImageView">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>
+    </style>
 </resources>
