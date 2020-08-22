@@ -7,7 +7,7 @@ import com.egoriku.mainscreen.presentation.delegate.IThemedActivityDelegate
 import com.egoriku.mainscreen.presentation.delegate.ThemedActivityDelegate
 import com.egoriku.mainscreen.presentation.dynamicfeature.DynamicFeatureViewModel
 import com.egoriku.mainscreen.presentation.inAppReview.ReviewViewModel
-import com.egoriku.mainscreen.presentation.inAppUpdates.InAppUpdateViewModel
+import com.egoriku.mainscreen.presentation.viewmodel.inAppUpdates.InAppUpdateViewModel
 import com.google.android.play.core.appupdate.AppUpdateManagerFactory
 import com.google.android.play.core.review.ReviewManagerFactory
 import org.koin.android.ext.koin.androidApplication

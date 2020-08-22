@@ -24,9 +24,9 @@ import com.egoriku.mainscreen.R
 import com.egoriku.mainscreen.databinding.ActivityMainBinding
 import com.egoriku.mainscreen.presentation.dynamicfeature.DynamicFeatureViewModel
 import com.egoriku.mainscreen.presentation.inAppReview.ReviewViewModel
-import com.egoriku.mainscreen.presentation.inAppUpdates.InAppUpdateEvent
-import com.egoriku.mainscreen.presentation.inAppUpdates.InAppUpdateViewModel
 import com.egoriku.mainscreen.presentation.screen.*
+import com.egoriku.mainscreen.presentation.viewmodel.inAppUpdates.InAppUpdateEvent
+import com.egoriku.mainscreen.presentation.viewmodel.inAppUpdates.InAppUpdateViewModel
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.play.core.appupdate.AppUpdateManager
 import com.google.android.play.core.install.model.ActivityResult

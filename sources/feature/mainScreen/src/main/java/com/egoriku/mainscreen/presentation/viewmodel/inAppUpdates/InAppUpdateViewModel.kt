@@ -1,4 +1,4 @@
-package com.egoriku.mainscreen.presentation.inAppUpdates
+package com.egoriku.mainscreen.presentation.viewmodel.inAppUpdates
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
@@ -15,13 +15,13 @@ import kotlinx.coroutines.launch
 
 class InAppUpdateViewModel(updateManager: AppUpdateManager) : ViewModel() {
 
+    private val _events = BroadcastChannel<InAppUpdateEvent>(Channel.BUFFERED)
+
     val updateStatus = updateManager.requestUpdateFlow()
             .catch {
                 logD("Update info not available")
             }
             .asLiveData()
-
-    private val _events = BroadcastChannel<InAppUpdateEvent>(Channel.BUFFERED)
 
     val events = _events.asFlow()
 
@@ -60,9 +60,4 @@ class InAppUpdateViewModel(updateManager: AppUpdateManager) : ViewModel() {
             }
         }
     }
-}
-
-sealed class InAppUpdateEvent {
-    data class ToastEvent(val message: String) : InAppUpdateEvent()
-    data class StartUpdateEvent(val updateInfo: AppUpdateInfo, val immediate: Boolean) : InAppUpdateEvent()
 }
