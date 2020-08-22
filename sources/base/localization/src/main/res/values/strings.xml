@@ -33,10 +33,11 @@
     <string name="cd_adapter_item_photo_report">Photo</string>
 
     <!-- Main screen -->
+    <string name="in_app_update_available">Update available</string>
+    <string name="in_app_update_now">Update now</string>
+    <string name="in_app_update_downloading">Downloading update… %1$d</string>
     <string name="in_app_update_download_finished">An update has just been downloaded</string>
-    <string name="in_app_update_restart">Restart</string>
-    <string name="in_app_update_download_failed">Failed to download an update</string>
-    <string name="in_app_update_retry">Retry</string>
+    <string name="in_app_update_complete">Complete update</string>
 
     <!-- Catalog screen -->
     <string name="catalog_images_count_zero">No items have been added yet</string>

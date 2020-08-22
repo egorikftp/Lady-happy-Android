@@ -37,7 +37,7 @@ object Libs {
     const val kotlin = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${LibrariesVersion.kotlin}"
 
     const val leakCanary = "com.squareup.leakcanary:leakcanary-android:${LibrariesVersion.leakCanary}"
-    const val lifecycleExtensions = "androidx.lifecycle:lifecycle-extensions:${LibrariesVersion.lifecycle}"
+    const val lifecycleRuntime = "androidx.lifecycle:lifecycle-runtime-ktx:${LibrariesVersion.lifecycle}"
     const val liveData = "androidx.lifecycle:lifecycle-livedata-ktx:${LibrariesVersion.lifecycle}"
 
     const val material = "com.google.android.material:material:${LibrariesVersion.material}"

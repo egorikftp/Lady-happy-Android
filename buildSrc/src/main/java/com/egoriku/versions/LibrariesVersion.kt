@@ -7,7 +7,7 @@ object LibrariesVersion {
     const val beagle = "1.10.2"
     const val browser = "1.2.0"
     const val cardView = "1.0.0"
-    const val constraintLayout = "2.0.0-rc1"
+    const val constraintLayout = "2.0.0"
     const val core = "1.3.1"
     const val coroutinesAndroid = "1.3.9"
     const val circleImageView = "3.1.0"

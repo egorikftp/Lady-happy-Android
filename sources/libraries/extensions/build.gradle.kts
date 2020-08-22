@@ -9,7 +9,7 @@ withLibraries(
         Libs.appcompat,
         Libs.core,
         Libs.fragment,
-        Libs.lifecycleExtensions,
+        Libs.lifecycleRuntime,
         Libs.material,
         Libs.recyclerView,
         Libs.viewModel

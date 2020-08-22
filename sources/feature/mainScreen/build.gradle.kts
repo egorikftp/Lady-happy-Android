@@ -25,6 +25,7 @@ withLibraries(
         Libs.constraintLayout,
         Libs.koinAndroid,
         Libs.koinViewModel,
+        Libs.lifecycleRuntime,
         Libs.liveData,
         Libs.material,
         Libs.playCore,
