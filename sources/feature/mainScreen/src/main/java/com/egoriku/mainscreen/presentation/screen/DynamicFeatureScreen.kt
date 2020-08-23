@@ -6,10 +6,12 @@ import androidx.fragment.app.Fragment
 import com.egoriku.extensions.getClassByName
 import com.egoriku.ladyhappy.navigation.screen.FragmentScreen
 
-class PostCreatorScreen : FragmentScreen() {
+class DynamicFeatureScreen(
+        private val fragmentName: String
+) : FragmentScreen() {
 
     override val arguments: Bundle = bundleOf()
 
     override val fragment: Fragment
-        get() = getClassByName("com.egoriku.ladyhappy.postcreator.presentation.fragment.PostCreatorFragment")
+        get() = getClassByName(fragmentName)
 }

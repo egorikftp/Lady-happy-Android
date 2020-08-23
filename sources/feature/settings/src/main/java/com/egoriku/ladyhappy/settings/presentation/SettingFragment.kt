@@ -1,16 +1,18 @@
 package com.egoriku.ladyhappy.settings.presentation
 
 import android.content.ActivityNotFoundException
-import android.content.Context
 import android.os.Bundle
 import android.view.View
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.observe
 import androidx.recyclerview.widget.ConcatAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.egoriku.core.IFeatureProvider
-import com.egoriku.core.connector.IDynamicFeatureConnector
+import com.egoriku.core.constant.REQUEST_KEY_DYNAMIC_FEATURE
+import com.egoriku.core.constant.RESULT_KEY_DYNAMIC_FEATURE
+import com.egoriku.core.feature.DynamicFeature
 import com.egoriku.core.feature.SettingsFeature
 import com.egoriku.extensions.browseUrl
 import com.egoriku.ladyhappy.settings.R
@@ -45,13 +47,6 @@ class SettingFragment : Fragment(R.layout.fragment_settings), SettingsFeature {
     private var availableFeaturesAdapter: AvailableFeaturesAdapter by Delegates.notNull()
     private var settingsAdapter: SettingItemAdapter by Delegates.notNull()
 
-    private var dynamicFeatureConnector: IDynamicFeatureConnector? = null
-
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        dynamicFeatureConnector = activity as IDynamicFeatureConnector
-    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -65,7 +60,10 @@ class SettingFragment : Fragment(R.layout.fragment_settings), SettingsFeature {
         availableFeaturesAdapter = AvailableFeaturesAdapter {
             when (it) {
                 is Feature.PublishPosts -> {
-                    dynamicFeatureConnector?.installDynamicFeature(getString(R.string.title_post_creator))
+                    parentFragmentManager.setFragmentResult(
+                            REQUEST_KEY_DYNAMIC_FEATURE,
+                            bundleOf(RESULT_KEY_DYNAMIC_FEATURE to DynamicFeature.PostCreator)
+                    )
                 }
             }
         }
@@ -95,11 +93,6 @@ class SettingFragment : Fragment(R.layout.fragment_settings), SettingsFeature {
                 }
             }
         }
-    }
-
-    override fun onDetach() {
-        super.onDetach()
-        dynamicFeatureConnector = null
     }
 
     private fun openPlayStore() {

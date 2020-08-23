@@ -5,26 +5,33 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
+import android.widget.ProgressBar
+import android.widget.TextView
 import androidx.annotation.IdRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.fragment.app.setFragmentResultListener
 import androidx.lifecycle.observe
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.egoriku.core.IFeatureProvider
 import com.egoriku.core.INavigationHolder
-import com.egoriku.core.connector.IDynamicFeatureConnector
-import com.egoriku.core.feature.AboutUsFeature
-import com.egoriku.core.feature.CatalogFeature
-import com.egoriku.core.feature.PhotoReportsFeature
-import com.egoriku.core.feature.SettingsFeature
+import com.egoriku.core.constant.REQUEST_KEY_DYNAMIC_FEATURE
+import com.egoriku.core.constant.RESULT_KEY_DYNAMIC_FEATURE
+import com.egoriku.core.feature.*
 import com.egoriku.core.sharedmodel.toNightMode
-import com.egoriku.extensions.*
+import com.egoriku.extensions.consume
+import com.egoriku.extensions.hasM
+import com.egoriku.extensions.logD
+import com.egoriku.extensions.toast
 import com.egoriku.ladyhappy.navigation.navigator.platform.ActivityScopeNavigator
 import com.egoriku.mainscreen.R
 import com.egoriku.mainscreen.databinding.ActivityMainBinding
-import com.egoriku.mainscreen.presentation.dynamicfeature.DynamicFeatureViewModel
+import com.egoriku.mainscreen.presentation.balloon.DynamicFeatureBalloonFactory
 import com.egoriku.mainscreen.presentation.inAppReview.ReviewViewModel
 import com.egoriku.mainscreen.presentation.screen.*
+import com.egoriku.mainscreen.presentation.viewmodel.dynamicFeature.DynamicFeatureEvent
+import com.egoriku.mainscreen.presentation.viewmodel.dynamicFeature.DynamicFeatureViewModel
+import com.egoriku.mainscreen.presentation.viewmodel.dynamicFeature.ModuleStatus
 import com.egoriku.mainscreen.presentation.viewmodel.inAppUpdates.InAppUpdateEvent
 import com.egoriku.mainscreen.presentation.viewmodel.inAppUpdates.InAppUpdateViewModel
 import com.google.android.material.snackbar.Snackbar
@@ -35,22 +42,31 @@ import com.google.android.play.core.ktx.AppUpdateResult
 import com.google.android.play.core.ktx.bytesDownloaded
 import com.google.android.play.core.ktx.totalBytesToDownload
 import com.google.android.play.core.splitcompat.SplitCompat
+import com.google.android.play.core.splitinstall.SplitInstallManager
+import com.skydoves.balloon.Balloon
+import com.skydoves.balloon.balloon
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import org.koin.android.ext.android.inject
 import org.koin.androidx.scope.lifecycleScope
 import org.koin.androidx.viewmodel.scope.viewModel
 import kotlin.properties.Delegates
+import kotlin.time.ExperimentalTime
+import kotlin.time.seconds
 import androidx.lifecycle.lifecycleScope as activityLifecycle
 
+private const val INSTALL_CONFIRMATION_REQ_CODE = 1
 private const val UPDATE_CONFIRMATION_REQ_CODE = 2
 private const val KEY_SELECTED_MENU_ITEM = "selected_item"
 
-class MainActivity : AppCompatActivity(R.layout.activity_main), IDynamicFeatureConnector {
+class MainActivity : AppCompatActivity(R.layout.activity_main) {
+
+    private val dynamicFeatureBalloon by balloon(DynamicFeatureBalloonFactory::class)
 
     private val binding: ActivityMainBinding by viewBinding(R.id.contentFullScreen)
 
     private val appUpdateManager: AppUpdateManager by inject()
+    private val splitInstallManager: SplitInstallManager by inject()
     private val featureProvider: IFeatureProvider by inject()
     private val navigatorHolder: INavigationHolder by inject()
 
@@ -62,6 +78,12 @@ class MainActivity : AppCompatActivity(R.layout.activity_main), IDynamicFeatureC
     private val navigator = ActivityScopeNavigator(this, R.id.container)
 
     private var snackBar: Snackbar by Delegates.notNull()
+
+    private val Balloon.balloonTitleTextView: TextView
+        get() = getContentView().findViewById(R.id.title)
+
+    private val Balloon.balloonProgressBar: ProgressBar
+        get() = getContentView().findViewById(R.id.progressBar)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -102,13 +124,6 @@ class MainActivity : AppCompatActivity(R.layout.activity_main), IDynamicFeatureC
             setOnNavigationItemReselectedListener {}
         }
 
-        dynamicFeatureViewModel.installStatus.observe(this, EventObserver {
-            when (it) {
-                true -> onSuccessfulLoad()
-                false -> toast("error")
-            }
-        })
-
         viewModel.theme.observe(owner = this) {
             AppCompatDelegate.setDefaultNightMode(it.toNightMode())
         }
@@ -120,6 +135,9 @@ class MainActivity : AppCompatActivity(R.layout.activity_main), IDynamicFeatureC
         expandAppBarLayoutInPage()
 
         subscribeForInAppUpdate()
+        subscribeForDynamicFeatureInstall()
+
+        subscribeForDynamicFeatureRequest()
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -158,9 +176,6 @@ class MainActivity : AppCompatActivity(R.layout.activity_main), IDynamicFeatureC
         SplitCompat.installActivity(this)
     }
 
-    override fun installDynamicFeature(featureName: String) =
-            dynamicFeatureViewModel.installDynamicFeature(featureName)
-
     private fun subscribeForInAppUpdate() {
         with(inAppUpdateViewModel) {
             updateStatus.observe(owner = this@MainActivity) { updateResult: AppUpdateResult ->
@@ -198,6 +213,87 @@ class MainActivity : AppCompatActivity(R.layout.activity_main), IDynamicFeatureC
         }
     }
 
+    @OptIn(ExperimentalTime::class)
+    private fun subscribeForDynamicFeatureInstall() {
+        with(dynamicFeatureViewModel) {
+            events.onEach { event ->
+                when (event) {
+                    is DynamicFeatureEvent.ToastEvent -> toast(event.message)
+                    is DynamicFeatureEvent.NavigationEvent -> {
+                        viewModel.navigateTo(
+                                screen = DynamicFeatureScreen(event.fragmentClass),
+                                containerId = R.id.contentFullScreen
+                        )
+                    }
+                    is DynamicFeatureEvent.InstallConfirmationEvent -> {
+                        splitInstallManager.startConfirmationDialogForResult(
+                                event.status,
+                                this@MainActivity,
+                                INSTALL_CONFIRMATION_REQ_CODE
+                        )
+                    }
+                    else -> throw IllegalStateException("Event type not handled: $event")
+                }
+            }.launchIn(activityLifecycle)
+
+            postCreatorModuleStatus.observe(owner = this@MainActivity) { status ->
+                when (status) {
+                    is ModuleStatus.Available -> {
+                        dynamicFeatureBalloon.showAlignTop(binding.bottomNavigation)
+
+                        with(dynamicFeatureBalloon) {
+                            balloonTitleTextView.setText(R.string.dynamic_delivery_install)
+                            balloonProgressBar.isIndeterminate = true
+                        }
+                    }
+                    is ModuleStatus.Installing -> {
+                        with(dynamicFeatureBalloon) {
+                            val progress = (status.progress * 100).toInt()
+
+                            balloonTitleTextView.text = getString(R.string.dynamic_delivery_installing, progress)
+                            balloonProgressBar.apply {
+                                isIndeterminate = false
+                                setProgress(progress)
+                            }
+                        }
+                    }
+                    is ModuleStatus.Unavailable -> {
+                        with(dynamicFeatureBalloon) {
+                            balloonTitleTextView.setText(R.string.dynamic_delivery_feature_not_available)
+                            balloonProgressBar.isIndeterminate = false
+                        }
+
+                        dynamicFeatureBalloon.dismissWithDelay(1.seconds.toLongMilliseconds())
+                    }
+                    is ModuleStatus.Installed -> {
+                        SplitCompat.installActivity(this@MainActivity)
+                        dynamicFeatureViewModel.invokePostCreator()
+
+                        dynamicFeatureBalloon.dismissWithDelay(1.seconds.toLongMilliseconds())
+                    }
+                    is ModuleStatus.NeedsConfirmation -> {
+                        splitInstallManager.startConfirmationDialogForResult(
+                                status.state,
+                                this@MainActivity,
+                                UPDATE_CONFIRMATION_REQ_CODE
+                        )
+                    }
+                }
+            }
+        }
+    }
+
+    private fun subscribeForDynamicFeatureRequest() {
+        supportFragmentManager.setFragmentResultListener(
+                requestKey = REQUEST_KEY_DYNAMIC_FEATURE,
+                lifecycleOwner = this
+        ) { _, result ->
+            when (result.getParcelable<DynamicFeature>(RESULT_KEY_DYNAMIC_FEATURE)) {
+                is DynamicFeature.PostCreator -> dynamicFeatureViewModel.invokePostCreator()
+            }
+        }
+    }
+
     private fun mapItemIdToScreen(@IdRes menuItemId: Int) {
         when (menuItemId) {
             R.id.menuLanding -> viewModel.replaceWith(LandingScreen(featureProvider))
@@ -205,10 +301,6 @@ class MainActivity : AppCompatActivity(R.layout.activity_main), IDynamicFeatureC
             R.id.menuCatalog -> viewModel.replaceWith(CatalogScreen(featureProvider))
             R.id.menuSettings -> viewModel.replaceWith(SettingsScreen(featureProvider))
         }
-    }
-
-    private fun onSuccessfulLoad() {
-        viewModel.navigateTo(screen = PostCreatorScreen(), containerId = R.id.contentFullScreen)
     }
 
     private fun expandAppBarLayoutInPage() {

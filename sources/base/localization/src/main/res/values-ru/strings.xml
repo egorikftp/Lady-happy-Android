@@ -40,6 +40,10 @@
     <string name="in_app_update_download_finished">Обновление было только что загружено</string>
     <string name="in_app_update_complete">Завершить обновление</string>
 
+    <string name="dynamic_delivery_install">Установка</string>
+    <string name="dynamic_delivery_installing">Установка… %1$d</string>
+    <string name="dynamic_delivery_feature_not_available">Фича недоступна</string>
+
     <!-- Catalog screen -->
     <string name="catalog_images_count_zero">Работы пока-что не добавлены</string>
     <plurals name="catalog_images_count">

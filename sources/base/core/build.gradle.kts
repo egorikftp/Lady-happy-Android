@@ -7,6 +7,10 @@ plugins {
     id("com.android.library")
 }
 
+happyPlugin {
+    kotlinParcelize = true
+}
+
 withProjects(Libraries.navigation)
 
 withLibraries(

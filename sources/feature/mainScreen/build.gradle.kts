@@ -21,8 +21,10 @@ withProjects(
 
 withLibraries(
         Libs.appcompat,
+        Libs.balloon,
         Libs.core,
         Libs.constraintLayout,
+        Libs.fragment,
         Libs.koinAndroid,
         Libs.koinViewModel,
         Libs.lifecycleRuntime,
