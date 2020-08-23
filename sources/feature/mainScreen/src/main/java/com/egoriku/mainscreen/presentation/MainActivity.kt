@@ -5,48 +5,85 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
+import android.widget.ProgressBar
+import android.widget.TextView
 import androidx.annotation.IdRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.fragment.app.setFragmentResultListener
 import androidx.lifecycle.observe
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.egoriku.core.IFeatureProvider
 import com.egoriku.core.INavigationHolder
-import com.egoriku.core.connector.IDynamicFeatureConnector
-import com.egoriku.core.feature.AboutUsFeature
-import com.egoriku.core.feature.CatalogFeature
-import com.egoriku.core.feature.PhotoReportsFeature
-import com.egoriku.core.feature.SettingsFeature
+import com.egoriku.core.constant.REQUEST_KEY_DYNAMIC_FEATURE
+import com.egoriku.core.constant.RESULT_KEY_DYNAMIC_FEATURE
+import com.egoriku.core.feature.*
 import com.egoriku.core.sharedmodel.toNightMode
-import com.egoriku.extensions.*
+import com.egoriku.extensions.consume
+import com.egoriku.extensions.hasM
+import com.egoriku.extensions.logD
+import com.egoriku.extensions.toast
 import com.egoriku.ladyhappy.navigation.navigator.platform.ActivityScopeNavigator
 import com.egoriku.mainscreen.R
 import com.egoriku.mainscreen.databinding.ActivityMainBinding
-import com.egoriku.mainscreen.presentation.dynamicfeature.DynamicFeatureViewModel
+import com.egoriku.mainscreen.presentation.balloon.DynamicFeatureBalloonFactory
 import com.egoriku.mainscreen.presentation.inAppReview.ReviewViewModel
-import com.egoriku.mainscreen.presentation.inAppUpdates.InAppUpdate
-import com.egoriku.mainscreen.presentation.inAppUpdates.InAppUpdateState.*
-import com.egoriku.mainscreen.presentation.inAppUpdates.UPDATE_REQUEST_CODE
 import com.egoriku.mainscreen.presentation.screen.*
+import com.egoriku.mainscreen.presentation.viewmodel.dynamicFeature.DynamicFeatureEvent
+import com.egoriku.mainscreen.presentation.viewmodel.dynamicFeature.DynamicFeatureViewModel
+import com.egoriku.mainscreen.presentation.viewmodel.dynamicFeature.ModuleStatus
+import com.egoriku.mainscreen.presentation.viewmodel.inAppUpdates.InAppUpdateEvent
+import com.egoriku.mainscreen.presentation.viewmodel.inAppUpdates.InAppUpdateViewModel
+import com.google.android.material.snackbar.Snackbar
+import com.google.android.play.core.appupdate.AppUpdateManager
 import com.google.android.play.core.install.model.ActivityResult
+import com.google.android.play.core.install.model.AppUpdateType
+import com.google.android.play.core.ktx.AppUpdateResult
+import com.google.android.play.core.ktx.bytesDownloaded
+import com.google.android.play.core.ktx.totalBytesToDownload
 import com.google.android.play.core.splitcompat.SplitCompat
+import com.google.android.play.core.splitinstall.SplitInstallManager
+import com.skydoves.balloon.Balloon
+import com.skydoves.balloon.balloon
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 import org.koin.android.ext.android.inject
 import org.koin.androidx.scope.lifecycleScope
 import org.koin.androidx.viewmodel.scope.viewModel
+import kotlin.properties.Delegates
+import kotlin.time.ExperimentalTime
+import kotlin.time.seconds
+import androidx.lifecycle.lifecycleScope as activityLifecycle
 
-class MainActivity : AppCompatActivity(R.layout.activity_main), IDynamicFeatureConnector {
+private const val INSTALL_CONFIRMATION_REQ_CODE = 1
+private const val UPDATE_CONFIRMATION_REQ_CODE = 2
+private const val KEY_SELECTED_MENU_ITEM = "selected_item"
+
+class MainActivity : AppCompatActivity(R.layout.activity_main) {
+
+    private val dynamicFeatureBalloon by balloon(DynamicFeatureBalloonFactory::class)
 
     private val binding: ActivityMainBinding by viewBinding(R.id.contentFullScreen)
 
+    private val appUpdateManager: AppUpdateManager by inject()
+    private val splitInstallManager: SplitInstallManager by inject()
     private val featureProvider: IFeatureProvider by inject()
-    private val inAppUpdate: InAppUpdate by inject()
     private val navigatorHolder: INavigationHolder by inject()
 
     private val dynamicFeatureViewModel: DynamicFeatureViewModel by lifecycleScope.viewModel(this)
+    private val inAppUpdateViewModel: InAppUpdateViewModel by lifecycleScope.viewModel(this)
     private val reviewViewModel: ReviewViewModel by lifecycleScope.viewModel(this)
     private val viewModel: MainActivityViewModel by lifecycleScope.viewModel(this)
 
     private val navigator = ActivityScopeNavigator(this, R.id.container)
+
+    private var snackBar: Snackbar by Delegates.notNull()
+
+    private val Balloon.balloonTitleTextView: TextView
+        get() = getContentView().findViewById(R.id.title)
+
+    private val Balloon.balloonProgressBar: ProgressBar
+        get() = getContentView().findViewById(R.id.progressBar)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -58,15 +95,18 @@ class MainActivity : AppCompatActivity(R.layout.activity_main), IDynamicFeatureC
 
         setSupportActionBar(binding.toolbarMainActivity)
 
+        snackBar = Snackbar.make(
+                binding.bottomNavigation,
+                R.string.in_app_update_available,
+                Snackbar.LENGTH_INDEFINITE
+        )
+
         viewModel.screenTitle.observe(owner = this) {
             binding.toolbarContent.headerBarLogoText.setText(it)
         }
 
         when (savedInstanceState) {
-            null -> {
-                viewModel.replaceWith(CatalogScreen(featureProvider))
-                initInAppUpdate()
-            }
+            null -> viewModel.replaceWith(CatalogScreen(featureProvider))
             else -> {
                 with(savedInstanceState.getInt(KEY_SELECTED_MENU_ITEM)) {
                     binding.bottomNavigation.selectedItemId = this
@@ -84,13 +124,6 @@ class MainActivity : AppCompatActivity(R.layout.activity_main), IDynamicFeatureC
             setOnNavigationItemReselectedListener {}
         }
 
-        dynamicFeatureViewModel.installStatus.observe(this, EventObserver {
-            when (it) {
-                true -> onSuccessfulLoad()
-                false -> toast("error")
-            }
-        })
-
         viewModel.theme.observe(owner = this) {
             AppCompatDelegate.setDefaultNightMode(it.toNightMode())
         }
@@ -100,13 +133,18 @@ class MainActivity : AppCompatActivity(R.layout.activity_main), IDynamicFeatureC
         }
 
         expandAppBarLayoutInPage()
+
+        subscribeForInAppUpdate()
+        subscribeForDynamicFeatureInstall()
+
+        subscribeForDynamicFeatureRequest()
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
         when (requestCode) {
-            UPDATE_REQUEST_CODE -> {
+            UPDATE_CONFIRMATION_REQ_CODE -> {
                 when (resultCode) {
                     Activity.RESULT_OK -> viewModel.trackInAppUpdateSuccess()
                     Activity.RESULT_CANCELED -> viewModel.trackInAppUpdateCanceled()
@@ -126,11 +164,6 @@ class MainActivity : AppCompatActivity(R.layout.activity_main), IDynamicFeatureC
         super.onPause()
     }
 
-    override fun onDestroy() {
-        inAppUpdate.unsubscribe()
-        super.onDestroy()
-    }
-
     override fun onBackPressed() = viewModel.onBackPressed()
 
     override fun onSaveInstanceState(outState: Bundle) {
@@ -143,8 +176,123 @@ class MainActivity : AppCompatActivity(R.layout.activity_main), IDynamicFeatureC
         SplitCompat.installActivity(this)
     }
 
-    override fun installDynamicFeature(featureName: String) =
-            dynamicFeatureViewModel.installDynamicFeature(featureName)
+    private fun subscribeForInAppUpdate() {
+        with(inAppUpdateViewModel) {
+            updateStatus.observe(owner = this@MainActivity) { updateResult: AppUpdateResult ->
+                updateUpdateButton(updateResult)
+
+                // If it's an immediate update, launch it immediately and finish Activity
+                // to prevent the user from using the app until they update.
+                if (updateResult is AppUpdateResult.Available) {
+                    if (shouldLaunchImmediateUpdate(updateResult.updateInfo)) {
+                        if (appUpdateManager.startUpdateFlowForResult(
+                                        updateResult.updateInfo,
+                                        AppUpdateType.IMMEDIATE,
+                                        this@MainActivity,
+                                        UPDATE_CONFIRMATION_REQ_CODE)) {
+                            finish()
+                        }
+                    }
+                }
+            }
+
+            events.onEach { event ->
+                when (event) {
+                    is InAppUpdateEvent.ToastEvent -> toast(event.message)
+                    is InAppUpdateEvent.StartUpdateEvent -> {
+                        val updateType = if (event.immediate) AppUpdateType.IMMEDIATE else AppUpdateType.FLEXIBLE
+                        appUpdateManager.startUpdateFlowForResult(
+                                event.updateInfo,
+                                updateType,
+                                this@MainActivity,
+                                UPDATE_CONFIRMATION_REQ_CODE
+                        )
+                    }
+                }
+            }.launchIn(activityLifecycle)
+        }
+    }
+
+    @OptIn(ExperimentalTime::class)
+    private fun subscribeForDynamicFeatureInstall() {
+        with(dynamicFeatureViewModel) {
+            events.onEach { event ->
+                when (event) {
+                    is DynamicFeatureEvent.ToastEvent -> toast(event.message)
+                    is DynamicFeatureEvent.NavigationEvent -> {
+                        viewModel.navigateTo(
+                                screen = DynamicFeatureScreen(event.fragmentClass),
+                                containerId = R.id.contentFullScreen
+                        )
+                    }
+                    is DynamicFeatureEvent.InstallConfirmationEvent -> {
+                        splitInstallManager.startConfirmationDialogForResult(
+                                event.status,
+                                this@MainActivity,
+                                INSTALL_CONFIRMATION_REQ_CODE
+                        )
+                    }
+                    else -> throw IllegalStateException("Event type not handled: $event")
+                }
+            }.launchIn(activityLifecycle)
+
+            postCreatorModuleStatus.observe(owner = this@MainActivity) { status ->
+                when (status) {
+                    is ModuleStatus.Available -> {
+                        dynamicFeatureBalloon.showAlignTop(binding.bottomNavigation)
+
+                        with(dynamicFeatureBalloon) {
+                            balloonTitleTextView.setText(R.string.dynamic_delivery_install)
+                            balloonProgressBar.isIndeterminate = true
+                        }
+                    }
+                    is ModuleStatus.Installing -> {
+                        with(dynamicFeatureBalloon) {
+                            val progress = (status.progress * 100).toInt()
+
+                            balloonTitleTextView.text = getString(R.string.dynamic_delivery_installing, progress)
+                            balloonProgressBar.apply {
+                                isIndeterminate = false
+                                setProgress(progress)
+                            }
+                        }
+                    }
+                    is ModuleStatus.Unavailable -> {
+                        with(dynamicFeatureBalloon) {
+                            balloonTitleTextView.setText(R.string.dynamic_delivery_feature_not_available)
+                            balloonProgressBar.isIndeterminate = false
+                        }
+
+                        dynamicFeatureBalloon.dismissWithDelay(1.seconds.toLongMilliseconds())
+                    }
+                    is ModuleStatus.Installed -> {
+                        SplitCompat.installActivity(this@MainActivity)
+                        dynamicFeatureViewModel.invokePostCreator()
+
+                        dynamicFeatureBalloon.dismissWithDelay(1.seconds.toLongMilliseconds())
+                    }
+                    is ModuleStatus.NeedsConfirmation -> {
+                        splitInstallManager.startConfirmationDialogForResult(
+                                status.state,
+                                this@MainActivity,
+                                UPDATE_CONFIRMATION_REQ_CODE
+                        )
+                    }
+                }
+            }
+        }
+    }
+
+    private fun subscribeForDynamicFeatureRequest() {
+        supportFragmentManager.setFragmentResultListener(
+                requestKey = REQUEST_KEY_DYNAMIC_FEATURE,
+                lifecycleOwner = this
+        ) { _, result ->
+            when (result.getParcelable<DynamicFeature>(RESULT_KEY_DYNAMIC_FEATURE)) {
+                is DynamicFeature.PostCreator -> dynamicFeatureViewModel.invokePostCreator()
+            }
+        }
+    }
 
     private fun mapItemIdToScreen(@IdRes menuItemId: Int) {
         when (menuItemId) {
@@ -153,38 +301,6 @@ class MainActivity : AppCompatActivity(R.layout.activity_main), IDynamicFeatureC
             R.id.menuCatalog -> viewModel.replaceWith(CatalogScreen(featureProvider))
             R.id.menuSettings -> viewModel.replaceWith(SettingsScreen(featureProvider))
         }
-    }
-
-    private fun onSuccessfulLoad() {
-        viewModel.navigateTo(screen = PostCreatorScreen(), containerId = R.id.contentFullScreen)
-    }
-
-    private fun initInAppUpdate() {
-        inAppUpdate.checkForUpdates()
-
-        inAppUpdate.status.observe(this, EventObserver { status ->
-            when (status) {
-                is OnFailed -> {
-                    binding.bottomNavigation.longSnackBar(
-                            message = R.string.in_app_update_download_failed,
-                            actionText = R.string.in_app_update_retry
-                    ) {
-                        inAppUpdate.checkForUpdates()
-                    }
-                }
-                is Downloaded -> {
-                    binding.bottomNavigation.indefiniteSnackBar(
-                            message = R.string.in_app_update_download_finished,
-                            actionText = R.string.in_app_update_restart
-                    ) {
-                        inAppUpdate.completeUpdate()
-                    }
-                }
-                is RequestFlowUpdate -> {
-                    inAppUpdate.startUpdateFlow(this, status.updateInfo)
-                }
-            }
-        })
     }
 
     private fun expandAppBarLayoutInPage() {
@@ -197,7 +313,46 @@ class MainActivity : AppCompatActivity(R.layout.activity_main), IDynamicFeatureC
         }
     }
 
-    companion object {
-        private const val KEY_SELECTED_MENU_ITEM = "selected_item"
+    private fun updateUpdateButton(updateResult: AppUpdateResult) {
+        when (updateResult) {
+            AppUpdateResult.NotAvailable -> {
+                logD("No update available")
+                snackBar.dismiss()
+            }
+            is AppUpdateResult.Available -> with(snackBar) {
+                setText(R.string.in_app_update_available)
+                setAction(R.string.in_app_update_now) {
+                    inAppUpdateViewModel.invokeUpdate()
+                }
+                show()
+            }
+            is AppUpdateResult.InProgress -> {
+                with(snackBar) {
+                    val updateProgress: Int = calculateUpdateProgress(updateResult)
+
+                    setText(getString(R.string.in_app_update_downloading, updateProgress))
+                    setAction(null) {}
+                    show()
+                }
+            }
+            is AppUpdateResult.Downloaded -> {
+                with(snackBar) {
+                    setText(R.string.in_app_update_download_finished)
+                    setAction(R.string.in_app_update_complete) {
+                        inAppUpdateViewModel.invokeUpdate()
+                    }
+                    show()
+                }
+            }
+        }
     }
+
+    private fun calculateUpdateProgress(updateResult: AppUpdateResult.InProgress): Int =
+            when (updateResult.installState.totalBytesToDownload) {
+                0L -> 0
+                else -> {
+                    (updateResult.installState.bytesDownloaded * 100 /
+                            updateResult.installState.totalBytesToDownload).toInt()
+                }
+            }
 }

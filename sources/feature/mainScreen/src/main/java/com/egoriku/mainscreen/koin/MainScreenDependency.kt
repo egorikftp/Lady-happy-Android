@@ -5,17 +5,17 @@ import com.egoriku.mainscreen.presentation.MainActivity
 import com.egoriku.mainscreen.presentation.MainActivityViewModel
 import com.egoriku.mainscreen.presentation.delegate.IThemedActivityDelegate
 import com.egoriku.mainscreen.presentation.delegate.ThemedActivityDelegate
-import com.egoriku.mainscreen.presentation.dynamicfeature.DynamicFeatureViewModel
 import com.egoriku.mainscreen.presentation.inAppReview.ReviewViewModel
-import com.egoriku.mainscreen.presentation.inAppUpdates.InAppUpdate
+import com.egoriku.mainscreen.presentation.viewmodel.dynamicFeature.DynamicFeatureViewModel
+import com.egoriku.mainscreen.presentation.viewmodel.inAppUpdates.InAppUpdateViewModel
+import com.google.android.play.core.appupdate.AppUpdateManagerFactory
 import com.google.android.play.core.review.ReviewManagerFactory
-import org.koin.android.ext.koin.androidApplication
+import com.google.android.play.core.splitinstall.SplitInstallManagerFactory
 import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
 val mainActivityModule = module {
-    single { InAppUpdate(androidApplication()) }
     single { ReviewManagerFactory.create(androidContext()) }
 
     scope<MainActivity> {
@@ -25,8 +25,20 @@ val mainActivityModule = module {
             ThemedActivityDelegate(observeThemeUseCase = get())
         }
 
+        scoped {
+            AppUpdateManagerFactory.create(androidContext())
+        }
+
+        scoped {
+            SplitInstallManagerFactory.create(androidContext())
+        }
+
         viewModel {
-            DynamicFeatureViewModel(androidApplication())
+            DynamicFeatureViewModel(splitInstallManager = get())
+        }
+
+        viewModel {
+            InAppUpdateViewModel(updateManager = get())
         }
 
         viewModel {
