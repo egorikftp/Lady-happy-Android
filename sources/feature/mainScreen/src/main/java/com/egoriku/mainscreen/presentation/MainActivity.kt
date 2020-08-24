@@ -238,16 +238,10 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
 
             postCreatorModuleStatus.observe(owner = this@MainActivity) { status ->
                 when (status) {
-                    is ModuleStatus.Available -> {
-                        dynamicFeatureBalloon.showAlignTop(binding.bottomNavigation)
-
-                        with(dynamicFeatureBalloon) {
-                            balloonTitleTextView.setText(R.string.dynamic_delivery_install)
-                            balloonProgressBar.isIndeterminate = true
-                        }
-                    }
                     is ModuleStatus.Installing -> {
                         with(dynamicFeatureBalloon) {
+                            showAlignTop(binding.bottomNavigation)
+
                             val progress = (status.progress * 100).toInt()
 
                             balloonTitleTextView.text = getString(R.string.dynamic_delivery_installing, progress)
