@@ -107,6 +107,7 @@ private fun Project.addAndroidDynamicSection() = dynamicFeatureExtension.run {
         compileSdkVersion(ProjectVersion.compileSdkVersion)
         versionCode = provideVersionCode()
         versionName = provideVersionName()
+        consumerProguardFiles("consumer-rules.pro")
     }
 
     compileOptions {

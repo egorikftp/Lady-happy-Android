@@ -85,6 +85,8 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
     private val Balloon.balloonProgressBar: ProgressBar
         get() = getContentView().findViewById(R.id.progressBar)
 
+    private var isOpenDynamicFeatureWhenReady = false
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
@@ -260,9 +262,10 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
                         dynamicFeatureBalloon.dismissWithDelay(1.seconds.toLongMilliseconds())
                     }
                     is ModuleStatus.Installed -> {
-                        SplitCompat.installActivity(this@MainActivity)
-
-                        dynamicFeatureViewModel.invokePostCreator()
+                        if (isOpenDynamicFeatureWhenReady) {
+                            isOpenDynamicFeatureWhenReady = false
+                            dynamicFeatureViewModel.invokePostCreator()
+                        }
 
                         dynamicFeatureBalloon.dismissWithDelay(1.seconds.toLongMilliseconds())
                     }
@@ -284,7 +287,10 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
                 lifecycleOwner = this
         ) { _, result ->
             when (result.getParcelable<DynamicFeature>(RESULT_KEY_DYNAMIC_FEATURE)) {
-                is DynamicFeature.PostCreator -> dynamicFeatureViewModel.invokePostCreator()
+                is DynamicFeature.PostCreator -> {
+                    isOpenDynamicFeatureWhenReady = true
+                    dynamicFeatureViewModel.invokePostCreator()
+                }
             }
         }
     }
