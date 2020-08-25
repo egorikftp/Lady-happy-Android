@@ -101,7 +101,9 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
                 binding.bottomNavigation,
                 R.string.in_app_update_available,
                 Snackbar.LENGTH_INDEFINITE
-        )
+        ).apply {
+            anchorView = binding.bottomNavigation
+        }
 
         viewModel.screenTitle.observe(owner = this) {
             binding.toolbarContent.headerBarLogoText.setText(it)
