@@ -12,9 +12,9 @@ import com.egoriku.ladyhappy.settings.databinding.AdapterItemLoginBinding
 import com.egoriku.ladyhappy.settings.domain.model.Section.Login
 import com.egoriku.ladyhappy.settings.presentation.view.State
 
-internal class LoginAdapter(
+internal class LoginSectionAdapter(
         private val onItemClick: (loginState: State) -> Unit
-) : ListAdapter<Login, LoginAdapter.VH>(DiffCallback()) {
+) : ListAdapter<Login, LoginSectionAdapter.VH>(DiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
             VH(AdapterItemLoginBinding.inflate(parent.inflater(), parent, false))

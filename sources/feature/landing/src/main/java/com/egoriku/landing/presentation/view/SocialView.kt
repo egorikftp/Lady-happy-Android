@@ -15,7 +15,7 @@ import android.view.animation.Animation
 import android.widget.ImageView
 import android.widget.LinearLayout
 import androidx.appcompat.widget.AppCompatImageButton
-import androidx.core.content.ContextCompat
+import com.egoriku.extensions.colorCompat
 import com.egoriku.extensions.firstChild
 import com.egoriku.extensions.listeners.SimpleAnimationListener
 import com.egoriku.extensions.setImageTintList
@@ -163,7 +163,7 @@ internal class SocialView : LinearLayout, View.OnClickListener {
 
     private fun animateBackgroundColor() {
         return if (animationState == AnimationState.NEED_SHOW) {
-            background = ColorDrawable(ContextCompat.getColor(context, R.color.RealWhite80))
+            background = ColorDrawable(context.colorCompat(R.color.RealWhite80))
             val animation = AlphaAnimation(MIN_ALPHA, MAX_ALPHA).apply {
                 duration = ANIMATION_DURATION
                 fillAfter = true
@@ -177,7 +177,7 @@ internal class SocialView : LinearLayout, View.OnClickListener {
                 setAnimationListener(object : SimpleAnimationListener() {
                     override fun onAnimationEnd(animation: Animation?) {
                         super.onAnimationEnd(animation)
-                        background = ColorDrawable(ContextCompat.getColor(context, R.color.transparent))
+                        background = ColorDrawable(context.colorCompat(R.color.transparent))
                     }
                 })
             }

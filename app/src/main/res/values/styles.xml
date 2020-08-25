@@ -16,6 +16,7 @@
         <!--text fields.-->
         <item name="android:colorBackground">@color/colorBackground</item>
         <item name="colorSurface">@color/colorSurface</item>
+        <item name="colorSurface.Light">@color/colorSurface.Light</item>
         <item name="colorError">@color/colorError</item>
 
         <!--"On" colors define how text, icons and strokes are colored in relation to the surface-->

@@ -1,4 +1,4 @@
-package com.egoriku.mainscreen.presentation.viewmodel.dynamicFeature
+package com.egoriku.mainscreen.presentation.components.dynamicFeature
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
@@ -33,7 +33,7 @@ class DynamicFeatureViewModel(
                     logD("STATE $state")
 
                     when (state.status) {
-                        SplitInstallSessionStatus.CANCELED -> ModuleStatus.Available
+                        SplitInstallSessionStatus.CANCELED -> ModuleStatus.Unavailable
                         SplitInstallSessionStatus.CANCELING -> ModuleStatus.Installing(0.0)
                         SplitInstallSessionStatus.DOWNLOADING -> ModuleStatus.Installing(
                                 progress = state.bytesDownloaded.toDouble() / state.totalBytesToDownload
@@ -41,7 +41,7 @@ class DynamicFeatureViewModel(
                         SplitInstallSessionStatus.DOWNLOADED -> ModuleStatus.Installed
                         SplitInstallSessionStatus.FAILED -> {
                             _events.send(DynamicFeatureEvent.InstallErrorEvent(state))
-                            ModuleStatus.Available
+                            ModuleStatus.Unavailable
                         }
                         SplitInstallSessionStatus.INSTALLED -> ModuleStatus.Installed
                         SplitInstallSessionStatus.INSTALLING -> ModuleStatus.Installing(1.0)

@@ -1,6 +1,7 @@
 package com.egoriku.ladyhappy.settings.presentation.view
 
 import android.content.Context
+import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.Drawable
 import android.util.AttributeSet
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -11,11 +12,9 @@ import com.egoriku.ladyhappy.settings.databinding.ViewLoginBinding
 import com.egoriku.ladyhappy.settings.presentation.view.State.ANON
 import com.egoriku.ladyhappy.settings.presentation.view.State.LOGGED_IN
 
-class LoginView : ConstraintLayout {
-
-    constructor(context: Context) : super(context)
-    constructor(context: Context, attrs: AttributeSet) : super(context, attrs)
-    constructor(context: Context, attrs: AttributeSet, defStyleAttr: Int) : super(context, attrs, defStyleAttr)
+internal class LoginView @JvmOverloads constructor(
+        context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
+) : ConstraintLayout(context, attrs, defStyleAttr) {
 
     private val binding = ViewLoginBinding.inflate(inflater(), this)
 
@@ -58,8 +57,11 @@ class LoginView : ConstraintLayout {
         if (url.isEmpty()) {
             binding.profileImage.setImageDrawable(drawableCompat(R.drawable.ic_profile_stub))
         } else {
+            val placeholderDrawable = ColorDrawable(context.colorFromAttr(R.attr.colorPlaceholder))
+
             Glide.with(binding.profileImage.context)
                     .load(url)
+                    .placeholder(placeholderDrawable)
                     .into(binding.profileImage)
         }
     }

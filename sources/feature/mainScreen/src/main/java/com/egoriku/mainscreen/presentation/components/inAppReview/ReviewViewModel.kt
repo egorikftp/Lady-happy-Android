@@ -1,4 +1,4 @@
-package com.egoriku.mainscreen.presentation.inAppReview
+package com.egoriku.mainscreen.presentation.components.inAppReview
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

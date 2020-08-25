@@ -3,11 +3,11 @@ package com.egoriku.mainscreen.koin
 import com.egoriku.mainscreen.domain.usecase.ObserveThemeModeUseCase
 import com.egoriku.mainscreen.presentation.MainActivity
 import com.egoriku.mainscreen.presentation.MainActivityViewModel
+import com.egoriku.mainscreen.presentation.components.dynamicFeature.DynamicFeatureViewModel
+import com.egoriku.mainscreen.presentation.components.inAppReview.ReviewViewModel
+import com.egoriku.mainscreen.presentation.components.inAppUpdates.InAppUpdateViewModel
 import com.egoriku.mainscreen.presentation.delegate.IThemedActivityDelegate
 import com.egoriku.mainscreen.presentation.delegate.ThemedActivityDelegate
-import com.egoriku.mainscreen.presentation.inAppReview.ReviewViewModel
-import com.egoriku.mainscreen.presentation.viewmodel.dynamicFeature.DynamicFeatureViewModel
-import com.egoriku.mainscreen.presentation.viewmodel.inAppUpdates.InAppUpdateViewModel
 import com.google.android.play.core.appupdate.AppUpdateManagerFactory
 import com.google.android.play.core.review.ReviewManagerFactory
 import com.google.android.play.core.splitinstall.SplitInstallManagerFactory

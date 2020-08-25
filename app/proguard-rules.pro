@@ -1,4 +1,3 @@
--dontskipnonpubliclibraryclassmembers
 -flattenpackagehierarchy
 #-dump class_files.txt
 #-printseeds seeds.txt
@@ -39,9 +38,6 @@
     @com.google.android.gms.common.annotation.KeepName *;
 }
 
-#Timber
--dontwarn org.jetbrains.annotations.**
-
 -keep public class * extends android.app.Application
 -keep public class * extends android.app.Service
 -keep public class * extends android.content.BroadcastReceiver
@@ -50,26 +46,15 @@
 -keep public class com.android.vending.licensing.ILicensingService
 -keep class android.support.v8.renderscript.** { *; }
 
-## Glide 4
+## Glide
 -keep public class * implements com.bumptech.glide.module.GlideModule
--keep public class * extends com.bumptech.glide.module.AppGlideModule
+-keep class * extends com.bumptech.glide.module.AppGlideModule {
+ <init>(...);
+}
 -keep public enum com.bumptech.glide.load.ImageHeaderParser$** {
   **[] $VALUES;
   public *;
 }
-
-## Crashlytics
--keep class com.crashlytics.** { *; }
--keep public class * extends java.lang.Exception
-
--dontwarn com.crashlytics.**
-
-### Coroutines
-# ServiceLoader support
--keepnames class kotlinx.coroutines.internal.MainDispatcherFactory {}
--keepnames class kotlinx.coroutines.CoroutineExceptionHandler {}
-
-# Most of volatile fields are updated with AFU and should not be mangled
--keepclassmembernames class kotlinx.** {
-    volatile <fields>;
+-keep class com.bumptech.glide.load.data.ParcelFileDescriptorRewinder$InternalRewinder {
+  *** rewind();
 }

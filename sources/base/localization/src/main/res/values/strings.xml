@@ -39,8 +39,7 @@
     <string name="in_app_update_download_finished">An update has just been downloaded</string>
     <string name="in_app_update_complete">Complete update</string>
 
-    <string name="dynamic_delivery_install">Install</string>
-    <string name="dynamic_delivery_installing">Installing… %1$d</string>
+    <string name="dynamic_delivery_installing">Installing… %1$d%%</string>
     <string name="dynamic_delivery_feature_not_available">Feature not available</string>
 
     <!-- Catalog screen -->

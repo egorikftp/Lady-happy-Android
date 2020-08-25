@@ -10,7 +10,7 @@ import org.jetbrains.kotlin.gradle.internal.AndroidExtensionsExtension
 internal val Project.libraryExtension: LibraryExtension
     get() = extensions.getByType()
 
-internal val Project.dynamicFeatureExtension: AppExtension
+internal val Project.appExtension: AppExtension
     get() = extensions.getByType()
 
 fun Project.androidExtensions(configure: AndroidExtensionsExtension.() -> Unit): Unit =

@@ -27,13 +27,13 @@ import com.egoriku.ladyhappy.navigation.navigator.platform.ActivityScopeNavigato
 import com.egoriku.mainscreen.R
 import com.egoriku.mainscreen.databinding.ActivityMainBinding
 import com.egoriku.mainscreen.presentation.balloon.DynamicFeatureBalloonFactory
-import com.egoriku.mainscreen.presentation.inAppReview.ReviewViewModel
+import com.egoriku.mainscreen.presentation.components.dynamicFeature.DynamicFeatureEvent
+import com.egoriku.mainscreen.presentation.components.dynamicFeature.DynamicFeatureViewModel
+import com.egoriku.mainscreen.presentation.components.dynamicFeature.ModuleStatus
+import com.egoriku.mainscreen.presentation.components.inAppReview.ReviewViewModel
+import com.egoriku.mainscreen.presentation.components.inAppUpdates.InAppUpdateEvent
+import com.egoriku.mainscreen.presentation.components.inAppUpdates.InAppUpdateViewModel
 import com.egoriku.mainscreen.presentation.screen.*
-import com.egoriku.mainscreen.presentation.viewmodel.dynamicFeature.DynamicFeatureEvent
-import com.egoriku.mainscreen.presentation.viewmodel.dynamicFeature.DynamicFeatureViewModel
-import com.egoriku.mainscreen.presentation.viewmodel.dynamicFeature.ModuleStatus
-import com.egoriku.mainscreen.presentation.viewmodel.inAppUpdates.InAppUpdateEvent
-import com.egoriku.mainscreen.presentation.viewmodel.inAppUpdates.InAppUpdateViewModel
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.play.core.appupdate.AppUpdateManager
 import com.google.android.play.core.install.model.ActivityResult
@@ -84,6 +84,8 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
 
     private val Balloon.balloonProgressBar: ProgressBar
         get() = getContentView().findViewById(R.id.progressBar)
+
+    private var isOpenDynamicFeatureWhenReady = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -173,7 +175,7 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
 
     override fun attachBaseContext(base: Context) {
         super.attachBaseContext(base)
-        SplitCompat.installActivity(this)
+        SplitCompat.install(this)
     }
 
     private fun subscribeForInAppUpdate() {
@@ -238,16 +240,10 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
 
             postCreatorModuleStatus.observe(owner = this@MainActivity) { status ->
                 when (status) {
-                    is ModuleStatus.Available -> {
-                        dynamicFeatureBalloon.showAlignTop(binding.bottomNavigation)
-
-                        with(dynamicFeatureBalloon) {
-                            balloonTitleTextView.setText(R.string.dynamic_delivery_install)
-                            balloonProgressBar.isIndeterminate = true
-                        }
-                    }
                     is ModuleStatus.Installing -> {
                         with(dynamicFeatureBalloon) {
+                            showAlignTop(binding.bottomNavigation)
+
                             val progress = (status.progress * 100).toInt()
 
                             balloonTitleTextView.text = getString(R.string.dynamic_delivery_installing, progress)
@@ -266,8 +262,10 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
                         dynamicFeatureBalloon.dismissWithDelay(1.seconds.toLongMilliseconds())
                     }
                     is ModuleStatus.Installed -> {
-                        SplitCompat.installActivity(this@MainActivity)
-                        dynamicFeatureViewModel.invokePostCreator()
+                        if (isOpenDynamicFeatureWhenReady) {
+                            isOpenDynamicFeatureWhenReady = false
+                            dynamicFeatureViewModel.invokePostCreator()
+                        }
 
                         dynamicFeatureBalloon.dismissWithDelay(1.seconds.toLongMilliseconds())
                     }
@@ -289,7 +287,10 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
                 lifecycleOwner = this
         ) { _, result ->
             when (result.getParcelable<DynamicFeature>(RESULT_KEY_DYNAMIC_FEATURE)) {
-                is DynamicFeature.PostCreator -> dynamicFeatureViewModel.invokePostCreator()
+                is DynamicFeature.PostCreator -> {
+                    isOpenDynamicFeatureWhenReady = true
+                    dynamicFeatureViewModel.invokePostCreator()
+                }
             }
         }
     }

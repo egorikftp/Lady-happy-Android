@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <attr name="colorPlaceholder" format="color|reference" />
+    <attr name="colorPlaceholder" format="reference" />
+    <attr name="colorSurface.Light" format="reference" />
 </resources>
