@@ -12,14 +12,14 @@ import com.egoriku.ladyhappy.settings.domain.model.Feature
 import com.egoriku.ladyhappy.settings.domain.model.Section
 import com.egoriku.ladyhappy.settings.presentation.adapter.decorator.MarginItemDecoration
 
-class AvailableFeaturesAdapter(
+class AvailableFeaturesSectionAdapter(
         private val onFeatureClick: (feature: Feature) -> Unit
-) : ListAdapter<Section.AvailableFeatures, AvailableFeaturesAdapter.VH>(DiffCallback()) {
+) : ListAdapter<Section.AvailableFeatures, AvailableFeaturesSectionAdapter.VH>(DiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
             VH(AdapterItemFeaturesBinding.inflate(parent.inflater(), parent, false))
 
-    override fun onBindViewHolder(holder: AvailableFeaturesAdapter.VH, position: Int) = holder.bind(getItem(position))
+    override fun onBindViewHolder(holder: AvailableFeaturesSectionAdapter.VH, position: Int) = holder.bind(getItem(position))
 
     override fun getItemViewType(position: Int) = R.layout.adapter_item_features
 

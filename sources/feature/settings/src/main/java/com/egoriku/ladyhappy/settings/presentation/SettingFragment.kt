@@ -20,7 +20,7 @@ import com.egoriku.ladyhappy.settings.databinding.FragmentSettingsBinding
 import com.egoriku.ladyhappy.settings.domain.model.Feature
 import com.egoriku.ladyhappy.settings.domain.model.Section
 import com.egoriku.ladyhappy.settings.domain.model.setting.SettingItem
-import com.egoriku.ladyhappy.settings.presentation.adapter.AvailableFeaturesAdapter
+import com.egoriku.ladyhappy.settings.presentation.adapter.AvailableFeaturesSectionAdapter
 import com.egoriku.ladyhappy.settings.presentation.adapter.LoginSectionAdapter
 import com.egoriku.ladyhappy.settings.presentation.adapter.SettingItemAdapter
 import com.egoriku.ladyhappy.settings.presentation.dialog.theme.ThemeSettingDialogFragment
@@ -44,7 +44,7 @@ class SettingFragment : Fragment(R.layout.fragment_settings), SettingsFeature {
     private var concatAdapter: ConcatAdapter by Delegates.notNull()
 
     private var loginSectionAdapter: LoginSectionAdapter by Delegates.notNull()
-    private var availableFeaturesAdapter: AvailableFeaturesAdapter by Delegates.notNull()
+    private var availableFeaturesAdapter: AvailableFeaturesSectionAdapter by Delegates.notNull()
     private var settingsAdapter: SettingItemAdapter by Delegates.notNull()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -57,7 +57,7 @@ class SettingFragment : Fragment(R.layout.fragment_settings), SettingsFeature {
             }
         }
 
-        availableFeaturesAdapter = AvailableFeaturesAdapter {
+        availableFeaturesAdapter = AvailableFeaturesSectionAdapter {
             when (it) {
                 is Feature.PublishPosts -> {
                     parentFragmentManager.setFragmentResult(

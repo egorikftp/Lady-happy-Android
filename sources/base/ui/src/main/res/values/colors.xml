@@ -10,8 +10,11 @@
     <color name="RealBlack40">#66000000</color>
     <color name="RealBlack30">#4D000000</color>
     <color name="Red">#b00020</color>
+    <color name="RiverBed">#43484D</color>
     <color name="RoseTaupe">#9c5b57</color>
     <color name="RoseTaupeDark">#704643</color>
+
+    <color name="Shark">#272D33</color>
 
     <color name="Terracota">#7f6854</color>
     <color name="TerracotaDark">#655343</color>
@@ -22,4 +25,6 @@
 
     <color name="TabSelected">#0D0D0D</color>
     <color name="TabUnselected">#D1D1D3</color>
+
+    <color name="Westar">#E5E1DD</color>
 </resources>
