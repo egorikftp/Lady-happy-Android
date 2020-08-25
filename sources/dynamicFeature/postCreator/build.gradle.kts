@@ -1,5 +1,6 @@
 import Modules.Applications
 import Modules.Libraries
+import com.egoriku.ext.release
 import com.egoriku.ext.withLibraries
 import com.egoriku.ext.withProjects
 
@@ -11,6 +12,14 @@ plugins {
 happyPlugin {
     kotlinParcelize = true
     viewBindingEnabled = true
+}
+
+android{
+    buildTypes {
+        release {
+            isMinifyEnabled = false
+        }
+    }
 }
 
 withProjects(

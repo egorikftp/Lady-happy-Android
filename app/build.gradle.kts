@@ -46,7 +46,7 @@ android {
         release {
             isDebuggable = false
             multiDexEnabled = false
-            isMinifyEnabled = true
+            isMinifyEnabled = false
             signingConfig = signingConfigs.getByName("release")
             proguardFiles("proguard-rules.pro", getDefaultProguardFile("proguard-android-optimize.txt"))
             extra["enableCrashlytics"] = true
