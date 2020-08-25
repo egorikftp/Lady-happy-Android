@@ -19,7 +19,8 @@ class AvailableFeaturesSectionAdapter(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
             VH(AdapterItemFeaturesBinding.inflate(parent.inflater(), parent, false))
 
-    override fun onBindViewHolder(holder: AvailableFeaturesSectionAdapter.VH, position: Int) = holder.bind(getItem(position))
+    override fun onBindViewHolder(holder: AvailableFeaturesSectionAdapter.VH, position: Int) =
+            holder.bind(getItem(position))
 
     override fun getItemViewType(position: Int) = R.layout.adapter_item_features
 
