@@ -11,11 +11,9 @@ import com.egoriku.ladyhappy.settings.databinding.ViewLoginBinding
 import com.egoriku.ladyhappy.settings.presentation.view.State.ANON
 import com.egoriku.ladyhappy.settings.presentation.view.State.LOGGED_IN
 
-class LoginView : ConstraintLayout {
-
-    constructor(context: Context) : super(context)
-    constructor(context: Context, attrs: AttributeSet) : super(context, attrs)
-    constructor(context: Context, attrs: AttributeSet, defStyleAttr: Int) : super(context, attrs, defStyleAttr)
+internal class LoginView @JvmOverloads constructor(
+        context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
+) : ConstraintLayout(context, attrs, defStyleAttr) {
 
     private val binding = ViewLoginBinding.inflate(inflater(), this)
 
@@ -60,6 +58,7 @@ class LoginView : ConstraintLayout {
         } else {
             Glide.with(binding.profileImage.context)
                     .load(url)
+                    .placeholder(context.drawableCompat(R.color.Placeholder))
                     .into(binding.profileImage)
         }
     }

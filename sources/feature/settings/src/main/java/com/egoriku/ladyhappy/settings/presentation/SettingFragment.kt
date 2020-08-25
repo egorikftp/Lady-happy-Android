@@ -21,7 +21,7 @@ import com.egoriku.ladyhappy.settings.domain.model.Feature
 import com.egoriku.ladyhappy.settings.domain.model.Section
 import com.egoriku.ladyhappy.settings.domain.model.setting.SettingItem
 import com.egoriku.ladyhappy.settings.presentation.adapter.AvailableFeaturesAdapter
-import com.egoriku.ladyhappy.settings.presentation.adapter.LoginAdapter
+import com.egoriku.ladyhappy.settings.presentation.adapter.LoginSectionAdapter
 import com.egoriku.ladyhappy.settings.presentation.adapter.SettingItemAdapter
 import com.egoriku.ladyhappy.settings.presentation.dialog.theme.ThemeSettingDialogFragment
 import com.egoriku.ladyhappy.settings.presentation.screen.LoginScreen
@@ -43,14 +43,14 @@ class SettingFragment : Fragment(R.layout.fragment_settings), SettingsFeature {
 
     private var concatAdapter: ConcatAdapter by Delegates.notNull()
 
-    private var loginAdapter: LoginAdapter by Delegates.notNull()
+    private var loginSectionAdapter: LoginSectionAdapter by Delegates.notNull()
     private var availableFeaturesAdapter: AvailableFeaturesAdapter by Delegates.notNull()
     private var settingsAdapter: SettingItemAdapter by Delegates.notNull()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        loginAdapter = LoginAdapter {
+        loginSectionAdapter = LoginSectionAdapter {
             when (it) {
                 ANON -> settingsViewModel.navigateTo(LoginScreen(featureProvider), R.id.contentFullScreen)
                 LOGGED_IN -> settingsViewModel.logOut()
@@ -80,14 +80,14 @@ class SettingFragment : Fragment(R.layout.fragment_settings), SettingsFeature {
             }
         }
 
-        concatAdapter = ConcatAdapter(loginAdapter, availableFeaturesAdapter, settingsAdapter)
+        concatAdapter = ConcatAdapter(loginSectionAdapter, availableFeaturesAdapter, settingsAdapter)
 
         binding.initViews()
 
         settingsViewModel.screenData.observe(owner = viewLifecycleOwner) {
             it.forEach { (_, section) ->
                 when (section) {
-                    is Section.Login -> loginAdapter.submitList(listOf(section))
+                    is Section.Login -> loginSectionAdapter.submitList(listOf(section))
                     is Section.AvailableFeatures -> availableFeaturesAdapter.submitList(listOf(section))
                     is Section.Settings -> settingsAdapter.submitList(section.setting)
                 }
