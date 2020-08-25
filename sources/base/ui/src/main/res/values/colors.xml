@@ -2,13 +2,14 @@
 <resources>
     <color name="transparent">#00000000</color>
 
-    <color name="RealWhite">#FFFFFF</color>
-    <color name="RealWhite80">#CCFFFFFF</color>
-    <color name="RealWhite38">#61FFFFFF</color>
+    <color name="LimedSpruce">#383C40</color>
 
     <color name="RealBlack">#FF000000</color>
     <color name="RealBlack40">#66000000</color>
     <color name="RealBlack30">#4D000000</color>
+    <color name="RealWhite">#FFFFFF</color>
+    <color name="RealWhite80">#CCFFFFFF</color>
+    <color name="RealWhite38">#61FFFFFF</color>
     <color name="Red">#b00020</color>
     <color name="RiverBed">#43484D</color>
     <color name="RoseTaupe">#9c5b57</color>

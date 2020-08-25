@@ -19,5 +19,5 @@
     <color name="colorError">@color/Red</color>
     <color name="colorOnError">@color/Shark</color>
 
-    <color name="colorPlaceholder">#383C40</color>
+    <color name="colorPlaceholder">@color/LimedSpruce</color>
 </resources>
