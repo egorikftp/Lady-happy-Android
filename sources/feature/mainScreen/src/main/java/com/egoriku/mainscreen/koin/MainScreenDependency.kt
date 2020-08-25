@@ -16,21 +16,15 @@ import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
 val mainActivityModule = module {
+    single { AppUpdateManagerFactory.create(androidContext()) }
     single { ReviewManagerFactory.create(androidContext()) }
+    single { SplitInstallManagerFactory.create(androidContext()) }
 
     scope<MainActivity> {
         scoped { ObserveThemeModeUseCase(preferences = get(), dispatchers = get()) }
 
         scoped<IThemedActivityDelegate> {
             ThemedActivityDelegate(observeThemeUseCase = get())
-        }
-
-        scoped {
-            AppUpdateManagerFactory.create(androidContext())
-        }
-
-        scoped {
-            SplitInstallManagerFactory.create(androidContext())
         }
 
         viewModel {

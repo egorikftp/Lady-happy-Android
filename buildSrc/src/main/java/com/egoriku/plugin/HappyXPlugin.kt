@@ -95,7 +95,6 @@ private fun Project.addAndroidApplicationSection() = appExtension.run {
         minSdkVersion(ProjectVersion.minSdkVersion)
         versionCode = provideVersionCode()
         versionName = provideVersionName()
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         resConfigs("en", "ru")
     }
 
