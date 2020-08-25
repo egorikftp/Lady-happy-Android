@@ -2,7 +2,11 @@
 <resources>
     <color name="transparent">#00000000</color>
 
+    <color name="Gray">#72757A</color>
+
     <color name="LimedSpruce">#383C40</color>
+
+    <color name="Placeholder">#EBEDF0</color>
 
     <color name="RealBlack">#FF000000</color>
     <color name="RealBlack40">#66000000</color>
@@ -19,13 +23,7 @@
 
     <color name="Terracota">#7f6854</color>
     <color name="TerracotaDark">#655343</color>
-    <color name="Wheat">#DBCDAD</color>
-    <color name="Gray">#72757A</color>
-
-    <color name="Placeholder">#EBEDF0</color>
-
-    <color name="TabSelected">#0D0D0D</color>
-    <color name="TabUnselected">#D1D1D3</color>
 
     <color name="Westar">#E5E1DD</color>
+    <color name="Wheat">#DBCDAD</color>
 </resources>

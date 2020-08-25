@@ -11,7 +11,7 @@ import com.egoriku.ext.implementation
 import com.egoriku.ext.release
 import com.egoriku.plugin.extension.MyPluginExtension
 import com.egoriku.plugin.internal.androidExtensions
-import com.egoriku.plugin.internal.dynamicFeatureExtension
+import com.egoriku.plugin.internal.appExtension
 import com.egoriku.plugin.internal.libraryExtension
 import com.egoriku.versions.ProjectVersion
 import org.gradle.api.JavaVersion
@@ -39,6 +39,7 @@ open class HappyXPlugin : Plugin<Project> {
                     is AppPlugin -> {
                         addCommonPlugins()
                         addCommonDependencies()
+                        addAndroidApplicationSection()
                     }
                     is DynamicFeaturePlugin -> {
                         println("This is DynamicFeaturePlugin")
@@ -75,7 +76,7 @@ open class HappyXPlugin : Plugin<Project> {
                     is DynamicFeaturePlugin -> {
                         enableParcelize(config)
 
-                        dynamicFeatureExtension.run {
+                        appExtension.run {
                             viewBinding {
                                 isEnabled = config.viewBindingEnabled
                             }
@@ -85,23 +86,44 @@ open class HappyXPlugin : Plugin<Project> {
             }
         }
     }
+}
 
-    private fun Project.enableParcelize(config: MyPluginExtension) {
-        if (config.kotlinParcelize) {
-            plugins.apply("kotlin-android-extensions")
+private fun Project.addAndroidApplicationSection() = appExtension.run {
+    defaultConfig {
+        applicationId = "com.egoriku.ladyhappy"
+        compileSdkVersion(ProjectVersion.compileSdkVersion)
+        minSdkVersion(ProjectVersion.minSdkVersion)
+        versionCode = provideVersionCode()
+        versionName = provideVersionName()
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        resConfigs("en", "ru")
+    }
 
-            androidExtensions {
-                features = setOf(AndroidExtensionsFeature.PARCELIZE.featureName)
-            }
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
+
+    buildTypes {
+        release {
+            isDebuggable = false
+            multiDexEnabled = false
+            isMinifyEnabled = true
+            proguardFiles("proguard-rules.pro", getDefaultProguardFile("proguard-android-optimize.txt"))
+        }
+
+        debug {
+            applicationIdSuffix = ".debug"
+            versionNameSuffix = "-debug"
+
+            isMinifyEnabled = false
+            multiDexEnabled = true
         }
     }
 
-    private fun Project.addCommonPlugins() {
-        plugins.apply("kotlin-android")
-    }
 }
 
-private fun Project.addAndroidDynamicSection() = dynamicFeatureExtension.run {
+private fun Project.addAndroidDynamicSection() = appExtension.run {
     defaultConfig {
         minSdkVersion(ProjectVersion.minSdkVersion)
         compileSdkVersion(ProjectVersion.compileSdkVersion)
@@ -115,7 +137,6 @@ private fun Project.addAndroidDynamicSection() = dynamicFeatureExtension.run {
         targetCompatibility = JavaVersion.VERSION_1_8
     }
 }
-
 
 private fun Project.addAndroidLibrarySection() = libraryExtension.run {
     defaultConfig {
@@ -144,4 +165,18 @@ private fun Project.addAndroidLibrarySection() = libraryExtension.run {
 
 private fun Project.addCommonDependencies() = dependencies {
     implementation(Libs.kotlin)
+}
+
+private fun Project.enableParcelize(config: MyPluginExtension) {
+    if (config.kotlinParcelize) {
+        plugins.apply("kotlin-android-extensions")
+
+        androidExtensions {
+            features = setOf(AndroidExtensionsFeature.PARCELIZE.featureName)
+        }
+    }
+}
+
+private fun Project.addCommonPlugins() {
+    plugins.apply("kotlin-android")
 }
