@@ -2,6 +2,7 @@ package com.egoriku.mainscreen.presentation.balloon
 
 import android.content.Context
 import androidx.lifecycle.LifecycleOwner
+import com.egoriku.extensions.colorFromAttr
 import com.egoriku.mainscreen.R
 import com.skydoves.balloon.Balloon
 import com.skydoves.balloon.BalloonAnimation
@@ -18,7 +19,7 @@ class DynamicFeatureBalloonFactory : Balloon.Factory() {
         arrowVisible = false
         layoutRes = R.layout.layout_ballon
         setCornerRadius(CORNER_RADIUS)
-        setBackgroundColorResource(R.color.RealWhite)
+        backgroundColor = context.colorFromAttr(R.attr.colorSurface)
         setBalloonAnimation(BalloonAnimation.FADE)
         setLifecycleOwner(lifecycleOwner)
         dismissWhenTouchOutside = false

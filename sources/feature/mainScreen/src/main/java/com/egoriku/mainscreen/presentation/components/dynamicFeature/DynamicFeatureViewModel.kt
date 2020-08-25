@@ -1,4 +1,4 @@
-package com.egoriku.mainscreen.presentation.viewmodel.dynamicFeature
+package com.egoriku.mainscreen.presentation.components.dynamicFeature
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel

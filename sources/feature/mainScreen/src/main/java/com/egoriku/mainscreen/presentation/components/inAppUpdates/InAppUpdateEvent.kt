@@ -1,4 +1,4 @@
-package com.egoriku.mainscreen.presentation.viewmodel.inAppUpdates
+package com.egoriku.mainscreen.presentation.components.inAppUpdates
 
 import com.google.android.play.core.appupdate.AppUpdateInfo
 

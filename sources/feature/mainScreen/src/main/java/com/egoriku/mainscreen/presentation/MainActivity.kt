@@ -27,13 +27,13 @@ import com.egoriku.ladyhappy.navigation.navigator.platform.ActivityScopeNavigato
 import com.egoriku.mainscreen.R
 import com.egoriku.mainscreen.databinding.ActivityMainBinding
 import com.egoriku.mainscreen.presentation.balloon.DynamicFeatureBalloonFactory
-import com.egoriku.mainscreen.presentation.inAppReview.ReviewViewModel
+import com.egoriku.mainscreen.presentation.components.dynamicFeature.DynamicFeatureEvent
+import com.egoriku.mainscreen.presentation.components.dynamicFeature.DynamicFeatureViewModel
+import com.egoriku.mainscreen.presentation.components.dynamicFeature.ModuleStatus
+import com.egoriku.mainscreen.presentation.components.inAppReview.ReviewViewModel
+import com.egoriku.mainscreen.presentation.components.inAppUpdates.InAppUpdateEvent
+import com.egoriku.mainscreen.presentation.components.inAppUpdates.InAppUpdateViewModel
 import com.egoriku.mainscreen.presentation.screen.*
-import com.egoriku.mainscreen.presentation.viewmodel.dynamicFeature.DynamicFeatureEvent
-import com.egoriku.mainscreen.presentation.viewmodel.dynamicFeature.DynamicFeatureViewModel
-import com.egoriku.mainscreen.presentation.viewmodel.dynamicFeature.ModuleStatus
-import com.egoriku.mainscreen.presentation.viewmodel.inAppUpdates.InAppUpdateEvent
-import com.egoriku.mainscreen.presentation.viewmodel.inAppUpdates.InAppUpdateViewModel
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.play.core.appupdate.AppUpdateManager
 import com.google.android.play.core.install.model.ActivityResult
@@ -260,7 +260,6 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
                         dynamicFeatureBalloon.dismissWithDelay(1.seconds.toLongMilliseconds())
                     }
                     is ModuleStatus.Installed -> {
-                        SplitCompat.installActivity(this@MainActivity)
                         dynamicFeatureViewModel.invokePostCreator()
 
                         dynamicFeatureBalloon.dismissWithDelay(1.seconds.toLongMilliseconds())
