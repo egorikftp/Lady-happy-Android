@@ -173,7 +173,7 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
 
     override fun attachBaseContext(base: Context) {
         super.attachBaseContext(base)
-        SplitCompat.installActivity(this)
+        SplitCompat.install(this)
     }
 
     private fun subscribeForInAppUpdate() {
@@ -260,6 +260,8 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
                         dynamicFeatureBalloon.dismissWithDelay(1.seconds.toLongMilliseconds())
                     }
                     is ModuleStatus.Installed -> {
+                        SplitCompat.installActivity(this@MainActivity)
+
                         dynamicFeatureViewModel.invokePostCreator()
 
                         dynamicFeatureBalloon.dismissWithDelay(1.seconds.toLongMilliseconds())
