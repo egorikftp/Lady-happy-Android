@@ -4,7 +4,6 @@ import Modules.Libraries
 import com.android.build.gradle.internal.api.BaseVariantOutputImpl
 import com.egoriku.application.provideVersionCode
 import com.egoriku.application.provideVersionName
-import com.egoriku.ext.*
 import com.egoriku.versions.ProjectVersion
 import org.jetbrains.kotlin.konan.file.File
 import org.jetbrains.kotlin.konan.properties.Properties
@@ -46,7 +45,7 @@ android {
         release {
             isDebuggable = false
             multiDexEnabled = false
-            isMinifyEnabled = false
+            isMinifyEnabled = true
             signingConfig = signingConfigs.getByName("release")
             proguardFiles("proguard-rules.pro", getDefaultProguardFile("proguard-android-optimize.txt"))
             extra["enableCrashlytics"] = true

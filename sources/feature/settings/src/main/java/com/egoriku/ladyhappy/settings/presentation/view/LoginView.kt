@@ -1,6 +1,7 @@
 package com.egoriku.ladyhappy.settings.presentation.view
 
 import android.content.Context
+import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.Drawable
 import android.util.AttributeSet
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -56,9 +57,11 @@ internal class LoginView @JvmOverloads constructor(
         if (url.isEmpty()) {
             binding.profileImage.setImageDrawable(drawableCompat(R.drawable.ic_profile_stub))
         } else {
+            val placeholderDrawable = ColorDrawable(context.colorFromAttr(R.attr.colorPlaceholder))
+
             Glide.with(binding.profileImage.context)
                     .load(url)
-                    .placeholder(context.drawableCompat(R.color.Placeholder))
+                    .placeholder(placeholderDrawable)
                     .into(binding.profileImage)
         }
     }
