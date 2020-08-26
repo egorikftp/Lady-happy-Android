@@ -19,6 +19,7 @@ import com.egoriku.ladyhappy.postcreator.domain.predefined.PredefinedData
 import com.egoriku.ladyhappy.postcreator.koin.postModule
 import com.egoriku.ladyhappy.postcreator.presentation.PostViewModel
 import com.egoriku.ladyhappy.postcreator.presentation.dialogs.CategoriesDialog
+import com.egoriku.ladyhappy.postcreator.presentation.dialogs.ColorDialog
 import com.egoriku.ladyhappy.postcreator.presentation.dialogs.SubCategoriesDialog
 import com.egoriku.ladyhappy.postcreator.presentation.model.Chooser
 import com.egoriku.ladyhappy.postcreator.presentation.model.Type
@@ -111,6 +112,7 @@ class PostCreatorFragment : Fragment(R.layout.fragment_post_creator) {
                     .show(childFragmentManager, null)
         }
         Type.COLOR -> {
+            ColorDialog().show(childFragmentManager, null)
         }
     }
 

@@ -10,3 +10,9 @@ data class SubCategoryModel(
         val subCategoryId: Int,
         val name: String
 )
+
+data class ColorModel(
+        val colorId: Int,
+        val name: String,
+        val color: String
+)
