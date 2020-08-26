@@ -15,14 +15,13 @@ abstract class BaseDialogFragment : AppCompatDialogFragment(),
         val builder = MaterialAlertDialogBuilder(requireContext())
                 .setTitle(dialogTitleResId)
 
-        onBuildDialog(builder)
+        return onBuildDialog(builder)
                 .setOnKeyListener { _, keyCode, event ->
                     return@setOnKeyListener keyCode == KeyEvent.KEYCODE_BACK && event.action == KeyEvent.ACTION_UP
                 }
                 .setPositiveButton(R.string.ok, this)
                 .setNegativeButton(R.string.cancel, this)
-
-        return builder.create()
+                .create()
     }
 
     override fun onClick(dialog: DialogInterface?, which: Int) {

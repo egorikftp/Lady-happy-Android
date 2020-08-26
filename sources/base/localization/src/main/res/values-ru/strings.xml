@@ -90,6 +90,7 @@
     <string name="post_creator_images_count">%1$s из 10</string>
     <string name="post_creator_categories_dialog_title">Выберите категорию</string>
     <string name="post_creator_subcategories_categories_dialog_title">Выберите подкатегорию</string>
+    <string name="post_creator_color_dialog_title">Выберите цвет</string>
 
     <!-- Used Libraries -->
     <string name="used_libraries_prefix_the" />

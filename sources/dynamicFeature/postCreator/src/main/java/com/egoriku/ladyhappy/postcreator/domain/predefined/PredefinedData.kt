@@ -220,6 +220,33 @@ object PredefinedData {
 
     )
 
+    val colors = listOf(
+            ColorModel(colorId = 1, name = "Дрозд (темно-бежевый)", color = "#78563D"),
+            ColorModel(colorId = 2, name = "Deep Taupe", color = "#5F4B43"),
+            ColorModel(colorId = 3, name = "Темный бордо", color = "#3A0A12"),
+            ColorModel(colorId = 4, name = "Морская волна", color = "#092231"),
+            ColorModel(colorId = 5, name = "Шоколад", color = "#1D0A0E"),
+            ColorModel(colorId = 6, name = "Цинк", color = "#5C565D"),
+            ColorModel(colorId = 7, name = "Бордо", color = "#57090E"),
+            ColorModel(colorId = 8, name = "Горчица", color = "#CC7119"),
+            ColorModel(colorId = 9, name = "Меланж", color = "#363438"),
+            ColorModel(colorId = 10, name = "Черный", color = "#0E0C11"),
+            ColorModel(colorId = 11, name = "Белый", color = "#C5B198"),
+            ColorModel(colorId = 12, name = "Молочный", color = "#AF8376"),
+            ColorModel(colorId = 13, name = "Мятный", color = "#3C8D78"),
+            ColorModel(colorId = 14, name = "Лаванда", color = "#6A5662"),
+            ColorModel(colorId = 15, name = "Бледно-голубой", color = "#5D5678"),
+            ColorModel(colorId = 16, name = "Розовый", color = "#94567D"),
+            ColorModel(colorId = 17, name = "Красный", color = "#670C1A"),
+            ColorModel(colorId = 18, name = "Малиновый", color = "#9A0F4B"),
+            ColorModel(colorId = 19, name = "Баклажан", color = "#39203D"),
+            ColorModel(colorId = 20, name = "Оранжевый", color = "#DA360F"),
+            ColorModel(colorId = 21, name = "Бледно-розовый", color = "#C07783"),
+            ColorModel(colorId = 22, name = "Античная роза", color = "#66474F"),
+            ColorModel(colorId = 23, name = "Дробленая ягода", color = "#55263C"),
+            ColorModel(colorId = 24, name = "Изумруд", color = "#172427")
+    )
+
     fun getCategoriesNames() = ArrayList(
             allCategories.map { it.name }
     )
