@@ -35,7 +35,7 @@
     <!-- Main screen -->
     <string name="in_app_update_available">Update available</string>
     <string name="in_app_update_now">Update now</string>
-    <string name="in_app_update_downloading">Downloading update… %1$d</string>
+    <string name="in_app_update_downloading">Downloading update… %1$d%%</string>
     <string name="in_app_update_download_finished">An update has just been downloaded</string>
     <string name="in_app_update_complete">Complete update</string>
 
