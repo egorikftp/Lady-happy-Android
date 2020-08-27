@@ -24,7 +24,7 @@ object LibrariesVersion {
     const val glide = "4.11.0"
     const val junit = "4.13"
     const val imageCompressor = "3.0.0"
-    const val koil = "0.12.0"
+    const val coil = "1.0.0-rc1"
     const val koin = "2.1.6"
     const val kotlin = "1.4.0"
     const val leakCanary = "2.4"

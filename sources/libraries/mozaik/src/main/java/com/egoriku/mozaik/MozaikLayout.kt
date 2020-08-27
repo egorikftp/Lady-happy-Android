@@ -26,16 +26,6 @@ class MozaikLayout @JvmOverloads constructor(
 
     var onViewReady: ((view: ImageView, url: String) -> Unit)? = null
 
-    var dividerSize: Int = 0
-        set(value) {
-            field = value
-
-            strategyData.dividerSize = value
-
-            requestLayout()
-            invalidate()
-        }
-
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec)
 
@@ -87,7 +77,9 @@ class MozaikLayout @JvmOverloads constructor(
         removeAllViews()
 
         items.forEachIndexed { _, _ ->
-            addView(ImageView(context))
+            addView(ImageView(context).apply {
+                scaleType = ImageView.ScaleType.CENTER_CROP
+            })
         }
 
         strategyData.rect = List(items.size) { Rect() }
