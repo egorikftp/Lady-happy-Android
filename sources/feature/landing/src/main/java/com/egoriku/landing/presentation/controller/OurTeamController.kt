@@ -45,7 +45,7 @@ internal class OurTeamController(
 
             socialViewContainer.setSocialModel(model.socialLinks)
 
-            itemBinding.ourTeamPersonImage.load(uri = model.profileImage){
+            itemBinding.ourTeamPersonImage.load(uri = model.profileImage) {
                 placeholder(placeholderDrawable)
             }
         }

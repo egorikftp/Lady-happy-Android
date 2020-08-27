@@ -21,11 +21,11 @@ withProjects(
 
 withLibraries(
         Libs.appcompat,
+        Libs.coil,
         Libs.constraintLayout,
         Libs.coroutinesAndroid,
         Libs.easyAdapter,
         Libs.firebaseFirestore,
-        Libs.glide,
         Libs.koinAndroid,
         Libs.koinViewModel,
         Libs.pageIndicator,
