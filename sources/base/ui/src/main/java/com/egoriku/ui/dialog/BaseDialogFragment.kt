@@ -15,7 +15,7 @@ abstract class BaseDialogFragment : AppCompatDialogFragment(),
         val builder = MaterialAlertDialogBuilder(requireContext())
                 .setTitle(dialogTitleResId)
 
-        return onBuildDialog(builder)
+        return onBuildDialog(builder, savedInstanceState)
                 .setOnKeyListener { _, keyCode, event ->
                     return@setOnKeyListener keyCode == KeyEvent.KEYCODE_BACK && event.action == KeyEvent.ACTION_UP
                 }
@@ -33,7 +33,10 @@ abstract class BaseDialogFragment : AppCompatDialogFragment(),
 
     abstract val dialogTitleResId: Int
 
-    abstract fun onBuildDialog(builder: MaterialAlertDialogBuilder): MaterialAlertDialogBuilder
+    abstract fun onBuildDialog(
+            builder: MaterialAlertDialogBuilder,
+            savedInstanceState: Bundle?
+    ): MaterialAlertDialogBuilder
 
     open fun onPositiveButtonClick() = Unit
 
