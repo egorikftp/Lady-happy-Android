@@ -32,6 +32,7 @@ object Libs {
 
     const val imageCompressor = "id.zelory:compressor:${LibrariesVersion.imageCompressor}"
 
+    const val koil = "io.coil-kt:coil:${LibrariesVersion.koil}"
     const val koinAndroid = "org.koin:koin-android:${LibrariesVersion.koin}"
     const val koinViewModel = "org.koin:koin-androidx-viewmodel:${LibrariesVersion.koin}"
     const val kotlin = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${LibrariesVersion.kotlin}"

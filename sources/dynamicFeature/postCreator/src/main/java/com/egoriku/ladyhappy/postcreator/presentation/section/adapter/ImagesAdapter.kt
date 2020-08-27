@@ -5,12 +5,9 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
-import com.bumptech.glide.load.resource.bitmap.CenterCrop
-import com.bumptech.glide.load.resource.bitmap.RoundedCorners
-import com.bumptech.glide.request.RequestOptions
+import coil.load
+import coil.transform.RoundedCornersTransformation
 import com.egoriku.extensions.colorFromAttr
-import com.egoriku.extensions.context
 import com.egoriku.extensions.inflater
 import com.egoriku.ladyhappy.postcreator.databinding.AdapterItemImageBinding
 import com.egoriku.ladyhappy.postcreator.domain.model.ImageItem
@@ -36,15 +33,10 @@ class ImagesAdapter(
         }
 
         fun bind(item: ImageItem) {
-            Glide.with(binding.context)
-                    .load(item.uri)
-                    .placeholder(placeholderDrawable)
-                    .apply(RequestOptions()
-                            .transform(
-                                    CenterCrop(),
-                                    RoundedCorners(16)
-                            ))
-                    .into(binding.attachmentImage)
+            binding.attachmentImage.load(uri = item.uri) {
+                placeholder(placeholderDrawable)
+                transformations(RoundedCornersTransformation(radius = 16f))
+            }
         }
     }
 
