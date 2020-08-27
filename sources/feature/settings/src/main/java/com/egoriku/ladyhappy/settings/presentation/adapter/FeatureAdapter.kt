@@ -4,6 +4,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.egoriku.extensions.context
 import com.egoriku.extensions.drawableCompat
 import com.egoriku.extensions.inflater
 import com.egoriku.ladyhappy.settings.R
@@ -33,7 +34,7 @@ class FeatureAdapter(
                 }
             }
 
-            featureLogo.setImageDrawable(root.context.drawableCompat(feature.iconResId))
+            featureLogo.setImageDrawable(context.drawableCompat(feature.iconResId))
         }
     }
 

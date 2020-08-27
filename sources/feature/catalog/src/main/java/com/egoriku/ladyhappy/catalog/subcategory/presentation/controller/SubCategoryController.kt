@@ -74,7 +74,7 @@ internal class SubCategoryController(
             }
 
             subCategoryTitle.text = data.name
-            subCategorySize.text = root.context.getQuantityStringZero(
+            subCategorySize.text = context.getQuantityStringZero(
                     pluralResId = R.plurals.catalog_images_count,
                     zeroResId = R.string.catalog_images_count_zero,
                     quantity = data.publishedCount

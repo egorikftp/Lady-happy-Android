@@ -1,5 +1,6 @@
 package com.egoriku.ladyhappy.postcreator.presentation.section.adapter
 
+import android.graphics.drawable.ColorDrawable
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
@@ -8,7 +9,8 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
-import com.egoriku.extensions.drawableCompat
+import com.egoriku.extensions.colorFromAttr
+import com.egoriku.extensions.context
 import com.egoriku.extensions.inflater
 import com.egoriku.ladyhappy.postcreator.databinding.AdapterItemImageBinding
 import com.egoriku.ladyhappy.postcreator.domain.model.ImageItem
@@ -25,6 +27,8 @@ class ImagesAdapter(
 
     inner class VH(private val binding: AdapterItemImageBinding) : RecyclerView.ViewHolder(binding.root) {
 
+        private val placeholderDrawable = ColorDrawable(itemView.colorFromAttr(R_ui.attr.colorPlaceholder))
+
         init {
             binding.removeImage.setOnClickListener {
                 onRemoveImageClick(getItem(bindingAdapterPosition))
@@ -32,11 +36,9 @@ class ImagesAdapter(
         }
 
         fun bind(item: ImageItem) {
-            val context = binding.root.context
-
-            Glide.with(context)
+            Glide.with(binding.context)
                     .load(item.uri)
-                    .placeholder(context.drawableCompat(R_ui.color.Placeholder))
+                    .placeholder(placeholderDrawable)
                     .apply(RequestOptions()
                             .transform(
                                     CenterCrop(),

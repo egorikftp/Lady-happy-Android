@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.egoriku.extensions.context
 import com.egoriku.extensions.inflater
 import com.egoriku.ladyhappy.settings.R
 import com.egoriku.ladyhappy.settings.databinding.AdapterItemFeaturesBinding
@@ -32,11 +33,11 @@ class AvailableFeaturesSectionAdapter(
 
         init {
             binding.featuresRecyclerView.apply {
-                layoutManager = LinearLayoutManager(itemView.context, LinearLayoutManager.HORIZONTAL, false)
+                layoutManager = LinearLayoutManager(binding.context, LinearLayoutManager.HORIZONTAL, false)
                 adapter = featureAdapter
                 addItemDecoration(
                         MarginItemDecoration(
-                                binding.root.context.resources.getDimensionPixelOffset(R.dimen.material_padding_16))
+                                binding.context.resources.getDimensionPixelOffset(R.dimen.material_padding_16))
                 )
             }
         }

@@ -59,7 +59,7 @@ internal class LoginView @JvmOverloads constructor(
         } else {
             val placeholderDrawable = ColorDrawable(context.colorFromAttr(R.attr.colorPlaceholder))
 
-            Glide.with(binding.profileImage.context)
+            Glide.with(binding.context)
                     .load(url)
                     .placeholder(placeholderDrawable)
                     .into(binding.profileImage)
