@@ -81,3 +81,11 @@ inline fun View.addRipple() {
 
 fun View.pxToDp(value: Int): Int =
         (value.toFloat() / context.resources.displayMetrics.density).roundToInt()
+
+inline fun View.activated() {
+    isActivated = true
+}
+
+inline fun View.resetActivated() {
+    isActivated = false
+}

@@ -29,6 +29,7 @@
         app:layout_constraintEnd_toStartOf="@+id/postImagesCount"
         app:layout_constraintTop_toTopOf="@+id/postTitle"
         app:srcCompat="@drawable/ic_image"
+        app:tint="@color/bg_images_count"
         tools:viewBindingIgnore="true" />
 
     <TextView
@@ -36,6 +37,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="@dimen/material_padding_16"
+        android:textColor="@color/bg_images_count"
         android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="@+id/icon"
         app:layout_constraintEnd_toEndOf="parent"

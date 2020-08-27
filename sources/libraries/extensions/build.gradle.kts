@@ -12,5 +12,6 @@ withLibraries(
         Libs.lifecycleRuntime,
         Libs.material,
         Libs.recyclerView,
+        Libs.viewBinding,
         Libs.viewModel
 )

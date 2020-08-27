@@ -42,3 +42,9 @@ withLibraries(
         Libs.viewBindingDelegates,
         Libs.viewModel
 )
+
+dependencies {
+    implementation(Libs.recyclerViewSelection) {
+        exclude("recyclerview", "recyclerview")
+    }
+}

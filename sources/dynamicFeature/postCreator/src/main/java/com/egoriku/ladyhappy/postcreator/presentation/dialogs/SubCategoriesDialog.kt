@@ -17,7 +17,10 @@ class SubCategoriesDialog : BaseDialogFragment() {
 
     override val dialogTitleResId: Int = R_localization.string.post_creator_subcategories_categories_dialog_title
 
-    override fun onBuildDialog(builder: MaterialAlertDialogBuilder) =
+    override fun onBuildDialog(
+            builder: MaterialAlertDialogBuilder,
+            savedInstanceState: Bundle?
+    ): MaterialAlertDialogBuilder =
             builder.setSingleChoiceItems(getCategories(requireArguments()), 0) { _, which ->
                 selectedItemPosition = which
             }

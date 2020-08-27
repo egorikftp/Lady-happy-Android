@@ -3,9 +3,10 @@ package com.egoriku.ladyhappy.postcreator.presentation.section
 import android.graphics.Typeface
 import android.view.ViewGroup
 import androidx.recyclerview.widget.*
-import com.egoriku.extensions.colorFromAttr
-import com.egoriku.extensions.colorStateListCompat
+import com.egoriku.extensions.activated
+import com.egoriku.extensions.context
 import com.egoriku.extensions.inflater
+import com.egoriku.extensions.resetActivated
 import com.egoriku.ladyhappy.postcreator.R
 import com.egoriku.ladyhappy.postcreator.databinding.AdapterItemImagesSectionBinding
 import com.egoriku.ladyhappy.postcreator.domain.model.ImageItem
@@ -14,7 +15,6 @@ import com.egoriku.ladyhappy.postcreator.presentation.section.adapter.AddImageAd
 import com.egoriku.ladyhappy.postcreator.presentation.section.adapter.ImagesAdapter
 import com.egoriku.ui.decorator.VerticalMarginItemDecoration
 import com.egoriku.ladyhappy.localization.R as R_localization
-import com.egoriku.ui.R as R_ui
 
 private const val MAX_IMAGES_SIZE = 10
 
@@ -59,25 +59,22 @@ class ImagesSectionAdapter(
             binding.updateImagesCount(images)
         }
 
-        private fun AdapterItemImagesSectionBinding.updateImagesCount(list: List<ImageItem>) {
-            val size = list.size
-            val context = root.context
-
-            if (size > MAX_IMAGES_SIZE) {
-                postImagesCount.setTextColor(context.colorFromAttr(R_ui.attr.colorPrimary))
+        private fun AdapterItemImagesSectionBinding.updateImagesCount(images: List<ImageItem>) {
+            if (images.size > MAX_IMAGES_SIZE) {
+                postImagesCount.activated()
                 postImagesCount.setTypeface(null, Typeface.BOLD)
 
-                icon.imageTintList = context.colorStateListCompat(R_ui.color.RoseTaupe)
+                icon.activated()
             } else {
-                postImagesCount.setTextColor(context.colorFromAttr(R_ui.attr.colorOnSurface))
+                postImagesCount.resetActivated()
                 postImagesCount.setTypeface(null, Typeface.NORMAL)
 
-                icon.imageTintList = context.colorStateListCompat(R_ui.color.RealBlack)
+                icon.resetActivated()
             }
 
             postImagesCount.text = String.format(
                     context.getString(R_localization.string.post_creator_images_count),
-                    list.size
+                    images.size
             )
         }
     }

@@ -47,9 +47,11 @@ object Libs {
     const val playServicesAuth = "com.google.android.gms:play-services-auth:${LibrariesVersion.playServicesAuth}"
 
     const val recyclerView = "androidx.recyclerview:recyclerview:${LibrariesVersion.recyclerView}"
+    const val recyclerViewSelection = "androidx.recyclerview:recyclerview-selection:${LibrariesVersion.recyclerViewSelection}"
 
     const val vectorDrawable = "androidx.vectordrawable:vectordrawable:${LibrariesVersion.vectorDrawable}"
     const val viewBindingDelegates = "com.github.kirich1409:ViewBindingPropertyDelegate:${LibrariesVersion.viewBindingDelegates}"
+    const val viewBinding = "androidx.databinding:viewbinding:${LibrariesVersion.viewBinding}"
     const val viewModel = "androidx.lifecycle:lifecycle-viewmodel-ktx:${LibrariesVersion.lifecycle}"
     const val viewPager2 = "androidx.viewpager2:viewpager2:${LibrariesVersion.viewPager2}"
 }

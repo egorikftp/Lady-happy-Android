@@ -33,8 +33,10 @@ object LibrariesVersion {
     const val playCore = "1.8.1"
     const val playServicesAuth = "18.1.0"
     const val recyclerView = "1.2.0-alpha05"
+    const val recyclerViewSelection = "1.1.0-rc01"
     const val vectorDrawable = "1.1.0"
     const val viewBindingDelegates = "1.0.0"
+    const val viewBinding = "4.0.1"
     const val viewPager2 = "1.0.0"
 }
 
