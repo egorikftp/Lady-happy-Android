@@ -54,6 +54,6 @@ class ColorDialog : BaseDialogFragment() {
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
-        selectionTracker?.onSaveInstanceState(outState);
+        selectionTracker?.onSaveInstanceState(outState)
     }
 }
