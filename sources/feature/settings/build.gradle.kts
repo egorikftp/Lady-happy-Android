@@ -28,12 +28,12 @@ withProjects(
 )
 
 withLibraries(
+        Libs.coil,
         Libs.constraintLayout,
         Libs.core,
         Libs.circleImageView,
         Libs.easyAdapter,
         Libs.firebaseFirestore,
-        Libs.glide,
         Libs.koinAndroid,
         Libs.koinViewModel,
         Libs.liveData,

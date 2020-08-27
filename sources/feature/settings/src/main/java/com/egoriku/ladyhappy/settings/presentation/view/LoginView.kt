@@ -5,7 +5,7 @@ import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.Drawable
 import android.util.AttributeSet
 import androidx.constraintlayout.widget.ConstraintLayout
-import com.bumptech.glide.Glide
+import coil.load
 import com.egoriku.extensions.*
 import com.egoriku.ladyhappy.settings.R
 import com.egoriku.ladyhappy.settings.databinding.ViewLoginBinding
@@ -55,14 +55,16 @@ internal class LoginView @JvmOverloads constructor(
 
     fun setProfileImageUrl(url: String) {
         if (url.isEmpty()) {
-            binding.profileImage.setImageDrawable(drawableCompat(R.drawable.ic_profile_stub))
+            binding.profileImage.load(drawableResId = R.drawable.ic_profile_stub) {
+                crossfade(true)
+            }
         } else {
             val placeholderDrawable = ColorDrawable(context.colorFromAttr(R.attr.colorPlaceholder))
 
-            Glide.with(binding.context)
-                    .load(url)
-                    .placeholder(placeholderDrawable)
-                    .into(binding.profileImage)
+            binding.profileImage.load(url) {
+                placeholder(placeholderDrawable)
+                crossfade(true)
+            }
         }
     }
 
