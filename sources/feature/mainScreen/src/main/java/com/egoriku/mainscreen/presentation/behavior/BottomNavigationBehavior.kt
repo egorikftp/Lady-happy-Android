@@ -45,7 +45,6 @@ class BottomNavigationBehavior(
             coordinatorLayout.findChildByClass<Snackbar.SnackbarLayout>()?.run {
                 animate().translationY(0f)
             }
-
         } else if (dy > 0) {
             hideBottomNavigationView(child)
 
@@ -55,7 +54,7 @@ class BottomNavigationBehavior(
         }
     }
 
-    private inline fun <reified T: View> ViewGroup.findChildByClass(): T? {
+    private inline fun <reified T : View> ViewGroup.findChildByClass(): T? {
         var result: View? = null
 
         for (i in 0 until childCount) {
