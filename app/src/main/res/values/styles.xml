@@ -36,6 +36,17 @@
 
         <!-- Custom color -->
         <item name="colorPlaceholder">@color/colorPlaceholder</item>
+
+        <item name="materialAlertDialogTheme">@style/MaterialAlertDialog</item>
+    </style>
+
+    <style name="MaterialAlertDialog" parent="ThemeOverlay.MaterialComponents.MaterialAlertDialog">
+        <item name="materialAlertDialogTitleTextStyle">@style/MaterialAlertDialogTitle</item>
+    </style>
+
+    <style name="MaterialAlertDialogTitle" parent="MaterialAlertDialog.MaterialComponents.Title.Text">
+        <item name="android:textAppearance">@style/TextAppearance.MaterialComponents.Headline2</item>
+        <item name="android:textStyle">bold</item>
     </style>
 
     <style name="AppTheme" parent="Base.AppTheme" />
