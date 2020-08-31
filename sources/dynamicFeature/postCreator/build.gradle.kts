@@ -25,16 +25,15 @@ withProjects(
 
 withLibraries(
         Libs.appcompat,
+        Libs.coil,
         Libs.constraintLayout,
         Libs.core,
         Libs.coroutinesAndroid,
         Libs.firebaseStorage,
         Libs.fragment,
-        Libs.glide,
         Libs.imageCompressor,
         Libs.koinAndroid,
         Libs.koinViewModel,
-        Libs.kotlin,
         Libs.liveData,
         Libs.material,
         Libs.playCore,

@@ -119,7 +119,6 @@ private fun Project.addAndroidApplicationSection() = appExtension.run {
             multiDexEnabled = true
         }
     }
-
 }
 
 private fun Project.addAndroidDynamicSection() = appExtension.run {

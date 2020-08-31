@@ -20,10 +20,10 @@ withProjects(
 
 withLibraries(
         Libs.appcompat,
+        Libs.coil,
         Libs.constraintLayout,
         Libs.coroutinesAndroid,
         Libs.easyAdapter,
-        Libs.glide,
         Libs.firebaseFirestore,
         Libs.koinAndroid,
         Libs.koinViewModel,

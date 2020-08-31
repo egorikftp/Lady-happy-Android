@@ -1,10 +1,9 @@
 package com.egoriku.photoreport.presentation.controller
 
+import android.graphics.drawable.ColorDrawable
 import android.view.ViewGroup
-import com.bumptech.glide.Glide
-import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade
-import com.bumptech.glide.request.RequestOptions
-import com.egoriku.extensions.drawableCompat
+import coil.load
+import com.egoriku.extensions.colorFromAttr
 import com.egoriku.extensions.inflater
 import com.egoriku.photoreport.R
 import com.egoriku.photoreport.databinding.AdapterItemPhotoReportBinding
@@ -18,19 +17,17 @@ class PhotoReportItemController : BindableItemController<String, PhotoReportItem
 
     override fun getItemId(data: String) = data.hashCode().toString()
 
-    inner class Holder(
+    class Holder(
             private val itemBinding: AdapterItemPhotoReportBinding
     ) : BindableViewHolder<String>(itemBinding.root) {
 
-        private val requestOptions = RequestOptions()
-                .placeholder(itemView.drawableCompat(R.color.Placeholder))
+        private val placeholderDrawable = ColorDrawable(itemView.colorFromAttr(R.attr.colorPlaceholder))
 
         override fun bind(data: String) {
-            Glide.with(itemView.context)
-                    .load(data)
-                    .transition(withCrossFade())
-                    .apply(requestOptions)
-                    .into(itemBinding.reportPhotoItem)
+            itemBinding.reportPhotoItem.load(uri = data) {
+                placeholder(placeholderDrawable)
+                crossfade(true)
+            }
         }
     }
 }

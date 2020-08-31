@@ -1,9 +1,9 @@
 package com.egoriku.landing.presentation.controller
 
+import android.graphics.drawable.ColorDrawable
 import android.view.ViewGroup
-import com.bumptech.glide.Glide
-import com.bumptech.glide.request.RequestOptions
-import com.egoriku.extensions.drawableCompat
+import coil.load
+import com.egoriku.extensions.colorFromAttr
 import com.egoriku.extensions.inflater
 import com.egoriku.landing.R
 import com.egoriku.landing.common.parallax.ParallaxScrollListener
@@ -32,7 +32,7 @@ internal class OurTeamController(
             parallaxScrollListener?.addListener(this@Holder)
         }
 
-        private val requestOptions = RequestOptions().placeholder(itemView.drawableCompat(R.color.RealBlack30))
+        private val placeholderDrawable = ColorDrawable(itemView.colorFromAttr(R.attr.colorPlaceholder))
 
         private val socialViewContainer = itemBinding.socialView.apply {
             setOnClickListener { showView() }
@@ -45,10 +45,9 @@ internal class OurTeamController(
 
             socialViewContainer.setSocialModel(model.socialLinks)
 
-            Glide.with(itemView.context)
-                    .load(model.profileImage)
-                    .apply(requestOptions)
-                    .into(itemBinding.ourTeamPersonImage)
+            itemBinding.ourTeamPersonImage.load(uri = model.profileImage) {
+                placeholder(placeholderDrawable)
+            }
         }
 
         override fun onScroll() = socialViewContainer.hideView()
