@@ -59,6 +59,11 @@ This project follows multi-module structure:
     <img alt="Icon" src="assets/modules/Lady%20happy%20modules.png" width="700" />
 </div>
 
+App screenshots
+-------
+
+<img alt="Icon" src="assets/images/Screenshot_20200831-220313.png" width="300" /><img alt="Icon" src="assets/images/Screenshot_20200831-220329.png" width="300" /><img alt="Icon" src="assets/images/Screenshot_20200831-220337.png" width="300" /><img alt="Icon" src="assets/images/Screenshot_20200831-220344.png" width="300" />
+<img alt="Icon" src="assets/images/Screenshot_20200831-220357.png" width="300" />
 
 License
 -------
