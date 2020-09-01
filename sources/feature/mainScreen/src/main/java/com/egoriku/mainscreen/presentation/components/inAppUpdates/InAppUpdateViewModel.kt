@@ -48,7 +48,7 @@ class InAppUpdateViewModel(updateManager: AppUpdateManager) : ViewModel() {
                                 _events.send(InAppUpdateEvent.StartUpdateEvent(updateResult.updateInfo, false))
                             }
                         }
-                        else -> throw IllegalStateException("Not implemented: Handling for $this")
+                        else -> false
                     }
                 }
             }
