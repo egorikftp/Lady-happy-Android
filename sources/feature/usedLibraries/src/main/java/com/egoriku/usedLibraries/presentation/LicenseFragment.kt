@@ -10,7 +10,7 @@ import com.egoriku.usedLibraries.databinding.FragmentLicenseBinding
 
 internal class LicenseFragment : Fragment(R.layout.fragment_license) {
 
-    private val binding: FragmentLicenseBinding by viewBinding()
+    private val binding by viewBinding(FragmentLicenseBinding::bind)
 
     private val license: String by extraNotNull("license")
 

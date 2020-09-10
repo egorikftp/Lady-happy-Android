@@ -2,8 +2,8 @@ import com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask
 import io.gitlab.arturbosch.detekt.Detekt
 
 plugins {
-    id("com.github.ben-manes.versions") version "0.29.0"
-    id("io.gitlab.arturbosch.detekt") version "1.12.0"
+    id("com.github.ben-manes.versions") version "0.31.0"
+    id("io.gitlab.arturbosch.detekt") version "1.13.0"
 }
 
 buildscript {
@@ -74,6 +74,6 @@ subprojects {
 
 allprojects {
     dependencies {
-        detektPlugins("io.gitlab.arturbosch.detekt:detekt-formatting:1.12.0")
+        detektPlugins("io.gitlab.arturbosch.detekt:detekt-formatting:1.13.0")
     }
 }

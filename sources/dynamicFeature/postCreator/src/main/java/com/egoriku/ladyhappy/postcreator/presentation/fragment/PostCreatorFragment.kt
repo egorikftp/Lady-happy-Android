@@ -6,7 +6,6 @@ import android.view.View
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResultListener
-import androidx.lifecycle.observe
 import androidx.recyclerview.widget.ConcatAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView.VERTICAL
@@ -42,7 +41,7 @@ class PostCreatorFragment : Fragment(R.layout.fragment_post_creator) {
         loadKoinModules(postModule)
     }
 
-    private val binding: FragmentPostCreatorBinding by viewBinding()
+    private val binding by viewBinding(FragmentPostCreatorBinding::bind)
 
     private val router: IRouter by inject()
 
@@ -97,7 +96,7 @@ class PostCreatorFragment : Fragment(R.layout.fragment_post_creator) {
         concatAdapter.addAdapter(imagesSectionAdapter)
         concatAdapter.addAdapter(chooserSectionAdapter)
 
-        viewModel.screenState.observe(owner = viewLifecycleOwner) {
+        viewModel.screenState.observe(viewLifecycleOwner) {
             chooserSectionAdapter.submitList(it.chooser)
             imagesSectionAdapter.submitList(listOf(it.imagesSection))
         }

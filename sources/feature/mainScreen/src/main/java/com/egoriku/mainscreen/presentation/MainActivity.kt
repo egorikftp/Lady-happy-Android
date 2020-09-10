@@ -63,7 +63,7 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
 
     private val dynamicFeatureBalloon by balloon(DynamicFeatureBalloonFactory::class)
 
-    private val binding: ActivityMainBinding by viewBinding(R.id.contentFullScreen)
+    private val binding by viewBinding(ActivityMainBinding::bind, R.id.contentFullScreen)
 
     private val appUpdateManager: AppUpdateManager by inject()
     private val splitInstallManager: SplitInstallManager by inject()
