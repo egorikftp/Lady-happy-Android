@@ -42,7 +42,6 @@ open class HappyXPlugin : Plugin<Project> {
                         addAndroidApplicationSection()
                     }
                     is DynamicFeaturePlugin -> {
-                        println("This is DynamicFeaturePlugin")
                         addCommonPlugins()
                         addAndroidDynamicSection()
                         addCommonDependencies()

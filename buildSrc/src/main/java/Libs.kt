@@ -35,7 +35,7 @@ object Libs {
 
     const val koinAndroid = "org.koin:koin-android:${LibrariesVersion.koin}"
     const val koinViewModel = "org.koin:koin-androidx-viewmodel:${LibrariesVersion.koin}"
-    const val kotlin = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${LibrariesVersion.kotlin}"
+    const val kotlin = "org.jetbrains.kotlin:kotlin-stdlib:${LibrariesVersion.kotlin}"
 
     const val leakCanary = "com.squareup.leakcanary:leakcanary-android:${LibrariesVersion.leakCanary}"
     const val lifecycleRuntime = "androidx.lifecycle:lifecycle-runtime-ktx:${LibrariesVersion.lifecycle}"
@@ -51,7 +51,7 @@ object Libs {
     const val recyclerViewSelection = "androidx.recyclerview:recyclerview-selection:${LibrariesVersion.recyclerViewSelection}"
 
     const val vectorDrawable = "androidx.vectordrawable:vectordrawable:${LibrariesVersion.vectorDrawable}"
-    const val viewBindingDelegates = "com.kirich1409.viewbindingpropertydelegate:viewbindingpropertydelegate:${LibrariesVersion.viewBindingDelegates}"
+    const val viewBindingDelegates = "com.kirich1409.viewbindingpropertydelegate:vbpd-noreflection:${LibrariesVersion.viewBindingDelegates}"
     const val viewBinding = "androidx.databinding:viewbinding:${LibrariesVersion.viewBinding}"
     const val viewModel = "androidx.lifecycle:lifecycle-viewmodel-ktx:${LibrariesVersion.lifecycle}"
     const val viewPager2 = "androidx.viewpager2:viewpager2:${LibrariesVersion.viewPager2}"

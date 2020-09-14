@@ -14,7 +14,7 @@ object LibrariesVersion {
     const val circleImageView = "3.1.0"
     const val easyAdapter = "2.0.0"
     const val firebaseAnalytics = "17.5.0"
-    const val firebaseAuth = "19.3.2"
+    const val firebaseAuth = "19.4.0"
     const val firebaseCore = "17.5.0"
     const val firebaseCrashlytics = "17.2.1"
     const val firebaseFirestore = "21.6.0"
@@ -34,9 +34,9 @@ object LibrariesVersion {
     const val playCore = "1.8.1"
     const val playServicesAuth = "18.1.0"
     const val recyclerView = "1.2.0-alpha05"
-    const val recyclerViewSelection = "1.1.0-rc01"
+    const val recyclerViewSelection = "1.1.0-rc02"
     const val vectorDrawable = "1.1.0"
-    const val viewBindingDelegates = "1.1.0"
+    const val viewBindingDelegates = "1.2.0"
     const val viewBinding = "4.0.1"
     const val viewPager2 = "1.0.0"
 }
@@ -44,11 +44,4 @@ object LibrariesVersion {
 object ProjectVersion {
     const val compileSdkVersion = 30
     const val minSdkVersion = 21
-}
-
-object ClasspathVersion {
-    const val firebaseCrashlytics = "2.2.1"
-    const val firebasePerformance = "1.3.1"
-    const val googleServices = "4.3.3"
-    const val gradleTools = "4.0.1"
 }
