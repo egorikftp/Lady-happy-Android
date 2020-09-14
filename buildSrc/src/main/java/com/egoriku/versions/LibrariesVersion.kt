@@ -4,7 +4,7 @@ object LibrariesVersion {
     const val annotation = "1.1.0"
     const val appcompat = "1.2.0"
     const val balloon = "1.2.3"
-    const val beagle = "1.10.2"
+    const val beagle = "2.0.0-beta20"
     const val browser = "1.2.0"
     const val cardView = "1.0.0"
     const val constraintLayout = "2.0.1"

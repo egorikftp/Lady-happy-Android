@@ -1,8 +1,13 @@
 package com.egoriku.ladyhappy.beagle
 
-import com.pandulapeter.beagleCore.contracts.BeagleListItemContract
+import com.pandulapeter.beagle.common.contracts.BeagleListItemContract
 
 data class Account(
-        override val name: String,
+        val email: String,
         val password: String
-) : BeagleListItemContract
+) : BeagleListItemContract {
+
+    override val id: String = email
+
+    override val title: CharSequence = email
+}

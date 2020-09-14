@@ -5,7 +5,7 @@ object Libs {
     const val appcompat = "androidx.appcompat:appcompat:${LibrariesVersion.appcompat}"
 
     const val balloon = "com.github.skydoves:balloon:${LibrariesVersion.balloon}"
-    const val beagle = "com.github.pandulapeter.beagle:beagle:${LibrariesVersion.beagle}"
+    const val beagle = "com.github.pandulapeter.beagle:ui-drawer:${LibrariesVersion.beagle}"
     const val browser = "androidx.browser:browser:${LibrariesVersion.browser}"
 
     const val cardView = "androidx.cardview:cardview:${LibrariesVersion.cardView}"
