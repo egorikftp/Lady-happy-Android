@@ -1,5 +1,6 @@
 package com.egoriku.ladyhappy.beagle
 
+import com.egoriku.extensions.activityManager
 import com.egoriku.ladyhappy.Application
 import com.egoriku.ladyhappy.BuildConfig
 import com.egoriku.ladyhappy.R
@@ -23,6 +24,12 @@ class BeagleDebugMenuInitializer {
                 ),
                 AppInfoButtonModule(),
                 DeveloperOptionsButtonModule(),
+                ButtonModule(
+                        text = "Clear App Data",
+                        onButtonPressed = {
+                            application.activityManager.clearApplicationUserData()
+                        }
+                ),
                 ButtonModule(
                         text = "Dump Leaks",
                         onButtonPressed = {
