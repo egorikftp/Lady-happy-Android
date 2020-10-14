@@ -4,6 +4,7 @@ plugins {
 
 repositories {
     mavenCentral()
+    gradlePluginPortal()
     google()
     jcenter()
 }
@@ -21,7 +22,7 @@ dependencies {
     implementation(gradleApi())
     implementation(localGroovy())
 
-    implementation("com.android.tools.build:gradle:4.0.1")
-    implementation(kotlin("gradle-plugin", "1.4.0"))
-    implementation(kotlin("android-extensions"))
+    implementation("com.android.tools.build:gradle:4.1.0")
+    implementation(kotlin("gradle-plugin", "1.4.10"))
+    implementation(kotlin("android-extensions", "1.4.10"))
 }

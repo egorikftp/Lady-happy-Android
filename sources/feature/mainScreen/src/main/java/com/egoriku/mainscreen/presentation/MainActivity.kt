@@ -11,7 +11,6 @@ import androidx.annotation.IdRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.setFragmentResultListener
-import androidx.lifecycle.observe
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.egoriku.core.IFeatureProvider
 import com.egoriku.core.INavigationHolder
@@ -105,7 +104,7 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
             anchorView = binding.bottomNavigation
         }
 
-        viewModel.screenTitle.observe(owner = this) {
+        viewModel.screenTitle.observe(this) {
             binding.toolbarContent.headerBarLogoText.setText(it)
         }
 
@@ -128,7 +127,7 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
             setOnNavigationItemReselectedListener {}
         }
 
-        viewModel.theme.observe(owner = this) {
+        viewModel.theme.observe(this) {
             AppCompatDelegate.setDefaultNightMode(it.toNightMode())
         }
 
@@ -182,7 +181,7 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
 
     private fun subscribeForInAppUpdate() {
         with(inAppUpdateViewModel) {
-            updateStatus.observe(owner = this@MainActivity) { updateResult: AppUpdateResult ->
+            updateStatus.observe(this@MainActivity) { updateResult: AppUpdateResult ->
                 updateUpdateButton(updateResult)
 
                 // If it's an immediate update, launch it immediately and finish Activity
@@ -240,7 +239,7 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
                 }
             }.launchIn(activityLifecycle)
 
-            postCreatorModuleStatus.observe(owner = this@MainActivity) { status ->
+            postCreatorModuleStatus.observe(this@MainActivity) { status ->
                 when (status) {
                     is ModuleStatus.Installing -> {
                         with(dynamicFeatureBalloon) {

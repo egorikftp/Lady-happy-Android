@@ -34,7 +34,6 @@ withLibraries(
         Libs.imageCompressor,
         Libs.koinAndroid,
         Libs.koinViewModel,
-        Libs.liveData,
         Libs.material,
         Libs.playCore,
         Libs.recyclerView,

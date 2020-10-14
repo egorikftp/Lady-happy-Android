@@ -5,7 +5,7 @@ object GradlePluginsVersion {
     const val firebasePerformance = "1.3.1"
     const val detekt = "1.13.1"
     const val googleServices = "4.3.3"
-    const val gradleTools = "4.0.1"
+    const val gradleTools = "4.1.0"
     const val ossLicenses = "0.10.2"
     const val versionPlugin = "0.33.0"
 }

@@ -14,6 +14,6 @@ withProjects(
 )
 
 withLibraries(
-        Libs.firebaseAuth,
-        Libs.liveData
+        Libs.coroutinesAndroid,
+        Libs.firebaseAuth
 )

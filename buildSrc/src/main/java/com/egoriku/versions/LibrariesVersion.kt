@@ -37,7 +37,7 @@ object LibrariesVersion {
     const val recyclerViewSelection = "1.1.0-rc02"
     const val vectorDrawable = "1.1.0"
     const val viewBindingDelegates = "1.2.0"
-    const val viewBinding = "4.0.1"
+    const val viewBinding = "4.1.0"
     const val viewPager2 = "1.0.0"
 }
 
