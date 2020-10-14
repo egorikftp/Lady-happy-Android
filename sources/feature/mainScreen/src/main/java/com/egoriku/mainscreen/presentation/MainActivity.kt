@@ -10,7 +10,6 @@ import android.widget.TextView
 import androidx.annotation.IdRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
-import androidx.fragment.app.setFragmentResultListener
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.egoriku.core.IFeatureProvider
 import com.egoriku.core.INavigationHolder
@@ -18,10 +17,7 @@ import com.egoriku.core.constant.REQUEST_KEY_DYNAMIC_FEATURE
 import com.egoriku.core.constant.RESULT_KEY_DYNAMIC_FEATURE
 import com.egoriku.core.feature.*
 import com.egoriku.core.sharedmodel.toNightMode
-import com.egoriku.extensions.consume
-import com.egoriku.extensions.hasM
-import com.egoriku.extensions.logD
-import com.egoriku.extensions.toast
+import com.egoriku.extensions.*
 import com.egoriku.ladyhappy.navigation.navigator.platform.ActivityScopeNavigator
 import com.egoriku.mainscreen.R
 import com.egoriku.mainscreen.databinding.ActivityMainBinding
@@ -283,17 +279,18 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
     }
 
     private fun subscribeForDynamicFeatureRequest() {
-        supportFragmentManager.setFragmentResultListener(
+        supportFragmentManager.setFragmentResultListenerWrapper(
                 requestKey = REQUEST_KEY_DYNAMIC_FEATURE,
-                lifecycleOwner = this
-        ) { _, result ->
-            when (result.getParcelable<DynamicFeature>(RESULT_KEY_DYNAMIC_FEATURE)) {
-                is DynamicFeature.PostCreator -> {
-                    isOpenDynamicFeatureWhenReady = true
-                    dynamicFeatureViewModel.invokePostCreator()
+                lifecycleOwner = this,
+                listener = { _, bundle ->
+                    when (bundle.getParcelable<DynamicFeature>(RESULT_KEY_DYNAMIC_FEATURE)) {
+                        is DynamicFeature.PostCreator -> {
+                            isOpenDynamicFeatureWhenReady = true
+                            dynamicFeatureViewModel.invokePostCreator()
+                        }
+                    }
                 }
-            }
-        }
+        )
     }
 
     private fun mapItemIdToScreen(@IdRes menuItemId: Int) {

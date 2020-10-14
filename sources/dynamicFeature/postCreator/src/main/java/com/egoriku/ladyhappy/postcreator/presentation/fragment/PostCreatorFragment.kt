@@ -5,12 +5,12 @@ import android.os.Bundle
 import android.view.View
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.setFragmentResultListener
 import androidx.recyclerview.widget.ConcatAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView.VERTICAL
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.egoriku.core.IRouter
+import com.egoriku.extensions.setFragmentResultListenerWrapper
 import com.egoriku.ladyhappy.postcreator.R
 import com.egoriku.ladyhappy.postcreator.databinding.FragmentPostCreatorBinding
 import com.egoriku.ladyhappy.postcreator.domain.dialog.DialogResult
@@ -63,7 +63,7 @@ class PostCreatorFragment : Fragment(R.layout.fragment_post_creator) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        childFragmentManager.setFragmentResultListener(
+        childFragmentManager.setFragmentResultListenerWrapper(
                 requestKey = CHOOSER_KEY,
                 lifecycleOwner = viewLifecycleOwner
         ) { _, result ->

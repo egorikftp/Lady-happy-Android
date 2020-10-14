@@ -1,6 +1,5 @@
 package com.egoriku.plugin
 
-import Libs
 import com.android.build.gradle.AppPlugin
 import com.android.build.gradle.LibraryPlugin
 import com.android.build.gradle.internal.plugins.DynamicFeaturePlugin
@@ -65,9 +64,7 @@ open class HappyXPlugin : Plugin<Project> {
                 when (this) {
                     is LibraryPlugin -> {
                         libraryExtension.run {
-                            buildFeatures {
-                                viewBinding = config.viewBindingEnabled
-                            }
+                            buildFeatures.viewBinding = config.viewBindingEnabled
                         }
 
                         enableParcelize(config)
@@ -77,9 +74,7 @@ open class HappyXPlugin : Plugin<Project> {
                         enableParcelize(config)
 
                         appExtension.run {
-                            viewBinding {
-                                isEnabled = config.viewBindingEnabled
-                            }
+                            buildFeatures.viewBinding = config.viewBindingEnabled
                         }
                     }
                 }
