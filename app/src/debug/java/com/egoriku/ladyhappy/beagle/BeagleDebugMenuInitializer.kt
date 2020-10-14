@@ -6,9 +6,9 @@ import com.egoriku.ladyhappy.BuildConfig
 import com.egoriku.ladyhappy.R
 import com.pandulapeter.beagle.Beagle
 import com.pandulapeter.beagle.modules.AppInfoButtonModule
-import com.pandulapeter.beagle.modules.ButtonModule
 import com.pandulapeter.beagle.modules.DeveloperOptionsButtonModule
 import com.pandulapeter.beagle.modules.HeaderModule
+import com.pandulapeter.beagle.modules.TextModule
 import leakcanary.LeakCanary
 
 class BeagleDebugMenuInitializer {
@@ -24,15 +24,17 @@ class BeagleDebugMenuInitializer {
                 ),
                 AppInfoButtonModule(),
                 DeveloperOptionsButtonModule(),
-                ButtonModule(
+                TextModule(
+                        type = TextModule.Type.BUTTON,
                         text = "Clear App Data",
-                        onButtonPressed = {
+                        onItemSelected = {
                             application.activityManager.clearApplicationUserData()
                         }
                 ),
-                ButtonModule(
+                TextModule(
+                        type = TextModule.Type.BUTTON,
                         text = "Dump Leaks",
-                        onButtonPressed = {
+                        onItemSelected = {
                             LeakCanary.dumpHeap()
                         }
                 )
