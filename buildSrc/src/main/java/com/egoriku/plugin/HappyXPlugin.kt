@@ -8,6 +8,7 @@ import com.egoriku.application.provideVersionCode
 import com.egoriku.application.provideVersionName
 import com.egoriku.ext.debug
 import com.egoriku.ext.implementation
+import com.egoriku.ext.main
 import com.egoriku.ext.release
 import com.egoriku.plugin.extension.MyPluginExtension
 import com.egoriku.plugin.internal.androidExtensions
@@ -151,6 +152,12 @@ private fun Project.addAndroidLibrarySection() = libraryExtension.run {
 
         debug {
             isMinifyEnabled = false
+        }
+    }
+
+    sourceSets {
+        main {
+            java.srcDirs("src/main/kotlin")
         }
     }
 
