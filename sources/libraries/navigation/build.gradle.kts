@@ -7,5 +7,6 @@ plugins {
 
 withLibraries(
         Libs.appcompat,
+        Libs.core,
         Libs.fragment
 )

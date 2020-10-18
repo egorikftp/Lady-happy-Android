@@ -70,7 +70,11 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
     private val reviewViewModel: ReviewViewModel by lifecycleScope.viewModel(this)
     private val viewModel: MainActivityViewModel by lifecycleScope.viewModel(this)
 
-    private val navigator = ActivityScopeNavigator(this, R.id.container)
+    private val navigator = ActivityScopeNavigator(
+            activity = this,
+            containerId = R.id.container,
+            fullScreenContainerId = R.id.contentFullScreen
+    )
 
     private var snackBar: Snackbar by Delegates.notNull()
 
@@ -219,10 +223,7 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
                 when (event) {
                     is DynamicFeatureEvent.ToastEvent -> toast(event.message)
                     is DynamicFeatureEvent.NavigationEvent -> {
-                        viewModel.navigateTo(
-                                screen = DynamicFeatureScreen(event.fragmentClass),
-                                containerId = R.id.contentFullScreen
-                        )
+                        viewModel.navigateTo(screen = DynamicFeatureScreen(event.fragmentClass))
                     }
                     is DynamicFeatureEvent.InstallConfirmationEvent -> {
                         splitInstallManager.startConfirmationDialogForResult(

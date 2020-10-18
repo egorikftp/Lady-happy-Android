@@ -2,17 +2,21 @@ package com.egoriku.ladyhappy.navigation.navigator.platform
 
 import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.FragmentManager
-import com.egoriku.ladyhappy.navigation.command.Add
-import com.egoriku.ladyhappy.navigation.command.Back
+import androidx.fragment.app.commit
 import com.egoriku.ladyhappy.navigation.command.Command
-import com.egoriku.ladyhappy.navigation.command.Replace
+import com.egoriku.ladyhappy.navigation.command.Command.Add
+import com.egoriku.ladyhappy.navigation.command.Command.Replace
+import com.egoriku.ladyhappy.navigation.command.NavigationType
 import com.egoriku.ladyhappy.navigation.navigator.INavigator
+import com.egoriku.ladyhappy.navigation.navigator.extension.addSharedElements
+import com.egoriku.ladyhappy.navigation.navigator.extension.addToBackStackIf
 import com.egoriku.ladyhappy.navigation.screen.ActivityScreen
 import com.egoriku.ladyhappy.navigation.screen.FragmentScreen
 
 class ActivityScopeNavigator(
         private val activity: FragmentActivity,
         private val containerId: Int,
+        private val fullScreenContainerId: Int,
         private val fragmentManager: FragmentManager = activity.supportFragmentManager
 ) : INavigator {
 
@@ -26,20 +30,20 @@ class ActivityScopeNavigator(
         when (command) {
             is Replace -> processReplace(command)
             is Add -> processAdd(command)
-            is Back -> processBack()
+            is Command.Back -> processBack()
         }
     }
 
     private fun processReplace(command: Replace) {
         when (val screen = command.screen) {
-            is FragmentScreen -> replaceFragment(screen)
+            is FragmentScreen -> replaceFragment(screen, command)
             is ActivityScreen -> replaceActivity(screen)
         }
     }
 
     private fun processAdd(command: Add) {
         when (val screen = command.screen) {
-            is FragmentScreen -> addFragment(screen, command.containerId)
+            is FragmentScreen -> addFragment(screen, command)
         }
     }
 
@@ -51,27 +55,31 @@ class ActivityScopeNavigator(
         }
     }
 
-    private fun addFragment(screen: FragmentScreen, containerId: Int) {
-        if (containerId != 0) {
-            fragmentManager
-                    .beginTransaction()
-                    .add(containerId, screen.fragment, screen.fragment.javaClass.name)
-                    .addToBackStack(screen.fragment.javaClass.name)
-                    .commit()
-        } else {
-            fragmentManager
-                    .beginTransaction()
-                    .add(this.containerId, screen.fragment, screen.fragment.javaClass.name)
-                    .addToBackStack(screen.fragment.javaClass.name)
-                    .commit()
+    private fun addFragment(screen: FragmentScreen, command: Add) {
+        val id = when (command.navigationType) {
+            NavigationType.DEFAULT -> containerId
+            NavigationType.FULLSCREEN -> fullScreenContainerId
+        }
+
+        fragmentManager.commit {
+            add(id, screen.fragment, screen.fragment.javaClass.name)
+            addToBackStack(screen.fragment.javaClass.name)
         }
     }
 
-    private fun replaceFragment(screen: FragmentScreen) {
-        fragmentManager
-                .beginTransaction()
-                .replace(containerId, screen.fragment)
-                .commit()
+    private fun replaceFragment(screen: FragmentScreen, command: Replace) {
+        val id = when (command.navigationType) {
+            NavigationType.DEFAULT -> containerId
+            NavigationType.FULLSCREEN -> fullScreenContainerId
+        }
+
+        fragmentManager.commit {
+            addSharedElements(command.sharedElements)
+            replace(id, screen.fragment)
+            addToBackStackIf(command.sharedElements.isNotEmpty()) {
+                screen.fragment.javaClass.name
+            }
+        }
     }
 
     private fun replaceActivity(screen: ActivityScreen) {

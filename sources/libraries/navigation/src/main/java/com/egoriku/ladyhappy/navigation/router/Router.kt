@@ -1,28 +1,29 @@
 package com.egoriku.ladyhappy.navigation.router
 
-import com.egoriku.ladyhappy.navigation.command.Add
-import com.egoriku.ladyhappy.navigation.command.Back
-import com.egoriku.ladyhappy.navigation.command.Replace
+import android.view.View
+import com.egoriku.ladyhappy.navigation.command.Command.*
+import com.egoriku.ladyhappy.navigation.command.NavigationType
 import com.egoriku.ladyhappy.navigation.screen.Screen
 
 class Router : BaseRouter() {
 
-    fun replaceWith(screen: Screen) {
-        executeCommands(Replace(screen = screen))
+    fun replaceScreen(screen: Screen, vararg sharedElements: Pair<View, String>) {
+        executeCommands(Replace(
+                screen = screen,
+                sharedElements = sharedElements.toMap()
+        ))
     }
 
     fun addScreen(screen: Screen) {
         executeCommands(Add(screen = screen))
     }
 
-    fun addScreenWithContainerId(screen: Screen, id: Int) {
+    fun addScreenFullscreen(screen: Screen) {
         executeCommands(Add(
                 screen = screen,
-                containerId = id
+                navigationType = NavigationType.FULLSCREEN
         ))
     }
 
-    fun back() {
-        executeCommands(Back())
-    }
+    fun back() = executeCommands(Back)
 }

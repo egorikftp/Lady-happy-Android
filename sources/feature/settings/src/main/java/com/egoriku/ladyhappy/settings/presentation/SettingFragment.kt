@@ -51,7 +51,7 @@ class SettingFragment : Fragment(R.layout.fragment_settings), SettingsFeature {
 
         loginSectionAdapter = LoginSectionAdapter {
             when (it) {
-                ANON -> settingsViewModel.navigateTo(LoginScreen(featureProvider), R.id.contentFullScreen)
+                ANON -> settingsViewModel.navigateTo(LoginScreen(featureProvider))
                 LOGGED_IN -> settingsViewModel.logOut()
             }
         }
@@ -71,7 +71,7 @@ class SettingFragment : Fragment(R.layout.fragment_settings), SettingsFeature {
             when (it) {
                 is SettingItem.Theme -> ThemeSettingDialogFragment().show(childFragmentManager, null)
                 is SettingItem.UsedLibraries -> {
-                    settingsViewModel.navigateTo(UsedLibrariesScreen(featureProvider), R.id.contentFullScreen)
+                    settingsViewModel.navigateTo(UsedLibrariesScreen(featureProvider))
                 }
                 is SettingItem.Review -> {
                     openPlayStore()

@@ -36,10 +36,7 @@ class UsedLibrariesFragment : Fragment(R.layout.fragment_used_libraries) {
         super.onViewCreated(view, savedInstanceState)
 
         librariesAdapter = LibrariesListAdapter {
-            router.addScreenWithContainerId(
-                    screen = LicenseFragmentScreen(it),
-                    id = R.id.contentFullScreen
-            )
+            router.addScreenFullscreen(screen = LicenseFragmentScreen(it))
         }
 
         binding.initViews()
