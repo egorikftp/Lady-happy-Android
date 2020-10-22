@@ -47,7 +47,7 @@ class SettingsViewModel(
         _screenData.value = cache
     }
 
-    fun navigateTo(screen: Screen, containerId: Int) = router.addScreenWithContainerId(screen, containerId)
+    fun navigateTo(screen: Screen) = router.addScreenFullscreen(screen)
 
     private fun refresh() {
         viewModelScope.launch {

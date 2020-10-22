@@ -10,6 +10,13 @@ inline fun <reified T> T.logD(message: String? = EMPTY) {
     }
 }
 
+inline fun <reified T> T.logD(tag: String, message: String? = EMPTY) {
+    when {
+        message.isNullOrEmpty() -> Log.d(tag, EMPTY)
+        else -> Log.d(tag, message)
+    }
+}
+
 inline fun <reified T> T.logE(message: String? = null, throwable: Throwable? = null) {
     Log.e(T::class.java.simpleName, message, throwable)
 }

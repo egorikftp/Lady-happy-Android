@@ -3,7 +3,6 @@ package com.egoriku.landing.presentation
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.egoriku.core.feature.AboutUsFeature
@@ -24,7 +23,7 @@ class LandingPageFragment : Fragment(R.layout.fragment_landing), AboutUsFeature 
 
     private val landingViewModel: LandingViewModel by lifecycleScope.viewModel(this)
 
-    private val binding: FragmentLandingBinding by viewBinding()
+    private val binding by viewBinding(FragmentLandingBinding::bind)
 
     private var parallaxScrollListener: ParallaxScrollListener? = null
 
@@ -40,9 +39,9 @@ class LandingPageFragment : Fragment(R.layout.fragment_landing), AboutUsFeature 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        landingViewModel.screenState.observe(viewLifecycleOwner, Observer {
+        landingViewModel.screenState.observe(viewLifecycleOwner) {
             render(it)
-        })
+        }
 
         initViews()
     }

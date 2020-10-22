@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.widget.ArrayAdapter
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatDialogFragment
-import androidx.lifecycle.observe
 import com.egoriku.core.sharedmodel.Theme
 import com.egoriku.ladyhappy.settings.R
 import com.google.android.material.dialog.MaterialAlertDialogBuilder

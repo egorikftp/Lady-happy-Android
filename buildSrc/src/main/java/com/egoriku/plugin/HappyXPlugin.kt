@@ -1,6 +1,5 @@
 package com.egoriku.plugin
 
-import Libs
 import com.android.build.gradle.AppPlugin
 import com.android.build.gradle.LibraryPlugin
 import com.android.build.gradle.internal.plugins.DynamicFeaturePlugin
@@ -8,6 +7,7 @@ import com.egoriku.application.provideVersionCode
 import com.egoriku.application.provideVersionName
 import com.egoriku.ext.debug
 import com.egoriku.ext.implementation
+import com.egoriku.ext.main
 import com.egoriku.ext.release
 import com.egoriku.plugin.extension.MyPluginExtension
 import com.egoriku.plugin.internal.androidExtensions
@@ -42,7 +42,6 @@ open class HappyXPlugin : Plugin<Project> {
                         addAndroidApplicationSection()
                     }
                     is DynamicFeaturePlugin -> {
-                        println("This is DynamicFeaturePlugin")
                         addCommonPlugins()
                         addAndroidDynamicSection()
                         addCommonDependencies()
@@ -65,9 +64,7 @@ open class HappyXPlugin : Plugin<Project> {
                 when (this) {
                     is LibraryPlugin -> {
                         libraryExtension.run {
-                            buildFeatures {
-                                viewBinding = config.viewBindingEnabled
-                            }
+                            buildFeatures.viewBinding = config.viewBindingEnabled
                         }
 
                         enableParcelize(config)
@@ -77,9 +74,7 @@ open class HappyXPlugin : Plugin<Project> {
                         enableParcelize(config)
 
                         appExtension.run {
-                            viewBinding {
-                                isEnabled = config.viewBindingEnabled
-                            }
+                            buildFeatures.viewBinding = config.viewBindingEnabled
                         }
                     }
                 }
@@ -152,6 +147,12 @@ private fun Project.addAndroidLibrarySection() = libraryExtension.run {
 
         debug {
             isMinifyEnabled = false
+        }
+    }
+
+    sourceSets {
+        main {
+            java.srcDirs("src/main/kotlin")
         }
     }
 

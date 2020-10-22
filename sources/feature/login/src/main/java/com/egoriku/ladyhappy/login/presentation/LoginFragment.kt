@@ -7,7 +7,6 @@ import androidx.annotation.StringRes
 import androidx.browser.customtabs.CustomTabsIntent
 import androidx.core.net.toUri
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.observe
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.egoriku.extensions.*
 import com.egoriku.ladyhappy.login.R
@@ -22,7 +21,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class LoginFragment : Fragment(R.layout.fragment_login) {
 
-    private val binding: FragmentLoginBinding by viewBinding()
+    private val binding by viewBinding(FragmentLoginBinding::bind)
 
     private val viewModel: LoginViewModel by viewModel()
 
@@ -88,7 +87,7 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
             initCustomTab(urlRes = R.string.privacy_policy_link)
         }
 
-        viewModel.currentState.observe(owner = viewLifecycleOwner) {
+        viewModel.currentState.observe(viewLifecycleOwner) {
             when (it) {
                 is LoginState.Progress -> {
                     parentProgress.visible()

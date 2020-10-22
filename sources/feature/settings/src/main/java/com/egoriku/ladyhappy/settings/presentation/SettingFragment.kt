@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.view.View
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.observe
 import androidx.recyclerview.widget.ConcatAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
 import by.kirich1409.viewbindingdelegate.viewBinding
@@ -35,7 +34,7 @@ import kotlin.properties.Delegates
 
 class SettingFragment : Fragment(R.layout.fragment_settings), SettingsFeature {
 
-    private val binding: FragmentSettingsBinding by viewBinding()
+    private val binding by viewBinding(FragmentSettingsBinding::bind)
 
     private val featureProvider: IFeatureProvider by inject()
 
@@ -52,7 +51,7 @@ class SettingFragment : Fragment(R.layout.fragment_settings), SettingsFeature {
 
         loginSectionAdapter = LoginSectionAdapter {
             when (it) {
-                ANON -> settingsViewModel.navigateTo(LoginScreen(featureProvider), R.id.contentFullScreen)
+                ANON -> settingsViewModel.navigateTo(LoginScreen(featureProvider))
                 LOGGED_IN -> settingsViewModel.logOut()
             }
         }
@@ -72,7 +71,7 @@ class SettingFragment : Fragment(R.layout.fragment_settings), SettingsFeature {
             when (it) {
                 is SettingItem.Theme -> ThemeSettingDialogFragment().show(childFragmentManager, null)
                 is SettingItem.UsedLibraries -> {
-                    settingsViewModel.navigateTo(UsedLibrariesScreen(featureProvider), R.id.contentFullScreen)
+                    settingsViewModel.navigateTo(UsedLibrariesScreen(featureProvider))
                 }
                 is SettingItem.Review -> {
                     openPlayStore()
@@ -84,7 +83,7 @@ class SettingFragment : Fragment(R.layout.fragment_settings), SettingsFeature {
 
         binding.initViews()
 
-        settingsViewModel.screenData.observe(owner = viewLifecycleOwner) {
+        settingsViewModel.screenData.observe(viewLifecycleOwner) {
             it.forEach { (_, section) ->
                 when (section) {
                     is Section.Login -> loginSectionAdapter.submitList(listOf(section))

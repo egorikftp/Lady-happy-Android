@@ -1,5 +1,5 @@
-import com.egoriku.versions.ProjectVersion
 import com.egoriku.ext.withLibraries
+import com.egoriku.versions.ProjectVersion
 
 plugins {
     id("HappyXPlugin")
@@ -12,6 +12,4 @@ android {
     }
 }
 
-withLibraries(
-        Libs.annotation
-)
+withLibraries(Libs.annotation)

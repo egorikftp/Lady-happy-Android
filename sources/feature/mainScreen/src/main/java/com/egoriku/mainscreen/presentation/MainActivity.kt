@@ -10,8 +10,6 @@ import android.widget.TextView
 import androidx.annotation.IdRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
-import androidx.fragment.app.setFragmentResultListener
-import androidx.lifecycle.observe
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.egoriku.core.IFeatureProvider
 import com.egoriku.core.INavigationHolder
@@ -19,10 +17,7 @@ import com.egoriku.core.constant.REQUEST_KEY_DYNAMIC_FEATURE
 import com.egoriku.core.constant.RESULT_KEY_DYNAMIC_FEATURE
 import com.egoriku.core.feature.*
 import com.egoriku.core.sharedmodel.toNightMode
-import com.egoriku.extensions.consume
-import com.egoriku.extensions.hasM
-import com.egoriku.extensions.logD
-import com.egoriku.extensions.toast
+import com.egoriku.extensions.*
 import com.egoriku.ladyhappy.navigation.navigator.platform.ActivityScopeNavigator
 import com.egoriku.mainscreen.R
 import com.egoriku.mainscreen.databinding.ActivityMainBinding
@@ -63,7 +58,7 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
 
     private val dynamicFeatureBalloon by balloon(DynamicFeatureBalloonFactory::class)
 
-    private val binding: ActivityMainBinding by viewBinding(R.id.contentFullScreen)
+    private val binding by viewBinding(ActivityMainBinding::bind, R.id.contentFullScreen)
 
     private val appUpdateManager: AppUpdateManager by inject()
     private val splitInstallManager: SplitInstallManager by inject()
@@ -75,7 +70,11 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
     private val reviewViewModel: ReviewViewModel by lifecycleScope.viewModel(this)
     private val viewModel: MainActivityViewModel by lifecycleScope.viewModel(this)
 
-    private val navigator = ActivityScopeNavigator(this, R.id.container)
+    private val navigator = ActivityScopeNavigator(
+            activity = this,
+            containerId = R.id.container,
+            fullScreenContainerId = R.id.contentFullScreen
+    )
 
     private var snackBar: Snackbar by Delegates.notNull()
 
@@ -105,7 +104,7 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
             anchorView = binding.bottomNavigation
         }
 
-        viewModel.screenTitle.observe(owner = this) {
+        viewModel.screenTitle.observe(this) {
             binding.toolbarContent.headerBarLogoText.setText(it)
         }
 
@@ -128,7 +127,7 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
             setOnNavigationItemReselectedListener {}
         }
 
-        viewModel.theme.observe(owner = this) {
+        viewModel.theme.observe(this) {
             AppCompatDelegate.setDefaultNightMode(it.toNightMode())
         }
 
@@ -182,7 +181,7 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
 
     private fun subscribeForInAppUpdate() {
         with(inAppUpdateViewModel) {
-            updateStatus.observe(owner = this@MainActivity) { updateResult: AppUpdateResult ->
+            updateStatus.observe(this@MainActivity) { updateResult: AppUpdateResult ->
                 updateUpdateButton(updateResult)
 
                 // If it's an immediate update, launch it immediately and finish Activity
@@ -224,10 +223,7 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
                 when (event) {
                     is DynamicFeatureEvent.ToastEvent -> toast(event.message)
                     is DynamicFeatureEvent.NavigationEvent -> {
-                        viewModel.navigateTo(
-                                screen = DynamicFeatureScreen(event.fragmentClass),
-                                containerId = R.id.contentFullScreen
-                        )
+                        viewModel.navigateTo(screen = DynamicFeatureScreen(event.fragmentClass))
                     }
                     is DynamicFeatureEvent.InstallConfirmationEvent -> {
                         splitInstallManager.startConfirmationDialogForResult(
@@ -240,7 +236,7 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
                 }
             }.launchIn(activityLifecycle)
 
-            postCreatorModuleStatus.observe(owner = this@MainActivity) { status ->
+            postCreatorModuleStatus.observe(this@MainActivity) { status ->
                 when (status) {
                     is ModuleStatus.Installing -> {
                         with(dynamicFeatureBalloon) {
@@ -284,17 +280,18 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
     }
 
     private fun subscribeForDynamicFeatureRequest() {
-        supportFragmentManager.setFragmentResultListener(
+        supportFragmentManager.setFragmentResultListenerWrapper(
                 requestKey = REQUEST_KEY_DYNAMIC_FEATURE,
-                lifecycleOwner = this
-        ) { _, result ->
-            when (result.getParcelable<DynamicFeature>(RESULT_KEY_DYNAMIC_FEATURE)) {
-                is DynamicFeature.PostCreator -> {
-                    isOpenDynamicFeatureWhenReady = true
-                    dynamicFeatureViewModel.invokePostCreator()
+                lifecycleOwner = this,
+                listener = { _, bundle ->
+                    when (bundle.getParcelable<DynamicFeature>(RESULT_KEY_DYNAMIC_FEATURE)) {
+                        is DynamicFeature.PostCreator -> {
+                            isOpenDynamicFeatureWhenReady = true
+                            dynamicFeatureViewModel.invokePostCreator()
+                        }
+                    }
                 }
-            }
-        }
+        )
     }
 
     private fun mapItemIdToScreen(@IdRes menuItemId: Int) {

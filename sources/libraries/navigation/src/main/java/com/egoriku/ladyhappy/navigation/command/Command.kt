@@ -1,17 +1,24 @@
 package com.egoriku.ladyhappy.navigation.command
 
-import androidx.annotation.IdRes
+import android.view.View
 import com.egoriku.ladyhappy.navigation.screen.Screen
 
-sealed class Command
+sealed class Command {
+    class Replace(
+            val screen: Screen,
+            val navigationType: NavigationType = NavigationType.DEFAULT,
+            val sharedElements: Map<View, String>
+    ) : Command()
 
-class Replace(val screen: Screen) : Command()
+    class Add(
+            val screen: Screen,
+            val navigationType: NavigationType = NavigationType.DEFAULT
+    ) : Command()
 
-class Add(
-        val screen: Screen,
+    object Back : Command()
+}
 
-        @IdRes
-        val containerId: Int = 0
-) : Command()
-
-class Back : Command()
+enum class NavigationType {
+    DEFAULT,
+    FULLSCREEN
+}

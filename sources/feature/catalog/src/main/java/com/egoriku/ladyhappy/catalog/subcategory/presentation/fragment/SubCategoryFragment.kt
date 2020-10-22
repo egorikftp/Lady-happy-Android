@@ -3,7 +3,6 @@ package com.egoriku.ladyhappy.catalog.subcategory.presentation.fragment
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.observe
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.DividerItemDecoration.VERTICAL
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -30,7 +29,7 @@ const val ARGUMENT_CATEGORY_ID = "category_id"
 
 class SubCategoryFragment : Fragment(R.layout.fragment_catalog) {
 
-    private val binding: FragmentCatalogBinding by viewBinding()
+    private val binding by viewBinding(FragmentCatalogBinding::bind)
 
     private val viewHolderBalloon by balloon(ViewHolderBalloonFactory::class)
 

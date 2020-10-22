@@ -1,14 +1,15 @@
 package com.egoriku.core
 
+import android.view.View
 import com.egoriku.ladyhappy.navigation.screen.Screen
 
 interface IRouter {
 
-    fun replaceScreen(screen: Screen)
+    fun replaceScreen(screen: Screen, vararg sharedElements: Pair<View, String>)
 
     fun addScreen(screen: Screen)
 
-    fun addScreenWithContainerId(screen: Screen, id: Int)
+    fun addScreenFullscreen(screen: Screen)
 
     fun back()
 }

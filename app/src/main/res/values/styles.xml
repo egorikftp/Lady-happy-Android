@@ -45,7 +45,6 @@
     </style>
 
     <style name="MaterialAlertDialogTitle" parent="MaterialAlertDialog.MaterialComponents.Title.Text">
-        <item name="android:textAppearance">@style/TextAppearance.MaterialComponents.Headline2</item>
         <item name="android:textStyle">bold</item>
     </style>
 

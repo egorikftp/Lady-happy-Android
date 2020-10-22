@@ -3,7 +3,6 @@ package com.egoriku.photoreport.presentation
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import by.kirich1409.viewbindingdelegate.viewBinding
@@ -22,7 +21,7 @@ import ru.surfstudio.android.easyadapter.ItemList
 
 class PhotoReportFragment : Fragment(R.layout.fragment_photo_report), PhotoReportsFeature {
 
-    private val binding: FragmentPhotoReportBinding by viewBinding()
+    private val binding by viewBinding(FragmentPhotoReportBinding::bind)
 
     private val viewModel: PhotoReportViewModel by lifecycleScope.viewModel(this)
 
@@ -37,9 +36,9 @@ class PhotoReportFragment : Fragment(R.layout.fragment_photo_report), PhotoRepor
 
         initRecyclerView()
 
-        viewModel.screenState.observe(viewLifecycleOwner, Observer {
+        viewModel.screenState.observe(viewLifecycleOwner) {
             render(it)
-        })
+        }
     }
 
     private fun initRecyclerView() {

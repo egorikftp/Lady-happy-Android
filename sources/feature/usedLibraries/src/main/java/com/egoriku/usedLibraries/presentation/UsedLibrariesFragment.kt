@@ -3,7 +3,6 @@ package com.egoriku.usedLibraries.presentation
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.observe
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.DividerItemDecoration.VERTICAL
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -29,7 +28,7 @@ class UsedLibrariesFragment : Fragment(R.layout.fragment_used_libraries) {
 
     private val viewModel: UsedLibrariesViewModel by lifecycleScope.viewModel(this)
 
-    private val binding: FragmentUsedLibrariesBinding by viewBinding()
+    private val binding by viewBinding(FragmentUsedLibrariesBinding::bind)
 
     private var librariesAdapter: LibrariesListAdapter by Delegates.notNull()
 
@@ -37,10 +36,7 @@ class UsedLibrariesFragment : Fragment(R.layout.fragment_used_libraries) {
         super.onViewCreated(view, savedInstanceState)
 
         librariesAdapter = LibrariesListAdapter {
-            router.addScreenWithContainerId(
-                    screen = LicenseFragmentScreen(it),
-                    id = R.id.contentFullScreen
-            )
+            router.addScreenFullscreen(screen = LicenseFragmentScreen(it))
         }
 
         binding.initViews()

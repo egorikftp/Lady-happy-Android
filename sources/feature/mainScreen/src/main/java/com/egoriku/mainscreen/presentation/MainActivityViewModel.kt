@@ -29,7 +29,7 @@ class MainActivityViewModel(
         router.replaceScreen(screen)
     }
 
-    fun navigateTo(screen: Screen, containerId: Int) = router.addScreenWithContainerId(screen, containerId)
+    fun navigateTo(screen: Screen) = router.addScreenFullscreen(screen)
 
     fun onBackPressed() = router.back()
 
