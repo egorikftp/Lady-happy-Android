@@ -9,7 +9,7 @@ interface IRouter {
 
     fun addScreen(screen: Screen)
 
-    fun addScreenFullscreen(screen: Screen, vararg sharedElements: Pair<View, String>)
+    fun addScreenFullscreen(screen: Screen)
 
     fun back()
 }
