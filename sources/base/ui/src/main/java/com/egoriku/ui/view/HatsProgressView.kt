@@ -7,8 +7,8 @@ import android.util.AttributeSet
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.vectordrawable.graphics.drawable.Animatable2Compat
 import androidx.vectordrawable.graphics.drawable.AnimatedVectorDrawableCompat
-import com.egoriku.ladyhappy.extensions.fromApi
-import com.egoriku.ladyhappy.extensions.toApi
+import com.egoriku.extensions.fromApi
+import com.egoriku.extensions.toApi
 import com.egoriku.ui.R
 
 class HatsProgressView : AppCompatImageView {
@@ -17,7 +17,7 @@ class HatsProgressView : AppCompatImageView {
     constructor(context: Context, attrs: AttributeSet) : super(context, attrs)
     constructor(context: Context, attrs: AttributeSet, defStyleAttr: Int) : super(context, attrs, defStyleAttr)
 
-    private var animatedVectorDrawable: AnimatedVectorDrawableCompat? = AnimatedVectorDrawableCompat.create(context, R.drawable.avd_hats_animation)
+    private var animatedVectorDrawable = AnimatedVectorDrawableCompat.create(context, R.drawable.avd_hats_animation)
 
     init {
         setImageDrawable(animatedVectorDrawable)

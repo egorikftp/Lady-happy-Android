@@ -7,11 +7,10 @@ plugins {
     id("com.android.library")
 }
 
-withProjects(
-        Libraries.core
-)
+withProjects(Libraries.extensions)
 
 withLibraries(
         Libs.coroutinesAndroid,
-        Libs.firebaseFirestore
+        Libs.firebaseFirestore,
+        Libs.firebaseStorage
 )

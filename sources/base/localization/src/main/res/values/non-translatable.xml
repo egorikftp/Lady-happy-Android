@@ -3,4 +3,6 @@
     <string name="bullet_separator" translatable="false">•</string>
     <string name="terms_of_service_link" translatable="false">https://lady-happy.com/terms_and_conditions</string>
     <string name="privacy_policy_link" translatable="false">https://lady-happy.com/privacy_policy</string>
+    <string name="github_link" translatable="false">https://github.com/egorikftp/Lady-happy-Android</string>
+    <string name="server_client_id" translatable="false">68697334520-iaab9n85eb1lr4i0gtg56ipvn4bpjb5m.apps.googleusercontent.com</string>
 </resources>

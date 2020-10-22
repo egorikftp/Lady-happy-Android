@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="?attr/android:colorBackground"
@@ -21,48 +20,13 @@
             app:navigationIcon="@drawable/ic_close"
             app:title="Создание записи" />
 
-        <TextView
-            android:id="@+id/postTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/material_padding_16"
-            android:layout_marginTop="@dimen/material_padding_16"
-            android:text="Добавьте фотографии"
-            android:textColor="?attr/colorOnSurface"
-            android:textSize="15sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/postToolbar"
-            tools:ignore="RtlHardcoded" />
-
-        <ImageView
-            android:id="@+id/icon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            app:layout_constraintBottom_toBottomOf="@+id/postTitle"
-            app:layout_constraintEnd_toStartOf="@+id/postImagesCount"
-            app:layout_constraintTop_toTopOf="@+id/postTitle"
-            app:srcCompat="@drawable/ic_image"
-            tools:viewBindingIgnore="true" />
-
-        <TextView
-            android:id="@+id/postImagesCount"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/material_padding_16"
-            android:textSize="15sp"
-            app:layout_constraintBottom_toBottomOf="@+id/icon"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/icon"
-            tools:text="0 из 9" />
-
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/postImagesRecycler"
+            android:id="@+id/postRecycler"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/postTitle" />
+            app:layout_constraintTop_toBottomOf="@+id/postToolbar" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/postTitleInput"
@@ -70,11 +34,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/material_padding_16"
+            android:layout_marginTop="@dimen/material_padding_16"
             android:layout_marginEnd="@dimen/material_padding_16"
             app:endIconMode="clear_text"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/postImagesRecycler">
+            app:layout_constraintTop_toBottomOf="@+id/postRecycler">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
@@ -82,31 +47,7 @@
                 android:hint="Название работы" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <com.egoriku.ladyhappy.postcreator.presentation.view.ChooserView
-            android:id="@+id/chooseCategory"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/material_padding_16"
-            app:hintText="Категория"
-            app:iconClear="@drawable/ic_close"
-            app:iconDefault="@drawable/ic_arrow_right"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/postTitleInput" />
-
-        <com.egoriku.ladyhappy.postcreator.presentation.view.ChooserView
-            android:id="@+id/chooseSubCategory"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/material_padding_16"
-            app:hintText="Подкатегория"
-            app:iconClear="@drawable/ic_close"
-            app:iconDefault="@drawable/ic_arrow_right"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/chooseCategory" />
-
-        <com.google.android.material.button.MaterialButton
+        <Button
             android:id="@+id/postPublishButton"
             style="@style/Widget.MaterialComponents.Button"
             android:layout_width="match_parent"
@@ -117,7 +58,7 @@
             android:text="Опубликовать запись"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/chooseSubCategory"
+            app:layout_constraintTop_toBottomOf="@+id/postTitleInput"
             app:layout_constraintWidth_min="150dp" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -7,13 +7,15 @@ plugins {
     id("com.android.library")
 }
 
-withProjects(
-        Libraries.arch,
-        Libraries.navigation
-)
+happyPlugin {
+    kotlinParcelize = true
+}
+
+withProjects(Libraries.navigation)
 
 withLibraries(
+        Libs.appcompat,
         Libs.coroutinesAndroid,
-        Libs.dagger,
-        Libs.firebaseFirestore
+        Libs.firebaseFirestore,
+        Libs.firebaseStorage
 )

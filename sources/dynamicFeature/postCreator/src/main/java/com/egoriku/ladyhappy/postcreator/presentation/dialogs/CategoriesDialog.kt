@@ -1,35 +1,26 @@
 package com.egoriku.ladyhappy.postcreator.presentation.dialogs
 
-import android.content.Context
 import android.os.Bundle
-import com.egoriku.ladyhappy.extensions.dataBySelectedPosition
+import androidx.core.os.bundleOf
+import androidx.fragment.app.setFragmentResult
+import com.egoriku.extensions.dataBySelectedPosition
 import com.egoriku.ladyhappy.postcreator.domain.dialog.DialogResult
-import com.egoriku.ladyhappy.postcreator.presentation.dialogs.listener.DialogValueChangeListener
+import com.egoriku.ladyhappy.postcreator.presentation.fragment.BUNDLE_KEY
+import com.egoriku.ladyhappy.postcreator.presentation.fragment.CHOOSER_KEY
 import com.egoriku.ui.dialog.BaseDialogFragment
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.egoriku.ladyhappy.localization.R as R_localization
 
 class CategoriesDialog : BaseDialogFragment() {
 
-    private var listener: DialogValueChangeListener? = null
-
     private var selectedItemPosition = -1
-
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-
-        listener = parentFragment as DialogValueChangeListener
-    }
-
-    override fun onDetach() {
-        super.onDetach()
-
-        listener = null
-    }
 
     override val dialogTitleResId: Int = R_localization.string.post_creator_categories_dialog_title
 
-    override fun onBuildDialog(builder: MaterialAlertDialogBuilder) =
+    override fun onBuildDialog(
+            builder: MaterialAlertDialogBuilder,
+            savedInstanceState: Bundle?
+    ): MaterialAlertDialogBuilder =
             builder.setSingleChoiceItems(getCategories(requireArguments()), 0) { _, which ->
                 selectedItemPosition = which
             }
@@ -38,7 +29,8 @@ class CategoriesDialog : BaseDialogFragment() {
         super.onPositiveButtonClick()
 
         val checkedItemName = dataBySelectedPosition<String>()
-        listener?.onValueChanged(DialogResult.Category(checkedItemName))
+
+        setFragmentResult(CHOOSER_KEY, bundleOf(BUNDLE_KEY to DialogResult.Category(checkedItemName)))
     }
 
     companion object {

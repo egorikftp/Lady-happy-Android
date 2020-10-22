@@ -3,21 +3,20 @@ package com.egoriku.mainscreen.presentation
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.egoriku.core.di.utils.IAnalytics
-import com.egoriku.core.di.utils.IRouter
-import com.egoriku.ladyhappy.extensions.common.Constants.EMPTY
+import com.egoriku.core.IAnalytics
+import com.egoriku.core.IRouter
+import com.egoriku.extensions.common.Constants.EMPTY
 import com.egoriku.ladyhappy.navigation.screen.Screen
 import com.egoriku.mainscreen.common.TITLE_KEY
 import com.egoriku.mainscreen.common.TRACKING_KEY
-import org.koin.core.KoinComponent
-import org.koin.core.inject
-import javax.inject.Inject
+import com.egoriku.mainscreen.presentation.delegate.IThemedActivityDelegate
 
-class MainActivityViewModel
-@Inject constructor(private val analytics: IAnalytics)
-    : ViewModel(), KoinComponent {
-
-    private val router: IRouter by inject()
+class MainActivityViewModel(
+        private val analytics: IAnalytics,
+        private val router: IRouter,
+        private val themedDelegate: IThemedActivityDelegate
+) : ViewModel(),
+        IThemedActivityDelegate by themedDelegate {
 
     private val currentScreenTitle: MutableLiveData<Int> = MutableLiveData()
 

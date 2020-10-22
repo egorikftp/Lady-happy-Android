@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/root"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_adapter_item_color"
+    android:clickable="true"
+    android:focusable="true"
+    android:paddingTop="@dimen/material_padding_8"
+    android:paddingBottom="@dimen/material_padding_8">
+
+    <ImageView
+        android:id="@+id/colorImage"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginStart="@dimen/material_padding_16"
+        android:background="@drawable/bg_color_item"
+        android:importantForAccessibility="no"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/colorName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/material_padding_16"
+        android:layout_marginEnd="@dimen/material_padding_16"
+        android:ellipsize="marquee"
+        android:textAppearance="?textAppearanceBody2"
+        android:textColor="@color/material_on_surface_emphasis_medium"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/colorImage"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="@tools:sample/first_names"
+        tools:textColor="@color/RealWhite" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

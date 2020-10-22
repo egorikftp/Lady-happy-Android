@@ -5,10 +5,10 @@ import android.graphics.drawable.Drawable
 import android.util.AttributeSet
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.updatePadding
-import com.egoriku.ladyhappy.extensions.addRipple
-import com.egoriku.ladyhappy.extensions.getDimen
-import com.egoriku.ladyhappy.extensions.inflater
-import com.egoriku.ladyhappy.extensions.withStyledAttributes
+import com.egoriku.extensions.addRipple
+import com.egoriku.extensions.getDimen
+import com.egoriku.extensions.inflater
+import com.egoriku.extensions.withStyledAttributes
 import com.egoriku.ladyhappy.postcreator.R
 import com.egoriku.ladyhappy.postcreator.databinding.ViewChooserBinding
 import com.egoriku.ui.R as R_ui
@@ -19,7 +19,12 @@ class ChooserView @JvmOverloads constructor(
 
     private val binding = ViewChooserBinding.inflate(inflater(), this)
 
-    private var hintText: String? = null
+    var hintText: String? = null
+        set(value) {
+            binding.primaryTextView.text = value
+
+            field = value
+        }
 
     private var defaultIconDrawable: Drawable? = null
     private var clearIconDrawable: Drawable? = null
@@ -29,7 +34,10 @@ class ChooserView @JvmOverloads constructor(
     init {
         addRipple()
 
-        updatePadding(left = getDimen(R_ui.dimen.material_padding_16), right = getDimen(R_ui.dimen.material_padding_16))
+        updatePadding(
+                left = getDimen(R_ui.dimen.material_padding_16),
+                right = getDimen(R_ui.dimen.material_padding_16)
+        )
 
         withStyledAttributes(
                 attributeSet = attrs,
@@ -53,12 +61,12 @@ class ChooserView @JvmOverloads constructor(
         }
     }
 
-    fun setPrimary(text: String) = binding.setPrimary(text)
+    fun setPrimary(text: String, hint: String) = binding.setPrimary(text, hint)
 
     fun reset() = binding.reset()
 
-    private fun ViewChooserBinding.setPrimary(text: String) {
-        hintTextView.text = hintText
+    private fun ViewChooserBinding.setPrimary(text: String, hint: String) {
+        hintTextView.text = hint
         primaryTextView.text = text
 
         rightIcon.setImageDrawable(clearIconDrawable)

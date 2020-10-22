@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="250dp"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingLeft="@dimen/material_padding_16"
+    android:paddingTop="@dimen/material_padding_16"
+    android:paddingRight="@dimen/material_padding_16"
+    android:paddingBottom="@dimen/material_padding_8">
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="?textAppearanceSubtitle2"
+        android:textColor="?attr/colorOnSurface"
+        tools:text="Downloading..."
+        tools:textColor="@color/RealBlack" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:progress="50" />
+</LinearLayout>

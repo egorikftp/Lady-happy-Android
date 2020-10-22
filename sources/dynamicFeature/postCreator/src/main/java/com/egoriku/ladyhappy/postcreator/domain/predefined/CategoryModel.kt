@@ -5,8 +5,14 @@ data class CategoryModel(
         val name: String
 )
 
-data class SubCategory(
+data class SubCategoryModel(
         val categoryId: Int,
         val subCategoryId: Int,
         val name: String
+)
+
+data class ColorModel(
+        val colorId: Int,
+        val name: String,
+        val color: String
 )

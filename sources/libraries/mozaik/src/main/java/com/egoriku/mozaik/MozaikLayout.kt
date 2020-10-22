@@ -4,11 +4,13 @@ import android.content.Context
 import android.util.AttributeSet
 import android.view.ViewGroup
 import android.widget.ImageView
-import com.egoriku.ladyhappy.extensions.pxToDp
+import com.egoriku.extensions.pxToDp
 import com.egoriku.mozaik.model.MozaikItem
 import com.egoriku.mozaik.strategy.StrategyResolver
 import com.egoriku.mozaik.strategy.internal.model.Rect
 import com.egoriku.mozaik.strategy.internal.model.StrategyData
+
+private const val DIVIDER_SIZE = 20
 
 class MozaikLayout @JvmOverloads constructor(
         context: Context,
@@ -20,19 +22,9 @@ class MozaikLayout @JvmOverloads constructor(
         setWillNotDraw(false)
     }
 
-    private val strategyData = StrategyData(dividerSize = pxToDp(20))
+    private val strategyData = StrategyData(dividerSize = pxToDp(DIVIDER_SIZE))
 
     var onViewReady: ((view: ImageView, url: String) -> Unit)? = null
-
-    var dividerSize: Int = 0
-        set(value) {
-            field = value
-
-            strategyData.dividerSize = value
-
-            requestLayout()
-            invalidate()
-        }
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec)
@@ -61,21 +53,22 @@ class MozaikLayout @JvmOverloads constructor(
     override fun onLayout(changed: Boolean, left: Int, top: Int, right: Int, bottom: Int) {
         if (childCount != 0) {
             for (i in 0 until childCount) {
-                val childAt = getChildAt(i)
                 val rect = strategyData.rect[i]
 
-                childAt.layout(
+                getChildAt(i).layout(
                         rect.left + paddingLeft,
                         rect.top + paddingTop,
                         rect.right + paddingLeft,
                         rect.bottom + paddingTop
                 )
+            }
+        }
 
-                val url = strategyData.mozaikItems[i].url
+        for (i in 0 until childCount) {
+            val url = strategyData.mozaikItems[i].url
 
-                if (url.isNotEmpty()) {
-                    onViewReady?.invoke(childAt as ImageView, url)
-                }
+            if (url.isNotEmpty()) {
+                onViewReady?.invoke(getChildAt(i) as ImageView, url)
             }
         }
     }
@@ -84,7 +77,9 @@ class MozaikLayout @JvmOverloads constructor(
         removeAllViews()
 
         items.forEachIndexed { _, _ ->
-            addView(ImageView(context))
+            addView(ImageView(context).apply {
+                scaleType = ImageView.ScaleType.CENTER_CROP
+            })
         }
 
         strategyData.rect = List(items.size) { Rect() }

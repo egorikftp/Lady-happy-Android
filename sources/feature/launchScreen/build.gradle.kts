@@ -14,6 +14,6 @@ withProjects(
 
 withLibraries(
         Libs.appcompat,
-        Libs.material,
-        Libs.koinAndroidExperimental
+        Libs.koinAndroid,
+        Libs.material
 )

@@ -1,8 +1,8 @@
 package com.egoriku.network.firestore
 
 import android.util.Log
-import com.egoriku.core.exception.FirestoreParseException
-import com.egoriku.network.Result
+import com.egoriku.network.ResultOf
+import com.egoriku.network.exception.FirestoreParseException
 import com.egoriku.network.wrapIntoResult
 import com.google.android.gms.tasks.Task
 import com.google.firebase.firestore.Query
@@ -11,7 +11,7 @@ import kotlinx.coroutines.suspendCancellableCoroutine
 import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
 
-suspend inline fun <reified T> Query.awaitResult(): Result<List<T>> = wrapIntoResult { awaitGet<T>() }
+suspend inline fun <reified T> Query.awaitResult(): ResultOf<List<T>> = wrapIntoResult { awaitGet<T>() }
 
 suspend inline fun <reified T> Query.awaitGet(): List<T> = get().awaitGet()
 
@@ -38,5 +38,5 @@ private suspend fun <T> awaitTaskQueryList(task: Task<QuerySnapshot>, type: Clas
             }
         }
 
-suspend inline fun <reified T> Task<QuerySnapshot>.awaitResult(): Result<List<T>> =
+suspend inline fun <reified T> Task<QuerySnapshot>.awaitResult(): ResultOf<List<T>> =
         wrapIntoResult { awaitGet<T>() }

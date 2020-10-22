@@ -13,6 +13,7 @@
 
         <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
+            android:id="@+id/appBarLayout"
             android:layout_height="wrap_content"
             app:elevation="0dp">
 
@@ -48,7 +49,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
             android:background="?attr/colorSurface"
-            app:layout_behavior="@string/hide_bottom_view_on_scroll_behavior"
+            app:layout_behavior="com.egoriku.mainscreen.presentation.behavior.BottomNavigationBehavior"
             app:menu="@menu/navigation_menu" />
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

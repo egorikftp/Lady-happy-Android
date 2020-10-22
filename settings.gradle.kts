@@ -34,6 +34,7 @@ object Modules {
         const val mainScreen = ":mainScreen"
         const val photoReport = ":photoReport"
         const val settings = ":settings"
+        const val usedLibraries = ":usedLibraries"
     }
 
     object DynamicFeatures {
@@ -41,7 +42,6 @@ object Modules {
     }
 
     object Libraries {
-        const val arch = ":arch"
         const val auth = ":auth"
         const val core = ":core"
         const val easyAdapter = ":easyAdapter"
@@ -72,12 +72,12 @@ object Modules {
                 ProjectBean(Features.login, "sources/feature/login"),
                 ProjectBean(Features.mainScreen, "sources/feature/mainScreen"),
                 ProjectBean(Features.photoReport, "sources/feature/photoReport"),
-                ProjectBean(Features.settings, "sources/feature/settings")
+                ProjectBean(Features.settings, "sources/feature/settings"),
+                ProjectBean(Features.usedLibraries, "sources/feature/usedLibraries")
         )
 
     val libraries
         get() = arrayOf(
-                ProjectBean(Libraries.arch, "sources/base/arch"),
                 ProjectBean(Libraries.auth, "sources/base/auth"),
                 ProjectBean(Libraries.core, "sources/base/core"),
                 ProjectBean(Libraries.extensions, "sources/libraries/extensions"),

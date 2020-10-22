@@ -1,5 +1,6 @@
 import Modules.Libraries
-import com.egoriku.ext.*
+import com.egoriku.ext.withLibraries
+import com.egoriku.ext.withProjects
 
 plugins {
     id("HappyXPlugin")
@@ -16,35 +17,7 @@ android {
     }
 }
 
-android {
-    configureBuildFlavors(
-            onLocalBuild = {
-                flavorDimensions("settings")
-
-                productFlavors {
-                    full {
-                        dimension = "settings"
-                    }
-
-                    stub {
-                        dimension = "settings"
-                    }
-                }
-            },
-            onRemoteBuild = {
-                sourceSets {
-                    main {
-                        java.srcDirs("src/full/java")
-                        res.srcDirs("src/full/res")
-                        manifest.srcFile("src/full/AndroidManifest.xml")
-                    }
-                }
-            }
-    )
-}
-
 withProjects(
-        Libraries.arch,
         Libraries.auth,
         Libraries.core,
         Libraries.extensions,
@@ -55,17 +28,17 @@ withProjects(
 )
 
 withLibraries(
-        Libs.browser,
+        Libs.coil,
         Libs.constraintLayout,
-        Libs.coreKtx,
+        Libs.core,
         Libs.circleImageView,
         Libs.easyAdapter,
         Libs.firebaseFirestore,
-        Libs.koinCore,
-        Libs.koinScope,
+        Libs.koinAndroid,
         Libs.koinViewModel,
         Libs.liveData,
         Libs.material,
+        Libs.playCore,
         Libs.viewBindingDelegates,
         Libs.viewModel
 )

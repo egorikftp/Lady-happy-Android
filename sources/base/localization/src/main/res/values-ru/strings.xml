@@ -28,7 +28,7 @@
     <string name="navigation_view_search_header">Поиск</string>
 
     <string name="navigation_view_settings">Настройки</string>
-    <string name="navigation_view_settings_header">Дополнительные функции</string>
+    <string name="navigation_view_settings_header">Доп. функции</string>
 
     <string name="adapter_item_news_header_text">Последние новости</string>
 
@@ -36,14 +36,26 @@
     <string name="cd_adapter_item_photo_report">Фотография</string>
 
     <!-- Main screen -->
+    <string name="in_app_update_available">Доступно обновление</string>
+    <string name="in_app_update_now">Обновить сейчас</string>
+    <string name="in_app_update_downloading">Обновление скачивается… %1$d</string>
     <string name="in_app_update_download_finished">Обновление было только что загружено</string>
-    <string name="in_app_update_restart">Перезапустить</string>
-    <string name="in_app_update_download_failed">Не удалось скачать обновление</string>
-    <string name="in_app_update_retry">Повторить</string>
+    <string name="in_app_update_complete">Завершить обновление</string>
+
+    <string name="dynamic_delivery_installing">Установка… %1$d%%</string>
+    <string name="dynamic_delivery_feature_not_available">Фича недоступна</string>
 
     <!-- Catalog screen -->
-    <string name="catalog_images_count">%1$s работы</string>
-    <string name="catalog_empty_response">Шляпки скоро появятся</string>
+    <string name="catalog_images_count_zero">Работы пока-что не добавлены</string>
+    <plurals name="catalog_images_count">
+        <item quantity="zero">Работы пока-что не добавлены</item>
+        <item quantity="one">%1$d работа</item>
+        <item quantity="two">%1$d работы</item>
+        <item quantity="few">%1$d работы</item>
+        <item quantity="many">%1$d работ</item>
+        <item quantity="other">%1$d работ</item>
+    </plurals>
+    <string name="catalog_error_response">Произошла ошибка во время загрузки</string>
     <string name="catalog_trending_hint">Популярная модель</string>
 
     <!-- Settings -->
@@ -54,8 +66,19 @@
     <string name="settings_log_out">Выйти</string>
     <string name="settings_login_hint">Пожалуйста, войдите, чтобы получить доступ к дополнительным функциям</string>
 
+    <string name="settings_section_app_settings">Настройки приложения</string>
+    <string name="settings_section_about">О приложении</string>
+    <string name="settings_app_version">Версия: %1$s</string>
+    <string name="settings_used_libraries">Лицензии ПО с открытым исходным кодом</string>
+    <string name="settings_review">Оценить приложение</string>
+
+    <string name="settings_theme_title">Выберите тему</string>
+    <string name="settings_theme_system">Системное значение по умолчанию</string>
+    <string name="settings_theme_light">Светлый режим</string>
+    <string name="settings_theme_dark">Ночной режим</string>
+    <string name="settings_theme_battery">Учитывать режим энергосбережения</string>
+
     <!-- Login -->
-    <string name="login_go_to_sign_up">Еще нет аккаута? <annotation clickColor="RoseTaupe">ЗАРЕГИСТРИРОВАТЬСЯ</annotation></string>
     <string name="login_hint_email">Email</string>
     <string name="login_hint_password">Пароль</string>
     <string name="login_forgot_password">Забыли пароль?</string>
@@ -69,5 +92,12 @@
     <string name="post_creator_images_count">%1$s из 10</string>
     <string name="post_creator_categories_dialog_title">Выберите категорию</string>
     <string name="post_creator_subcategories_categories_dialog_title">Выберите подкатегорию</string>
+    <string name="post_creator_color_dialog_title">Выберите цвет</string>
 
+    <!-- Used Libraries -->
+    <string name="used_libraries_prefix_the" />
+    <string name="used_libraries_prefix_open_source">это open source приложение,</string>
+    <string name="used_libraries_prefix_uses">и использует эти open source библиотеки</string>
+    <string name="used_libraries_follow_github">Мы на GitHub!</string>
+    <string name="used_libraries_error_loading">Open-source библиотеки не найдены</string>
 </resources>

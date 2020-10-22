@@ -24,10 +24,12 @@
                 android:layout_height="150dp"
                 android:layout_marginTop="64dp"
                 android:layout_marginBottom="32dp"
-                android:src="@drawable/ic_lady_happy_logo"
+                android:importantForAccessibility="no"
+                android:src="@drawable/ic_logo"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
+                app:tint="?attr/colorOnSurface"
                 tools:viewBindingIgnore="true" />
 
             <com.google.android.material.textfield.TextInputLayout
@@ -54,6 +56,7 @@
                     android:id="@+id/loginEmail"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:autofillHints="emailAddress"
                     android:hint="@string/login_hint_email"
                     android:inputType="textWebEmailAddress|textEmailAddress"
                     android:nextFocusDown="@id/textInputPassword" />
@@ -84,6 +87,7 @@
                     android:id="@+id/loginPassword"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:autofillHints="password"
                     android:hint="@string/login_hint_password"
                     android:inputType="textPassword"
                     android:nextFocusDown="@id/signInButton" />
@@ -101,7 +105,7 @@
                 app:layout_constraintEnd_toEndOf="@+id/textInputPassword"
                 app:layout_constraintTop_toBottomOf="@+id/textInputPassword" />
 
-            <com.google.android.material.button.MaterialButton
+            <Button
                 android:id="@+id/signInButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -116,23 +120,64 @@
                 app:layout_constraintTop_toBottomOf="@+id/forgotPassword"
                 app:layout_constraintWidth_min="150dp" />
 
-            <TextView
-                android:id="@+id/dontHaveAccount"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
-                android:layout_marginTop="64dp"
-                android:layout_marginEnd="32dp"
-                android:layout_marginBottom="8dp"
-                android:fontFamily="sans-serif-light"
-                android:gravity="center"
-                android:visibility="invisible"
-                app:layout_constraintBottom_toBottomOf="parent"
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/signInButtonWithGoogle"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_marginTop="24dp"
+                android:background="?android:selectableItemBackgroundBorderless"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/signInButton"
+                app:srcCompat="@drawable/ic_google" />
+
+            <Button
+                android:id="@+id/termsOfServiceButton"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/terms_of_service"
+                android:textAllCaps="false"
+                android:textColor="?attr/colorOnSurface"
+                android:textSize="9sp"
+                app:cornerRadius="10dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/dot"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/signInButton"
-                app:layout_constraintVertical_bias="1.0"
-                tools:text="@string/login_go_to_sign_up" />
+                app:layout_constraintVertical_bias="1"
+                tools:ignore="SmallSp" />
+
+            <Button
+                android:id="@+id/privacyPolicyButton"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/privacy_policy"
+                android:textAllCaps="false"
+                android:textColor="?attr/colorOnSurface"
+                android:textSize="9sp"
+                app:cornerRadius="10dp"
+                app:layout_constraintBottom_toBottomOf="@+id/termsOfServiceButton"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/dot"
+                app:layout_constraintTop_toTopOf="@+id/termsOfServiceButton"
+                tools:ignore="SmallSp" />
+
+            <TextView
+                android:id="@+id/dot"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/bullet_separator"
+                android:textColor="?attr/colorOnSurface"
+                app:layout_constraintBottom_toBottomOf="@+id/termsOfServiceButton"
+                app:layout_constraintEnd_toStartOf="@+id/privacyPolicyButton"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/termsOfServiceButton"
+                app:layout_constraintTop_toTopOf="@+id/termsOfServiceButton" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

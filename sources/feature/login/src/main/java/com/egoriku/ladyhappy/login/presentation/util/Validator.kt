@@ -1,6 +1,6 @@
 package com.egoriku.ladyhappy.login.presentation.util
 
-import com.egoriku.ladyhappy.extensions.isEmailValid
+import com.egoriku.extensions.isEmailValid
 import com.egoriku.ladyhappy.login.R
 import com.google.android.material.textfield.TextInputLayout
 

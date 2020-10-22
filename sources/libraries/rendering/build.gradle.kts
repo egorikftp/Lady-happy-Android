@@ -1,4 +1,4 @@
-import com.egoriku.dependencies.versions.ProjectVersion
+import com.egoriku.versions.ProjectVersion
 import com.egoriku.ext.withLibraries
 
 plugins {

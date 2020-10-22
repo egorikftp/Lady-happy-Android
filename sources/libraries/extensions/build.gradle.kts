@@ -7,10 +7,11 @@ plugins {
 
 withLibraries(
         Libs.appcompat,
-        Libs.coreKtx,
+        Libs.core,
         Libs.fragment,
-        Libs.lifecycleExtensions,
+        Libs.lifecycleRuntime,
         Libs.material,
         Libs.recyclerView,
+        Libs.viewBinding,
         Libs.viewModel
 )

@@ -6,11 +6,15 @@ import com.egoriku.ladyhappy.catalog.categories.koin.categoriesModule
 import com.egoriku.ladyhappy.catalog.subcategory.koin.subcategoryModule
 import com.egoriku.ladyhappy.login.koin.loginModule
 import com.egoriku.ladyhappy.settings.koin.settingsModule
+import com.egoriku.landing.koin.landingModule
 import com.egoriku.mainscreen.koin.mainActivityModule
+import com.egoriku.photoreport.koin.photoReportModule
+import com.egoriku.usedLibraries.koin.usedLibrariesModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidFileProperties
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
+import org.koin.core.logger.Level
 
 fun Application.initKoin() {
 
@@ -18,7 +22,7 @@ fun Application.initKoin() {
         androidContext(this@initKoin)
 
         if (BuildConfig.DEBUG) {
-            androidLogger()
+            androidLogger(Level.ERROR)
         }
 
         androidFileProperties()
@@ -30,8 +34,11 @@ fun Application.initKoin() {
 val koinModules = listOf(
         applicationScopeModule,
         categoriesModule,
+        landingModule,
         loginModule,
         mainActivityModule,
+        photoReportModule,
         settingsModule,
-        subcategoryModule
+        subcategoryModule,
+        usedLibrariesModule
 )

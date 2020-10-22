@@ -1,7 +1,7 @@
 package com.egoriku.ui.controller
 
 import android.view.ViewGroup
-import com.egoriku.ladyhappy.extensions.inflater
+import com.egoriku.extensions.inflater
 import com.egoriku.ui.databinding.AdapterItemNoDataBinding
 import ru.surfstudio.android.easyadapter.controller.NoDataItemController
 import ru.surfstudio.android.easyadapter.holder.BaseViewHolder

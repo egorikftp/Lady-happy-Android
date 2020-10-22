@@ -5,8 +5,8 @@ import android.widget.EditText
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.FragmentManager
+import com.egoriku.extensions.listeners.SimpleActivityLifecycleCallbacks
 import com.egoriku.ladyhappy.R
-import com.egoriku.ladyhappy.extensions.listeners.SimpleActivityLifecycleCallbacks
 import com.egoriku.ladyhappy.koin.AccountProvider
 import com.egoriku.ladyhappy.login.presentation.LoginFragment
 import com.pandulapeter.beagle.Beagle

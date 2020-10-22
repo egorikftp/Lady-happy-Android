@@ -12,6 +12,7 @@ object Modules {
         const val mainScreen = ":mainScreen"
         const val photoReport = ":photoReport"
         const val settings = ":settings"
+        const val usedLibraries = ":usedLibraries"
     }
 
     object DynamicFeatures {
@@ -19,7 +20,6 @@ object Modules {
     }
 
     object Libraries {
-        const val arch = ":arch"
         const val auth = ":auth"
         const val core = ":core"
         const val easyAdapter = ":easyAdapter"

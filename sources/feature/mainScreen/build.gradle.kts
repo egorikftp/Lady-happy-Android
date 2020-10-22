@@ -1,13 +1,10 @@
 import Modules.Libraries
-import com.egoriku.ext.andKapt
-import com.egoriku.ext.withKapt
 import com.egoriku.ext.withLibraries
 import com.egoriku.ext.withProjects
 
 plugins {
     id("HappyXPlugin")
     id("com.android.library")
-    id("kotlin-kapt")
 }
 
 happyPlugin {
@@ -15,22 +12,25 @@ happyPlugin {
 }
 
 withProjects(
-        Libraries.arch,
         Libraries.core,
         Libraries.extensions,
+        Libraries.network,
         Libraries.navigation,
         Libraries.ui
 )
 
 withLibraries(
         Libs.appcompat,
-        Libs.coreKtx,
+        Libs.balloon,
+        Libs.core,
         Libs.constraintLayout,
-        Libs.koinAndroidExperimental,
+        Libs.fragment,
+        Libs.koinAndroid,
+        Libs.koinViewModel,
+        Libs.lifecycleRuntime,
         Libs.liveData,
         Libs.material,
         Libs.playCore,
-        Libs.viewBindingDelegates
+        Libs.viewBindingDelegates,
+        Libs.viewModel
 )
-
-withKapt(Libs.dagger andKapt Libs.daggerCompiler)

@@ -1,10 +1,6 @@
 package com.egoriku.ladyhappy.koin
 
-import com.egoriku.core.di.utils.IBlurRendering
-import com.egoriku.core.di.utils.IFirebaseFirestore
-import com.egoriku.core.di.utils.INavigationHolder
-import com.egoriku.core.di.utils.IRouter
-import com.egoriku.core.feature.IFeatureProvider
+import com.egoriku.core.*
 import com.egoriku.ladyhappy.auth.Authentication
 import com.egoriku.ladyhappy.navigation.NavigateMe
 import com.egoriku.ladyhappy.navigation.router.Router
@@ -18,9 +14,13 @@ val applicationScopeModule = module {
 
     single { Authentication() }
 
-    //single<IAppPreferences> { AppPreferences(androidContext()) }
+    single<IAppPreferences> { AppPreferences(androidContext()) }
+    single<IAnalytics> { Analytics(androidContext()) }
     single<IBlurRendering> { BlurRendering(androidContext()) }
-    single<IFirebaseFirestore> { FirebaseFirestore() }
+    single<IDispatchers> { Dispatchers() }
+    single<IFirebase> { Firebase() }
+    single<IRemoteConfig> { RemoteConfig() }
+    single<IStringResource> { StringResource(androidContext()) }
 
     single { NavigateMe.create() }
     single<INavigationHolder> { NavigationHolder(get<NavigateMe<Router>>().navigatorHolder) }

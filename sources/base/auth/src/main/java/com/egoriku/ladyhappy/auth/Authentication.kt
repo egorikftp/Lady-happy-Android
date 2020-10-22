@@ -2,12 +2,13 @@ package com.egoriku.ladyhappy.auth
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.egoriku.extensions.common.Constants.EMPTY
 import com.egoriku.ladyhappy.auth.model.UserLoginState
-import com.egoriku.ladyhappy.extensions.common.Constants.EMPTY
-import com.egoriku.network.Result
+import com.egoriku.network.ResultOf
 import com.egoriku.network.firestore.awaitResult
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.GoogleAuthProvider
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
@@ -47,13 +48,25 @@ class Authentication {
     suspend fun authWithEmailAndPassword(
             email: String,
             password: String
-    ): Result<AuthResult> = withContext(Dispatchers.IO) {
-        val result: Result<AuthResult> = auth.signInWithEmailAndPassword(email, password).awaitResult()
+    ): ResultOf<AuthResult> = withContext(Dispatchers.IO) {
+        val resultOf: ResultOf<AuthResult> = auth.signInWithEmailAndPassword(email, password).awaitResult()
 
         withContext(Dispatchers.Main) {
             invalidateUser()
         }
 
-        result
+        resultOf
+    }
+
+    suspend fun authWithToken(tokenId: String): ResultOf<AuthResult> = withContext(Dispatchers.IO) {
+        val credential = GoogleAuthProvider.getCredential(tokenId, null)
+
+        val resultOf: ResultOf<AuthResult> = auth.signInWithCredential(credential).awaitResult()
+
+        withContext(Dispatchers.Main) {
+            invalidateUser()
+        }
+
+        resultOf
     }
 }

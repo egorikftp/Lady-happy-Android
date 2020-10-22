@@ -2,7 +2,6 @@ package com.egoriku.ladyhappy.navigation.screen
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 
 sealed class Screen {
