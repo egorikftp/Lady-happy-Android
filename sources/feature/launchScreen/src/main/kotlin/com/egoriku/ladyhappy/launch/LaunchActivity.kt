@@ -1,4 +1,4 @@
-package com.egoriku.featurelaunch.presentation.activity
+package com.egoriku.ladyhappy.launch
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
