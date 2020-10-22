@@ -1,6 +1,6 @@
 package com.egoriku.ladyhappy.tools
 
-import com.egoriku.core.IRemoteConfig
+import com.egoriku.ladyhappy.core.IRemoteConfig
 import com.egoriku.ladyhappy.R
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.remoteconfig.ktx.remoteConfig

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.egoriku.ui.view.HatsProgressView
+    <com.egoriku.ladyhappy.ui.view.HatsProgressView
         android:id="@+id/hatsProgressAnimationView"
         android:layout_width="0dp"
         android:layout_height="0dp"

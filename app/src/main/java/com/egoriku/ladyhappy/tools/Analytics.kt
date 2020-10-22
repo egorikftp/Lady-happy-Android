@@ -1,7 +1,7 @@
 package com.egoriku.ladyhappy.tools
 
 import android.content.Context
-import com.egoriku.core.IAnalytics
+import com.egoriku.ladyhappy.core.IAnalytics
 import com.google.firebase.analytics.FirebaseAnalytics
 
 internal class Analytics(context: Context) : IAnalytics {

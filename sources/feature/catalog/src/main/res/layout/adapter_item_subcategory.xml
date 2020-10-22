@@ -23,7 +23,7 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:layout_height="150dp">
 
-        <com.egoriku.mozaik.MozaikLayout
+        <com.egoriku.ladyhappy.mozaik.MozaikLayout
             android:id="@+id/mozaikLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

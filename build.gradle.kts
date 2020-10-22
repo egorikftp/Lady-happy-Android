@@ -2,8 +2,8 @@ import com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask
 import io.gitlab.arturbosch.detekt.Detekt
 
 plugins {
-    id("com.github.ben-manes.versions") version "0.29.0"
-    id("io.gitlab.arturbosch.detekt") version "1.12.0"
+    id("com.github.ben-manes.versions") version GradlePluginsVersion.versionPlugin
+    id("io.gitlab.arturbosch.detekt") version GradlePluginsVersion.detekt
 }
 
 buildscript {
@@ -28,7 +28,6 @@ allprojects {
         google()
         jcenter()
         maven(url = "https://jitpack.io")
-        maven(url = "https://artifactory.surfstudio.ru/artifactory/libs-release-local")
     }
 }
 
@@ -74,6 +73,6 @@ subprojects {
 
 allprojects {
     dependencies {
-        detektPlugins("io.gitlab.arturbosch.detekt:detekt-formatting:1.12.0")
+        detektPlugins(GradlePlugins.detektFormatting)
     }
 }

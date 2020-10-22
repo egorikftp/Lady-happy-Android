@@ -49,7 +49,6 @@
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
             android:background="?attr/colorSurface"
-            app:layout_behavior="com.egoriku.mainscreen.presentation.behavior.BottomNavigationBehavior"
             app:menu="@menu/navigation_menu" />
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

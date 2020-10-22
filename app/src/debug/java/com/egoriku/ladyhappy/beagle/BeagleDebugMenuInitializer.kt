@@ -1,11 +1,14 @@
 package com.egoriku.ladyhappy.beagle
 
+import com.egoriku.ladyhappy.extensions.activityManager
 import com.egoriku.ladyhappy.Application
 import com.egoriku.ladyhappy.BuildConfig
 import com.egoriku.ladyhappy.R
 import com.pandulapeter.beagle.Beagle
-import com.pandulapeter.beagleCore.configuration.Behavior
-import com.pandulapeter.beagleCore.configuration.Trick
+import com.pandulapeter.beagle.modules.AppInfoButtonModule
+import com.pandulapeter.beagle.modules.DeveloperOptionsButtonModule
+import com.pandulapeter.beagle.modules.HeaderModule
+import com.pandulapeter.beagle.modules.TextModule
 import leakcanary.LeakCanary
 
 class BeagleDebugMenuInitializer {
@@ -13,28 +16,25 @@ class BeagleDebugMenuInitializer {
     fun initWith(application: Application) = with(application) {
         registerActivityLifecycleCallbacks(BeagleLifecycleListener())
 
-        Beagle.imprint(
-                application = this,
-                behavior = Behavior(
-                        packageName = "com.egoriku"
-                )
-        )
-        Beagle.learn(
-                Trick.Text(
-                        id = "stub",
-                        text = ""
+        Beagle.initialize(application = this)
+        Beagle.set(
+                HeaderModule(
+                        title = getString(R.string.application_name),
+                        subtitle = "v${BuildConfig.VERSION_NAME} (${BuildConfig.VERSION_CODE})"
                 ),
-                Trick.Text(
-                        text = getString(R.string.application_name),
-                        isTitle = true
+                AppInfoButtonModule(),
+                DeveloperOptionsButtonModule(),
+                TextModule(
+                        type = TextModule.Type.BUTTON,
+                        text = "Clear App Data",
+                        onItemSelected = {
+                            application.activityManager.clearApplicationUserData()
+                        }
                 ),
-                Trick.Text(
-                        text = "v${BuildConfig.VERSION_NAME} (${BuildConfig.VERSION_CODE})"
-                ),
-                Trick.AppInfoButton(),
-                Trick.Button(
+                TextModule(
+                        type = TextModule.Type.BUTTON,
                         text = "Dump Leaks",
-                        onButtonPressed = {
+                        onItemSelected = {
                             LeakCanary.dumpHeap()
                         }
                 )

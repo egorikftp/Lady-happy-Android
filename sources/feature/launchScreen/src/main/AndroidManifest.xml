@@ -1,9 +1,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.egoriku.featurelaunch">
+    package="com.egoriku.ladyhappy.launch">
 
     <application>
         <activity
-            android:name="com.egoriku.featurelaunch.presentation.activity.LaunchActivity"
+            android:name=".LaunchActivity"
             android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

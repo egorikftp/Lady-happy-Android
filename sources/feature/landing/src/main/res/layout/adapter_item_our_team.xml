@@ -20,7 +20,7 @@
             tools:ignore="ContentDescription"
             tools:src="@tools:sample/backgrounds/scenic" />
 
-        <com.egoriku.landing.presentation.view.SocialView
+        <com.egoriku.ladyhappy.landing.presentation.view.SocialView
             android:id="@+id/socialView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
