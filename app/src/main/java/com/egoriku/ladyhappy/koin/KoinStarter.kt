@@ -6,7 +6,7 @@ import com.egoriku.ladyhappy.catalog.categories.koin.categoriesModule
 import com.egoriku.ladyhappy.catalog.subcategory.koin.subcategoryModule
 import com.egoriku.ladyhappy.login.koin.loginModule
 import com.egoriku.ladyhappy.settings.koin.settingsModule
-import com.egoriku.landing.koin.landingModule
+import com.egoriku.ladyhappy.landing.koin.landingModule
 import com.egoriku.mainscreen.koin.mainActivityModule
 import com.egoriku.photoreport.koin.photoReportModule
 import com.egoriku.usedLibraries.koin.usedLibrariesModule

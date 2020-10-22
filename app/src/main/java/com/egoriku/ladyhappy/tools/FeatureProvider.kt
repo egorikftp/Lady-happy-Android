@@ -7,7 +7,7 @@ import com.egoriku.ladyhappy.core.IFeatureProvider
 import com.egoriku.ladyhappy.catalog.categories.presentation.fragment.CategoriesFragment
 import com.egoriku.ladyhappy.login.presentation.LoginFragment
 import com.egoriku.ladyhappy.settings.presentation.SettingFragment
-import com.egoriku.landing.presentation.LandingPageFragment
+import com.egoriku.ladyhappy.landing.presentation.LandingPageFragment
 import com.egoriku.mainscreen.presentation.MainActivity
 import com.egoriku.photoreport.presentation.PhotoReportFragment
 import com.egoriku.usedLibraries.presentation.UsedLibrariesFragment
