@@ -19,7 +19,7 @@ import com.egoriku.ladyhappy.extensions.colorCompat
 import com.egoriku.ladyhappy.extensions.firstChild
 import com.egoriku.ladyhappy.extensions.listeners.SimpleAnimationListener
 import com.egoriku.ladyhappy.extensions.setImageTintList
-import com.egoriku.landing.R
+import com.egoriku.ladyhappy.landing.R
 import com.egoriku.ladyhappy.landing.common.PredefinedResources
 import com.egoriku.ladyhappy.landing.domain.model.SocialModel
 

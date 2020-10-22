@@ -5,10 +5,10 @@ import android.view.ViewGroup
 import coil.load
 import com.egoriku.ladyhappy.extensions.colorFromAttr
 import com.egoriku.ladyhappy.extensions.inflater
-import com.egoriku.landing.R
+import com.egoriku.ladyhappy.landing.R
 import com.egoriku.ladyhappy.landing.common.parallax.ParallaxScrollListener
 import com.egoriku.ladyhappy.landing.common.parallax.ParallaxScrollStateListener
-import com.egoriku.landing.databinding.AdapterItemOurTeamBinding
+import com.egoriku.ladyhappy.landing.databinding.AdapterItemOurTeamBinding
 import com.egoriku.ladyhappy.landing.domain.model.TeamMemberModel
 import ru.surfstudio.android.easyadapter.controller.BindableItemController
 import ru.surfstudio.android.easyadapter.holder.BindableViewHolder

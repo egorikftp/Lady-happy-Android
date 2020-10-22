@@ -17,14 +17,9 @@ import com.egoriku.ladyhappy.core.constant.REQUEST_KEY_DYNAMIC_FEATURE
 import com.egoriku.ladyhappy.core.constant.RESULT_KEY_DYNAMIC_FEATURE
 import com.egoriku.ladyhappy.core.feature.*
 import com.egoriku.ladyhappy.core.sharedmodel.toNightMode
-import com.egoriku.extensions.*
-import com.egoriku.ladyhappy.extensions.hasM
-import com.egoriku.ladyhappy.extensions.logD
-import com.egoriku.ladyhappy.extensions.setFragmentResultListenerWrapper
-import com.egoriku.ladyhappy.extensions.toast
-import com.egoriku.ladyhappy.navigation.navigator.platform.ActivityScopeNavigator
-import com.egoriku.mainscreen.R
-import com.egoriku.mainscreen.databinding.ActivityMainBinding
+import com.egoriku.ladyhappy.extensions.*
+import com.egoriku.ladyhappy.mainscreen.R
+import com.egoriku.ladyhappy.mainscreen.databinding.ActivityMainBinding
 import com.egoriku.ladyhappy.mainscreen.presentation.balloon.DynamicFeatureBalloonFactory
 import com.egoriku.ladyhappy.mainscreen.presentation.components.dynamicFeature.DynamicFeatureEvent
 import com.egoriku.ladyhappy.mainscreen.presentation.components.dynamicFeature.DynamicFeatureViewModel
@@ -33,7 +28,7 @@ import com.egoriku.ladyhappy.mainscreen.presentation.components.inAppReview.Revi
 import com.egoriku.ladyhappy.mainscreen.presentation.components.inAppUpdates.InAppUpdateEvent
 import com.egoriku.ladyhappy.mainscreen.presentation.components.inAppUpdates.InAppUpdateViewModel
 import com.egoriku.ladyhappy.mainscreen.presentation.screen.*
-import com.egoriku.mainscreen.presentation.screen.*
+import com.egoriku.ladyhappy.navigation.navigator.platform.ActivityScopeNavigator
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.play.core.appupdate.AppUpdateManager
 import com.google.android.play.core.install.model.ActivityResult

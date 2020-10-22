@@ -1,6 +1,6 @@
 package com.egoriku.ladyhappy.landing.common
 
-import com.egoriku.landing.R
+import com.egoriku.ladyhappy.landing.R
 
 object PredefinedResources {
 

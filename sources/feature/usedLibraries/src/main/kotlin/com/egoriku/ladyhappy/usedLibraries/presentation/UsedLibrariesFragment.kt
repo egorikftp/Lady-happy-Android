@@ -4,15 +4,14 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DividerItemDecoration
-import androidx.recyclerview.widget.DividerItemDecoration.VERTICAL
 import androidx.recyclerview.widget.LinearLayoutManager
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.egoriku.ladyhappy.core.IRouter
 import com.egoriku.ladyhappy.extensions.browseUrl
 import com.egoriku.ladyhappy.extensions.gone
 import com.egoriku.ladyhappy.extensions.visible
-import com.egoriku.usedLibraries.R
-import com.egoriku.usedLibraries.databinding.FragmentUsedLibrariesBinding
+import com.egoriku.ladyhappy.usedLibraries.R
+import com.egoriku.ladyhappy.usedLibraries.databinding.FragmentUsedLibrariesBinding
 import com.egoriku.ladyhappy.usedLibraries.presentation.adapter.LibrariesListAdapter
 import com.egoriku.ladyhappy.usedLibraries.presentation.screen.LicenseFragmentScreen
 import com.egoriku.ladyhappy.usedLibraries.presentation.state.ScreenState
@@ -50,7 +49,7 @@ class UsedLibrariesFragment : Fragment(R.layout.fragment_used_libraries) {
         recyclerView.apply {
             layoutManager = LinearLayoutManager(context)
             adapter = librariesAdapter
-            addItemDecoration(DividerItemDecoration(context, VERTICAL))
+            addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
         }
 
         linkToGithub.setOnClickListener {

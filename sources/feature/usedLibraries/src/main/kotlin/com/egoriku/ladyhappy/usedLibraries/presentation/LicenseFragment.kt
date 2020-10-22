@@ -5,8 +5,8 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.egoriku.ladyhappy.extensions.extraNotNull
-import com.egoriku.usedLibraries.R
-import com.egoriku.usedLibraries.databinding.FragmentLicenseBinding
+import com.egoriku.ladyhappy.usedLibraries.R
+import com.egoriku.ladyhappy.usedLibraries.databinding.FragmentLicenseBinding
 
 internal class LicenseFragment : Fragment(R.layout.fragment_license) {
 

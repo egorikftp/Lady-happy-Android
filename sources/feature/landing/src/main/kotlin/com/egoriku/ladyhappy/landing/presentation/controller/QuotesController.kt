@@ -3,10 +3,10 @@ package com.egoriku.ladyhappy.landing.presentation.controller
 import android.graphics.Matrix
 import android.view.ViewGroup
 import com.egoriku.ladyhappy.extensions.inflater
-import com.egoriku.landing.R
+import com.egoriku.ladyhappy.landing.R
 import com.egoriku.ladyhappy.landing.common.parallax.ParallaxScrollListener
 import com.egoriku.ladyhappy.landing.common.parallax.ParallaxScrollStateListener
-import com.egoriku.landing.databinding.AdapterItemQuotesBinding
+import com.egoriku.ladyhappy.landing.databinding.AdapterItemQuotesBinding
 import com.egoriku.ladyhappy.landing.domain.model.QuotesModel
 import ru.surfstudio.android.easyadapter.controller.BindableItemController
 import ru.surfstudio.android.easyadapter.holder.BindableViewHolder
@@ -29,7 +29,7 @@ internal class QuotesController(
             ParallaxScrollStateListener {
 
         private val random = Random()
-        private var itemHeight = itemView.resources.getDimension(R.dimen.adapter_item_quotes_height).toInt()
+        private var itemHeight = itemView.resources.getDimensionPixelSize(R.dimen.adapter_item_quotes_height)
 
         private var quotesList = emptyList<QuotesModel>()
 

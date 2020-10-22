@@ -3,7 +3,7 @@ package com.egoriku.ladyhappy.landing.presentation.controller
 import android.view.ViewGroup
 import androidx.annotation.StringRes
 import com.egoriku.ladyhappy.extensions.inflater
-import com.egoriku.landing.databinding.AdapterItemSectionHeaderBinding
+import com.egoriku.ladyhappy.landing.databinding.AdapterItemSectionHeaderBinding
 import ru.surfstudio.android.easyadapter.controller.BindableItemController
 import ru.surfstudio.android.easyadapter.holder.BindableViewHolder
 

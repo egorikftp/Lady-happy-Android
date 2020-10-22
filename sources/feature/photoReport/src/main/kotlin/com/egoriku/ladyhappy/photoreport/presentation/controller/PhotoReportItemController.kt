@@ -5,8 +5,8 @@ import android.view.ViewGroup
 import coil.load
 import com.egoriku.ladyhappy.extensions.colorFromAttr
 import com.egoriku.ladyhappy.extensions.inflater
-import com.egoriku.photoreport.R
-import com.egoriku.photoreport.databinding.AdapterItemPhotoReportBinding
+import com.egoriku.ladyhappy.photoreport.R
+import com.egoriku.ladyhappy.photoreport.databinding.AdapterItemPhotoReportBinding
 import ru.surfstudio.android.easyadapter.controller.BindableItemController
 import ru.surfstudio.android.easyadapter.holder.BindableViewHolder
 

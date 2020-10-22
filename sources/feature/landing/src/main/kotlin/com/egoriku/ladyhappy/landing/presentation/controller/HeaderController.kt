@@ -1,7 +1,7 @@
 package com.egoriku.ladyhappy.landing.presentation.controller
 
 import android.view.ViewGroup
-import com.egoriku.landing.R
+import com.egoriku.ladyhappy.landing.R
 import ru.surfstudio.android.easyadapter.controller.NoDataItemController
 import ru.surfstudio.android.easyadapter.holder.BaseViewHolder
 

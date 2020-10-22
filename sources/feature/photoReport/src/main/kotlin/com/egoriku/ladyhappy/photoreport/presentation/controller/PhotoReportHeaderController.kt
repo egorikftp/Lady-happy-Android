@@ -1,7 +1,7 @@
 package com.egoriku.ladyhappy.photoreport.presentation.controller
 
 import android.view.ViewGroup
-import com.egoriku.photoreport.R
+import com.egoriku.ladyhappy.photoreport.R
 import ru.surfstudio.android.easyadapter.controller.NoDataItemController
 import ru.surfstudio.android.easyadapter.holder.BaseViewHolder
 
