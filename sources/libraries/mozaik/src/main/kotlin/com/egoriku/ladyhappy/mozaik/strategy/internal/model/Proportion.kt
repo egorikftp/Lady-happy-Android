@@ -1,8 +1,8 @@
-package com.egoriku.mozaik.strategy.internal.model
+package com.egoriku.ladyhappy.mozaik.strategy.internal.model
 
 import android.graphics.Point
-import com.egoriku.mozaik.model.MozaikItem
-import com.egoriku.mozaik.strategy.internal.extension.half
+import com.egoriku.ladyhappy.mozaik.model.MozaikItem
+import com.egoriku.ladyhappy.mozaik.strategy.internal.extension.half
 import kotlin.math.roundToInt
 
 @Suppress("NOTHING_TO_INLINE")

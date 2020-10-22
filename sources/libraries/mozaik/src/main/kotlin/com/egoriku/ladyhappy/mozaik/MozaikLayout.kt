@@ -1,14 +1,14 @@
-package com.egoriku.mozaik
+package com.egoriku.ladyhappy.mozaik
 
 import android.content.Context
 import android.util.AttributeSet
 import android.view.ViewGroup
 import android.widget.ImageView
 import com.egoriku.ladyhappy.extensions.pxToDp
-import com.egoriku.mozaik.model.MozaikItem
-import com.egoriku.mozaik.strategy.StrategyResolver
-import com.egoriku.mozaik.strategy.internal.model.Rect
-import com.egoriku.mozaik.strategy.internal.model.StrategyData
+import com.egoriku.ladyhappy.mozaik.model.MozaikItem
+import com.egoriku.ladyhappy.mozaik.strategy.StrategyResolver
+import com.egoriku.ladyhappy.mozaik.strategy.internal.model.Rect
+import com.egoriku.ladyhappy.mozaik.strategy.internal.model.StrategyData
 
 private const val DIVIDER_SIZE = 20
 

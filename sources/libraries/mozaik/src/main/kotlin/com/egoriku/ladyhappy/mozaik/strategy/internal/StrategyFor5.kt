@@ -1,10 +1,10 @@
-package com.egoriku.mozaik.strategy.internal
+package com.egoriku.ladyhappy.mozaik.strategy.internal
 
-import com.egoriku.mozaik.strategy.IStrategy
-import com.egoriku.mozaik.strategy.internal.extension.half
-import com.egoriku.mozaik.strategy.internal.extension.third
-import com.egoriku.mozaik.strategy.internal.model.Proportion
-import com.egoriku.mozaik.strategy.internal.model.StrategyData
+import com.egoriku.ladyhappy.mozaik.strategy.IStrategy
+import com.egoriku.ladyhappy.mozaik.strategy.internal.extension.half
+import com.egoriku.ladyhappy.mozaik.strategy.internal.extension.third
+import com.egoriku.ladyhappy.mozaik.strategy.internal.model.Proportion
+import com.egoriku.ladyhappy.mozaik.strategy.internal.model.StrategyData
 
 class StrategyFor5 : IStrategy {
 

@@ -1,4 +1,4 @@
-package com.egoriku.mozaik.model
+package com.egoriku.ladyhappy.mozaik.model
 
 data class MozaikItem(
     val width: Int,

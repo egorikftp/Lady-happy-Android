@@ -1,5 +1,6 @@
-package com.egoriku.mozaik.strategy
+package com.egoriku.ladyhappy.mozaik.strategy
 
+import com.egoriku.ladyhappy.mozaik.strategy.internal.*
 import com.egoriku.mozaik.strategy.internal.*
 
 object StrategyResolver {

@@ -1,4 +1,4 @@
-package com.egoriku.mozaik.strategy.internal.extension
+package com.egoriku.ladyhappy.mozaik.strategy.internal.extension
 
 import kotlin.math.roundToInt
 

@@ -1,6 +1,6 @@
 package com.egoriku.ladyhappy.catalog.subcategory.domain.model
 
-import com.egoriku.mozaik.model.MozaikItem
+import com.egoriku.ladyhappy.mozaik.model.MozaikItem
 
 data class SubCategoryItem(
         val name: String,

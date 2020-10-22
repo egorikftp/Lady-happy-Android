@@ -1,4 +1,4 @@
-package com.egoriku.mozaik.strategy.internal.model
+package com.egoriku.ladyhappy.mozaik.strategy.internal.model
 
 data class Rect(
     var left: Int = 0,
