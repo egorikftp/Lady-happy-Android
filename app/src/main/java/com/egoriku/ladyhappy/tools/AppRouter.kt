@@ -1,7 +1,7 @@
 package com.egoriku.ladyhappy.tools
 
 import android.view.View
-import com.egoriku.core.IRouter
+import com.egoriku.ladyhappy.core.IRouter
 import com.egoriku.ladyhappy.navigation.router.Router
 import com.egoriku.ladyhappy.navigation.screen.Screen
 
