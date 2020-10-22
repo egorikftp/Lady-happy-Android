@@ -1,12 +1,12 @@
 <resources>
-    <string name="application_name">Lady\'s Happy</string>
+    <string name="application_name">Lady Happy</string>
 
     <!-- Common -->
     <string name="ok">Ok</string>
     <string name="cancel">Cancel</string>
 
     <string name="adapter_item_about_us">About us</string>
-    <string name="lady_happy">Lady\'s Happy</string>
+    <string name="lady_happy">Lady Happy</string>
 
     <string name="adapter_item_header_quotes">What inspires us</string>
     <string name="adapter_item_header_our_team">Our team</string>
