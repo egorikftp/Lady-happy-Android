@@ -1,4 +1,4 @@
-package com.egoriku.core.constant
+package com.egoriku.ladyhappy.core.constant
 
 const val DYNAMIC_FEATURE_POST_CREATOR = "postCreator"
 

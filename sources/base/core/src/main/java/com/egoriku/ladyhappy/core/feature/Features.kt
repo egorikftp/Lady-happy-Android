@@ -1,4 +1,4 @@
-package com.egoriku.core.feature
+package com.egoriku.ladyhappy.core.feature
 
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize

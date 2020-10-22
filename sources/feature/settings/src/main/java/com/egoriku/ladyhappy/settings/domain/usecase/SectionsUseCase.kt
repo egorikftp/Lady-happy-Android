@@ -1,6 +1,6 @@
 package com.egoriku.ladyhappy.settings.domain.usecase
 
-import com.egoriku.core.IStringResource
+import com.egoriku.ladyhappy.core.IStringResource
 import com.egoriku.ladyhappy.settings.R
 import com.egoriku.ladyhappy.settings.domain.model.Feature
 import com.egoriku.ladyhappy.settings.domain.model.FeatureType

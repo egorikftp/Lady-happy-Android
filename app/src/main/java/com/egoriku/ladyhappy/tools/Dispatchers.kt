@@ -1,6 +1,6 @@
 package com.egoriku.ladyhappy.tools
 
-import com.egoriku.core.IDispatchers
+import com.egoriku.ladyhappy.core.IDispatchers
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 

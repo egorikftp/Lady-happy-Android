@@ -2,7 +2,7 @@ package com.egoriku.mainscreen.presentation.components.inAppReview
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.egoriku.core.IAppPreferences
+import com.egoriku.ladyhappy.core.IAppPreferences
 import com.google.android.play.core.ktx.requestReview
 import com.google.android.play.core.review.ReviewInfo
 import com.google.android.play.core.review.ReviewManager

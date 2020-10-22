@@ -5,8 +5,8 @@ import android.content.Context.MODE_PRIVATE
 import android.content.SharedPreferences
 import androidx.annotation.WorkerThread
 import androidx.core.content.edit
-import com.egoriku.core.IAppPreferences
-import com.egoriku.core.sharedmodel.Theme
+import com.egoriku.ladyhappy.core.IAppPreferences
+import com.egoriku.ladyhappy.core.sharedmodel.Theme
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.channels.ConflatedBroadcastChannel

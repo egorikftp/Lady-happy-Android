@@ -2,7 +2,7 @@ package com.egoriku.featurelaunch.presentation.activity
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.egoriku.core.IFeatureProvider
+import com.egoriku.ladyhappy.core.IFeatureProvider
 import org.koin.android.ext.android.inject
 
 class LaunchActivity : AppCompatActivity() {

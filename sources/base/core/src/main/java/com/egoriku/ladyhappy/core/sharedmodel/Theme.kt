@@ -1,4 +1,4 @@
-package com.egoriku.core.sharedmodel
+package com.egoriku.ladyhappy.core.sharedmodel
 
 import androidx.appcompat.app.AppCompatDelegate
 

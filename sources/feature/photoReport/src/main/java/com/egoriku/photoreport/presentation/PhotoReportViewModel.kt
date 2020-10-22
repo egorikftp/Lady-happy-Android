@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.egoriku.core.IAnalytics
+import com.egoriku.ladyhappy.core.IAnalytics
 import com.egoriku.extensions.logE
 import com.egoriku.network.ResultOf
 import com.egoriku.network.exception.FirestoreNetworkException

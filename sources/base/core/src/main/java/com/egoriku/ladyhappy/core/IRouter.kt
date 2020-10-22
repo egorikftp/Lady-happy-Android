@@ -1,4 +1,4 @@
-package com.egoriku.core
+package com.egoriku.ladyhappy.core
 
 import android.view.View
 import com.egoriku.ladyhappy.navigation.screen.Screen

@@ -2,7 +2,7 @@ package com.egoriku.ladyhappy.tools
 
 import android.content.Context
 import android.graphics.Bitmap
-import com.egoriku.core.IBlurRendering
+import com.egoriku.ladyhappy.core.IBlurRendering
 import com.egoriku.ladyhappy.rendering.RenderScriptGaussianBlur
 
 internal class BlurRendering(context: Context) : IBlurRendering {

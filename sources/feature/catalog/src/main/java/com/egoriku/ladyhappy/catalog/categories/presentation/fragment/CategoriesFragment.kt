@@ -6,10 +6,8 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import by.kirich1409.viewbindingdelegate.viewBinding
-import com.egoriku.core.feature.CatalogFeature
-import com.egoriku.extensions.gone
+import com.egoriku.ladyhappy.core.feature.CatalogFeature
 import com.egoriku.extensions.toast
-import com.egoriku.extensions.visible
 import com.egoriku.ladyhappy.catalog.R
 import com.egoriku.ladyhappy.catalog.categories.domain.model.TabItem
 import com.egoriku.ladyhappy.catalog.categories.presentation.RootCatalogViewModel

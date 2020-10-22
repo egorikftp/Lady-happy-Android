@@ -1,4 +1,4 @@
-package com.egoriku.core
+package com.egoriku.ladyhappy.core
 
 import android.content.Context
 import android.content.Intent

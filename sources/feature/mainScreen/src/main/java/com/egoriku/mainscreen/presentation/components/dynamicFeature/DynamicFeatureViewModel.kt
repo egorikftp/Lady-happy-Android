@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
-import com.egoriku.core.constant.DYNAMIC_FEATURE_POST_CREATOR
+import com.egoriku.ladyhappy.core.constant.DYNAMIC_FEATURE_POST_CREATOR
 import com.egoriku.extensions.logD
 import com.google.android.play.core.ktx.*
 import com.google.android.play.core.splitinstall.SplitInstallException

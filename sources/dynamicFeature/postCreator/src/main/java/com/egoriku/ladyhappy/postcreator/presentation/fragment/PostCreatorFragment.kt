@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.ConcatAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView.VERTICAL
 import by.kirich1409.viewbindingdelegate.viewBinding
-import com.egoriku.core.IRouter
+import com.egoriku.ladyhappy.core.IRouter
 import com.egoriku.extensions.setFragmentResultListenerWrapper
 import com.egoriku.ladyhappy.postcreator.R
 import com.egoriku.ladyhappy.postcreator.databinding.FragmentPostCreatorBinding

@@ -1,6 +1,6 @@
 package com.egoriku.ladyhappy.tools
 
-import com.egoriku.core.INavigationHolder
+import com.egoriku.ladyhappy.core.INavigationHolder
 import com.egoriku.ladyhappy.navigation.navigator.INavigator
 import com.egoriku.ladyhappy.navigation.navigator.NavigatorHolder
 

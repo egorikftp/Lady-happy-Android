@@ -6,9 +6,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import by.kirich1409.viewbindingdelegate.viewBinding
-import com.egoriku.core.feature.PhotoReportsFeature
-import com.egoriku.extensions.gone
-import com.egoriku.extensions.visible
+import com.egoriku.ladyhappy.core.feature.PhotoReportsFeature
 import com.egoriku.photoreport.R
 import com.egoriku.photoreport.databinding.FragmentPhotoReportBinding
 import com.egoriku.photoreport.presentation.controller.PhotoReportCarouselController

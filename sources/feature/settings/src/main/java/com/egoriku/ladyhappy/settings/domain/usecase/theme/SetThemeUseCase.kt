@@ -1,8 +1,8 @@
 package com.egoriku.ladyhappy.settings.domain.usecase.theme
 
-import com.egoriku.core.IAppPreferences
-import com.egoriku.core.IDispatchers
-import com.egoriku.core.sharedmodel.Theme
+import com.egoriku.ladyhappy.core.IAppPreferences
+import com.egoriku.ladyhappy.core.IDispatchers
+import com.egoriku.ladyhappy.core.sharedmodel.Theme
 import com.egoriku.network.usecase.UseCase
 
 class SetThemeUseCase(

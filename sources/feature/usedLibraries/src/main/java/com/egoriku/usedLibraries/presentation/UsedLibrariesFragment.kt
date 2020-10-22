@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.DividerItemDecoration.VERTICAL
 import androidx.recyclerview.widget.LinearLayoutManager
 import by.kirich1409.viewbindingdelegate.viewBinding
-import com.egoriku.core.IRouter
+import com.egoriku.ladyhappy.core.IRouter
 import com.egoriku.extensions.browseUrl
 import com.egoriku.extensions.gone
 import com.egoriku.extensions.visible

@@ -1,4 +1,4 @@
-package com.egoriku.core
+package com.egoriku.ladyhappy.core
 
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage

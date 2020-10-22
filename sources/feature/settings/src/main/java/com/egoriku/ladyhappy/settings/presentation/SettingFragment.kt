@@ -8,11 +8,11 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.ConcatAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
 import by.kirich1409.viewbindingdelegate.viewBinding
-import com.egoriku.core.IFeatureProvider
-import com.egoriku.core.constant.REQUEST_KEY_DYNAMIC_FEATURE
-import com.egoriku.core.constant.RESULT_KEY_DYNAMIC_FEATURE
-import com.egoriku.core.feature.DynamicFeature
-import com.egoriku.core.feature.SettingsFeature
+import com.egoriku.ladyhappy.core.IFeatureProvider
+import com.egoriku.ladyhappy.core.constant.REQUEST_KEY_DYNAMIC_FEATURE
+import com.egoriku.ladyhappy.core.constant.RESULT_KEY_DYNAMIC_FEATURE
+import com.egoriku.ladyhappy.core.feature.DynamicFeature
+import com.egoriku.ladyhappy.core.feature.SettingsFeature
 import com.egoriku.extensions.browseUrl
 import com.egoriku.ladyhappy.settings.R
 import com.egoriku.ladyhappy.settings.databinding.FragmentSettingsBinding

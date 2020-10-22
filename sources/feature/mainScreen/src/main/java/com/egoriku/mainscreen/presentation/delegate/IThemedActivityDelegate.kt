@@ -2,7 +2,7 @@ package com.egoriku.mainscreen.presentation.delegate
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.liveData
-import com.egoriku.core.sharedmodel.Theme
+import com.egoriku.ladyhappy.core.sharedmodel.Theme
 import com.egoriku.mainscreen.domain.usecase.ObserveThemeModeUseCase
 import com.egoriku.network.successOr
 import kotlinx.coroutines.flow.collect

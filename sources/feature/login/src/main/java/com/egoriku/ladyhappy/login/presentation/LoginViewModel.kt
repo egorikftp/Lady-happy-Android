@@ -7,7 +7,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.egoriku.core.IRouter
+import com.egoriku.ladyhappy.core.IRouter
 import com.egoriku.extensions.Event
 import com.egoriku.extensions.common.Constants.EMPTY
 import com.egoriku.extensions.logD

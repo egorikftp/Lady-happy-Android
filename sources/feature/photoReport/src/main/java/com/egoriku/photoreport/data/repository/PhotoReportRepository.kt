@@ -1,6 +1,6 @@
 package com.egoriku.photoreport.data.repository
 
-import com.egoriku.core.IFirebase
+import com.egoriku.ladyhappy.core.IFirebase
 import com.egoriku.network.ResultOf
 import com.egoriku.network.firestore.awaitGet
 import com.egoriku.photoreport.data.entity.PhotoReportEntity
