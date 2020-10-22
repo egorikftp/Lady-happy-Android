@@ -1,7 +1,7 @@
 package com.egoriku.ladyhappy.postcreator.data.remote
 
 import com.egoriku.ladyhappy.core.IFirebase
-import com.egoriku.network.firestore.awaitImageUrl
+import com.egoriku.ladyhappy.network.firestore.awaitImageUrl
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 

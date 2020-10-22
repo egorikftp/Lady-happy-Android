@@ -1,6 +1,6 @@
-package com.egoriku.network.usecase
+package com.egoriku.ladyhappy.network.usecase
 
-import com.egoriku.network.ResultOf
+import com.egoriku.ladyhappy.network.ResultOf
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch

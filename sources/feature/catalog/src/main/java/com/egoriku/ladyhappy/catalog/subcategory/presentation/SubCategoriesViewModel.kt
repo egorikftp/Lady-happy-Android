@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
 import com.egoriku.ladyhappy.catalog.subcategory.domain.usecase.CatalogUseCase
-import com.egoriku.network.ResultOf
+import com.egoriku.ladyhappy.network.ResultOf
 
 class SubCategoriesViewModel(private val catalogUseCase: CatalogUseCase, private val categoryId: Int) : ViewModel() {
 

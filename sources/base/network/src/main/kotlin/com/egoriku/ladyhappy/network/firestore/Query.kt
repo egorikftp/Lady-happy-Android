@@ -1,9 +1,9 @@
-package com.egoriku.network.firestore
+package com.egoriku.ladyhappy.network.firestore
 
 import android.util.Log
-import com.egoriku.network.ResultOf
-import com.egoriku.network.exception.FirestoreParseException
-import com.egoriku.network.wrapIntoResult
+import com.egoriku.ladyhappy.network.ResultOf
+import com.egoriku.ladyhappy.network.exception.FirestoreParseException
+import com.egoriku.ladyhappy.network.wrapIntoResult
 import com.google.android.gms.tasks.Task
 import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.QuerySnapshot

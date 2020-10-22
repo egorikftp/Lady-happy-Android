@@ -1,8 +1,8 @@
 package com.egoriku.photoreport.data.repository
 
 import com.egoriku.ladyhappy.core.IFirebase
-import com.egoriku.network.ResultOf
-import com.egoriku.network.firestore.awaitGet
+import com.egoriku.ladyhappy.network.ResultOf
+import com.egoriku.ladyhappy.network.firestore.awaitGet
 import com.egoriku.photoreport.data.entity.PhotoReportEntity
 import com.google.firebase.firestore.Query
 import kotlinx.coroutines.Dispatchers

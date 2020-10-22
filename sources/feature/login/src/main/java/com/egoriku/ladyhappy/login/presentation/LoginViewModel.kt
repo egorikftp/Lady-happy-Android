@@ -15,8 +15,8 @@ import com.egoriku.ladyhappy.auth.Authentication
 import com.egoriku.ladyhappy.login.R
 import com.egoriku.ladyhappy.login.presentation.state.LoginEvent
 import com.egoriku.ladyhappy.login.presentation.state.LoginState
-import com.egoriku.network.ResultOf.Failure
-import com.egoriku.network.ResultOf.Success
+import com.egoriku.ladyhappy.network.ResultOf.Failure
+import com.egoriku.ladyhappy.network.ResultOf.Success
 import com.google.android.gms.auth.api.identity.BeginSignInRequest
 import com.google.android.gms.auth.api.identity.Identity
 import com.google.android.gms.auth.api.identity.SignInClient

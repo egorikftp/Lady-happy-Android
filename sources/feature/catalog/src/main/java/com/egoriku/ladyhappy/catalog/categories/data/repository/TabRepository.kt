@@ -2,8 +2,8 @@ package com.egoriku.ladyhappy.catalog.categories.data.repository
 
 import com.egoriku.ladyhappy.core.IFirebase
 import com.egoriku.ladyhappy.catalog.categories.data.entity.TabEntity
-import com.egoriku.network.ResultOf
-import com.egoriku.network.firestore.awaitResult
+import com.egoriku.ladyhappy.network.ResultOf
+import com.egoriku.ladyhappy.network.firestore.awaitResult
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 

@@ -6,7 +6,7 @@ import com.egoriku.ladyhappy.postcreator.data.local.CreateFileRepository
 import com.egoriku.ladyhappy.postcreator.data.remote.UploadPostImageRepository
 import com.egoriku.ladyhappy.postcreator.domain.model.ImageItem
 import com.egoriku.ladyhappy.postcreator.domain.model.UploadedImageUrl
-import com.egoriku.network.usecase.UseCase
+import com.egoriku.ladyhappy.network.usecase.UseCase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
 import kotlinx.coroutines.coroutineScope

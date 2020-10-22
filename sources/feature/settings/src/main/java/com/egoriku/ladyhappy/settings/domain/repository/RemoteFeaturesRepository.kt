@@ -4,8 +4,8 @@ import com.egoriku.ladyhappy.settings.data.datasource.PublishPostsFeatureDataSou
 import com.egoriku.ladyhappy.settings.domain.model.Feature
 import com.egoriku.ladyhappy.settings.domain.model.FeatureType
 import com.egoriku.ladyhappy.settings.domain.model.FeatureType.PUBLISH_POSTS
-import com.egoriku.network.ResultOf.Failure
-import com.egoriku.network.ResultOf.Success
+import com.egoriku.ladyhappy.network.ResultOf.Failure
+import com.egoriku.ladyhappy.network.ResultOf.Success
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 

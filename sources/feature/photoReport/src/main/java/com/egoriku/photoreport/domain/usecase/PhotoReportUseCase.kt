@@ -2,7 +2,7 @@ package com.egoriku.photoreport.domain.usecase
 
 import com.egoriku.extensions.common.Constants.EMPTY
 import com.egoriku.extensions.common.toNewsDate
-import com.egoriku.network.ResultOf
+import com.egoriku.ladyhappy.network.ResultOf
 import com.egoriku.photoreport.data.entity.PhotoReportEntity
 import com.egoriku.photoreport.data.repository.PhotoReportRepository
 import com.egoriku.photoreport.domain.model.PhotoReportModel

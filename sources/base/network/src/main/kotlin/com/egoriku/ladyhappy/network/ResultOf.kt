@@ -1,4 +1,4 @@
-package com.egoriku.network
+package com.egoriku.ladyhappy.network
 
 sealed class ResultOf<out T> {
     class Success<out T>(val value: T) : ResultOf<T>()

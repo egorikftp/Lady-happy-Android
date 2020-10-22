@@ -1,4 +1,4 @@
-package com.egoriku.network
+package com.egoriku.ladyhappy.network
 
 inline fun <T> wrapIntoResult(coroutineBlock: () -> T): ResultOf<T> = try {
     ResultOf.Success(coroutineBlock())

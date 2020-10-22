@@ -5,7 +5,7 @@ import com.egoriku.ladyhappy.core.IDispatchers
 import com.egoriku.ladyhappy.core.sharedmodel.Theme
 import com.egoriku.ladyhappy.core.sharedmodel.themeFromStorageKey
 import com.egoriku.extensions.hasQ
-import com.egoriku.network.usecase.UseCase
+import com.egoriku.ladyhappy.network.usecase.UseCase
 
 class GetThemeUseCase(
         private val preferences: IAppPreferences,

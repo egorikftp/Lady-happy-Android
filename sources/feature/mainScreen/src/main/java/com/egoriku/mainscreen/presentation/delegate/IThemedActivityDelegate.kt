@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.liveData
 import com.egoriku.ladyhappy.core.sharedmodel.Theme
 import com.egoriku.mainscreen.domain.usecase.ObserveThemeModeUseCase
-import com.egoriku.network.successOr
+import com.egoriku.ladyhappy.network.successOr
 import kotlinx.coroutines.flow.collect
 
 interface IThemedActivityDelegate {

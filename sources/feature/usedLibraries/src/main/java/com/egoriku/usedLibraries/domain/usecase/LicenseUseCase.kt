@@ -1,7 +1,7 @@
 package com.egoriku.usedLibraries.domain.usecase
 
 import android.content.Context
-import com.egoriku.network.usecase.UseCase
+import com.egoriku.ladyhappy.network.usecase.UseCase
 import com.egoriku.usedLibraries.domain.model.License
 import com.egoriku.usedLibraries.domain.parser.MetadataParser
 import kotlinx.coroutines.Dispatchers

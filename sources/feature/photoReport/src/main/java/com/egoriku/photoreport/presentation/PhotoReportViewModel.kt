@@ -6,10 +6,10 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.egoriku.ladyhappy.core.IAnalytics
 import com.egoriku.extensions.logE
-import com.egoriku.network.ResultOf
-import com.egoriku.network.exception.FirestoreNetworkException
-import com.egoriku.network.exception.FirestoreParseException
-import com.egoriku.network.exception.NoSuchDocumentException
+import com.egoriku.ladyhappy.network.ResultOf
+import com.egoriku.ladyhappy.network.exception.FirestoreNetworkException
+import com.egoriku.ladyhappy.network.exception.FirestoreParseException
+import com.egoriku.ladyhappy.network.exception.NoSuchDocumentException
 import com.egoriku.photoreport.domain.model.PhotoReportModel
 import com.egoriku.photoreport.domain.usecase.PhotoReportUseCase
 import kotlinx.coroutines.launch

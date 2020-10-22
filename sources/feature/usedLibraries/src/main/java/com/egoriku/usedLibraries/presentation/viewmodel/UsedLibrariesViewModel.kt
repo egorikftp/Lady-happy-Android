@@ -3,7 +3,7 @@ package com.egoriku.usedLibraries.presentation.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
-import com.egoriku.network.ResultOf
+import com.egoriku.ladyhappy.network.ResultOf
 import com.egoriku.usedLibraries.domain.usecase.LicenseUseCase
 import com.egoriku.usedLibraries.presentation.state.ScreenState
 

@@ -5,8 +5,8 @@ import com.egoriku.ladyhappy.core.IDispatchers
 import com.egoriku.ladyhappy.core.sharedmodel.Theme
 import com.egoriku.ladyhappy.core.sharedmodel.themeFromStorageKey
 import com.egoriku.extensions.hasQ
-import com.egoriku.network.ResultOf
-import com.egoriku.network.usecase.FlowUseCase
+import com.egoriku.ladyhappy.network.ResultOf
+import com.egoriku.ladyhappy.network.usecase.FlowUseCase
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 

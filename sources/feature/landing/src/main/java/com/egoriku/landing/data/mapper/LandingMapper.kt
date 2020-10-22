@@ -9,7 +9,7 @@ import com.egoriku.landing.domain.model.LandingModel
 import com.egoriku.landing.domain.model.QuotesModel
 import com.egoriku.landing.domain.model.SocialModel
 import com.egoriku.landing.domain.model.TeamMemberModel
-import com.egoriku.network.ResultOf
+import com.egoriku.ladyhappy.network.ResultOf
 
 object LandingMapper {
     fun transformResult(entity: LandingEntity): ResultOf<LandingModel> =

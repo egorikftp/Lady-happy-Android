@@ -2,8 +2,8 @@ package com.egoriku.landing.data.repository
 
 import com.egoriku.ladyhappy.core.IFirebase
 import com.egoriku.landing.data.entity.LandingEntity
-import com.egoriku.network.ResultOf
-import com.egoriku.network.firestore.awaitGet
+import com.egoriku.ladyhappy.network.ResultOf
+import com.egoriku.ladyhappy.network.firestore.awaitGet
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 

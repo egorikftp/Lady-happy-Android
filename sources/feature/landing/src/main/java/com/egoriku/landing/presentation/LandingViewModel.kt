@@ -8,10 +8,10 @@ import com.egoriku.ladyhappy.core.IAnalytics
 import com.egoriku.extensions.logE
 import com.egoriku.landing.domain.model.LandingModel
 import com.egoriku.landing.domain.usecase.LandingUseCase
-import com.egoriku.network.ResultOf
-import com.egoriku.network.exception.FirestoreNetworkException
-import com.egoriku.network.exception.FirestoreParseException
-import com.egoriku.network.exception.NoSuchDocumentException
+import com.egoriku.ladyhappy.network.ResultOf
+import com.egoriku.ladyhappy.network.exception.FirestoreNetworkException
+import com.egoriku.ladyhappy.network.exception.FirestoreParseException
+import com.egoriku.ladyhappy.network.exception.NoSuchDocumentException
 import kotlinx.coroutines.launch
 
 class LandingViewModel(
