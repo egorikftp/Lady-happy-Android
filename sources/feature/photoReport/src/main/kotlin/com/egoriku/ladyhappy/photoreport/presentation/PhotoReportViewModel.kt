@@ -1,4 +1,4 @@
-package com.egoriku.photoreport.presentation
+package com.egoriku.ladyhappy.photoreport.presentation
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -10,8 +10,8 @@ import com.egoriku.ladyhappy.network.ResultOf
 import com.egoriku.ladyhappy.network.exception.FirestoreNetworkException
 import com.egoriku.ladyhappy.network.exception.FirestoreParseException
 import com.egoriku.ladyhappy.network.exception.NoSuchDocumentException
-import com.egoriku.photoreport.domain.model.PhotoReportModel
-import com.egoriku.photoreport.domain.usecase.PhotoReportUseCase
+import com.egoriku.ladyhappy.photoreport.domain.model.PhotoReportModel
+import com.egoriku.ladyhappy.photoreport.domain.usecase.PhotoReportUseCase
 import kotlinx.coroutines.launch
 
 class PhotoReportViewModel(

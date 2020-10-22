@@ -1,9 +1,9 @@
-package com.egoriku.photoreport.data.repository
+package com.egoriku.ladyhappy.photoreport.data.repository
 
 import com.egoriku.ladyhappy.core.IFirebase
 import com.egoriku.ladyhappy.network.ResultOf
 import com.egoriku.ladyhappy.network.firestore.awaitGet
-import com.egoriku.photoreport.data.entity.PhotoReportEntity
+import com.egoriku.ladyhappy.photoreport.data.entity.PhotoReportEntity
 import com.google.firebase.firestore.Query
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext

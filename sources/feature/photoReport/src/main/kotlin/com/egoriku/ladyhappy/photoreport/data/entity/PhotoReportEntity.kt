@@ -1,4 +1,4 @@
-package com.egoriku.photoreport.data.entity
+package com.egoriku.ladyhappy.photoreport.data.entity
 
 import com.google.firebase.firestore.PropertyName
 import java.util.*

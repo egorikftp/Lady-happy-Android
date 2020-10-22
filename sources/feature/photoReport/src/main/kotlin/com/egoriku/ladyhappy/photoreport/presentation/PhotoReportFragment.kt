@@ -1,4 +1,4 @@
-package com.egoriku.photoreport.presentation
+package com.egoriku.ladyhappy.photoreport.presentation
 
 import android.os.Bundle
 import android.view.View
@@ -9,8 +9,8 @@ import by.kirich1409.viewbindingdelegate.viewBinding
 import com.egoriku.ladyhappy.core.feature.PhotoReportsFeature
 import com.egoriku.photoreport.R
 import com.egoriku.photoreport.databinding.FragmentPhotoReportBinding
-import com.egoriku.photoreport.presentation.controller.PhotoReportCarouselController
-import com.egoriku.photoreport.presentation.controller.PhotoReportHeaderController
+import com.egoriku.ladyhappy.photoreport.presentation.controller.PhotoReportCarouselController
+import com.egoriku.ladyhappy.photoreport.presentation.controller.PhotoReportHeaderController
 import com.egoriku.ladyhappy.ui.controller.NoDataController
 import org.koin.androidx.scope.lifecycleScope
 import org.koin.androidx.viewmodel.scope.viewModel

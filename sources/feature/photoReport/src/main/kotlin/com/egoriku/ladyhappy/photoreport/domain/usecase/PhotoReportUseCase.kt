@@ -1,11 +1,11 @@
-package com.egoriku.photoreport.domain.usecase
+package com.egoriku.ladyhappy.photoreport.domain.usecase
 
 import com.egoriku.extensions.common.Constants.EMPTY
 import com.egoriku.extensions.common.toNewsDate
 import com.egoriku.ladyhappy.network.ResultOf
-import com.egoriku.photoreport.data.entity.PhotoReportEntity
-import com.egoriku.photoreport.data.repository.PhotoReportRepository
-import com.egoriku.photoreport.domain.model.PhotoReportModel
+import com.egoriku.ladyhappy.photoreport.data.entity.PhotoReportEntity
+import com.egoriku.ladyhappy.photoreport.data.repository.PhotoReportRepository
+import com.egoriku.ladyhappy.photoreport.domain.model.PhotoReportModel
 
 class PhotoReportUseCase(private val photoReportRepository: PhotoReportRepository) {
 

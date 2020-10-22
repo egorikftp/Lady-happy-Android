@@ -1,4 +1,4 @@
-package com.egoriku.photoreport.presentation.controller
+package com.egoriku.ladyhappy.photoreport.presentation.controller
 
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.PagerSnapHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.egoriku.extensions.inflater
 import com.egoriku.photoreport.databinding.AdapterItemPhotoReportCarouselBinding
-import com.egoriku.photoreport.domain.model.PhotoReportModel
+import com.egoriku.ladyhappy.photoreport.domain.model.PhotoReportModel
 import ru.surfstudio.android.easyadapter.EasyAdapter
 import ru.surfstudio.android.easyadapter.ItemList
 import ru.surfstudio.android.easyadapter.controller.BindableItemController

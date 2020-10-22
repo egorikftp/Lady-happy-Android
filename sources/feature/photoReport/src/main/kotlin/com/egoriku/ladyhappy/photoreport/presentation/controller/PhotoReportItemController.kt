@@ -1,4 +1,4 @@
-package com.egoriku.photoreport.presentation.controller
+package com.egoriku.ladyhappy.photoreport.presentation.controller
 
 import android.graphics.drawable.ColorDrawable
 import android.view.ViewGroup

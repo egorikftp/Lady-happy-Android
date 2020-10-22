@@ -1,4 +1,4 @@
-package com.egoriku.photoreport.presentation.controller
+package com.egoriku.ladyhappy.photoreport.presentation.controller
 
 import android.view.ViewGroup
 import com.egoriku.photoreport.R

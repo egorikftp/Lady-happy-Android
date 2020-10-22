@@ -1,4 +1,4 @@
-package com.egoriku.photoreport.domain.model
+package com.egoriku.ladyhappy.photoreport.domain.model
 
 data class PhotoReportModel(
         val date: String,

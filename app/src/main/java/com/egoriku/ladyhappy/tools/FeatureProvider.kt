@@ -9,7 +9,7 @@ import com.egoriku.ladyhappy.login.presentation.LoginFragment
 import com.egoriku.ladyhappy.settings.presentation.SettingFragment
 import com.egoriku.ladyhappy.landing.presentation.LandingPageFragment
 import com.egoriku.ladyhappy.mainscreen.presentation.MainActivity
-import com.egoriku.photoreport.presentation.PhotoReportFragment
+import com.egoriku.ladyhappy.photoreport.presentation.PhotoReportFragment
 import com.egoriku.usedLibraries.presentation.UsedLibrariesFragment
 
 internal class FeatureProvider : IFeatureProvider {

@@ -1,6 +1,6 @@
-package com.egoriku.photoreport.presentation
+package com.egoriku.ladyhappy.photoreport.presentation
 
-import com.egoriku.photoreport.domain.model.PhotoReportModel
+import com.egoriku.ladyhappy.photoreport.domain.model.PhotoReportModel
 
 class ScreenModel(
         val photoReports: List<PhotoReportModel>? = null,

@@ -1,9 +1,9 @@
-package com.egoriku.photoreport.koin
+package com.egoriku.ladyhappy.photoreport.koin
 
-import com.egoriku.photoreport.data.repository.PhotoReportRepository
-import com.egoriku.photoreport.domain.usecase.PhotoReportUseCase
-import com.egoriku.photoreport.presentation.PhotoReportFragment
-import com.egoriku.photoreport.presentation.PhotoReportViewModel
+import com.egoriku.ladyhappy.photoreport.data.repository.PhotoReportRepository
+import com.egoriku.ladyhappy.photoreport.domain.usecase.PhotoReportUseCase
+import com.egoriku.ladyhappy.photoreport.presentation.PhotoReportFragment
+import com.egoriku.ladyhappy.photoreport.presentation.PhotoReportViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 

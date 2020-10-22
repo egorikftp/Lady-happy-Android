@@ -8,7 +8,7 @@ import com.egoriku.ladyhappy.login.koin.loginModule
 import com.egoriku.ladyhappy.settings.koin.settingsModule
 import com.egoriku.ladyhappy.landing.koin.landingModule
 import com.egoriku.ladyhappy.mainscreen.koin.mainActivityModule
-import com.egoriku.photoreport.koin.photoReportModule
+import com.egoriku.ladyhappy.photoreport.koin.photoReportModule
 import com.egoriku.usedLibraries.koin.usedLibrariesModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidFileProperties
