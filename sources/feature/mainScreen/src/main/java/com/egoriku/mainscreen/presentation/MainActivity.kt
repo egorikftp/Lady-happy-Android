@@ -6,7 +6,6 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
-import android.util.Log
 import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.annotation.IdRes
@@ -305,8 +304,9 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
 
     private fun Intent.handleIntent() {
         if (ACTION_SEARCH == action) {
-            val searchQuery = getStringExtra(SearchManager.QUERY)
-            viewModel.replaceWith(SearchScreen(featureProvider, searchQuery))
+            getStringExtra(SearchManager.QUERY)?.run {
+                viewModel.replaceWith(SearchScreen(featureProvider, this))
+            }
         }
     }
 
