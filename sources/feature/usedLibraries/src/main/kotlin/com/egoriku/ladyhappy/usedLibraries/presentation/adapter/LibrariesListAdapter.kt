@@ -1,4 +1,4 @@
-package com.egoriku.usedLibraries.presentation.adapter
+package com.egoriku.ladyhappy.usedLibraries.presentation.adapter
 
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.egoriku.extensions.inflater
 import com.egoriku.usedLibraries.R
 import com.egoriku.usedLibraries.databinding.AdapterItemLibraryBinding
-import com.egoriku.usedLibraries.domain.model.License
+import com.egoriku.ladyhappy.usedLibraries.domain.model.License
 
 class LibrariesListAdapter(
         private val onItemClick: (license: String) -> Unit

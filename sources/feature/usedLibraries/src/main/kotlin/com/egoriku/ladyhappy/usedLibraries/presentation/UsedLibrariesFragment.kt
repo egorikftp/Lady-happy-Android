@@ -1,4 +1,4 @@
-package com.egoriku.usedLibraries.presentation
+package com.egoriku.ladyhappy.usedLibraries.presentation
 
 import android.os.Bundle
 import android.view.View
@@ -13,10 +13,10 @@ import com.egoriku.extensions.gone
 import com.egoriku.extensions.visible
 import com.egoriku.usedLibraries.R
 import com.egoriku.usedLibraries.databinding.FragmentUsedLibrariesBinding
-import com.egoriku.usedLibraries.presentation.adapter.LibrariesListAdapter
-import com.egoriku.usedLibraries.presentation.screen.LicenseFragmentScreen
-import com.egoriku.usedLibraries.presentation.state.ScreenState
-import com.egoriku.usedLibraries.presentation.viewmodel.UsedLibrariesViewModel
+import com.egoriku.ladyhappy.usedLibraries.presentation.adapter.LibrariesListAdapter
+import com.egoriku.ladyhappy.usedLibraries.presentation.screen.LicenseFragmentScreen
+import com.egoriku.ladyhappy.usedLibraries.presentation.state.ScreenState
+import com.egoriku.ladyhappy.usedLibraries.presentation.viewmodel.UsedLibrariesViewModel
 import org.koin.android.ext.android.inject
 import org.koin.androidx.scope.lifecycleScope
 import org.koin.androidx.viewmodel.scope.viewModel

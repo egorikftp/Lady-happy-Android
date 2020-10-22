@@ -1,7 +1,7 @@
-package com.egoriku.usedLibraries.domain.parser
+package com.egoriku.ladyhappy.usedLibraries.domain.parser
 
 import android.content.Context
-import com.egoriku.usedLibraries.domain.model.License
+import com.egoriku.ladyhappy.usedLibraries.domain.model.License
 import java.io.ByteArrayOutputStream
 import java.io.IOException
 import java.io.InputStream

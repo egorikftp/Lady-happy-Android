@@ -1,8 +1,8 @@
-package com.egoriku.usedLibraries.koin
+package com.egoriku.ladyhappy.usedLibraries.koin
 
-import com.egoriku.usedLibraries.domain.usecase.LicenseUseCase
-import com.egoriku.usedLibraries.presentation.UsedLibrariesFragment
-import com.egoriku.usedLibraries.presentation.viewmodel.UsedLibrariesViewModel
+import com.egoriku.ladyhappy.usedLibraries.domain.usecase.LicenseUseCase
+import com.egoriku.ladyhappy.usedLibraries.presentation.UsedLibrariesFragment
+import com.egoriku.ladyhappy.usedLibraries.presentation.viewmodel.UsedLibrariesViewModel
 import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module

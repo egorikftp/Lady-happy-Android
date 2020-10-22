@@ -1,9 +1,9 @@
-package com.egoriku.usedLibraries.domain.usecase
+package com.egoriku.ladyhappy.usedLibraries.domain.usecase
 
 import android.content.Context
 import com.egoriku.ladyhappy.network.usecase.UseCase
-import com.egoriku.usedLibraries.domain.model.License
-import com.egoriku.usedLibraries.domain.parser.MetadataParser
+import com.egoriku.ladyhappy.usedLibraries.domain.model.License
+import com.egoriku.ladyhappy.usedLibraries.domain.parser.MetadataParser
 import kotlinx.coroutines.Dispatchers
 
 class LicenseUseCase(private val context: Context) : UseCase<Unit, List<License>>(Dispatchers.IO) {

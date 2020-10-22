@@ -1,6 +1,6 @@
-package com.egoriku.usedLibraries.presentation.state
+package com.egoriku.ladyhappy.usedLibraries.presentation.state
 
-import com.egoriku.usedLibraries.domain.model.License
+import com.egoriku.ladyhappy.usedLibraries.domain.model.License
 
 sealed class ScreenState {
 
