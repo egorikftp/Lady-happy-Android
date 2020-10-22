@@ -8,9 +8,9 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.egoriku.ladyhappy.core.IRouter
-import com.egoriku.extensions.Event
-import com.egoriku.extensions.common.Constants.EMPTY
-import com.egoriku.extensions.logD
+import com.egoriku.ladyhappy.extensions.Event
+import com.egoriku.ladyhappy.extensions.common.Constants.EMPTY
+import com.egoriku.ladyhappy.extensions.logD
 import com.egoriku.ladyhappy.auth.Authentication
 import com.egoriku.ladyhappy.login.R
 import com.egoriku.ladyhappy.login.presentation.state.LoginEvent

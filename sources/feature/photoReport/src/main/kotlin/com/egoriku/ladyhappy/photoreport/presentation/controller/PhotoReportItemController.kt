@@ -3,8 +3,8 @@ package com.egoriku.ladyhappy.photoreport.presentation.controller
 import android.graphics.drawable.ColorDrawable
 import android.view.ViewGroup
 import coil.load
-import com.egoriku.extensions.colorFromAttr
-import com.egoriku.extensions.inflater
+import com.egoriku.ladyhappy.extensions.colorFromAttr
+import com.egoriku.ladyhappy.extensions.inflater
 import com.egoriku.photoreport.R
 import com.egoriku.photoreport.databinding.AdapterItemPhotoReportBinding
 import ru.surfstudio.android.easyadapter.controller.BindableItemController

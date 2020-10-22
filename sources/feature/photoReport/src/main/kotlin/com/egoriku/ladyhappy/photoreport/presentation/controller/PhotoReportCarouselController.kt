@@ -4,7 +4,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.PagerSnapHelper
 import androidx.recyclerview.widget.RecyclerView
-import com.egoriku.extensions.inflater
+import com.egoriku.ladyhappy.extensions.inflater
 import com.egoriku.photoreport.databinding.AdapterItemPhotoReportCarouselBinding
 import com.egoriku.ladyhappy.photoreport.domain.model.PhotoReportModel
 import ru.surfstudio.android.easyadapter.EasyAdapter

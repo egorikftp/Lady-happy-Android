@@ -1,7 +1,7 @@
 package com.egoriku.ladyhappy.photoreport.domain.usecase
 
-import com.egoriku.extensions.common.Constants.EMPTY
-import com.egoriku.extensions.common.toNewsDate
+import com.egoriku.ladyhappy.extensions.common.Constants.EMPTY
+import com.egoriku.ladyhappy.extensions.common.toNewsDate
 import com.egoriku.ladyhappy.network.ResultOf
 import com.egoriku.ladyhappy.photoreport.data.entity.PhotoReportEntity
 import com.egoriku.ladyhappy.photoreport.data.repository.PhotoReportRepository

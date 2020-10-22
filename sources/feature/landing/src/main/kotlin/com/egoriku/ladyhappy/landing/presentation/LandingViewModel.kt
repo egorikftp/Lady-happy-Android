@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.egoriku.ladyhappy.core.IAnalytics
-import com.egoriku.extensions.logE
+import com.egoriku.ladyhappy.extensions.logE
 import com.egoriku.ladyhappy.landing.domain.model.LandingModel
 import com.egoriku.ladyhappy.landing.domain.usecase.LandingUseCase
 import com.egoriku.ladyhappy.network.ResultOf

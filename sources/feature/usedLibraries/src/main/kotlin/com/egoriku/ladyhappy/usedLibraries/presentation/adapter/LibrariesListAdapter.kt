@@ -4,7 +4,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.egoriku.extensions.inflater
+import com.egoriku.ladyhappy.extensions.inflater
 import com.egoriku.usedLibraries.R
 import com.egoriku.usedLibraries.databinding.AdapterItemLibraryBinding
 import com.egoriku.ladyhappy.usedLibraries.domain.model.License

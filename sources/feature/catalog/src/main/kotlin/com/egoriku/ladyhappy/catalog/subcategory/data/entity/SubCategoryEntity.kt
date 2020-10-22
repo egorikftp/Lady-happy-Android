@@ -1,6 +1,6 @@
 package com.egoriku.ladyhappy.catalog.subcategory.data.entity
 
-import com.egoriku.extensions.common.Constants.EMPTY
+import com.egoriku.ladyhappy.extensions.common.Constants.EMPTY
 import com.google.firebase.firestore.PropertyName
 
 class SubCategoryEntity {

@@ -1,6 +1,6 @@
 package com.egoriku.ladyhappy.network.usecase
 
-import com.egoriku.extensions.logE
+import com.egoriku.ladyhappy.extensions.logE
 import com.egoriku.ladyhappy.network.ResultOf
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.withContext

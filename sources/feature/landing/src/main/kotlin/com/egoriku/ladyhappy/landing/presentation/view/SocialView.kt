@@ -15,10 +15,10 @@ import android.view.animation.Animation
 import android.widget.ImageView
 import android.widget.LinearLayout
 import androidx.appcompat.widget.AppCompatImageButton
-import com.egoriku.extensions.colorCompat
-import com.egoriku.extensions.firstChild
-import com.egoriku.extensions.listeners.SimpleAnimationListener
-import com.egoriku.extensions.setImageTintList
+import com.egoriku.ladyhappy.extensions.colorCompat
+import com.egoriku.ladyhappy.extensions.firstChild
+import com.egoriku.ladyhappy.extensions.listeners.SimpleAnimationListener
+import com.egoriku.ladyhappy.extensions.setImageTintList
 import com.egoriku.landing.R
 import com.egoriku.ladyhappy.landing.common.PredefinedResources
 import com.egoriku.ladyhappy.landing.domain.model.SocialModel

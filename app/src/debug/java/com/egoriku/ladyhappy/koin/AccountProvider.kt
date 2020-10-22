@@ -1,9 +1,9 @@
 package com.egoriku.ladyhappy.koin
 
 import android.content.Context
-import com.egoriku.extensions.common.Constants.EMPTY
-import com.egoriku.extensions.logDm
-import com.egoriku.extensions.second
+import com.egoriku.ladyhappy.extensions.common.Constants.EMPTY
+import com.egoriku.ladyhappy.extensions.logDm
+import com.egoriku.ladyhappy.extensions.second
 import com.egoriku.ladyhappy.beagle.Account
 import java.util.*
 

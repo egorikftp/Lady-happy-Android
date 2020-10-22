@@ -2,7 +2,7 @@ package com.egoriku.ladyhappy.mainscreen.presentation.balloon
 
 import android.content.Context
 import androidx.lifecycle.LifecycleOwner
-import com.egoriku.extensions.colorFromAttr
+import com.egoriku.ladyhappy.extensions.colorFromAttr
 import com.egoriku.mainscreen.R
 import com.skydoves.balloon.Balloon
 import com.skydoves.balloon.BalloonAnimation

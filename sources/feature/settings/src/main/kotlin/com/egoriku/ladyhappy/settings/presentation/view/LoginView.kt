@@ -6,7 +6,7 @@ import android.graphics.drawable.Drawable
 import android.util.AttributeSet
 import androidx.constraintlayout.widget.ConstraintLayout
 import coil.load
-import com.egoriku.extensions.*
+import com.egoriku.ladyhappy.extensions.*
 import com.egoriku.ladyhappy.settings.R
 import com.egoriku.ladyhappy.settings.databinding.ViewLoginBinding
 import com.egoriku.ladyhappy.settings.presentation.view.State.ANON

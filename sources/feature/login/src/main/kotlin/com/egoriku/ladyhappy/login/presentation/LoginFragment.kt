@@ -8,7 +8,7 @@ import androidx.browser.customtabs.CustomTabsIntent
 import androidx.core.net.toUri
 import androidx.fragment.app.Fragment
 import by.kirich1409.viewbindingdelegate.viewBinding
-import com.egoriku.extensions.*
+import com.egoriku.ladyhappy.extensions.*
 import com.egoriku.ladyhappy.login.R
 import com.egoriku.ladyhappy.login.databinding.FragmentLoginBinding
 import com.egoriku.ladyhappy.login.presentation.state.LoginEvent

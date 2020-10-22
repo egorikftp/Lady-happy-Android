@@ -3,10 +3,10 @@ package com.egoriku.ladyhappy.postcreator.presentation.section
 import android.graphics.Typeface
 import android.view.ViewGroup
 import androidx.recyclerview.widget.*
-import com.egoriku.extensions.activated
-import com.egoriku.extensions.context
-import com.egoriku.extensions.inflater
-import com.egoriku.extensions.resetActivated
+import com.egoriku.ladyhappy.extensions.activated
+import com.egoriku.ladyhappy.extensions.context
+import com.egoriku.ladyhappy.extensions.inflater
+import com.egoriku.ladyhappy.extensions.resetActivated
 import com.egoriku.ladyhappy.postcreator.R
 import com.egoriku.ladyhappy.postcreator.databinding.AdapterItemImagesSectionBinding
 import com.egoriku.ladyhappy.postcreator.domain.model.ImageItem

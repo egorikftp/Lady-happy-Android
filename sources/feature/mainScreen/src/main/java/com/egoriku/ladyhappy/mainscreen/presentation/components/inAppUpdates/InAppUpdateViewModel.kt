@@ -3,7 +3,7 @@ package com.egoriku.ladyhappy.mainscreen.presentation.components.inAppUpdates
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
-import com.egoriku.extensions.logD
+import com.egoriku.ladyhappy.extensions.logD
 import com.google.android.play.core.appupdate.AppUpdateInfo
 import com.google.android.play.core.appupdate.AppUpdateManager
 import com.google.android.play.core.ktx.*

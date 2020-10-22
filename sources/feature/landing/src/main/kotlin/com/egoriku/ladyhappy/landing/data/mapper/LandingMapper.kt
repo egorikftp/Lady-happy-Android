@@ -1,6 +1,6 @@
 package com.egoriku.ladyhappy.landing.data.mapper
 
-import com.egoriku.extensions.common.Constants.EMPTY
+import com.egoriku.ladyhappy.extensions.common.Constants.EMPTY
 import com.egoriku.ladyhappy.landing.data.entity.LandingEntity
 import com.egoriku.ladyhappy.landing.data.entity.QuotesEntity
 import com.egoriku.ladyhappy.landing.data.entity.SocialEntity

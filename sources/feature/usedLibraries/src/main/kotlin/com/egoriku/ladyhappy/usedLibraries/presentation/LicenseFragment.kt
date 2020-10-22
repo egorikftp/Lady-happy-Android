@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import by.kirich1409.viewbindingdelegate.viewBinding
-import com.egoriku.extensions.extraNotNull
+import com.egoriku.ladyhappy.extensions.extraNotNull
 import com.egoriku.usedLibraries.R
 import com.egoriku.usedLibraries.databinding.FragmentLicenseBinding
 

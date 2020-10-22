@@ -2,7 +2,7 @@ package com.egoriku.ladyhappy.landing.presentation.controller
 
 import android.view.ViewGroup
 import android.widget.TextView
-import com.egoriku.extensions.inflater
+import com.egoriku.ladyhappy.extensions.inflater
 import com.egoriku.landing.databinding.AdapterItemAboutBinding
 import ru.surfstudio.android.easyadapter.controller.BindableItemController
 import ru.surfstudio.android.easyadapter.holder.BindableViewHolder

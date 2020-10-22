@@ -13,7 +13,7 @@ import com.egoriku.ladyhappy.core.constant.REQUEST_KEY_DYNAMIC_FEATURE
 import com.egoriku.ladyhappy.core.constant.RESULT_KEY_DYNAMIC_FEATURE
 import com.egoriku.ladyhappy.core.feature.DynamicFeature
 import com.egoriku.ladyhappy.core.feature.SettingsFeature
-import com.egoriku.extensions.browseUrl
+import com.egoriku.ladyhappy.extensions.browseUrl
 import com.egoriku.ladyhappy.settings.R
 import com.egoriku.ladyhappy.settings.databinding.FragmentSettingsBinding
 import com.egoriku.ladyhappy.settings.domain.model.Feature

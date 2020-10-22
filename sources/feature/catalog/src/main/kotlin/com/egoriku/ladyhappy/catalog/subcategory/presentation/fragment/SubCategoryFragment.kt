@@ -7,9 +7,9 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.DividerItemDecoration.VERTICAL
 import androidx.recyclerview.widget.LinearLayoutManager
 import by.kirich1409.viewbindingdelegate.viewBinding
-import com.egoriku.extensions.gone
-import com.egoriku.extensions.logD
-import com.egoriku.extensions.visible
+import com.egoriku.ladyhappy.extensions.gone
+import com.egoriku.ladyhappy.extensions.logD
+import com.egoriku.ladyhappy.extensions.visible
 import com.egoriku.ladyhappy.catalog.R
 import com.egoriku.ladyhappy.catalog.databinding.FragmentCatalogBinding
 import com.egoriku.ladyhappy.catalog.subcategory.presentation.SubCategoriesViewModel

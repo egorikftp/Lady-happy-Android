@@ -3,7 +3,7 @@ package com.egoriku.ladyhappy.postcreator.presentation.dialogs
 import android.os.Bundle
 import androidx.core.os.bundleOf
 import androidx.fragment.app.setFragmentResult
-import com.egoriku.extensions.dataBySelectedPosition
+import com.egoriku.ladyhappy.extensions.dataBySelectedPosition
 import com.egoriku.ladyhappy.postcreator.domain.dialog.DialogResult
 import com.egoriku.ladyhappy.postcreator.presentation.fragment.BUNDLE_KEY
 import com.egoriku.ladyhappy.postcreator.presentation.fragment.CHOOSER_KEY

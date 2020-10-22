@@ -8,9 +8,9 @@ import androidx.recyclerview.widget.DividerItemDecoration.VERTICAL
 import androidx.recyclerview.widget.LinearLayoutManager
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.egoriku.ladyhappy.core.IRouter
-import com.egoriku.extensions.browseUrl
-import com.egoriku.extensions.gone
-import com.egoriku.extensions.visible
+import com.egoriku.ladyhappy.extensions.browseUrl
+import com.egoriku.ladyhappy.extensions.gone
+import com.egoriku.ladyhappy.extensions.visible
 import com.egoriku.usedLibraries.R
 import com.egoriku.usedLibraries.databinding.FragmentUsedLibrariesBinding
 import com.egoriku.ladyhappy.usedLibraries.presentation.adapter.LibrariesListAdapter

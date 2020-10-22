@@ -7,8 +7,8 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import coil.transform.RoundedCornersTransformation
-import com.egoriku.extensions.colorFromAttr
-import com.egoriku.extensions.inflater
+import com.egoriku.ladyhappy.extensions.colorFromAttr
+import com.egoriku.ladyhappy.extensions.inflater
 import com.egoriku.ladyhappy.postcreator.databinding.AdapterItemImageBinding
 import com.egoriku.ladyhappy.postcreator.domain.model.ImageItem
 import com.egoriku.ladyhappy.ui.R as R_ui

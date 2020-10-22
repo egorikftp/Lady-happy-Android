@@ -6,7 +6,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.egoriku.ladyhappy.core.feature.AboutUsFeature
-import com.egoriku.extensions.browseUrl
+import com.egoriku.ladyhappy.extensions.browseUrl
 import com.egoriku.landing.R
 import com.egoriku.ladyhappy.landing.common.parallax.ParallaxScrollListener
 import com.egoriku.ladyhappy.landing.presentation.controller.AboutController

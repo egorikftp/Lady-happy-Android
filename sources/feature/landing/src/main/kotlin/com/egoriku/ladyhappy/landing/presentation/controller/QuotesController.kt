@@ -2,7 +2,7 @@ package com.egoriku.ladyhappy.landing.presentation.controller
 
 import android.graphics.Matrix
 import android.view.ViewGroup
-import com.egoriku.extensions.inflater
+import com.egoriku.ladyhappy.extensions.inflater
 import com.egoriku.landing.R
 import com.egoriku.ladyhappy.landing.common.parallax.ParallaxScrollListener
 import com.egoriku.ladyhappy.landing.common.parallax.ParallaxScrollStateListener

@@ -4,7 +4,7 @@ import android.content.Context
 import android.net.Uri
 import android.provider.OpenableColumns
 import android.util.Log
-import com.egoriku.extensions.common.Constants.EMPTY
+import com.egoriku.ladyhappy.extensions.common.Constants.EMPTY
 import java.io.*
 
 object FileUtil {

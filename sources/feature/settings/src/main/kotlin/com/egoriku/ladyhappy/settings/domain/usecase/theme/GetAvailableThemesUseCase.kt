@@ -2,7 +2,7 @@ package com.egoriku.ladyhappy.settings.domain.usecase.theme
 
 import com.egoriku.ladyhappy.core.IDispatchers
 import com.egoriku.ladyhappy.core.sharedmodel.Theme
-import com.egoriku.extensions.hasQ
+import com.egoriku.ladyhappy.extensions.hasQ
 import com.egoriku.ladyhappy.network.usecase.UseCase
 
 class GetAvailableThemesUseCase(

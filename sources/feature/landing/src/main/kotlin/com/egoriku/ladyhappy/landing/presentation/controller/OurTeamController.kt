@@ -3,8 +3,8 @@ package com.egoriku.ladyhappy.landing.presentation.controller
 import android.graphics.drawable.ColorDrawable
 import android.view.ViewGroup
 import coil.load
-import com.egoriku.extensions.colorFromAttr
-import com.egoriku.extensions.inflater
+import com.egoriku.ladyhappy.extensions.colorFromAttr
+import com.egoriku.ladyhappy.extensions.inflater
 import com.egoriku.landing.R
 import com.egoriku.ladyhappy.landing.common.parallax.ParallaxScrollListener
 import com.egoriku.ladyhappy.landing.common.parallax.ParallaxScrollStateListener
