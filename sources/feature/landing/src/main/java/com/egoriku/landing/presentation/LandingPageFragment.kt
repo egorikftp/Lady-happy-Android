@@ -11,7 +11,7 @@ import com.egoriku.landing.R
 import com.egoriku.landing.common.parallax.ParallaxScrollListener
 import com.egoriku.landing.databinding.FragmentLandingBinding
 import com.egoriku.landing.presentation.controller.*
-import com.egoriku.ui.controller.NoDataController
+import com.egoriku.ladyhappy.ui.controller.NoDataController
 import org.koin.androidx.scope.lifecycleScope
 import org.koin.androidx.viewmodel.scope.viewModel
 import ru.surfstudio.android.easyadapter.EasyAdapter

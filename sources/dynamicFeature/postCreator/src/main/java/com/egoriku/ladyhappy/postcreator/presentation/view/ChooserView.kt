@@ -11,7 +11,7 @@ import com.egoriku.extensions.inflater
 import com.egoriku.extensions.withStyledAttributes
 import com.egoriku.ladyhappy.postcreator.R
 import com.egoriku.ladyhappy.postcreator.databinding.ViewChooserBinding
-import com.egoriku.ui.R as R_ui
+import com.egoriku.ladyhappy.ui.R as R_ui
 
 class ChooserView @JvmOverloads constructor(
         context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0

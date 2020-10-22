@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.egoriku.ladyhappy.postcreator.domain.predefined.PredefinedData
 import com.egoriku.ladyhappy.postcreator.presentation.dialogs.color.ColorAdapter
 import com.egoriku.ladyhappy.postcreator.presentation.dialogs.color.MyItemDetailsLookup
-import com.egoriku.ui.dialog.BaseDialogFragment
+import com.egoriku.ladyhappy.ui.dialog.BaseDialogFragment
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.egoriku.ladyhappy.localization.R as R_localization
 

@@ -13,7 +13,7 @@ import com.egoriku.ladyhappy.postcreator.domain.model.ImageItem
 import com.egoriku.ladyhappy.postcreator.presentation.model.ImageSection
 import com.egoriku.ladyhappy.postcreator.presentation.section.adapter.AddImageAdapter
 import com.egoriku.ladyhappy.postcreator.presentation.section.adapter.ImagesAdapter
-import com.egoriku.ui.decorator.VerticalMarginItemDecoration
+import com.egoriku.ladyhappy.ui.decorator.VerticalMarginItemDecoration
 import com.egoriku.ladyhappy.localization.R as R_localization
 
 private const val MAX_IMAGES_SIZE = 10

@@ -14,7 +14,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <com.egoriku.ui.view.HatsProgressView
+    <com.egoriku.ladyhappy.ui.view.HatsProgressView
         android:id="@+id/hatsProgressAnimationView"
         android:layout_width="0dp"
         android:layout_height="0dp"

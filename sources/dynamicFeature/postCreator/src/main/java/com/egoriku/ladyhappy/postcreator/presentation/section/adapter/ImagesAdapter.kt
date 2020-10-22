@@ -11,7 +11,7 @@ import com.egoriku.extensions.colorFromAttr
 import com.egoriku.extensions.inflater
 import com.egoriku.ladyhappy.postcreator.databinding.AdapterItemImageBinding
 import com.egoriku.ladyhappy.postcreator.domain.model.ImageItem
-import com.egoriku.ui.R as R_ui
+import com.egoriku.ladyhappy.ui.R as R_ui
 
 class ImagesAdapter(
         private val onRemoveImageClick: (item: ImageItem) -> Unit

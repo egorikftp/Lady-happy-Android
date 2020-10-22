@@ -1,4 +1,4 @@
-package com.egoriku.ui.view
+package com.egoriku.ladyhappy.ui.view
 
 import android.content.Context
 import android.graphics.drawable.Drawable
@@ -9,7 +9,7 @@ import androidx.vectordrawable.graphics.drawable.Animatable2Compat
 import androidx.vectordrawable.graphics.drawable.AnimatedVectorDrawableCompat
 import com.egoriku.extensions.fromApi
 import com.egoriku.extensions.toApi
-import com.egoriku.ui.R
+import com.egoriku.ladyhappy.ui.R
 
 class HatsProgressView : AppCompatImageView {
 

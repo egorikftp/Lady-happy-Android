@@ -11,7 +11,7 @@ import com.egoriku.photoreport.R
 import com.egoriku.photoreport.databinding.FragmentPhotoReportBinding
 import com.egoriku.photoreport.presentation.controller.PhotoReportCarouselController
 import com.egoriku.photoreport.presentation.controller.PhotoReportHeaderController
-import com.egoriku.ui.controller.NoDataController
+import com.egoriku.ladyhappy.ui.controller.NoDataController
 import org.koin.androidx.scope.lifecycleScope
 import org.koin.androidx.viewmodel.scope.viewModel
 import ru.surfstudio.android.easyadapter.EasyAdapter

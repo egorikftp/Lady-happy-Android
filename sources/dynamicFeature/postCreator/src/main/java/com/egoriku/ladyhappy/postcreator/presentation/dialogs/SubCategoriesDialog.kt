@@ -7,7 +7,7 @@ import com.egoriku.extensions.dataBySelectedPosition
 import com.egoriku.ladyhappy.postcreator.domain.dialog.DialogResult
 import com.egoriku.ladyhappy.postcreator.presentation.fragment.BUNDLE_KEY
 import com.egoriku.ladyhappy.postcreator.presentation.fragment.CHOOSER_KEY
-import com.egoriku.ui.dialog.BaseDialogFragment
+import com.egoriku.ladyhappy.ui.dialog.BaseDialogFragment
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.egoriku.ladyhappy.localization.R as R_localization
 

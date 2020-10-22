@@ -1,4 +1,4 @@
-package com.egoriku.ui.decorator
+package com.egoriku.ladyhappy.ui.decorator
 
 import android.graphics.Rect
 import android.view.View
