@@ -18,7 +18,7 @@ interface IFeatureProvider {
 
     val settingsFragment: Fragment
 
-    fun searchFragment(searchQuery: String): Fragment
+    fun getSearchFragment(searchQuery: String): Fragment
 
     val usedLibrariesFragment: Fragment
 }

@@ -1,11 +1,11 @@
-package com.egoriku.mainscreen.presentation.search
+package com.egoriku.ladyhappy.mainscreen.presentation.search
 
 import android.os.Bundle
 import android.view.View
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
-import com.egoriku.extensions.extraNotNull
-import com.egoriku.mainscreen.R
+import com.egoriku.ladyhappy.extensions.extraNotNull
+import com.egoriku.ladyhappy.mainscreen.R
 import com.google.android.material.textfield.TextInputEditText
 
 private const val SEARCH_QUERY_EXTRA = "SEARCH_QUERY_EXTRA"
