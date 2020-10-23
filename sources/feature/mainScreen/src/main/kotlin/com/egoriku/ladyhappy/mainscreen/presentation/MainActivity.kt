@@ -145,7 +145,12 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
 
         subscribeForDynamicFeatureRequest()
 
-        intent?.handleIntent()
+        intent?.handleGoogleAssistanceSearchIntent()
+    }
+
+    override fun onNewIntent(intent: Intent?) {
+        super.onNewIntent(intent)
+        intent?.handleGoogleAssistanceSearchIntent()
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -299,7 +304,7 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
         )
     }
 
-    private fun Intent.handleIntent() {
+    private fun Intent.handleGoogleAssistanceSearchIntent() {
         if (ACTION_SEARCH == action) {
             getStringExtra(SearchManager.QUERY)?.run {
                 viewModel.replaceWith(SearchScreen(featureProvider, this))
