@@ -1,6 +1,7 @@
 package com.egoriku.ladyhappy.mainscreen.presentation
 
 import android.app.Activity
+import android.app.SearchManager
 import android.content.Context
 import android.content.Intent
 import android.graphics.Color
@@ -53,6 +54,8 @@ import androidx.lifecycle.lifecycleScope as activityLifecycle
 private const val INSTALL_CONFIRMATION_REQ_CODE = 1
 private const val UPDATE_CONFIRMATION_REQ_CODE = 2
 private const val KEY_SELECTED_MENU_ITEM = "selected_item"
+
+private const val ACTION_SEARCH = "com.google.android.gms.actions.SEARCH_ACTION"
 
 class MainActivity : AppCompatActivity(R.layout.activity_main) {
 
@@ -141,6 +144,13 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
         subscribeForDynamicFeatureInstall()
 
         subscribeForDynamicFeatureRequest()
+
+        intent?.handleGoogleAssistanceSearchIntent()
+    }
+
+    override fun onNewIntent(intent: Intent?) {
+        super.onNewIntent(intent)
+        intent?.handleGoogleAssistanceSearchIntent()
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -292,6 +302,14 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
                     }
                 }
         )
+    }
+
+    private fun Intent.handleGoogleAssistanceSearchIntent() {
+        if (ACTION_SEARCH == action) {
+            getStringExtra(SearchManager.QUERY)?.run {
+                viewModel.replaceWith(SearchScreen(featureProvider, this))
+            }
+        }
     }
 
     private fun mapItemIdToScreen(@IdRes menuItemId: Int) {
