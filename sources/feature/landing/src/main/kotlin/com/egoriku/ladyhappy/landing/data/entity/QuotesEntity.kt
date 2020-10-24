@@ -2,12 +2,10 @@ package com.egoriku.ladyhappy.landing.data.entity
 
 import com.google.firebase.firestore.PropertyName
 
-class QuotesEntity {
+data class QuotesEntity(
     @PropertyName("quote")
-    @JvmField
-    val quote: String? = null
+    val quote: String? = null,
 
     @PropertyName("author")
-    @JvmField
     val author: String? = null
-}
+)
