@@ -3,6 +3,8 @@ package com.egoriku.ladyhappy.postcreator.presentation.fragment
 import android.content.Context
 import android.os.Bundle
 import android.view.View
+import org.koin.androidx.scope.ScopeFragment
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.ConcatAdapter
@@ -35,17 +37,17 @@ import kotlin.properties.Delegates
 const val CHOOSER_KEY = "chooserKey"
 const val BUNDLE_KEY = "bundleKey"
 
-class PostCreatorFragment : Fragment(R.layout.fragment_post_creator) {
+class PostCreatorFragment : ScopeFragment(R.layout.fragment_post_creator) {
 
     init {
         loadKoinModules(postModule)
     }
 
-    private val binding by viewBinding(FragmentPostCreatorBinding::bind)
-
     private val router: IRouter by inject()
 
-    private val viewModel: PostViewModel by lifecycleScope.viewModel(this)
+    private val viewModel by viewModel<PostViewModel>()
+
+    private val binding by viewBinding(FragmentPostCreatorBinding::bind)
 
     private val concatAdapter = ConcatAdapter()
     private var imagesSectionAdapter: ImagesSectionAdapter by Delegates.notNull()
@@ -70,7 +72,8 @@ class PostCreatorFragment : Fragment(R.layout.fragment_post_creator) {
             when (val dialogResult = result.getParcelable<DialogResult>(BUNDLE_KEY)) {
                 is DialogResult.Category -> viewModel.setCategory(dialogResult.category)
                 is DialogResult.SubCategory -> viewModel.updateSubCategory(dialogResult.subCategory)
-                is DialogResult.Color -> {}
+                is DialogResult.Color -> {
+                }
             }
         }
 

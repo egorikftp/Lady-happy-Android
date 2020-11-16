@@ -4,17 +4,15 @@ import android.app.Dialog
 import android.os.Bundle
 import android.widget.ArrayAdapter
 import androidx.appcompat.app.AlertDialog
-import androidx.appcompat.app.AppCompatDialogFragment
 import com.egoriku.ladyhappy.core.sharedmodel.Theme
 import com.egoriku.ladyhappy.settings.R
+import com.egoriku.ladyhappy.settings.presentation.dialog.base.ScopeDialogFragment
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import org.koin.androidx.scope.lifecycleScope
-import org.koin.androidx.viewmodel.scope.viewModel
 import kotlin.properties.Delegates
 
-class ThemeSettingDialogFragment : AppCompatDialogFragment() {
+class ThemeSettingDialogFragment : ScopeDialogFragment() {
 
-    private val viewModel: ThemeViewModel by lifecycleScope.viewModel(this)
+    private val viewModel: ThemeViewModel by inject()
 
     private var listAdapter: ArrayAdapter<ThemeHolder> by Delegates.notNull()
 

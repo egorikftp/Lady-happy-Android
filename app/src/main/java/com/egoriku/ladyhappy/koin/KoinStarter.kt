@@ -4,11 +4,11 @@ import android.app.Application
 import com.egoriku.ladyhappy.BuildConfig
 import com.egoriku.ladyhappy.catalog.categories.koin.categoriesModule
 import com.egoriku.ladyhappy.catalog.subcategory.koin.subcategoryModule
-import com.egoriku.ladyhappy.login.koin.loginModule
-import com.egoriku.ladyhappy.settings.koin.settingsModule
 import com.egoriku.ladyhappy.landing.koin.landingModule
+import com.egoriku.ladyhappy.login.koin.loginModule
 import com.egoriku.ladyhappy.mainscreen.koin.mainActivityModule
 import com.egoriku.ladyhappy.photoreport.koin.photoReportModule
+import com.egoriku.ladyhappy.settings.koin.settingsModule
 import com.egoriku.ladyhappy.usedLibraries.koin.usedLibrariesModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidFileProperties
@@ -22,7 +22,7 @@ fun Application.initKoin() {
         androidContext(this@initKoin)
 
         if (BuildConfig.DEBUG) {
-            androidLogger(Level.ERROR)
+            androidLogger(Level.DEBUG)
         }
 
         androidFileProperties()

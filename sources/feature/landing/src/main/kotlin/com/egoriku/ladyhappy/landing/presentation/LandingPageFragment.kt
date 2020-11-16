@@ -2,7 +2,6 @@ package com.egoriku.ladyhappy.landing.presentation
 
 import android.os.Bundle
 import android.view.View
-import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.egoriku.ladyhappy.core.feature.AboutUsFeature
@@ -14,16 +13,16 @@ import com.egoriku.ladyhappy.landing.common.parallax.ParallaxScrollListener
 import com.egoriku.ladyhappy.landing.databinding.FragmentLandingBinding
 import com.egoriku.ladyhappy.landing.presentation.controller.*
 import com.egoriku.ladyhappy.ui.controller.NoDataController
-import org.koin.androidx.scope.lifecycleScope
-import org.koin.androidx.viewmodel.scope.viewModel
+import org.koin.androidx.scope.ScopeFragment
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import ru.surfstudio.android.easyadapter.EasyAdapter
 import ru.surfstudio.android.easyadapter.ItemList
 
-class LandingPageFragment : Fragment(R.layout.fragment_landing), AboutUsFeature {
-
-    private val landingViewModel: LandingViewModel by lifecycleScope.viewModel(this)
+class LandingPageFragment : ScopeFragment(R.layout.fragment_landing), AboutUsFeature {
 
     private val binding by viewBinding(FragmentLandingBinding::bind)
+
+    private val landingViewModel by viewModel<LandingViewModel>()
 
     private var parallaxScrollListener: ParallaxScrollListener? = null
 

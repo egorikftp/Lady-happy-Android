@@ -93,6 +93,7 @@ withLibraries(
         Libs.firebaseRemoteConfig,
         Libs.firebaseStorage,
         Libs.koinAndroid,
+        Libs.koinViewModel,
         Libs.material,
         Libs.playCore
 )

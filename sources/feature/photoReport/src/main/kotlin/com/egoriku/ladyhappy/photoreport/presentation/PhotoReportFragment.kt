@@ -2,7 +2,6 @@ package com.egoriku.ladyhappy.photoreport.presentation
 
 import android.os.Bundle
 import android.view.View
-import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import by.kirich1409.viewbindingdelegate.viewBinding
@@ -14,16 +13,16 @@ import com.egoriku.ladyhappy.photoreport.databinding.FragmentPhotoReportBinding
 import com.egoriku.ladyhappy.photoreport.presentation.controller.PhotoReportCarouselController
 import com.egoriku.ladyhappy.photoreport.presentation.controller.PhotoReportHeaderController
 import com.egoriku.ladyhappy.ui.controller.NoDataController
-import org.koin.androidx.scope.lifecycleScope
-import org.koin.androidx.viewmodel.scope.viewModel
+import org.koin.androidx.scope.ScopeFragment
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import ru.surfstudio.android.easyadapter.EasyAdapter
 import ru.surfstudio.android.easyadapter.ItemList
 
-class PhotoReportFragment : Fragment(R.layout.fragment_photo_report), PhotoReportsFeature {
+class PhotoReportFragment : ScopeFragment(R.layout.fragment_photo_report), PhotoReportsFeature {
 
     private val binding by viewBinding(FragmentPhotoReportBinding::bind)
 
-    private val viewModel: PhotoReportViewModel by lifecycleScope.viewModel(this)
+    private val viewModel by viewModel<PhotoReportViewModel>()
 
     private val photoReportAdapter = EasyAdapter()
 

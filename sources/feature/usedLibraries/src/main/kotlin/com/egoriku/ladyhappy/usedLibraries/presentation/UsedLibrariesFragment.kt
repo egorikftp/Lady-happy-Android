@@ -2,7 +2,6 @@ package com.egoriku.ladyhappy.usedLibraries.presentation
 
 import android.os.Bundle
 import android.view.View
-import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import by.kirich1409.viewbindingdelegate.viewBinding
@@ -16,18 +15,17 @@ import com.egoriku.ladyhappy.usedLibraries.presentation.adapter.LibrariesListAda
 import com.egoriku.ladyhappy.usedLibraries.presentation.screen.LicenseFragmentScreen
 import com.egoriku.ladyhappy.usedLibraries.presentation.state.ScreenState
 import com.egoriku.ladyhappy.usedLibraries.presentation.viewmodel.UsedLibrariesViewModel
-import org.koin.android.ext.android.inject
-import org.koin.androidx.scope.lifecycleScope
-import org.koin.androidx.viewmodel.scope.viewModel
+import org.koin.androidx.scope.ScopeFragment
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import kotlin.properties.Delegates
 
-class UsedLibrariesFragment : Fragment(R.layout.fragment_used_libraries) {
-
-    private val router: IRouter by inject()
-
-    private val viewModel: UsedLibrariesViewModel by lifecycleScope.viewModel(this)
+class UsedLibrariesFragment : ScopeFragment(R.layout.fragment_used_libraries) {
 
     private val binding by viewBinding(FragmentUsedLibrariesBinding::bind)
+
+    private val viewModel by viewModel<UsedLibrariesViewModel>()
+
+    private val router: IRouter by inject()
 
     private var librariesAdapter: LibrariesListAdapter by Delegates.notNull()
 

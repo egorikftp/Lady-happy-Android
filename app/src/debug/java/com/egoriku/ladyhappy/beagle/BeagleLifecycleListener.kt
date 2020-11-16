@@ -7,14 +7,14 @@ import android.widget.EditText
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.FragmentManager
-import com.egoriku.ladyhappy.extensions.listeners.SimpleActivityLifecycleCallbacks
 import com.egoriku.ladyhappy.R
+import com.egoriku.ladyhappy.extensions.listeners.SimpleActivityLifecycleCallbacks
 import com.egoriku.ladyhappy.koin.AccountProvider
 import com.egoriku.ladyhappy.login.presentation.LoginFragment
 import com.pandulapeter.beagle.Beagle
 import com.pandulapeter.beagle.modules.ItemListModule
-import org.koin.core.KoinComponent
-import org.koin.core.inject
+import org.koin.core.component.KoinComponent
+import org.koin.core.component.inject
 
 private const val ID_LOGIN_SECTION = "id_login_section"
 

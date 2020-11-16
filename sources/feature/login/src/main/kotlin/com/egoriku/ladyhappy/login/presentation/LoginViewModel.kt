@@ -7,11 +7,11 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.egoriku.ladyhappy.auth.Authentication
 import com.egoriku.ladyhappy.core.IRouter
 import com.egoriku.ladyhappy.extensions.Event
 import com.egoriku.ladyhappy.extensions.common.Constants.EMPTY
 import com.egoriku.ladyhappy.extensions.logD
-import com.egoriku.ladyhappy.auth.Authentication
 import com.egoriku.ladyhappy.login.R
 import com.egoriku.ladyhappy.login.presentation.state.LoginEvent
 import com.egoriku.ladyhappy.login.presentation.state.LoginState
@@ -135,7 +135,7 @@ class LoginViewModel(
                     .addOnFailureListener { e ->
                         // No saved credentials found. Launch the One Tap sign-up flow, or
                         // do nothing and continue presenting the signed-out UI.
-                        logD(e.localizedMessage)
+                        logD(e.message)
                     }
         }
 
