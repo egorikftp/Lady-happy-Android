@@ -1,5 +1,6 @@
 package com.egoriku.plugin
 
+import Libs
 import com.android.build.gradle.AppPlugin
 import com.android.build.gradle.LibraryPlugin
 import com.android.build.gradle.internal.plugins.DynamicFeaturePlugin
@@ -10,7 +11,6 @@ import com.egoriku.ext.implementation
 import com.egoriku.ext.main
 import com.egoriku.ext.release
 import com.egoriku.plugin.extension.MyPluginExtension
-import com.egoriku.plugin.internal.androidExtensions
 import com.egoriku.plugin.internal.appExtension
 import com.egoriku.plugin.internal.libraryExtension
 import com.egoriku.versions.ProjectVersion
@@ -20,7 +20,6 @@ import org.gradle.api.Project
 import org.gradle.api.plugins.JavaPlugin
 import org.gradle.kotlin.dsl.create
 import org.gradle.kotlin.dsl.dependencies
-import org.jetbrains.kotlin.gradle.internal.AndroidExtensionsFeature
 import org.jetbrains.kotlin.gradle.plugin.KotlinBasePluginWrapper
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
@@ -168,11 +167,7 @@ private fun Project.addCommonDependencies() = dependencies {
 
 private fun Project.enableParcelize(config: MyPluginExtension) {
     if (config.kotlinParcelize) {
-        plugins.apply("kotlin-android-extensions")
-
-        androidExtensions {
-            features = setOf(AndroidExtensionsFeature.PARCELIZE.featureName)
-        }
+        plugins.apply("kotlin-parcelize")
     }
 }
 

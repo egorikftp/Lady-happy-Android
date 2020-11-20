@@ -6,7 +6,6 @@ object GradlePluginsVersion {
     const val detekt = "1.14.2"
     const val googleServices = "4.3.4"
     const val gradleTools = "4.1.1"
-    const val kotlin = "1.4.10"
     const val ossLicenses = "0.10.2"
     const val versionPlugin = "0.36.0"
 }
