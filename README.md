@@ -45,6 +45,13 @@ Download
 -------
 <a href='https://play.google.com/store/apps/details?id=com.egoriku.ladyhappy'><img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png' width="200"/></a>
 
+Future plans
+-------
+- Step by step migration to Jetpack Compose, please follow <b>compose</b> branch
+- Allow everyone to build project with demo keystore
+- Allow to try Dynamic delivery with demo credentials
+
+Other things please request using issues
 
 Find this repository useful? :heart:
 -------
