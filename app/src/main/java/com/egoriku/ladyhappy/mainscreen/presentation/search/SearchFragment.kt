@@ -4,8 +4,8 @@ import android.os.Bundle
 import android.view.View
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
+import com.egoriku.ladyhappy.R
 import com.egoriku.ladyhappy.extensions.extraNotNull
-import com.egoriku.ladyhappy.mainscreen.R
 import com.google.android.material.textfield.TextInputEditText
 
 private const val SEARCH_QUERY_EXTRA = "SEARCH_QUERY_EXTRA"

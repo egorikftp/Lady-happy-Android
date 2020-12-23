@@ -39,7 +39,7 @@ object Libs {
 
     const val leakCanary = "com.squareup.leakcanary:leakcanary-android:${LibrariesVersion.leakCanary}"
     const val lifecycleRuntime = "androidx.lifecycle:lifecycle-runtime-ktx:${LibrariesVersion.lifecycle}"
-    const val liveData = "androidx.lifecycle:lifecycle-livedata-ktx:${LibrariesVersion.lifecycle}"
+    const val liveDataKtx = "androidx.lifecycle:lifecycle-livedata-ktx:${LibrariesVersion.lifecycle}"
 
     const val material = "com.google.android.material:material:${LibrariesVersion.material}"
 

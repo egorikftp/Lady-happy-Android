@@ -6,10 +6,10 @@ import androidx.lifecycle.ViewModel
 import com.egoriku.ladyhappy.core.IAnalytics
 import com.egoriku.ladyhappy.core.IRouter
 import com.egoriku.ladyhappy.extensions.common.Constants.EMPTY
-import com.egoriku.ladyhappy.navigation.screen.Screen
 import com.egoriku.ladyhappy.mainscreen.common.TITLE_KEY
 import com.egoriku.ladyhappy.mainscreen.common.TRACKING_KEY
 import com.egoriku.ladyhappy.mainscreen.presentation.delegate.IThemedActivityDelegate
+import com.egoriku.ladyhappy.navigation.screen.Screen
 
 class MainActivityViewModel(
         private val analytics: IAnalytics,

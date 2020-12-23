@@ -33,7 +33,7 @@ withLibraries(
         Libs.glide,
         Libs.koinAndroid,
         Libs.koinViewModel,
-        Libs.liveData,
+        Libs.liveDataKtx,
         Libs.material,
         Libs.recyclerView,
         Libs.viewBindingDelegates,

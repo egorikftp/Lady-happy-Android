@@ -22,6 +22,5 @@ dependencies {
     implementation(localGroovy())
 
     implementation("com.android.tools.build:gradle:4.1.1")
-    implementation(kotlin("gradle-plugin", "1.4.20"))
-    implementation(kotlin("android-extensions", "1.4.20"))
+    implementation(kotlin("gradle-plugin", "1.4.21"))
 }

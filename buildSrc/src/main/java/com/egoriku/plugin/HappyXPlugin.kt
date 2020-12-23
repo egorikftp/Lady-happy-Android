@@ -69,6 +69,12 @@ open class HappyXPlugin : Plugin<Project> {
                         enableParcelize(config)
                     }
 
+                    is AppPlugin -> {
+                        appExtension.run {
+                            buildFeatures.viewBinding = config.viewBindingEnabled
+                        }
+                    }
+
                     is DynamicFeaturePlugin -> {
                         enableParcelize(config)
 

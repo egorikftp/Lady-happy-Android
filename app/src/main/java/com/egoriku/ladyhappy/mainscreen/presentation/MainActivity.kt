@@ -10,16 +10,16 @@ import android.widget.TextView
 import androidx.annotation.IdRes
 import androidx.appcompat.app.AppCompatDelegate
 import by.kirich1409.viewbindingdelegate.viewBinding
+import com.egoriku.ladyhappy.R
 import com.egoriku.ladyhappy.core.IFeatureProvider
 import com.egoriku.ladyhappy.core.INavigationHolder
 import com.egoriku.ladyhappy.core.constant.REQUEST_KEY_DYNAMIC_FEATURE
 import com.egoriku.ladyhappy.core.constant.RESULT_KEY_DYNAMIC_FEATURE
 import com.egoriku.ladyhappy.core.feature.*
 import com.egoriku.ladyhappy.core.sharedmodel.toNightMode
+import com.egoriku.ladyhappy.databinding.ActivityMainBinding
 import com.egoriku.ladyhappy.extensions.*
 import com.egoriku.ladyhappy.extensions.common.Constants.EMPTY
-import com.egoriku.ladyhappy.mainscreen.R
-import com.egoriku.ladyhappy.mainscreen.databinding.ActivityMainBinding
 import com.egoriku.ladyhappy.mainscreen.presentation.balloon.DynamicFeatureBalloonFactory
 import com.egoriku.ladyhappy.mainscreen.presentation.components.dynamicFeature.DynamicFeatureEvent
 import com.egoriku.ladyhappy.mainscreen.presentation.components.dynamicFeature.DynamicFeatureViewModel
@@ -52,8 +52,6 @@ import androidx.lifecycle.lifecycleScope as activityLifecycle
 private const val INSTALL_CONFIRMATION_REQ_CODE = 1
 private const val UPDATE_CONFIRMATION_REQ_CODE = 2
 private const val KEY_SELECTED_MENU_ITEM = "selected_item"
-
-private const val ACTION_SEARCH = "com.google.android.gms.actions.SEARCH_ACTION"
 
 class MainActivity : ScopeActivity(R.layout.activity_main) {
 
@@ -200,7 +198,7 @@ class MainActivity : ScopeActivity(R.layout.activity_main) {
                                         updateResult.updateInfo,
                                         AppUpdateType.IMMEDIATE,
                                         this@MainActivity,
-                                        com.egoriku.ladyhappy.mainscreen.presentation.UPDATE_CONFIRMATION_REQ_CODE)) {
+                                        UPDATE_CONFIRMATION_REQ_CODE)) {
                             finish()
                         }
                     }
@@ -216,7 +214,7 @@ class MainActivity : ScopeActivity(R.layout.activity_main) {
                                 event.updateInfo,
                                 updateType,
                                 this@MainActivity,
-                                com.egoriku.ladyhappy.mainscreen.presentation.UPDATE_CONFIRMATION_REQ_CODE
+                                UPDATE_CONFIRMATION_REQ_CODE
                         )
                     }
                 }
