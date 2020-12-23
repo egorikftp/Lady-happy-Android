@@ -1,0 +1,9 @@
+<actions>
+    <action intentName="actions.intent.GET_THING">
+        <fulfillment urlTemplate="ladyhappy://search{?query}">
+            <parameter-mapping
+                intentParameter="thing.name"
+                urlParameter="query" />
+        </fulfillment>
+    </action>
+</actions>

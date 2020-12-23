@@ -1,7 +1,6 @@
 package com.egoriku.ladyhappy.mainscreen.presentation
 
 import android.app.Activity
-import android.app.SearchManager
 import android.content.Context
 import android.content.Intent
 import android.graphics.Color
@@ -18,6 +17,7 @@ import com.egoriku.ladyhappy.core.constant.RESULT_KEY_DYNAMIC_FEATURE
 import com.egoriku.ladyhappy.core.feature.*
 import com.egoriku.ladyhappy.core.sharedmodel.toNightMode
 import com.egoriku.ladyhappy.extensions.*
+import com.egoriku.ladyhappy.extensions.common.Constants.EMPTY
 import com.egoriku.ladyhappy.mainscreen.R
 import com.egoriku.ladyhappy.mainscreen.databinding.ActivityMainBinding
 import com.egoriku.ladyhappy.mainscreen.presentation.balloon.DynamicFeatureBalloonFactory
@@ -303,9 +303,18 @@ class MainActivity : ScopeActivity(R.layout.activity_main) {
     }
 
     private fun Intent.handleGoogleAssistanceSearchIntent() {
-        if (ACTION_SEARCH == action) {
-            getStringExtra(SearchManager.QUERY)?.run {
-                viewModel.replaceWith(SearchScreen(featureProvider, this))
+        val data = intent.data
+
+        if (Intent.ACTION_VIEW == action && data != null) {
+            when (data.scheme) {
+                "ladyhappy" -> {
+                    val url = data.toString()
+                    if (url.startsWith("ladyhappy://search")) {
+                        val searchQuery = data.getQueryParameter("query")?.trim() ?: EMPTY
+
+                        viewModel.replaceWith(SearchScreen(featureProvider, searchQuery))
+                    }
+                }
             }
         }
     }

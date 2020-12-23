@@ -1,20 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.egoriku.ladyhappy.mainscreen">
 
     <application>
         <activity
             android:name=".presentation.MainActivity"
             android:launchMode="singleTask">
-            <intent-filter>
-                <action android:name="com.google.android.gms.actions.SEARCH_ACTION" />
 
-                <category android:name="android.intent.category.DEFAULT" />
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
 
-            <meta-data
-                android:name="android.app.searchable"
-                android:value=".presentation.MainActivity" />
+            <intent-filter tools:targetApi="m">
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.BROWSABLE" />
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <data
+                    android:host="search"
+                    android:scheme="ladyhappy" />
+            </intent-filter>
         </activity>
     </application>
 </manifest>
