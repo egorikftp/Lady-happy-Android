@@ -2,7 +2,6 @@
 import Modules.DynamicFeatures
 import Modules.Features
 import Modules.Libraries
-import com.android.build.gradle.internal.api.BaseVariantOutputImpl
 import com.egoriku.ext.*
 import org.jetbrains.kotlin.konan.file.File
 import org.jetbrains.kotlin.konan.properties.Properties
@@ -55,14 +54,6 @@ android {
     gradle.taskGraph.whenReady {
         if (hasTask(":app:assembleDebug")) {
             autoIncrementBuildVersionNumber()
-        }
-    }
-
-    applicationVariants.all {
-        outputs.all {
-            if (this is BaseVariantOutputImpl) {
-                outputFileName = "${"Lady_Happy"}.${name}_${versionName}.apk"
-            }
         }
     }
 }
