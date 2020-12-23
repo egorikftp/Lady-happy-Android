@@ -16,7 +16,7 @@ class DynamicFeatureBalloonFactory : Balloon.Factory() {
             context: Context,
             lifecycle: LifecycleOwner?
     ): Balloon = createBalloon(context) {
-        arrowVisible = false
+        isVisibleArrow = false
         layoutRes = R.layout.layout_ballon
         setCornerRadius(CORNER_RADIUS)
         backgroundColor = context.colorFromAttr(R.attr.colorSurface)

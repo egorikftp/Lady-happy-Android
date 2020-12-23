@@ -17,14 +17,17 @@ object Libs {
 
     const val easyAdapter = "ru.surfstudio.android:easyadapter:${LibrariesVersion.easyAdapter}"
 
-    const val firebaseAuth = "com.google.firebase:firebase-auth:${LibrariesVersion.firebaseAuth}"
-    const val firebaseAnalytics = "com.google.firebase:firebase-analytics-ktx:${LibrariesVersion.firebaseAnalytics}"
-    const val firebaseCore = "com.google.firebase:firebase-core:${LibrariesVersion.firebaseCore}"
-    const val firebaseCrashlytics = "com.google.firebase:firebase-crashlytics:${LibrariesVersion.firebaseCrashlytics}"
-    const val firebaseFirestore = "com.google.firebase:firebase-firestore-ktx:${LibrariesVersion.firebaseFirestore}"
-    const val firebasePerformance = "com.google.firebase:firebase-perf:${LibrariesVersion.firebasePerformance}"
-    const val firebaseRemoteConfig = "com.google.firebase:firebase-config-ktx:${LibrariesVersion.firebaseRemoteConfig}"
-    const val firebaseStorage = "com.google.firebase:firebase-storage-ktx:${LibrariesVersion.firebaseStorage}"
+    const val firebaseBom = "com.google.firebase:firebase-bom:${LibrariesVersion.firebaseBom}"
+
+    const val firebaseAuth = "com.google.firebase:firebase-auth"
+    const val firebaseAnalytics = "com.google.firebase:firebase-analytics-ktx"
+    const val firebaseCore = "com.google.firebase:firebase-core"
+    const val firebaseCrashlytics = "com.google.firebase:firebase-crashlytics"
+    const val firebaseFirestore = "com.google.firebase:firebase-firestore-ktx"
+    const val firebasePerformance = "com.google.firebase:firebase-perf"
+    const val firebaseRemoteConfig = "com.google.firebase:firebase-config-ktx"
+    const val firebaseStorage = "com.google.firebase:firebase-storage-ktx"
+
     const val fragment = "androidx.fragment:fragment-ktx:${LibrariesVersion.fragment}"
 
     const val glide = "com.github.bumptech.glide:glide:${LibrariesVersion.glide}"

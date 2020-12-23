@@ -67,6 +67,10 @@ android {
     }
 }
 
+dependencies {
+    implementation(platform(Libs.firebaseBom))
+}
+
 withProjects(
         Features.catalog,
         Features.landing,
