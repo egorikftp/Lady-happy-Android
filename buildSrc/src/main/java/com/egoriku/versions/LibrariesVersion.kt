@@ -3,7 +3,7 @@ package com.egoriku.versions
 object LibrariesVersion {
     const val annotation = "1.1.0"
     const val appcompat = "1.2.0"
-    const val balloon = "1.2.8"
+    const val balloon = "1.2.9"
     const val beagle = "2.4.3"
     const val browser = "1.3.0"
     const val cardView = "1.0.0"
