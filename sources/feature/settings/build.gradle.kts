@@ -36,7 +36,7 @@ withLibraries(
         Libs.firebaseFirestore,
         Libs.koinAndroid,
         Libs.koinViewModel,
-        Libs.liveData,
+        Libs.liveDataKtx,
         Libs.material,
         Libs.playCore,
         Libs.viewBindingDelegates,

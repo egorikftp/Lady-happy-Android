@@ -1,7 +1,7 @@
 package com.egoriku.ladyhappy.catalog.subcategory.data.datasource
 
-import com.egoriku.ladyhappy.core.IFirebase
 import com.egoriku.ladyhappy.catalog.subcategory.data.entity.SubCategoryEntity
+import com.egoriku.ladyhappy.core.IFirebase
 import com.egoriku.ladyhappy.network.firestore.awaitGet
 
 class SubcategoryDataSource(private val firebase: IFirebase) {
@@ -11,6 +11,6 @@ class SubcategoryDataSource(private val firebase: IFirebase) {
                 .collection("subcategories")
                 .whereEqualTo("categoryId", categoryId)
                 .orderBy("subCategoryId")
-                .awaitGet()
+                .awaitGet<SubCategoryEntity>()
     }
 }

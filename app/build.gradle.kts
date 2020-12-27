@@ -1,9 +1,8 @@
+
 import Modules.DynamicFeatures
 import Modules.Features
 import Modules.Libraries
-import com.android.build.gradle.internal.api.BaseVariantOutputImpl
 import com.egoriku.ext.*
-import org.gradle.kotlin.dsl.implementation
 import org.jetbrains.kotlin.konan.file.File
 import org.jetbrains.kotlin.konan.properties.Properties
 import org.jetbrains.kotlin.konan.properties.loadProperties
@@ -15,6 +14,10 @@ plugins {
     id("com.google.firebase.firebase-perf")
     id("com.google.firebase.crashlytics")
     id("com.google.android.gms.oss-licenses-plugin")
+}
+
+happyPlugin {
+    viewBindingEnabled = true
 }
 
 android {
@@ -53,14 +56,10 @@ android {
             autoIncrementBuildVersionNumber()
         }
     }
+}
 
-    applicationVariants.all {
-        outputs.all {
-            if (this is BaseVariantOutputImpl) {
-                outputFileName = "${"Lady_Happy"}.${name}_${versionName}.apk"
-            }
-        }
-    }
+dependencies {
+    implementation(platform(Libs.firebaseBom))
 }
 
 withProjects(
@@ -68,7 +67,6 @@ withProjects(
         Features.landing,
         Features.launchScreen,
         Features.login,
-        Features.mainScreen,
         Features.photoReport,
         Features.settings,
         Features.usedLibraries,
@@ -84,23 +82,29 @@ withProjects(
 
 withLibraries(
         Libs.appcompat,
+        Libs.balloon,
+        Libs.constraintLayout,
         Libs.core,
         Libs.coroutinesAndroid,
         Libs.firebaseAuth,
+        Libs.firebaseAnalytics,
         Libs.firebaseCore,
+        Libs.firebaseCrashlytics,
         Libs.firebaseFirestore,
         Libs.firebasePerformance,
         Libs.firebaseRemoteConfig,
         Libs.firebaseStorage,
+        Libs.fragment,
+        Libs.liveDataKtx,
         Libs.koinAndroid,
+        Libs.koinViewModel,
         Libs.material,
-        Libs.playCore
+        Libs.playCore,
+        Libs.viewBindingDelegates,
+        Libs.viewModel
 )
 
 dependencies {
-    implementation(Libs.firebaseAnalytics)
-    implementation(Libs.firebaseCrashlytics)
-
     debugImplementation(Libs.beagle)
     debugImplementation(Libs.leakCanary)
 

@@ -2,7 +2,7 @@ package com.egoriku.ladyhappy.extensions.listeners
 
 import android.view.animation.Animation
 
-abstract class SimpleAnimationListener : Animation.AnimationListener {
+interface SimpleAnimationListener : Animation.AnimationListener {
 
     override fun onAnimationRepeat(animation: Animation?) = Unit
 

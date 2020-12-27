@@ -1,7 +1,6 @@
 package com.egoriku.ladyhappy.mainscreen.presentation
 
 import android.app.Activity
-import android.app.SearchManager
 import android.content.Context
 import android.content.Intent
 import android.graphics.Color
@@ -9,18 +8,18 @@ import android.os.Bundle
 import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.annotation.IdRes
-import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import by.kirich1409.viewbindingdelegate.viewBinding
+import com.egoriku.ladyhappy.R
 import com.egoriku.ladyhappy.core.IFeatureProvider
 import com.egoriku.ladyhappy.core.INavigationHolder
 import com.egoriku.ladyhappy.core.constant.REQUEST_KEY_DYNAMIC_FEATURE
 import com.egoriku.ladyhappy.core.constant.RESULT_KEY_DYNAMIC_FEATURE
 import com.egoriku.ladyhappy.core.feature.*
 import com.egoriku.ladyhappy.core.sharedmodel.toNightMode
+import com.egoriku.ladyhappy.databinding.ActivityMainBinding
 import com.egoriku.ladyhappy.extensions.*
-import com.egoriku.ladyhappy.mainscreen.R
-import com.egoriku.ladyhappy.mainscreen.databinding.ActivityMainBinding
+import com.egoriku.ladyhappy.extensions.common.Constants.EMPTY
 import com.egoriku.ladyhappy.mainscreen.presentation.balloon.DynamicFeatureBalloonFactory
 import com.egoriku.ladyhappy.mainscreen.presentation.components.dynamicFeature.DynamicFeatureEvent
 import com.egoriku.ladyhappy.mainscreen.presentation.components.dynamicFeature.DynamicFeatureViewModel
@@ -43,9 +42,8 @@ import com.skydoves.balloon.Balloon
 import com.skydoves.balloon.balloon
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
-import org.koin.android.ext.android.inject
-import org.koin.androidx.scope.lifecycleScope
-import org.koin.androidx.viewmodel.scope.viewModel
+import org.koin.androidx.scope.ScopeActivity
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import kotlin.properties.Delegates
 import kotlin.time.ExperimentalTime
 import kotlin.time.seconds
@@ -55,9 +53,7 @@ private const val INSTALL_CONFIRMATION_REQ_CODE = 1
 private const val UPDATE_CONFIRMATION_REQ_CODE = 2
 private const val KEY_SELECTED_MENU_ITEM = "selected_item"
 
-private const val ACTION_SEARCH = "com.google.android.gms.actions.SEARCH_ACTION"
-
-class MainActivity : AppCompatActivity(R.layout.activity_main) {
+class MainActivity : ScopeActivity(R.layout.activity_main) {
 
     private val dynamicFeatureBalloon by balloon(DynamicFeatureBalloonFactory::class)
 
@@ -68,10 +64,10 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
     private val featureProvider: IFeatureProvider by inject()
     private val navigatorHolder: INavigationHolder by inject()
 
-    private val dynamicFeatureViewModel: DynamicFeatureViewModel by lifecycleScope.viewModel(this)
-    private val inAppUpdateViewModel: InAppUpdateViewModel by lifecycleScope.viewModel(this)
-    private val reviewViewModel: ReviewViewModel by lifecycleScope.viewModel(this)
-    private val viewModel: MainActivityViewModel by lifecycleScope.viewModel(this)
+    private val dynamicFeatureViewModel by viewModel<DynamicFeatureViewModel>()
+    private val inAppUpdateViewModel by viewModel<InAppUpdateViewModel>()
+    private val reviewViewModel by viewModel<ReviewViewModel>()
+    private val viewModel by viewModel<MainActivityViewModel>()
 
     private val navigator = ActivityScopeNavigator(
             activity = this,
@@ -202,7 +198,7 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
                                         updateResult.updateInfo,
                                         AppUpdateType.IMMEDIATE,
                                         this@MainActivity,
-                                        com.egoriku.ladyhappy.mainscreen.presentation.UPDATE_CONFIRMATION_REQ_CODE)) {
+                                        UPDATE_CONFIRMATION_REQ_CODE)) {
                             finish()
                         }
                     }
@@ -218,7 +214,7 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
                                 event.updateInfo,
                                 updateType,
                                 this@MainActivity,
-                                com.egoriku.ladyhappy.mainscreen.presentation.UPDATE_CONFIRMATION_REQ_CODE
+                                UPDATE_CONFIRMATION_REQ_CODE
                         )
                     }
                 }
@@ -305,9 +301,18 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
     }
 
     private fun Intent.handleGoogleAssistanceSearchIntent() {
-        if (ACTION_SEARCH == action) {
-            getStringExtra(SearchManager.QUERY)?.run {
-                viewModel.replaceWith(SearchScreen(featureProvider, this))
+        val data = intent.data
+
+        if (Intent.ACTION_VIEW == action && data != null) {
+            when (data.scheme) {
+                "ladyhappy" -> {
+                    val url = data.toString()
+                    if (url.startsWith("ladyhappy://search")) {
+                        val searchQuery = data.getQueryParameter("query")?.trim() ?: EMPTY
+
+                        viewModel.replaceWith(SearchScreen(featureProvider, searchQuery))
+                    }
+                }
             }
         }
     }

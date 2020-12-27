@@ -1,10 +1,11 @@
 package com.egoriku.ladyhappy.beagle
 
-import com.egoriku.ladyhappy.extensions.activityManager
 import com.egoriku.ladyhappy.Application
 import com.egoriku.ladyhappy.BuildConfig
 import com.egoriku.ladyhappy.R
+import com.egoriku.ladyhappy.extensions.activityManager
 import com.pandulapeter.beagle.Beagle
+import com.pandulapeter.beagle.common.configuration.Behavior
 import com.pandulapeter.beagle.modules.AppInfoButtonModule
 import com.pandulapeter.beagle.modules.DeveloperOptionsButtonModule
 import com.pandulapeter.beagle.modules.HeaderModule
@@ -16,7 +17,10 @@ class BeagleDebugMenuInitializer {
     fun initWith(application: Application) = with(application) {
         registerActivityLifecycleCallbacks(BeagleLifecycleListener())
 
-        Beagle.initialize(application = this)
+        Beagle.initialize(
+                application = this,
+                behavior = Behavior(excludedPackageNames = listOf("com.egoriku.ladyhappy"))
+        )
         Beagle.set(
                 HeaderModule(
                         title = getString(R.string.application_name),

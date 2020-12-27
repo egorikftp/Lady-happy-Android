@@ -40,12 +40,18 @@ class InAppUpdateViewModel(updateManager: AppUpdateManager) : ViewModel() {
                     when {
                         shouldLaunchImmediateUpdate(this) -> {
                             viewModelScope.launch {
-                                _events.send(InAppUpdateEvent.StartUpdateEvent(updateResult.updateInfo, true))
+                                _events.send(InAppUpdateEvent.StartUpdateEvent(
+                                        updateInfo = updateResult.updateInfo,
+                                        immediate = true
+                                ))
                             }
                         }
                         isFlexibleUpdateAllowed -> {
                             viewModelScope.launch {
-                                _events.send(InAppUpdateEvent.StartUpdateEvent(updateResult.updateInfo, false))
+                                _events.send(InAppUpdateEvent.StartUpdateEvent(
+                                        updateInfo = updateResult.updateInfo,
+                                        immediate = false
+                                ))
                             }
                         }
                         else -> false

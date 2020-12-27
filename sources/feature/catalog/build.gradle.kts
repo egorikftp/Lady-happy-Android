@@ -1,4 +1,5 @@
 import Modules.Libraries
+import com.egoriku.ext.implementation
 import com.egoriku.ext.withLibraries
 import com.egoriku.ext.withProjects
 
@@ -9,6 +10,10 @@ plugins {
 
 happyPlugin {
     viewBindingEnabled = true
+}
+
+dependencies {
+    implementation(platform(Libs.firebaseBom))
 }
 
 withProjects(
@@ -33,7 +38,7 @@ withLibraries(
         Libs.glide,
         Libs.koinAndroid,
         Libs.koinViewModel,
-        Libs.liveData,
+        Libs.liveDataKtx,
         Libs.material,
         Libs.recyclerView,
         Libs.viewBindingDelegates,

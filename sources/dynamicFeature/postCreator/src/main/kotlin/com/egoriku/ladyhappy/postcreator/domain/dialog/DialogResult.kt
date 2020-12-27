@@ -1,7 +1,7 @@
 package com.egoriku.ladyhappy.postcreator.domain.dialog
 
 import android.os.Parcelable
-import kotlinx.android.parcel.Parcelize
+import kotlinx.parcelize.Parcelize
 
 sealed class DialogResult : Parcelable {
 

@@ -1,5 +1,6 @@
 import Modules.Applications
 import Modules.Libraries
+import com.egoriku.ext.implementation
 import com.egoriku.ext.withLibraries
 import com.egoriku.ext.withProjects
 
@@ -11,6 +12,10 @@ plugins {
 happyPlugin {
     kotlinParcelize = true
     viewBindingEnabled = true
+}
+
+dependencies {
+    implementation(platform(Libs.firebaseBom))
 }
 
 withProjects(

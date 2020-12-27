@@ -27,7 +27,7 @@ withLibraries(
         Libs.core,
         Libs.koinAndroid,
         Libs.koinViewModel,
-        Libs.liveData,
+        Libs.liveDataKtx,
         Libs.material,
         Libs.playServicesAuth,
         Libs.viewBindingDelegates,

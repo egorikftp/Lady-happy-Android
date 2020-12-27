@@ -9,7 +9,6 @@ object Modules {
         const val landing = ":landing"
         const val launchScreen = ":launchScreen"
         const val login = ":login"
-        const val mainScreen = ":mainScreen"
         const val photoReport = ":photoReport"
         const val settings = ":settings"
         const val usedLibraries = ":usedLibraries"

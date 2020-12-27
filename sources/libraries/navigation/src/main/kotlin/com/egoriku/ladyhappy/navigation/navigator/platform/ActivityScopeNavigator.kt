@@ -36,7 +36,7 @@ class ActivityScopeNavigator(
 
     private fun processReplace(command: Replace) {
         when (val screen = command.screen) {
-            is FragmentScreen -> replaceFragment(screen, command)
+            is FragmentScreen -> replaceFragment(screen = screen, command = command)
             is ActivityScreen -> replaceActivity(screen)
         }
     }

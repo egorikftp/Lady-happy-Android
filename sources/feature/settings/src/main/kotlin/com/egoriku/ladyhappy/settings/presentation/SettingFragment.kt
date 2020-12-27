@@ -4,7 +4,6 @@ import android.content.ActivityNotFoundException
 import android.os.Bundle
 import android.view.View
 import androidx.core.os.bundleOf
-import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.ConcatAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
 import by.kirich1409.viewbindingdelegate.viewBinding
@@ -27,18 +26,17 @@ import com.egoriku.ladyhappy.settings.presentation.screen.LoginScreen
 import com.egoriku.ladyhappy.settings.presentation.screen.UsedLibrariesScreen
 import com.egoriku.ladyhappy.settings.presentation.view.State.ANON
 import com.egoriku.ladyhappy.settings.presentation.view.State.LOGGED_IN
-import org.koin.android.ext.android.inject
-import org.koin.androidx.scope.lifecycleScope
-import org.koin.androidx.viewmodel.scope.viewModel
+import org.koin.androidx.scope.ScopeFragment
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import kotlin.properties.Delegates
 
-class SettingFragment : Fragment(R.layout.fragment_settings), SettingsFeature {
+class SettingFragment : ScopeFragment(R.layout.fragment_settings), SettingsFeature {
 
     private val binding by viewBinding(FragmentSettingsBinding::bind)
 
-    private val featureProvider: IFeatureProvider by inject()
+    private val settingsViewModel by viewModel<SettingsViewModel>()
 
-    private val settingsViewModel: SettingsViewModel by lifecycleScope.viewModel(this)
+    private val featureProvider: IFeatureProvider by inject()
 
     private var concatAdapter: ConcatAdapter by Delegates.notNull()
 
@@ -64,6 +62,7 @@ class SettingFragment : Fragment(R.layout.fragment_settings), SettingsFeature {
                             bundleOf(RESULT_KEY_DYNAMIC_FEATURE to DynamicFeature.PostCreator)
                     )
                 }
+                is Feature.Stub -> TODO()
             }
         }
 
@@ -76,6 +75,8 @@ class SettingFragment : Fragment(R.layout.fragment_settings), SettingsFeature {
                 is SettingItem.Review -> {
                     openPlayStore()
                 }
+                is SettingItem.Header -> TODO()
+                is SettingItem.NonClickable -> TODO()
             }
         }
 
