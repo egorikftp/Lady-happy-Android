@@ -174,7 +174,7 @@ internal class SocialView : LinearLayout, View.OnClickListener {
             val animation = AlphaAnimation(MAX_ALPHA, MIN_ALPHA).apply {
                 duration = ANIMATION_DURATION * 2
                 fillAfter = true
-                setAnimationListener(object : SimpleAnimationListener() {
+                setAnimationListener(object : SimpleAnimationListener {
                     override fun onAnimationEnd(animation: Animation?) {
                         super.onAnimationEnd(animation)
                         background = ColorDrawable(context.colorCompat(R.color.transparent))

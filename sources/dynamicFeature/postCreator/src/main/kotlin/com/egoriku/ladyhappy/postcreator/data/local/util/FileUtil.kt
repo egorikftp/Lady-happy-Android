@@ -84,12 +84,12 @@ object FileUtil {
     }
 
     @Throws(IOException::class)
-    private fun copy(input: InputStream, output: OutputStream?): Long {
+    private fun copy(input: InputStream, output: OutputStream): Long {
         var count: Long = 0
         var n: Int
         val buffer = ByteArray(DEFAULT_BUFFER_SIZE)
         while (EOF != input.read(buffer).also { n = it }) {
-            output!!.write(buffer, 0, n)
+            output.write(buffer, 0, n)
             count += n.toLong()
         }
         return count

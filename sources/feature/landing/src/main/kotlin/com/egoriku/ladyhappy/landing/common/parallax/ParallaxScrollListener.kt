@@ -34,7 +34,7 @@ open class ParallaxScrollListener : RecyclerView.OnScrollListener(), OnGlobalLay
     override fun onGlobalLayout() {
         var height = 0
         if (recyclerView != null) {
-            height = recyclerView!!.height
+            height = recyclerView?.height ?: 0
         }
         if (height > 0) {
             recyclerViewHeight = height

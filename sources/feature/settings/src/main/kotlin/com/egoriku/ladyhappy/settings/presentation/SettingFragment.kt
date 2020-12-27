@@ -62,6 +62,7 @@ class SettingFragment : ScopeFragment(R.layout.fragment_settings), SettingsFeatu
                             bundleOf(RESULT_KEY_DYNAMIC_FEATURE to DynamicFeature.PostCreator)
                     )
                 }
+                is Feature.Stub -> TODO()
             }
         }
 
@@ -74,6 +75,8 @@ class SettingFragment : ScopeFragment(R.layout.fragment_settings), SettingsFeatu
                 is SettingItem.Review -> {
                     openPlayStore()
                 }
+                is SettingItem.Header -> TODO()
+                is SettingItem.NonClickable -> TODO()
             }
         }
 

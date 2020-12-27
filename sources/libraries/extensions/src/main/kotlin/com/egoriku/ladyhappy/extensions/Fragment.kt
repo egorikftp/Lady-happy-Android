@@ -17,10 +17,10 @@ fun Fragment.drawableCompat(@DrawableRes drawableRes: Int) = requireContext().dr
 fun Fragment.findColorIdByName(name: String): Int = requireContext().findColorIdByName(name)
 
 fun Fragment.hideSoftKeyboard(flag: Int = 0) {
-    view?.let { view ->
-        view.context?.inputWindowManager?.run {
+    view?.run {
+        context?.inputWindowManager?.run {
             if (isActive) {
-                hideSoftInputFromWindow(view.windowToken, flag)
+                hideSoftInputFromWindow(windowToken, flag)
             }
         }
     }

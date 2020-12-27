@@ -23,8 +23,8 @@ class ThemeSettingDialogFragment : ScopeDialogFragment() {
         return MaterialAlertDialogBuilder(requireContext())
                 .setTitle(R.string.settings_theme_title)
                 .setSingleChoiceItems(listAdapter, 0) { dialog, position ->
-                    listAdapter.getItem(position)?.theme?.let {
-                        viewModel.setTheme(it)
+                    listAdapter.getItem(position)?.theme?.run {
+                        viewModel.setTheme(this)
                     }
                     dialog.dismiss()
                 }

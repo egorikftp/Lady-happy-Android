@@ -26,7 +26,7 @@ fun Context.browseUrl(url: String, newTask: Boolean = false): Boolean = try {
 }
 
 inline fun <reified T : Any> Fragment.intentFor(vararg params: Pair<String, Any?>): Intent =
-        createIntent(requireActivity(), T::class.java, params)
+        createIntent(ctx = requireActivity(), clazz = T::class.java, params = params)
 
 fun <T> createIntent(ctx: Context, clazz: Class<out T>, params: Array<out Pair<String, Any?>>) =
         Intent(ctx, clazz).apply {

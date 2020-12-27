@@ -7,7 +7,7 @@ import org.koin.core.qualifier.Qualifier
 import org.koin.core.scope.KoinScopeComponent
 import org.koin.core.scope.Scope
 
-abstract class ScopeDialogFragment : AppCompatDialogFragment(), KoinScopeComponent {
+open class ScopeDialogFragment : AppCompatDialogFragment(), KoinScopeComponent {
 
     override val scope: Scope by lazy { newScope(this) }
 
