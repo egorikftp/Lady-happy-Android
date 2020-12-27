@@ -134,6 +134,12 @@ private fun Project.addAndroidDynamicSection() = appExtension.run {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
+
+    sourceSets {
+        main {
+            java.srcDirs("src/main/kotlin")
+        }
+    }
 }
 
 private fun Project.addAndroidLibrarySection() = libraryExtension.run {

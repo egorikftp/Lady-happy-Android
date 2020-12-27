@@ -3,10 +3,7 @@ package com.egoriku.ladyhappy.postcreator.presentation.fragment
 import android.content.Context
 import android.os.Bundle
 import android.view.View
-import org.koin.androidx.scope.ScopeFragment
-import org.koin.androidx.viewmodel.ext.android.viewModel
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.ConcatAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView.VERTICAL
@@ -27,9 +24,8 @@ import com.egoriku.ladyhappy.postcreator.presentation.model.Type
 import com.egoriku.ladyhappy.postcreator.presentation.section.ChooserSectionAdapter
 import com.egoriku.ladyhappy.postcreator.presentation.section.ImagesSectionAdapter
 import com.google.android.play.core.splitcompat.SplitCompat
-import org.koin.android.ext.android.inject
-import org.koin.androidx.scope.lifecycleScope
-import org.koin.androidx.viewmodel.scope.viewModel
+import org.koin.androidx.scope.ScopeFragment
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.context.loadKoinModules
 import org.koin.core.context.unloadKoinModules
 import kotlin.properties.Delegates
