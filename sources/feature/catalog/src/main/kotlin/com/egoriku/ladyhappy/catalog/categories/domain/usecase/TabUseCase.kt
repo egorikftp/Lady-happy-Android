@@ -14,11 +14,11 @@ class TabUseCase(private val tabRepository: TabRepository) {
             val list = result.value
 
             when {
-                list.isEmpty() -> RootScreenModel.Error()
+                list.isEmpty() -> RootScreenModel.Error
                 else -> RootScreenModel.Success(list.mapNotNull { it.mapOrNull() })
             }
         }
-        is Failure -> RootScreenModel.Error()
+        is Failure -> RootScreenModel.Error
     }
 
     private fun TabEntity.mapOrNull() = if (id != null && name != null) {

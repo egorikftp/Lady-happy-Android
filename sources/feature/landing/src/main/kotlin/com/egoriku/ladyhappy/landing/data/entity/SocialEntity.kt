@@ -4,10 +4,10 @@ import com.google.firebase.firestore.PropertyName
 
 class SocialEntity(
         @PropertyName("url")
-        @get:PropertyName("url")
+        @JvmField
         val url: String? = null,
 
         @PropertyName("socialType")
-        @get:PropertyName("socialType")
+        @JvmField
         val type: String? = null
 )

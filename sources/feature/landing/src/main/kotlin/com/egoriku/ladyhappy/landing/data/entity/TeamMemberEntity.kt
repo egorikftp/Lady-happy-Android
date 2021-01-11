@@ -4,18 +4,18 @@ import com.google.firebase.firestore.PropertyName
 
 class TeamMemberEntity(
         @PropertyName("imageUrl")
-        @get:PropertyName("imageUrl")
+        @JvmField
         val personImageUrl: String? = null,
 
         @PropertyName("name")
-        @get:PropertyName("name")
+        @JvmField
         val name: String? = null,
 
         @PropertyName("skills")
-        @get:PropertyName("skills")
+        @JvmField
         val skills: String? = null,
 
         @PropertyName("socialLinks")
-        @get:PropertyName("socialLinks")
+        @JvmField
         val socialLinks: List<SocialEntity>? = null
 )

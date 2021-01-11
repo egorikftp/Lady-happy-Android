@@ -5,14 +5,14 @@ import java.util.*
 
 class PhotoReportEntity(
         @PropertyName("date")
-        @get:PropertyName("date")
+        @JvmField
         val date: Date? = null,
 
         @PropertyName("description")
-        @get:PropertyName("description")
+        @JvmField
         val description: String? = null,
 
         @PropertyName("images")
-        @get:PropertyName("images")
+        @JvmField
         val images: List<String>? = null
 )

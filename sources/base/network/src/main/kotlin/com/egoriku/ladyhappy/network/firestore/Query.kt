@@ -11,7 +11,7 @@ import kotlinx.coroutines.suspendCancellableCoroutine
 import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
 
-suspend inline fun <reified T> Query.awaitResult(): ResultOf<List<T>> = wrapIntoResult { awaitGet<T>() }
+suspend inline fun <reified T> Query.awaitResult(): ResultOf<List<T>> = wrapIntoResult { awaitGet() }
 
 suspend inline fun <reified T> Query.awaitGet(): List<T> = get().awaitGet()
 

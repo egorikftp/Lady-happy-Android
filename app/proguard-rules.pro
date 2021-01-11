@@ -7,10 +7,6 @@
 -optimizations !code/simplification/arithmetic,!field/*, !class/merging/*, !code/removal/advanced, !code/removal/simple
 -renamesourcefileattribute SourceFile
 
--keepclassmembers,allowobfuscation class * {
-  @com.google.gson.annotations.SerializedName <fields>;
-}
-
 -keepclassmembers enum * {
      public static **[] values();
      public static ** valueOf(java.lang.String);
@@ -44,7 +40,6 @@
 -keep public class * extends android.content.ContentProvider
 -keep public class * extends android.preference.Preference
 -keep public class com.android.vending.licensing.ILicensingService
--keep class android.support.v8.renderscript.** { *; }
 
 ## Glide
 -keep public class * implements com.bumptech.glide.module.GlideModule

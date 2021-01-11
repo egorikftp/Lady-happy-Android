@@ -4,6 +4,6 @@ import com.google.firebase.firestore.PropertyName
 
 class PublishPostsFeatureEntity(
         @PropertyName("isAvailable")
-        @get:PropertyName("isAvailable")
+        @JvmField
         val isAvailable: Boolean = false
 )

@@ -1,13 +1,14 @@
 package com.egoriku.ladyhappy.catalog.categories.data.entity
 
+import com.egoriku.ladyhappy.extensions.common.Constants.EMPTY
 import com.google.firebase.firestore.PropertyName
 
 class TabEntity(
         @PropertyName("id")
-        @get:PropertyName("id")
-        val id: Int? = null,
+        @JvmField
+        val id: Int = -1,
 
         @PropertyName("name")
-        @get:PropertyName("name")
-        val name: String? = null
+        @JvmField
+        val name: String = EMPTY
 )
