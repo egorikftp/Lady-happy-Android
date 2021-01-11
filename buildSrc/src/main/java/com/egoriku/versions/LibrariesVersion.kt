@@ -4,7 +4,7 @@ object LibrariesVersion {
     const val annotation = "1.1.0"
     const val appcompat = "1.2.0"
     const val balloon = "1.2.9"
-    const val beagle = "2.4.3"
+    const val beagle = "2.4.4"
     const val browser = "1.3.0"
     const val cardView = "1.0.0"
     const val constraintLayout = "2.0.4"
@@ -29,7 +29,7 @@ object LibrariesVersion {
     const val recyclerView = "1.2.0-beta01"
     const val recyclerViewSelection = "1.1.0-rc03"
     const val vectorDrawable = "1.1.0"
-    const val viewBindingDelegates = "1.3.1"
+    const val viewBindingDelegates = "1.4.0"
     const val viewBinding = "4.1.1"
     const val viewPager2 = "1.0.0"
 }
