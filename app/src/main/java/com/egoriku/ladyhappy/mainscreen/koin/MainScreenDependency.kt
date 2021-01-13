@@ -37,6 +37,7 @@ val mainActivityModule = module {
 
         viewModel {
             MainActivityViewModel(
+                    savedStateHandle = get(),
                     analytics = get(),
                     router = get(),
                     themedDelegate = get()

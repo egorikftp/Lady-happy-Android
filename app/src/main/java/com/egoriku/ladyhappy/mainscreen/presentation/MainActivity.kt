@@ -9,6 +9,7 @@ import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.annotation.IdRes
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.core.os.bundleOf
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.egoriku.ladyhappy.R
 import com.egoriku.ladyhappy.core.IFeatureProvider
@@ -20,6 +21,7 @@ import com.egoriku.ladyhappy.core.sharedmodel.toNightMode
 import com.egoriku.ladyhappy.databinding.ActivityMainBinding
 import com.egoriku.ladyhappy.extensions.*
 import com.egoriku.ladyhappy.extensions.common.Constants.EMPTY
+import com.egoriku.ladyhappy.mainscreen.common.Constants.Tracking
 import com.egoriku.ladyhappy.mainscreen.presentation.balloon.DynamicFeatureBalloonFactory
 import com.egoriku.ladyhappy.mainscreen.presentation.components.dynamicFeature.DynamicFeatureEvent
 import com.egoriku.ladyhappy.mainscreen.presentation.components.dynamicFeature.DynamicFeatureViewModel
@@ -28,6 +30,7 @@ import com.egoriku.ladyhappy.mainscreen.presentation.components.inAppReview.Revi
 import com.egoriku.ladyhappy.mainscreen.presentation.components.inAppUpdates.InAppUpdateEvent
 import com.egoriku.ladyhappy.mainscreen.presentation.components.inAppUpdates.InAppUpdateViewModel
 import com.egoriku.ladyhappy.mainscreen.presentation.screen.*
+import com.egoriku.ladyhappy.mainscreen.presentation.screen.params.ScreenParams
 import com.egoriku.ladyhappy.navigation.navigator.platform.ActivityScopeNavigator
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.play.core.appupdate.AppUpdateManager
@@ -55,7 +58,7 @@ private const val KEY_SELECTED_MENU_ITEM = "selected_item"
 
 class MainActivity : ScopeActivity(R.layout.activity_main) {
 
-    private val dynamicFeatureBalloon by balloon(DynamicFeatureBalloonFactory::class)
+    private val dynamicFeatureBalloon by balloon<DynamicFeatureBalloonFactory>()
 
     private val binding by viewBinding(ActivityMainBinding::bind, R.id.contentFullScreen)
 
@@ -67,7 +70,7 @@ class MainActivity : ScopeActivity(R.layout.activity_main) {
     private val dynamicFeatureViewModel by viewModel<DynamicFeatureViewModel>()
     private val inAppUpdateViewModel by viewModel<InAppUpdateViewModel>()
     private val reviewViewModel by viewModel<ReviewViewModel>()
-    private val viewModel by viewModel<MainActivityViewModel>()
+    private val viewModel by viewModel<MainActivityViewModel>(state = { bundleOf() })
 
     private val navigator = ActivityScopeNavigator(
             activity = this,
@@ -108,7 +111,13 @@ class MainActivity : ScopeActivity(R.layout.activity_main) {
         }
 
         when (savedInstanceState) {
-            null -> viewModel.replaceWith(CatalogScreen(featureProvider))
+            null -> viewModel.replaceWith(
+                    screen = CatalogScreen(featureProvider),
+                    params = ScreenParams(
+                            screenNameResId = R.string.navigation_view_catalog_header,
+                            trackingScreenName = Tracking.TRACKING_FRAGMENT_CATALOG
+                    )
+            )
             else -> {
                 with(savedInstanceState.getInt(KEY_SELECTED_MENU_ITEM)) {
                     binding.bottomNavigation.selectedItemId = this
@@ -310,7 +319,12 @@ class MainActivity : ScopeActivity(R.layout.activity_main) {
                     if (url.startsWith("ladyhappy://search")) {
                         val searchQuery = data.getQueryParameter("query")?.trim() ?: EMPTY
 
-                        viewModel.replaceWith(SearchScreen(featureProvider, searchQuery))
+                        viewModel.replaceWith(
+                                screen = SearchScreen(featureProvider, searchQuery),
+                                params = ScreenParams(
+                                        screenNameResId = R.string.navigation_view_search_header,
+                                        trackingScreenName = Tracking.TRACKING_FRAGMENT_SEARCH
+                                ))
                     }
                 }
             }
@@ -319,10 +333,34 @@ class MainActivity : ScopeActivity(R.layout.activity_main) {
 
     private fun mapItemIdToScreen(@IdRes menuItemId: Int) {
         when (menuItemId) {
-            R.id.menuLanding -> viewModel.replaceWith(LandingScreen(featureProvider))
-            R.id.menuPhotoReport -> viewModel.replaceWith(PhotoReportScreen(featureProvider))
-            R.id.menuCatalog -> viewModel.replaceWith(CatalogScreen(featureProvider))
-            R.id.menuSettings -> viewModel.replaceWith(SettingsScreen(featureProvider))
+            R.id.menuLanding -> viewModel.replaceWith(
+                    screen = LandingScreen(featureProvider),
+                    params = ScreenParams(
+                            screenNameResId = R.string.navigation_view_landing_header,
+                            trackingScreenName = Tracking.TRACKING_FRAGMENT_LANDING
+                    )
+            )
+            R.id.menuPhotoReport -> viewModel.replaceWith(
+                    screen = PhotoReportScreen(featureProvider),
+                    params = ScreenParams(
+                            screenNameResId = R.string.navigation_view_photo_report_header,
+                            trackingScreenName = Tracking.TRACKING_FRAGMENT_PHOTO_REPORT
+                    )
+            )
+            R.id.menuCatalog -> viewModel.replaceWith(
+                    screen = CatalogScreen(featureProvider),
+                    params = ScreenParams(
+                            screenNameResId = R.string.navigation_view_catalog_header,
+                            trackingScreenName = Tracking.TRACKING_FRAGMENT_CATALOG
+                    )
+            )
+            R.id.menuSettings -> viewModel.replaceWith(
+                    screen = SettingsScreen(featureProvider),
+                    params = ScreenParams(
+                            screenNameResId = R.string.navigation_view_settings_header,
+                            trackingScreenName = Tracking.TRACKING_FRAGMENT_SETTINGS
+                    )
+            )
         }
     }
 

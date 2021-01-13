@@ -4,14 +4,14 @@ import com.google.firebase.firestore.PropertyName
 
 class LandingEntity(
         @PropertyName("aboutInfo")
-        @get:PropertyName("aboutInfo")
+        @JvmField
         val aboutInfo: String? = null,
 
         @PropertyName("quotes")
-        @get:PropertyName("quotes")
+        @JvmField
         val quotes: List<QuotesEntity>? = null,
 
         @PropertyName("teamMembers")
-        @get:PropertyName("teamMembers")
+        @JvmField
         val teamMembers: List<TeamMemberEntity>? = null
 )

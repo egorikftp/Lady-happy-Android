@@ -1,7 +1,7 @@
 package com.egoriku.ladyhappy.photoreport.domain.usecase
 
-import com.egoriku.ladyhappy.extensions.common.Constants.EMPTY
 import com.egoriku.ladyhappy.extensions.common.toNewsDate
+import com.egoriku.ladyhappy.mozaik.model.MozaikItem
 import com.egoriku.ladyhappy.network.ResultOf
 import com.egoriku.ladyhappy.photoreport.data.entity.PhotoReportEntity
 import com.egoriku.ladyhappy.photoreport.data.repository.PhotoReportRepository
@@ -12,9 +12,25 @@ class PhotoReportUseCase(private val photoReportRepository: PhotoReportRepositor
     private val transformToModel: (PhotoReportEntity) -> PhotoReportModel = { entity: PhotoReportEntity ->
         PhotoReportModel(
                 date = entity.date.toNewsDate(),
-                description = entity.description ?: EMPTY,
-                images = entity.images ?: emptyList()
+                description = entity.description,
+                images = extractPhotos(entity)
         )
+    }
+
+    @Deprecated("Remove after implementation MozaikLayout 6+ items")
+    private fun extractPhotos(entity: PhotoReportEntity): List<MozaikItem> {
+        val list = entity.images.map {
+            MozaikItem(
+                    width = it.width,
+                    height = it.height,
+                    url = it.url
+            )
+        }
+
+        return when {
+            list.size > 5 -> list.subList(0, 5)
+            else -> list
+        }
     }
 
     suspend fun getPhotoReportInfo(): ResultOf<List<PhotoReportModel>> {

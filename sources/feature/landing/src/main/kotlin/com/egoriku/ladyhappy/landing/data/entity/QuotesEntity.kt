@@ -4,10 +4,10 @@ import com.google.firebase.firestore.PropertyName
 
 class QuotesEntity(
         @PropertyName("quote")
-        @get:PropertyName("quote")
+        @JvmField
         val quote: String? = null,
 
         @PropertyName("author")
-        @get:PropertyName("author")
+        @JvmField
         val author: String? = null
 )

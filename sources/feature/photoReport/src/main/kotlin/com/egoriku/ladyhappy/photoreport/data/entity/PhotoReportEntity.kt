@@ -1,18 +1,20 @@
 package com.egoriku.ladyhappy.photoreport.data.entity
 
+import com.egoriku.ladyhappy.core.sharedmodel.ImageEntity
+import com.egoriku.ladyhappy.extensions.common.Constants.EMPTY
 import com.google.firebase.firestore.PropertyName
 import java.util.*
 
 class PhotoReportEntity(
         @PropertyName("date")
-        @get:PropertyName("date")
-        val date: Date? = null,
+        @JvmField
+        val date: Date = Date(),
 
         @PropertyName("description")
-        @get:PropertyName("description")
-        val description: String? = null,
+        @JvmField
+        val description: String = EMPTY,
 
         @PropertyName("images")
-        @get:PropertyName("images")
-        val images: List<String>? = null
+        @JvmField
+        val images: List<ImageEntity> = emptyList()
 )

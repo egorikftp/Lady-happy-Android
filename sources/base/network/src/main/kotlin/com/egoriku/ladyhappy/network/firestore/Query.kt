@@ -1,6 +1,5 @@
 package com.egoriku.ladyhappy.network.firestore
 
-import android.util.Log
 import com.egoriku.ladyhappy.network.ResultOf
 import com.egoriku.ladyhappy.network.exception.FirestoreParseException
 import com.egoriku.ladyhappy.network.wrapIntoResult
@@ -11,7 +10,7 @@ import kotlinx.coroutines.suspendCancellableCoroutine
 import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
 
-suspend inline fun <reified T> Query.awaitResult(): ResultOf<List<T>> = wrapIntoResult { awaitGet<T>() }
+suspend inline fun <reified T> Query.awaitResult(): ResultOf<List<T>> = wrapIntoResult { awaitGet() }
 
 suspend inline fun <reified T> Query.awaitGet(): List<T> = get().awaitGet()
 
@@ -27,8 +26,9 @@ private suspend fun <T> awaitTaskQueryList(task: Task<QuerySnapshot>, type: Clas
                         val data: List<T> = task.result?.toObjects(type).orEmpty()
                         continuation.resume(data)
                     } catch (exception: Exception) {
-                        Log.d("egorikftp", exception.toString())
-                        continuation.resumeWithException(exception)
+                        continuation.resumeWithException(
+                                FirestoreParseException("Failed to get query of type: $type, exception: $exception")
+                        )
                     }
                 } else {
                     continuation.resumeWithException(

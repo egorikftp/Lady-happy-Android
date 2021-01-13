@@ -30,8 +30,6 @@
     <string name="navigation_view_settings">Настройки</string>
     <string name="navigation_view_settings_header">Доп. функции</string>
 
-    <string name="adapter_item_news_header_text">Последние новости</string>
-
     <string name="cc_adapter_item_main">Оливковая ветвь</string>
     <string name="cd_adapter_item_photo_report">Фотография</string>
 

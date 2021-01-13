@@ -16,11 +16,15 @@ dependencies {
     implementation(platform(Libs.firebaseBom))
 }
 
-withProjects(Libraries.navigation)
+withProjects(
+        Libraries.extensions,
+        Libraries.navigation
+)
 
 withLibraries(
         Libs.appcompat,
         Libs.coroutinesAndroid,
         Libs.firebaseFirestore,
-        Libs.firebaseStorage
+        Libs.firebaseStorage,
+        Libs.recyclerView
 )
