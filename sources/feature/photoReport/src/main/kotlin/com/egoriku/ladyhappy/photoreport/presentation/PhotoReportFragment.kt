@@ -52,12 +52,6 @@ class PhotoReportFragment : ScopeFragment(R.layout.fragment_photo_report), Photo
             addItemDecoration(DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL).apply {
                 setDrawable(drawableCompat(R.drawable.bg_photoreport_divider))
             })
-            /*addItemDecoration(
-                    ColorDividerItemDecoration(
-                            height = getDimen(R.dimen.adapter_item_image_decorator_size),
-                            backgroundColor = colorFromAttr(R.attr.colorPlaceholder)
-                    )
-            )*/
         }
 
         noDataLayout.retryButton.setOnClickListener {

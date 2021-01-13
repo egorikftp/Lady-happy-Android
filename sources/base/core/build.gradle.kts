@@ -25,5 +25,6 @@ withLibraries(
         Libs.appcompat,
         Libs.coroutinesAndroid,
         Libs.firebaseFirestore,
-        Libs.firebaseStorage
+        Libs.firebaseStorage,
+        Libs.recyclerView
 )

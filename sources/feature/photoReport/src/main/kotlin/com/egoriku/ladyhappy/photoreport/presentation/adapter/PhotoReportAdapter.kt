@@ -3,11 +3,11 @@ package com.egoriku.ladyhappy.photoreport.presentation.adapter
 import android.graphics.drawable.ColorDrawable
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.ListAdapter
-import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.bumptech.glide.request.RequestOptions
+import com.egoriku.ladyhappy.core.adapter.BaseListAdapter
+import com.egoriku.ladyhappy.core.adapter.BaseViewHolder
 import com.egoriku.ladyhappy.extensions.colorFromAttr
 import com.egoriku.ladyhappy.extensions.inflater
 import com.egoriku.ladyhappy.mozaik.OnItemClick
@@ -17,19 +17,20 @@ import com.egoriku.ladyhappy.photoreport.databinding.AdapterItemPhotoReportBindi
 import com.egoriku.ladyhappy.photoreport.domain.model.PhotoReportModel
 import com.stfalcon.imageviewer.StfalconImageViewer
 
-class PhotoReportAdapter : ListAdapter<PhotoReportModel, PhotoReportAdapter.Holder>(DiffCallback()) {
+class PhotoReportAdapter : BaseListAdapter<PhotoReportModel, PhotoReportAdapter.Holder>(DiffCallback()) {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
-        return Holder(AdapterItemPhotoReportBinding.inflate(parent.inflater(), parent, false))
-    }
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder =
+            Holder(AdapterItemPhotoReportBinding.inflate(parent.inflater(), parent, false))
 
-    override fun onBindViewHolder(holder: Holder, position: Int) {
-        holder.bind(getItem(position))
-    }
+    override fun onBindViewHolder(
+            holder: Holder,
+            position: Int,
+            model: PhotoReportModel
+    ) = holder.bind(model)
 
     inner class Holder(
             private val binding: AdapterItemPhotoReportBinding
-    ) : RecyclerView.ViewHolder(binding.root) {
+    ) : BaseViewHolder<PhotoReportModel>(binding.root) {
 
         private var stfalconImageViewer: StfalconImageViewer<MozaikItem>? = null
 
@@ -47,7 +48,7 @@ class PhotoReportAdapter : ListAdapter<PhotoReportModel, PhotoReportAdapter.Hold
             }
         }
 
-        fun bind(data: PhotoReportModel) = binding.bind(data)
+        override fun bind(item: PhotoReportModel) = binding.bind(item)
 
         private fun AdapterItemPhotoReportBinding.bind(data: PhotoReportModel) {
             newsDateTextView.text = data.date
@@ -71,7 +72,7 @@ class PhotoReportAdapter : ListAdapter<PhotoReportModel, PhotoReportAdapter.Hold
         }
     }
 
-    internal class DiffCallback : DiffUtil.ItemCallback<PhotoReportModel>() {
+    class DiffCallback : DiffUtil.ItemCallback<PhotoReportModel>() {
 
         override fun areItemsTheSame(oldItem: PhotoReportModel, newItem: PhotoReportModel) = oldItem == newItem
 
