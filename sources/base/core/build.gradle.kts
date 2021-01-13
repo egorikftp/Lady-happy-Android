@@ -16,7 +16,10 @@ dependencies {
     implementation(platform(Libs.firebaseBom))
 }
 
-withProjects(Libraries.navigation)
+withProjects(
+        Libraries.extensions,
+        Libraries.navigation
+)
 
 withLibraries(
         Libs.appcompat,

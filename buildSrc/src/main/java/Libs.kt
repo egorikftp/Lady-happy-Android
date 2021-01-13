@@ -46,12 +46,13 @@ object Libs {
 
     const val material = "com.google.android.material:material:${LibrariesVersion.material}"
 
-    const val pageIndicator = "com.ryanjeffreybrooks:indefinitepagerindicator:${LibrariesVersion.pageIndicator}"
     const val playCore = "com.google.android.play:core-ktx:${LibrariesVersion.playCore}"
     const val playServicesAuth = "com.google.android.gms:play-services-auth:${LibrariesVersion.playServicesAuth}"
 
     const val recyclerView = "androidx.recyclerview:recyclerview:${LibrariesVersion.recyclerView}"
     const val recyclerViewSelection = "androidx.recyclerview:recyclerview-selection:${LibrariesVersion.recyclerViewSelection}"
+
+    const val stfalconImageViewer = "com.github.stfalcon:stfalcon-imageviewer:${LibrariesVersion.stfalconImageViewer}"
 
     const val vectorDrawable = "androidx.vectordrawable:vectordrawable:${LibrariesVersion.vectorDrawable}"
     const val viewBindingDelegates = "com.kirich1409.viewbindingpropertydelegate:vbpd-noreflection:${LibrariesVersion.viewBindingDelegates}"

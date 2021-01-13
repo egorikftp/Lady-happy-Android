@@ -15,21 +15,23 @@ withProjects(
         Libraries.core,
         Libraries.extensions,
         Libraries.localization,
+        Libraries.mozaik,
         Libraries.network,
         Libraries.ui
 )
 
 withLibraries(
         Libs.appcompat,
-        Libs.coil,
+        Libs.cardView,
         Libs.constraintLayout,
         Libs.coroutinesAndroid,
-        Libs.easyAdapter,
         Libs.firebaseFirestore,
+        Libs.glide,
         Libs.koinAndroid,
         Libs.koinViewModel,
-        Libs.pageIndicator,
+        Libs.material,
         Libs.recyclerView,
+        Libs.stfalconImageViewer,
         Libs.viewBindingDelegates,
         Libs.viewModel
 )

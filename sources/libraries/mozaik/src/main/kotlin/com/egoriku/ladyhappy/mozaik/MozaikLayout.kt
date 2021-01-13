@@ -5,12 +5,18 @@ import android.util.AttributeSet
 import android.view.ViewGroup
 import android.widget.ImageView
 import com.egoriku.ladyhappy.extensions.pxToDp
+import com.egoriku.ladyhappy.extensions.toImageView
 import com.egoriku.ladyhappy.mozaik.model.MozaikItem
 import com.egoriku.ladyhappy.mozaik.strategy.StrategyResolver
 import com.egoriku.ladyhappy.mozaik.strategy.internal.model.Rect
 import com.egoriku.ladyhappy.mozaik.strategy.internal.model.StrategyData
 
 private const val DIVIDER_SIZE = 20
+
+fun interface OnItemClick {
+
+    fun onClick(position: Int, mozaikItems: List<MozaikItem>, transitionView: ImageView)
+}
 
 class MozaikLayout @JvmOverloads constructor(
         context: Context,
@@ -25,6 +31,7 @@ class MozaikLayout @JvmOverloads constructor(
     private val strategyData = StrategyData(dividerSize = pxToDp(DIVIDER_SIZE))
 
     var onViewReady: ((view: ImageView, url: String) -> Unit)? = null
+    var onItemClick: OnItemClick? = null
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec)
@@ -55,20 +62,28 @@ class MozaikLayout @JvmOverloads constructor(
             for (i in 0 until childCount) {
                 val rect = strategyData.rect[i]
 
-                getChildAt(i).layout(
+                val childImageView = getChildAt(i).toImageView()
+
+                childImageView.layout(
                         rect.left + paddingLeft,
                         rect.top + paddingTop,
                         rect.right + paddingLeft,
                         rect.bottom + paddingTop
                 )
-            }
-        }
 
-        for (i in 0 until childCount) {
-            val url = strategyData.mozaikItems[i].url
+                val url = strategyData.mozaikItems[i].url
 
-            if (url.isNotEmpty()) {
-                onViewReady?.invoke(getChildAt(i) as ImageView, url)
+                if (url.isNotEmpty()) {
+                    onViewReady?.invoke(childImageView, url)
+                }
+
+                childImageView.setOnClickListener {
+                    onItemClick?.onClick(
+                            position = i,
+                            mozaikItems = strategyData.mozaikItems,
+                            transitionView = it.toImageView()
+                    )
+                }
             }
         }
     }
@@ -88,4 +103,6 @@ class MozaikLayout @JvmOverloads constructor(
         requestLayout()
         invalidate()
     }
+
+    fun getItemByPosition(position: Int) = getChildAt(position).toImageView()
 }

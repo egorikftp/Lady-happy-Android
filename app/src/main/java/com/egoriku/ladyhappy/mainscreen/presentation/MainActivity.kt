@@ -55,7 +55,7 @@ private const val KEY_SELECTED_MENU_ITEM = "selected_item"
 
 class MainActivity : ScopeActivity(R.layout.activity_main) {
 
-    private val dynamicFeatureBalloon by balloon(DynamicFeatureBalloonFactory::class)
+    private val dynamicFeatureBalloon by balloon<DynamicFeatureBalloonFactory>()
 
     private val binding by viewBinding(ActivityMainBinding::bind, R.id.contentFullScreen)
 

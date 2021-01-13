@@ -1,9 +1,9 @@
 package com.egoriku.ladyhappy.catalog.subcategory.domain.usecase
 
-import com.egoriku.ladyhappy.catalog.subcategory.data.entity.Image
 import com.egoriku.ladyhappy.catalog.subcategory.data.entity.SubCategoryEntity
 import com.egoriku.ladyhappy.catalog.subcategory.data.repository.SubcategoryRepository
 import com.egoriku.ladyhappy.catalog.subcategory.domain.model.SubCategoryItem
+import com.egoriku.ladyhappy.core.sharedmodel.ImageEntity
 import com.egoriku.ladyhappy.mozaik.model.MozaikItem
 import com.egoriku.ladyhappy.network.ResultOf
 
@@ -18,7 +18,7 @@ class CatalogUseCase(private val subcategoryRepository: SubcategoryRepository) {
         )
     }
 
-    private val imageTransform: (Image) -> MozaikItem = { image: Image ->
+    private val imageTransform: (ImageEntity) -> MozaikItem = { image: ImageEntity ->
         MozaikItem(
                 width = image.width,
                 height = image.height,

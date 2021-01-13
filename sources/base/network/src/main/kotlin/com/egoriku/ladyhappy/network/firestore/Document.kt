@@ -21,12 +21,14 @@ suspend fun <T> DocumentReference.awaitGet(type: Class<T>): T = suspendCancellab
         if (snapshot.exists()) {
             try {
                 val data: T? = snapshot.toObject(type)
-                data?.let {
-                    continuation.resume(it)
+
+                if (data == null) {
+                    continuation.resumeWithException(
+                            FirestoreParseException("Failed to get document from $this of type: $type")
+                    )
+                } else {
+                    continuation.resume(data)
                 }
-                        ?: continuation.resumeWithException(
-                                FirestoreParseException("Failed to get document from $this of type: $type")
-                        )
             } catch (exception: Exception) {
                 continuation.resumeWithException(exception)
             }

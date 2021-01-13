@@ -8,7 +8,7 @@ import com.google.firebase.firestore.Query
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
-private const val COLLECTION_KEY_NEWS = "news"
+private const val COLLECTION_KEY_NEWS = "news_v2"
 private const val QUERY_DATE = "date"
 
 class PhotoReportRepository(private val firebase: IFirebase) {

@@ -2,21 +2,22 @@ package com.egoriku.ladyhappy.photoreport.presentation
 
 import android.os.Bundle
 import android.view.View
+import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.egoriku.ladyhappy.core.feature.PhotoReportsFeature
+import com.egoriku.ladyhappy.extensions.drawableCompat
 import com.egoriku.ladyhappy.extensions.gone
 import com.egoriku.ladyhappy.extensions.visible
 import com.egoriku.ladyhappy.photoreport.R
 import com.egoriku.ladyhappy.photoreport.databinding.FragmentPhotoReportBinding
-import com.egoriku.ladyhappy.photoreport.presentation.controller.PhotoReportCarouselController
-import com.egoriku.ladyhappy.photoreport.presentation.controller.PhotoReportHeaderController
-import com.egoriku.ladyhappy.ui.controller.NoDataController
+import com.egoriku.ladyhappy.photoreport.presentation.adapter.PhotoReportAdapter
+import com.egoriku.ladyhappy.photoreport.presentation.state.PhotoReportUiState
+import kotlinx.coroutines.flow.collect
 import org.koin.androidx.scope.ScopeFragment
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import ru.surfstudio.android.easyadapter.EasyAdapter
-import ru.surfstudio.android.easyadapter.ItemList
+import kotlin.properties.Delegates
 
 class PhotoReportFragment : ScopeFragment(R.layout.fragment_photo_report), PhotoReportsFeature {
 
@@ -24,57 +25,68 @@ class PhotoReportFragment : ScopeFragment(R.layout.fragment_photo_report), Photo
 
     private val viewModel by viewModel<PhotoReportViewModel>()
 
-    private val photoReportAdapter = EasyAdapter()
-
-    private lateinit var noDataController: NoDataController
-    private lateinit var photoReportHeaderController: PhotoReportHeaderController
-    private lateinit var photoReportCarouselController: PhotoReportCarouselController
+    private var photoReportAdapter: PhotoReportAdapter by Delegates.notNull()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        initRecyclerView()
+        binding.initRecyclerView()
 
-        viewModel.screenState.observe(viewLifecycleOwner) {
-            render(it)
+        lifecycleScope.launchWhenStarted {
+            viewModel.uiState.collect { uiState ->
+                when (uiState) {
+                    is PhotoReportUiState.Error -> processError()
+                    is PhotoReportUiState.Loading -> processLoading()
+                    is PhotoReportUiState.Success -> processSuccess(uiState)
+                }
+            }
         }
     }
 
-    private fun initRecyclerView() {
-        val viewPool = RecyclerView.RecycledViewPool()
+    private fun FragmentPhotoReportBinding.initRecyclerView() {
+        photoReportAdapter = PhotoReportAdapter()
 
-        binding.recyclerViewAllGoods.apply {
+        recyclerViewNews.apply {
             layoutManager = LinearLayoutManager(context)
             adapter = photoReportAdapter
+            addItemDecoration(DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL).apply {
+                setDrawable(drawableCompat(R.drawable.bg_photoreport_divider))
+            })
+            /*addItemDecoration(
+                    ColorDividerItemDecoration(
+                            height = getDimen(R.dimen.adapter_item_image_decorator_size),
+                            backgroundColor = colorFromAttr(R.attr.colorPlaceholder)
+                    )
+            )*/
         }
 
-        noDataController = NoDataController {
+        noDataLayout.retryButton.setOnClickListener {
             viewModel.retryLoading()
         }
-
-        photoReportHeaderController = PhotoReportHeaderController()
-        photoReportCarouselController = PhotoReportCarouselController(viewPool)
     }
 
-    private fun render(screenModel: ScreenModel) {
-        val itemList = ItemList.create()
+    private fun processSuccess(photoReportUiState: PhotoReportUiState.Success) {
+        hideLoading()
+        hideError()
 
-        when (screenModel.loadState) {
-            LoadState.PROGRESS -> showLoading()
-            else -> hideLoading()
-        }
+        photoReportAdapter.submitList(photoReportUiState.photoReports)
+    }
 
-        itemList.addIf(screenModel.isEmpty() && screenModel.loadState == LoadState.ERROR_LOADING, noDataController)
+    private fun processLoading() {
+        hideError()
+        showLoading()
+    }
 
-        screenModel.photoReports?.let {
-            itemList.add(photoReportHeaderController)
-                    .addAll(it, photoReportCarouselController)
-        }
-
-        photoReportAdapter.setItems(itemList)
+    private fun processError() {
+        hideLoading()
+        showError()
     }
 
     private fun showLoading() = binding.progressView.visible()
 
     private fun hideLoading() = binding.progressView.gone()
+
+    private fun showError() = binding.noDataLayout.root.visible()
+
+    private fun hideError() = binding.noDataLayout.root.gone()
 }

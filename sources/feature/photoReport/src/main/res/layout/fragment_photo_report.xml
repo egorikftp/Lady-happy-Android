@@ -1,7 +1,8 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:paddingBottom="56dp">
 
     <ProgressBar
         android:id="@+id/progressView"
@@ -12,8 +13,12 @@
         tools:visibility="visible" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerViewAllGoods"
+        android:id="@+id/recyclerViewNews"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:listitem="@layout/adapter_item_photo_report_carousel" />
+        tools:listitem="@layout/adapter_item_photo_report" />
+
+    <include
+        android:id="@+id/noDataLayout"
+        layout="@layout/adapter_item_no_data" />
 </FrameLayout>
