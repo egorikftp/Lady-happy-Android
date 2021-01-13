@@ -27,6 +27,7 @@
             android:id="@+id/mozaikLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            app:isMozaikClickable="false"
             app:layout_constraintTop_toTopOf="parent" />
 
         <FrameLayout
@@ -87,11 +88,11 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="@dimen/material_padding_16"
         android:importantForAccessibility="no"
-        app:tint="@color/Gray"
         app:layout_constraintBottom_toBottomOf="@+id/sub_category_title"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/sub_category_title"
         app:srcCompat="@drawable/ic_arrow_right"
+        app:tint="@color/Gray"
         tools:viewBindingIgnore="true" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

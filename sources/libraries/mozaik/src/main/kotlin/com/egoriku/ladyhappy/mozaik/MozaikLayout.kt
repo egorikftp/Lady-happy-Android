@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import com.egoriku.ladyhappy.extensions.pxToDp
 import com.egoriku.ladyhappy.extensions.toImageView
+import com.egoriku.ladyhappy.extensions.withStyledAttributes
 import com.egoriku.ladyhappy.mozaik.model.MozaikItem
 import com.egoriku.ladyhappy.mozaik.strategy.StrategyResolver
 import com.egoriku.ladyhappy.mozaik.strategy.internal.model.Rect
@@ -24,14 +25,23 @@ class MozaikLayout @JvmOverloads constructor(
         defStyleAttr: Int = 0
 ) : ViewGroup(context, attrs, defStyleAttr) {
 
-    init {
-        setWillNotDraw(false)
-    }
-
     private val strategyData = StrategyData(dividerSize = pxToDp(DIVIDER_SIZE))
+
+    var isMozaikClickable: Boolean = true
 
     var onViewReady: ((view: ImageView, url: String) -> Unit)? = null
     var onItemClick: OnItemClick? = null
+
+    init {
+        setWillNotDraw(false)
+
+        withStyledAttributes(
+                attributeSet = attrs,
+                styleArray = R.styleable.MozaikLayout
+        ) {
+            isMozaikClickable = getBoolean(R.styleable.MozaikLayout_isMozaikClickable, true)
+        }
+    }
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec)
@@ -77,12 +87,14 @@ class MozaikLayout @JvmOverloads constructor(
                     onViewReady?.invoke(childImageView, url)
                 }
 
-                childImageView.setOnClickListener {
-                    onItemClick?.onClick(
-                            position = i,
-                            mozaikItems = strategyData.mozaikItems,
-                            transitionView = it.toImageView()
-                    )
+                if (isMozaikClickable) {
+                    childImageView.setOnClickListener {
+                        onItemClick?.onClick(
+                                position = i,
+                                mozaikItems = strategyData.mozaikItems,
+                                transitionView = it.toImageView()
+                        )
+                    }
                 }
             }
         }
