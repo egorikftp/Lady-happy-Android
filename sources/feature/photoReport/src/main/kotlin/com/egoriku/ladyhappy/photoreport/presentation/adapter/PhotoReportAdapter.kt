@@ -2,7 +2,6 @@ package com.egoriku.ladyhappy.photoreport.presentation.adapter
 
 import android.graphics.drawable.ColorDrawable
 import android.view.ViewGroup
-import android.widget.ImageView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -56,10 +55,8 @@ class PhotoReportAdapter : ListAdapter<PhotoReportModel, PhotoReportAdapter.Hold
 
             mozaikLayout.setItems(data.images)
             mozaikLayout.onItemClick = OnItemClick { position, mozaikItems, transitionVew ->
-                stfalconImageViewer = StfalconImageViewer.Builder(itemView.context, mozaikItems) { view: ImageView, image ->
-                    Glide.with(view.context)
-                            .load(image.url)
-                            .into(view)
+                stfalconImageViewer = StfalconImageViewer.Builder(itemView.context, mozaikItems) { view, image ->
+                    Glide.with(view.context).load(image.url).into(view)
                 }.withStartPosition(position)
                         .withImageChangeListener {
                             stfalconImageViewer?.updateTransitionImage(mozaikLayout.getItemByPosition(it))

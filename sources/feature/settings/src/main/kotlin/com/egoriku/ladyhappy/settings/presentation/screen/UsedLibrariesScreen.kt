@@ -1,7 +1,5 @@
 package com.egoriku.ladyhappy.settings.presentation.screen
 
-import android.os.Bundle
-import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import com.egoriku.ladyhappy.core.IFeatureProvider
 import com.egoriku.ladyhappy.navigation.screen.FragmentScreen
@@ -16,7 +14,4 @@ class UsedLibrariesScreen(
             enterTransition = MaterialSharedAxis(MaterialSharedAxis.Z, true)
             returnTransition = MaterialSharedAxis(MaterialSharedAxis.Z, false)
         }
-
-    override val arguments: Bundle
-        get() = bundleOf()
 }
