@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="featureCatalogSynonyms">
+        <item>catalog</item>
+        <item>catalog screen</item>
+        <item>catalog section</item>
+        <item>catalog page</item>
+        <item>hats catalog</item>
+        <item>felt hats</item>
+        <item>goods</item>
+        <item>products</item>
+        <item>products list</item>
+    </array>
+
+    <array name="featureAboutSynonyms">
+       <item>about</item>
+       <item>about section</item>
+       <item>about screen</item>
+       <item>about page</item>
+       <item>about company</item>
+    </array>
+
+    <array name="featureNewsSynonyms">
+        <item>news</item>
+        <item>news section</item>
+        <item>news screen</item>
+        <item>news page</item>
+        <item>photo report</item>
+        <item>photo report section</item>
+        <item>photo report screen</item>
+        <item>company news</item>
+        <item>company photos</item>
+    </array>
+
+    <array name="featureSettingsSynonyms">
+        <item>settings</item>
+        <item>settings section</item>
+        <item>settings screen</item>
+        <item>settings page</item>
+        <item>app settings</item>
+        <item>preferences</item>
+        <item>app preferences</item>
+    </array>
+</resources>

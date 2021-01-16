@@ -97,4 +97,5 @@
     <string name="used_libraries_prefix_uses">and uses these open source libraries</string>
     <string name="used_libraries_follow_github">Follow us on GitHub!</string>
     <string name="used_libraries_error_loading">Open-source libraries not found</string>
+    <string name="deeplink_unknown_screen">Unknown screen</string>
 </resources>

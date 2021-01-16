@@ -36,7 +36,7 @@
     <!-- Main screen -->
     <string name="in_app_update_available">Доступно обновление</string>
     <string name="in_app_update_now">Обновить сейчас</string>
-    <string name="in_app_update_downloading">Обновление скачивается… %1$d</string>
+    <string name="in_app_update_downloading">Обновление скачивается… %1$d%%</string>
     <string name="in_app_update_download_finished">Обновление было только что загружено</string>
     <string name="in_app_update_complete">Завершить обновление</string>
 
@@ -98,4 +98,5 @@
     <string name="used_libraries_prefix_uses">и использует эти open source библиотеки</string>
     <string name="used_libraries_follow_github">Мы на GitHub!</string>
     <string name="used_libraries_error_loading">Open-source библиотеки не найдены</string>
+    <string name="deeplink_unknown_screen">Неизвестный экран</string>
 </resources>
