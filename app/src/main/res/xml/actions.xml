@@ -1,4 +1,5 @@
 <actions>
+    <!-- Invoke Search using Google Assistance -->
     <action intentName="actions.intent.GET_THING">
         <fulfillment urlTemplate="ladyhappy://search{?query}">
             <parameter-mapping
@@ -6,4 +7,36 @@
                 urlParameter="query" />
         </fulfillment>
     </action>
+
+    <!-- Open specific app screen using Google Assistance -->
+    <action intentName="actions.intent.OPEN_APP_FEATURE">
+        <fulfillment urlTemplate="ladyhappy://feature{?featureName}">
+            <parameter-mapping
+                intentParameter="feature"
+                urlParameter="featureName" />
+        </fulfillment>
+
+        <parameter name="feature">
+            <entity-set-reference entitySetId="featureParamEntitySet" />
+        </parameter>
+    </action>
+
+    <entity-set entitySetId="featureParamEntitySet">
+        <entity
+            name="featureCatalog"
+            alternateName="@array/featureCatalogSynonyms"
+            identifier="ID_FEATURE_CATALOG" />
+        <entity
+            name="featureAbout"
+            alternateName="@array/featureAboutSynonyms"
+            identifier="ID_FEATURE_ABOUT" />
+        <entity
+            name="featureNews"
+            alternateName="@array/featureNewsSynonyms"
+            identifier="ID_FEATURE_NEWS" />
+        <entity
+            name="featureSettings"
+            alternateName="@array/featureSettingsSynonyms"
+            identifier="ID_FEATURE_SETTINGS" />
+    </entity-set>
 </actions>

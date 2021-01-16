@@ -20,7 +20,6 @@ import com.egoriku.ladyhappy.core.feature.*
 import com.egoriku.ladyhappy.core.sharedmodel.toNightMode
 import com.egoriku.ladyhappy.databinding.ActivityMainBinding
 import com.egoriku.ladyhappy.extensions.*
-import com.egoriku.ladyhappy.extensions.common.Constants.EMPTY
 import com.egoriku.ladyhappy.mainscreen.common.Constants.Tracking
 import com.egoriku.ladyhappy.mainscreen.presentation.balloon.DynamicFeatureBalloonFactory
 import com.egoriku.ladyhappy.mainscreen.presentation.components.dynamicFeature.DynamicFeatureEvent
@@ -29,7 +28,9 @@ import com.egoriku.ladyhappy.mainscreen.presentation.components.dynamicFeature.M
 import com.egoriku.ladyhappy.mainscreen.presentation.components.inAppReview.ReviewViewModel
 import com.egoriku.ladyhappy.mainscreen.presentation.components.inAppUpdates.InAppUpdateEvent
 import com.egoriku.ladyhappy.mainscreen.presentation.components.inAppUpdates.InAppUpdateViewModel
+import com.egoriku.ladyhappy.mainscreen.presentation.deeplink.AssistanceDeepLinkParser
 import com.egoriku.ladyhappy.mainscreen.presentation.screen.*
+import com.egoriku.ladyhappy.mainscreen.presentation.screen.params.DeepLinkScreen
 import com.egoriku.ladyhappy.mainscreen.presentation.screen.params.ScreenParams
 import com.egoriku.ladyhappy.navigation.navigator.platform.ActivityScopeNavigator
 import com.google.android.material.snackbar.Snackbar
@@ -310,25 +311,29 @@ class MainActivity : ScopeActivity(R.layout.activity_main) {
     }
 
     private fun Intent.handleGoogleAssistanceSearchIntent() {
-        val data = intent.data
-
-        if (Intent.ACTION_VIEW == action && data != null) {
-            when (data.scheme) {
-                "ladyhappy" -> {
-                    val url = data.toString()
-                    if (url.startsWith("ladyhappy://search")) {
-                        val searchQuery = data.getQueryParameter("query")?.trim() ?: EMPTY
-
-                        viewModel.replaceWith(
-                                screen = SearchScreen(featureProvider, searchQuery),
-                                params = ScreenParams(
-                                        screenNameResId = R.string.navigation_view_search_header,
-                                        trackingScreenName = Tracking.TRACKING_FRAGMENT_SEARCH
-                                ))
-                    }
+        AssistanceDeepLinkParser().process(intent = this) { featureScreen ->
+            when (featureScreen) {
+                is DeepLinkScreen.Search -> {
+                    viewModel.replaceWith(
+                            screen = SearchScreen(featureProvider, featureScreen.searchQuery),
+                            params = ScreenParams(
+                                    screenNameResId = R.string.navigation_view_search_header,
+                                    trackingScreenName = Tracking.TRACKING_FRAGMENT_SEARCH
+                            )
+                    )
                 }
+                is DeepLinkScreen.Catalog -> preselectAndNavigate(R.id.menuCatalog)
+                is DeepLinkScreen.About -> preselectAndNavigate(R.id.menuLanding)
+                is DeepLinkScreen.News -> preselectAndNavigate(R.id.menuPhotoReport)
+                is DeepLinkScreen.Settings -> preselectAndNavigate(R.id.menuSettings)
+                is DeepLinkScreen.Unknown -> toast(getString(R.string.deeplink_unknown_screen))
             }
         }
+    }
+
+    private fun preselectAndNavigate(@IdRes menuItemId: Int) {
+        binding.bottomNavigation.selectedItemId = menuItemId
+        mapItemIdToScreen(menuItemId)
     }
 
     private fun mapItemIdToScreen(@IdRes menuItemId: Int) {

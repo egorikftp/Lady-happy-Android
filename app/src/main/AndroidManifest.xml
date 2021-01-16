@@ -37,9 +37,7 @@
                 <category android:name="android.intent.category.BROWSABLE" />
                 <category android:name="android.intent.category.DEFAULT" />
 
-                <data
-                    android:host="search"
-                    android:scheme="ladyhappy" />
+                <data android:scheme="ladyhappy" />
             </intent-filter>
         </activity>
     </application>
