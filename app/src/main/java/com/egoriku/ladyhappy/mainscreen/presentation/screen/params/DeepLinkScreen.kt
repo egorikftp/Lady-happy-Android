@@ -5,9 +5,9 @@ sealed class DeepLinkScreen {
             val searchQuery: String
     ) : DeepLinkScreen()
 
-    object Catalog: DeepLinkScreen()
-    object About: DeepLinkScreen()
-    object News: DeepLinkScreen()
-    object Settings: DeepLinkScreen()
-    object Unknown: DeepLinkScreen()
+    object Catalog : DeepLinkScreen()
+    object About : DeepLinkScreen()
+    object News : DeepLinkScreen()
+    object Settings : DeepLinkScreen()
+    object Unknown : DeepLinkScreen()
 }
