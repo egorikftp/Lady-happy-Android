@@ -10,6 +10,7 @@ import android.widget.TextView
 import androidx.annotation.IdRes
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.os.bundleOf
+import androidx.lifecycle.lifecycleScope
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.egoriku.ladyhappy.R
 import com.egoriku.ladyhappy.core.IFeatureProvider
@@ -44,14 +45,12 @@ import com.google.android.play.core.splitcompat.SplitCompat
 import com.google.android.play.core.splitinstall.SplitInstallManager
 import com.skydoves.balloon.Balloon
 import com.skydoves.balloon.balloon
-import kotlinx.coroutines.flow.launchIn
-import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.flow.collect
 import org.koin.androidx.scope.ScopeActivity
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import kotlin.properties.Delegates
 import kotlin.time.ExperimentalTime
 import kotlin.time.seconds
-import androidx.lifecycle.lifecycleScope as activityLifecycle
 
 private const val INSTALL_CONFIRMATION_REQ_CODE = 1
 private const val UPDATE_CONFIRMATION_REQ_CODE = 2
@@ -196,14 +195,14 @@ class MainActivity : ScopeActivity(R.layout.activity_main) {
     }
 
     private fun subscribeForInAppUpdate() {
-        with(inAppUpdateViewModel) {
-            updateStatus.observe(this@MainActivity) { updateResult: AppUpdateResult ->
+        lifecycleScope.launchWhenResumed {
+            inAppUpdateViewModel.updateStatus.collect { updateResult: AppUpdateResult ->
                 updateUpdateButton(updateResult)
 
                 // If it's an immediate update, launch it immediately and finish Activity
                 // to prevent the user from using the app until they update.
                 if (updateResult is AppUpdateResult.Available) {
-                    if (shouldLaunchImmediateUpdate(updateResult.updateInfo)) {
+                    if (inAppUpdateViewModel.shouldLaunchImmediateUpdate(updateResult.updateInfo)) {
                         if (appUpdateManager.startUpdateFlowForResult(
                                         updateResult.updateInfo,
                                         AppUpdateType.IMMEDIATE,
@@ -214,12 +213,17 @@ class MainActivity : ScopeActivity(R.layout.activity_main) {
                     }
                 }
             }
+        }
 
-            events.onEach { event ->
+        lifecycleScope.launchWhenResumed {
+            inAppUpdateViewModel.events.collect { event ->
                 when (event) {
                     is InAppUpdateEvent.ToastEvent -> toast(event.message)
                     is InAppUpdateEvent.StartUpdateEvent -> {
-                        val updateType = if (event.immediate) AppUpdateType.IMMEDIATE else AppUpdateType.FLEXIBLE
+                        val updateType = when {
+                            event.immediate -> AppUpdateType.IMMEDIATE
+                            else -> AppUpdateType.FLEXIBLE
+                        }
                         appUpdateManager.startUpdateFlowForResult(
                                 event.updateInfo,
                                 updateType,
@@ -228,14 +232,14 @@ class MainActivity : ScopeActivity(R.layout.activity_main) {
                         )
                     }
                 }
-            }.launchIn(activityLifecycle)
+            }
         }
     }
 
     @OptIn(ExperimentalTime::class)
     private fun subscribeForDynamicFeatureInstall() {
-        with(dynamicFeatureViewModel) {
-            events.onEach { event ->
+        lifecycleScope.launchWhenResumed {
+            dynamicFeatureViewModel.events.collect { event ->
                 when (event) {
                     is DynamicFeatureEvent.ToastEvent -> toast(event.message)
                     is DynamicFeatureEvent.NavigationEvent -> {
@@ -250,9 +254,11 @@ class MainActivity : ScopeActivity(R.layout.activity_main) {
                     }
                     else -> throw IllegalStateException("Event type not handled: $event")
                 }
-            }.launchIn(activityLifecycle)
+            }
+        }
 
-            postCreatorModuleStatus.observe(this@MainActivity) { status ->
+        lifecycleScope.launchWhenResumed {
+            dynamicFeatureViewModel.postCreatorModuleStatus.collect { status ->
                 when (status) {
                     is ModuleStatus.Installing -> {
                         with(dynamicFeatureBalloon) {
@@ -289,6 +295,8 @@ class MainActivity : ScopeActivity(R.layout.activity_main) {
                                 this@MainActivity,
                                 UPDATE_CONFIRMATION_REQ_CODE
                         )
+                    }
+                    ModuleStatus.None -> {
                     }
                 }
             }

@@ -48,9 +48,8 @@ internal class AppPreferences(context: Context) : IAppPreferences {
 
     override var selectedTheme by StringPreference(prefs, PREF_DARK_MODE_ENABLED, Theme.SYSTEM.storageKey)
 
-    override var observableSelectedTheme: Flow<String>
+    override val observableSelectedTheme: Flow<String>
         get() = selectedThemeChannel.asFlow()
-        set(_) = throw IllegalAccessException("This property can't be changed")
 }
 
 class StringPreference(

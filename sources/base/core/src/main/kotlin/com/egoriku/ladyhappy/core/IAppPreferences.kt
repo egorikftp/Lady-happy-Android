@@ -10,5 +10,5 @@ interface IAppPreferences {
 
     var selectedTheme: String
 
-    var observableSelectedTheme: Flow<String>
+    val observableSelectedTheme: Flow<String>
 }

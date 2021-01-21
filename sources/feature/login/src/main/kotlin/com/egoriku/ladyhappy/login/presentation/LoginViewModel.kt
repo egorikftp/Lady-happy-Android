@@ -9,7 +9,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.egoriku.ladyhappy.auth.Authentication
 import com.egoriku.ladyhappy.core.IRouter
-import com.egoriku.ladyhappy.extensions.Event
 import com.egoriku.ladyhappy.extensions.common.Constants.EMPTY
 import com.egoriku.ladyhappy.extensions.logD
 import com.egoriku.ladyhappy.login.R
@@ -26,6 +25,8 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.common.api.CommonStatusCodes
+import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.launch
 
 class LoginViewModel(
@@ -37,10 +38,10 @@ class LoginViewModel(
     private val googleSignIn = GoogleSignInHelper(context)
 
     private val _currentState = MutableLiveData<LoginState>()
-    private val _events = MutableLiveData<Event<LoginEvent>>()
+    private val _events = MutableSharedFlow<LoginEvent>()
 
     val currentState: LiveData<LoginState> = _currentState
-    val events: LiveData<Event<LoginEvent>> = _events
+    val events: SharedFlow<LoginEvent> = _events
 
     fun authWithEmailAndPassword(email: String, password: String) {
         viewModelScope.launch {
@@ -130,7 +131,9 @@ class LoginViewModel(
                                 .setFillInIntent(null)
                                 .build()
 
-                        _events.value = Event(LoginEvent.OneTap(intentSenderRequest))
+                        viewModelScope.launch {
+                            _events.emit(LoginEvent.OneTap(intentSenderRequest))
+                        }
                     }
                     .addOnFailureListener { e ->
                         // No saved credentials found. Launch the One Tap sign-up flow, or
@@ -140,7 +143,9 @@ class LoginViewModel(
         }
 
         fun signWithGoogle() {
-            _events.value = Event(LoginEvent.SignWithGoogle(signInWithGoogleClient.signInIntent))
+            viewModelScope.launch {
+                _events.emit(LoginEvent.SignWithGoogle(signInWithGoogleClient.signInIntent))
+            }
         }
 
         fun getCredentials(intent: Intent?): SignInCredential? {
