@@ -5,8 +5,8 @@ import androidx.core.os.bundleOf
 import androidx.fragment.app.setFragmentResult
 import com.egoriku.ladyhappy.extensions.dataBySelectedPosition
 import com.egoriku.ladyhappy.postcreator.domain.dialog.DialogResult
-import com.egoriku.ladyhappy.postcreator.presentation.fragment.BUNDLE_KEY
-import com.egoriku.ladyhappy.postcreator.presentation.fragment.CHOOSER_KEY
+import com.egoriku.ladyhappy.postcreator.presentation.BUNDLE_KEY
+import com.egoriku.ladyhappy.postcreator.presentation.CHOOSER_KEY
 import com.egoriku.ladyhappy.ui.dialog.BaseDialogFragment
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.egoriku.ladyhappy.localization.R as R_localization

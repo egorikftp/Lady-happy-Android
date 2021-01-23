@@ -10,7 +10,7 @@ object LibrariesVersion {
     const val constraintLayout = "2.0.4"
     const val coil = "1.1.1"
     const val core = "1.3.2"
-    const val coroutinesAndroid = "1.4.2"
+    const val coroutines = "1.4.2"
     const val circleImageView = "3.1.0"
     const val easyAdapter = "6.6.6"
     const val firebaseBom = "26.3.0"

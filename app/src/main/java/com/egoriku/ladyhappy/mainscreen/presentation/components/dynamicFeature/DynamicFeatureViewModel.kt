@@ -61,7 +61,7 @@ class DynamicFeatureViewModel(
     fun invokePostCreator() {
         tryToOpenDynamicFeature(
                 moduleName = DYNAMIC_FEATURE_POST_CREATOR,
-                fragmentName = "com.egoriku.ladyhappy.postcreator.presentation.fragment.PostCreatorFragment"
+                fragmentName = "com.egoriku.ladyhappy.postcreator.presentation.PostCreatorFragment"
         )
     }
 

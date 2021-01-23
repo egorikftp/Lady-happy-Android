@@ -14,6 +14,7 @@
     <color name="RealWhite">#FFFFFF</color>
     <color name="RealWhite80">#CCFFFFFF</color>
     <color name="RealWhite38">#61FFFFFF</color>
+    <color name="RealWhite10">#19FFFFFF</color>
     <color name="Red">#b00020</color>
     <color name="RiverBed">#43484D</color>
     <color name="RoseTaupe">#9c5b57</color>
@@ -22,6 +23,7 @@
     <color name="Shark">#272D33</color>
 
     <color name="Terracota">#7f6854</color>
+    <color name="Terracota20">#337F6854</color>
     <color name="TerracotaDark">#655343</color>
 
     <color name="Westar">#E5E1DD</color>

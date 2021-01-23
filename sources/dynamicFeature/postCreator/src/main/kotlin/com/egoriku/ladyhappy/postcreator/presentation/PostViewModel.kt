@@ -1,51 +1,66 @@
 package com.egoriku.ladyhappy.postcreator.presentation
 
 import android.net.Uri
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.egoriku.ladyhappy.postcreator.domain.model.ImageItem
+import com.egoriku.ladyhappy.network.ResultOf
+import com.egoriku.ladyhappy.network.successOr
+import com.egoriku.ladyhappy.postcreator.data.entity.UploadEntity
+import com.egoriku.ladyhappy.postcreator.domain.model.chooser.ChooserType
+import com.egoriku.ladyhappy.postcreator.domain.model.chooser.ChooserType.ChooserState
+import com.egoriku.ladyhappy.postcreator.domain.model.image.ImageItem
+import com.egoriku.ladyhappy.postcreator.domain.model.image.ImageSection
 import com.egoriku.ladyhappy.postcreator.domain.predefined.CategoryModel
+import com.egoriku.ladyhappy.postcreator.domain.predefined.ColorModel
 import com.egoriku.ladyhappy.postcreator.domain.predefined.PredefinedData
-import com.egoriku.ladyhappy.postcreator.domain.predefined.SubCategoryModel
+import com.egoriku.ladyhappy.postcreator.domain.usecase.PublishPostUseCase
 import com.egoriku.ladyhappy.postcreator.domain.usecase.UploadImagesUseCase
-import com.egoriku.ladyhappy.postcreator.presentation.model.Chooser
-import com.egoriku.ladyhappy.postcreator.presentation.model.ImageSection
-import com.egoriku.ladyhappy.postcreator.presentation.model.Type
+import com.egoriku.ladyhappy.postcreator.presentation.state.ScreenState
+import com.egoriku.ladyhappy.postcreator.presentation.state.UploadEvents
+import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharedFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
 class PostViewModel(
-        private val uploadImagesUseCase: UploadImagesUseCase
+        private val uploadImagesUseCase: UploadImagesUseCase,
+        private val publishPostUseCase: PublishPostUseCase,
 ) : ViewModel() {
 
-    private val stateModifier = StateModifier()
+    private val _screenState = MutableStateFlow(ScreenState())
+    val screenState: StateFlow<ScreenState> = _screenState
 
-    private var cache = ScreenState(
-            chooser = listOf(
-                    Chooser.Initial(type = Type.CATEGORY),
-                    Chooser.Initial(type = Type.COLOR)
-            ),
-            imagesSection = ImageSection(emptyList())
-    )
+    private val _publishButtonAvailability = MutableStateFlow(false)
+    val publishButtonAvailability: StateFlow<Boolean> = _publishButtonAvailability
 
-    private val _screenState: MutableLiveData<ScreenState> = MutableLiveData(cache)
-    val screenState: LiveData<ScreenState> = _screenState
+    private val _uploadEvents = MutableSharedFlow<UploadEvents>()
+    val uploadEvents: SharedFlow<UploadEvents> = _uploadEvents
 
     fun processImageResult(list: List<Uri>) {
-        val images = cache.imagesSection.images
+        val images = _screenState.value.imagesSection.images
         val newImages = list.map { ImageItem(uri = it) }
 
-        cache = cache.copy(imagesSection = ImageSection(images + newImages))
-        _screenState.value = cache
+        _screenState.value = _screenState.value.copy(
+                imagesSection = ImageSection(images + newImages)
+        )
+
+        validateState()
     }
 
     fun removeAttachedImage(item: ImageItem) {
-        val images = cache.imagesSection.images.toMutableList()
+        val images = _screenState.value.imagesSection.images.toMutableList()
         images.remove(item)
 
-        cache = cache.copy(imagesSection = ImageSection(images))
-        _screenState.value = cache
+        _screenState.value = _screenState.value.copy(imagesSection = ImageSection(images))
+
+        validateState()
+    }
+
+    fun setTitle(text: String) {
+        _screenState.value = _screenState.value.copy(title = text)
+
+        validateState()
     }
 
     fun setCategory(category: String) {
@@ -53,105 +68,113 @@ class PostViewModel(
             it.name == category
         })
 
-        val chooser = stateModifier.updateCategory(state = cache.chooser, category = categoryModel)
-        cache = cache.copy(chooser = chooser)
+        _screenState.value = _screenState.value.copy(
+                category = ChooserType.Category(
+                        title = categoryModel.name,
+                        state = ChooserState.Selected,
+                        categoryId = categoryModel.categoryId
+                ),
+                subCategory = ChooserType.SubCategory(
+                        state = ChooserState.Initial,
+                        categoryId = categoryModel.categoryId
+                )
+        )
 
-        _screenState.value = cache
+        validateState()
     }
 
-    fun resetByType(type: Type) {
-        val chooser = cache.chooser
-                .map { chooser ->
-                    when (chooser.type) {
-                        type -> Chooser.Initial(type = type)
-                        else -> chooser
-                    }
-                }.toMutableList().apply {
-                    if (type == Type.CATEGORY) {
-                        stateModifier.removeSubCategorySection(this)
-                    }
-                }
-
-        cache = cache.copy(chooser = chooser)
-
-        _screenState.value = cache
-    }
-
-    fun resetSubCategory() {
-        val chooser = stateModifier.resetSubCategory(cache.chooser)
-        cache = cache.copy(chooser = chooser)
-
-        _screenState.value = cache
-    }
-
-    fun updateSubCategory(subCategory: String?) {
-        val categoryId = cache.chooser
-                .find { it.type == Type.SUBCATEGORY }
-                ?.optionalData
-
-        val model = requireNotNull(PredefinedData.allSubCategories
-                .filter { it.categoryId == categoryId }
+    fun setSubCategory(subCategory: String?) {
+        val subCategoryModel = requireNotNull(PredefinedData.allSubCategories
+                .filter { it.categoryId == _screenState.value.category.categoryId }
                 .find { it.name == subCategory }
         )
 
-        val chooser = stateModifier.updateSubCategory(cache.chooser, model)
-        cache = cache.copy(chooser = chooser)
+        _screenState.value = _screenState.value.copy(
+                subCategory = ChooserType.SubCategory(
+                        title = subCategoryModel.name,
+                        state = ChooserState.Selected,
+                        categoryId = subCategoryModel.categoryId,
+                        subCategoryId = subCategoryModel.subCategoryId
+                )
+        )
 
-        _screenState.value = cache
+        validateState()
+    }
+
+    fun setColor(id: Int) {
+        val colorModel: ColorModel = requireNotNull(PredefinedData.colors.find {
+            it.colorId == id
+        })
+
+        _screenState.value = _screenState.value.copy(
+                color = ChooserType.Color(
+                        title = colorModel.name,
+                        state = ChooserState.Selected,
+                        colorId = colorModel.colorId
+                )
+        )
+
+        validateState()
+    }
+
+    fun resetByChooserType(type: ChooserType) {
+        _screenState.value = when (type) {
+            is ChooserType.Category -> {
+                _screenState.value.copy(
+                        category = ChooserType.Category(state = ChooserState.Initial),
+                        subCategory = null
+                )
+            }
+            is ChooserType.SubCategory -> {
+                _screenState.value.copy(subCategory = ChooserType.SubCategory(
+                        state = ChooserState.Initial,
+                        categoryId = _screenState.value.category.categoryId
+                ))
+            }
+            is ChooserType.Color -> {
+                _screenState.value.copy(color = ChooserType.Color(state = ChooserState.Initial))
+            }
+        }
     }
 
     fun publishPost() {
         viewModelScope.launch {
-            // val uploadedImages = uploadImagesUseCase(_images.valueOrThrow())
+            _uploadEvents.emit(UploadEvents.InProgress)
+
+            val state = _screenState.value
+
+            val images = uploadImagesUseCase(state.imagesSection.images).successOr(emptyList())
+            val categoryId = state.category.categoryId
+            val subCategoryId = requireNotNull(state.subCategory).subCategoryId
+            val colorId = state.color.colorId
+
+            val resultOf = publishPostUseCase(
+                    parameters = UploadEntity(
+                            images = images,
+                            title = state.title,
+                            categoryId = categoryId,
+                            subCategoryId = subCategoryId,
+                            colorId = colorId
+                    )
+            )
+
+            when (resultOf) {
+                is ResultOf.Success -> _uploadEvents.emit(UploadEvents.Success)
+                is ResultOf.Failure -> _uploadEvents.emit(UploadEvents.Error)
+            }
         }
     }
 
-    inner class StateModifier {
+    private fun validateState() {
+        val state = _screenState.value
 
-        fun updateCategory(state: List<Chooser>, category: CategoryModel): List<Chooser> = state
-                .map { chooser ->
-                    when (chooser.type) {
-                        Type.CATEGORY -> Chooser.Selected(type = Type.CATEGORY, primary = category.name)
-                        else -> chooser
-                    }
-                }.toMutableList().apply {
-                    removeSubCategorySection(this)
-
-                    add(Chooser.Initial(type = Type.SUBCATEGORY, optionalData = category.categoryId))
-                }.also { list ->
-                    list.sortBy { it.type.index }
-                }
-
-        fun updateSubCategory(state: List<Chooser>, subCategory: SubCategoryModel) =
-                state.map { chooser ->
-                    when (chooser.type) {
-                        Type.SUBCATEGORY -> Chooser.Selected(
-                                type = Type.SUBCATEGORY,
-                                primary = subCategory.name,
-                                optionalData = chooser.optionalData
-                        )
-                        else -> chooser
-                    }
-                }
-
-        fun resetSubCategory(state: List<Chooser>) = state.map { chooser ->
-            when (chooser.type) {
-                Type.SUBCATEGORY -> Chooser.Initial(
-                        type = Type.SUBCATEGORY,
-                        optionalData = chooser.optionalData
-                )
-                else -> chooser
-            }
-        }
-
-        fun removeSubCategorySection(state: MutableList<Chooser>) = state.removeSection()
-
-        private fun MutableList<Chooser>.removeSection() {
-            val element = find { it.type == Type.SUBCATEGORY }
-
-            if (element != null) {
-                removeAt(indexOf(element))
-            }
+        _publishButtonAvailability.value = when {
+            state.title.isEmpty() -> false
+            state.imagesSection.images.isEmpty() || state.imagesSection.images.size > 10 -> false
+            state.category.state == ChooserState.Initial -> false
+            state.subCategory == null || state.subCategory.state == ChooserState.Initial -> false
+            state.color.state == ChooserState.Initial -> false
+            else -> true
         }
     }
 }

@@ -29,7 +29,7 @@ class CompressImageRepository(private val context: Context) {
     }
 
     enum class SIZE(val width: Int) {
-        PREVIEW(1125),
-        LARGE(2248)
+        PREVIEW(1200),
+        LARGE(2200)
     }
 }

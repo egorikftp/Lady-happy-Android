@@ -1,57 +1,66 @@
-package com.egoriku.ladyhappy.postcreator.presentation.section
+package com.egoriku.ladyhappy.postcreator.presentation.sections.images
 
 import android.graphics.Typeface
 import android.view.ViewGroup
-import androidx.recyclerview.widget.*
+import androidx.recyclerview.widget.ConcatAdapter
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.egoriku.ladyhappy.core.adapter.BaseListAdapter
+import com.egoriku.ladyhappy.core.adapter.BaseViewHolder
 import com.egoriku.ladyhappy.extensions.activated
 import com.egoriku.ladyhappy.extensions.context
 import com.egoriku.ladyhappy.extensions.inflater
 import com.egoriku.ladyhappy.extensions.resetActivated
 import com.egoriku.ladyhappy.postcreator.R
 import com.egoriku.ladyhappy.postcreator.databinding.AdapterItemImagesSectionBinding
-import com.egoriku.ladyhappy.postcreator.domain.model.ImageItem
-import com.egoriku.ladyhappy.postcreator.presentation.model.ImageSection
-import com.egoriku.ladyhappy.postcreator.presentation.section.adapter.AddImageAdapter
-import com.egoriku.ladyhappy.postcreator.presentation.section.adapter.ImagesAdapter
+import com.egoriku.ladyhappy.postcreator.domain.model.image.ImageItem
+import com.egoriku.ladyhappy.postcreator.domain.model.image.ImageSection
 import com.egoriku.ladyhappy.ui.decorator.VerticalMarginItemDecoration
 import com.egoriku.ladyhappy.localization.R as R_localization
 
 private const val MAX_IMAGES_SIZE = 10
 
 class ImagesSectionAdapter(
-        private val chooseImage: () -> Unit,
-        private val removeImage: (item: ImageItem) -> Unit
-) : ListAdapter<ImageSection, ImagesSectionAdapter.VH>(DiffCallback()) {
+        private val onChooseImage: () -> Unit,
+        private val onRemoveImage: (item: ImageItem) -> Unit,
+) : BaseListAdapter<ImageSection, ImagesSectionAdapter.VH>(DiffCallback()) {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VH =
-            VH(AdapterItemImagesSectionBinding.inflate(parent.inflater(), parent, false))
+    override fun onCreateViewHolder(
+            parent: ViewGroup,
+            viewType: Int,
+    ) = VH(AdapterItemImagesSectionBinding.inflate(parent.inflater(), parent, false))
 
-    override fun onBindViewHolder(holder: VH, position: Int) = holder.bind(getItem(position))
+    override fun onBindViewHolder(
+            holder: VH,
+            position: Int,
+            model: ImageSection,
+    ) = holder.bind(model)
 
     override fun getItemViewType(position: Int): Int = R.layout.adapter_item_images_section
 
-    inner class VH(private val binding: AdapterItemImagesSectionBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class VH(
+            private val binding: AdapterItemImagesSectionBinding,
+    ) : BaseViewHolder<ImageSection>(binding.root) {
 
         private val imagesAdapter = ImagesAdapter {
-            removeImage(it)
+            onRemoveImage(it)
         }
 
         private val concatAdapter = ConcatAdapter()
 
         init {
-            concatAdapter.addAdapter(AddImageAdapter { chooseImage() })
+            concatAdapter.addAdapter(AddImageAdapter { onChooseImage() })
             concatAdapter.addAdapter(imagesAdapter)
 
             binding.imagesRecycler.apply {
                 layoutManager = LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
                 adapter = concatAdapter
-                addItemDecoration(
-                        VerticalMarginItemDecoration(resources.getDimensionPixelSize(R.dimen.posts_images_margin))
-                )
+                addItemDecoration(VerticalMarginItemDecoration(resources.getDimensionPixelSize(R.dimen.posts_images_margin)))
             }
         }
 
-        fun bind(item: ImageSection) {
+        override fun bind(item: ImageSection) {
             val images = item.images
 
             imagesAdapter.submitList(images)

@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/material_padding_16"
         android:layout_marginTop="@dimen/material_padding_16"
-        android:text="Добавьте фотографии"
+        android:text="Фотографии"
         android:textColor="?attr/colorOnSurface"
         android:textSize="15sp"
         app:layout_constraintStart_toStartOf="parent"

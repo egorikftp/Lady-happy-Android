@@ -42,7 +42,7 @@ class ColorAdapter : ListAdapter<ColorModel, ColorAdapter.VH>(DiffCallback()) {
         private fun AdapterItemColorBinding.bind(colorModel: ColorModel, isSelected: Boolean) {
             colorName.text = colorModel.name
             colorImage.background = (colorImage.background as GradientDrawable).apply {
-                setColor(colorModel.color.toColorInt())
+                setColor(colorModel.colorHex.toColorInt())
             }
 
             itemView.isActivated = isSelected
@@ -52,7 +52,7 @@ class ColorAdapter : ListAdapter<ColorModel, ColorAdapter.VH>(DiffCallback()) {
                 object : ItemDetailsLookup.ItemDetails<Long>() {
                     override fun getPosition(): Int = bindingAdapterPosition
 
-                    override fun getSelectionKey(): Long? = itemId
+                    override fun getSelectionKey(): Long = itemId
 
                     override fun inSelectionHotspot(e: MotionEvent) = true
                 }

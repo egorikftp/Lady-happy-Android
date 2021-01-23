@@ -13,7 +13,8 @@ object Libs {
     const val coil = "io.coil-kt:coil:${LibrariesVersion.coil}"
     const val constraintLayout = "androidx.constraintlayout:constraintlayout:${LibrariesVersion.constraintLayout}"
     const val core = "androidx.core:core-ktx:${LibrariesVersion.core}"
-    const val coroutinesAndroid = "org.jetbrains.kotlinx:kotlinx-coroutines-android:${LibrariesVersion.coroutinesAndroid}"
+    const val coroutinesAndroid = "org.jetbrains.kotlinx:kotlinx-coroutines-android:${LibrariesVersion.coroutines}"
+    const val coroutinesPlayServices = "org.jetbrains.kotlinx:kotlinx-coroutines-play-services:${LibrariesVersion.coroutines}"
 
     const val easyAdapter = "ru.surfstudio.android:easyadapter:${LibrariesVersion.easyAdapter}"
 

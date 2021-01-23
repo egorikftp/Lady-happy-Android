@@ -14,5 +14,5 @@ data class SubCategoryModel(
 data class ColorModel(
         val colorId: Int,
         val name: String,
-        val color: String
+        val colorHex: String
 )

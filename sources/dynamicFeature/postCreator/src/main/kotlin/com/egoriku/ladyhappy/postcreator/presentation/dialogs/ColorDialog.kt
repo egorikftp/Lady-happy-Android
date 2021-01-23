@@ -1,6 +1,8 @@
 package com.egoriku.ladyhappy.postcreator.presentation.dialogs
 
 import android.os.Bundle
+import androidx.core.os.bundleOf
+import androidx.fragment.app.setFragmentResult
 import androidx.recyclerview.selection.SelectionPredicates
 import androidx.recyclerview.selection.SelectionTracker
 import androidx.recyclerview.selection.StableIdKeyProvider
@@ -9,7 +11,11 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.DividerItemDecoration.VERTICAL
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.egoriku.ladyhappy.postcreator.domain.dialog.DialogResult
+import com.egoriku.ladyhappy.postcreator.domain.predefined.ColorModel
 import com.egoriku.ladyhappy.postcreator.domain.predefined.PredefinedData
+import com.egoriku.ladyhappy.postcreator.presentation.BUNDLE_KEY
+import com.egoriku.ladyhappy.postcreator.presentation.CHOOSER_KEY
 import com.egoriku.ladyhappy.postcreator.presentation.dialogs.color.ColorAdapter
 import com.egoriku.ladyhappy.postcreator.presentation.dialogs.color.MyItemDetailsLookup
 import com.egoriku.ladyhappy.ui.dialog.BaseDialogFragment
@@ -50,6 +56,17 @@ class ColorDialog : BaseDialogFragment() {
         selectionTracker?.onRestoreInstanceState(savedInstanceState)
 
         return builder.setView(recyclerView)
+    }
+
+    override fun onPositiveButtonClick() {
+        val selectionTracker = selectionTracker ?: throw Exception("Selection tracker null")
+        val selectedPosition = selectionTracker.selection.iterator().next().toInt()
+        val colorModel: ColorModel = colorAdapter.currentList[selectedPosition]
+
+         setFragmentResult(
+                 CHOOSER_KEY,
+                 bundleOf(BUNDLE_KEY to DialogResult.Color(colorId = colorModel.colorId))
+         )
     }
 
     override fun onSaveInstanceState(outState: Bundle) {

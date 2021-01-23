@@ -3,7 +3,7 @@
     <item>
         <selector>
             <item android:state_activated="true">
-                <color android:color="?attr/colorSecondary" />
+                <color android:color="@color/Terracota20" />
             </item>
             <item>
                 <color android:color="@android:color/transparent" />

@@ -1,4 +1,4 @@
-package com.egoriku.ladyhappy.postcreator.presentation.section.adapter
+package com.egoriku.ladyhappy.postcreator.presentation.sections.images
 
 import android.view.ViewGroup
 import androidx.core.net.toUri
@@ -7,7 +7,7 @@ import com.egoriku.ladyhappy.extensions.common.Constants.EMPTY
 import com.egoriku.ladyhappy.extensions.inflater
 import com.egoriku.ladyhappy.postcreator.R
 import com.egoriku.ladyhappy.postcreator.databinding.AdapterItemAddImageBinding
-import com.egoriku.ladyhappy.postcreator.domain.model.ImageItem
+import com.egoriku.ladyhappy.postcreator.domain.model.image.ImageItem
 
 class AddImageAdapter(
         private val onAddImageClick: () -> Unit
