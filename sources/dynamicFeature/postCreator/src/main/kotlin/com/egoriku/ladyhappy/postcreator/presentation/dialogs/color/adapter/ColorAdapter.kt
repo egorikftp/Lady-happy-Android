@@ -1,4 +1,4 @@
-package com.egoriku.ladyhappy.postcreator.presentation.dialogs.color
+package com.egoriku.ladyhappy.postcreator.presentation.dialogs.color.adapter
 
 import android.graphics.drawable.GradientDrawable
 import android.view.MotionEvent

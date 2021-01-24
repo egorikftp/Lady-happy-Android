@@ -1,6 +1,7 @@
 package com.egoriku.ladyhappy.postcreator.data.entity
 
 import androidx.annotation.Keep
+import com.google.firebase.Timestamp
 
 @Keep
 data class UploadEntity(
@@ -8,5 +9,6 @@ data class UploadEntity(
         val title: String,
         val categoryId: Int,
         val subCategoryId: Int,
-        val colorId: Int
+        val colorId: Int,
+        val date: Timestamp,
 )

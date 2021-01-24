@@ -22,7 +22,7 @@ object LibrariesVersion {
     const val kotlin = "1.4.21"
     const val leakCanary = "2.5"
     const val lifecycle = "2.2.0"
-    const val material = "1.2.1"
+    const val material = "1.3.0-rc01"
     const val playCore = "1.8.1"
     const val playServicesAuth = "19.0.0"
     const val recyclerView = "1.2.0-beta01"

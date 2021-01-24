@@ -10,6 +10,7 @@ import com.egoriku.ladyhappy.postcreator.domain.model.chooser.ChooserType
 import com.egoriku.ladyhappy.postcreator.domain.model.chooser.ChooserType.ChooserState
 import com.egoriku.ladyhappy.postcreator.domain.model.image.ImageItem
 import com.egoriku.ladyhappy.postcreator.domain.model.image.ImageSection
+import com.egoriku.ladyhappy.postcreator.domain.model.image.UploadImagesParams
 import com.egoriku.ladyhappy.postcreator.domain.predefined.CategoryModel
 import com.egoriku.ladyhappy.postcreator.domain.predefined.ColorModel
 import com.egoriku.ladyhappy.postcreator.domain.predefined.PredefinedData
@@ -17,11 +18,15 @@ import com.egoriku.ladyhappy.postcreator.domain.usecase.PublishPostUseCase
 import com.egoriku.ladyhappy.postcreator.domain.usecase.UploadImagesUseCase
 import com.egoriku.ladyhappy.postcreator.presentation.state.ScreenState
 import com.egoriku.ladyhappy.postcreator.presentation.state.UploadEvents
+import com.egoriku.ladyhappy.ui.date.ddMMMyyyy
+import com.egoriku.ladyhappy.ui.date.year
+import com.google.firebase.Timestamp
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
+import java.util.*
 
 class PostViewModel(
         private val uploadImagesUseCase: UploadImagesUseCase,
@@ -117,6 +122,20 @@ class PostViewModel(
         validateState()
     }
 
+    fun setDate(dateInMillis: Long) {
+        val date = Date(dateInMillis)
+
+        _screenState.value = _screenState.value.copy(
+                releaseDate = ChooserType.ReleaseDate(
+                        date = date,
+                        title = date.ddMMMyyyy(),
+                        state = ChooserState.Selected
+                )
+        )
+
+        validateState()
+    }
+
     fun resetByChooserType(type: ChooserType) {
         _screenState.value = when (type) {
             is ChooserType.Category -> {
@@ -134,6 +153,9 @@ class PostViewModel(
             is ChooserType.Color -> {
                 _screenState.value.copy(color = ChooserType.Color(state = ChooserState.Initial))
             }
+            is ChooserType.ReleaseDate -> {
+                _screenState.value.copy(releaseDate = ChooserType.ReleaseDate(state = ChooserState.Initial))
+            }
         }
     }
 
@@ -142,9 +164,24 @@ class PostViewModel(
             _uploadEvents.emit(UploadEvents.InProgress)
 
             val state = _screenState.value
-
-            val images = uploadImagesUseCase(state.imagesSection.images).successOr(emptyList())
             val categoryId = state.category.categoryId
+            val releaseDate = requireNotNull(state.releaseDate.date)
+
+            val images = uploadImagesUseCase(
+                    UploadImagesParams(
+                            images = state.imagesSection.images,
+                            category = categoryId,
+                            year = releaseDate.year()
+
+                    )
+            ).successOr(emptyList())
+
+            if (images.isEmpty()) {
+                _uploadEvents.emit(UploadEvents.Error)
+
+                return@launch
+            }
+
             val subCategoryId = requireNotNull(state.subCategory).subCategoryId
             val colorId = state.color.colorId
 
@@ -154,7 +191,8 @@ class PostViewModel(
                             title = state.title,
                             categoryId = categoryId,
                             subCategoryId = subCategoryId,
-                            colorId = colorId
+                            colorId = colorId,
+                            date = Timestamp(releaseDate)
                     )
             )
 
@@ -174,6 +212,7 @@ class PostViewModel(
             state.category.state == ChooserState.Initial -> false
             state.subCategory == null || state.subCategory.state == ChooserState.Initial -> false
             state.color.state == ChooserState.Initial -> false
+            state.releaseDate.date == null -> false
             else -> true
         }
     }

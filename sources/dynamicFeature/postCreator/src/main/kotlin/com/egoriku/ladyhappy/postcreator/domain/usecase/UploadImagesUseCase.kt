@@ -9,8 +9,8 @@ import com.egoriku.ladyhappy.postcreator.data.entity.UploadedImageEntity
 import com.egoriku.ladyhappy.postcreator.data.local.CompressImageRepository
 import com.egoriku.ladyhappy.postcreator.data.local.CompressImageRepository.SIZE
 import com.egoriku.ladyhappy.postcreator.data.local.CreateFileRepository
-import com.egoriku.ladyhappy.postcreator.data.remote.UploadPostImageRepository
-import com.egoriku.ladyhappy.postcreator.domain.model.image.ImageItem
+import com.egoriku.ladyhappy.postcreator.data.remote.UploadImageRepository
+import com.egoriku.ladyhappy.postcreator.domain.model.image.UploadImagesParams
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.withContext
@@ -19,18 +19,22 @@ import java.io.File
 class UploadImagesUseCase(
         private val createFileRepository: CreateFileRepository,
         private val compressImageRepository: CompressImageRepository,
-        private val uploadPostImageRepository: UploadPostImageRepository
-) : UseCase<List<ImageItem>, List<UploadedImageBySize>>(Dispatchers.IO) {
+        private val uploadImageRepository: UploadImageRepository,
+) : UseCase<UploadImagesParams, List<UploadedImageBySize>>(Dispatchers.IO) {
 
-    override suspend fun execute(parameters: List<ImageItem>): List<UploadedImageBySize> {
+    override suspend fun execute(parameters: UploadImagesParams): List<UploadedImageBySize> {
         return coroutineScope {
-            parameters.map {
+            val images = parameters.images
+            val storagePath = "Products/${parameters.year}/${parameters.category}/"
+
+            images.map {
                 val imageFile = createFileRepository.fileFromUri(it.uri)
 
                 val largeImage = withContext(Dispatchers.IO) {
                     val largeImageFile = compressImageRepository.resizeImage(file = imageFile, size = SIZE.LARGE)
 
-                    val imageUrl = uploadPostImageRepository.upload(
+                    val imageUrl = uploadImageRepository.upload(
+                            storagePath = storagePath,
                             fileName = largeImageFile.name.withPrefix("large"),
                             bytes = compressImageRepository.convertFileToByteArray(largeImageFile)
                     )
@@ -47,7 +51,8 @@ class UploadImagesUseCase(
                 val previewImageUrl = withContext(Dispatchers.IO) {
                     val previewImageFile = compressImageRepository.resizeImage(file = imageFile, size = SIZE.PREVIEW)
 
-                    val imageUrl = uploadPostImageRepository.upload(
+                    val imageUrl = uploadImageRepository.upload(
+                            storagePath = storagePath,
                             fileName = previewImageFile.name.withPrefix("preview"),
                             bytes = compressImageRepository.convertFileToByteArray(previewImageFile)
                     )

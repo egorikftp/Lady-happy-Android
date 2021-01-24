@@ -21,8 +21,9 @@ import com.egoriku.ladyhappy.postcreator.domain.model.chooser.ChooserType
 import com.egoriku.ladyhappy.postcreator.domain.predefined.PredefinedData
 import com.egoriku.ladyhappy.postcreator.koin.postModule
 import com.egoriku.ladyhappy.postcreator.presentation.dialogs.CategoriesDialog
-import com.egoriku.ladyhappy.postcreator.presentation.dialogs.ColorDialog
 import com.egoriku.ladyhappy.postcreator.presentation.dialogs.SubCategoriesDialog
+import com.egoriku.ladyhappy.postcreator.presentation.dialogs.color.ColorDialog
+import com.egoriku.ladyhappy.postcreator.presentation.dialogs.datepicker.ReleaseDatePicker
 import com.egoriku.ladyhappy.postcreator.presentation.sections.chooser.ChooserSectionAdapter
 import com.egoriku.ladyhappy.postcreator.presentation.sections.images.ImagesSectionAdapter
 import com.egoriku.ladyhappy.postcreator.presentation.sections.input.InputSectionAdapter
@@ -35,8 +36,8 @@ import org.koin.core.context.loadKoinModules
 import org.koin.core.context.unloadKoinModules
 import kotlin.properties.Delegates
 
-const val CHOOSER_KEY = "chooserKey"
-const val BUNDLE_KEY = "bundleKey"
+const val KEY_CHOOSER_FRAGMENT_RESULT = "chooserKey"
+const val KEY_FRAGMENT_RESULT_BUNDLE = "bundleKey"
 
 class PostCreatorFragment : ScopeFragment(R.layout.fragment_post_creator) {
 
@@ -67,16 +68,7 @@ class PostCreatorFragment : ScopeFragment(R.layout.fragment_post_creator) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        childFragmentManager.setFragmentResultListenerWrapper(
-                requestKey = CHOOSER_KEY,
-                lifecycleOwner = viewLifecycleOwner
-        ) { _, result ->
-            when (val dialogResult = result.getParcelable<DialogResult>(BUNDLE_KEY)) {
-                is DialogResult.Category -> viewModel.setCategory(dialogResult.category)
-                is DialogResult.SubCategory -> viewModel.setSubCategory(dialogResult.subCategory)
-                is DialogResult.Color -> viewModel.setColor(dialogResult.colorId)
-            }
-        }
+        subscribeForFragmentResult()
 
         binding.initView()
         chooserSectionAdapter = ChooserSectionAdapter(
@@ -138,6 +130,20 @@ class PostCreatorFragment : ScopeFragment(R.layout.fragment_post_creator) {
         }
     }
 
+    private fun subscribeForFragmentResult() {
+        childFragmentManager.setFragmentResultListenerWrapper(
+                requestKey = KEY_CHOOSER_FRAGMENT_RESULT,
+                lifecycleOwner = viewLifecycleOwner
+        ) { _, result ->
+            when (val dialogResult = result.getParcelable<DialogResult>(KEY_FRAGMENT_RESULT_BUNDLE)) {
+                is DialogResult.Category -> viewModel.setCategory(dialogResult.category)
+                is DialogResult.SubCategory -> viewModel.setSubCategory(dialogResult.subCategory)
+                is DialogResult.Color -> viewModel.setColor(dialogResult.colorId)
+                is DialogResult.ReleaseDate -> viewModel.setDate(dialogResult.dateInMilliseconds)
+            }
+        }
+    }
+
     private fun processChooserItemClick(chooserState: ChooserType) = when (chooserState) {
         is ChooserType.Category -> {
             CategoriesDialog.newInstance(PredefinedData.getCategoriesNames())
@@ -149,6 +155,9 @@ class PostCreatorFragment : ScopeFragment(R.layout.fragment_post_creator) {
         }
         is ChooserType.Color -> {
             ColorDialog().show(childFragmentManager, null)
+        }
+        is ChooserType.ReleaseDate -> {
+            ReleaseDatePicker().getDatePicker().show(childFragmentManager, null)
         }
     }
 

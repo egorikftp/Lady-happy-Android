@@ -3,7 +3,7 @@ package com.egoriku.ladyhappy.extensions.listeners
 import android.text.Editable
 import android.text.TextWatcher
 
-abstract class SimpleTextWatcher: TextWatcher {
+abstract class SimpleTextWatcher : TextWatcher {
 
     override fun afterTextChanged(s: Editable?) = Unit
 

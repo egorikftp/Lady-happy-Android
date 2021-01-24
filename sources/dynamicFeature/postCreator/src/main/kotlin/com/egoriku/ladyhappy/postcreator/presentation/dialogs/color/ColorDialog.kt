@@ -1,4 +1,4 @@
-package com.egoriku.ladyhappy.postcreator.presentation.dialogs
+package com.egoriku.ladyhappy.postcreator.presentation.dialogs.color
 
 import android.os.Bundle
 import androidx.core.os.bundleOf
@@ -14,10 +14,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.egoriku.ladyhappy.postcreator.domain.dialog.DialogResult
 import com.egoriku.ladyhappy.postcreator.domain.predefined.ColorModel
 import com.egoriku.ladyhappy.postcreator.domain.predefined.PredefinedData
-import com.egoriku.ladyhappy.postcreator.presentation.BUNDLE_KEY
-import com.egoriku.ladyhappy.postcreator.presentation.CHOOSER_KEY
-import com.egoriku.ladyhappy.postcreator.presentation.dialogs.color.ColorAdapter
-import com.egoriku.ladyhappy.postcreator.presentation.dialogs.color.MyItemDetailsLookup
+import com.egoriku.ladyhappy.postcreator.presentation.KEY_CHOOSER_FRAGMENT_RESULT
+import com.egoriku.ladyhappy.postcreator.presentation.KEY_FRAGMENT_RESULT_BUNDLE
+import com.egoriku.ladyhappy.postcreator.presentation.dialogs.color.adapter.ColorAdapter
+import com.egoriku.ladyhappy.postcreator.presentation.dialogs.color.adapter.MyItemDetailsLookup
 import com.egoriku.ladyhappy.ui.dialog.BaseDialogFragment
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.egoriku.ladyhappy.localization.R as R_localization
@@ -64,8 +64,8 @@ class ColorDialog : BaseDialogFragment() {
         val colorModel: ColorModel = colorAdapter.currentList[selectedPosition]
 
          setFragmentResult(
-                 CHOOSER_KEY,
-                 bundleOf(BUNDLE_KEY to DialogResult.Color(colorId = colorModel.colorId))
+                 KEY_CHOOSER_FRAGMENT_RESULT,
+                 bundleOf(KEY_FRAGMENT_RESULT_BUNDLE to DialogResult.Color(colorId = colorModel.colorId))
          )
     }
 

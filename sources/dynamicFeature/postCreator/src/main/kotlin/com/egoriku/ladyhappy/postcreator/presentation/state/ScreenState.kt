@@ -11,8 +11,9 @@ data class ScreenState(
         val category: ChooserType.Category = ChooserType.Category(state = ChooserState.Initial),
         val subCategory: ChooserType.SubCategory? = null,
         val color: ChooserType.Color = ChooserType.Color(state = ChooserState.Initial),
+        val releaseDate: ChooserType.ReleaseDate = ChooserType.ReleaseDate(state = ChooserState.Initial),
 ) {
 
     val chooserState: List<ChooserType>
-        get() = listOfNotNull(category, subCategory, color)
+        get() = listOfNotNull(category, subCategory, color, releaseDate)
 }

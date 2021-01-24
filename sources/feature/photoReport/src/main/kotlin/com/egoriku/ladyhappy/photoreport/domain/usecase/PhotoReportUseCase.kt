@@ -1,17 +1,17 @@
 package com.egoriku.ladyhappy.photoreport.domain.usecase
 
-import com.egoriku.ladyhappy.extensions.common.toNewsDate
 import com.egoriku.ladyhappy.mozaik.model.MozaikItem
 import com.egoriku.ladyhappy.network.ResultOf
 import com.egoriku.ladyhappy.photoreport.data.entity.PhotoReportEntity
 import com.egoriku.ladyhappy.photoreport.data.repository.PhotoReportRepository
 import com.egoriku.ladyhappy.photoreport.domain.model.PhotoReportModel
+import com.egoriku.ladyhappy.ui.date.ddMMMyyyy
 
 class PhotoReportUseCase(private val photoReportRepository: PhotoReportRepository) {
 
     private val transformToModel: (PhotoReportEntity) -> PhotoReportModel = { entity: PhotoReportEntity ->
         PhotoReportModel(
-                date = entity.date.toNewsDate(),
+                date = entity.date.ddMMMyyyy(),
                 description = entity.description,
                 images = extractPhotos(entity)
         )

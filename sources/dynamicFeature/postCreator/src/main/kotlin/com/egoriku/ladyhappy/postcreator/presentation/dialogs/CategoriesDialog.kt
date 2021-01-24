@@ -5,8 +5,8 @@ import androidx.core.os.bundleOf
 import androidx.fragment.app.setFragmentResult
 import com.egoriku.ladyhappy.extensions.dataBySelectedPosition
 import com.egoriku.ladyhappy.postcreator.domain.dialog.DialogResult
-import com.egoriku.ladyhappy.postcreator.presentation.BUNDLE_KEY
-import com.egoriku.ladyhappy.postcreator.presentation.CHOOSER_KEY
+import com.egoriku.ladyhappy.postcreator.presentation.KEY_CHOOSER_FRAGMENT_RESULT
+import com.egoriku.ladyhappy.postcreator.presentation.KEY_FRAGMENT_RESULT_BUNDLE
 import com.egoriku.ladyhappy.ui.dialog.BaseDialogFragment
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.egoriku.ladyhappy.localization.R as R_localization
@@ -30,7 +30,10 @@ class CategoriesDialog : BaseDialogFragment() {
 
         val checkedItemName = dataBySelectedPosition<String>()
 
-        setFragmentResult(CHOOSER_KEY, bundleOf(BUNDLE_KEY to DialogResult.Category(checkedItemName)))
+        setFragmentResult(
+                KEY_CHOOSER_FRAGMENT_RESULT,
+                bundleOf(KEY_FRAGMENT_RESULT_BUNDLE to DialogResult.Category(checkedItemName))
+        )
     }
 
     companion object {

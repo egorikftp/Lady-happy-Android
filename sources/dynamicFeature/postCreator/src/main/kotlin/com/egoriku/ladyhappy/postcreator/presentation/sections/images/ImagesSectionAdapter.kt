@@ -56,7 +56,9 @@ class ImagesSectionAdapter(
             binding.imagesRecycler.apply {
                 layoutManager = LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
                 adapter = concatAdapter
-                addItemDecoration(VerticalMarginItemDecoration(resources.getDimensionPixelSize(R.dimen.posts_images_margin)))
+                addItemDecoration(
+                        VerticalMarginItemDecoration(resources.getDimensionPixelSize(R.dimen.posts_images_margin))
+                )
             }
         }
 
