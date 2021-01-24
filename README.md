@@ -67,7 +67,7 @@ Structure 🔍
 This project follows multi-module structure: 
 
 <div align="center">
-    <img alt="Icon" src="assets/modules/Lady%20happy%20modules.png" width="700" />
+    <img alt="Icon" src="assets/modules/modules_structure.png" width="700" />
 </div>
 
 App screenshots
