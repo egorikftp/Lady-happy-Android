@@ -4,6 +4,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import com.egoriku.ladyhappy.core.adapter.BaseListAdapter
 import com.egoriku.ladyhappy.core.adapter.BaseViewHolder
+import com.egoriku.ladyhappy.extensions.context
 import com.egoriku.ladyhappy.extensions.inflater
 import com.egoriku.ladyhappy.postcreator.databinding.AdapterItemChooserSectionBinding
 import com.egoriku.ladyhappy.postcreator.domain.model.chooser.ChooserType
@@ -11,22 +12,22 @@ import com.egoriku.ladyhappy.postcreator.domain.model.chooser.ChooserType.Choose
 
 class ChooserSectionAdapter(
         private val chooserItemClick: (chooserState: ChooserType) -> Unit,
-        private val resetItemClick: (chooserState: ChooserType) -> Unit
+        private val resetItemClick: (chooserState: ChooserType) -> Unit,
 ) : BaseListAdapter<ChooserType, ChooserSectionAdapter.VH>(DiffCallback()) {
 
     override fun onCreateViewHolder(
             parent: ViewGroup,
-            viewType: Int
+            viewType: Int,
     ): VH = VH(AdapterItemChooserSectionBinding.inflate(parent.inflater(), parent, false))
 
     override fun onBindViewHolder(
             holder: VH,
             position: Int,
-            model: ChooserType
+            model: ChooserType,
     ) = holder.bind(model)
 
     inner class VH(
-            private val binding: AdapterItemChooserSectionBinding
+            private val binding: AdapterItemChooserSectionBinding,
     ) : BaseViewHolder<ChooserType>(binding.root) {
 
         override fun bind(item: ChooserType) = when (item.state) {
@@ -35,7 +36,7 @@ class ChooserSectionAdapter(
         }
 
         private fun AdapterItemChooserSectionBinding.initial(item: ChooserType) {
-            chooser.hintText = item.chooserHint
+            chooser.hintText = context.getString(item.hintResId)
             chooser.reset()
             chooser.setOnClickListener {
                 chooserItemClick(item)
@@ -43,7 +44,7 @@ class ChooserSectionAdapter(
         }
 
         private fun AdapterItemChooserSectionBinding.selected(item: ChooserType) {
-            chooser.setPrimary(text = item.title, hint = item.chooserHint)
+            chooser.setPrimary(text = item.title, hint = context.getString(item.hintResId))
             chooser.onClearIconClickListener = { resetItemClick(item) }
             chooser.setOnClickListener { chooserItemClick(item) }
         }

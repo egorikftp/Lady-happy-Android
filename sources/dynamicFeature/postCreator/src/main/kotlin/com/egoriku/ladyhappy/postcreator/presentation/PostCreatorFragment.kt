@@ -23,7 +23,7 @@ import com.egoriku.ladyhappy.postcreator.koin.postModule
 import com.egoriku.ladyhappy.postcreator.presentation.dialogs.CategoriesDialog
 import com.egoriku.ladyhappy.postcreator.presentation.dialogs.SubCategoriesDialog
 import com.egoriku.ladyhappy.postcreator.presentation.dialogs.color.ColorDialog
-import com.egoriku.ladyhappy.postcreator.presentation.dialogs.datepicker.ReleaseDatePicker
+import com.egoriku.ladyhappy.postcreator.presentation.dialogs.datepicker.CreationDatePicker
 import com.egoriku.ladyhappy.postcreator.presentation.sections.chooser.ChooserSectionAdapter
 import com.egoriku.ladyhappy.postcreator.presentation.sections.images.ImagesSectionAdapter
 import com.egoriku.ladyhappy.postcreator.presentation.sections.input.InputSectionAdapter
@@ -35,6 +35,8 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.context.loadKoinModules
 import org.koin.core.context.unloadKoinModules
 import kotlin.properties.Delegates
+
+import com.egoriku.ladyhappy.localization.R as R_localization
 
 const val KEY_CHOOSER_FRAGMENT_RESULT = "chooserKey"
 const val KEY_FRAGMENT_RESULT_BUNDLE = "bundleKey"
@@ -114,7 +116,7 @@ class PostCreatorFragment : ScopeFragment(R.layout.fragment_post_creator) {
                     is UploadEvents.Error -> {
                         binding.parentProgress.gone()
                         binding.contentLoadingProgressBar.hide()
-                        toast("Произошла ошибка во время публикации")
+                        toast(getString(R_localization.string.post_creator_upload_error))
                     }
                     is UploadEvents.InProgress -> {
                         binding.parentProgress.visible()
@@ -122,7 +124,7 @@ class PostCreatorFragment : ScopeFragment(R.layout.fragment_post_creator) {
                     }
                     is UploadEvents.Success -> {
                         binding.contentLoadingProgressBar.hide()
-                        toast("Запись успешно опубликована")
+                        toast(getString(R_localization.string.post_creator_upload_success))
                         router.back()
                     }
                 }
@@ -139,7 +141,7 @@ class PostCreatorFragment : ScopeFragment(R.layout.fragment_post_creator) {
                 is DialogResult.Category -> viewModel.setCategory(dialogResult.category)
                 is DialogResult.SubCategory -> viewModel.setSubCategory(dialogResult.subCategory)
                 is DialogResult.Color -> viewModel.setColor(dialogResult.colorId)
-                is DialogResult.ReleaseDate -> viewModel.setDate(dialogResult.dateInMilliseconds)
+                is DialogResult.CreationDate -> viewModel.setDate(dialogResult.dateInMilliseconds)
             }
         }
     }
@@ -156,8 +158,8 @@ class PostCreatorFragment : ScopeFragment(R.layout.fragment_post_creator) {
         is ChooserType.Color -> {
             ColorDialog().show(childFragmentManager, null)
         }
-        is ChooserType.ReleaseDate -> {
-            ReleaseDatePicker().getDatePicker().show(childFragmentManager, null)
+        is ChooserType.CreationDate -> {
+            CreationDatePicker().getDatePicker().show(childFragmentManager, null)
         }
     }
 

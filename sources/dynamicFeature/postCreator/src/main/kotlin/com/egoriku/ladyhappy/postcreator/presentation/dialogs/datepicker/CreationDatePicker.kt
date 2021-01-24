@@ -10,7 +10,7 @@ import com.google.android.material.datepicker.CalendarConstraints
 import com.google.android.material.datepicker.MaterialDatePicker
 import java.util.*
 
-class ReleaseDatePicker {
+class CreationDatePicker {
 
     private val startDate: Calendar = Calendar.getInstance(TimeZone.getTimeZone(UTC)).apply {
         set(Calendar.YEAR, 2015)
@@ -33,7 +33,7 @@ class ReleaseDatePicker {
         materialDatePicker.addOnPositiveButtonClickListener {
             materialDatePicker.setFragmentResult(
                     KEY_CHOOSER_FRAGMENT_RESULT,
-                    bundleOf(KEY_FRAGMENT_RESULT_BUNDLE to DialogResult.ReleaseDate(it))
+                    bundleOf(KEY_FRAGMENT_RESULT_BUNDLE to DialogResult.CreationDate(it))
             )
         }
 

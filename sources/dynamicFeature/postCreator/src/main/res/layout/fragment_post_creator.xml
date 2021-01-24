@@ -35,7 +35,7 @@
         android:layout_marginTop="@dimen/material_padding_16"
         android:layout_marginEnd="@dimen/material_padding_16"
         android:layout_marginBottom="@dimen/material_padding_16"
-        android:text="Опубликовать запись"
+        android:text="@string/post_creator_publish_button_text"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

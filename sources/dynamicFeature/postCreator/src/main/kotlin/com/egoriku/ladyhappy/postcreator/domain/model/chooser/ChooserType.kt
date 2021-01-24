@@ -1,7 +1,9 @@
 package com.egoriku.ladyhappy.postcreator.domain.model.chooser
 
+import androidx.annotation.StringRes
 import com.egoriku.ladyhappy.extensions.common.Constants.EMPTY
 import java.util.*
+import com.egoriku.ladyhappy.localization.R as R_localization
 
 sealed class ChooserType {
 
@@ -11,19 +13,21 @@ sealed class ChooserType {
     }
 
     abstract val state: ChooserState
-    abstract val chooserHint: String
+    abstract val hintResId: Int
     abstract val title: String
 
     data class Category(
             override val title: String = EMPTY,
-            override val chooserHint: String = "Категория",
+            @StringRes
+            override val hintResId: Int = R_localization.string.post_creator_chooser_hint_categories,
             override val state: ChooserState,
             val categoryId: Int = -1,
     ) : ChooserType()
 
     data class SubCategory(
             override val title: String = EMPTY,
-            override val chooserHint: String = "Подкатегория",
+            @StringRes
+            override val hintResId: Int = R_localization.string.post_creator_chooser_hint_subcategories,
             override val state: ChooserState,
             val subCategoryId: Int = -1,
             val categoryId: Int = -1,
@@ -31,15 +35,17 @@ sealed class ChooserType {
 
     data class Color(
             override val title: String = EMPTY,
-            override val chooserHint: String = "Цвет",
+            @StringRes
+            override val hintResId: Int = R_localization.string.post_creator_chooser_hint_color,
             override val state: ChooserState,
             val colorId: Int = -1,
     ) : ChooserType()
 
-    data class ReleaseDate(
+    data class CreationDate(
             override val title: String = EMPTY,
-            override val chooserHint: String = "Дата создания",
+            @StringRes
+            override val hintResId: Int = R_localization.string.post_creator_chooser_hint_creation_date,
             override val state: ChooserState,
-            val date: Date? = null
+            val date: Date? = null,
     ) : ChooserType()
 }

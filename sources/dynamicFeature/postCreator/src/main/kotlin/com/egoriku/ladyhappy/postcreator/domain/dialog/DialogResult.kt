@@ -15,5 +15,5 @@ sealed class DialogResult : Parcelable {
     data class Color(val colorId: Int) : DialogResult()
 
     @Parcelize
-    data class ReleaseDate(val dateInMilliseconds: Long) : DialogResult()
+    data class CreationDate(val dateInMilliseconds: Long) : DialogResult()
 }

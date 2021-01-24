@@ -126,7 +126,7 @@ class PostViewModel(
         val date = Date(dateInMillis)
 
         _screenState.value = _screenState.value.copy(
-                releaseDate = ChooserType.ReleaseDate(
+                creationDate = ChooserType.CreationDate(
                         date = date,
                         title = date.ddMMMyyyy(),
                         state = ChooserState.Selected
@@ -153,8 +153,8 @@ class PostViewModel(
             is ChooserType.Color -> {
                 _screenState.value.copy(color = ChooserType.Color(state = ChooserState.Initial))
             }
-            is ChooserType.ReleaseDate -> {
-                _screenState.value.copy(releaseDate = ChooserType.ReleaseDate(state = ChooserState.Initial))
+            is ChooserType.CreationDate -> {
+                _screenState.value.copy(creationDate = ChooserType.CreationDate(state = ChooserState.Initial))
             }
         }
     }
@@ -165,13 +165,15 @@ class PostViewModel(
 
             val state = _screenState.value
             val categoryId = state.category.categoryId
-            val releaseDate = requireNotNull(state.releaseDate.date)
+            val subCategoryId = requireNotNull(state.subCategory).subCategoryId
+            val colorId = state.color.colorId
+            val creationDate = requireNotNull(state.creationDate.date)
 
             val images = uploadImagesUseCase(
-                    UploadImagesParams(
+                    parameters = UploadImagesParams(
                             images = state.imagesSection.images,
                             category = categoryId,
-                            year = releaseDate.year()
+                            year = creationDate.year()
 
                     )
             ).successOr(emptyList())
@@ -182,9 +184,6 @@ class PostViewModel(
                 return@launch
             }
 
-            val subCategoryId = requireNotNull(state.subCategory).subCategoryId
-            val colorId = state.color.colorId
-
             val resultOf = publishPostUseCase(
                     parameters = UploadEntity(
                             images = images,
@@ -192,7 +191,7 @@ class PostViewModel(
                             categoryId = categoryId,
                             subCategoryId = subCategoryId,
                             colorId = colorId,
-                            date = Timestamp(releaseDate)
+                            date = Timestamp(creationDate)
                     )
             )
 
@@ -212,7 +211,7 @@ class PostViewModel(
             state.category.state == ChooserState.Initial -> false
             state.subCategory == null || state.subCategory.state == ChooserState.Initial -> false
             state.color.state == ChooserState.Initial -> false
-            state.releaseDate.date == null -> false
+            state.creationDate.date == null -> false
             else -> true
         }
     }

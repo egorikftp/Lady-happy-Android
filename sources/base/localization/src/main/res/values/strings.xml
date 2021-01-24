@@ -98,4 +98,13 @@
     <string name="used_libraries_follow_github">Follow us on GitHub!</string>
     <string name="used_libraries_error_loading">Open-source libraries not found</string>
     <string name="deeplink_unknown_screen">Unknown screen</string>
+    <string name="post_creator_chooser_hint_categories">Category</string>
+    <string name="post_creator_chooser_hint_subcategories">Subcategory</string>
+    <string name="post_creator_chooser_hint_color">Color</string>
+    <string name="post_creator_chooser_hint_creation_date">Creation date</string>
+    <string name="post_creator_upload_error">Error occured during publication</string>
+    <string name="post_creator_upload_success">Post successfully published</string>
+    <string name="post_creator_input_hint">Post caption</string>
+    <string name="post_creator_images_section_title">Photos</string>
+    <string name="post_creator_publish_button_text">Publish post</string>
 </resources>

@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/material_padding_16"
         android:layout_marginTop="@dimen/material_padding_16"
-        android:text="Фотографии"
+        android:text="@string/post_creator_images_section_title"
         android:textColor="?attr/colorOnSurface"
         android:textSize="15sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -42,7 +42,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/icon"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/icon"
-        tools:text="0 из 9" />
+        tools:text="0 from 9" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/imagesRecycler"
