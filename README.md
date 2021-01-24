@@ -33,18 +33,26 @@ Built With 🛠
 -------
 - [Kotlin](https://kotlinlang.org/) - First class and official programming language for Android development.
 - [Coroutines](https://kotlinlang.org/docs/reference/coroutines-overview.html) - Kotlin's way of way of writing asynchronous, non-blocking code
-- [Android Architecture Components](https://developer.android.com/topic/libraries/architecture) - Collection of libraries that help you design robust, testable, and maintainable apps
   - [StateFlow](https://developer.android.com/kotlin/flow/stateflow-and-sharedflow#stateflow) - notify views when the underlying data changes
   - [SharedFlow](https://developer.android.com/kotlin/flow/stateflow-and-sharedflow#sharedflow) - notify multiple subscribers that data changes 
-  - [ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel) - Stores UI-related data that isn't destroyed on UI changes
-- [Material Components for Android](https://github.com/material-components/material-components-android) - Modular and customizable Material Design UI components for Android
+
+- [Android Architecture Components](https://developer.android.com/topic/libraries/architecture) - Collection of libraries that help you design robust, testable, and maintainable apps
+  - [View Binding](https://developer.android.com/topic/libraries/view-binding) - Allows you to more easily write code that interacts with views
+  - [ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel) - Manage UI-related data in a lifecycle conscious way
+  - [Saved State](https://developer.android.com/topic/libraries/architecture/viewmodel-savedstate) - Prevent data lost from system-initiated process death
+
+- [Detekt](https://github.com/detekt/detekt) - static code analysis tool for the Kotlin programming language
 - [Koin](https://github.com/InsertKoinIO/) - Dependency Injection Framework
-- [Firebase Analytics](https://firebase.google.com/docs/analytics) - Free app measurement solution that provides insight on app usage and user engagement
-- [Firebase Cloud Functions](https://firebase.google.com/docs/functions) - Custom triggers for make some changes in Firestore database
-- [Firebase Crashlytics](https://firebase.google.com/docs/crashlytics) - Lightweight, realtime crash reporter that helps you track, prioritize, and fix stability issues that erode your app quality
-- [Firebase Firestore](https://firebase.google.com/docs/firestore) - Realtime data storage
-- [Firebase Performance](https://firebase.google.com/docs/perf-mon) - Service that helps to gain insight into the performance characteristics app
-- [Firebase Storage](https://firebase.google.com/docs/storage) - Storage for images and files
+- [Material Components for Android](https://github.com/material-components/material-components-android) - Modular and customizable Material Design UI components for Android
+
+- Firebase libraries
+  - [Firebase Analytics](https://firebase.google.com/docs/analytics) - Free app measurement solution that provides insight on app usage and user engagement
+  - [Firebase Cloud Functions](https://firebase.google.com/docs/functions) - Custom triggers for make some changes in Firestore database
+  - [Firebase Crashlytics](https://firebase.google.com/docs/crashlytics) - Lightweight, realtime crash reporter that helps you track, prioritize, and fix stability issues that erode your app quality
+  - [Firebase Firestore](https://firebase.google.com/docs/firestore) - Realtime data storage
+  - [Firebase Performance](https://firebase.google.com/docs/perf-mon) - Service that helps to gain insight into the performance characteristics app
+  - [Firebase Storage](https://firebase.google.com/docs/storage) - Storage for images and files
+
 
 Try without building sources
 -------
