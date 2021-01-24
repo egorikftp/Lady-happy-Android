@@ -2,10 +2,6 @@
 <resources>
     <string name="application_name">Дамское счастье</string>
 
-    <!-- Common -->
-    <string name="ok">Да</string>
-    <string name="cancel">Отмена</string>
-
     <string name="adapter_item_about_us">О нас</string>
     <string name="adapter_item_header_quotes">Что нас вдохновляет</string>
 
@@ -109,4 +105,5 @@
     <string name="post_creator_input_hint">Подпись под постом</string>
     <string name="post_creator_images_section_title">Фотографии</string>
     <string name="post_creator_publish_button_text">Опубликовать запись</string>
+    <string name="post_creator_screen_title">Создание записи</string>
 </resources>

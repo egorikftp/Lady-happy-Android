@@ -14,7 +14,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:navigationIcon="@drawable/ic_close"
-        app:title="Создание записи" />
+        app:title="@string/post_creator_screen_title" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/postRecycler"

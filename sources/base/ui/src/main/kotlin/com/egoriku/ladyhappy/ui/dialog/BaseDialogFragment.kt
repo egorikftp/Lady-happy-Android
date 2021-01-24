@@ -5,7 +5,6 @@ import android.content.DialogInterface
 import android.os.Bundle
 import android.view.KeyEvent
 import androidx.appcompat.app.AppCompatDialogFragment
-import com.egoriku.ladyhappy.ui.R
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 abstract class BaseDialogFragment : AppCompatDialogFragment(),
@@ -19,8 +18,8 @@ abstract class BaseDialogFragment : AppCompatDialogFragment(),
                 .setOnKeyListener { _, keyCode, event ->
                     return@setOnKeyListener keyCode == KeyEvent.KEYCODE_BACK && event.action == KeyEvent.ACTION_UP
                 }
-                .setPositiveButton(R.string.ok, this)
-                .setNegativeButton(R.string.cancel, this)
+                .setPositiveButton(android.R.string.ok, this)
+                .setNegativeButton(android.R.string.cancel, this)
                 .create()
     }
 
