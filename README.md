@@ -24,7 +24,7 @@ This project brings to the table set of best practices, tools, and solutions:
 * [Android Jetpack](https://developer.android.com/jetpack)
 * Single-activity architecture
 * CI/CD ([AppCenter](https://appcenter.ms/users/egorikftp/apps/Lady-Happy-Beta))
-* Dependency Injection ([Koin](https://github.com/InsertKoinIO/com.egoriku.landing.koin))
+* Dependency Injection ([Koin](https://github.com/InsertKoinIO/))
 * Material Design
 * Dark Theme
 
