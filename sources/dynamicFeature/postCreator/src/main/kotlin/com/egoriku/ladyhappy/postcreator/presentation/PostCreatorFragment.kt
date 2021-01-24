@@ -9,11 +9,7 @@ import androidx.recyclerview.widget.ConcatAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.egoriku.ladyhappy.core.IRouter
-import com.egoriku.ladyhappy.extensions.common.Constants.EMPTY
-import com.egoriku.ladyhappy.extensions.gone
-import com.egoriku.ladyhappy.extensions.setFragmentResultListenerWrapper
-import com.egoriku.ladyhappy.extensions.toast
-import com.egoriku.ladyhappy.extensions.visible
+import com.egoriku.ladyhappy.extensions.*
 import com.egoriku.ladyhappy.postcreator.R
 import com.egoriku.ladyhappy.postcreator.databinding.FragmentPostCreatorBinding
 import com.egoriku.ladyhappy.postcreator.domain.dialog.DialogResult
@@ -82,10 +78,7 @@ class PostCreatorFragment : ScopeFragment(R.layout.fragment_post_creator) {
                 }
         )
 
-        inputSectionAdapter = InputSectionAdapter(
-                onTextChanges = { viewModel.setTitle(it) },
-                onRemoveText = { viewModel.setTitle(EMPTY) }
-        )
+        inputSectionAdapter = InputSectionAdapter { viewModel.setTitle(it) }
 
         imagesSectionAdapter = ImagesSectionAdapter(
                 onChooseImage = { imageChooserContract.launch("image/*") },
@@ -180,6 +173,11 @@ class PostCreatorFragment : ScopeFragment(R.layout.fragment_post_creator) {
         postPublishButton.setOnClickListener {
             viewModel.publishPost()
         }
+    }
+
+    override fun onStop() {
+        super.onStop()
+        hideSoftKeyboard()
     }
 
     override fun onDestroy() {

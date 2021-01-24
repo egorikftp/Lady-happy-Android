@@ -9,20 +9,14 @@ import com.egoriku.ladyhappy.postcreator.databinding.AdapterItemInputBinding
 
 class InputSectionAdapter(
         private val onTextChanges: (title: String) -> Unit,
-        private val onRemoveText: () -> Unit,
 ) : RecyclerView.Adapter<InputSectionAdapter.VH>() {
 
     var currentText: String = EMPTY
-        set(value) {
-            if (field != value) {
-                field = value
-                notifyDataSetChanged()
-            }
-        }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VH {
-        return VH(AdapterItemInputBinding.inflate(parent.inflater(), parent, false))
-    }
+    override fun onCreateViewHolder(
+            parent: ViewGroup,
+            viewType: Int,
+    ) = VH(AdapterItemInputBinding.inflate(parent.inflater(), parent, false))
 
     override fun onBindViewHolder(holder: VH, position: Int) = holder.bind(currentText)
 
@@ -34,6 +28,7 @@ class InputSectionAdapter(
 
         private val textWatcher = object : SimpleTextWatcher() {
             override fun onTextChanged(charSequence: CharSequence?, start: Int, before: Int, count: Int) {
+                currentText = charSequence.toString()
                 onTextChanges(charSequence.toString())
             }
         }
@@ -42,7 +37,7 @@ class InputSectionAdapter(
             with(binding) {
                 postTitleInput.editText?.addTextChangedListener(textWatcher)
                 postTitleInput.setEndIconOnClickListener {
-                    onRemoveText()
+                    postTitleInput.editText?.setText(EMPTY)
                 }
             }
         }
@@ -54,9 +49,6 @@ class InputSectionAdapter(
                 editText.removeTextChangedListener(textWatcher)
                 editText.setText(text)
                 editText.addTextChangedListener(textWatcher)
-
-                editText.requestFocus()
-                editText.setSelection(text.length)
             }
         }
     }
