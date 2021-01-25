@@ -32,7 +32,7 @@ class ColorDialog : BaseDialogFragment() {
 
     override fun onBuildDialog(
             builder: MaterialAlertDialogBuilder,
-            savedInstanceState: Bundle?
+            savedInstanceState: Bundle?,
     ): MaterialAlertDialogBuilder {
         val recyclerView = RecyclerView(requireContext()).apply {
             layoutManager = LinearLayoutManager(context)
@@ -60,13 +60,17 @@ class ColorDialog : BaseDialogFragment() {
 
     override fun onPositiveButtonClick() {
         val selectionTracker = selectionTracker ?: throw Exception("Selection tracker null")
-        val selectedPosition = selectionTracker.selection.iterator().next().toInt()
-        val colorModel: ColorModel = colorAdapter.currentList[selectedPosition]
+        val iterator = selectionTracker.selection.iterator()
 
-         setFragmentResult(
-                 KEY_CHOOSER_FRAGMENT_RESULT,
-                 bundleOf(KEY_FRAGMENT_RESULT_BUNDLE to DialogResult.Color(colorId = colorModel.colorId))
-         )
+        if (iterator.hasNext()) {
+            val selectedPosition = iterator.next().toInt()
+            val colorModel: ColorModel = colorAdapter.currentList[selectedPosition]
+
+            setFragmentResult(
+                    KEY_CHOOSER_FRAGMENT_RESULT,
+                    bundleOf(KEY_FRAGMENT_RESULT_BUNDLE to DialogResult.Color(colorId = colorModel.colorId))
+            )
+        }
     }
 
     override fun onSaveInstanceState(outState: Bundle) {

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animated-selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/checked"
+        android:drawable="@drawable/ic_toggle_checked"
+        android:state_activated="true" />
+
+    <item
+        android:id="@+id/unchecked"
+        android:drawable="@drawable/ic_toggle_unchecked" />
+
+    <transition
+        android:drawable="@drawable/avd_toggle_unchecked_checked"
+        android:fromId="@id/unchecked"
+        android:toId="@id/checked" />
+
+    <transition
+        android:drawable="@drawable/avd_toggle_checked_unchecked"
+        android:fromId="@+id/checked"
+        android:toId="@+id/unchecked" />
+
+</animated-selector>

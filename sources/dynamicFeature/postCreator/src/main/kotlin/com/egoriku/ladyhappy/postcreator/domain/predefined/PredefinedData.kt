@@ -252,7 +252,7 @@ object PredefinedData {
             ColorModel(colorId = 1, name = "Дрозд (темно-бежевый)", colorHex = "#78563D"),
             ColorModel(colorId = 2, name = "Deep Taupe", colorHex = "#5F4B43"),
             ColorModel(colorId = 3, name = "Темный бордо", colorHex = "#3A0A12"),
-            ColorModel(colorId = 4, name = "Морская волна", colorHex = "#092231"),
+            ColorModel(colorId = 4, name = "Морская волна", colorHex = "#154159"),
             ColorModel(colorId = 5, name = "Шоколад", colorHex = "#1D0A0E"),
             ColorModel(colorId = 6, name = "Цинк", colorHex = "#5C565D"),
             ColorModel(colorId = 7, name = "Бордо", colorHex = "#57090E"),
@@ -272,7 +272,7 @@ object PredefinedData {
             ColorModel(colorId = 21, name = "Бледно-розовый", colorHex = "#C07783"),
             ColorModel(colorId = 22, name = "Античная роза", colorHex = "#66474F"),
             ColorModel(colorId = 23, name = "Дробленая ягода", colorHex = "#55263C"),
-            ColorModel(colorId = 24, name = "Изумруд", colorHex = "#172427")
+            ColorModel(colorId = 24, name = "Изумруд", colorHex = "#215435")
     )
 
     fun getCategoriesNames() = ArrayList(

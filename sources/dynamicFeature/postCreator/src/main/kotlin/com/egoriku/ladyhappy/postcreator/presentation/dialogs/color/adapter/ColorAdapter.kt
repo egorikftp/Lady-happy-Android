@@ -1,6 +1,5 @@
 package com.egoriku.ladyhappy.postcreator.presentation.dialogs.color.adapter
 
-import android.graphics.drawable.GradientDrawable
 import android.view.MotionEvent
 import android.view.ViewGroup
 import androidx.core.graphics.toColorInt
@@ -41,11 +40,10 @@ class ColorAdapter : ListAdapter<ColorModel, ColorAdapter.VH>(DiffCallback()) {
 
         private fun AdapterItemColorBinding.bind(colorModel: ColorModel, isSelected: Boolean) {
             colorName.text = colorModel.name
-            colorImage.background = (colorImage.background as GradientDrawable).apply {
-                setColor(colorModel.colorHex.toColorInt())
-            }
+            colorImage.setBackgroundColor(colorModel.colorHex.toColorInt())
 
             itemView.isActivated = isSelected
+            binding.checkBox.isActivated = isSelected
         }
 
         fun getItemDetails(): ItemDetailsLookup.ItemDetails<Long> =

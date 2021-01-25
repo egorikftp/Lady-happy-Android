@@ -26,8 +26,6 @@ class SubCategoriesDialog : BaseDialogFragment() {
             }
 
     override fun onPositiveButtonClick() {
-        super.onPositiveButtonClick()
-
         val checkedItemName = dataBySelectedPosition<String>()
 
         setFragmentResult(
