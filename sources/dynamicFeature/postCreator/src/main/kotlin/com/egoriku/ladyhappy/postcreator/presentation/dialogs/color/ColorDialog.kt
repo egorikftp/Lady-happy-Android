@@ -2,6 +2,7 @@ package com.egoriku.ladyhappy.postcreator.presentation.dialogs.color
 
 import android.os.Bundle
 import androidx.core.os.bundleOf
+import androidx.core.view.updatePadding
 import androidx.fragment.app.setFragmentResult
 import androidx.recyclerview.selection.SelectionPredicates
 import androidx.recyclerview.selection.SelectionTracker
@@ -11,6 +12,8 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.DividerItemDecoration.VERTICAL
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.egoriku.ladyhappy.extensions.getDimen
+import com.egoriku.ladyhappy.postcreator.R
 import com.egoriku.ladyhappy.postcreator.domain.dialog.DialogResult
 import com.egoriku.ladyhappy.postcreator.domain.predefined.ColorModel
 import com.egoriku.ladyhappy.postcreator.domain.predefined.PredefinedData
@@ -38,6 +41,7 @@ class ColorDialog : BaseDialogFragment() {
             layoutManager = LinearLayoutManager(context)
             adapter = colorAdapter
             addItemDecoration(DividerItemDecoration(context, VERTICAL))
+            updatePadding(top = getDimen(R.dimen.color_dialog_padding))
         }
 
         selectionTracker = SelectionTracker.Builder(
