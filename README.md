@@ -24,7 +24,7 @@ This project brings to the table set of best practices, tools, and solutions:
 * [Android Jetpack](https://developer.android.com/jetpack)
 * Single-activity architecture
 * CI/CD ([AppCenter](https://appcenter.ms/users/egorikftp/apps/Lady-Happy-Beta))
-* Dependency Injection ([Koin](https://github.com/InsertKoinIO/com.egoriku.landing.koin))
+* Dependency Injection ([Koin](https://github.com/InsertKoinIO/))
 * Material Design
 * Dark Theme
 
@@ -33,15 +33,28 @@ Built With 🛠
 -------
 - [Kotlin](https://kotlinlang.org/) - First class and official programming language for Android development.
 - [Coroutines](https://kotlinlang.org/docs/reference/coroutines-overview.html) - Kotlin's way of way of writing asynchronous, non-blocking code
-- [Android Architecture Components](https://developer.android.com/topic/libraries/architecture) - Collection of libraries that help you design robust, testable, and maintainable apps
-  - [LiveData](https://developer.android.com/topic/libraries/architecture/livedata) - Data objects that notify views when the underlying data changes
-  - [ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel) - Stores UI-related data that isn't destroyed on UI changes
-- [Material Components for Android](https://github.com/material-components/material-components-android) - Modular and customizable Material Design UI components for Android
-- [Koin](https://github.com/InsertKoinIO/com.egoriku.landing.koin) - Dependency Injection Framework
-- [Google Analytics](https://firebase.google.com/docs/analytics) - Free app measurement solution that provides insight on app usage and user engagement
-- [Firebase Crashlytics](https://firebase.google.com/docs/analytics) - Lightweight, realtime crash reporter that helps you track, prioritize, and fix stability issues that erode your app quality
+  - [StateFlow](https://developer.android.com/kotlin/flow/stateflow-and-sharedflow#stateflow) - notify views when the underlying data changes
+  - [SharedFlow](https://developer.android.com/kotlin/flow/stateflow-and-sharedflow#sharedflow) - notify multiple subscribers that data changes 
 
-Download
+- [Android Architecture Components](https://developer.android.com/topic/libraries/architecture) - Collection of libraries that help you design robust, testable, and maintainable apps
+  - [View Binding](https://developer.android.com/topic/libraries/view-binding) - Allows you to more easily write code that interacts with views
+  - [ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel) - Manage UI-related data in a lifecycle conscious way
+  - [Saved State](https://developer.android.com/topic/libraries/architecture/viewmodel-savedstate) - Prevent data lost from system-initiated process death
+
+- [Detekt](https://github.com/detekt/detekt) - static code analysis tool for the Kotlin programming language
+- [Koin](https://github.com/InsertKoinIO/) - Dependency Injection Framework
+- [Material Components for Android](https://github.com/material-components/material-components-android) - Modular and customizable Material Design UI components for Android
+
+- Firebase libraries
+  - [Firebase Analytics](https://firebase.google.com/docs/analytics) - Free app measurement solution that provides insight on app usage and user engagement
+  - [Firebase Cloud Functions](https://firebase.google.com/docs/functions) - Custom triggers for make some changes in Firestore database
+  - [Firebase Crashlytics](https://firebase.google.com/docs/crashlytics) - Lightweight, realtime crash reporter that helps you track, prioritize, and fix stability issues that erode your app quality
+  - [Firebase Firestore](https://firebase.google.com/docs/firestore) - Realtime data storage
+  - [Firebase Performance](https://firebase.google.com/docs/perf-mon) - Service that helps to gain insight into the performance characteristics app
+  - [Firebase Storage](https://firebase.google.com/docs/storage) - Storage for images and files
+
+
+Try without building sources
 -------
 <a href='https://play.google.com/store/apps/details?id=com.egoriku.ladyhappy'><img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png' width="200"/></a>
 
@@ -52,6 +65,11 @@ Future plans
 - Allow to try Dynamic delivery with demo credentials
 
 Other things please request using issues
+
+How to build
+-------
+
+//TODO :)
 
 Find this repository useful? :heart:
 -------
@@ -64,19 +82,19 @@ Structure 🔍
 This project follows multi-module structure: 
 
 <div align="center">
-    <img alt="Icon" src="assets/modules/Lady%20happy%20modules.png" width="700" />
+    <img alt="Icon" src="assets/modules/modules_structure.png" width="700" />
 </div>
 
 App screenshots
 -------
 
 <img alt="Icon" src="assets/images/Screenshot_20200831-220313.png" width="300" /><img alt="Icon" src="assets/images/Screenshot_20200831-220329.png" width="300" /><img alt="Icon" src="assets/images/Screenshot_20200831-220337.png" width="300" /><img alt="Icon" src="assets/images/Screenshot_20200831-220344.png" width="300" />
-<img alt="Icon" src="assets/images/Screenshot_20200831-220357.png" width="300" />
+<img alt="Icon" src="assets/images/Screenshot_20200831-220357.png" width="300" /><img alt="Icon" src="assets/images/Dynamic_feature.png" width="300" />
 
 License
 -------
 
-     Copyright 2020 Yahor Urbanovich
+     Copyright 2021 Yahor Urbanovich
 
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.

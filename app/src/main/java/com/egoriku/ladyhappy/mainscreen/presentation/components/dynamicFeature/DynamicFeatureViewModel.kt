@@ -1,8 +1,6 @@
 package com.egoriku.ladyhappy.mainscreen.presentation.components.dynamicFeature
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import com.egoriku.ladyhappy.core.constant.DYNAMIC_FEATURE_POST_CREATOR
 import com.egoriku.ladyhappy.extensions.logD
@@ -10,8 +8,6 @@ import com.google.android.play.core.ktx.*
 import com.google.android.play.core.splitinstall.SplitInstallException
 import com.google.android.play.core.splitinstall.SplitInstallManager
 import com.google.android.play.core.splitinstall.model.SplitInstallSessionStatus
-import kotlinx.coroutines.channels.BroadcastChannel
-import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 
@@ -19,16 +15,14 @@ class DynamicFeatureViewModel(
         private val splitInstallManager: SplitInstallManager
 ) : ViewModel() {
 
-    val postCreatorModuleStatus = getStatusLiveDataForModule(DYNAMIC_FEATURE_POST_CREATOR)
+    private val _events = MutableSharedFlow<DynamicFeatureEvent>()
+    val events: SharedFlow<DynamicFeatureEvent> = _events
 
-    private val _events: BroadcastChannel<DynamicFeatureEvent> = BroadcastChannel(Channel.BUFFERED)
-    val events: Flow<DynamicFeatureEvent> = _events.asFlow()
+    val postCreatorModuleStatus: StateFlow<ModuleStatus> = getStatusFlowForModule(DYNAMIC_FEATURE_POST_CREATOR)
 
-    private fun getStatusLiveDataForModule(moduleName: String): LiveData<ModuleStatus> {
+    private fun getStatusFlowForModule(moduleName: String): StateFlow<ModuleStatus> {
         return splitInstallManager.requestProgressFlow()
-                .filter { state ->
-                    state.moduleNames.contains(moduleName)
-                }
+                .filter { state -> state.moduleNames.contains(moduleName) }
                 .map { state ->
                     logD("STATE $state")
 
@@ -40,7 +34,9 @@ class DynamicFeatureViewModel(
                         )
                         SplitInstallSessionStatus.DOWNLOADED -> ModuleStatus.Installed
                         SplitInstallSessionStatus.FAILED -> {
-                            _events.send(DynamicFeatureEvent.InstallErrorEvent(state))
+                            viewModelScope.launch {
+                                _events.emit(DynamicFeatureEvent.InstallErrorEvent(state))
+                            }
                             ModuleStatus.Unavailable
                         }
                         SplitInstallSessionStatus.INSTALLED -> ModuleStatus.Installed
@@ -53,24 +49,26 @@ class DynamicFeatureViewModel(
                         else -> ModuleStatus.Unavailable
                     }
                 }.catch {
-                    _events.send(DynamicFeatureEvent.ToastEvent(
-                            "Something went wrong. No install progress will be reported."
-                    ))
+                    viewModelScope.launch {
+                        _events.emit(DynamicFeatureEvent.ToastEvent(
+                                "Something went wrong. No install progress will be reported."
+                        ))
+                    }
                     emit(ModuleStatus.Unavailable)
-                }.asLiveData()
+                }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(), ModuleStatus.None)
     }
 
     fun invokePostCreator() {
         tryToOpenDynamicFeature(
                 moduleName = DYNAMIC_FEATURE_POST_CREATOR,
-                fragmentName = "com.egoriku.ladyhappy.postcreator.presentation.fragment.PostCreatorFragment"
+                fragmentName = "com.egoriku.ladyhappy.postcreator.presentation.PostCreatorFragment"
         )
     }
 
     private fun tryToOpenDynamicFeature(moduleName: String, fragmentName: String) {
         if (splitInstallManager.installedModules.contains(moduleName)) {
             viewModelScope.launch {
-                _events.send(DynamicFeatureEvent.NavigationEvent(fragmentName))
+                _events.emit(DynamicFeatureEvent.NavigationEvent(fragmentName))
             }
         } else {
             val status = when (moduleName) {
@@ -79,7 +77,7 @@ class DynamicFeatureViewModel(
             }
             if (status is ModuleStatus.NeedsConfirmation) {
                 viewModelScope.launch {
-                    _events.send(DynamicFeatureEvent.InstallConfirmationEvent(status.state))
+                    _events.emit(DynamicFeatureEvent.InstallConfirmationEvent(status.state))
                 }
             } else {
                 requestModuleInstallation(moduleName)
@@ -92,7 +90,7 @@ class DynamicFeatureViewModel(
             try {
                 splitInstallManager.requestInstall(listOf(moduleName))
             } catch (e: SplitInstallException) {
-                _events.send(DynamicFeatureEvent.ToastEvent("Failed starting installation of $moduleName"))
+                _events.emit(DynamicFeatureEvent.ToastEvent("Failed starting installation of $moduleName"))
             }
         }
     }

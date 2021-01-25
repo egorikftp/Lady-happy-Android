@@ -34,6 +34,8 @@ withLibraries(
         Libs.constraintLayout,
         Libs.core,
         Libs.coroutinesAndroid,
+        Libs.coroutinesPlayServices,
+        Libs.firebaseFirestore,
         Libs.firebaseStorage,
         Libs.fragment,
         Libs.imageCompressor,

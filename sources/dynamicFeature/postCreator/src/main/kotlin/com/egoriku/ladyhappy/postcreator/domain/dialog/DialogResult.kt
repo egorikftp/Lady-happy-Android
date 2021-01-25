@@ -12,5 +12,8 @@ sealed class DialogResult : Parcelable {
     data class SubCategory(val subCategory: String) : DialogResult()
 
     @Parcelize
-    data class Color(val color: String) : DialogResult()
+    data class Color(val colorId: Int) : DialogResult()
+
+    @Parcelize
+    data class CreationDate(val dateInMilliseconds: Long) : DialogResult()
 }

@@ -1,1 +1,1 @@
--keep class com.egoriku.ladyhappy.postcreator.presentation.fragment.PostCreatorFragment
+-keep class com.egoriku.ladyhappy.postcreator.presentation.PostCreatorFragment

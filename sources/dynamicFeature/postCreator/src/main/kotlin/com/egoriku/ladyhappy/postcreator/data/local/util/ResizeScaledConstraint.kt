@@ -6,6 +6,7 @@ import id.zelory.compressor.constraint.Constraint
 import id.zelory.compressor.loadBitmap
 import id.zelory.compressor.overWrite
 import java.io.File
+import kotlin.math.roundToInt
 
 class ResizeScaledConstraint(private val width: Int) : Constraint {
 
@@ -17,7 +18,7 @@ class ResizeScaledConstraint(private val width: Int) : Constraint {
         val loadBitmap = loadBitmap(imageFile)
 
         val proportion = loadBitmap.width.toFloat() / loadBitmap.height.toFloat()
-        val newHeight = (width / proportion).toInt()
+        val newHeight = (width / proportion).roundToInt()
 
         isResolved = true
 

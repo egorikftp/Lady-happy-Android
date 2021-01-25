@@ -1,4 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
-    <string name="title_post_creator">postCreator</string>
+    <string name="title_post_creator">Post creator feature</string>
 </resources>
