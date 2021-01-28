@@ -2,8 +2,8 @@ package com.egoriku.ladyhappy.auth
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.egoriku.ladyhappy.extensions.common.Constants.EMPTY
 import com.egoriku.ladyhappy.auth.model.UserLoginState
+import com.egoriku.ladyhappy.extensions.common.Constants.EMPTY
 import com.egoriku.ladyhappy.network.ResultOf
 import com.egoriku.ladyhappy.network.firestore.awaitResult
 import com.google.firebase.auth.AuthResult
@@ -18,6 +18,7 @@ class Authentication {
         FirebaseAuth.getInstance()
     }
 
+    // TODO: 1/28/21 Migrate to StateFlow
     private val _userLoginState = MutableLiveData<UserLoginState>()
 
     val userLoginState: LiveData<UserLoginState> = _userLoginState
@@ -28,7 +29,7 @@ class Authentication {
 
     private fun invalidateUser() {
         when (val user = auth.currentUser) {
-            null -> _userLoginState.value = UserLoginState.Anon()
+            null -> _userLoginState.value = UserLoginState.Anon
             else -> _userLoginState.value = UserLoginState.LoggedIn(
                     userId = user.uid,
                     name = user.displayName ?: EMPTY,
@@ -42,7 +43,7 @@ class Authentication {
     fun logOut() {
         auth.signOut()
 
-        _userLoginState.value = UserLoginState.Anon()
+        _userLoginState.value = UserLoginState.Anon
     }
 
     suspend fun authWithEmailAndPassword(

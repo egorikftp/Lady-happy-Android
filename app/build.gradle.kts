@@ -64,6 +64,7 @@ dependencies {
 
 withProjects(
         Features.catalog,
+        Features.detailPage,
         Features.landing,
         Features.launchScreen,
         Features.login,
@@ -95,6 +96,7 @@ withLibraries(
         Libs.firebaseRemoteConfig,
         Libs.firebaseStorage,
         Libs.fragment,
+        Libs.glide,
         Libs.liveDataKtx,
         Libs.koinAndroid,
         Libs.koinViewModel,

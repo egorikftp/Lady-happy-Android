@@ -10,6 +10,8 @@ interface IFeatureProvider {
 
     val catalogFragment: Fragment
 
+    val detailPage: Fragment
+
     val landingFragment: Fragment
 
     val loginFragment: Fragment

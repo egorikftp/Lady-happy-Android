@@ -1,3 +1,11 @@
+dependencyResolutionManagement {
+    repositories {
+        google()
+        jcenter()
+        maven(url = "https://jitpack.io")
+    }
+}
+
 registerModules(
         *Modules.applications,
         *Modules.dynamicFeatures,
@@ -28,6 +36,7 @@ object Modules {
 
     object Features {
         const val catalog = ":catalog"
+        const val detailPage = ":detailPage"
         const val landing = ":landing"
         const val launchScreen = ":launchScreen"
         const val login = ":login"
@@ -66,6 +75,7 @@ object Modules {
     val features
         get() = arrayOf(
                 ProjectBean(Features.catalog, "sources/feature/catalog"),
+                ProjectBean(Features.detailPage, "sources/feature/detailPage"),
                 ProjectBean(Features.landing, "sources/feature/landing"),
                 ProjectBean(Features.launchScreen, "sources/feature/launchScreen"),
                 ProjectBean(Features.login, "sources/feature/login"),

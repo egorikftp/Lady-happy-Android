@@ -6,6 +6,7 @@ object Modules {
 
     object Features {
         const val catalog = ":catalog"
+        const val detailPage = ":detailPage"
         const val landing = ":landing"
         const val launchScreen = ":launchScreen"
         const val login = ":login"

@@ -16,8 +16,10 @@ val subcategoryModule = module {
 
         viewModel { (categoryId: Int) ->
             SubCategoriesViewModel(
+                    categoryId = categoryId,
                     catalogUseCase = get(),
-                    categoryId = categoryId
+                    featureProvider = get(),
+                    router = get()
             )
         }
     }

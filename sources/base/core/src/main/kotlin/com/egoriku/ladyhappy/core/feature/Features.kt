@@ -7,6 +7,7 @@ interface CatalogFeature
 interface AboutUsFeature
 interface PhotoReportsFeature
 interface SettingsFeature
+interface DetailPage
 
 sealed class DynamicFeature : Parcelable {
 

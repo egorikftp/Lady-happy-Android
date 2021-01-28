@@ -11,6 +11,7 @@ class CatalogUseCase(private val subcategoryRepository: SubcategoryRepository) {
 
     private val entityTransform: (SubCategoryEntity) -> SubCategoryItem = { entity: SubCategoryEntity ->
         SubCategoryItem(
+                id = entity.subCategoryId,
                 images = entity.images.map(imageTransform),
                 name = entity.subCategoryName,
                 isPopular = entity.isPopular,

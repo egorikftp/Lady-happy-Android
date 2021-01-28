@@ -13,7 +13,6 @@ import com.egoriku.ladyhappy.catalog.subcategory.presentation.SubcategoryScreenS
 import com.egoriku.ladyhappy.catalog.subcategory.presentation.controller.SubCategoryController
 import com.egoriku.ladyhappy.catalog.subcategory.presentation.controller.balloon.ViewHolderBalloonFactory
 import com.egoriku.ladyhappy.extensions.gone
-import com.egoriku.ladyhappy.extensions.logD
 import com.egoriku.ladyhappy.extensions.visible
 import com.skydoves.balloon.balloon
 import org.koin.androidx.scope.ScopeFragment
@@ -30,11 +29,11 @@ class SubCategoryFragment : ScopeFragment(R.layout.fragment_catalog) {
 
     private val binding by viewBinding(FragmentCatalogBinding::bind)
 
-    private val catalogViewModel by viewModel<SubCategoriesViewModel>() {
+    private val catalogViewModel by viewModel<SubCategoriesViewModel> {
         parametersOf(arguments?.getInt(ARGUMENT_CATEGORY_ID))
     }
 
-    private val viewHolderBalloon by balloon(ViewHolderBalloonFactory::class)
+    private val viewHolderBalloon by balloon<ViewHolderBalloonFactory>()
 
     private var subcategoryController: SubCategoryController by Delegates.notNull()
 
@@ -44,8 +43,12 @@ class SubCategoryFragment : ScopeFragment(R.layout.fragment_catalog) {
         super.onViewCreated(view, savedInstanceState)
 
         subcategoryController = SubCategoryController(
-                onCatalogItemClick = {
-                    logD("Item ${it.name} was clicked")
+                onCatalogItemClick = { item ->
+                    catalogViewModel.openDetailPage(
+                            subCategoryId = item.id,
+                            url = item.images.first().url,
+                            name = item.name
+                    )
                 },
                 onTrendingClick = {
                     viewHolderBalloon?.showAlignLeft(it)

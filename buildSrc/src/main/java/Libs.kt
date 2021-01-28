@@ -32,6 +32,7 @@ object Libs {
     const val fragment = "androidx.fragment:fragment-ktx:${LibrariesVersion.fragment}"
 
     const val glide = "com.github.bumptech.glide:glide:${LibrariesVersion.glide}"
+    const val glideTransformation = "jp.wasabeef:glide-transformations:${LibrariesVersion.glideTransformations}"
 
     const val junit = "junit:junit:${LibrariesVersion.junit}"
 

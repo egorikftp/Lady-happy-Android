@@ -2,6 +2,7 @@ package com.egoriku.ladyhappy.tools
 
 import android.view.View
 import com.egoriku.ladyhappy.core.IRouter
+import com.egoriku.ladyhappy.navigation.command.NavigationType
 import com.egoriku.ladyhappy.navigation.router.Router
 import com.egoriku.ladyhappy.navigation.screen.Screen
 
@@ -11,8 +12,13 @@ internal class AppRouter(
 
     override fun replaceScreen(
             screen: Screen,
+            navigationType: NavigationType,
             vararg sharedElements: Pair<View, String>
-    ) = router.replaceScreen(screen, *sharedElements)
+    ) = router.replaceScreen(
+            screen = screen,
+            navigationType = navigationType,
+            sharedElements = sharedElements
+    )
 
     override fun addScreen(screen: Screen) = router.addScreen(screen)
 

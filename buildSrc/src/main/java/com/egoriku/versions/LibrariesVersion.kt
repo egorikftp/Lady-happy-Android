@@ -16,6 +16,7 @@ object LibrariesVersion {
     const val firebaseBom = "26.3.0"
     const val fragment = "1.3.0-rc01"
     const val glide = "4.11.0"
+    const val glideTransformations = "4.3.0"
     const val junit = "4.13.1"
     const val imageCompressor = "3.0.0"
     const val koin = "2.2.2"

@@ -10,8 +10,10 @@ import android.widget.TextView
 import androidx.annotation.IdRes
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.os.bundleOf
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import by.kirich1409.viewbindingdelegate.viewBinding
+import com.bumptech.glide.manager.SupportRequestManagerFragment
 import com.egoriku.ladyhappy.R
 import com.egoriku.ladyhappy.core.IFeatureProvider
 import com.egoriku.ladyhappy.core.INavigationHolder
@@ -122,6 +124,13 @@ class MainActivity : ScopeActivity(R.layout.activity_main) {
                 with(savedInstanceState.getInt(KEY_SELECTED_MENU_ITEM)) {
                     binding.bottomNavigation.selectedItemId = this
                 }
+
+                val fragments = supportFragmentManager.fragments
+                        .filterNot { it is SupportRequestManagerFragment }
+
+                if (fragments.isNotEmpty()) {
+                    changeAppBarState(fragments.last())
+                }
             }
         }
 
@@ -133,6 +142,8 @@ class MainActivity : ScopeActivity(R.layout.activity_main) {
             }
 
             setOnNavigationItemReselectedListener {}
+
+            binding.bottomNavigation.background = null
         }
 
         viewModel.theme.observe(this) {
@@ -378,10 +389,25 @@ class MainActivity : ScopeActivity(R.layout.activity_main) {
     }
 
     private fun expandAppBarLayoutInPage() {
+        supportFragmentManager.addOnBackStackChangedListener {
+            val fragments = supportFragmentManager.fragments
+                    .filterNot { it is SupportRequestManagerFragment }
+
+            if (fragments.isNotEmpty()) {
+                changeAppBarState(fragments.last())
+            }
+        }
+
         supportFragmentManager.addFragmentOnAttachListener { _, fragment ->
-            when (fragment) {
-                is CatalogFeature, is AboutUsFeature, is PhotoReportsFeature, is SettingsFeature -> {
-                    binding.appBarLayout.setExpanded(true)
+            changeAppBarState(fragment)
+        }
+    }
+
+    private fun changeAppBarState(fragment: Fragment) {
+        when (fragment) {
+            is CatalogFeature, is AboutUsFeature, is PhotoReportsFeature, is SettingsFeature -> {
+                with(binding) {
+                    appBarLayout.setExpanded(true)
                 }
             }
         }
