@@ -1,7 +1,5 @@
 package com.egoriku.ladyhappy.auth
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import com.egoriku.ladyhappy.auth.model.UserLoginState
 import com.egoriku.ladyhappy.extensions.common.Constants.EMPTY
 import com.egoriku.ladyhappy.network.ResultOf
@@ -10,6 +8,8 @@ import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.withContext
 
 class Authentication {
@@ -18,10 +18,8 @@ class Authentication {
         FirebaseAuth.getInstance()
     }
 
-    // TODO: 1/28/21 Migrate to StateFlow
-    private val _userLoginState = MutableLiveData<UserLoginState>()
-
-    val userLoginState: LiveData<UserLoginState> = _userLoginState
+    private val _userLoginState = MutableStateFlow<UserLoginState>(UserLoginState.Anon)
+    val userLoginState: StateFlow<UserLoginState> = _userLoginState
 
     init {
         invalidateUser()
@@ -48,7 +46,7 @@ class Authentication {
 
     suspend fun authWithEmailAndPassword(
             email: String,
-            password: String
+            password: String,
     ): ResultOf<AuthResult> = withContext(Dispatchers.IO) {
         val resultOf: ResultOf<AuthResult> = auth.signInWithEmailAndPassword(email, password).awaitResult()
 
