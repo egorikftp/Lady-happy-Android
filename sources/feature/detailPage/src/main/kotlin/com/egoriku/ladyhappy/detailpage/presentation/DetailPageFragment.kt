@@ -59,6 +59,14 @@ class DetailPageFragment : Fragment(R.layout.fragment_detail), DetailPage {
         detailAdapter = DetailAdapter()
 
         with(binding) {
+            if (savedInstanceState != null) {
+                Glide.with(headerBackground)
+                        .load(url)
+                        .transition(DrawableTransitionOptions.withCrossFade())
+                        .transform(BlurTransformation(25, 1))
+                        .into(headerBackground)
+            }
+
             Glide.with(productImage)
                     .load(url)
                     .transform(CircleCrop())

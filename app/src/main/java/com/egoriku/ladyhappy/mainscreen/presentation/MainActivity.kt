@@ -124,13 +124,6 @@ class MainActivity : ScopeActivity(R.layout.activity_main) {
                 with(savedInstanceState.getInt(KEY_SELECTED_MENU_ITEM)) {
                     binding.bottomNavigation.selectedItemId = this
                 }
-
-                val fragments = supportFragmentManager.fragments
-                        .filterNot { it is SupportRequestManagerFragment }
-
-                if (fragments.isNotEmpty()) {
-                    changeAppBarState(fragments.last())
-                }
             }
         }
 
@@ -142,8 +135,6 @@ class MainActivity : ScopeActivity(R.layout.activity_main) {
             }
 
             setOnNavigationItemReselectedListener {}
-
-            binding.bottomNavigation.background = null
         }
 
         viewModel.theme.observe(this) {
