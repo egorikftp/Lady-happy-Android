@@ -13,6 +13,8 @@ import com.bumptech.glide.load.resource.bitmap.CircleCrop
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.egoriku.ladyhappy.core.IRouter
 import com.egoriku.ladyhappy.core.feature.DetailPage
+import com.egoriku.ladyhappy.core.sharedmodel.key.KEY_DETAIL_PAGE_EXTRA
+import com.egoriku.ladyhappy.core.sharedmodel.params.DetailPageParams
 import com.egoriku.ladyhappy.detailpage.R
 import com.egoriku.ladyhappy.detailpage.databinding.FragmentDetailBinding
 import com.egoriku.ladyhappy.detailpage.presentation.adapter.DetailAdapter
@@ -30,8 +32,7 @@ class DetailPageFragment : Fragment(R.layout.fragment_detail), DetailPage {
 
     private val binding by viewBinding(FragmentDetailBinding::bind)
 
-    private val url: String by extraNotNull("url")
-    private val name: String by extraNotNull("name")
+    private val detailPageParams: DetailPageParams by extraNotNull(KEY_DETAIL_PAGE_EXTRA)
 
     private var detailAdapter: DetailAdapter by Delegates.notNull()
 
@@ -44,7 +45,7 @@ class DetailPageFragment : Fragment(R.layout.fragment_detail), DetailPage {
                     transition.removeListener(this)
 
                     Glide.with(binding.headerBackground)
-                            .load(url)
+                            .load(detailPageParams.productLogoUrl)
                             .transition(DrawableTransitionOptions.withCrossFade())
                             .transform(BlurTransformation(25, 1))
                             .into(binding.headerBackground)
@@ -56,25 +57,25 @@ class DetailPageFragment : Fragment(R.layout.fragment_detail), DetailPage {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        if (savedInstanceState != null) {
+            Glide.with(binding.headerBackground)
+                    .load(detailPageParams.productLogoUrl)
+                    .transition(DrawableTransitionOptions.withCrossFade())
+                    .transform(BlurTransformation(25, 1))
+                    .into(binding.headerBackground)
+        }
+
         detailAdapter = DetailAdapter()
 
         with(binding) {
-            if (savedInstanceState != null) {
-                Glide.with(headerBackground)
-                        .load(url)
-                        .transition(DrawableTransitionOptions.withCrossFade())
-                        .transform(BlurTransformation(25, 1))
-                        .into(headerBackground)
-            }
-
             Glide.with(productImage)
-                    .load(url)
+                    .load(detailPageParams.productLogoUrl)
                     .transform(CircleCrop())
                     .into(productImage)
 
-            productTitle.text = name
-            productTitleToolbar.text = name
-            productDescription.text = "Description"
+            productTitle.text = detailPageParams.productName
+            productTitleToolbar.text = detailPageParams.productName
+            productDescription.text = detailPageParams.productDescription
 
             closeView.setOnClickListener {
                 router.back()

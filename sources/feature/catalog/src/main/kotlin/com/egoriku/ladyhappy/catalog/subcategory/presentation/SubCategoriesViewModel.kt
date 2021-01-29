@@ -3,6 +3,7 @@ package com.egoriku.ladyhappy.catalog.subcategory.presentation
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
+import com.egoriku.ladyhappy.catalog.subcategory.domain.model.SubCategoryItem
 import com.egoriku.ladyhappy.catalog.subcategory.domain.usecase.CatalogUseCase
 import com.egoriku.ladyhappy.catalog.subcategory.presentation.screen.DetailPageScreen
 import com.egoriku.ladyhappy.core.IFeatureProvider
@@ -25,13 +26,11 @@ class SubCategoriesViewModel(
         }
     }
 
-    fun openDetailPage(subCategoryId: Int, url: String, name: String) {
+    fun openDetailPage(subCategoryItem: SubCategoryItem) {
         router.addScreenFullscreen(
                 screen = DetailPageScreen(
                         featureProvider = featureProvider,
-                        subCategoryId = subCategoryId,
-                        url = url,
-                        name = name
+                        subCategoryItem = subCategoryItem
                 ))
     }
 }

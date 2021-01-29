@@ -6,7 +6,7 @@ import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.flow
 
 class AuthenticationUseCase(
-        private val authentication: Authentication,
+        private val authentication: Authentication
 ) {
 
     suspend fun subscribeAuthEvents() = flow {

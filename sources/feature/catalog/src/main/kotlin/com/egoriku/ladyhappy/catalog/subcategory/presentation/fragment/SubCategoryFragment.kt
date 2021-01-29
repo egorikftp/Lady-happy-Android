@@ -43,12 +43,8 @@ class SubCategoryFragment : ScopeFragment(R.layout.fragment_catalog) {
         super.onViewCreated(view, savedInstanceState)
 
         subcategoryController = SubCategoryController(
-                onCatalogItemClick = { item ->
-                    catalogViewModel.openDetailPage(
-                            subCategoryId = item.id,
-                            url = item.images.first().url,
-                            name = item.name
-                    )
+                onCatalogItemClick = {
+                    catalogViewModel.openDetailPage(it)
                 },
                 onTrendingClick = {
                     viewHolderBalloon?.showAlignLeft(it)
