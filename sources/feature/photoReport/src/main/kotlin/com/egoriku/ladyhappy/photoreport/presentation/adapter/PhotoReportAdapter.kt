@@ -9,12 +9,14 @@ import com.bumptech.glide.request.RequestOptions
 import com.egoriku.ladyhappy.core.adapter.BaseListAdapter
 import com.egoriku.ladyhappy.core.adapter.BaseViewHolder
 import com.egoriku.ladyhappy.extensions.colorFromAttr
+import com.egoriku.ladyhappy.extensions.context
 import com.egoriku.ladyhappy.extensions.inflater
 import com.egoriku.ladyhappy.mozaik.OnItemClick
 import com.egoriku.ladyhappy.mozaik.model.MozaikItem
 import com.egoriku.ladyhappy.photoreport.R
 import com.egoriku.ladyhappy.photoreport.databinding.AdapterItemPhotoReportBinding
 import com.egoriku.ladyhappy.photoreport.domain.model.PhotoReportModel
+import com.egoriku.ladyhappy.ui.view.PhotoOverlayActions
 import com.stfalcon.imageviewer.StfalconImageViewer
 
 class PhotoReportAdapter : BaseListAdapter<PhotoReportModel, PhotoReportAdapter.Holder>(DiffCallback()) {
@@ -56,6 +58,13 @@ class PhotoReportAdapter : BaseListAdapter<PhotoReportModel, PhotoReportAdapter.
 
             mozaikLayout.setItems(data.images)
             mozaikLayout.onItemClick = OnItemClick { position, mozaikItems, transitionVew ->
+                val photoOverlayActions = PhotoOverlayActions(binding.context)
+
+                photoOverlayActions.setTitle(position = position + 1, count = mozaikItems.size)
+                photoOverlayActions.onCloseClick = {
+                    stfalconImageViewer?.close()
+                }
+
                 stfalconImageViewer = StfalconImageViewer.Builder(itemView.context, mozaikItems) { view, image ->
                     Glide.with(view.context).load(image.url).into(view)
                 }.withStartPosition(position)
@@ -64,6 +73,10 @@ class PhotoReportAdapter : BaseListAdapter<PhotoReportModel, PhotoReportAdapter.
                         }
                         .withDismissListener {
                             stfalconImageViewer = null
+                        }
+                        .withOverlayView(photoOverlayActions)
+                        .withImageChangeListener {
+                            photoOverlayActions.setTitle(position = it + 1, count = mozaikItems.size)
                         }
                         .withTransitionFrom(transitionVew)
                         .withHiddenStatusBar(false)
