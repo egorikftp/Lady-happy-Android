@@ -32,7 +32,6 @@ withLibraries(
         Libs.constraintLayout,
         Libs.core,
         Libs.circleImageView,
-        Libs.easyAdapter,
         Libs.firebaseFirestore,
         Libs.koinAndroid,
         Libs.koinViewModel,

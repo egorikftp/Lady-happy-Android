@@ -1,19 +1,11 @@
 package com.egoriku.plugin
 
-import Libs
 import com.android.build.gradle.AppPlugin
 import com.android.build.gradle.LibraryPlugin
 import com.android.build.gradle.internal.plugins.DynamicFeaturePlugin
-import com.egoriku.application.provideVersionCode
-import com.egoriku.application.provideVersionName
-import com.egoriku.ext.debug
-import com.egoriku.ext.implementation
-import com.egoriku.ext.main
-import com.egoriku.ext.release
 import com.egoriku.plugin.extension.MyPluginExtension
 import com.egoriku.plugin.internal.appExtension
 import com.egoriku.plugin.internal.libraryExtension
-import com.egoriku.versions.ProjectVersion
 import org.gradle.api.JavaVersion
 import org.gradle.api.Plugin
 import org.gradle.api.Project
@@ -21,7 +13,6 @@ import org.gradle.api.plugins.JavaPlugin
 import org.gradle.kotlin.dsl.create
 import org.gradle.kotlin.dsl.dependencies
 import org.jetbrains.kotlin.gradle.plugin.KotlinBasePluginWrapper
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 open class HappyXPlugin : Plugin<Project> {
 
@@ -49,6 +40,7 @@ open class HappyXPlugin : Plugin<Project> {
                         tasks.withType(KotlinCompile::class.java).configureEach {
                             kotlinOptions {
                                 jvmTarget = "1.8"
+                                useIR = true
                             }
                         }
                     }

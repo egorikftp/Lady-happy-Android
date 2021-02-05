@@ -25,7 +25,6 @@ withLibraries(
         Libs.glideTransformation,
         Libs.constraintLayout,
         Libs.coroutinesAndroid,
-        Libs.easyAdapter,
         Libs.firebaseFirestore,
         Libs.koinAndroid,
         Libs.koinViewModel,
