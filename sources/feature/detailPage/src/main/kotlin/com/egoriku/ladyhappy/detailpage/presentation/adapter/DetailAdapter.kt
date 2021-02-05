@@ -10,6 +10,7 @@ import com.egoriku.ladyhappy.core.adapter.BaseListAdapter
 import com.egoriku.ladyhappy.core.adapter.BaseViewHolder
 import com.egoriku.ladyhappy.detailpage.R
 import com.egoriku.ladyhappy.detailpage.databinding.AdapterItemDetailBinding
+import com.egoriku.ladyhappy.detailpage.domain.model.DetailModel
 import com.egoriku.ladyhappy.extensions.colorFromAttr
 import com.egoriku.ladyhappy.extensions.context
 import com.egoriku.ladyhappy.extensions.inflater
@@ -18,7 +19,7 @@ import com.egoriku.ladyhappy.mozaik.model.MozaikItem
 import com.egoriku.ladyhappy.ui.view.PhotoOverlayActions
 import com.stfalcon.imageviewer.StfalconImageViewer
 
-class DetailAdapter : BaseListAdapter<String, DetailAdapter.VH>(DiffCallback()) {
+class DetailAdapter : BaseListAdapter<DetailModel, DetailAdapter.VH>(DiffCallback()) {
 
     override fun onCreateViewHolder(
             parent: ViewGroup,
@@ -28,17 +29,15 @@ class DetailAdapter : BaseListAdapter<String, DetailAdapter.VH>(DiffCallback()) 
     override fun onBindViewHolder(
             holder: VH,
             position: Int,
-            model: String,
+            model: DetailModel,
     ) = holder.bind(model)
 
     inner class VH(
             private val binding: AdapterItemDetailBinding,
-    ) : BaseViewHolder<String>(binding.root) {
+    ) : BaseViewHolder<DetailModel>(binding.root) {
 
         private val colorDrawable = ColorDrawable(itemView.colorFromAttr(R.attr.colorPlaceholder))
         private val options = RequestOptions().centerCrop()
-
-        //private val overlayViewBinding = ViewPhotoGalleryOverlayBinding.inflate(binding.inflater)
 
         private var stfalconImageViewer: StfalconImageViewer<MozaikItem>? = null
 
@@ -53,25 +52,22 @@ class DetailAdapter : BaseListAdapter<String, DetailAdapter.VH>(DiffCallback()) 
             }
         }
 
-        override fun bind(item: String) = binding.bind(item)
+        override fun bind(item: DetailModel) = binding.bind(item)
 
-        private fun AdapterItemDetailBinding.bind(item: String) {
-            descriptionTextView.text = item
-            dateTextView.text = "22 June 2020"
+        private fun AdapterItemDetailBinding.bind(item: DetailModel) {
+            descriptionTextView.text = item.description
+            dateTextView.text = item.date
 
-            mozaikLayout.setItems(listOf(
-                    MozaikItem(1200, 800, "https://firebasestorage.googleapis.com/v0/b/lady-happy.appspot.com/o/subcategories%2F1.2%2FIMG_0207_2018.09.06_22-49%20(1).jpg?alt=media&token=b29b83cb-f2e8-4512-bd8a-b5cc120bd179"),
-                    MozaikItem(1200, 800, "https://firebasestorage.googleapis.com/v0/b/lady-happy.appspot.com/o/subcategories%2F1.2%2FIMG_0207_2018.09.06_22-49%20(1).jpg?alt=media&token=b29b83cb-f2e8-4512-bd8a-b5cc120bd179"))
-            )
-            mozaikLayout.onItemClick = OnItemClick { position, mozaikItems, transitionVew ->
+            mozaikLayout.setItems(item.images)
+            mozaikLayout.onItemClick = OnItemClick { position, images, transitionVew ->
                 val photoOverlayActions = PhotoOverlayActions(binding.context)
 
-                photoOverlayActions.setTitle(position = position + 1, count = mozaikItems.size)
+                photoOverlayActions.setTitle(position = position + 1, count = images.size)
                 photoOverlayActions.onCloseClick = {
                     stfalconImageViewer?.close()
                 }
 
-                stfalconImageViewer = StfalconImageViewer.Builder(itemView.context, mozaikItems) { view, image ->
+                stfalconImageViewer = StfalconImageViewer.Builder(itemView.context, images) { view, image ->
                     Glide.with(view.context).load(image.url).into(view)
                 }.withStartPosition(position)
                         .withImageChangeListener {
@@ -83,17 +79,17 @@ class DetailAdapter : BaseListAdapter<String, DetailAdapter.VH>(DiffCallback()) 
                         .withOverlayView(photoOverlayActions)
                         .withTransitionFrom(transitionVew)
                         .withImageChangeListener {
-                            photoOverlayActions.setTitle(position = it + 1, count = mozaikItems.size)
+                            photoOverlayActions.setTitle(position = it + 1, count = images.size)
                         }
                         .show()
             }
         }
     }
 
-    internal class DiffCallback : DiffUtil.ItemCallback<String>() {
+    internal class DiffCallback : DiffUtil.ItemCallback<DetailModel>() {
 
-        override fun areItemsTheSame(oldItem: String, newItem: String) = oldItem == newItem
+        override fun areItemsTheSame(oldItem: DetailModel, newItem: DetailModel) = oldItem == newItem
 
-        override fun areContentsTheSame(oldItem: String, newItem: String) = oldItem == newItem
+        override fun areContentsTheSame(oldItem: DetailModel, newItem: DetailModel) = oldItem == newItem
     }
 }

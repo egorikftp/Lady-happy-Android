@@ -18,9 +18,11 @@ import com.egoriku.ladyhappy.core.sharedmodel.key.KEY_DETAIL_PAGE_EXTRA
 import com.egoriku.ladyhappy.core.sharedmodel.params.DetailPageParams
 import com.egoriku.ladyhappy.detailpage.R
 import com.egoriku.ladyhappy.detailpage.databinding.FragmentDetailBinding
+import com.egoriku.ladyhappy.detailpage.domain.model.DetailModel
 import com.egoriku.ladyhappy.detailpage.presentation.adapter.DetailAdapter
 import com.egoriku.ladyhappy.extensions.extraNotNull
 import com.egoriku.ladyhappy.extensions.toast
+import com.egoriku.ladyhappy.mozaik.model.MozaikItem
 import com.google.android.material.appbar.AppBarLayout
 import jp.wasabeef.glide.transformations.BlurTransformation
 import kotlinx.coroutines.delay
@@ -79,7 +81,17 @@ class DetailPageFragment : Fragment(R.layout.fragment_detail), DetailPage {
         // TODO: 2/5/21 Use real data
         lifecycleScope.launch {
             delay(2000)
-            detailAdapter.submitList(listOf("1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15"))
+            detailAdapter.submitList(
+                    listOf(
+                            DetailModel(
+                                    images = listOf(
+                                            MozaikItem(1200, 800, "https://firebasestorage.googleapis.com/v0/b/lady-happy.appspot.com/o/subcategories%2F1.2%2FIMG_0207_2018.09.06_22-49%20(1).jpg?alt=media&token=b29b83cb-f2e8-4512-bd8a-b5cc120bd179"),
+                                            MozaikItem(1200, 800, "https://firebasestorage.googleapis.com/v0/b/lady-happy.appspot.com/o/subcategories%2F1.2%2FIMG_0207_2018.09.06_22-49%20(1).jpg?alt=media&token=b29b83cb-f2e8-4512-bd8a-b5cc120bd179")
+                                    ),
+                                    description = "1",
+                                    date = "22 June 2020"
+                            )
+                    ))
 
             fab.show()
         }
