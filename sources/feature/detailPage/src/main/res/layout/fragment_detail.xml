@@ -105,6 +105,8 @@
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"
+        app:showMotionSpec="@animator/animation_fab_show"
+        app:hideMotionSpec="@animator/animation_fab_hide"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_filter"
