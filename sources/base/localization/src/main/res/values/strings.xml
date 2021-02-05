@@ -104,4 +104,5 @@
     <string name="post_creator_images_section_title">Photos</string>
     <string name="post_creator_publish_button_text">Publish post</string>
     <string name="post_creator_screen_title">Create new post</string>
+    <string name="proto_overlay_title_format">%1$d of %2$d</string>
 </resources>

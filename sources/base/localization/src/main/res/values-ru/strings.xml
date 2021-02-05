@@ -106,4 +106,5 @@
     <string name="post_creator_images_section_title">Фотографии</string>
     <string name="post_creator_publish_button_text">Опубликовать запись</string>
     <string name="post_creator_screen_title">Создание записи</string>
+    <string name="proto_overlay_title_format">%1$d из %2$d</string>
 </resources>

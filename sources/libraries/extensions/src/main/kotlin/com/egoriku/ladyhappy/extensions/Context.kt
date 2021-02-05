@@ -6,6 +6,7 @@ import android.content.Context
 import android.content.res.ColorStateList
 import android.graphics.drawable.Drawable
 import android.util.TypedValue
+import android.view.LayoutInflater
 import androidx.annotation.*
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.content.ContextCompat
@@ -54,3 +55,5 @@ fun Context.getQuantityStringZero(
 } else {
     resources.getQuantityString(pluralResId, quantity, quantity)
 }
+
+fun Context.inflater(): LayoutInflater = LayoutInflater.from(this)

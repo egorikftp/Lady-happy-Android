@@ -22,5 +22,6 @@ withLibraries(
         Libs.easyAdapter,
         Libs.material,
         Libs.recyclerView,
-        Libs.vectorDrawable
+        Libs.vectorDrawable,
+        Libs.viewBindingDelegates
 )

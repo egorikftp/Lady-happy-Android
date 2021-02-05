@@ -14,6 +14,7 @@ happyPlugin {
 withProjects(
         Libraries.core,
         Libraries.extensions,
+        Libraries.mozaik,
         Libraries.network,
         Libraries.ui
 )
@@ -30,6 +31,7 @@ withLibraries(
         Libs.koinViewModel,
         Libs.material,
         Libs.recyclerView,
+        Libs.stfalconImageViewer,
         Libs.viewBindingDelegates,
         Libs.viewModel
 )
