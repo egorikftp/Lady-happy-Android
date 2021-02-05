@@ -33,7 +33,6 @@ withLibraries(
         Libs.constraintLayout,
         Libs.core,
         Libs.coroutinesAndroid,
-        Libs.easyAdapter,
         Libs.firebaseFirestore,
         Libs.fragment,
         Libs.glide,

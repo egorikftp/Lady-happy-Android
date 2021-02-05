@@ -10,7 +10,7 @@ import com.egoriku.ladyhappy.catalog.R
 import com.egoriku.ladyhappy.catalog.databinding.FragmentCatalogBinding
 import com.egoriku.ladyhappy.catalog.subcategory.presentation.SubCategoriesViewModel
 import com.egoriku.ladyhappy.catalog.subcategory.presentation.SubcategoryScreenState
-import com.egoriku.ladyhappy.catalog.subcategory.presentation.controller.SubCategoryController
+import com.egoriku.ladyhappy.catalog.subcategory.presentation.controller.SubCategoriesAdapter
 import com.egoriku.ladyhappy.catalog.subcategory.presentation.controller.balloon.ViewHolderBalloonFactory
 import com.egoriku.ladyhappy.extensions.gone
 import com.egoriku.ladyhappy.extensions.visible
@@ -18,8 +18,6 @@ import com.skydoves.balloon.balloon
 import org.koin.androidx.scope.ScopeFragment
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
-import ru.surfstudio.android.easyadapter.EasyAdapter
-import ru.surfstudio.android.easyadapter.ItemList
 import kotlin.properties.Delegates
 
 private const val INITIAL_PREFETCH_COUNT = 7
@@ -35,19 +33,17 @@ class SubCategoryFragment : ScopeFragment(R.layout.fragment_catalog) {
 
     private val viewHolderBalloon by balloon<ViewHolderBalloonFactory>()
 
-    private var subcategoryController: SubCategoryController by Delegates.notNull()
-
-    private val catalogAdapter = EasyAdapter()
+    private var subCategoriesAdapter: SubCategoriesAdapter by Delegates.notNull()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        subcategoryController = SubCategoryController(
+        subCategoriesAdapter = SubCategoriesAdapter(
                 onCatalogItemClick = {
                     catalogViewModel.openDetailPage(it)
                 },
                 onTrendingClick = {
-                    viewHolderBalloon?.showAlignLeft(it)
+                    viewHolderBalloon.showAlignLeft(it)
                 }
         )
 
@@ -55,7 +51,8 @@ class SubCategoryFragment : ScopeFragment(R.layout.fragment_catalog) {
             layoutManager = LinearLayoutManager(context).apply {
                 initialPrefetchItemCount = INITIAL_PREFETCH_COUNT
             }
-            adapter = catalogAdapter
+
+            adapter = subCategoriesAdapter
             addItemDecoration(DividerItemDecoration(requireContext(), VERTICAL))
         }
 
@@ -69,10 +66,7 @@ class SubCategoryFragment : ScopeFragment(R.layout.fragment_catalog) {
             is SubcategoryScreenState.Success -> {
                 errorView.gone()
                 progressBar.gone()
-                catalogAdapter.setItems(
-                        ItemList.create()
-                                .addAll(screenState.screenData, subcategoryController)
-                )
+                subCategoriesAdapter.submitList(screenState.screenData)
             }
             is SubcategoryScreenState.Error -> {
                 errorView.visible()
