@@ -14,7 +14,7 @@ class PhotoOverlayActions @JvmOverloads constructor(
         defStyleAttr: Int = 0
 ) : ConstraintLayout(context, attrs, defStyleAttr) {
 
-    private val viewBinding: ViewPhotoGalleryOverlayBinding = ViewPhotoGalleryOverlayBinding.inflate(
+    private val viewBinding = ViewPhotoGalleryOverlayBinding.inflate(
             inflater(), this, true
     )
 
