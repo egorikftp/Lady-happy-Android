@@ -13,9 +13,23 @@ class DetailViewModel(
         private val detailUseCase: DetailUseCase
 ) : ViewModel() {
 
+    private var currentParams: DetailPageParams? = null
+    private var detailUseCaseResult: Flow<PagingData<DetailModel>>? = null
+
     fun getDetailFlow(detailParams: DetailPageParams): Flow<PagingData<DetailModel>> {
-        return detailUseCase
+        val flow = detailUseCaseResult
+
+        if (detailParams == currentParams && flow != null) {
+            return flow
+        }
+
+        val newDetailUseCaseResult = detailUseCase
                 .invoke(detailParams)
                 .cachedIn(viewModelScope)
+
+        currentParams = detailParams
+        detailUseCaseResult = newDetailUseCaseResult
+
+        return newDetailUseCaseResult
     }
 }

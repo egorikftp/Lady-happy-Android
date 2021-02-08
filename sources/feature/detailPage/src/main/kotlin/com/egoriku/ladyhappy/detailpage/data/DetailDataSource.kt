@@ -21,7 +21,7 @@ class DetailDataSource(private val firebase: IFirebase) : PagingSource<QuerySnap
                     .get()
                     .await()
 
-            delay(1000)
+            delay(500)
 
             return if (currentPage.documents.isEmpty()) {
                 LoadResult.Page(
