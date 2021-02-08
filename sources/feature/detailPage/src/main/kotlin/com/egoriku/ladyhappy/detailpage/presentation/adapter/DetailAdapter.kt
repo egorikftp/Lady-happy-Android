@@ -2,11 +2,11 @@ package com.egoriku.ladyhappy.detailpage.presentation.adapter
 
 import android.graphics.drawable.ColorDrawable
 import android.view.ViewGroup
+import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.bumptech.glide.request.RequestOptions
-import com.egoriku.ladyhappy.core.adapter.BaseListAdapter
 import com.egoriku.ladyhappy.core.adapter.BaseViewHolder
 import com.egoriku.ladyhappy.detailpage.R
 import com.egoriku.ladyhappy.detailpage.databinding.AdapterItemDetailBinding
@@ -19,18 +19,17 @@ import com.egoriku.ladyhappy.mozaik.model.MozaikItem
 import com.egoriku.ladyhappy.ui.view.PhotoOverlayActions
 import com.stfalcon.imageviewer.StfalconImageViewer
 
-class DetailAdapter : BaseListAdapter<DetailModel, DetailAdapter.VH>(DiffCallback()) {
+class DetailAdapter : PagingDataAdapter<DetailModel, DetailAdapter.VH>(DiffCallback()) {
 
     override fun onCreateViewHolder(
             parent: ViewGroup,
             viewType: Int,
     ) = VH(AdapterItemDetailBinding.inflate(parent.inflater(), parent, false))
 
-    override fun onBindViewHolder(
-            holder: VH,
-            position: Int,
-            model: DetailModel,
-    ) = holder.bind(model)
+    override fun onBindViewHolder(holder: VH, position: Int) {
+        val item = getItem(position) ?: return
+        holder.bind(item)
+    }
 
     inner class VH(
             private val binding: AdapterItemDetailBinding,

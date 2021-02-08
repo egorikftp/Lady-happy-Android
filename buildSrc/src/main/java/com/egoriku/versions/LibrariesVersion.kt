@@ -24,6 +24,7 @@ object LibrariesVersion {
     const val leakCanary = "2.6"
     const val lifecycle = "2.2.0"
     const val material = "1.3.0"
+    const val paging = "3.0.0-alpha13"
     const val playCore = "1.8.1"
     const val playServicesAuth = "19.0.0"
     const val recyclerView = "1.2.0-beta01"

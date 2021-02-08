@@ -48,6 +48,7 @@ object Libs {
 
     const val material = "com.google.android.material:material:${LibrariesVersion.material}"
 
+    const val paging = "androidx.paging:paging-runtime-ktx:${LibrariesVersion.paging}"
     const val playCore = "com.google.android.play:core-ktx:${LibrariesVersion.playCore}"
     const val playServicesAuth = "com.google.android.gms:play-services-auth:${LibrariesVersion.playServicesAuth}"
 

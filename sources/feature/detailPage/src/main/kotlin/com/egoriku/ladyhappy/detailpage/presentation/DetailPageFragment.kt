@@ -3,8 +3,9 @@ package com.egoriku.ladyhappy.detailpage.presentation
 import android.content.Context
 import android.os.Bundle
 import android.view.View
-import androidx.fragment.app.Fragment
+import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
+import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.transition.Transition
 import androidx.transition.TransitionListenerAdapter
@@ -18,27 +19,30 @@ import com.egoriku.ladyhappy.core.sharedmodel.key.KEY_DETAIL_PAGE_EXTRA
 import com.egoriku.ladyhappy.core.sharedmodel.params.DetailPageParams
 import com.egoriku.ladyhappy.detailpage.R
 import com.egoriku.ladyhappy.detailpage.databinding.FragmentDetailBinding
-import com.egoriku.ladyhappy.detailpage.domain.model.DetailModel
 import com.egoriku.ladyhappy.detailpage.presentation.adapter.DetailAdapter
+import com.egoriku.ladyhappy.detailpage.presentation.adapter.LoadingStateFooterAdapter
+import com.egoriku.ladyhappy.detailpage.presentation.viewmodel.DetailViewModel
 import com.egoriku.ladyhappy.extensions.extraNotNull
 import com.egoriku.ladyhappy.extensions.toast
-import com.egoriku.ladyhappy.mozaik.model.MozaikItem
 import com.google.android.material.appbar.AppBarLayout
 import jp.wasabeef.glide.transformations.BlurTransformation
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
-import org.koin.android.ext.android.inject
-import kotlin.properties.Delegates
+import org.koin.androidx.scope.ScopeFragment
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class DetailPageFragment : Fragment(R.layout.fragment_detail), DetailPage {
+class DetailPageFragment : ScopeFragment(R.layout.fragment_detail), DetailPage {
 
     private val router: IRouter by inject()
+
+    private val viewModel by viewModel<DetailViewModel>()
 
     private val viewBinding by viewBinding(FragmentDetailBinding::bind)
 
     private val detailPageParams: DetailPageParams by extraNotNull(KEY_DETAIL_PAGE_EXTRA)
 
-    private var detailAdapter: DetailAdapter by Delegates.notNull()
+    private var detailAdapter = DetailAdapter()
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -73,32 +77,42 @@ class DetailPageFragment : Fragment(R.layout.fragment_detail), DetailPage {
                 router.back()
             }
         }
+
+        lifecycleScope.launch {
+            viewModel.getDetailFlow(detailParams = detailPageParams).collect {
+                detailAdapter.submitData(it)
+            }
+        }
     }
 
     private fun FragmentDetailBinding.initRecyclerView() {
-        detailAdapter = DetailAdapter()
+        detailAdapter.addLoadStateListener { loadState ->
+            recyclerView.isVisible = loadState.source.refresh is LoadState.NotLoading
+            progressBar.isVisible = loadState.source.refresh is LoadState.Loading
+            retryButton.isVisible = loadState.source.refresh is LoadState.Error
+
+            val errorState = loadState.source.append as? LoadState.Error
+                    ?: loadState.source.prepend as? LoadState.Error
+                    ?: loadState.append as? LoadState.Error
+                    ?: loadState.prepend as? LoadState.Error
+            errorState?.let {
+                toast("\uD83D\uDE28 Wooops ${it.error}")
+            }
+        }
 
         // TODO: 2/5/21 Use real data
         lifecycleScope.launch {
             delay(2000)
-            detailAdapter.submitList(
-                    listOf(
-                            DetailModel(
-                                    images = listOf(
-                                            MozaikItem(1200, 800, "https://firebasestorage.googleapis.com/v0/b/lady-happy.appspot.com/o/subcategories%2F1.2%2FIMG_0207_2018.09.06_22-49%20(1).jpg?alt=media&token=b29b83cb-f2e8-4512-bd8a-b5cc120bd179"),
-                                            MozaikItem(1200, 800, "https://firebasestorage.googleapis.com/v0/b/lady-happy.appspot.com/o/subcategories%2F1.2%2FIMG_0207_2018.09.06_22-49%20(1).jpg?alt=media&token=b29b83cb-f2e8-4512-bd8a-b5cc120bd179")
-                                    ),
-                                    description = "1",
-                                    date = "22 June 2020"
-                            )
-                    ))
-
             fab.show()
         }
 
         recyclerView.apply {
             layoutManager = LinearLayoutManager(requireContext())
-            adapter = detailAdapter
+            adapter = detailAdapter.withLoadStateFooter(
+                    footer = LoadingStateFooterAdapter {
+                        detailAdapter.retry()
+                    }
+            )
         }
     }
 
