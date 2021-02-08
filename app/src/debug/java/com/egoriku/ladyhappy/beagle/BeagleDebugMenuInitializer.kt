@@ -19,7 +19,7 @@ class BeagleDebugMenuInitializer {
 
         Beagle.initialize(
                 application = this,
-                behavior = Behavior(excludedPackageNames = listOf("com.egoriku.ladyhappy"))
+                behavior = Behavior(excludedPackageNames = listOf("com.google"))
         )
         Beagle.set(
                 HeaderModule(
