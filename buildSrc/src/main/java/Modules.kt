@@ -24,6 +24,7 @@ object Modules {
         const val core = ":core"
         const val easyAdapter = ":easyAdapter"
         const val extensions = ":extensions"
+        const val glideTransformations = ":glideTransformations"
         const val localization = ":localization"
         const val mozaik = ":mozaik"
         const val network = ":network"

@@ -54,6 +54,7 @@ object Modules {
         const val core = ":core"
         const val easyAdapter = ":easyAdapter"
         const val extensions = ":extensions"
+        const val glideTransformations = ":glideTransformations"
         const val localization = ":localization"
         const val mozaik = ":mozaik"
         const val network = ":network"
@@ -89,6 +90,7 @@ object Modules {
                 ProjectBean(Libraries.auth, "sources/base/auth"),
                 ProjectBean(Libraries.core, "sources/base/core"),
                 ProjectBean(Libraries.extensions, "sources/libraries/extensions"),
+                ProjectBean(Libraries.glideTransformations, "sources/libraries/glideTransformations"),
                 ProjectBean(Libraries.localization, "sources/base/localization"),
                 ProjectBean(Libraries.mozaik, "sources/libraries/mozaik"),
                 ProjectBean(Libraries.network, "sources/base/network"),
