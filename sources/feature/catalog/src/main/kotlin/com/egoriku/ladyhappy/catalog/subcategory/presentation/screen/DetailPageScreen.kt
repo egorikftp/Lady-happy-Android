@@ -22,7 +22,8 @@ class DetailPageScreen(
 
             arguments = bundleOf(
                     KEY_DETAIL_PAGE_EXTRA to DetailPageParams(
-                            subCategoryId = subCategoryItem.id,
+                            categoryId = subCategoryItem.categoryId,
+                            subCategoryId = subCategoryItem.subCategoryId,
                             productName = subCategoryItem.name,
                             productLogoUrl = subCategoryItem.images.first().url,
                             productDescription = subCategoryItem.description

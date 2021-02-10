@@ -93,6 +93,6 @@ class SubCategoriesAdapter(
 
         override fun areItemsTheSame(oldItem: SubCategoryItem, newItem: SubCategoryItem) = oldItem == newItem
 
-        override fun areContentsTheSame(oldItem: SubCategoryItem, newItem: SubCategoryItem) = oldItem.id == newItem.id
+        override fun areContentsTheSame(oldItem: SubCategoryItem, newItem: SubCategoryItem) = oldItem.subCategoryId == newItem.subCategoryId
     }
 }

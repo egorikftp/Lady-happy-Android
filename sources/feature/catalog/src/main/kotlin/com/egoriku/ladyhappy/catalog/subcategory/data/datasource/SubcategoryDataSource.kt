@@ -11,6 +11,6 @@ class SubcategoryDataSource(private val firebase: IFirebase) {
                 .collection("subcategories")
                 .whereEqualTo("categoryId", categoryId)
                 .orderBy("subCategoryId")
-                .awaitGet<SubCategoryEntity>()
+                .awaitGet()
     }
 }
