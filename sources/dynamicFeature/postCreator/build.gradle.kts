@@ -1,6 +1,5 @@
 import Modules.Applications
 import Modules.Libraries
-import com.egoriku.ext.implementation
 import com.egoriku.ext.withLibraries
 import com.egoriku.ext.withProjects
 
@@ -44,12 +43,7 @@ withLibraries(
         Libs.material,
         Libs.playCore,
         Libs.recyclerView,
+        Libs.recyclerViewSelection,
         Libs.viewBindingDelegates,
         Libs.viewModel
 )
-
-dependencies {
-    implementation(Libs.recyclerViewSelection) {
-        exclude("recyclerview", "recyclerview")
-    }
-}
