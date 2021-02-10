@@ -6,7 +6,6 @@ import com.egoriku.ladyhappy.catalog.subcategory.domain.model.SubCategoryItem
 import com.egoriku.ladyhappy.core.IFeatureProvider
 import com.egoriku.ladyhappy.core.sharedmodel.key.KEY_DETAIL_PAGE_EXTRA
 import com.egoriku.ladyhappy.core.sharedmodel.params.DetailPageParams
-import com.egoriku.ladyhappy.extensions.common.Constants.EMPTY
 import com.egoriku.ladyhappy.navigation.screen.FragmentScreen
 import com.google.android.material.transition.MaterialFade
 import com.google.android.material.transition.MaterialFadeThrough
@@ -26,7 +25,7 @@ class DetailPageScreen(
                             subCategoryId = subCategoryItem.id,
                             productName = subCategoryItem.name,
                             productLogoUrl = subCategoryItem.images.first().url,
-                            productDescription = EMPTY
+                            productDescription = subCategoryItem.description
                     )
             )
         }

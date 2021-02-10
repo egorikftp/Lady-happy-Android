@@ -7,5 +7,6 @@ data class SubCategoryItem(
         val name: String,
         val isPopular: Boolean,
         val publishedCount: Int,
-        val images: List<MozaikItem>
+        val images: List<MozaikItem>,
+        val description: String
 )

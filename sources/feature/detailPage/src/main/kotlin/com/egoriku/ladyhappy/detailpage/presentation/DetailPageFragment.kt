@@ -22,11 +22,12 @@ import com.egoriku.ladyhappy.detailpage.databinding.FragmentDetailBinding
 import com.egoriku.ladyhappy.detailpage.presentation.adapter.DetailAdapter
 import com.egoriku.ladyhappy.detailpage.presentation.adapter.LoadingStateFooterAdapter
 import com.egoriku.ladyhappy.detailpage.presentation.viewmodel.DetailViewModel
+import com.egoriku.ladyhappy.extensions.colorCompat
 import com.egoriku.ladyhappy.extensions.extraNotNull
 import com.egoriku.ladyhappy.extensions.toast
+import com.egoriku.ladyhappy.glide.transformations.GradientOverlayTransformation
 import com.google.android.material.appbar.AppBarLayout
 import jp.wasabeef.glide.transformations.BlurTransformation
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import org.koin.androidx.scope.ScopeFragment
@@ -91,6 +92,10 @@ class DetailPageFragment : ScopeFragment(R.layout.fragment_detail), DetailPage {
             progressBar.isVisible = loadState.source.refresh is LoadState.Loading
             retryButton.isVisible = loadState.source.refresh is LoadState.Error
 
+            if (loadState.source.refresh is LoadState.NotLoading) {
+                fab.show()
+            }
+
             val errorState = loadState.source.append as? LoadState.Error
                     ?: loadState.source.prepend as? LoadState.Error
                     ?: loadState.append as? LoadState.Error
@@ -100,18 +105,10 @@ class DetailPageFragment : ScopeFragment(R.layout.fragment_detail), DetailPage {
             }
         }
 
-        // TODO: 2/5/21 Use real data
-        lifecycleScope.launch {
-            delay(2000)
-            fab.show()
-        }
-
         recyclerView.apply {
             layoutManager = LinearLayoutManager(requireContext())
             adapter = detailAdapter.withLoadStateFooter(
-                    footer = LoadingStateFooterAdapter {
-                        detailAdapter.retry()
-                    }
+                    footer = LoadingStateFooterAdapter(detailAdapter::retry)
             )
         }
     }
@@ -131,8 +128,14 @@ class DetailPageFragment : ScopeFragment(R.layout.fragment_detail), DetailPage {
         Glide.with(headerBackground)
                 .load(detailPageParams.productLogoUrl)
                 .transition(DrawableTransitionOptions.withCrossFade())
-                .transform(BlurTransformation(25, 1))
-                .into(headerBackground)
+                .transform(
+                        BlurTransformation(25, 1),
+                        GradientOverlayTransformation(
+                                startColor = colorCompat(R.color.RealBlack0),
+                                centerColor = colorCompat(R.color.RealBlack30),
+                                endColor = colorCompat(R.color.RealBlack)
+                        )
+                ).into(headerBackground)
     }
 
     private fun FragmentDetailBinding.initAppBarScrollListener() {

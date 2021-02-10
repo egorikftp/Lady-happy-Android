@@ -15,7 +15,8 @@ class CatalogUseCase(private val subcategoryRepository: SubcategoryRepository) {
                 images = entity.images.map(imageTransform),
                 name = entity.subCategoryName,
                 isPopular = entity.isPopular,
-                publishedCount = entity.publishedCount
+                publishedCount = entity.publishedCount,
+                description = entity.description
         )
     }
 

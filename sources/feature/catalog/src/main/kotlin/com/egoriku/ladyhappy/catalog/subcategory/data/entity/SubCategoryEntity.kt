@@ -27,5 +27,9 @@ class SubCategoryEntity(
 
         @PropertyName("publishedCount")
         @JvmField
-        val publishedCount: Int = 0
+        val publishedCount: Int = 0,
+
+        @PropertyName("description")
+        @JvmField
+        val description: String = EMPTY,
 )
