@@ -1,13 +1,15 @@
 package com.egoriku.ladyhappy.catalog.subcategory.domain.usecase
 
 import com.egoriku.ladyhappy.catalog.subcategory.data.entity.SubCategoryEntity
-import com.egoriku.ladyhappy.catalog.subcategory.data.repository.SubcategoryRepository
+import com.egoriku.ladyhappy.catalog.subcategory.data.repository.ISubcategoryRepository
 import com.egoriku.ladyhappy.catalog.subcategory.domain.model.SubCategoryItem
 import com.egoriku.ladyhappy.core.sharedmodel.ImageEntity
 import com.egoriku.ladyhappy.mozaik.model.MozaikItem
 import com.egoriku.ladyhappy.network.ResultOf
 
-class CatalogUseCase(private val subcategoryRepository: SubcategoryRepository) {
+internal class CatalogUseCase(
+        private val subcategoryRepository: ISubcategoryRepository
+) : ICatalogUseCase {
 
     private val entityTransform: (SubCategoryEntity) -> SubCategoryItem = { entity: SubCategoryEntity ->
         SubCategoryItem(
@@ -29,7 +31,7 @@ class CatalogUseCase(private val subcategoryRepository: SubcategoryRepository) {
         )
     }
 
-    suspend fun loadSubCategories(categoryId: Int): ResultOf<List<SubCategoryItem>> =
+    override suspend fun loadSubCategories(categoryId: Int) =
             when (val subcategories = subcategoryRepository.fetchSubCategories(categoryId)) {
                 is ResultOf.Failure -> ResultOf.Failure(Exception("Response empty"))
                 is ResultOf.Success -> ResultOf.Success(
@@ -38,4 +40,9 @@ class CatalogUseCase(private val subcategoryRepository: SubcategoryRepository) {
                                 .map(entityTransform)
                 )
             }
+}
+
+interface ICatalogUseCase {
+
+    suspend fun loadSubCategories(categoryId: Int): ResultOf<List<SubCategoryItem>>
 }

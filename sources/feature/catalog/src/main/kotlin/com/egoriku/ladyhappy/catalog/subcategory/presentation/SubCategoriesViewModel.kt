@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
 import com.egoriku.ladyhappy.catalog.subcategory.domain.model.SubCategoryItem
-import com.egoriku.ladyhappy.catalog.subcategory.domain.usecase.CatalogUseCase
+import com.egoriku.ladyhappy.catalog.subcategory.domain.usecase.ICatalogUseCase
 import com.egoriku.ladyhappy.catalog.subcategory.presentation.screen.DetailPageScreen
 import com.egoriku.ladyhappy.core.IFeatureProvider
 import com.egoriku.ladyhappy.core.IRouter
@@ -14,7 +14,7 @@ class SubCategoriesViewModel(
         private val categoryId: Int,
         private val featureProvider: IFeatureProvider,
         private val router: IRouter,
-        private val catalogUseCase: CatalogUseCase,
+        private val catalogUseCase: ICatalogUseCase,
 ) : ViewModel() {
 
     val subcategoryItems: LiveData<SubcategoryScreenState> = liveData {
