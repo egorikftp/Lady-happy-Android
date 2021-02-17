@@ -1,6 +1,7 @@
 package com.egoriku.ladyhappy.detailpage.koin
 
 import com.egoriku.ladyhappy.detailpage.data.DetailPaginateRepository
+import com.egoriku.ladyhappy.detailpage.data.IDetailPaginateRepository
 import com.egoriku.ladyhappy.detailpage.domain.usecase.DetailUseCase
 import com.egoriku.ladyhappy.detailpage.domain.usecase.IDetailUseCase
 import com.egoriku.ladyhappy.detailpage.presentation.DetailPageFragment
@@ -10,7 +11,7 @@ import org.koin.dsl.module
 
 val detailModule = module {
     scope<DetailPageFragment> {
-        scoped { DetailPaginateRepository(firebase = get()) }
+        scoped<IDetailPaginateRepository> { DetailPaginateRepository(firebase = get()) }
 
         scoped<IDetailUseCase> { DetailUseCase(repository = get()) }
 

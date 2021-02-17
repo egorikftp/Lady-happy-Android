@@ -4,6 +4,9 @@ import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.egoriku.ladyhappy.core.IFirebase
 import com.egoriku.ladyhappy.core.constant.CollectionPath.ALL_HATS
+import com.egoriku.ladyhappy.core.constant.DocumentField.CATEGORY_ID
+import com.egoriku.ladyhappy.core.constant.DocumentField.DATE
+import com.egoriku.ladyhappy.core.constant.DocumentField.SUB_CATEGORY_ID
 import com.egoriku.ladyhappy.core.sharedmodel.params.DetailPageParams
 import com.egoriku.ladyhappy.detailpage.data.entity.DetailEntity
 import com.google.firebase.firestore.Query
@@ -47,9 +50,9 @@ class DetailDataSource(
 
     private fun query() = firebase.firebaseFirestore
             .collection(ALL_HATS)
-            .whereEqualTo("categoryId", detailPageParams.categoryId)
-            .whereEqualTo("subCategoryId", detailPageParams.subCategoryId)
-            .orderBy("date", Query.Direction.DESCENDING)
+            .whereEqualTo(CATEGORY_ID, detailPageParams.categoryId)
+            .whereEqualTo(SUB_CATEGORY_ID, detailPageParams.subCategoryId)
+            .orderBy(DATE, Query.Direction.DESCENDING)
             .limit(PAGE_SIZE.toLong())
 
     override fun getRefreshKey(state: PagingState<QuerySnapshot, DetailEntity>): QuerySnapshot? = null
