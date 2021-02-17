@@ -1,7 +1,7 @@
 import com.egoriku.versions.LibrariesVersion
 
 object GradlePluginsVersion {
-    const val firebaseCrashlytics = "2.4.1"
+    const val firebaseCrashlytics = "2.5.0"
     const val firebasePerformance = "1.3.4"
     const val detekt = "1.15.0"
     const val googleServices = "4.3.5"

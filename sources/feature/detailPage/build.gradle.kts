@@ -21,13 +21,13 @@ withProjects(
 )
 
 withLibraries(
-        Libs.appcompat,
-        Libs.glide,
-        Libs.glideTransformation,
         Libs.constraintLayout,
         Libs.coroutinesAndroid,
         Libs.coroutinesPlayServices,
         Libs.firebaseFirestore,
+        Libs.fragment,
+        Libs.glide,
+        Libs.glideTransformation,
         Libs.koinAndroid,
         Libs.koinViewModel,
         Libs.material,

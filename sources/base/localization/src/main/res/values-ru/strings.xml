@@ -107,4 +107,6 @@
     <string name="post_creator_publish_button_text">Опубликовать запись</string>
     <string name="post_creator_screen_title">Создание записи</string>
     <string name="proto_overlay_title_format">%1$d из %2$d</string>
+    <string name="detail_page_no_data_available">Похоже здесь еще пусто</string>
+    <string name="detail_page_error_loading">&#128552; &#x1f628; Упс %1$s</string>
 </resources>

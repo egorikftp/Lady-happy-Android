@@ -3,7 +3,9 @@ package com.egoriku.ladyhappy.detailpage.presentation
 import android.content.Context
 import android.os.Bundle
 import android.view.View
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.isVisible
+import androidx.core.view.updateLayoutParams
 import androidx.lifecycle.lifecycleScope
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -25,6 +27,7 @@ import com.egoriku.ladyhappy.detailpage.presentation.viewmodel.DetailViewModel
 import com.egoriku.ladyhappy.extensions.colorCompat
 import com.egoriku.ladyhappy.extensions.extraNotNull
 import com.egoriku.ladyhappy.extensions.toast
+import com.egoriku.ladyhappy.extensions.visible
 import com.egoriku.ladyhappy.glide.transformations.GradientOverlayTransformation
 import com.google.android.material.appbar.AppBarLayout
 import jp.wasabeef.glide.transformations.BlurTransformation
@@ -88,20 +91,34 @@ class DetailPageFragment : ScopeFragment(R.layout.fragment_detail), DetailPage {
 
     private fun FragmentDetailBinding.initRecyclerView() {
         detailAdapter.addLoadStateListener { loadState ->
-            recyclerView.isVisible = loadState.source.refresh is LoadState.NotLoading
-            progressBar.isVisible = loadState.source.refresh is LoadState.Loading
-            retryButton.isVisible = loadState.source.refresh is LoadState.Error
+            if (loadState.source.refresh is LoadState.NotLoading
+                    && loadState.append.endOfPaginationReached
+                    && detailAdapter.itemCount < 1
+            ) {
+                fab.hide()
+                bottomAppBar.performHide()
 
-            if (loadState.source.refresh is LoadState.NotLoading) {
+                placeholderContainer.emptyStateImage.visible()
+                placeholderContainer.emptyStateMessage.visible()
+            } else {
                 fab.show()
+                bottomAppBar.performShow()
             }
+
+            recyclerView.isVisible = loadState.source.refresh is LoadState.NotLoading
+            placeholderContainer.progressBar.isVisible = loadState.source.refresh is LoadState.Loading
+            placeholderContainer.retryButton.isVisible = loadState.source.refresh is LoadState.Error
 
             val errorState = loadState.source.append as? LoadState.Error
                     ?: loadState.source.prepend as? LoadState.Error
                     ?: loadState.append as? LoadState.Error
                     ?: loadState.prepend as? LoadState.Error
+                    ?: loadState.source.refresh as? LoadState.Error
             errorState?.let {
-                toast("\uD83D\uDE28 Wooops ${it.error}")
+                toast(getString(R.string.detail_page_error_loading, it.error.toString()))
+
+                fab.hide()
+                bottomAppBar.performHide()
             }
         }
 
@@ -143,6 +160,10 @@ class DetailPageFragment : ScopeFragment(R.layout.fragment_detail), DetailPage {
             val scrollPosition = -verticalOffset / appbarLayout.totalScrollRange.toFloat()
 
             motionLayout.progress = scrollPosition
+
+            placeholderContainer.root.updateLayoutParams<ConstraintLayout.LayoutParams> {
+                verticalBias = 0.3f * scrollPosition + 0.2f
+            }
         }
 
         appbarLayout.addOnOffsetChangedListener(listener)

@@ -6,10 +6,6 @@ import com.google.firebase.firestore.PropertyName
 import java.util.*
 
 class DetailEntity(
-        @PropertyName("id")
-        @JvmField
-        val id: Int = 0,
-
         @PropertyName("name")
         @JvmField
         val name: String = EMPTY,
@@ -18,9 +14,9 @@ class DetailEntity(
         @JvmField
         val images: List<ImageEntity> = emptyList(),
 
-        @PropertyName("description")
+        @PropertyName("title")
         @JvmField
-        val description: String = EMPTY,
+        val title: String = EMPTY,
 
         @PropertyName("date")
         @JvmField

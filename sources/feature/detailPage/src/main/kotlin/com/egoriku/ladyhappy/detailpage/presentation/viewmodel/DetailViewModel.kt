@@ -6,11 +6,11 @@ import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import com.egoriku.ladyhappy.core.sharedmodel.params.DetailPageParams
 import com.egoriku.ladyhappy.detailpage.domain.model.DetailModel
-import com.egoriku.ladyhappy.detailpage.domain.usecase.DetailUseCase
+import com.egoriku.ladyhappy.detailpage.domain.usecase.IDetailUseCase
 import kotlinx.coroutines.flow.Flow
 
 class DetailViewModel(
-        private val detailUseCase: DetailUseCase
+        private val detailUseCase: IDetailUseCase
 ) : ViewModel() {
 
     private var currentParams: DetailPageParams? = null
@@ -24,7 +24,7 @@ class DetailViewModel(
         }
 
         val newDetailUseCaseResult = detailUseCase
-                .invoke(detailParams)
+                .execute(detailParams)
                 .cachedIn(viewModelScope)
 
         currentParams = detailParams
