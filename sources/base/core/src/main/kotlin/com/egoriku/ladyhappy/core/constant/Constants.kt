@@ -9,6 +9,7 @@ object CollectionPath {
     const val ALL_HATS = "listOfHats"
     const val CATEGORIES = "categories"
     const val SUBCATEGORIES = "subcategories"
+    const val LANDING = "landingInfo"
 }
 
 object DocumentField {

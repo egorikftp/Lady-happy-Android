@@ -7,7 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.egoriku.ladyhappy.core.IAnalytics
 import com.egoriku.ladyhappy.extensions.logE
 import com.egoriku.ladyhappy.landing.domain.model.LandingModel
-import com.egoriku.ladyhappy.landing.domain.usecase.LandingUseCase
+import com.egoriku.ladyhappy.landing.domain.usecase.ILandingUseCase
 import com.egoriku.ladyhappy.network.ResultOf
 import com.egoriku.ladyhappy.network.exception.FirestoreNetworkException
 import com.egoriku.ladyhappy.network.exception.FirestoreParseException
@@ -16,7 +16,7 @@ import kotlinx.coroutines.launch
 
 class LandingViewModel(
         private val analytics: IAnalytics,
-        private val landingUseCase: LandingUseCase
+        private val landingUseCase: ILandingUseCase
 ) : ViewModel() {
 
     private val screenData = MutableLiveData<LandingScreenModel>()

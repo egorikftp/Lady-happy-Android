@@ -11,6 +11,7 @@ import com.egoriku.ladyhappy.landing.domain.model.SocialModel
 import com.egoriku.ladyhappy.landing.domain.model.TeamMemberModel
 import com.egoriku.ladyhappy.network.ResultOf
 
+// TODO: 2/17/21 Migrate to IMapper approach
 object LandingMapper {
     fun transformResult(entity: LandingEntity): ResultOf<LandingModel> =
             ResultOf.Success(LandingModel(
