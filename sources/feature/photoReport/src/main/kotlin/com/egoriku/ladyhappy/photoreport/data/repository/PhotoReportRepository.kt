@@ -11,9 +11,11 @@ import kotlinx.coroutines.withContext
 private const val COLLECTION_KEY_NEWS = "news_v2"
 private const val QUERY_DATE = "date"
 
-class PhotoReportRepository(private val firebase: IFirebase) {
+internal class PhotoReportRepository(
+        private val firebase: IFirebase
+) : IPhotoReportRepository {
 
-    suspend fun getPhotoReport(): ResultOf<List<PhotoReportEntity>> = withContext(Dispatchers.IO) {
+    override suspend fun getPhotoReport() = withContext(Dispatchers.IO) {
         runCatching {
             val value = firebase
                     .firebaseFirestore
@@ -30,4 +32,9 @@ class PhotoReportRepository(private val firebase: IFirebase) {
             ResultOf.Failure(it)
         }
     }
+}
+
+interface IPhotoReportRepository {
+
+    suspend fun getPhotoReport(): ResultOf<List<PhotoReportEntity>>
 }

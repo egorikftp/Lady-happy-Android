@@ -3,11 +3,13 @@ package com.egoriku.ladyhappy.photoreport.domain.usecase
 import com.egoriku.ladyhappy.mozaik.model.MozaikItem
 import com.egoriku.ladyhappy.network.ResultOf
 import com.egoriku.ladyhappy.photoreport.data.entity.PhotoReportEntity
-import com.egoriku.ladyhappy.photoreport.data.repository.PhotoReportRepository
+import com.egoriku.ladyhappy.photoreport.data.repository.IPhotoReportRepository
 import com.egoriku.ladyhappy.photoreport.domain.model.PhotoReportModel
 import com.egoriku.ladyhappy.ui.date.ddMMMyyyy
 
-class PhotoReportUseCase(private val photoReportRepository: PhotoReportRepository) {
+internal class PhotoReportUseCase(
+        private val photoReportRepository: IPhotoReportRepository
+) : IPhotoReportUseCase {
 
     private val transformToModel: (PhotoReportEntity) -> PhotoReportModel = { entity: PhotoReportEntity ->
         PhotoReportModel(
@@ -33,11 +35,14 @@ class PhotoReportUseCase(private val photoReportRepository: PhotoReportRepositor
         }
     }
 
-    suspend fun getPhotoReportInfo(): ResultOf<List<PhotoReportModel>> {
-        return when (val photoReportResult = photoReportRepository.getPhotoReport()) {
-            is ResultOf.Failure -> return photoReportResult
-            is ResultOf.Success ->
-                ResultOf.Success(photoReportResult.value.map(transformToModel))
-        }
-    }
+    override suspend fun getPhotoReportInfo() =
+            when (val photoReportResult = photoReportRepository.getPhotoReport()) {
+                is ResultOf.Failure -> photoReportResult
+                is ResultOf.Success -> ResultOf.Success(photoReportResult.value.map(transformToModel))
+            }
+}
+
+interface IPhotoReportUseCase {
+
+    suspend fun getPhotoReportInfo(): ResultOf<List<PhotoReportModel>>
 }
