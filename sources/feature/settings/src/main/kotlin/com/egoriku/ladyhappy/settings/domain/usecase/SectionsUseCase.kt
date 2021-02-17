@@ -6,17 +6,17 @@ import com.egoriku.ladyhappy.settings.domain.model.Feature
 import com.egoriku.ladyhappy.settings.domain.model.FeatureType
 import com.egoriku.ladyhappy.settings.domain.model.Section
 import com.egoriku.ladyhappy.settings.domain.model.setting.SettingItem
-import com.egoriku.ladyhappy.settings.domain.repository.RemoteFeaturesRepository
+import com.egoriku.ladyhappy.settings.domain.repository.IRemoteFeaturesRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.channelFlow
 import kotlinx.coroutines.launch
 
-class SectionsUseCase(
-        private val remoteFeaturesRepository: RemoteFeaturesRepository,
+internal class SectionsUseCase(
+        private val remoteFeaturesRepository: IRemoteFeaturesRepository,
         private val stringResource: IStringResource
-) {
+) : ISectionsUseCase {
 
-    suspend fun load(): Flow<Section> = channelFlow {
+    override suspend fun load(): Flow<Section> = channelFlow {
         launch {
             send(stubFeatures())
             send(settingsSection())
@@ -24,7 +24,7 @@ class SectionsUseCase(
         }
     }
 
-    suspend fun refresh(): Flow<Section> = channelFlow {
+    override suspend fun refresh(): Flow<Section> = channelFlow {
         launch {
             send(stubFeatures())
             send(settingsSection())
@@ -45,7 +45,7 @@ class SectionsUseCase(
     )
 
     private suspend fun featuresSection(): List<Feature> {
-        val publishPosts = remoteFeaturesRepository.loadFeature(FeatureType.PUBLISH_POSTS)
+        val publishPosts = remoteFeaturesRepository.loadByFeature(FeatureType.PUBLISH_POSTS)
 
         return listOf(publishPosts).filter {
             it.isAvailable
@@ -62,4 +62,11 @@ class SectionsUseCase(
                     Feature.Stub()
             )
     )
+}
+
+interface ISectionsUseCase {
+
+    suspend fun load(): Flow<Section>
+
+    suspend fun refresh(): Flow<Section>
 }

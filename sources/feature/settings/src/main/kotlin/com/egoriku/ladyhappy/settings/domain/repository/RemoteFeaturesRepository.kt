@@ -1,19 +1,19 @@
 package com.egoriku.ladyhappy.settings.domain.repository
 
-import com.egoriku.ladyhappy.settings.data.datasource.PublishPostsFeatureDataSource
+import com.egoriku.ladyhappy.network.ResultOf.Failure
+import com.egoriku.ladyhappy.network.ResultOf.Success
+import com.egoriku.ladyhappy.settings.data.datasource.IPublishPostsFeatureDataSource
 import com.egoriku.ladyhappy.settings.domain.model.Feature
 import com.egoriku.ladyhappy.settings.domain.model.FeatureType
 import com.egoriku.ladyhappy.settings.domain.model.FeatureType.PUBLISH_POSTS
-import com.egoriku.ladyhappy.network.ResultOf.Failure
-import com.egoriku.ladyhappy.network.ResultOf.Success
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
-class RemoteFeaturesRepository(
-        private val publishPostsFeatureDataSource: PublishPostsFeatureDataSource
-) {
+internal class RemoteFeaturesRepository(
+        private val publishPostsFeatureDataSource: IPublishPostsFeatureDataSource
+) : IRemoteFeaturesRepository {
 
-    suspend fun loadFeature(feature: FeatureType) = when (feature) {
+    override suspend fun loadByFeature(feature: FeatureType) = when (feature) {
         PUBLISH_POSTS -> loadPublishPostsFeature()
     }
 
@@ -23,4 +23,9 @@ class RemoteFeaturesRepository(
             is Failure -> Feature.PublishPosts(false)
         }
     }
+}
+
+interface IRemoteFeaturesRepository {
+
+    suspend fun loadByFeature(feature: FeatureType): Feature
 }

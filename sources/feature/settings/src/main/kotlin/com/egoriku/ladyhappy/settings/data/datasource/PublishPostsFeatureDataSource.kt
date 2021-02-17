@@ -1,14 +1,23 @@
 package com.egoriku.ladyhappy.settings.data.datasource
 
 import com.egoriku.ladyhappy.core.IFirebase
-import com.egoriku.ladyhappy.settings.data.entity.PublishPostsFeatureEntity
+import com.egoriku.ladyhappy.core.constant.CollectionPath.AVAILABLE_FEATURES
+import com.egoriku.ladyhappy.core.constant.CollectionPath.PUBLISH_POSTS
 import com.egoriku.ladyhappy.network.ResultOf
 import com.egoriku.ladyhappy.network.firestore.awaitResult
+import com.egoriku.ladyhappy.settings.data.entity.PublishPostsFeatureEntity
 
-class PublishPostsFeatureDataSource(private val firestore: IFirebase) {
+internal class PublishPostsFeatureDataSource(
+        private val firebase: IFirebase
+) : IPublishPostsFeatureDataSource {
 
-    suspend fun load(): ResultOf<PublishPostsFeatureEntity> = firestore.firebaseFirestore
-            .collection("availableFeatures")
-            .document("PublishPosts")
-            .awaitResult()
+    override suspend fun load() = firebase.firebaseFirestore
+            .collection(AVAILABLE_FEATURES)
+            .document(PUBLISH_POSTS)
+            .awaitResult<PublishPostsFeatureEntity>()
+}
+
+interface IPublishPostsFeatureDataSource {
+
+    suspend fun load(): ResultOf<PublishPostsFeatureEntity>
 }

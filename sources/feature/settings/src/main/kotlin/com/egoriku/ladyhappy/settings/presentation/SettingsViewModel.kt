@@ -7,16 +7,16 @@ import androidx.lifecycle.viewModelScope
 import com.egoriku.ladyhappy.core.IRouter
 import com.egoriku.ladyhappy.navigation.screen.Screen
 import com.egoriku.ladyhappy.settings.domain.model.Section
-import com.egoriku.ladyhappy.settings.domain.usecase.AuthenticationUseCase
-import com.egoriku.ladyhappy.settings.domain.usecase.SectionsUseCase
+import com.egoriku.ladyhappy.settings.domain.usecase.IAuthenticationUseCase
+import com.egoriku.ladyhappy.settings.domain.usecase.ISectionsUseCase
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import java.util.concurrent.ConcurrentHashMap
 
 class SettingsViewModel(
         private val router: IRouter,
-        private val sectionsUseCase: SectionsUseCase,
-        private val authenticationUseCase: AuthenticationUseCase
+        private val sectionsUseCase: ISectionsUseCase,
+        private val authenticationUseCase: IAuthenticationUseCase
 ) : ViewModel() {
 
     private val cache = ConcurrentHashMap<Int, Section>()
