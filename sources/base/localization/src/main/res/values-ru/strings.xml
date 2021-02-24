@@ -102,7 +102,7 @@
     <string name="post_creator_chooser_hint_creation_date">Дата создания</string>
     <string name="post_creator_upload_error">Произошла ошибка во время публикации</string>
     <string name="post_creator_upload_success">Запись успешно опубликована</string>
-    <string name="post_creator_input_hint">Подпись под постом</string>
+    <string name="post_creator_input_hint">Подпись (может быть пустой)</string>
     <string name="post_creator_images_section_title">Фотографии</string>
     <string name="post_creator_publish_button_text">Опубликовать запись</string>
     <string name="post_creator_screen_title">Создание записи</string>

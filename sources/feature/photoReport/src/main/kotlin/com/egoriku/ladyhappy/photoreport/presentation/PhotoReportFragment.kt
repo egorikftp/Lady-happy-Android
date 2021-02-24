@@ -15,6 +15,7 @@ import com.egoriku.ladyhappy.photoreport.databinding.FragmentPhotoReportBinding
 import com.egoriku.ladyhappy.photoreport.presentation.adapter.PhotoReportAdapter
 import com.egoriku.ladyhappy.photoreport.presentation.state.PhotoReportUiState
 import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 import org.koin.androidx.scope.ScopeFragment
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import kotlin.properties.Delegates
@@ -32,7 +33,7 @@ class PhotoReportFragment : ScopeFragment(R.layout.fragment_photo_report), Photo
 
         binding.initRecyclerView()
 
-        lifecycleScope.launchWhenStarted {
+        lifecycleScope.launch {
             viewModel.uiState.collect { uiState ->
                 when (uiState) {
                     is PhotoReportUiState.Error -> processError()

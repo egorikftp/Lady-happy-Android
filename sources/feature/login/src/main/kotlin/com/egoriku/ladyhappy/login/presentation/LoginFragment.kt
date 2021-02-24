@@ -19,6 +19,7 @@ import com.egoriku.ladyhappy.login.presentation.util.validatePassword
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.common.api.ApiException
 import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class LoginFragment : Fragment(R.layout.fragment_login) {
@@ -109,7 +110,7 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
             }
         }
 
-        lifecycleScope.launchWhenStarted {
+        lifecycleScope.launch {
             viewModel.events.collect {
                 when (it) {
                     is LoginEvent.OneTap -> {

@@ -24,11 +24,9 @@ import com.egoriku.ladyhappy.detailpage.databinding.FragmentDetailBinding
 import com.egoriku.ladyhappy.detailpage.presentation.adapter.DetailAdapter
 import com.egoriku.ladyhappy.detailpage.presentation.adapter.LoadingStateFooterAdapter
 import com.egoriku.ladyhappy.detailpage.presentation.viewmodel.DetailViewModel
-import com.egoriku.ladyhappy.extensions.colorCompat
-import com.egoriku.ladyhappy.extensions.extraNotNull
-import com.egoriku.ladyhappy.extensions.toast
-import com.egoriku.ladyhappy.extensions.visible
+import com.egoriku.ladyhappy.extensions.*
 import com.egoriku.ladyhappy.glide.transformations.GradientOverlayTransformation
+import com.egoriku.ladyhappy.ui.decorator.EmptySpaceItemDecoration
 import com.google.android.material.appbar.AppBarLayout
 import jp.wasabeef.glide.transformations.BlurTransformation
 import kotlinx.coroutines.flow.collect
@@ -70,7 +68,7 @@ class DetailPageFragment : ScopeFragment(R.layout.fragment_detail), DetailPage {
 
         with(viewBinding) {
             initPredefinedData()
-            initRecyclerView()
+            initAdapter()
             initAppBarScrollListener()
 
             fab.setOnClickListener {
@@ -87,9 +85,15 @@ class DetailPageFragment : ScopeFragment(R.layout.fragment_detail), DetailPage {
                 detailAdapter.submitData(it)
             }
         }
+
+        lifecycleScope.launch {
+            viewModel.filterState.collect { state ->
+
+            }
+        }
     }
 
-    private fun FragmentDetailBinding.initRecyclerView() {
+    private fun FragmentDetailBinding.initAdapter() {
         detailAdapter.addLoadStateListener { loadState ->
             if (loadState.source.refresh is LoadState.NotLoading
                     && loadState.append.endOfPaginationReached
@@ -102,7 +106,6 @@ class DetailPageFragment : ScopeFragment(R.layout.fragment_detail), DetailPage {
                 placeholderContainer.emptyStateMessage.visible()
             } else {
                 fab.show()
-                bottomAppBar.performShow()
             }
 
             recyclerView.isVisible = loadState.source.refresh is LoadState.NotLoading
@@ -127,6 +130,7 @@ class DetailPageFragment : ScopeFragment(R.layout.fragment_detail), DetailPage {
             adapter = detailAdapter.withLoadStateFooter(
                     footer = LoadingStateFooterAdapter(detailAdapter::retry)
             )
+            addItemDecoration(EmptySpaceItemDecoration(top = getDimen(R.dimen.material_padding_16)))
         }
     }
 

@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.graphics.Color
+import android.net.Uri
 import android.os.Bundle
 import android.widget.ProgressBar
 import android.widget.TextView
@@ -20,6 +21,7 @@ import com.egoriku.ladyhappy.core.INavigationHolder
 import com.egoriku.ladyhappy.core.constant.REQUEST_KEY_DYNAMIC_FEATURE
 import com.egoriku.ladyhappy.core.constant.RESULT_KEY_DYNAMIC_FEATURE
 import com.egoriku.ladyhappy.core.feature.*
+import com.egoriku.ladyhappy.core.sharedmodel.params.PostCreatorParams
 import com.egoriku.ladyhappy.core.sharedmodel.toNightMode
 import com.egoriku.ladyhappy.databinding.ActivityMainBinding
 import com.egoriku.ladyhappy.extensions.*
@@ -27,6 +29,7 @@ import com.egoriku.ladyhappy.mainscreen.common.Constants.Tracking
 import com.egoriku.ladyhappy.mainscreen.presentation.balloon.DynamicFeatureBalloonFactory
 import com.egoriku.ladyhappy.mainscreen.presentation.components.dynamicFeature.DynamicFeatureEvent
 import com.egoriku.ladyhappy.mainscreen.presentation.components.dynamicFeature.DynamicFeatureViewModel
+import com.egoriku.ladyhappy.mainscreen.presentation.components.dynamicFeature.DynamicScreen
 import com.egoriku.ladyhappy.mainscreen.presentation.components.dynamicFeature.ModuleStatus
 import com.egoriku.ladyhappy.mainscreen.presentation.components.inAppReview.ReviewViewModel
 import com.egoriku.ladyhappy.mainscreen.presentation.components.inAppUpdates.InAppUpdateEvent
@@ -48,6 +51,7 @@ import com.google.android.play.core.splitinstall.SplitInstallManager
 import com.skydoves.balloon.Balloon
 import com.skydoves.balloon.balloon
 import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 import org.koin.androidx.scope.ScopeActivity
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import kotlin.properties.Delegates
@@ -153,11 +157,13 @@ class MainActivity : ScopeActivity(R.layout.activity_main) {
         subscribeForDynamicFeatureRequest()
 
         intent?.handleGoogleAssistanceSearchIntent()
+        intent?.handleSendImageIntent()
     }
 
     override fun onNewIntent(intent: Intent?) {
         super.onNewIntent(intent)
         intent?.handleGoogleAssistanceSearchIntent()
+        intent?.handleSendImageIntent()
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -197,7 +203,7 @@ class MainActivity : ScopeActivity(R.layout.activity_main) {
     }
 
     private fun subscribeForInAppUpdate() {
-        lifecycleScope.launchWhenResumed {
+        lifecycleScope.launch {
             inAppUpdateViewModel.updateStatus.collect { updateResult: AppUpdateResult ->
                 updateUpdateButton(updateResult)
 
@@ -217,7 +223,7 @@ class MainActivity : ScopeActivity(R.layout.activity_main) {
             }
         }
 
-        lifecycleScope.launchWhenResumed {
+        lifecycleScope.launch {
             inAppUpdateViewModel.events.collect { event ->
                 when (event) {
                     is InAppUpdateEvent.ToastEvent -> toast(event.message)
@@ -240,12 +246,21 @@ class MainActivity : ScopeActivity(R.layout.activity_main) {
 
     @OptIn(ExperimentalTime::class)
     private fun subscribeForDynamicFeatureInstall() {
-        lifecycleScope.launchWhenResumed {
+        lifecycleScope.launch {
             dynamicFeatureViewModel.events.collect { event ->
                 when (event) {
                     is DynamicFeatureEvent.ToastEvent -> toast(event.message)
                     is DynamicFeatureEvent.NavigationEvent -> {
-                        viewModel.navigateTo(screen = DynamicFeatureScreen(event.fragmentClass))
+                        when (val screen = event.screen) {
+                            is DynamicScreen.PostCreator -> {
+                                viewModel.navigateTo(
+                                        screen = PostCreatorScreen(
+                                                className = screen.className,
+                                                params = screen.params
+                                        )
+                                )
+                            }
+                        }
                     }
                     is DynamicFeatureEvent.InstallConfirmationEvent -> {
                         splitInstallManager.startConfirmationDialogForResult(
@@ -259,7 +274,7 @@ class MainActivity : ScopeActivity(R.layout.activity_main) {
             }
         }
 
-        lifecycleScope.launchWhenResumed {
+        lifecycleScope.launch {
             dynamicFeatureViewModel.postCreatorModuleStatus.collect { status ->
                 when (status) {
                     is ModuleStatus.Installing -> {
@@ -286,7 +301,7 @@ class MainActivity : ScopeActivity(R.layout.activity_main) {
                     is ModuleStatus.Installed -> {
                         if (isOpenDynamicFeatureWhenReady) {
                             isOpenDynamicFeatureWhenReady = false
-                            dynamicFeatureViewModel.invokePostCreator()
+                            dynamicFeatureViewModel.invokePostCreatorOrInstall()
                         }
 
                         dynamicFeatureBalloon.dismissWithDelay(1.seconds.toLongMilliseconds())
@@ -313,7 +328,7 @@ class MainActivity : ScopeActivity(R.layout.activity_main) {
                     when (bundle.getParcelable<DynamicFeature>(RESULT_KEY_DYNAMIC_FEATURE)) {
                         is DynamicFeature.PostCreator -> {
                             isOpenDynamicFeatureWhenReady = true
-                            dynamicFeatureViewModel.invokePostCreator()
+                            dynamicFeatureViewModel.invokePostCreatorOrInstall()
                         }
                     }
                 }
@@ -337,6 +352,33 @@ class MainActivity : ScopeActivity(R.layout.activity_main) {
                 is DeepLinkScreen.News -> preselectAndNavigate(R.id.menuPhotoReport)
                 is DeepLinkScreen.Settings -> preselectAndNavigate(R.id.menuSettings)
                 is DeepLinkScreen.Unknown -> toast(getString(R.string.deeplink_unknown_screen))
+            }
+        }
+    }
+
+    private fun Intent.handleSendImageIntent() {
+        when (action) {
+            Intent.ACTION_SEND -> {
+                if (intent.type?.startsWith("image/") == true) {
+                    val imageUri = intent.getParcelableExtra<Uri>(Intent.EXTRA_STREAM)
+
+                    check(imageUri != null)
+
+                    dynamicFeatureViewModel.invokePostCreatorOrNoting(
+                            postCreatorParams = PostCreatorParams(images = listOf(imageUri))
+                    )
+                }
+            }
+            Intent.ACTION_SEND_MULTIPLE -> {
+                if (intent.type?.startsWith("image/") == true) {
+                    val imageUris = intent.getParcelableArrayListExtra<Uri>(Intent.EXTRA_STREAM)
+
+                    check(imageUris != null)
+
+                    dynamicFeatureViewModel.invokePostCreatorOrNoting(
+                            postCreatorParams = PostCreatorParams(images = imageUris)
+                    )
+                }
             }
         }
     }

@@ -30,12 +30,12 @@
         android:id="@+id/descriptionTextView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="2dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginEnd="2dp"
         android:textAppearance="?textAppearanceSubtitle1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintLeft_toLeftOf="@id/mozaikContainer"
+        app:layout_constraintRight_toRightOf="@id/mozaikContainer"
         app:layout_constraintTop_toBottomOf="@id/mozaikContainer"
         tools:text="Description" />
 
@@ -43,12 +43,13 @@
         android:id="@+id/dateTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="2dp"
         android:layout_marginTop="4dp"
         android:layout_marginBottom="8dp"
         android:textAppearance="?textAppearanceCaption"
-        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintLeft_toLeftOf="@id/mozaikContainer"
         app:layout_constraintTop_toBottomOf="@id/descriptionTextView"
+        app:layout_goneMarginTop="8dp"
         tools:ignore="SmallSp"
         tools:text="12 Sep, 2017" />
 </androidx.constraintlayout.widget.ConstraintLayout>

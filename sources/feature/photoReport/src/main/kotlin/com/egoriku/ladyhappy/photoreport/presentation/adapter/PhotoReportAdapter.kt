@@ -68,15 +68,13 @@ class PhotoReportAdapter : BaseListAdapter<PhotoReportModel, PhotoReportAdapter.
                 stfalconImageViewer = StfalconImageViewer.Builder(itemView.context, mozaikItems) { view, image ->
                     Glide.with(view.context).load(image.url).into(view)
                 }.withStartPosition(position)
-                        .withImageChangeListener {
-                            stfalconImageViewer?.updateTransitionImage(mozaikLayout.getItemByPosition(it))
-                        }
                         .withDismissListener {
                             stfalconImageViewer = null
                         }
                         .withOverlayView(photoOverlayActions)
                         .withImageChangeListener {
                             photoOverlayActions.setTitle(position = it + 1, count = mozaikItems.size)
+                            stfalconImageViewer?.updateTransitionImage(mozaikLayout.getItemByPosition(it))
                         }
                         .withTransitionFrom(transitionVew)
                         .withHiddenStatusBar(false)

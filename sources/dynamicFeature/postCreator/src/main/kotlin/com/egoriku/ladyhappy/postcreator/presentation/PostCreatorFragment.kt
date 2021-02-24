@@ -9,6 +9,8 @@ import androidx.recyclerview.widget.ConcatAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.egoriku.ladyhappy.core.IRouter
+import com.egoriku.ladyhappy.core.sharedmodel.key.KEY_POST_CREATOR_EXTRA
+import com.egoriku.ladyhappy.core.sharedmodel.params.PostCreatorParams
 import com.egoriku.ladyhappy.extensions.*
 import com.egoriku.ladyhappy.postcreator.R
 import com.egoriku.ladyhappy.postcreator.databinding.FragmentPostCreatorBinding
@@ -26,6 +28,7 @@ import com.egoriku.ladyhappy.postcreator.presentation.sections.input.InputSectio
 import com.egoriku.ladyhappy.postcreator.presentation.state.UploadEvents
 import com.google.android.play.core.splitcompat.SplitCompat
 import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 import org.koin.androidx.scope.ScopeFragment
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.context.loadKoinModules
@@ -48,6 +51,8 @@ class PostCreatorFragment : ScopeFragment(R.layout.fragment_post_creator) {
     private val viewModel by viewModel<PostViewModel>()
 
     private val binding by viewBinding(FragmentPostCreatorBinding::bind)
+
+    private val postCreatorParams by extraNotNull<PostCreatorParams>(KEY_POST_CREATOR_EXTRA)
 
     private val concatAdapter = ConcatAdapter()
     private var inputSectionAdapter: InputSectionAdapter by Delegates.notNull()
@@ -89,7 +94,9 @@ class PostCreatorFragment : ScopeFragment(R.layout.fragment_post_creator) {
         concatAdapter.addAdapter(imagesSectionAdapter)
         concatAdapter.addAdapter(chooserSectionAdapter)
 
-        lifecycleScope.launchWhenResumed {
+        extractImagesFromExtra()
+
+        lifecycleScope.launch {
             viewModel.screenState.collect { state ->
                 chooserSectionAdapter.submitList(state.chooserState)
                 imagesSectionAdapter.submitList(listOf(state.imagesSection))
@@ -97,13 +104,13 @@ class PostCreatorFragment : ScopeFragment(R.layout.fragment_post_creator) {
             }
         }
 
-        lifecycleScope.launchWhenResumed {
+        lifecycleScope.launch {
             viewModel.publishButtonAvailability.collect {
                 binding.postPublishButton.isEnabled = it
             }
         }
 
-        lifecycleScope.launchWhenStarted {
+        lifecycleScope.launch {
             viewModel.uploadEvents.collect {
                 when (it) {
                     is UploadEvents.Error -> {
@@ -123,6 +130,10 @@ class PostCreatorFragment : ScopeFragment(R.layout.fragment_post_creator) {
                 }
             }
         }
+    }
+
+    private fun extractImagesFromExtra() {
+        viewModel.processImageResult(postCreatorParams.images.asReversed())
     }
 
     private fun subscribeForFragmentResult() {
@@ -154,6 +165,8 @@ class PostCreatorFragment : ScopeFragment(R.layout.fragment_post_creator) {
         is ChooserType.CreationDate -> {
             CreationDatePicker().getDatePicker().show(childFragmentManager, null)
         }
+    }.also {
+        hideSoftKeyboard()
     }
 
     private fun processResetItemClick(chooserType: ChooserType) {
@@ -173,6 +186,11 @@ class PostCreatorFragment : ScopeFragment(R.layout.fragment_post_creator) {
         postPublishButton.setOnClickListener {
             viewModel.publishPost()
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        hideSoftKeyboard()
     }
 
     override fun onStop() {

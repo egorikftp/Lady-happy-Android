@@ -2,6 +2,7 @@ package com.egoriku.ladyhappy.detailpage.presentation.adapter
 
 import android.graphics.drawable.ColorDrawable
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import com.bumptech.glide.Glide
@@ -54,7 +55,9 @@ class DetailAdapter : PagingDataAdapter<DetailModel, DetailAdapter.VH>(DiffCallb
         override fun bind(item: DetailModel) = binding.bind(item)
 
         private fun AdapterItemDetailBinding.bind(item: DetailModel) {
+            descriptionTextView.isVisible = item.description.isNotEmpty()
             descriptionTextView.text = item.description
+
             dateTextView.text = item.date
 
             mozaikLayout.setItems(item.images)
@@ -69,9 +72,6 @@ class DetailAdapter : PagingDataAdapter<DetailModel, DetailAdapter.VH>(DiffCallb
                 stfalconImageViewer = StfalconImageViewer.Builder(itemView.context, images) { view, image ->
                     Glide.with(view.context).load(image.url).into(view)
                 }.withStartPosition(position)
-                        .withImageChangeListener {
-                            stfalconImageViewer?.updateTransitionImage(mozaikLayout.getItemByPosition(it))
-                        }
                         .withDismissListener {
                             stfalconImageViewer = null
                         }
@@ -79,6 +79,7 @@ class DetailAdapter : PagingDataAdapter<DetailModel, DetailAdapter.VH>(DiffCallb
                         .withTransitionFrom(transitionVew)
                         .withImageChangeListener {
                             photoOverlayActions.setTitle(position = it + 1, count = images.size)
+                            stfalconImageViewer?.updateTransitionImage(mozaikLayout.getItemByPosition(it))
                         }
                         .show()
             }

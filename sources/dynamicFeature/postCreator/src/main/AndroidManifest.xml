@@ -1,4 +1,5 @@
-<manifest xmlns:dist="http://schemas.android.com/apk/distribution"
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:dist="http://schemas.android.com/apk/distribution"
     package="com.egoriku.ladyhappy.postcreator">
 
     <dist:module
@@ -9,4 +10,23 @@
         </dist:delivery>
         <dist:fusing dist:include="false" />
     </dist:module>
+
+    <application>
+        <activity
+            android:name="com.egoriku.ladyhappy.mainscreen.presentation.MainActivity"
+            android:launchMode="singleTask">
+
+            <intent-filter>
+                <action android:name="android.intent.action.SEND" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:mimeType="image/*" />
+            </intent-filter>
+
+            <intent-filter>
+                <action android:name="android.intent.action.SEND_MULTIPLE" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:mimeType="image/*" />
+            </intent-filter>
+        </activity>
+    </application>
 </manifest>

@@ -3,6 +3,7 @@ package com.egoriku.ladyhappy.mainscreen.presentation.components.dynamicFeature
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.egoriku.ladyhappy.core.constant.DYNAMIC_FEATURE_POST_CREATOR
+import com.egoriku.ladyhappy.core.sharedmodel.params.PostCreatorParams
 import com.egoriku.ladyhappy.extensions.logD
 import com.google.android.play.core.ktx.*
 import com.google.android.play.core.splitinstall.SplitInstallException
@@ -58,17 +59,27 @@ class DynamicFeatureViewModel(
                 }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(), ModuleStatus.None)
     }
 
-    fun invokePostCreator() {
-        tryToOpenDynamicFeature(
-                moduleName = DYNAMIC_FEATURE_POST_CREATOR,
-                fragmentName = "com.egoriku.ladyhappy.postcreator.presentation.PostCreatorFragment"
-        )
+    fun invokePostCreatorOrNoting(postCreatorParams: PostCreatorParams) {
+        if (splitInstallManager.installedModules.contains(DYNAMIC_FEATURE_POST_CREATOR)) {
+            viewModelScope.launch {
+                _events.emit(
+                        DynamicFeatureEvent.NavigationEvent(
+                                screen = DynamicScreen.PostCreator(params = postCreatorParams)
+                        )
+                )
+            }
+        }
     }
 
-    private fun tryToOpenDynamicFeature(moduleName: String, fragmentName: String) {
+    fun invokePostCreatorOrInstall() = tryToOpenDynamicFeature(
+            moduleName = DYNAMIC_FEATURE_POST_CREATOR,
+            dynamicScreen = DynamicScreen.PostCreator()
+    )
+
+    private fun tryToOpenDynamicFeature(moduleName: String, dynamicScreen: DynamicScreen) {
         if (splitInstallManager.installedModules.contains(moduleName)) {
             viewModelScope.launch {
-                _events.emit(DynamicFeatureEvent.NavigationEvent(fragmentName))
+                _events.emit(DynamicFeatureEvent.NavigationEvent(dynamicScreen))
             }
         } else {
             val status = when (moduleName) {

@@ -206,7 +206,6 @@ class PostViewModel(
         val state = _screenState.value
 
         _publishButtonAvailability.value = when {
-            state.title.isEmpty() -> false
             state.imagesSection.images.isEmpty() || state.imagesSection.images.size > 10 -> false
             state.category.state == ChooserState.Initial -> false
             state.subCategory == null || state.subCategory.state == ChooserState.Initial -> false
