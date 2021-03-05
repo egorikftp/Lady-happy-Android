@@ -1,5 +1,6 @@
 package com.egoriku.ladyhappy.detailpage.data.entity
 
+import com.egoriku.ladyhappy.core.sharedmodel.entity.ImageEntity
 import com.egoriku.ladyhappy.extensions.common.Constants.EMPTY
 import com.google.firebase.firestore.PropertyName
 import java.util.*

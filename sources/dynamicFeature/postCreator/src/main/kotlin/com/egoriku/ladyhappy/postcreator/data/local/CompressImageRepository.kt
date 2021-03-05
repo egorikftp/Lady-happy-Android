@@ -14,7 +14,7 @@ class CompressImageRepository(private val context: Context) {
 
     suspend fun resizeImage(file: File): File = withContext(Dispatchers.IO) {
         Compressor.compress(context, file) {
-            default(width = 600, height = 1000, quality = 100)
+            default(quality = 100)
         }
     }
 
@@ -26,10 +26,5 @@ class CompressImageRepository(private val context: Context) {
 
             stream.toByteArray()
         }
-    }
-
-    enum class SIZE(val width: Int) {
-        PREVIEW(600),
-        LARGE(2200)
     }
 }

@@ -5,7 +5,7 @@ import com.google.firebase.Timestamp
 
 @Keep
 data class UploadEntity(
-        val images: List<UploadedImageBySize>,
+        val images: List<UploadedImageEntity>,
         val title: String,
         val categoryId: Int,
         val subCategoryId: Int,
