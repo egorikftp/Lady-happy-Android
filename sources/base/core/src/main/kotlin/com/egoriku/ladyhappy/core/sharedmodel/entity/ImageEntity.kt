@@ -1,4 +1,4 @@
-package com.egoriku.ladyhappy.core.sharedmodel
+package com.egoriku.ladyhappy.core.sharedmodel.entity
 
 import com.egoriku.ladyhappy.extensions.common.Constants.EMPTY
 import com.google.firebase.firestore.PropertyName

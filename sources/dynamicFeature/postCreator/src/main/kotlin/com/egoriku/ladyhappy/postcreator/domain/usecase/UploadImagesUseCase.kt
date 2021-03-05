@@ -7,7 +7,6 @@ import com.egoriku.ladyhappy.network.usecase.UseCase
 import com.egoriku.ladyhappy.postcreator.data.entity.UploadedImageBySize
 import com.egoriku.ladyhappy.postcreator.data.entity.UploadedImageEntity
 import com.egoriku.ladyhappy.postcreator.data.local.CompressImageRepository
-import com.egoriku.ladyhappy.postcreator.data.local.CompressImageRepository.SIZE
 import com.egoriku.ladyhappy.postcreator.data.local.CreateFileRepository
 import com.egoriku.ladyhappy.postcreator.data.remote.UploadImageRepository
 import com.egoriku.ladyhappy.postcreator.domain.model.image.UploadImagesParams
@@ -31,7 +30,7 @@ class UploadImagesUseCase(
                 val imageFile = createFileRepository.fileFromUri(it.uri)
 
                 val largeImage = withContext(Dispatchers.IO) {
-                    val largeImageFile = compressImageRepository.resizeImage(file = imageFile, size = SIZE.LARGE)
+                    val largeImageFile = compressImageRepository.resizeImage(file = imageFile)
 
                     val imageUrl = uploadImageRepository.upload(
                             storagePath = storagePath,
@@ -49,7 +48,7 @@ class UploadImagesUseCase(
                 }
 
                 val previewImageUrl = withContext(Dispatchers.IO) {
-                    val previewImageFile = compressImageRepository.resizeImage(file = imageFile, size = SIZE.PREVIEW)
+                    val previewImageFile = compressImageRepository.resizeImage(file = imageFile)
 
                     val imageUrl = uploadImageRepository.upload(
                             storagePath = storagePath,
@@ -79,7 +78,7 @@ class UploadImagesUseCase(
         options.inJustDecodeBounds = true
         BitmapFactory.decodeFile(File(uri.path).absolutePath, options)
 
-        return options.outHeight to options.outWidth
+        return options.outWidth to options.outHeight
     }
 
     private fun String.withPrefix(prefix: String): String {
