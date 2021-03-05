@@ -35,7 +35,7 @@ class UploadImagesUseCase(
 
                     val imageUrl = uploadImageRepository.upload(
                             storagePath = storagePath,
-                            fileName = largeImageFile.name.withPrefix("large"),
+                            fileName = largeImageFile.name.withPrefix("original"),
                             bytes = compressImageRepository.convertFileToByteArray(largeImageFile)
                     )
 
@@ -68,7 +68,7 @@ class UploadImagesUseCase(
 
                 UploadedImageBySize(
                         preview = previewImageUrl,
-                        fullSize = largeImage
+                        original = largeImage
                 )
             }
         }

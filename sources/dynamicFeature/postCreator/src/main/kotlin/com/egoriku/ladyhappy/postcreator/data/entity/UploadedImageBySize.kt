@@ -5,5 +5,5 @@ import androidx.annotation.Keep
 @Keep
 data class UploadedImageBySize(
         val preview: UploadedImageEntity,
-        val fullSize: UploadedImageEntity
+        val original: UploadedImageEntity
 )
