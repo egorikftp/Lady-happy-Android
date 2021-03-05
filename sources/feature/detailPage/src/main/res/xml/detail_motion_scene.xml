@@ -165,7 +165,7 @@
 
             <CustomAttribute
                 app:attributeName="ColorFilter"
-                app:customColorValue="@color/RealBlack" />
+                app:customColorValue="?attr/colorOnBackground" />
         </Constraint>
 
         <Constraint
