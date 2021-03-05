@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.StringRes
+import androidx.browser.customtabs.CustomTabColorSchemeParams
 import androidx.browser.customtabs.CustomTabsIntent
 import androidx.core.net.toUri
 import androidx.fragment.app.Fragment
@@ -133,8 +134,13 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
             textInputEmail.validateEmail() && textInputPassword.validatePassword()
 
     private fun initCustomTab(@StringRes urlRes: Int) = CustomTabsIntent.Builder()
-            .setToolbarColor(colorCompat(R.color.RoseTaupe))
-            .build().run {
+            .setDefaultColorSchemeParams(
+                    CustomTabColorSchemeParams.Builder()
+                            .setToolbarColor(colorCompat(R.color.RoseTaupe))
+                            .build()
+            )
+            .build()
+            .run {
                 launchUrl(requireContext(), getString(urlRes).toUri())
             }
 }

@@ -58,7 +58,7 @@ object Libs {
     const val stfalconImageViewer = "com.github.stfalcon:stfalcon-imageviewer:${LibrariesVersion.stfalconImageViewer}"
 
     const val vectorDrawable = "androidx.vectordrawable:vectordrawable:${LibrariesVersion.vectorDrawable}"
-    const val viewBindingDelegates = "com.kirich1409.viewbindingpropertydelegate:vbpd-noreflection:${LibrariesVersion.viewBindingDelegates}"
+    const val viewBindingDelegates = "com.github.kirich1409:viewbindingpropertydelegate-noreflection:${LibrariesVersion.viewBindingDelegates}"
     const val viewBinding = "androidx.databinding:viewbinding:${LibrariesVersion.viewBinding}"
     const val viewModel = "androidx.lifecycle:lifecycle-viewmodel-ktx:${LibrariesVersion.lifecycle}"
     const val viewPager2 = "androidx.viewpager2:viewpager2:${LibrariesVersion.viewPager2}"
