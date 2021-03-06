@@ -1,19 +1,15 @@
 package com.egoriku.ladyhappy.photoreport.presentation.adapter
 
-import android.graphics.drawable.ColorDrawable
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
-import com.bumptech.glide.request.RequestOptions
 import com.egoriku.ladyhappy.core.adapter.BaseListAdapter
 import com.egoriku.ladyhappy.core.adapter.BaseViewHolder
-import com.egoriku.ladyhappy.extensions.colorFromAttr
 import com.egoriku.ladyhappy.extensions.context
 import com.egoriku.ladyhappy.extensions.inflater
 import com.egoriku.ladyhappy.mozaik.OnItemClick
 import com.egoriku.ladyhappy.mozaik.model.MozaikItem
-import com.egoriku.ladyhappy.photoreport.R
 import com.egoriku.ladyhappy.photoreport.databinding.AdapterItemPhotoReportBinding
 import com.egoriku.ladyhappy.photoreport.domain.model.PhotoReportModel
 import com.egoriku.ladyhappy.ui.view.PhotoOverlayActions
@@ -36,16 +32,11 @@ class PhotoReportAdapter : BaseListAdapter<PhotoReportModel, PhotoReportAdapter.
 
         private var stfalconImageViewer: StfalconImageViewer<MozaikItem>? = null
 
-        private val colorDrawable = ColorDrawable(itemView.colorFromAttr(R.attr.colorPlaceholder))
-        private val options = RequestOptions().centerCrop()
-
         init {
             binding.mozaikLayout.onViewReady = { view, url ->
                 Glide.with(itemView.context)
                         .load(url)
-                        .placeholder(colorDrawable)
                         .transition(DrawableTransitionOptions.withCrossFade(100))
-                        .apply(options)
                         .into(view)
             }
         }

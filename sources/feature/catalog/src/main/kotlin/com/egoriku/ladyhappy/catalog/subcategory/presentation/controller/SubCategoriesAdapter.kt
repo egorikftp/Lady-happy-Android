@@ -1,12 +1,10 @@
 package com.egoriku.ladyhappy.catalog.subcategory.presentation.controller
 
-import android.graphics.drawable.ColorDrawable
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
-import com.bumptech.glide.request.RequestOptions
 import com.egoriku.ladyhappy.catalog.R
 import com.egoriku.ladyhappy.catalog.databinding.AdapterItemSubcategoryBinding
 import com.egoriku.ladyhappy.catalog.subcategory.domain.model.SubCategoryItem
@@ -37,18 +35,13 @@ class SubCategoriesAdapter(
             private val binding: AdapterItemSubcategoryBinding
     ) : BaseViewHolder<SubCategoryItem>(binding.root) {
 
-        private val colorDrawable = ColorDrawable(itemView.colorFromAttr(R.attr.colorPlaceholder))
-        private val options = RequestOptions().centerCrop()
-
         private var subCategoryItem: SubCategoryItem by Delegates.notNull()
 
         init {
             binding.mozaikLayout.onViewReady = { view, url ->
                 Glide.with(itemView.context)
                         .load(url)
-                        .placeholder(colorDrawable)
                         .transition(DrawableTransitionOptions.withCrossFade(CROSSFADE_DURATION))
-                        .apply(options)
                         .into(view)
             }
 

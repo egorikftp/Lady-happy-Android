@@ -27,7 +27,8 @@
             android:id="@+id/mozaikLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:isMozaikClickable="false" />
+            app:isMozaikClickable="false"
+            app:placeholderColor="?attr/colorPlaceholder" />
 
         <FrameLayout
             android:id="@+id/trending"

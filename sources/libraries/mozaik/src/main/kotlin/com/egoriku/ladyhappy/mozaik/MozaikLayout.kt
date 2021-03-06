@@ -12,7 +12,7 @@ import com.egoriku.ladyhappy.mozaik.strategy.StrategyResolver
 import com.egoriku.ladyhappy.mozaik.strategy.internal.model.Rect
 import com.egoriku.ladyhappy.mozaik.strategy.internal.model.StrategyData
 
-private const val DIVIDER_SIZE = 20
+private const val DIVIDER_SIZE = 15
 
 fun interface OnItemClick {
 
@@ -28,6 +28,7 @@ class MozaikLayout @JvmOverloads constructor(
     private val strategyData = StrategyData(dividerSize = pxToDp(DIVIDER_SIZE))
 
     var isMozaikClickable: Boolean = true
+    var placeholderColor: Int = -1
 
     var onViewReady: ((view: ImageView, url: String) -> Unit)? = null
     var onItemClick: OnItemClick? = null
@@ -40,6 +41,7 @@ class MozaikLayout @JvmOverloads constructor(
                 styleArray = R.styleable.MozaikLayout
         ) {
             isMozaikClickable = getBoolean(R.styleable.MozaikLayout_isMozaikClickable, true)
+            placeholderColor = getColor(R.styleable.MozaikLayout_placeholderColor, -1)
         }
     }
 
@@ -59,8 +61,8 @@ class MozaikLayout @JvmOverloads constructor(
             val rect = strategyData.rect[i]
 
             childAt.measure(
-                    MeasureSpec.makeMeasureSpec(rect.width(), MeasureSpec.UNSPECIFIED),
-                    MeasureSpec.makeMeasureSpec(rect.height(), MeasureSpec.UNSPECIFIED)
+                    MeasureSpec.makeMeasureSpec(rect.width(), MeasureSpec.EXACTLY),
+                    MeasureSpec.makeMeasureSpec(rect.height(), MeasureSpec.EXACTLY)
             )
         }
 
@@ -106,6 +108,10 @@ class MozaikLayout @JvmOverloads constructor(
         items.forEachIndexed { _, _ ->
             addView(ImageView(context).apply {
                 scaleType = ImageView.ScaleType.CENTER_CROP
+
+                if (placeholderColor != -1) {
+                    setBackgroundColor(placeholderColor)
+                }
             })
         }
 
