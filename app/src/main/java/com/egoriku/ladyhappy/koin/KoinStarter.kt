@@ -2,6 +2,7 @@ package com.egoriku.ladyhappy.koin
 
 import android.app.Application
 import com.egoriku.ladyhappy.BuildConfig
+import com.egoriku.ladyhappy.auth.koin.authModule
 import com.egoriku.ladyhappy.catalog.categories.koin.categoriesModule
 import com.egoriku.ladyhappy.catalog.subcategory.koin.subcategoryModule
 import com.egoriku.ladyhappy.detailpage.koin.detailModule
@@ -34,6 +35,7 @@ fun Application.initKoin() {
 
 val koinModules = listOf(
         applicationScopeModule,
+        authModule,
         categoriesModule,
         detailModule,
         landingModule,

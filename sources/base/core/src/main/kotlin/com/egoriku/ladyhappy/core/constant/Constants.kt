@@ -10,9 +10,7 @@ object CollectionPath {
     const val CATEGORIES = "categories"
     const val SUBCATEGORIES = "subcategories"
     const val LANDING = "landingInfo"
-    const val AVAILABLE_FEATURES = "availableFeatures"
-
-    const val PUBLISH_POSTS = "PublishPosts"
+    const val USERS = "users"
 }
 
 object DocumentField {

@@ -1,19 +1,19 @@
 package com.egoriku.ladyhappy.settings.domain.usecase
 
+import com.egoriku.ladyhappy.auth.permission.IUserPermission
 import com.egoriku.ladyhappy.core.IStringResource
 import com.egoriku.ladyhappy.settings.R
 import com.egoriku.ladyhappy.settings.domain.model.Feature
-import com.egoriku.ladyhappy.settings.domain.model.FeatureType
 import com.egoriku.ladyhappy.settings.domain.model.Section
 import com.egoriku.ladyhappy.settings.domain.model.setting.SettingItem
-import com.egoriku.ladyhappy.settings.domain.repository.IRemoteFeaturesRepository
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.channelFlow
 import kotlinx.coroutines.launch
 
 internal class SectionsUseCase(
-        private val remoteFeaturesRepository: IRemoteFeaturesRepository,
-        private val stringResource: IStringResource
+        private val stringResource: IStringResource,
+        private val userPermission: IUserPermission
 ) : ISectionsUseCase {
 
     override suspend fun load(): Flow<Section> = channelFlow {
@@ -44,11 +44,12 @@ internal class SectionsUseCase(
             )
     )
 
-    private suspend fun featuresSection(): List<Feature> {
-        val publishPosts = remoteFeaturesRepository.loadByFeature(FeatureType.PUBLISH_POSTS)
+    private suspend fun featuresSection(): List<Feature.PublishPosts> {
+        delay(500)
 
-        return listOf(publishPosts).filter {
-            it.isAvailable
+        return when {
+            userPermission.isAbleToCreatePosts -> listOf(Feature.PublishPosts(isAvailable = true))
+            else -> emptyList()
         }
     }
 

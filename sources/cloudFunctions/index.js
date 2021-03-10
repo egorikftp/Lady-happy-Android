@@ -12,6 +12,23 @@ const db = admin.firestore();
  *
  */
 
+exports.createNewUser = functions.auth.user().onCreate((user) => {
+  console.log("Create new user");
+
+  db.collection("users")
+      .doc(user.uid)
+      .set(JSON.parse(JSON.stringify(user)))
+      .then(() => {
+        console.log("User successfully created");
+        db.collection("users")
+            .doc(user.uid)
+            .set({permissions: ["user"]}, {merge: true});
+      })
+      .catch((error) => {
+        console.error("Error creation user: ", error);
+      });
+});
+
 /**
  * Cloud function, increment count of specific category.
  */

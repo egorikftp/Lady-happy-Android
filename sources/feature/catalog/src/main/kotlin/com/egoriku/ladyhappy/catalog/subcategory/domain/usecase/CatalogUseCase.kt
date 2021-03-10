@@ -19,7 +19,8 @@ internal class CatalogUseCase(
                 name = entity.subCategoryName,
                 isPopular = entity.isPopular,
                 publishedCount = entity.publishedCount,
-                description = entity.description
+                description = entity.description,
+                documentReference = entity.documentReference
         )
     }
 

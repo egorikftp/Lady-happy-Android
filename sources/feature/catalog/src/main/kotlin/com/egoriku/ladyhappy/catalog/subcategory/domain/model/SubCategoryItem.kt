@@ -9,5 +9,6 @@ data class SubCategoryItem(
         val isPopular: Boolean,
         val publishedCount: Int,
         val images: List<MozaikItem>,
-        val description: String
+        val description: String,
+        val documentReference: String
 )

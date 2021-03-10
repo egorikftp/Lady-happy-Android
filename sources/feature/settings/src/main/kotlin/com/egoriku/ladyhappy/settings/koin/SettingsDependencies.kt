@@ -1,9 +1,5 @@
 package com.egoriku.ladyhappy.settings.koin
 
-import com.egoriku.ladyhappy.settings.data.datasource.IPublishPostsFeatureDataSource
-import com.egoriku.ladyhappy.settings.data.datasource.PublishPostsFeatureDataSource
-import com.egoriku.ladyhappy.settings.domain.repository.IRemoteFeaturesRepository
-import com.egoriku.ladyhappy.settings.domain.repository.RemoteFeaturesRepository
 import com.egoriku.ladyhappy.settings.domain.usecase.AuthenticationUseCase
 import com.egoriku.ladyhappy.settings.domain.usecase.IAuthenticationUseCase
 import com.egoriku.ladyhappy.settings.domain.usecase.ISectionsUseCase
@@ -22,13 +18,9 @@ val settingsModule = module {
     factory { GetThemeUseCase(preferences = get(), dispatchers = get()) }
 
     scope<SettingFragment> {
-        scoped<IPublishPostsFeatureDataSource> { PublishPostsFeatureDataSource(firebase = get()) }
-
-        scoped<IRemoteFeaturesRepository> { RemoteFeaturesRepository(publishPostsFeatureDataSource = get()) }
-
         scoped<ISectionsUseCase> {
             SectionsUseCase(
-                    remoteFeaturesRepository = get(),
+                    userPermission = get(),
                     stringResource = get()
             )
         }

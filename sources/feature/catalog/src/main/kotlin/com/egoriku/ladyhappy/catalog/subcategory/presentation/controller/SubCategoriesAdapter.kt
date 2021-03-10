@@ -17,7 +17,8 @@ private const val CROSSFADE_DURATION = 100
 
 class SubCategoriesAdapter(
         private val onCatalogItemClick: (item: SubCategoryItem) -> Unit,
-        private val onTrendingClick: (view: View) -> Unit
+        private val onTrendingClick: (view: View) -> Unit,
+        private val onLongPressListener: (reference: String) -> Unit
 ) : BaseListAdapter<SubCategoryItem, SubCategoriesAdapter.VH>(DiffCallback()) {
 
     override fun onCreateViewHolder(
@@ -47,6 +48,12 @@ class SubCategoriesAdapter(
 
             itemView.setOnClickListener {
                 onCatalogItemClick(subCategoryItem)
+            }
+
+            itemView.setOnLongClickListener {
+                consume {
+                    onLongPressListener.invoke(subCategoryItem.documentReference)
+                }
             }
 
             binding.trending.setOnClickListener {

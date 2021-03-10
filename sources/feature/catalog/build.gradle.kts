@@ -16,6 +16,7 @@ dependencies {
 }
 
 withProjects(
+        Libraries.auth,
         Libraries.core,
         Libraries.extensions,
         Libraries.mozaik,

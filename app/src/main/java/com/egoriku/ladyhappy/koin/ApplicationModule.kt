@@ -1,7 +1,6 @@
 package com.egoriku.ladyhappy.koin
 
 import com.egoriku.ladyhappy.core.*
-import com.egoriku.ladyhappy.auth.Authentication
 import com.egoriku.ladyhappy.navigation.NavigateMe
 import com.egoriku.ladyhappy.navigation.router.Router
 import com.egoriku.ladyhappy.tools.*
@@ -11,8 +10,6 @@ import org.koin.dsl.module
 val applicationScopeModule = module {
 
     factory<IFeatureProvider> { FeatureProvider() }
-
-    single { Authentication() }
 
     single<IAppPreferences> { AppPreferences(androidContext()) }
     single<IAnalytics> { Analytics(androidContext()) }

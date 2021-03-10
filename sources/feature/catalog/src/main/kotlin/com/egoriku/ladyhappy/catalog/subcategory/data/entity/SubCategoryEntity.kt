@@ -32,4 +32,8 @@ class SubCategoryEntity(
         @PropertyName("description")
         @JvmField
         val description: String = EMPTY,
+
+        @PropertyName("documentReference")
+        @JvmField
+        val documentReference: String = EMPTY
 )

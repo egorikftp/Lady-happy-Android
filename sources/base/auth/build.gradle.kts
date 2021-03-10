@@ -19,5 +19,7 @@ withProjects(
 
 withLibraries(
         Libs.coroutinesAndroid,
-        Libs.firebaseAuth
+        Libs.firebaseAuth,
+        Libs.firebaseFirestore,
+        Libs.koinAndroid
 )
