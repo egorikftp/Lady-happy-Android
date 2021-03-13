@@ -5,7 +5,7 @@ import com.egoriku.ladyhappy.mozaik.model.MozaikItem
 data class SubCategoryItem(
         val categoryId: Int,
         val subCategoryId: Int,
-        val name: String,
+        val subCategoryName: String,
         val isPopular: Boolean,
         val publishedCount: Int,
         val images: List<MozaikItem>,

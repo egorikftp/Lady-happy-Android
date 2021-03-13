@@ -80,7 +80,7 @@ class SubCategoriesAdapter(
                 cardView.gone()
             }
 
-            subCategoryTitle.text = data.name
+            subCategoryTitle.text = data.subCategoryName
             subCategorySize.text = context.getQuantityStringZero(
                     pluralResId = R.plurals.catalog_images_count,
                     zeroResId = R.string.catalog_images_count_zero,

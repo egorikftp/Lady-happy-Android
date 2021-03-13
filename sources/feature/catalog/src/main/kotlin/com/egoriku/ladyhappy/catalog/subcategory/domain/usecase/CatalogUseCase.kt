@@ -16,7 +16,7 @@ internal class CatalogUseCase(
                 categoryId = entity.categoryId,
                 subCategoryId = entity.subCategoryId,
                 images = entity.images.map(imageTransform),
-                name = entity.subCategoryName,
+                subCategoryName = entity.subCategoryName,
                 isPopular = entity.isPopular,
                 publishedCount = entity.publishedCount,
                 description = entity.description,

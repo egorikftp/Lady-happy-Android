@@ -2,6 +2,7 @@ package com.egoriku.ladyhappy.catalog.subcategory.presentation.fragment
 
 import android.os.Bundle
 import android.view.View
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.DividerItemDecoration.VERTICAL
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -13,10 +14,12 @@ import com.egoriku.ladyhappy.catalog.subcategory.presentation.SubCategoriesViewM
 import com.egoriku.ladyhappy.catalog.subcategory.presentation.SubcategoryScreenState
 import com.egoriku.ladyhappy.catalog.subcategory.presentation.controller.SubCategoriesAdapter
 import com.egoriku.ladyhappy.catalog.subcategory.presentation.controller.balloon.ViewHolderBalloonFactory
+import com.egoriku.ladyhappy.extensions.extraNotNull
 import com.egoriku.ladyhappy.extensions.gone
-import com.egoriku.ladyhappy.extensions.toast
 import com.egoriku.ladyhappy.extensions.visible
 import com.skydoves.balloon.balloon
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 import org.koin.androidx.scope.ScopeFragment
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
@@ -27,12 +30,14 @@ const val ARGUMENT_CATEGORY_ID = "category_id"
 
 class SubCategoryFragment : ScopeFragment(R.layout.fragment_catalog) {
 
-    private val binding by viewBinding(FragmentCatalogBinding::bind)
-
     private val permissions: IUserPermission by inject()
 
+    private val binding by viewBinding(FragmentCatalogBinding::bind)
+
+    private val categoryIdExtra by extraNotNull<Int>(ARGUMENT_CATEGORY_ID)
+
     private val catalogViewModel by viewModel<SubCategoriesViewModel> {
-        parametersOf(arguments?.getInt(ARGUMENT_CATEGORY_ID))
+        parametersOf(categoryIdExtra)
     }
 
     private val viewHolderBalloon by balloon<ViewHolderBalloonFactory>()
@@ -51,7 +56,7 @@ class SubCategoryFragment : ScopeFragment(R.layout.fragment_catalog) {
                 },
                 onLongPressListener = {
                     if (permissions.isAbleToEditPosts) {
-                        toast("ready to edit")
+                        catalogViewModel.openEditPage(it)
                     }
                 }
         )
@@ -65,8 +70,10 @@ class SubCategoryFragment : ScopeFragment(R.layout.fragment_catalog) {
             addItemDecoration(DividerItemDecoration(requireContext(), VERTICAL))
         }
 
-        catalogViewModel.subcategoryItems.observe(viewLifecycleOwner) {
-            binding.render(it)
+        lifecycleScope.launch {
+            catalogViewModel.subcategoryItems.collect {
+                binding.render(it)
+            }
         }
     }
 
@@ -87,4 +94,6 @@ class SubCategoryFragment : ScopeFragment(R.layout.fragment_catalog) {
             }
         }
     }
+
+    fun forceUpdate() = catalogViewModel.forceUpdate()
 }

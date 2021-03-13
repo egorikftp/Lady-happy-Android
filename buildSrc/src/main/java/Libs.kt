@@ -55,6 +55,8 @@ object Libs {
     const val recyclerView = "androidx.recyclerview:recyclerview:${LibrariesVersion.recyclerView}"
     const val recyclerViewSelection = "androidx.recyclerview:recyclerview-selection:${LibrariesVersion.recyclerViewSelection}"
 
+    const val sheetsCore = "com.maxkeppeler.sheets:core:${LibrariesVersion.sheets}"
+    const val sheetsInput = "com.maxkeppeler.sheets:input:${LibrariesVersion.sheets}"
     const val stfalconImageViewer = "com.github.stfalcon:stfalcon-imageviewer:${LibrariesVersion.stfalconImageViewer}"
 
     const val vectorDrawable = "androidx.vectordrawable:vectordrawable:${LibrariesVersion.vectorDrawable}"

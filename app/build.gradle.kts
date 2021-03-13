@@ -101,6 +101,7 @@ withLibraries(
         Libs.koinViewModel,
         Libs.material,
         Libs.playCore,
+        Libs.sheetsCore,
         Libs.viewBindingDelegates,
         Libs.viewModel
 )

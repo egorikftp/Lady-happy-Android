@@ -3,6 +3,7 @@ package com.egoriku.ladyhappy.catalog.subcategory.data.entity
 import com.egoriku.ladyhappy.core.sharedmodel.entity.ImageEntity
 import com.egoriku.ladyhappy.extensions.common.Constants.EMPTY
 import com.google.firebase.firestore.PropertyName
+import java.util.*
 
 class SubCategoryEntity(
         @PropertyName("categoryId")
@@ -35,5 +36,9 @@ class SubCategoryEntity(
 
         @PropertyName("documentReference")
         @JvmField
-        val documentReference: String = EMPTY
+        val documentReference: String = EMPTY,
+
+        @PropertyName("lastEditTime")
+        @JvmField
+        val lastEditTime: Date = Date()
 )

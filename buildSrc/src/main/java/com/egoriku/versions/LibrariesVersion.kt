@@ -30,6 +30,7 @@ object LibrariesVersion {
     const val recyclerView = "1.2.0-beta01"
     const val recyclerViewSelection = "1.1.0"
     const val stfalconImageViewer = "1.0.10"
+    const val sheets = "2.1.3"
     const val vectorDrawable = "1.1.0"
     const val viewBindingDelegates = "1.4.4"
     const val viewBinding = "4.1.2"
