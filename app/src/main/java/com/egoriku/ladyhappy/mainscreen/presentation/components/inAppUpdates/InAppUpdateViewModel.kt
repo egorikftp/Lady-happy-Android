@@ -32,31 +32,29 @@ class InAppUpdateViewModel(updateManager: AppUpdateManager) : ViewModel() {
     fun invokeUpdate() {
         when (val updateResult = updateStatus.value) {
             AppUpdateResult.NotAvailable -> logD("Update not available")
-            is AppUpdateResult.Available -> {
-                with(updateResult.updateInfo) {
-                    when {
-                        shouldLaunchImmediateUpdate(this) -> {
-                            viewModelScope.launch {
-                                _events.emit(
-                                        InAppUpdateEvent.StartUpdateEvent(
-                                                updateInfo = updateResult.updateInfo,
-                                                immediate = true
-                                        )
-                                )
-                            }
+            is AppUpdateResult.Available -> with(updateResult.updateInfo) {
+                when {
+                    shouldLaunchImmediateUpdate(this) -> {
+                        viewModelScope.launch {
+                            _events.emit(
+                                    InAppUpdateEvent.StartUpdateEvent(
+                                            updateInfo = updateResult.updateInfo,
+                                            immediate = true
+                                    )
+                            )
                         }
-                        isFlexibleUpdateAllowed -> {
-                            viewModelScope.launch {
-                                _events.emit(
-                                        InAppUpdateEvent.StartUpdateEvent(
-                                                updateInfo = updateResult.updateInfo,
-                                                immediate = false
-                                        )
-                                )
-                            }
-                        }
-                        else -> false
                     }
+                    isFlexibleUpdateAllowed -> {
+                        viewModelScope.launch {
+                            _events.emit(
+                                    InAppUpdateEvent.StartUpdateEvent(
+                                            updateInfo = updateResult.updateInfo,
+                                            immediate = false
+                                    )
+                            )
+                        }
+                    }
+                    else -> false
                 }
             }
             is AppUpdateResult.InProgress -> viewModelScope.launch {

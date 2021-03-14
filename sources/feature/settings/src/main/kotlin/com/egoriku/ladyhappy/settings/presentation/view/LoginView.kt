@@ -34,20 +34,16 @@ internal class LoginView @JvmOverloads constructor(
     }
 
     private fun setState() = when (state) {
-        LOGGED_IN -> {
-            with(binding) {
-                loginHint.gone()
-                loginButton.text = getString(R.string.settings_log_out)
-                userName.visible()
-            }
+        LOGGED_IN -> with(binding) {
+            loginHint.gone()
+            loginButton.text = getString(R.string.settings_log_out)
+            userName.visible()
         }
 
-        ANON -> {
-            with(binding) {
-                userName.gone()
-                loginHint.visible()
-                loginButton.text = getString(R.string.settings_login)
-            }
+        ANON -> with(binding) {
+            userName.gone()
+            loginHint.visible()
+            loginButton.text = getString(R.string.settings_login)
         }
     }
 

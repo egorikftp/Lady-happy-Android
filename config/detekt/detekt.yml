@@ -650,7 +650,7 @@ style:
   OptionalUnit:
     active: true
   OptionalWhenBraces:
-    active: false
+    active: true
   PreferToOverPairSyntax:
     active: false
   ProtectedMemberInFinalClass:

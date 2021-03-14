@@ -27,25 +27,21 @@ internal class LoginSectionAdapter(
 
         fun bind(model: Login) {
             when (model.state) {
-                is UserLoginState.Anon -> {
-                    binding.loginView.apply {
-                        state = State.ANON
-                        setProfileImage(drawableCompat(R.drawable.ic_profile_stub))
-                        onButtonClick {
-                            onItemClick(State.ANON)
-                        }
+                is UserLoginState.Anon -> binding.loginView.apply {
+                    state = State.ANON
+                    setProfileImage(drawableCompat(R.drawable.ic_profile_stub))
+                    onButtonClick {
+                        onItemClick(State.ANON)
                     }
                 }
 
-                is UserLoginState.LoggedIn -> {
-                    binding.loginView.apply {
-                        state = State.LOGGED_IN
+                is UserLoginState.LoggedIn -> binding.loginView.apply {
+                    state = State.LOGGED_IN
 
-                        setProfileImageUrl(model.state.photoUrl)
-                        setUserName(if (model.state.name.isEmpty()) model.state.email else model.state.name)
-                        onButtonClick {
-                            onItemClick(State.LOGGED_IN)
-                        }
+                    setProfileImageUrl(model.state.photoUrl)
+                    setUserName(if (model.state.name.isEmpty()) model.state.email else model.state.name)
+                    onButtonClick {
+                        onItemClick(State.LOGGED_IN)
                     }
                 }
             }

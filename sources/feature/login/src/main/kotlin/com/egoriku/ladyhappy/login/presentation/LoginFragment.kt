@@ -114,12 +114,8 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
         lifecycleScope.launch {
             viewModel.events.collect {
                 when (it) {
-                    is LoginEvent.OneTap -> {
-                        requestSignInWithOneTap.launch(it.eventSenderRequest)
-                    }
-                    is LoginEvent.SignWithGoogle -> {
-                        requestSignInWithGoogle.launch(it.signInIntent)
-                    }
+                    is LoginEvent.OneTap -> requestSignInWithOneTap.launch(it.eventSenderRequest)
+                    is LoginEvent.SignWithGoogle -> requestSignInWithGoogle.launch(it.signInIntent)
                 }
             }
         }

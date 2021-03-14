@@ -31,9 +31,7 @@ class PhotoReportViewModel(
             _uiState.value = PhotoReportUiState.Loading
 
             when (val resultOf = photoReportUseCase.getPhotoReportInfo()) {
-                is ResultOf.Success -> {
-                    _uiState.value = PhotoReportUiState.Success(resultOf.value)
-                }
+                is ResultOf.Success -> _uiState.value = PhotoReportUiState.Success(resultOf.value)
                 is ResultOf.Failure -> {
                     when (resultOf.throwable) {
                         is FirestoreNetworkException -> {

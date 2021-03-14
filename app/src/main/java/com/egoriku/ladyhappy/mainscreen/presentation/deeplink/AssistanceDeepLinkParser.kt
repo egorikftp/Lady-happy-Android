@@ -18,7 +18,9 @@ class AssistanceDeepLinkParser {
                     navigate(DeepLinkScreen.Search(searchQuery))
                 }
                 fullUrl.startsWith("ladyhappy://feature") -> {
-                    when (data.getQueryParameter("featureName")?.trim() ?: return) {
+                    val featureName = data.getQueryParameter("featureName")?.trim() ?: return
+
+                    when (featureName) {
                         AssistanceFeatures.CATALOG -> navigate(DeepLinkScreen.Catalog)
                         AssistanceFeatures.ABOUT -> navigate(DeepLinkScreen.About)
                         AssistanceFeatures.NEWS -> navigate(DeepLinkScreen.News)

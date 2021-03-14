@@ -123,10 +123,8 @@ class MainActivity : ScopeActivity(R.layout.activity_main) {
                             trackingScreenName = Tracking.TRACKING_FRAGMENT_CATALOG
                     )
             )
-            else -> {
-                with(savedInstanceState.getInt(KEY_SELECTED_MENU_ITEM)) {
-                    binding.bottomNavigation.selectedItemId = this
-                }
+            else -> with(savedInstanceState.getInt(KEY_SELECTED_MENU_ITEM)) {
+                binding.bottomNavigation.selectedItemId = this
             }
         }
 
@@ -169,12 +167,10 @@ class MainActivity : ScopeActivity(R.layout.activity_main) {
         super.onActivityResult(requestCode, resultCode, data)
 
         when (requestCode) {
-            UPDATE_CONFIRMATION_REQ_CODE -> {
-                when (resultCode) {
-                    Activity.RESULT_OK -> viewModel.trackInAppUpdateSuccess()
-                    Activity.RESULT_CANCELED -> viewModel.trackInAppUpdateCanceled()
-                    ActivityResult.RESULT_IN_APP_UPDATE_FAILED -> viewModel.trackInAppUpdateFailed()
-                }
+            UPDATE_CONFIRMATION_REQ_CODE -> when (resultCode) {
+                Activity.RESULT_OK -> viewModel.trackInAppUpdateSuccess()
+                Activity.RESULT_CANCELED -> viewModel.trackInAppUpdateCanceled()
+                ActivityResult.RESULT_IN_APP_UPDATE_FAILED -> viewModel.trackInAppUpdateFailed()
             }
         }
     }
@@ -209,19 +205,7 @@ class MainActivity : ScopeActivity(R.layout.activity_main) {
                 // If it's an immediate update, launch it immediately and finish Activity
                 // to prevent the user from using the app until they update.
                 when (updateResult) {
-                    is AppUpdateResult.Available -> {
-                        if (inAppUpdateViewModel.shouldLaunchImmediateUpdate(updateResult.updateInfo)) {
-                            val isStartUpdateFlowForResultSuccess = appUpdateManager.startUpdateFlowForResult(
-                                    updateResult.updateInfo,
-                                    AppUpdateType.IMMEDIATE,
-                                    this@MainActivity,
-                                    UPDATE_CONFIRMATION_REQ_CODE
-                            )
-                            if (isStartUpdateFlowForResultSuccess) {
-                                finish()
-                            }
-                        }
-                    }
+                    is AppUpdateResult.Available -> handleImmediateUpdate(updateResult)
                 }
             }
         }
@@ -247,38 +231,49 @@ class MainActivity : ScopeActivity(R.layout.activity_main) {
         }
     }
 
+    private fun handleImmediateUpdate(updateResult: AppUpdateResult.Available) {
+        if (inAppUpdateViewModel.shouldLaunchImmediateUpdate(updateResult.updateInfo)) {
+            val isStartUpdateFlowForResultSuccess = appUpdateManager.startUpdateFlowForResult(
+                    updateResult.updateInfo,
+                    AppUpdateType.IMMEDIATE,
+                    this@MainActivity,
+                    UPDATE_CONFIRMATION_REQ_CODE
+            )
+            if (isStartUpdateFlowForResultSuccess) {
+                finish()
+            }
+        }
+    }
+
     private fun subscribeForDynamicFeatureInstall() {
         lifecycleScope.launch {
             dynamicFeatureViewModel.events.collect { event ->
                 when (event) {
                     is DynamicFeatureEvent.ToastEvent -> toast(event.message)
-                    is DynamicFeatureEvent.NavigationEvent -> {
-                        when (val screen = event.screen) {
-                            is DynamicScreen.PostCreator -> {
-                                viewModel.navigateTo(
-                                        screen = PostCreatorScreen(
-                                                className = screen.className,
-                                                params = screen.params
-                                        )
-                                )
-                            }
-                            is DynamicScreen.Edit -> {
-                                viewModel.navigateTo(
-                                        screen = EditScreen(
-                                                className = screen.className,
-                                                params = screen.editParams
-                                        )
-                                )
-                            }
+                    is DynamicFeatureEvent.NavigationEvent -> when (val screen = event.screen) {
+                        is DynamicScreen.PostCreator -> {
+                            viewModel.navigateTo(
+                                    screen = PostCreatorScreen(
+                                            className = screen.className,
+                                            params = screen.params
+                                    )
+                            )
+                        }
+                        is DynamicScreen.Edit -> {
+                            viewModel.navigateTo(
+                                    screen = EditScreen(
+                                            className = screen.className,
+                                            params = screen.editParams
+                                    )
+                            )
                         }
                     }
-                    is DynamicFeatureEvent.InstallConfirmationEvent -> {
+                    is DynamicFeatureEvent.InstallConfirmationEvent ->
                         splitInstallManager.startConfirmationDialogForResult(
                                 event.status,
                                 this@MainActivity,
                                 INSTALL_CONFIRMATION_REQ_CODE
                         )
-                    }
                     else -> throw IllegalStateException("Event type not handled: $event")
                 }
             }
@@ -300,17 +295,15 @@ class MainActivity : ScopeActivity(R.layout.activity_main) {
     @OptIn(ExperimentalTime::class)
     private fun handleModuleStatus(status: ModuleStatus) {
         when (status) {
-            is ModuleStatus.Installing -> {
-                with(dynamicFeatureBalloon) {
-                    showAlignTop(binding.bottomNavigation)
+            is ModuleStatus.Installing -> with(dynamicFeatureBalloon) {
+                showAlignTop(binding.bottomNavigation)
 
-                    val progress = (status.progress * FULL_PERCENT).toInt()
+                val progress = (status.progress * FULL_PERCENT).toInt()
 
-                    balloonTitleTextView.text = getString(R.string.dynamic_delivery_installing, progress)
-                    balloonProgressBar.apply {
-                        isIndeterminate = false
-                        setProgress(progress)
-                    }
+                balloonTitleTextView.text = getString(R.string.dynamic_delivery_installing, progress)
+                balloonProgressBar.apply {
+                    isIndeterminate = false
+                    setProgress(progress)
                 }
             }
             is ModuleStatus.Unavailable -> {
@@ -326,13 +319,12 @@ class MainActivity : ScopeActivity(R.layout.activity_main) {
 
                 dynamicFeatureBalloon.dismissWithDelay(1.seconds.toLongMilliseconds())
             }
-            is ModuleStatus.NeedsConfirmation -> {
+            is ModuleStatus.NeedsConfirmation ->
                 splitInstallManager.startConfirmationDialogForResult(
                         status.state,
                         this@MainActivity,
                         UPDATE_CONFIRMATION_REQ_CODE
                 )
-            }
             ModuleStatus.None -> {
             }
         }
@@ -353,15 +345,13 @@ class MainActivity : ScopeActivity(R.layout.activity_main) {
     private fun Intent.handleGoogleAssistanceSearchIntent() {
         AssistanceDeepLinkParser().process(intent = this) { featureScreen ->
             when (featureScreen) {
-                is DeepLinkScreen.Search -> {
-                    viewModel.replaceWith(
-                            screen = SearchScreen(featureProvider, featureScreen.searchQuery),
-                            params = ScreenParams(
-                                    screenNameResId = R.string.navigation_view_search_header,
-                                    trackingScreenName = Tracking.TRACKING_FRAGMENT_SEARCH
-                            )
-                    )
-                }
+                is DeepLinkScreen.Search -> viewModel.replaceWith(
+                        screen = SearchScreen(featureProvider, featureScreen.searchQuery),
+                        params = ScreenParams(
+                                screenNameResId = R.string.navigation_view_search_header,
+                                trackingScreenName = Tracking.TRACKING_FRAGMENT_SEARCH
+                        )
+                )
                 is DeepLinkScreen.Catalog -> preselectAndNavigate(R.id.menuCatalog)
                 is DeepLinkScreen.About -> preselectAndNavigate(R.id.menuLanding)
                 is DeepLinkScreen.News -> preselectAndNavigate(R.id.menuPhotoReport)
@@ -373,27 +363,23 @@ class MainActivity : ScopeActivity(R.layout.activity_main) {
 
     private fun Intent.handleSendImageIntent() {
         when (action) {
-            Intent.ACTION_SEND -> {
-                if (intent.type?.startsWith("image/") == true) {
-                    val imageUri = intent.getParcelableExtra<Uri>(Intent.EXTRA_STREAM)
+            Intent.ACTION_SEND -> if (intent.type?.startsWith("image/") == true) {
+                val imageUri = intent.getParcelableExtra<Uri>(Intent.EXTRA_STREAM)
 
-                    check(imageUri != null)
+                check(imageUri != null)
 
-                    dynamicFeatureViewModel.invokePostCreatorOrNoting(
-                            postCreatorParams = PostCreatorParams(images = listOf(imageUri))
-                    )
-                }
+                dynamicFeatureViewModel.invokePostCreatorOrNoting(
+                        postCreatorParams = PostCreatorParams(images = listOf(imageUri))
+                )
             }
-            Intent.ACTION_SEND_MULTIPLE -> {
-                if (intent.type?.startsWith("image/") == true) {
-                    val imageUris = intent.getParcelableArrayListExtra<Uri>(Intent.EXTRA_STREAM)
+            Intent.ACTION_SEND_MULTIPLE -> if (intent.type?.startsWith("image/") == true) {
+                val imageUris = intent.getParcelableArrayListExtra<Uri>(Intent.EXTRA_STREAM)
 
-                    check(imageUris != null)
+                check(imageUris != null)
 
-                    dynamicFeatureViewModel.invokePostCreatorOrNoting(
-                            postCreatorParams = PostCreatorParams(images = imageUris)
-                    )
-                }
+                dynamicFeatureViewModel.invokePostCreatorOrNoting(
+                        postCreatorParams = PostCreatorParams(images = imageUris)
+                )
             }
         }
     }
@@ -453,10 +439,11 @@ class MainActivity : ScopeActivity(R.layout.activity_main) {
 
     private fun changeAppBarState(fragment: Fragment) {
         when (fragment) {
-            is CatalogFeature, is AboutUsFeature, is PhotoReportsFeature, is SettingsFeature -> {
-                with(binding) {
-                    appBarLayout.setExpanded(true)
-                }
+            is CatalogFeature,
+            is AboutUsFeature,
+            is PhotoReportsFeature,
+            is SettingsFeature -> with(binding) {
+                appBarLayout.setExpanded(true)
             }
         }
     }
@@ -474,23 +461,19 @@ class MainActivity : ScopeActivity(R.layout.activity_main) {
                 }
                 show()
             }
-            is AppUpdateResult.InProgress -> {
-                with(snackBar) {
-                    val updateProgress: Int = calculateUpdateProgress(updateResult)
+            is AppUpdateResult.InProgress -> with(snackBar) {
+                val updateProgress: Int = calculateUpdateProgress(updateResult)
 
-                    setText(getString(R.string.in_app_update_downloading, updateProgress))
-                    setAction(null) {}
-                    show()
-                }
+                setText(getString(R.string.in_app_update_downloading, updateProgress))
+                setAction(null) {}
+                show()
             }
-            is AppUpdateResult.Downloaded -> {
-                with(snackBar) {
-                    setText(R.string.in_app_update_download_finished)
-                    setAction(R.string.in_app_update_complete) {
-                        inAppUpdateViewModel.invokeUpdate()
-                    }
-                    show()
+            is AppUpdateResult.Downloaded -> with(snackBar) {
+                setText(R.string.in_app_update_download_finished)
+                setAction(R.string.in_app_update_complete) {
+                    inAppUpdateViewModel.invokeUpdate()
                 }
+                show()
             }
         }
     }

@@ -26,25 +26,21 @@ class EditSubCategoryViewModel(
 
     override fun handleEvent(event: Event) {
         when (event) {
-            is Event.LoadSubCategoryData -> {
-                viewModelScope.launch {
-                    setState { copy(editState = EditState.Loading) }
+            is Event.LoadSubCategoryData -> viewModelScope.launch {
+                setState { copy(editState = EditState.Loading) }
 
-                    when (val subcategoryModel = loadSubCategoryUseCase.load(documentReference = documentReference)) {
-                        null -> setEffect { Effect.ShowToast(message = "Error loading") }
-                        else -> setState { copy(editState = EditState.Success(subcategoryModel)) }
-                    }
+                when (val subcategoryModel = loadSubCategoryUseCase.load(documentReference = documentReference)) {
+                    null -> setEffect { Effect.ShowToast(message = "Error loading") }
+                    else -> setState { copy(editState = EditState.Success(subcategoryModel)) }
                 }
             }
-            is Event.SaveEditChanges -> {
-                viewModelScope.launch {
-                    when (updateSubCategoryUseCase.upload(currentSubCategoryModel)) {
-                        is ResultOf.Success -> setEffect {
-                            Effect.Exit(categoryId = currentSubCategoryModel.categoryId)
-                        }
-                        is ResultOf.Failure -> setEffect {
-                            Effect.ShowToast("Error saving")
-                        }
+            is Event.SaveEditChanges -> viewModelScope.launch {
+                when (updateSubCategoryUseCase.upload(currentSubCategoryModel)) {
+                    is ResultOf.Success -> setEffect {
+                        Effect.Exit(categoryId = currentSubCategoryModel.categoryId)
+                    }
+                    is ResultOf.Failure -> setEffect {
+                        Effect.ShowToast("Error saving")
                     }
                 }
             }

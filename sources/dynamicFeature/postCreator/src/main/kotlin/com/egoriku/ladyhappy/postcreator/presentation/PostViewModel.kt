@@ -142,26 +142,22 @@ class PostViewModel(
 
     fun resetByChooserType(type: ChooserType) {
         _screenState.value = when (type) {
-            is ChooserType.Category -> {
-                _screenState.value.copy(
-                        category = ChooserType.Category(state = ChooserState.Initial),
-                        subCategory = null
-                )
-            }
-            is ChooserType.SubCategory -> {
-                _screenState.value.copy(
-                        subCategory = ChooserType.SubCategory(
-                                state = ChooserState.Initial,
-                                categoryId = _screenState.value.category.categoryId
-                        )
-                )
-            }
-            is ChooserType.Color -> {
-                _screenState.value.copy(color = ChooserType.Color(state = ChooserState.Initial))
-            }
-            is ChooserType.CreationDate -> {
-                _screenState.value.copy(creationDate = ChooserType.CreationDate(state = ChooserState.Initial))
-            }
+            is ChooserType.Category -> _screenState.value.copy(
+                    category = ChooserType.Category(state = ChooserState.Initial),
+                    subCategory = null
+            )
+            is ChooserType.SubCategory -> _screenState.value.copy(
+                    subCategory = ChooserType.SubCategory(
+                            state = ChooserState.Initial,
+                            categoryId = _screenState.value.category.categoryId
+                    )
+            )
+            is ChooserType.Color -> _screenState.value.copy(
+                    color = ChooserType.Color(state = ChooserState.Initial)
+            )
+            is ChooserType.CreationDate -> _screenState.value.copy(
+                    creationDate = ChooserType.CreationDate(state = ChooserState.Initial)
+            )
         }
     }
 

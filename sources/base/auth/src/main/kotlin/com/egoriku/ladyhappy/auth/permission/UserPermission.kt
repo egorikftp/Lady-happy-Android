@@ -18,9 +18,7 @@ internal class UserPermission(
         GlobalScope.launch {
             authentication.userLoginState.collect {
                 when (it) {
-                    is UserLoginState.Anon -> {
-                        permissions.clear()
-                    }
+                    is UserLoginState.Anon -> permissions.clear()
                     is UserLoginState.LoggedIn -> {
                         val newPermissions = userPermissionsRepository.getPermissionsBy(userId = it.userId)
 

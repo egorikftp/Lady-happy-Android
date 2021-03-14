@@ -55,12 +55,10 @@ class SettingFragment : ScopeFragment(R.layout.fragment_settings), SettingsFeatu
 
         availableFeaturesAdapter = AvailableFeaturesSectionAdapter {
             when (it) {
-                is Feature.PublishPosts -> {
-                    parentFragmentManager.setFragmentResult(
-                            DYNAMIC_FEATURE_REQUEST_KEY,
-                            bundleOf(DYNAMIC_FEATURE_BUNDLE_RESULT_KEY to DynamicFeature.PostCreator())
-                    )
-                }
+                is Feature.PublishPosts -> parentFragmentManager.setFragmentResult(
+                        DYNAMIC_FEATURE_REQUEST_KEY,
+                        bundleOf(DYNAMIC_FEATURE_BUNDLE_RESULT_KEY to DynamicFeature.PostCreator())
+                )
                 is Feature.Stub -> TODO()
             }
         }
@@ -68,12 +66,8 @@ class SettingFragment : ScopeFragment(R.layout.fragment_settings), SettingsFeatu
         settingsAdapter = SettingItemAdapter {
             when (it) {
                 is SettingItem.Theme -> ThemeSettingDialogFragment().show(childFragmentManager, null)
-                is SettingItem.UsedLibraries -> {
-                    settingsViewModel.navigateTo(UsedLibrariesScreen(featureProvider))
-                }
-                is SettingItem.Review -> {
-                    openPlayStore()
-                }
+                is SettingItem.UsedLibraries -> settingsViewModel.navigateTo(UsedLibrariesScreen(featureProvider))
+                is SettingItem.Review -> openPlayStore()
                 is SettingItem.Header -> TODO()
                 is SettingItem.NonClickable -> TODO()
             }

@@ -20,12 +20,8 @@ internal class MarginItemDecoration(
         outRect.top = marginSize
 
         when {
-            adapterItemsCount > 1 && adapterPosition == adapterItemsCount - 1 -> {
-                outRect.right = marginSize
-            }
-
+            adapterItemsCount > 1 && adapterPosition == adapterItemsCount - 1 -> outRect.right = marginSize
             adapterPosition > 0 -> outRect.right = marginSize
-
             adapterPosition == 0 -> {
                 outRect.left = marginSize
                 outRect.right = marginSize

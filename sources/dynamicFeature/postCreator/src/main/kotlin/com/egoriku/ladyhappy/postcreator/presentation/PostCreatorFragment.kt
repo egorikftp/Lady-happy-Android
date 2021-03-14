@@ -149,6 +149,7 @@ class PostCreatorFragment : ScopeFragment(R.layout.fragment_post_creator) {
         }
     }
 
+    @Suppress("OptionalWhenBraces")
     private fun processChooserItemClick(chooserState: ChooserType) = when (chooserState) {
         is ChooserType.Category -> {
             CategoriesDialog.newInstance(PredefinedData.getCategoriesNames())
