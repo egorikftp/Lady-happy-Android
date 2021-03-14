@@ -11,6 +11,8 @@ import com.egoriku.ladyhappy.mozaik.model.MozaikItem
 import com.egoriku.ladyhappy.mozaik.strategy.StrategyResolver
 import com.egoriku.ladyhappy.mozaik.strategy.internal.model.Rect
 import com.egoriku.ladyhappy.mozaik.strategy.internal.model.StrategyData
+import com.egoriku.ladyhappy.mozaik.strategy.internal.model.height
+import com.egoriku.ladyhappy.mozaik.strategy.internal.model.width
 
 private const val DIVIDER_SIZE = 15
 
@@ -61,8 +63,8 @@ class MozaikLayout @JvmOverloads constructor(
             val rect = strategyData.rect[i]
 
             childAt.measure(
-                    MeasureSpec.makeMeasureSpec(rect.width(), MeasureSpec.EXACTLY),
-                    MeasureSpec.makeMeasureSpec(rect.height(), MeasureSpec.EXACTLY)
+                    MeasureSpec.makeMeasureSpec(rect.width, MeasureSpec.EXACTLY),
+                    MeasureSpec.makeMeasureSpec(rect.height, MeasureSpec.EXACTLY)
             )
         }
 
