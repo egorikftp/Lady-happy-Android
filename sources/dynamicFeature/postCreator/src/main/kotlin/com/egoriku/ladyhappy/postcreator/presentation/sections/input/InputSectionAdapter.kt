@@ -26,7 +26,7 @@ class InputSectionAdapter(
             private val binding: AdapterItemInputBinding,
     ) : RecyclerView.ViewHolder(binding.root) {
 
-        private val textWatcher = object : SimpleTextWatcher() {
+        private val textWatcher = object : SimpleTextWatcher {
             override fun onTextChanged(charSequence: CharSequence?, start: Int, before: Int, count: Int) {
                 currentText = charSequence.toString()
                 onTextChanges(charSequence.toString())

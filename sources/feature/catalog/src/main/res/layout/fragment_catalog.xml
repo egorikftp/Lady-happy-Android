@@ -18,7 +18,7 @@
         android:id="@+id/errorView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/catalog_error_response"
+        android:text="@string/general_error_loading"
         android:textSize="20sp"
         android:visibility="gone"
         app:fontFamily="@font/raleway"
