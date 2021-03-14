@@ -13,7 +13,9 @@ import com.egoriku.ladyhappy.settings.presentation.view.State.ANON
 import com.egoriku.ladyhappy.settings.presentation.view.State.LOGGED_IN
 
 internal class LoginView @JvmOverloads constructor(
-        context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
+        context: Context,
+        attrs: AttributeSet? = null,
+        defStyleAttr: Int = 0
 ) : ConstraintLayout(context, attrs, defStyleAttr) {
 
     private val binding = ViewLoginBinding.inflate(inflater(), this)

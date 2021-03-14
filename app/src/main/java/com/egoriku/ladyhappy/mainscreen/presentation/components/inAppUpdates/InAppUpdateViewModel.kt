@@ -9,6 +9,8 @@ import com.google.android.play.core.ktx.*
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 
+private const val DAYS_IN_MONTH = 30
+
 class InAppUpdateViewModel(updateManager: AppUpdateManager) : ViewModel() {
 
     private val _events = MutableSharedFlow<InAppUpdateEvent>()
@@ -23,7 +25,7 @@ class InAppUpdateViewModel(updateManager: AppUpdateManager) : ViewModel() {
     fun shouldLaunchImmediateUpdate(updateInfo: AppUpdateInfo): Boolean {
         with(updateInfo) {
             return isImmediateUpdateAllowed &&
-                    (clientVersionStalenessDays ?: 0 > 30 || updatePriority > 4)
+                    (clientVersionStalenessDays ?: 0 > DAYS_IN_MONTH || updatePriority > 4)
         }
     }
 

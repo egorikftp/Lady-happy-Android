@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.DiffUtil
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.egoriku.ladyhappy.core.adapter.BaseViewHolder
+import com.egoriku.ladyhappy.core.sharedmodel.key.CROSSFADE_DURATION
 import com.egoriku.ladyhappy.detailpage.databinding.AdapterItemDetailBinding
 import com.egoriku.ladyhappy.detailpage.domain.model.DetailModel
 import com.egoriku.ladyhappy.extensions.context
@@ -38,7 +39,7 @@ class DetailAdapter : PagingDataAdapter<DetailModel, DetailAdapter.VH>(DiffCallb
             binding.mozaikLayout.onViewReady = { view, url ->
                 Glide.with(itemView.context)
                         .load(url)
-                        .transition(DrawableTransitionOptions.withCrossFade(100))
+                        .transition(DrawableTransitionOptions.withCrossFade(CROSSFADE_DURATION))
                         .into(view)
             }
         }

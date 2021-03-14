@@ -11,6 +11,8 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.channelFlow
 import kotlinx.coroutines.launch
 
+private const val SHIMMING_DELAY = 500L
+
 internal class SectionsUseCase(
         private val stringResource: IStringResource,
         private val userPermission: IUserPermission
@@ -45,7 +47,7 @@ internal class SectionsUseCase(
     )
 
     private suspend fun featuresSection(): List<Feature.PublishPosts> {
-        delay(500)
+        delay(SHIMMING_DELAY)
 
         return when {
             userPermission.isAbleToCreatePosts -> listOf(Feature.PublishPosts(isAvailable = true))

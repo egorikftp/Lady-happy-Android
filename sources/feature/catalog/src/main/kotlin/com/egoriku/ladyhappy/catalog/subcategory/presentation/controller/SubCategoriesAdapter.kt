@@ -10,10 +10,9 @@ import com.egoriku.ladyhappy.catalog.databinding.AdapterItemSubcategoryBinding
 import com.egoriku.ladyhappy.core.adapter.BaseListAdapter
 import com.egoriku.ladyhappy.core.adapter.BaseViewHolder
 import com.egoriku.ladyhappy.core.sharedmodel.domain.SubCategoryModel
+import com.egoriku.ladyhappy.core.sharedmodel.key.CROSSFADE_DURATION
 import com.egoriku.ladyhappy.extensions.*
 import kotlin.properties.Delegates
-
-private const val CROSSFADE_DURATION = 100
 
 class SubCategoriesAdapter(
         private val onCatalogItemClick: (model: SubCategoryModel) -> Unit,

@@ -1,6 +1,5 @@
 package com.egoriku.ladyhappy.extensions
 
-import android.content.ActivityNotFoundException
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
@@ -9,20 +8,20 @@ import android.os.Parcelable
 import androidx.fragment.app.Fragment
 import java.io.Serializable
 
-fun Fragment.browseUrl(url: String, newTask: Boolean = false): Boolean = requireContext().browseUrl(url, newTask)
+fun Fragment.browseUrl(url: String, newTask: Boolean = false) = requireContext().browseUrl(url, newTask)
 
-fun Context.browseUrl(url: String, newTask: Boolean = false): Boolean = try {
-    startActivity(Intent(Intent.ACTION_VIEW).apply {
-        data = Uri.parse(url)
+fun Context.browseUrl(url: String, newTask: Boolean = false) {
+    runCatching {
+        startActivity(Intent(Intent.ACTION_VIEW).apply {
+            data = Uri.parse(url)
 
-        if (newTask) {
-            addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-        }
-    })
-    true
-} catch (e: ActivityNotFoundException) {
-    e.printStackTrace()
-    false
+            if (newTask) {
+                addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            }
+        })
+    }.getOrElse {
+        logD(it.message)
+    }
 }
 
 inline fun <reified T : Any> Fragment.intentFor(vararg params: Pair<String, Any?>): Intent =

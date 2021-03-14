@@ -8,7 +8,6 @@ import com.egoriku.ladyhappy.core.sharedmodel.params.EditParams
 import com.egoriku.ladyhappy.core.sharedmodel.params.PostCreatorParams
 import com.egoriku.ladyhappy.extensions.logD
 import com.google.android.play.core.ktx.*
-import com.google.android.play.core.splitinstall.SplitInstallException
 import com.google.android.play.core.splitinstall.SplitInstallManager
 import com.google.android.play.core.splitinstall.model.SplitInstallSessionStatus
 import kotlinx.coroutines.flow.*
@@ -107,9 +106,9 @@ class DynamicFeatureViewModel(
 
     private fun requestModuleInstallation(moduleName: String) {
         viewModelScope.launch {
-            try {
+            runCatching {
                 splitInstallManager.requestInstall(listOf(moduleName))
-            } catch (e: SplitInstallException) {
+            }.getOrElse {
                 _events.emit(DynamicFeatureEvent.ToastEvent("Failed starting installation of $moduleName"))
             }
         }

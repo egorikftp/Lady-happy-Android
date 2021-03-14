@@ -21,6 +21,7 @@ import com.egoriku.ladyhappy.core.INavigationHolder
 import com.egoriku.ladyhappy.core.feature.*
 import com.egoriku.ladyhappy.core.sharedmodel.key.DYNAMIC_FEATURE_BUNDLE_RESULT_KEY
 import com.egoriku.ladyhappy.core.sharedmodel.key.DYNAMIC_FEATURE_REQUEST_KEY
+import com.egoriku.ladyhappy.core.sharedmodel.key.FULL_PERCENT
 import com.egoriku.ladyhappy.core.sharedmodel.params.PostCreatorParams
 import com.egoriku.ladyhappy.core.sharedmodel.toNightMode
 import com.egoriku.ladyhappy.databinding.ActivityMainBinding
@@ -299,7 +300,7 @@ class MainActivity : ScopeActivity(R.layout.activity_main) {
                 with(dynamicFeatureBalloon) {
                     showAlignTop(binding.bottomNavigation)
 
-                    val progress = (status.progress * 100).toInt()
+                    val progress = (status.progress * FULL_PERCENT).toInt()
 
                     balloonTitleTextView.text = getString(R.string.dynamic_delivery_installing, progress)
                     balloonProgressBar.apply {
@@ -490,12 +491,12 @@ class MainActivity : ScopeActivity(R.layout.activity_main) {
         }
     }
 
-    private fun calculateUpdateProgress(updateResult: AppUpdateResult.InProgress): Int =
-            when (updateResult.installState.totalBytesToDownload) {
-                0L -> 0
-                else -> {
-                    (updateResult.installState.bytesDownloaded * 100 /
-                            updateResult.installState.totalBytesToDownload).toInt()
-                }
-            }
+    private fun calculateUpdateProgress(updateResult: AppUpdateResult.InProgress): Int {
+        val installState = updateResult.installState
+
+        return when (installState.totalBytesToDownload) {
+            0L -> 0
+            else -> (installState.bytesDownloaded / installState.totalBytesToDownload * FULL_PERCENT).toInt()
+        }
+    }
 }

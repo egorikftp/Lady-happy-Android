@@ -34,6 +34,8 @@ import kotlinx.coroutines.launch
 import org.koin.androidx.scope.ScopeFragment
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
+private const val BLUR_RADIUS = 25
+
 class DetailPageFragment : ScopeFragment(R.layout.fragment_detail), DetailPage {
 
     private val router: IRouter by inject()
@@ -144,7 +146,7 @@ class DetailPageFragment : ScopeFragment(R.layout.fragment_detail), DetailPage {
                 .load(detailPageParams.productLogoUrl)
                 .transition(DrawableTransitionOptions.withCrossFade())
                 .transform(
-                        BlurTransformation(25, 1),
+                        BlurTransformation(BLUR_RADIUS, 1),
                         GradientOverlayTransformation(
                                 startColor = colorCompat(R.color.RealBlack0),
                                 centerColor = colorCompat(R.color.RealBlack30),
@@ -153,6 +155,7 @@ class DetailPageFragment : ScopeFragment(R.layout.fragment_detail), DetailPage {
                 ).into(headerBackground)
     }
 
+    @Suppress("MagicNumber")
     private fun FragmentDetailBinding.initAppBarScrollListener() {
         val listener = AppBarLayout.OnOffsetChangedListener { _, verticalOffset ->
             val scrollPosition = -verticalOffset / appbarLayout.totalScrollRange.toFloat()

@@ -6,6 +6,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.egoriku.ladyhappy.core.adapter.BaseListAdapter
 import com.egoriku.ladyhappy.core.adapter.BaseViewHolder
+import com.egoriku.ladyhappy.core.sharedmodel.key.CROSSFADE_DURATION
 import com.egoriku.ladyhappy.extensions.context
 import com.egoriku.ladyhappy.extensions.inflater
 import com.egoriku.ladyhappy.mozaik.OnItemClick
@@ -36,7 +37,7 @@ class PhotoReportAdapter : BaseListAdapter<PhotoReportModel, PhotoReportAdapter.
             binding.mozaikLayout.onViewReady = { view, url ->
                 Glide.with(itemView.context)
                         .load(url)
-                        .transition(DrawableTransitionOptions.withCrossFade(100))
+                        .transition(DrawableTransitionOptions.withCrossFade(CROSSFADE_DURATION))
                         .into(view)
             }
         }

@@ -13,6 +13,11 @@ import com.bumptech.glide.util.Util
 import java.nio.ByteBuffer
 import java.security.MessageDigest
 
+private const val CAPACITY = 12
+private const val TOP_POSITION = 0f
+private const val CENTER_POSITION = 0.5f
+private const val BOTTOM_POSITION = 1f
+
 class GradientOverlayTransformation(
         @ColorRes
         private val startColor: Int,
@@ -41,7 +46,7 @@ class GradientOverlayTransformation(
         messageDigest.update(ID_BYTES)
 
         val radiusData = ByteBuffer
-                .allocate(12)
+                .allocate(CAPACITY)
                 .putInt(startColor)
                 .putInt(centerColor)
                 .putInt(endColor)
@@ -62,7 +67,7 @@ class GradientOverlayTransformation(
                 bitmap.width / 2f,
                 bitmap.height.toFloat(),
                 intArrayOf(startColor, centerColor, endColor),
-                floatArrayOf(0f, 0.5f, 1f),
+                floatArrayOf(TOP_POSITION, CENTER_POSITION, BOTTOM_POSITION),
                 TileMode.CLAMP
         )
 

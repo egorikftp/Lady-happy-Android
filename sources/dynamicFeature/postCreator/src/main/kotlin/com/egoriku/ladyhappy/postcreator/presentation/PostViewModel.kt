@@ -16,6 +16,7 @@ import com.egoriku.ladyhappy.postcreator.domain.predefined.ColorModel
 import com.egoriku.ladyhappy.postcreator.domain.predefined.PredefinedData
 import com.egoriku.ladyhappy.postcreator.domain.usecase.PublishPostUseCase
 import com.egoriku.ladyhappy.postcreator.domain.usecase.UploadImagesUseCase
+import com.egoriku.ladyhappy.postcreator.presentation.common.MAX_IMAGES_SIZE
 import com.egoriku.ladyhappy.postcreator.presentation.state.ScreenState
 import com.egoriku.ladyhappy.postcreator.presentation.state.UploadEvents
 import com.egoriku.ladyhappy.ui.date.ddMMMyyyy
@@ -206,7 +207,7 @@ class PostViewModel(
         val state = _screenState.value
 
         _publishButtonAvailability.value = when {
-            state.imagesSection.images.isEmpty() || state.imagesSection.images.size > 10 -> false
+            state.imagesSection.images.isEmpty() || state.imagesSection.images.size > MAX_IMAGES_SIZE -> false
             state.category.state == ChooserState.Initial -> false
             state.subCategory == null || state.subCategory.state == ChooserState.Initial -> false
             state.color.state == ChooserState.Initial -> false

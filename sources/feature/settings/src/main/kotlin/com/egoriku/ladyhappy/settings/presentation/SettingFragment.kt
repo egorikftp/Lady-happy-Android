@@ -1,6 +1,5 @@
 package com.egoriku.ladyhappy.settings.presentation
 
-import android.content.ActivityNotFoundException
 import android.os.Bundle
 import android.view.View
 import androidx.core.os.bundleOf
@@ -98,9 +97,9 @@ class SettingFragment : ScopeFragment(R.layout.fragment_settings), SettingsFeatu
     private fun openPlayStore() {
         val appPackageName: String = requireContext().packageName
 
-        try {
+        runCatching {
             browseUrl("market://details?id=$appPackageName")
-        } catch (exception: ActivityNotFoundException) {
+        }.getOrElse {
             browseUrl("https://play.google.com/store/apps/details?id=$appPackageName")
         }
     }
