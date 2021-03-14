@@ -22,6 +22,7 @@ import com.egoriku.ladyhappy.extensions.setImageTintList
 import com.egoriku.ladyhappy.landing.R
 import com.egoriku.ladyhappy.landing.common.PredefinedResources
 import com.egoriku.ladyhappy.landing.domain.model.SocialModel
+import kotlin.properties.Delegates
 
 internal class SocialView : LinearLayout, View.OnClickListener {
 
@@ -50,12 +51,12 @@ internal class SocialView : LinearLayout, View.OnClickListener {
 
     private var animationState = AnimationState.NEED_SHOW
 
-    private lateinit var animatorSet: AnimatorSet
+    private var animatorSet: AnimatorSet by Delegates.notNull()
 
     private var itemPadding = 0
     private var itemSideSize = 0
 
-    private lateinit var onClickListener: (url: String) -> Unit
+    var socialClickListener: ((url: String) -> Unit)? = null
 
     constructor(context: Context) : this(context, null)
     constructor(context: Context, attrs: AttributeSet?) : this(context, attrs, 0)
@@ -199,7 +200,7 @@ internal class SocialView : LinearLayout, View.OnClickListener {
     }
 
     override fun onClick(v: View) {
-        onClickListener(v.tag.toString())
+        socialClickListener?.invoke(v.tag.toString())
     }
 
     fun setSocialModel(list: List<SocialModel>) {
@@ -216,9 +217,5 @@ internal class SocialView : LinearLayout, View.OnClickListener {
                     LayoutParams.WRAP_CONTENT
             )
         }
-    }
-
-    fun setOnSocialIconClickListener(onClickListener: (url: String) -> Unit) {
-        this.onClickListener = onClickListener
     }
 }

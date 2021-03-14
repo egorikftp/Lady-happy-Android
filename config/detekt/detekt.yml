@@ -484,9 +484,9 @@ potential-bugs:
   CastToNullableType:
     active: true
   Deprecation:
-    active: false
+    active: true
   DontDowncastCollectionTypes:
-    active: false
+    active: true
   DuplicateCaseInWhenExpression:
     active: true
   EqualsAlwaysReturnsTrueOrFalse:
@@ -494,19 +494,19 @@ potential-bugs:
   EqualsWithHashCodeExist:
     active: true
   ExitOutsideMain:
-    active: false
+    active: true
   ExplicitGarbageCollectionCall:
     active: true
   HasPlatformType:
-    active: false
+    active: true
   IgnoredReturnValue:
-    active: false
+    active: true
     restrictToAnnotatedMethods: true
     returnValueAnnotations: ['*.CheckReturnValue', '*.CheckResult']
   ImplicitDefaultLocale:
     active: true
   ImplicitUnitReturnType:
-    active: false
+    active: true
     allowExplicitReturnType: true
   InvalidRange:
     active: true
@@ -515,7 +515,7 @@ potential-bugs:
   IteratorNotThrowingNoSuchElementException:
     active: true
   LateinitUsage:
-    active: false
+    active: true
     excludes: ['**/test/**', '**/androidTest/**', '**/commonTest/**', '**/jvmTest/**', '**/jsTest/**', '**/iosTest/**']
     excludeAnnotatedProperties: []
     ignoreOnClassesPattern: ''

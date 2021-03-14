@@ -36,7 +36,9 @@ internal class OurTeamController(
 
         private val socialViewContainer = itemBinding.socialView.apply {
             setOnClickListener { showView() }
-            setOnSocialIconClickListener { onSocialItemClick(it) }
+            socialClickListener = {
+                onSocialItemClick(it)
+            }
         }
 
         override fun bind(model: TeamMemberModel) {
