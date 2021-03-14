@@ -9,7 +9,6 @@ import kotlinx.coroutines.launch
 abstract class BaseViewModel<Event : UiEvent, State : UiState, Effect : UiEffect> : ViewModel() {
 
     private val initialState: State by lazy { createInitialState() }
-    abstract fun createInitialState(): State
 
     val currentState: State
         get() = uiState.value
@@ -26,6 +25,8 @@ abstract class BaseViewModel<Event : UiEvent, State : UiState, Effect : UiEffect
     init {
         subscribeEvents()
     }
+
+    abstract fun createInitialState(): State
 
     /**
      * Start listening to Event

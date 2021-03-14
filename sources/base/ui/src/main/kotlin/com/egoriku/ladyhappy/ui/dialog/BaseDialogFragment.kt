@@ -10,6 +10,8 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 abstract class BaseDialogFragment : AppCompatDialogFragment(),
         DialogInterface.OnClickListener {
 
+    abstract val dialogTitleResId: Int
+
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val builder = MaterialAlertDialogBuilder(requireContext())
                 .setTitle(dialogTitleResId)
@@ -29,8 +31,6 @@ abstract class BaseDialogFragment : AppCompatDialogFragment(),
             DialogInterface.BUTTON_NEGATIVE -> onNegativeButtonClick()
         }
     }
-
-    abstract val dialogTitleResId: Int
 
     abstract fun onBuildDialog(
             builder: MaterialAlertDialogBuilder,

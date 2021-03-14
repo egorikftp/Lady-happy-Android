@@ -552,7 +552,7 @@ potential-bugs:
 style:
   active: true
   ClassOrdering:
-    active: false
+    active: true
   CollapsibleIfStatements:
     active: false
   DataClassContainsFunctions:

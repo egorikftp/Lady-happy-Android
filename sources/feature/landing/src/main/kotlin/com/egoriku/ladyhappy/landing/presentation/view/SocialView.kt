@@ -26,29 +26,6 @@ import kotlin.properties.Delegates
 
 internal class SocialView : LinearLayout, View.OnClickListener {
 
-    enum class AnimationState {
-        NEED_SHOW, NEED_HIDE
-    }
-
-    operator fun AnimationState.not() = when (this) {
-        AnimationState.NEED_HIDE -> AnimationState.NEED_SHOW
-        AnimationState.NEED_SHOW -> AnimationState.NEED_HIDE
-    }
-
-    private companion object DefaultValues {
-        const val DEFAULT_MAX_PADDING = 30
-        const val DEFAULT_ITEM_SIDE_SIZE = 120
-        const val ANIMATION_DURATION = 300L
-        const val ANIMATION_SHOW_OFFSET = 100L
-        const val ANIMATION_HIDE_OFFSET = 50L
-
-        const val VIEW_DEFAULT_POSITION = 0f
-        const val VIEW_OFFSET_POSITION = -300f
-
-        const val MIN_ALPHA = 0f
-        const val MAX_ALPHA = 1f
-    }
-
     private var animationState = AnimationState.NEED_SHOW
 
     private var animatorSet: AnimatorSet by Delegates.notNull()
@@ -217,5 +194,28 @@ internal class SocialView : LinearLayout, View.OnClickListener {
                     LayoutParams.WRAP_CONTENT
             )
         }
+    }
+
+    enum class AnimationState {
+        NEED_SHOW, NEED_HIDE
+    }
+
+    operator fun AnimationState.not() = when (this) {
+        AnimationState.NEED_HIDE -> AnimationState.NEED_SHOW
+        AnimationState.NEED_SHOW -> AnimationState.NEED_HIDE
+    }
+
+    companion object DefaultValues {
+        const val DEFAULT_MAX_PADDING = 30
+        const val DEFAULT_ITEM_SIDE_SIZE = 120
+        const val ANIMATION_DURATION = 300L
+        const val ANIMATION_SHOW_OFFSET = 100L
+        const val ANIMATION_HIDE_OFFSET = 50L
+
+        const val VIEW_DEFAULT_POSITION = 0f
+        const val VIEW_OFFSET_POSITION = -300f
+
+        const val MIN_ALPHA = 0f
+        const val MAX_ALPHA = 1f
     }
 }

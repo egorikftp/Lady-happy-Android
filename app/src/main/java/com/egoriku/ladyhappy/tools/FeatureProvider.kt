@@ -16,8 +16,6 @@ import com.egoriku.ladyhappy.usedLibraries.presentation.UsedLibrariesFragment
 
 internal class FeatureProvider : IFeatureProvider {
 
-    override fun getMainActivityIntent(context: Context) = Intent(context, MainActivity::class.java)
-
     override val catalogFragment: Fragment
         get() = CategoriesFragment()
 
@@ -36,8 +34,10 @@ internal class FeatureProvider : IFeatureProvider {
     override val settingsFragment: Fragment
         get() = SettingFragment()
 
-    override fun getSearchFragment(searchQuery: String) = SearchFragment.newInstance(searchQuery)
-
     override val usedLibrariesFragment: Fragment
         get() = UsedLibrariesFragment()
+
+    override fun getMainActivityIntent(context: Context) = Intent(context, MainActivity::class.java)
+
+    override fun getSearchFragment(searchQuery: String) = SearchFragment.newInstance(searchQuery)
 }

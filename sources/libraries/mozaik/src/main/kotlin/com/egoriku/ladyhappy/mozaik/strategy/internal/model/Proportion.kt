@@ -12,13 +12,13 @@ internal class Proportion(
         private val divider: Int
 ) {
 
+    private val imageProportion = width.toFloat() / height.toFloat()
+
     constructor(mozaikItem: MozaikItem, divider: Int) : this(
             width = mozaikItem.width,
             height = mozaikItem.height,
             divider = divider
     )
-
-    private val imageProportion = width.toFloat() / height.toFloat()
 
     private inline fun resize(width: Int): Point {
         val h = (width.toFloat() / imageProportion).roundToInt()
