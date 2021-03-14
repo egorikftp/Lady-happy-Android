@@ -37,7 +37,7 @@ abstract class BaseDialogFragment : AppCompatDialogFragment(),
             savedInstanceState: Bundle?
     ): MaterialAlertDialogBuilder
 
-    open fun onPositiveButtonClick() = Unit
+    open fun onPositiveButtonClick() {}
 
-    open fun onNegativeButtonClick() = Unit
+    open fun onNegativeButtonClick() {}
 }
