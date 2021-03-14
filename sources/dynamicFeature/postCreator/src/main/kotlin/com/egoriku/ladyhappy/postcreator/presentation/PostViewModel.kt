@@ -70,9 +70,11 @@ class PostViewModel(
     }
 
     fun setCategory(category: String) {
-        val categoryModel: CategoryModel = requireNotNull(PredefinedData.allCategories.find {
-            it.name == category
-        })
+        val categoryModel: CategoryModel = requireNotNull(
+                PredefinedData.allCategories.find {
+                    it.name == category
+                }
+        )
 
         _screenState.value = _screenState.value.copy(
                 category = ChooserType.Category(
@@ -90,9 +92,10 @@ class PostViewModel(
     }
 
     fun setSubCategory(subCategory: String?) {
-        val subCategoryModel = requireNotNull(PredefinedData.allSubCategories
-                .filter { it.categoryId == _screenState.value.category.categoryId }
-                .find { it.name == subCategory }
+        val subCategoryModel = requireNotNull(
+                PredefinedData.allSubCategories
+                        .filter { it.categoryId == _screenState.value.category.categoryId }
+                        .find { it.name == subCategory }
         )
 
         _screenState.value = _screenState.value.copy(
@@ -146,10 +149,12 @@ class PostViewModel(
                 )
             }
             is ChooserType.SubCategory -> {
-                _screenState.value.copy(subCategory = ChooserType.SubCategory(
-                        state = ChooserState.Initial,
-                        categoryId = _screenState.value.category.categoryId
-                ))
+                _screenState.value.copy(
+                        subCategory = ChooserType.SubCategory(
+                                state = ChooserState.Initial,
+                                categoryId = _screenState.value.category.categoryId
+                        )
+                )
             }
             is ChooserType.Color -> {
                 _screenState.value.copy(color = ChooserType.Color(state = ChooserState.Initial))

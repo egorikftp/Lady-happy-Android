@@ -106,13 +106,15 @@ class MozaikLayout @JvmOverloads constructor(
         removeAllViews()
 
         items.forEachIndexed { _, _ ->
-            addView(ImageView(context).apply {
-                scaleType = ImageView.ScaleType.CENTER_CROP
+            addView(
+                    ImageView(context).apply {
+                        scaleType = ImageView.ScaleType.CENTER_CROP
 
-                if (placeholderColor != -1) {
-                    setBackgroundColor(placeholderColor)
-                }
-            })
+                        if (placeholderColor != -1) {
+                            setBackgroundColor(placeholderColor)
+                        }
+                    }
+            )
         }
 
         strategyData.rect = List(items.size) { Rect() }

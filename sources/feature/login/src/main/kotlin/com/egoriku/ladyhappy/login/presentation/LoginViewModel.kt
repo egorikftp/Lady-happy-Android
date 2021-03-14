@@ -49,8 +49,9 @@ class LoginViewModel(
 
             when (val result = authentication.authWithEmailAndPassword(email, password)) {
                 is Success -> _currentState.value = LoginState.Success()
-                is Failure -> _currentState.value = LoginState.Error(result.throwable.message
-                        ?: EMPTY)
+                is Failure -> _currentState.value = LoginState.Error(
+                        result.throwable.message ?: EMPTY
+                )
             }
         }
     }
@@ -61,8 +62,9 @@ class LoginViewModel(
 
             when (val result = authentication.authWithToken(token)) {
                 is Success -> _currentState.value = LoginState.Success()
-                is Failure -> _currentState.value = LoginState.Error(result.throwable.message
-                        ?: EMPTY)
+                is Failure -> _currentState.value = LoginState.Error(
+                        result.throwable.message ?: EMPTY
+                )
             }
         }
     }

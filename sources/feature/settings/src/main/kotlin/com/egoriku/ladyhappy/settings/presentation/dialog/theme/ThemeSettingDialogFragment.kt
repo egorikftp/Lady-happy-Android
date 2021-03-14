@@ -17,8 +17,10 @@ class ThemeSettingDialogFragment : ScopeDialogFragment() {
     private var listAdapter: ArrayAdapter<ThemeHolder> by Delegates.notNull()
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        listAdapter = ArrayAdapter(requireContext(),
-                android.R.layout.simple_list_item_single_choice)
+        listAdapter = ArrayAdapter(
+                requireContext(),
+                android.R.layout.simple_list_item_single_choice
+        )
 
         return MaterialAlertDialogBuilder(requireContext())
                 .setTitle(R.string.settings_theme_title)

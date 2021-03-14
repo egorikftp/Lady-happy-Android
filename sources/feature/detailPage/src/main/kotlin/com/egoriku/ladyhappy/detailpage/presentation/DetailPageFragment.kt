@@ -52,12 +52,14 @@ class DetailPageFragment : ScopeFragment(R.layout.fragment_detail), DetailPage {
         super.onAttach(context)
 
         if (enterTransition != null) {
-            (enterTransition as Transition).addListener(object : TransitionListenerAdapter() {
-                override fun onTransitionEnd(transition: Transition) {
-                    transition.removeListener(this)
-                    viewBinding.loadBackgroundHeader()
-                }
-            })
+            (enterTransition as Transition).addListener(
+                    object : TransitionListenerAdapter() {
+                        override fun onTransitionEnd(transition: Transition) {
+                            transition.removeListener(this)
+                            viewBinding.loadBackgroundHeader()
+                        }
+                    }
+            )
         }
     }
 

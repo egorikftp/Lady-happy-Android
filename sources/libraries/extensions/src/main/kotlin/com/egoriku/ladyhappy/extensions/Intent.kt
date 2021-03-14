@@ -12,13 +12,15 @@ fun Fragment.browseUrl(url: String, newTask: Boolean = false) = requireContext()
 
 fun Context.browseUrl(url: String, newTask: Boolean = false) {
     runCatching {
-        startActivity(Intent(Intent.ACTION_VIEW).apply {
-            data = Uri.parse(url)
+        startActivity(
+                Intent(Intent.ACTION_VIEW).apply {
+                    data = Uri.parse(url)
 
-            if (newTask) {
-                addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-            }
-        })
+                    if (newTask) {
+                        addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                    }
+                }
+        )
     }.getOrElse {
         logD(it.message)
     }

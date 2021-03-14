@@ -15,7 +15,9 @@ class PhotoOverlayActions @JvmOverloads constructor(
 ) : ConstraintLayout(context, attrs, defStyleAttr) {
 
     private val viewBinding = ViewPhotoGalleryOverlayBinding.inflate(
-            inflater(), this, true
+            inflater(),
+            this,
+            true
     )
 
     private val titleFormat = getString(R.string.proto_overlay_title_format)

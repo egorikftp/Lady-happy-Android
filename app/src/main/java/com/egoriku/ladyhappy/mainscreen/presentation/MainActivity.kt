@@ -210,11 +210,13 @@ class MainActivity : ScopeActivity(R.layout.activity_main) {
                 // to prevent the user from using the app until they update.
                 if (updateResult is AppUpdateResult.Available) {
                     if (inAppUpdateViewModel.shouldLaunchImmediateUpdate(updateResult.updateInfo)) {
-                        if (appUpdateManager.startUpdateFlowForResult(
-                                        updateResult.updateInfo,
-                                        AppUpdateType.IMMEDIATE,
-                                        this@MainActivity,
-                                        UPDATE_CONFIRMATION_REQ_CODE)) {
+                        val isStartUpdateFlowForResultSuccess = appUpdateManager.startUpdateFlowForResult(
+                                updateResult.updateInfo,
+                                AppUpdateType.IMMEDIATE,
+                                this@MainActivity,
+                                UPDATE_CONFIRMATION_REQ_CODE
+                        )
+                        if (isStartUpdateFlowForResultSuccess) {
                             finish()
                         }
                     }

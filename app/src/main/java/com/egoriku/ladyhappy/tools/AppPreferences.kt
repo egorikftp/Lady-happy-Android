@@ -24,7 +24,8 @@ internal class AppPreferences(context: Context) : IAppPreferences {
 
     private val prefs: Lazy<SharedPreferences> = lazy { // Lazy to prevent IO access to main thread.
         context.applicationContext.getSharedPreferences(
-                PREFERENCES_NAME, MODE_PRIVATE
+                PREFERENCES_NAME,
+                MODE_PRIVATE
         ).apply {
             registerOnSharedPreferenceChangeListener(changeListener)
         }

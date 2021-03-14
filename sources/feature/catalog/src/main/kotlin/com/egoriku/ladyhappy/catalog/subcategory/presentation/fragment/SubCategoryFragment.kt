@@ -64,9 +64,11 @@ class SubCategoryFragment : ScopeFragment(R.layout.fragment_catalog) {
                     if (permissions.isAbleToEditPosts) {
                         setFragmentResult(
                                 requestKey = DYNAMIC_FEATURE_REQUEST_KEY,
-                                result = bundleOf(DYNAMIC_FEATURE_BUNDLE_RESULT_KEY to DynamicFeature.Edit(
-                                        editParams = EditParams(documentReference = it)
-                                ))
+                                result = bundleOf(
+                                        DYNAMIC_FEATURE_BUNDLE_RESULT_KEY to DynamicFeature.Edit(
+                                                editParams = EditParams(documentReference = it)
+                                        )
+                                )
                         )
                     }
                 }

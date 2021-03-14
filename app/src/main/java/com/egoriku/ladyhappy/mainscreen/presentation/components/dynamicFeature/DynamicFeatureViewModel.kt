@@ -53,9 +53,11 @@ class DynamicFeatureViewModel(
                     }
                 }.catch {
                     viewModelScope.launch {
-                        _events.emit(DynamicFeatureEvent.ToastEvent(
-                                "Something went wrong. No install progress will be reported."
-                        ))
+                        _events.emit(
+                                DynamicFeatureEvent.ToastEvent(
+                                        "Something went wrong. No install progress will be reported."
+                                )
+                        )
                     }
                     emit(ModuleStatus.Unavailable)
                 }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(), ModuleStatus.None)

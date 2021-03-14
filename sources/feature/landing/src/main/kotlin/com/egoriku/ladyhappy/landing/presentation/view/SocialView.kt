@@ -143,21 +143,23 @@ internal class SocialView : LinearLayout, View.OnClickListener {
 
     private fun getAnimation(view: View, viewPosition: Int): Animator {
         return if (animationState == AnimationState.NEED_SHOW) {
-            ObjectAnimator.ofPropertyValuesHolder(view,
+            ObjectAnimator.ofPropertyValuesHolder(
+                    view,
                     ofFloat(View.ALPHA, MIN_ALPHA, MAX_ALPHA),
-                    ofFloat(View.TRANSLATION_Y, VIEW_OFFSET_POSITION, VIEW_DEFAULT_POSITION))
-                    .apply {
-                        duration = ANIMATION_DURATION
-                        startDelay = (ANIMATION_SHOW_OFFSET * viewPosition)
-                    }
+                    ofFloat(View.TRANSLATION_Y, VIEW_OFFSET_POSITION, VIEW_DEFAULT_POSITION)
+            ).apply {
+                duration = ANIMATION_DURATION
+                startDelay = (ANIMATION_SHOW_OFFSET * viewPosition)
+            }
         } else {
-            ObjectAnimator.ofPropertyValuesHolder(view,
+            ObjectAnimator.ofPropertyValuesHolder(
+                    view,
                     ofFloat(View.ALPHA, MAX_ALPHA, MIN_ALPHA),
-                    ofFloat(View.TRANSLATION_Y, VIEW_DEFAULT_POSITION, VIEW_OFFSET_POSITION))
-                    .apply {
-                        duration = ANIMATION_DURATION
-                        startDelay = (ANIMATION_HIDE_OFFSET * viewPosition)
-                    }
+                    ofFloat(View.TRANSLATION_Y, VIEW_DEFAULT_POSITION, VIEW_OFFSET_POSITION)
+            ).apply {
+                duration = ANIMATION_DURATION
+                startDelay = (ANIMATION_HIDE_OFFSET * viewPosition)
+            }
         }
     }
 
@@ -174,12 +176,14 @@ internal class SocialView : LinearLayout, View.OnClickListener {
             val animation = AlphaAnimation(MAX_ALPHA, MIN_ALPHA).apply {
                 duration = ANIMATION_DURATION * 2
                 fillAfter = true
-                setAnimationListener(object : SimpleAnimationListener {
-                    override fun onAnimationEnd(animation: Animation?) {
-                        super.onAnimationEnd(animation)
-                        background = ColorDrawable(context.colorCompat(R.color.transparent))
-                    }
-                })
+                setAnimationListener(
+                        object : SimpleAnimationListener {
+                            override fun onAnimationEnd(animation: Animation?) {
+                                super.onAnimationEnd(animation)
+                                background = ColorDrawable(context.colorCompat(R.color.transparent))
+                            }
+                        }
+                )
             }
 
             startAnimation(animation)
@@ -200,14 +204,17 @@ internal class SocialView : LinearLayout, View.OnClickListener {
 
     fun setSocialModel(list: List<SocialModel>) {
         list.forEach {
-            addView(AppCompatImageButton(context).apply {
-                alpha = MIN_ALPHA
-                tag = it.socialUrl
-                scaleType = ImageView.ScaleType.FIT_CENTER
-                setImageResource(PredefinedResources.getDrawableByType(it.type))
-                setBackgroundResource(R.drawable.bg_social_view)
-                setImageTintList(R.color.selector_social_icon)
-            }, LayoutParams.WRAP_CONTENT)
+            addView(
+                    AppCompatImageButton(context).apply {
+                        alpha = MIN_ALPHA
+                        tag = it.socialUrl
+                        scaleType = ImageView.ScaleType.FIT_CENTER
+                        setImageResource(PredefinedResources.getDrawableByType(it.type))
+                        setBackgroundResource(R.drawable.bg_social_view)
+                        setImageTintList(R.color.selector_social_icon)
+                    },
+                    LayoutParams.WRAP_CONTENT
+            )
         }
     }
 
