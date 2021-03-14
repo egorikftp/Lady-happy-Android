@@ -91,8 +91,14 @@ class SubCategoriesAdapter(
 
     internal class DiffCallback : DiffUtil.ItemCallback<SubCategoryModel>() {
 
-        override fun areItemsTheSame(oldModel: SubCategoryModel, newModel: SubCategoryModel) = oldModel == newModel
+        override fun areItemsTheSame(
+                oldModel: SubCategoryModel,
+                newModel: SubCategoryModel
+        ) = oldModel == newModel
 
-        override fun areContentsTheSame(oldModel: SubCategoryModel, newModel: SubCategoryModel) = oldModel.subCategoryId == newModel.subCategoryId
+        override fun areContentsTheSame(
+                oldModel: SubCategoryModel,
+                newModel: SubCategoryModel
+        ) = oldModel.subCategoryId == newModel.subCategoryId
     }
 }

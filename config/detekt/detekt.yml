@@ -92,7 +92,7 @@ complexity:
   LongParameterList:
     active: true
     functionThreshold: 7
-    constructorThreshold: 7
+    constructorThreshold: 10
     ignoreDefaultParameters: false
     ignoreDataClasses: true
     ignoreAnnotated: []
@@ -119,7 +119,7 @@ complexity:
     active: true
     excludes: ['**/test/**', '**/androidTest/**', '**/commonTest/**', '**/jvmTest/**', '**/jsTest/**', '**/iosTest/**']
     thresholdInFiles: 30
-    thresholdInClasses: 20
+    thresholdInClasses: 25
     thresholdInInterfaces: 11
     thresholdInObjects: 11
     thresholdInEnums: 11
@@ -542,7 +542,7 @@ style:
     active: false
     includeLineWrapping: false
   ForbiddenComment:
-    active: true
+    active: false
     values: ['TODO:', 'FIXME:', 'STOPSHIP:']
     allowedPatterns: ''
   ForbiddenImport:

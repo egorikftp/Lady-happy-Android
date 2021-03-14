@@ -27,7 +27,6 @@ import kotlin.properties.Delegates
 
 private const val OFFSET_PAGE_LIMIT = 3
 
-
 class CategoriesFragment : ScopeFragment(R.layout.fragment_categories), CatalogFeature {
 
     private val binding by viewBinding(FragmentCategoriesBinding::bind)
@@ -38,7 +37,10 @@ class CategoriesFragment : ScopeFragment(R.layout.fragment_categories), CatalogF
 
     @SuppressLint("WrongConstant")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        parentFragmentManager.setFragmentResultListenerWrapper(EDIT_REQUEST_KEY, viewLifecycleOwner) { _: String, bundle: Bundle ->
+        parentFragmentManager.setFragmentResultListenerWrapper(
+                requestKey = EDIT_REQUEST_KEY,
+                lifecycleOwner = viewLifecycleOwner
+        ) { _, bundle ->
             val categoryId = bundle.getInt(EDIT_BUNDLE_RESULT_KEY)
 
             viewModel.updateTabs(categoryId)

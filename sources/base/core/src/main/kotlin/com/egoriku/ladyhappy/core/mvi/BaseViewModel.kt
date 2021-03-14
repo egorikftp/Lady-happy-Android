@@ -53,7 +53,6 @@ abstract class BaseViewModel<Event : UiEvent, State : UiState, Effect : UiEffect
         }
     }
 
-
     /**
      * Set new Ui State
      */

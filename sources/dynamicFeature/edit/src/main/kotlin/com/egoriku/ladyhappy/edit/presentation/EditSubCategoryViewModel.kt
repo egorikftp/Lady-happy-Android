@@ -39,8 +39,12 @@ class EditSubCategoryViewModel(
             is Event.SaveEditChanges -> {
                 viewModelScope.launch {
                     when (updateSubCategoryUseCase.upload(currentSubCategoryModel)) {
-                        is ResultOf.Success -> setEffect { Effect.Exit(categoryId = currentSubCategoryModel.categoryId) }
-                        is ResultOf.Failure -> setEffect { Effect.ShowToast("Error saving") }
+                        is ResultOf.Success -> setEffect {
+                            Effect.Exit(categoryId = currentSubCategoryModel.categoryId)
+                        }
+                        is ResultOf.Failure -> setEffect {
+                            Effect.ShowToast("Error saving")
+                        }
                     }
                 }
             }

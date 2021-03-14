@@ -6,7 +6,7 @@ import com.egoriku.ladyhappy.core.sharedmodel.mapper.ImageEntityMapper
 
 class SubCategoryEntityMapper : (SubCategoryEntity) -> SubCategoryModel? {
 
-    //todo Pass localized string
+    // TODO Pass localized string
     override fun invoke(entity: SubCategoryEntity) = SubCategoryModel(
             categoryId = entity.categoryId,
             subCategoryId = entity.subCategoryId,

@@ -19,9 +19,8 @@ internal class UserPermissionsRepository(
 
     override suspend fun getPermissionsBy(userId: String) = withContext(Dispatchers.IO) {
         runCatching {
-            val entity = userDataSource.fetch(userId = userId)
-                    ?: //Legacy user without necessary data
-                    return@withContext emptyList()
+            val entity = userDataSource.fetch(userId = userId) // Legacy user without necessary data
+                    ?: return@withContext emptyList()
 
             when (entity.userId) {
                 userId -> entity.permissions.mapNotNull(transformation)

@@ -24,10 +24,10 @@ class GradientOverlayTransformation(
         private val endColor: Int
 ) : BitmapTransformation() {
 
-    override fun equals(other: Any?) = other is GradientOverlayTransformation
-            && other.startColor == startColor
-            && other.centerColor == centerColor
-            && other.endColor == endColor
+    override fun equals(other: Any?) = other is GradientOverlayTransformation &&
+            other.startColor == startColor &&
+            other.centerColor == centerColor &&
+            other.endColor == endColor
 
     override fun hashCode(): Int {
         var result: Int = 31 * startColor

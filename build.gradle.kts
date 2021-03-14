@@ -57,6 +57,7 @@ subprojects {
 
     detekt {
         buildUponDefaultConfig = true
+        autoCorrect = true
 
         reports {
             html.enabled = true

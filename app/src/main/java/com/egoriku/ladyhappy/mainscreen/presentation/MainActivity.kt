@@ -336,14 +336,13 @@ class MainActivity : ScopeActivity(R.layout.activity_main) {
     private fun subscribeForDynamicFeatureRequest() {
         supportFragmentManager.setFragmentResultListenerWrapper(
                 requestKey = DYNAMIC_FEATURE_REQUEST_KEY,
-                lifecycleOwner = this,
-                listener = { _, bundle ->
-                    when (val feature = bundle.getParcelable<DynamicFeature>(DYNAMIC_FEATURE_BUNDLE_RESULT_KEY)) {
-                        is DynamicFeature.PostCreator -> dynamicFeatureViewModel.invokePostCreatorOrInstall()
-                        is DynamicFeature.Edit -> dynamicFeatureViewModel.invokeEditOrInstall(feature.editParams)
-                    }
-                }
-        )
+                lifecycleOwner = this
+        ) { _, bundle ->
+            when (val feature = bundle.getParcelable<DynamicFeature>(DYNAMIC_FEATURE_BUNDLE_RESULT_KEY)) {
+                is DynamicFeature.PostCreator -> dynamicFeatureViewModel.invokePostCreatorOrInstall()
+                is DynamicFeature.Edit -> dynamicFeatureViewModel.invokeEditOrInstall(feature.editParams)
+            }
+        }
     }
 
     private fun Intent.handleGoogleAssistanceSearchIntent() {

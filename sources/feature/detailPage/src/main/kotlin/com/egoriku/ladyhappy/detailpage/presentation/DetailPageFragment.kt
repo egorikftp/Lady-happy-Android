@@ -85,19 +85,13 @@ class DetailPageFragment : ScopeFragment(R.layout.fragment_detail), DetailPage {
                 detailAdapter.submitData(it)
             }
         }
-
-        lifecycleScope.launch {
-            viewModel.filterState.collect { state ->
-
-            }
-        }
     }
 
     private fun FragmentDetailBinding.initAdapter() {
         detailAdapter.addLoadStateListener { loadState ->
-            if (loadState.source.refresh is LoadState.NotLoading
-                    && loadState.append.endOfPaginationReached
-                    && detailAdapter.itemCount < 1
+            if (loadState.source.refresh is LoadState.NotLoading &&
+                    loadState.append.endOfPaginationReached &&
+                    detailAdapter.itemCount < 1
             ) {
                 fab.hide()
                 bottomAppBar.performHide()
