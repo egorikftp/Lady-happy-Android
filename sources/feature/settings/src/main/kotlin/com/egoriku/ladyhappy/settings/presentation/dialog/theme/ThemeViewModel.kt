@@ -5,10 +5,10 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
 import androidx.lifecycle.viewModelScope
 import com.egoriku.ladyhappy.core.sharedmodel.Theme
+import com.egoriku.ladyhappy.network.successOr
 import com.egoriku.ladyhappy.settings.domain.usecase.theme.GetAvailableThemesUseCase
 import com.egoriku.ladyhappy.settings.domain.usecase.theme.GetThemeUseCase
 import com.egoriku.ladyhappy.settings.domain.usecase.theme.SetThemeUseCase
-import com.egoriku.ladyhappy.network.successOr
 import kotlinx.coroutines.launch
 
 class ThemeViewModel(

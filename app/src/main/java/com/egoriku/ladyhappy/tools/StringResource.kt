@@ -1,9 +1,9 @@
 package com.egoriku.ladyhappy.tools
 
 import android.content.Context
-import com.egoriku.ladyhappy.core.IStringResource
 import com.egoriku.ladyhappy.BuildConfig
 import com.egoriku.ladyhappy.R
+import com.egoriku.ladyhappy.core.IStringResource
 
 class StringResource(private val context: Context) : IStringResource {
 

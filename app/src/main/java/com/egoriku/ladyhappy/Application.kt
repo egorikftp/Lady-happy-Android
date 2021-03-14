@@ -6,8 +6,8 @@ import com.egoriku.ladyhappy.core.IRemoteConfig
 import com.egoriku.ladyhappy.core.sharedmodel.Theme
 import com.egoriku.ladyhappy.core.sharedmodel.toNightMode
 import com.egoriku.ladyhappy.koin.initKoin
-import com.egoriku.ladyhappy.settings.domain.usecase.theme.GetThemeUseCase
 import com.egoriku.ladyhappy.network.ResultOf
+import com.egoriku.ladyhappy.settings.domain.usecase.theme.GetThemeUseCase
 import com.google.android.play.core.splitcompat.SplitCompatApplication
 import kotlinx.coroutines.runBlocking
 import org.koin.android.ext.android.inject

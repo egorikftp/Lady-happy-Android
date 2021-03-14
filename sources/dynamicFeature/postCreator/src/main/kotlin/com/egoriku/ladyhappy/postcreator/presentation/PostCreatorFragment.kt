@@ -34,7 +34,6 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.context.loadKoinModules
 import org.koin.core.context.unloadKoinModules
 import kotlin.properties.Delegates
-
 import com.egoriku.ladyhappy.localization.R as R_localization
 
 const val KEY_CHOOSER_FRAGMENT_RESULT = "chooserKey"

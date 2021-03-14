@@ -263,7 +263,7 @@ formatting:
     active: true
     autoCorrect: true
   EnumEntryNameCase:
-    active: false
+    active: true
     autoCorrect: true
   Filename:
     active: true
@@ -273,7 +273,7 @@ formatting:
     autoCorrect: true
     insertFinalNewLine: true
   ImportOrdering:
-    active: false
+    active: true
     autoCorrect: true
     layout: 'idea'
   Indentation:

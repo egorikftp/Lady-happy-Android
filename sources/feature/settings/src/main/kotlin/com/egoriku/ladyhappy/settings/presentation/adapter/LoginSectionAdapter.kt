@@ -4,9 +4,9 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.egoriku.ladyhappy.auth.model.UserLoginState
 import com.egoriku.ladyhappy.extensions.drawableCompat
 import com.egoriku.ladyhappy.extensions.inflater
-import com.egoriku.ladyhappy.auth.model.UserLoginState
 import com.egoriku.ladyhappy.settings.R
 import com.egoriku.ladyhappy.settings.databinding.AdapterItemLoginBinding
 import com.egoriku.ladyhappy.settings.domain.model.Section.Login
