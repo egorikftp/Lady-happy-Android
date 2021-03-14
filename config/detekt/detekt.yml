@@ -186,10 +186,10 @@ exceptions:
     active: true
     methodNames: [toString, hashCode, equals, finalize]
   InstanceOfCheckForException:
-    active: false
+    active: true
     excludes: ['**/test/**', '**/androidTest/**', '**/commonTest/**', '**/jvmTest/**', '**/jsTest/**', '**/iosTest/**']
   NotImplementedDeclaration:
-    active: false
+    active: true
   ObjectExtendsThrowable:
     active: false
   PrintStackTrace:
