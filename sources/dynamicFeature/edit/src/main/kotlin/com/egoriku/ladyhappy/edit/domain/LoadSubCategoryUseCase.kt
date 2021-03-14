@@ -7,9 +7,8 @@ class LoadSubCategoryUseCase(
         private val subCategoryRepository: IGetSubCategoryRepository
 ) : ILoadSubCategoryUseCase {
 
-    override suspend fun load(documentReference: String): SubCategoryModel? {
-        return subCategoryRepository.load(documentReference)
-    }
+    override suspend fun load(documentReference: String) =
+            subCategoryRepository.load(documentReference)
 }
 
 interface ILoadSubCategoryUseCase {

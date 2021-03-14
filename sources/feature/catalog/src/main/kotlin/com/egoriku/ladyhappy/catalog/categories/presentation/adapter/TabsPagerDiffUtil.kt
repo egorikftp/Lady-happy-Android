@@ -16,15 +16,18 @@ class TabsPagerDiffUtil(
 
     override fun getNewListSize() = newList.size
 
-    override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
-        return oldList[oldItemPosition].categoryId == newList[newItemPosition].categoryId
-    }
+    override fun areItemsTheSame(
+            oldItemPosition: Int,
+            newItemPosition: Int
+    ) = oldList[oldItemPosition].categoryId == newList[newItemPosition].categoryId
 
-    override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
-        return oldList[oldItemPosition].editCount == newList[newItemPosition].editCount
-    }
+    override fun areContentsTheSame(
+            oldItemPosition: Int,
+            newItemPosition: Int
+    ) = oldList[oldItemPosition].editCount == newList[newItemPosition].editCount
 
-    override fun getChangePayload(oldItemPosition: Int, newItemPosition: Int): Any {
-        return listOf(PayloadKey.VALUE)
-    }
+    override fun getChangePayload(
+            oldItemPosition: Int,
+            newItemPosition: Int
+    ): Any = listOf(PayloadKey.VALUE)
 }

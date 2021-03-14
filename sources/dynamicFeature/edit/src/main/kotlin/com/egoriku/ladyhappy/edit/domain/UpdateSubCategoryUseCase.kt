@@ -8,9 +8,8 @@ internal class UpdateSubCategoryUseCase(
         private val updateSubCategoryRepository: IUpdateSubCategoryRepository
 ) : IUpdateSubCategoryUseCase {
 
-    override suspend fun upload(subCategoryModel: SubCategoryModel): ResultOf<Void> {
-        return updateSubCategoryRepository.upload(subCategoryModel)
-    }
+    override suspend fun upload(subCategoryModel: SubCategoryModel) =
+            updateSubCategoryRepository.upload(subCategoryModel)
 }
 
 interface IUpdateSubCategoryUseCase {

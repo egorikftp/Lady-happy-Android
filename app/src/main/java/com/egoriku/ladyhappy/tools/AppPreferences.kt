@@ -60,9 +60,8 @@ class StringPreference(
 ) : ReadWriteProperty<Any, String?> {
 
     @WorkerThread
-    override fun getValue(thisRef: Any, property: KProperty<*>): String {
-        return preferences.value.getString(name, defaultValue) ?: defaultValue
-    }
+    override fun getValue(thisRef: Any, property: KProperty<*>) =
+            preferences.value.getString(name, defaultValue) ?: defaultValue
 
     override fun setValue(thisRef: Any, property: KProperty<*>, value: String?) {
         preferences.value.edit { putString(name, value) }
@@ -76,9 +75,8 @@ class BooleanPreference(
 ) : ReadWriteProperty<Any, Boolean> {
 
     @WorkerThread
-    override fun getValue(thisRef: Any, property: KProperty<*>): Boolean {
-        return preferences.value.getBoolean(name, defaultValue)
-    }
+    override fun getValue(thisRef: Any, property: KProperty<*>) =
+            preferences.value.getBoolean(name, defaultValue)
 
     override fun setValue(thisRef: Any, property: KProperty<*>, value: Boolean) {
         preferences.value.edit { putBoolean(name, value) }
@@ -92,9 +90,8 @@ class IntPreference(
 ) : ReadWriteProperty<Any, Int> {
 
     @WorkerThread
-    override fun getValue(thisRef: Any, property: KProperty<*>): Int {
-        return preferences.value.getInt(name, defaultValue)
-    }
+    override fun getValue(thisRef: Any, property: KProperty<*>) =
+            preferences.value.getInt(name, defaultValue)
 
     override fun setValue(thisRef: Any, property: KProperty<*>, value: Int) {
         preferences.value.edit { putInt(name, value) }
@@ -108,9 +105,8 @@ class LongPreference(
 ) : ReadWriteProperty<Any, Long> {
 
     @WorkerThread
-    override fun getValue(thisRef: Any, property: KProperty<*>): Long {
-        return preferences.value.getLong(name, defaultValue)
-    }
+    override fun getValue(thisRef: Any, property: KProperty<*>) =
+            preferences.value.getLong(name, defaultValue)
 
     override fun setValue(thisRef: Any, property: KProperty<*>, value: Long) {
         preferences.value.edit { putLong(name, value) }

@@ -11,12 +11,8 @@ class NavigateMe<T : BaseRouter> private constructor(val router: T) {
 
     companion object {
 
-        fun create(): NavigateMe<Router> {
-            return create(Router())
-        }
+        fun create(): NavigateMe<Router> = create(Router())
 
-        fun <T : BaseRouter> create(customRouter: T): NavigateMe<T> {
-            return NavigateMe(customRouter)
-        }
+        fun <T : BaseRouter> create(customRouter: T) = NavigateMe(customRouter)
     }
 }

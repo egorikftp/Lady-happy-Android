@@ -150,8 +150,7 @@ class LoginViewModel(
             }
         }
 
-        fun getCredentials(intent: Intent?): SignInCredential? {
-            return oneTapClient.getSignInCredentialFromIntent(intent)
-        }
+        fun getCredentials(intent: Intent?): SignInCredential? =
+                oneTapClient.getSignInCredentialFromIntent(intent)
     }
 }
