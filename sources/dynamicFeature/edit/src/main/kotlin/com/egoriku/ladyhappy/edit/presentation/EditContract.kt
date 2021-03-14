@@ -1,9 +1,9 @@
-package com.egoriku.ladyhappy.catalog.edit.presentation
+package com.egoriku.ladyhappy.edit.presentation
 
-import com.egoriku.ladyhappy.catalog.subcategory.domain.model.SubCategoryItem
 import com.egoriku.ladyhappy.core.mvi.UiEffect
 import com.egoriku.ladyhappy.core.mvi.UiEvent
 import com.egoriku.ladyhappy.core.mvi.UiState
+import com.egoriku.ladyhappy.core.sharedmodel.domain.SubCategoryModel
 
 sealed class Event : UiEvent {
     object SaveEditChanges : Event()
@@ -20,7 +20,7 @@ sealed class EditState {
     object Initial : EditState()
     object Error : EditState()
     object Loading : EditState()
-    data class Success(val subCategoryItem: SubCategoryItem) : EditState()
+    data class Success(val subCategoryModel: SubCategoryModel) : EditState()
 }
 
 sealed class Effect : UiEffect {

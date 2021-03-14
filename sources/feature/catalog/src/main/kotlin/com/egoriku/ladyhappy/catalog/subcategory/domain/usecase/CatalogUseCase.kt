@@ -1,34 +1,25 @@
 package com.egoriku.ladyhappy.catalog.subcategory.domain.usecase
 
-import com.egoriku.ladyhappy.catalog.subcategory.data.entity.SubCategoryEntity
 import com.egoriku.ladyhappy.catalog.subcategory.data.repository.ISubcategoryRepository
-import com.egoriku.ladyhappy.catalog.subcategory.domain.model.SubCategoryItem
-import com.egoriku.ladyhappy.core.sharedmodel.entity.ImageEntity
-import com.egoriku.ladyhappy.mozaik.model.MozaikItem
+import com.egoriku.ladyhappy.core.sharedmodel.domain.SubCategoryModel
+import com.egoriku.ladyhappy.core.sharedmodel.entity.SubCategoryEntity
+import com.egoriku.ladyhappy.core.sharedmodel.mapper.ImageEntityMapper
 import com.egoriku.ladyhappy.network.ResultOf
 
 internal class CatalogUseCase(
         private val subcategoryRepository: ISubcategoryRepository
 ) : ICatalogUseCase {
 
-    private val entityTransform: (SubCategoryEntity) -> SubCategoryItem = { entity: SubCategoryEntity ->
-        SubCategoryItem(
+    private val entityTransform: (SubCategoryEntity) -> SubCategoryModel = { entity: SubCategoryEntity ->
+        SubCategoryModel(
                 categoryId = entity.categoryId,
                 subCategoryId = entity.subCategoryId,
-                images = entity.images.map(imageTransform),
+                images = entity.images.map(ImageEntityMapper()),
                 subCategoryName = entity.subCategoryName,
                 isPopular = entity.isPopular,
                 publishedCount = entity.publishedCount,
                 description = entity.description,
                 documentReference = entity.documentReference
-        )
-    }
-
-    private val imageTransform: (ImageEntity) -> MozaikItem = { image: ImageEntity ->
-        MozaikItem(
-                width = image.width,
-                height = image.height,
-                url = image.url
         )
     }
 
@@ -45,5 +36,5 @@ internal class CatalogUseCase(
 
 interface ICatalogUseCase {
 
-    suspend fun loadSubCategories(categoryId: Int): ResultOf<List<SubCategoryItem>>
+    suspend fun loadSubCategories(categoryId: Int): ResultOf<List<SubCategoryModel>>
 }

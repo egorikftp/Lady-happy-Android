@@ -2,8 +2,8 @@ package com.egoriku.ladyhappy.catalog.categories.data.repository
 
 import com.egoriku.ladyhappy.catalog.categories.data.entity.TabEntity
 import com.egoriku.ladyhappy.core.IFirebase
-import com.egoriku.ladyhappy.core.constant.CollectionPath.CATEGORIES
-import com.egoriku.ladyhappy.core.constant.DocumentField.ID
+import com.egoriku.ladyhappy.core.sharedmodel.key.CollectionPath.CATEGORIES
+import com.egoriku.ladyhappy.core.sharedmodel.key.DocumentField.ID
 import com.egoriku.ladyhappy.network.ResultOf
 import com.egoriku.ladyhappy.network.firestore.awaitResult
 import kotlinx.coroutines.Dispatchers

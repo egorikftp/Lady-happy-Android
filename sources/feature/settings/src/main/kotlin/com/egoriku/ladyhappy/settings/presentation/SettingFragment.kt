@@ -8,10 +8,10 @@ import androidx.recyclerview.widget.ConcatAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.egoriku.ladyhappy.core.IFeatureProvider
-import com.egoriku.ladyhappy.core.constant.REQUEST_KEY_DYNAMIC_FEATURE
-import com.egoriku.ladyhappy.core.constant.RESULT_KEY_DYNAMIC_FEATURE
 import com.egoriku.ladyhappy.core.feature.DynamicFeature
 import com.egoriku.ladyhappy.core.feature.SettingsFeature
+import com.egoriku.ladyhappy.core.sharedmodel.key.DYNAMIC_FEATURE_BUNDLE_RESULT_KEY
+import com.egoriku.ladyhappy.core.sharedmodel.key.DYNAMIC_FEATURE_REQUEST_KEY
 import com.egoriku.ladyhappy.extensions.browseUrl
 import com.egoriku.ladyhappy.settings.R
 import com.egoriku.ladyhappy.settings.databinding.FragmentSettingsBinding
@@ -58,8 +58,8 @@ class SettingFragment : ScopeFragment(R.layout.fragment_settings), SettingsFeatu
             when (it) {
                 is Feature.PublishPosts -> {
                     parentFragmentManager.setFragmentResult(
-                            REQUEST_KEY_DYNAMIC_FEATURE,
-                            bundleOf(RESULT_KEY_DYNAMIC_FEATURE to DynamicFeature.PostCreator)
+                            DYNAMIC_FEATURE_REQUEST_KEY,
+                            bundleOf(DYNAMIC_FEATURE_BUNDLE_RESULT_KEY to DynamicFeature.PostCreator())
                     )
                 }
                 is Feature.Stub -> TODO()

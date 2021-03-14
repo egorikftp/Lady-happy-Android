@@ -20,7 +20,7 @@ happyPlugin {
 }
 
 android {
-    dynamicFeatures = mutableSetOf(DynamicFeatures.postCreator)
+    dynamicFeatures = mutableSetOf(DynamicFeatures.edit, DynamicFeatures.postCreator)
 
     signingConfigs {
         release {

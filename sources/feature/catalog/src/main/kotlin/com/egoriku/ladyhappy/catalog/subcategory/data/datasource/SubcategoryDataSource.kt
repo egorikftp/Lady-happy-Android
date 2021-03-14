@@ -1,10 +1,10 @@
 package com.egoriku.ladyhappy.catalog.subcategory.data.datasource
 
-import com.egoriku.ladyhappy.catalog.subcategory.data.entity.SubCategoryEntity
 import com.egoriku.ladyhappy.core.IFirebase
-import com.egoriku.ladyhappy.core.constant.CollectionPath.SUBCATEGORIES
-import com.egoriku.ladyhappy.core.constant.DocumentField.CATEGORY_ID
-import com.egoriku.ladyhappy.core.constant.DocumentField.SUB_CATEGORY_ID
+import com.egoriku.ladyhappy.core.sharedmodel.entity.SubCategoryEntity
+import com.egoriku.ladyhappy.core.sharedmodel.key.CollectionPath.SUBCATEGORIES
+import com.egoriku.ladyhappy.core.sharedmodel.key.DocumentField.CATEGORY_ID
+import com.egoriku.ladyhappy.core.sharedmodel.key.DocumentField.SUB_CATEGORY_ID
 import com.egoriku.ladyhappy.network.firestore.awaitGet
 
 internal class SubcategoryDataSource(

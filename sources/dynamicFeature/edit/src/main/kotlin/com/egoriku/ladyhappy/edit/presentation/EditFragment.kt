@@ -1,4 +1,4 @@
-package com.egoriku.ladyhappy.catalog.edit.presentation
+package com.egoriku.ladyhappy.edit.presentation
 
 import android.os.Bundle
 import android.view.View
@@ -7,12 +7,13 @@ import androidx.fragment.app.setFragmentResult
 import androidx.lifecycle.lifecycleScope
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.bumptech.glide.Glide
-import com.egoriku.ladyhappy.catalog.R
-import com.egoriku.ladyhappy.catalog.categories.presentation.fragment.BUNDLE_REQUEST_KEY
-import com.egoriku.ladyhappy.catalog.categories.presentation.fragment.EDIT_REQUEST_KEY
-import com.egoriku.ladyhappy.catalog.databinding.FragmentEditSubcategoryBinding
-import com.egoriku.ladyhappy.catalog.edit.koin.editSubCategoryModule
 import com.egoriku.ladyhappy.core.IRouter
+import com.egoriku.ladyhappy.core.sharedmodel.key.EDIT_BUNDLE_RESULT_KEY
+import com.egoriku.ladyhappy.core.sharedmodel.key.EDIT_REQUEST_KEY
+import com.egoriku.ladyhappy.core.sharedmodel.key.KEY_DOCUMENT_REFERENCE
+import com.egoriku.ladyhappy.edit.R
+import com.egoriku.ladyhappy.edit.databinding.FragmentEditSubcategoryBinding
+import com.egoriku.ladyhappy.edit.koin.editModule
 import com.egoriku.ladyhappy.extensions.*
 import com.maxkeppeler.sheets.input.InputSheet
 import com.maxkeppeler.sheets.input.type.InputEditText
@@ -24,19 +25,17 @@ import org.koin.core.context.loadKoinModules
 import org.koin.core.context.unloadKoinModules
 import org.koin.core.parameter.parametersOf
 
-const val ARGUMENT_DOCUMENT_REFERENCE = "ARGUMENT_DOCUMENT_REFERENCE"
-
-class EditSubCategoryFragment : ScopeFragment(R.layout.fragment_edit_subcategory) {
+class EditFragment : ScopeFragment(R.layout.fragment_edit_subcategory) {
 
     init {
-        loadKoinModules(editSubCategoryModule)
+        loadKoinModules(editModule)
     }
 
     private val router: IRouter by inject()
 
     private val binding by viewBinding(FragmentEditSubcategoryBinding::bind)
 
-    private val documentReferenceExtra by extraNotNull<String>(ARGUMENT_DOCUMENT_REFERENCE)
+    private val documentReferenceExtra by extraNotNull<String>(KEY_DOCUMENT_REFERENCE)
 
     private val viewModel by viewModel<EditSubCategoryViewModel> {
         parametersOf(documentReferenceExtra)
@@ -57,7 +56,7 @@ class EditSubCategoryFragment : ScopeFragment(R.layout.fragment_edit_subcategory
             viewModel.effect.collect {
                 when (it) {
                     is Effect.Exit -> {
-                        setFragmentResult(EDIT_REQUEST_KEY, bundleOf(BUNDLE_REQUEST_KEY to it.categoryId))
+                        setFragmentResult(EDIT_REQUEST_KEY, bundleOf(EDIT_BUNDLE_RESULT_KEY to it.categoryId))
                         router.back()
                     }
                     is Effect.ShowToast -> toast(it.message)
@@ -112,7 +111,7 @@ class EditSubCategoryFragment : ScopeFragment(R.layout.fragment_edit_subcategory
                 errorText.gone()
                 popularSwitchView.visible()
 
-                val model = editState.subCategoryItem
+                val model = editState.subCategoryModel
 
                 mozaikLayout.visible()
                 mozaikLayout.onViewReady = { view, url ->
@@ -147,6 +146,6 @@ class EditSubCategoryFragment : ScopeFragment(R.layout.fragment_edit_subcategory
 
     override fun onDestroy() {
         super.onDestroy()
-        unloadKoinModules(editSubCategoryModule)
+        unloadKoinModules(editModule)
     }
 }

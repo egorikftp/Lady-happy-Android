@@ -2,7 +2,9 @@ package com.egoriku.ladyhappy.mainscreen.presentation.components.dynamicFeature
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.egoriku.ladyhappy.core.constant.DYNAMIC_FEATURE_POST_CREATOR
+import com.egoriku.ladyhappy.core.sharedmodel.key.EDIT_DYNAMIC_FEATURE
+import com.egoriku.ladyhappy.core.sharedmodel.key.POST_CREATOR_DYNAMIC_FEATURE
+import com.egoriku.ladyhappy.core.sharedmodel.params.EditParams
 import com.egoriku.ladyhappy.core.sharedmodel.params.PostCreatorParams
 import com.egoriku.ladyhappy.extensions.logD
 import com.google.android.play.core.ktx.*
@@ -19,7 +21,8 @@ class DynamicFeatureViewModel(
     private val _events = MutableSharedFlow<DynamicFeatureEvent>()
     val events: SharedFlow<DynamicFeatureEvent> = _events
 
-    val postCreatorModuleStatus: StateFlow<ModuleStatus> = getStatusFlowForModule(DYNAMIC_FEATURE_POST_CREATOR)
+    val postCreatorModuleStatus: StateFlow<ModuleStatus> = getStatusFlowForModule(POST_CREATOR_DYNAMIC_FEATURE)
+    val editModuleStatus: StateFlow<ModuleStatus> = getStatusFlowForModule(EDIT_DYNAMIC_FEATURE)
 
     private fun getStatusFlowForModule(moduleName: String): StateFlow<ModuleStatus> {
         return splitInstallManager.requestProgressFlow()
@@ -60,7 +63,7 @@ class DynamicFeatureViewModel(
     }
 
     fun invokePostCreatorOrNoting(postCreatorParams: PostCreatorParams) {
-        if (splitInstallManager.installedModules.contains(DYNAMIC_FEATURE_POST_CREATOR)) {
+        if (splitInstallManager.installedModules.contains(POST_CREATOR_DYNAMIC_FEATURE)) {
             viewModelScope.launch {
                 _events.emit(
                         DynamicFeatureEvent.NavigationEvent(
@@ -71,8 +74,13 @@ class DynamicFeatureViewModel(
         }
     }
 
+    fun invokeEditOrInstall(editParams: EditParams) = tryToOpenDynamicFeature(
+            moduleName = EDIT_DYNAMIC_FEATURE,
+            dynamicScreen = DynamicScreen.Edit(editParams = editParams)
+    )
+
     fun invokePostCreatorOrInstall() = tryToOpenDynamicFeature(
-            moduleName = DYNAMIC_FEATURE_POST_CREATOR,
+            moduleName = POST_CREATOR_DYNAMIC_FEATURE,
             dynamicScreen = DynamicScreen.PostCreator()
     )
 
@@ -83,7 +91,8 @@ class DynamicFeatureViewModel(
             }
         } else {
             val status = when (moduleName) {
-                DYNAMIC_FEATURE_POST_CREATOR -> postCreatorModuleStatus.value
+                POST_CREATOR_DYNAMIC_FEATURE -> postCreatorModuleStatus.value
+                EDIT_DYNAMIC_FEATURE -> editModuleStatus.value
                 else -> throw IllegalArgumentException("State not implemented")
             }
             if (status is ModuleStatus.NeedsConfirmation) {

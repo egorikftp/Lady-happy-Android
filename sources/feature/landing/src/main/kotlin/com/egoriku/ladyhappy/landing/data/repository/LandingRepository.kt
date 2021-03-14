@@ -1,7 +1,7 @@
 package com.egoriku.ladyhappy.landing.data.repository
 
 import com.egoriku.ladyhappy.core.IFirebase
-import com.egoriku.ladyhappy.core.constant.CollectionPath.LANDING
+import com.egoriku.ladyhappy.core.sharedmodel.key.CollectionPath.LANDING
 import com.egoriku.ladyhappy.landing.data.entity.LandingEntity
 import com.egoriku.ladyhappy.network.ResultOf
 import com.egoriku.ladyhappy.network.firestore.awaitGet

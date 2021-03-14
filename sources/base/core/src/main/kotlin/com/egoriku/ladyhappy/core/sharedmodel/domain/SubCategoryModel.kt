@@ -1,8 +1,8 @@
-package com.egoriku.ladyhappy.catalog.subcategory.domain.model
+package com.egoriku.ladyhappy.core.sharedmodel.domain
 
 import com.egoriku.ladyhappy.mozaik.model.MozaikItem
 
-data class SubCategoryItem(
+data class SubCategoryModel(
         val categoryId: Int,
         val subCategoryId: Int,
         val subCategoryName: String,

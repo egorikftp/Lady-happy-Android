@@ -41,7 +41,6 @@ withLibraries(
         Libs.liveDataKtx,
         Libs.material,
         Libs.recyclerView,
-        Libs.sheetsInput,
         Libs.viewBindingDelegates,
         Libs.viewModel,
         Libs.viewPager2

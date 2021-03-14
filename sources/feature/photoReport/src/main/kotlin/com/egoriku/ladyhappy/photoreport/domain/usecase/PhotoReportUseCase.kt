@@ -1,5 +1,6 @@
 package com.egoriku.ladyhappy.photoreport.domain.usecase
 
+import com.egoriku.ladyhappy.core.sharedmodel.mapper.ImageEntityMapper
 import com.egoriku.ladyhappy.mozaik.model.MozaikItem
 import com.egoriku.ladyhappy.network.ResultOf
 import com.egoriku.ladyhappy.photoreport.data.entity.PhotoReportEntity
@@ -21,13 +22,7 @@ internal class PhotoReportUseCase(
 
     @Deprecated("Remove after implementation MozaikLayout 6+ items")
     private fun extractPhotos(entity: PhotoReportEntity): List<MozaikItem> {
-        val list = entity.images.map {
-            MozaikItem(
-                    width = it.width,
-                    height = it.height,
-                    url = it.url
-            )
-        }
+        val list = entity.images.map(ImageEntityMapper())
 
         return when {
             list.size > 5 -> list.subList(0, 5)

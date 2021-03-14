@@ -49,7 +49,7 @@
         <item quantity="many">%1$d работ</item>
         <item quantity="other">%1$d работ</item>
     </plurals>
-    <string name="catalog_error_response">Произошла ошибка во время загрузки</string>
+    <string name="general_error_loading">Произошла ошибка во время загрузки</string>
     <string name="catalog_trending_hint">Популярная модель</string>
 
     <!-- Settings -->
@@ -95,7 +95,7 @@
     <string name="used_libraries_follow_github">Мы на GitHub!</string>
     <string name="used_libraries_error_loading">Open-source библиотеки не найдены</string>
     <string name="deeplink_unknown_screen">Неизвестный экран</string>
-    <string name="title_post_creator">Создание поста</string>
+    <string name="dynamic_feature_post_creator_title">Создание поста</string>
     <string name="post_creator_chooser_hint_categories">Категория</string>
     <string name="post_creator_chooser_hint_subcategories">Подкатегория</string>
     <string name="post_creator_chooser_hint_color">Цвет</string>
@@ -109,4 +109,8 @@
     <string name="proto_overlay_title_format">%1$d из %2$d</string>
     <string name="detail_page_no_data_available">Похоже здесь еще пусто</string>
     <string name="detail_page_error_loading">&#128552; &#x1f628; Упс %1$s</string>
+    <string name="dynamic_feature_edit_title">Редактирование</string>
+    <string name="edit_save_changes">Сохранить изменения</string>
+    <string name="edit_popular_switch_text">Популярный</string>
+    <string name="edit_screen_title">Редактирование</string>
 </resources>

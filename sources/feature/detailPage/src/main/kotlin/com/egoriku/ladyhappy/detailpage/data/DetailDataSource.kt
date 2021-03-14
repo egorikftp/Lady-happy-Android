@@ -3,10 +3,10 @@ package com.egoriku.ladyhappy.detailpage.data
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.egoriku.ladyhappy.core.IFirebase
-import com.egoriku.ladyhappy.core.constant.CollectionPath.ALL_HATS
-import com.egoriku.ladyhappy.core.constant.DocumentField.CATEGORY_ID
-import com.egoriku.ladyhappy.core.constant.DocumentField.DATE
-import com.egoriku.ladyhappy.core.constant.DocumentField.SUB_CATEGORY_ID
+import com.egoriku.ladyhappy.core.sharedmodel.key.CollectionPath.ALL_HATS
+import com.egoriku.ladyhappy.core.sharedmodel.key.DocumentField.CATEGORY_ID
+import com.egoriku.ladyhappy.core.sharedmodel.key.DocumentField.DATE
+import com.egoriku.ladyhappy.core.sharedmodel.key.DocumentField.SUB_CATEGORY_ID
 import com.egoriku.ladyhappy.core.sharedmodel.params.DetailPageParams
 import com.egoriku.ladyhappy.detailpage.data.entity.DetailEntity
 import com.google.firebase.firestore.Query

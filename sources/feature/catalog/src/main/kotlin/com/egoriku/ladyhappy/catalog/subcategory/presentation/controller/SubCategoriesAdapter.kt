@@ -7,19 +7,19 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.egoriku.ladyhappy.catalog.R
 import com.egoriku.ladyhappy.catalog.databinding.AdapterItemSubcategoryBinding
-import com.egoriku.ladyhappy.catalog.subcategory.domain.model.SubCategoryItem
 import com.egoriku.ladyhappy.core.adapter.BaseListAdapter
 import com.egoriku.ladyhappy.core.adapter.BaseViewHolder
+import com.egoriku.ladyhappy.core.sharedmodel.domain.SubCategoryModel
 import com.egoriku.ladyhappy.extensions.*
 import kotlin.properties.Delegates
 
 private const val CROSSFADE_DURATION = 100
 
 class SubCategoriesAdapter(
-        private val onCatalogItemClick: (item: SubCategoryItem) -> Unit,
+        private val onCatalogItemClick: (model: SubCategoryModel) -> Unit,
         private val onTrendingClick: (view: View) -> Unit,
         private val onLongPressListener: (reference: String) -> Unit
-) : BaseListAdapter<SubCategoryItem, SubCategoriesAdapter.VH>(DiffCallback()) {
+) : BaseListAdapter<SubCategoryModel, SubCategoriesAdapter.VH>(DiffCallback()) {
 
     override fun onCreateViewHolder(
             parent: ViewGroup,
@@ -29,14 +29,14 @@ class SubCategoriesAdapter(
     override fun onBindViewHolder(
             holder: VH,
             position: Int,
-            model: SubCategoryItem
+            model: SubCategoryModel
     ) = holder.bind(model)
 
     inner class VH(
             private val binding: AdapterItemSubcategoryBinding
-    ) : BaseViewHolder<SubCategoryItem>(binding.root) {
+    ) : BaseViewHolder<SubCategoryModel>(binding.root) {
 
-        private var subCategoryItem: SubCategoryItem by Delegates.notNull()
+        private var subCategoryModel: SubCategoryModel by Delegates.notNull()
 
         init {
             binding.mozaikLayout.onViewReady = { view, url ->
@@ -47,12 +47,12 @@ class SubCategoriesAdapter(
             }
 
             itemView.setOnClickListener {
-                onCatalogItemClick(subCategoryItem)
+                onCatalogItemClick(subCategoryModel)
             }
 
             itemView.setOnLongClickListener {
                 consume {
-                    onLongPressListener.invoke(subCategoryItem.documentReference)
+                    onLongPressListener.invoke(subCategoryModel.documentReference)
                 }
             }
 
@@ -61,13 +61,13 @@ class SubCategoriesAdapter(
             }
         }
 
-        override fun bind(item: SubCategoryItem) {
-            subCategoryItem = item
+        override fun bind(item: SubCategoryModel) {
+            subCategoryModel = item
 
             binding.bind(item)
         }
 
-        private fun AdapterItemSubcategoryBinding.bind(data: SubCategoryItem) {
+        private fun AdapterItemSubcategoryBinding.bind(data: SubCategoryModel) {
             if (data.images.isNotEmpty()) {
                 cardView.visible()
                 mozaikLayout.setItems(data.images)
@@ -89,10 +89,10 @@ class SubCategoriesAdapter(
         }
     }
 
-    internal class DiffCallback : DiffUtil.ItemCallback<SubCategoryItem>() {
+    internal class DiffCallback : DiffUtil.ItemCallback<SubCategoryModel>() {
 
-        override fun areItemsTheSame(oldItem: SubCategoryItem, newItem: SubCategoryItem) = oldItem == newItem
+        override fun areItemsTheSame(oldModel: SubCategoryModel, newModel: SubCategoryModel) = oldModel == newModel
 
-        override fun areContentsTheSame(oldItem: SubCategoryItem, newItem: SubCategoryItem) = oldItem.subCategoryId == newItem.subCategoryId
+        override fun areContentsTheSame(oldModel: SubCategoryModel, newModel: SubCategoryModel) = oldModel.subCategoryId == newModel.subCategoryId
     }
 }

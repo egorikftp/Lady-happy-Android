@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?android:colorBackground"
+    android:clickable="true"
+    android:fillViewport="true"
+    android:focusable="true"
+    tools:background="@color/RealWhite">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/editToolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:layout_marginStart="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:navigationIcon="@drawable/ic_close"
+            app:title="@string/edit_screen_title" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/material_padding_16"
+            android:layout_marginTop="@dimen/material_padding_16"
+            android:layout_marginEnd="@dimen/material_padding_16"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="0dp"
+            app:cardPreventCornerOverlap="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editToolbar"
+            tools:layout_height="150dp">
+
+            <com.egoriku.ladyhappy.mozaik.MozaikLayout
+                android:id="@+id/mozaikLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                app:isMozaikClickable="false"
+                app:placeholderColor="?attr/colorPlaceholder" />
+
+        </androidx.cardview.widget.CardView>
+
+        <com.google.android.material.switchmaterial.SwitchMaterial
+            android:id="@+id/popularSwitchView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/material_padding_16"
+            android:layout_marginTop="@dimen/material_padding_8"
+            android:layout_marginEnd="@dimen/material_padding_8"
+            android:text="@string/edit_popular_switch_text"
+            android:visibility="gone"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cardView" />
+
+        <TextView
+            android:id="@+id/titleView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/material_padding_16"
+            android:layout_marginTop="@dimen/material_padding_16"
+            android:layout_marginEnd="@dimen/material_padding_16"
+            android:maxLines="2"
+            android:textColor="?attr/colorOnSurface"
+            android:textSize="28sp"
+            android:textStyle="bold"
+            android:typeface="sans"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/popularSwitchView"
+            tools:text="Hats type"
+            tools:textColor="@color/Gray" />
+
+        <TextView
+            android:id="@+id/descriptionView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/material_padding_16"
+            android:layout_marginTop="@dimen/material_padding_16"
+            android:layout_marginEnd="@dimen/material_padding_16"
+            android:textColor="?attr/colorOnSurface"
+            android:typeface="sans"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/titleView"
+            tools:text="Hats description"
+            tools:textColor="@color/Gray" />
+
+        <TextView
+            android:id="@+id/documentReferenceView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/material_padding_16"
+            android:layout_marginTop="@dimen/material_padding_8"
+            android:layout_marginEnd="@dimen/material_padding_16"
+            android:paddingTop="@dimen/material_padding_16"
+            android:textColor="@color/Gray"
+            android:typeface="sans"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/descriptionView"
+            tools:text="Document reference"
+            tools:textColor="@color/Gray" />
+
+        <Button
+            android:id="@+id/update_button"
+            style="@style/Widget.MaterialComponents.Button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/material_padding_16"
+            android:layout_marginTop="@dimen/material_padding_16"
+            android:layout_marginEnd="@dimen/material_padding_16"
+            android:layout_marginBottom="@dimen/material_padding_16"
+            android:text="@string/edit_save_changes"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintWidth_min="150dp" />
+
+        <androidx.core.widget.ContentLoadingProgressBar
+            android:id="@+id/contentLoadingProgressBar"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/errorText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/material_padding_16"
+            android:layout_marginEnd="@dimen/material_padding_16"
+            android:gravity="center"
+            android:text="@string/general_error_loading"
+            android:textColor="?attr/colorOnSurface"
+            android:textSize="24sp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:textColor="@color/RealBlack"
+            tools:visibility="visible" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>

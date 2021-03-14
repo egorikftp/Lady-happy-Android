@@ -48,7 +48,7 @@
         <item quantity="many">%1$d items</item>
         <item quantity="other">%1$d items</item>
     </plurals>
-    <string name="catalog_error_response">An error occurred while loading</string>
+    <string name="general_error_loading">An error occurred while loading</string>
     <string name="catalog_trending_hint">Popular category</string>
 
     <!-- Settings -->
@@ -107,4 +107,9 @@
     <string name="proto_overlay_title_format">%1$d of %2$d</string>
     <string name="detail_page_no_data_available">Looks like it\'s still empty</string>
     <string name="detail_page_error_loading">&#128552; &#x1f628; Wooops %1$s</string>
+    <string name="dynamic_feature_post_creator_title">Post creator feature</string>
+    <string name="dynamic_feature_edit_title">Edit</string>
+    <string name="edit_save_changes">Save changes</string>
+    <string name="edit_popular_switch_text">Popular</string>
+    <string name="edit_screen_title">Edit</string>
 </resources>

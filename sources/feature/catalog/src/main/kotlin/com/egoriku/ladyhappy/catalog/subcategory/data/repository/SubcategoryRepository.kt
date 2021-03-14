@@ -1,7 +1,7 @@
 package com.egoriku.ladyhappy.catalog.subcategory.data.repository
 
 import com.egoriku.ladyhappy.catalog.subcategory.data.datasource.ISubcategoryDataSource
-import com.egoriku.ladyhappy.catalog.subcategory.data.entity.SubCategoryEntity
+import com.egoriku.ladyhappy.core.sharedmodel.entity.SubCategoryEntity
 import com.egoriku.ladyhappy.network.ResultOf
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext

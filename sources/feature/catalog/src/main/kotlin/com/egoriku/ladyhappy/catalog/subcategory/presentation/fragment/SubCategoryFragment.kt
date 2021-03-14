@@ -2,6 +2,8 @@ package com.egoriku.ladyhappy.catalog.subcategory.presentation.fragment
 
 import android.os.Bundle
 import android.view.View
+import androidx.core.os.bundleOf
+import androidx.fragment.app.setFragmentResult
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.DividerItemDecoration.VERTICAL
@@ -14,6 +16,10 @@ import com.egoriku.ladyhappy.catalog.subcategory.presentation.SubCategoriesViewM
 import com.egoriku.ladyhappy.catalog.subcategory.presentation.SubcategoryScreenState
 import com.egoriku.ladyhappy.catalog.subcategory.presentation.controller.SubCategoriesAdapter
 import com.egoriku.ladyhappy.catalog.subcategory.presentation.controller.balloon.ViewHolderBalloonFactory
+import com.egoriku.ladyhappy.core.feature.DynamicFeature
+import com.egoriku.ladyhappy.core.sharedmodel.key.DYNAMIC_FEATURE_BUNDLE_RESULT_KEY
+import com.egoriku.ladyhappy.core.sharedmodel.key.DYNAMIC_FEATURE_REQUEST_KEY
+import com.egoriku.ladyhappy.core.sharedmodel.params.EditParams
 import com.egoriku.ladyhappy.extensions.extraNotNull
 import com.egoriku.ladyhappy.extensions.gone
 import com.egoriku.ladyhappy.extensions.visible
@@ -56,7 +62,12 @@ class SubCategoryFragment : ScopeFragment(R.layout.fragment_catalog) {
                 },
                 onLongPressListener = {
                     if (permissions.isAbleToEditPosts) {
-                        catalogViewModel.openEditPage(it)
+                        setFragmentResult(
+                                requestKey = DYNAMIC_FEATURE_REQUEST_KEY,
+                                result = bundleOf(DYNAMIC_FEATURE_BUNDLE_RESULT_KEY to DynamicFeature.Edit(
+                                        editParams = EditParams(documentReference = it)
+                                ))
+                        )
                     }
                 }
         )

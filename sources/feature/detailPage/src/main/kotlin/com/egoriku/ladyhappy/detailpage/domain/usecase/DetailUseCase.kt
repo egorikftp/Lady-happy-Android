@@ -2,10 +2,10 @@ package com.egoriku.ladyhappy.detailpage.domain.usecase
 
 import androidx.paging.PagingData
 import androidx.paging.map
+import com.egoriku.ladyhappy.core.sharedmodel.mapper.ImageEntityMapper
 import com.egoriku.ladyhappy.core.sharedmodel.params.DetailPageParams
 import com.egoriku.ladyhappy.detailpage.data.IDetailPaginateRepository
 import com.egoriku.ladyhappy.detailpage.domain.model.DetailModel
-import com.egoriku.ladyhappy.mozaik.model.MozaikItem
 import com.egoriku.ladyhappy.network.usecase.FlowUseCase
 import com.egoriku.ladyhappy.ui.date.ddMMMyyyy
 import kotlinx.coroutines.Dispatchers
@@ -21,13 +21,7 @@ internal class DetailUseCase(
                 .map { pagingData ->
                     pagingData.map {
                         DetailModel(
-                                images = it.images.map { imageEntity ->
-                                    MozaikItem(
-                                            width = imageEntity.width,
-                                            height = imageEntity.height,
-                                            url = imageEntity.url
-                                    )
-                                },
+                                images = it.images.map(ImageEntityMapper()),
                                 description = it.title,
                                 date = it.date.ddMMMyyyy()
                         )

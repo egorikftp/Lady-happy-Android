@@ -17,6 +17,7 @@ dependencies {
 
 withProjects(
         Libraries.extensions,
+        Libraries.mozaik,
         Libraries.navigation
 )
 

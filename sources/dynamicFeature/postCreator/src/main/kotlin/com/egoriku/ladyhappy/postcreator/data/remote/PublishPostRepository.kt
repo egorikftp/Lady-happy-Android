@@ -1,7 +1,7 @@
 package com.egoriku.ladyhappy.postcreator.data.remote
 
 import com.egoriku.ladyhappy.core.IFirebase
-import com.egoriku.ladyhappy.core.constant.CollectionPath.ALL_HATS
+import com.egoriku.ladyhappy.core.sharedmodel.key.CollectionPath.ALL_HATS
 import com.egoriku.ladyhappy.extensions.logDm
 import com.egoriku.ladyhappy.network.ResultOf
 import com.egoriku.ladyhappy.postcreator.data.entity.UploadEntity

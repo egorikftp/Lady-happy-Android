@@ -12,6 +12,8 @@ import com.egoriku.ladyhappy.catalog.categories.presentation.RootScreenModel
 import com.egoriku.ladyhappy.catalog.categories.presentation.adapter.CatalogViewPagerAdapter
 import com.egoriku.ladyhappy.catalog.databinding.FragmentCategoriesBinding
 import com.egoriku.ladyhappy.core.feature.CatalogFeature
+import com.egoriku.ladyhappy.core.sharedmodel.key.EDIT_BUNDLE_RESULT_KEY
+import com.egoriku.ladyhappy.core.sharedmodel.key.EDIT_REQUEST_KEY
 import com.egoriku.ladyhappy.extensions.gone
 import com.egoriku.ladyhappy.extensions.setFragmentResultListenerWrapper
 import com.egoriku.ladyhappy.extensions.toast
@@ -25,8 +27,6 @@ import kotlin.properties.Delegates
 
 private const val OFFSET_PAGE_LIMIT = 3
 
-const val EDIT_REQUEST_KEY = "EDIT_REQUEST_KEY"
-const val BUNDLE_REQUEST_KEY = "BUNDLE_REQUEST_KEY"
 
 class CategoriesFragment : ScopeFragment(R.layout.fragment_categories), CatalogFeature {
 
@@ -38,8 +38,8 @@ class CategoriesFragment : ScopeFragment(R.layout.fragment_categories), CatalogF
 
     @SuppressLint("WrongConstant")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        parentFragmentManager.setFragmentResultListenerWrapper(EDIT_REQUEST_KEY, viewLifecycleOwner) { requestKey: String, bundle: Bundle ->
-            val categoryId = bundle.getInt(BUNDLE_REQUEST_KEY)
+        parentFragmentManager.setFragmentResultListenerWrapper(EDIT_REQUEST_KEY, viewLifecycleOwner) { _: String, bundle: Bundle ->
+            val categoryId = bundle.getInt(EDIT_BUNDLE_RESULT_KEY)
 
             viewModel.updateTabs(categoryId)
         }

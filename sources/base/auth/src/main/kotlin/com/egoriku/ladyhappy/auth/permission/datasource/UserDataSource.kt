@@ -2,7 +2,7 @@ package com.egoriku.ladyhappy.auth.permission.datasource
 
 import com.egoriku.ladyhappy.auth.permission.entity.UserEntity
 import com.egoriku.ladyhappy.core.IFirebase
-import com.egoriku.ladyhappy.core.constant.CollectionPath.USERS
+import com.egoriku.ladyhappy.core.sharedmodel.key.CollectionPath.USERS
 import com.egoriku.ladyhappy.network.firestore.awaitGet
 
 internal class UserDataSource(

@@ -16,6 +16,7 @@ object Modules {
     }
 
     object DynamicFeatures {
+        const val edit = ":edit"
         const val postCreator = ":postCreator"
     }
 

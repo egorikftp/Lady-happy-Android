@@ -46,6 +46,7 @@ object Modules {
     }
 
     object DynamicFeatures {
+        const val edit = ":edit"
         const val postCreator = ":postCreator"
     }
 
@@ -70,6 +71,7 @@ object Modules {
 
     val dynamicFeatures
         get() = arrayOf(
+                ProjectBean(DynamicFeatures.edit, "sources/dynamicFeature/edit"),
                 ProjectBean(DynamicFeatures.postCreator, "sources/dynamicFeature/postCreator")
         )
 

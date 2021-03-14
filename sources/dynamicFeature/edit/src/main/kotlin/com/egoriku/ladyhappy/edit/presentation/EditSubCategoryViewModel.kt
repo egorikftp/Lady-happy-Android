@@ -1,10 +1,10 @@
-package com.egoriku.ladyhappy.catalog.edit.presentation
+package com.egoriku.ladyhappy.edit.presentation
 
 import androidx.lifecycle.viewModelScope
-import com.egoriku.ladyhappy.catalog.edit.domain.ILoadSubCategoryUseCase
-import com.egoriku.ladyhappy.catalog.edit.domain.IUploadSubCategoryUseCase
-import com.egoriku.ladyhappy.catalog.subcategory.domain.model.SubCategoryItem
 import com.egoriku.ladyhappy.core.mvi.BaseViewModel
+import com.egoriku.ladyhappy.core.sharedmodel.domain.SubCategoryModel
+import com.egoriku.ladyhappy.edit.domain.ILoadSubCategoryUseCase
+import com.egoriku.ladyhappy.edit.domain.IUpdateSubCategoryUseCase
 import com.egoriku.ladyhappy.extensions.cast
 import com.egoriku.ladyhappy.network.ResultOf
 import kotlinx.coroutines.launch
@@ -12,15 +12,15 @@ import kotlinx.coroutines.launch
 class EditSubCategoryViewModel(
         private val documentReference: String,
         private val loadSubCategoryUseCase: ILoadSubCategoryUseCase,
-        private val uploadSubCategoryUseCase: IUploadSubCategoryUseCase
+        private val updateSubCategoryUseCase: IUpdateSubCategoryUseCase
 ) : BaseViewModel<Event, State, Effect>() {
 
     init {
         setEvent(Event.LoadSubCategoryData)
     }
 
-    private val currentSubCategoryItem: SubCategoryItem
-        get() = currentState.editState.cast<EditState.Success>().subCategoryItem
+    private val currentSubCategoryModel: SubCategoryModel
+        get() = currentState.editState.cast<EditState.Success>().subCategoryModel
 
     override fun createInitialState() = State(editState = EditState.Initial)
 
@@ -38,20 +38,20 @@ class EditSubCategoryViewModel(
             }
             is Event.SaveEditChanges -> {
                 viewModelScope.launch {
-                    when (uploadSubCategoryUseCase.upload(currentSubCategoryItem)) {
-                        is ResultOf.Success -> setEffect { Effect.Exit(categoryId = currentSubCategoryItem.categoryId) }
+                    when (updateSubCategoryUseCase.upload(currentSubCategoryModel)) {
+                        is ResultOf.Success -> setEffect { Effect.Exit(categoryId = currentSubCategoryModel.categoryId) }
                         is ResultOf.Failure -> setEffect { Effect.ShowToast("Error saving") }
                     }
                 }
             }
             is Event.UpdatePopular -> setState {
-                copy(editState = EditState.Success(currentSubCategoryItem.copy(isPopular = event.isPopular)))
+                copy(editState = EditState.Success(currentSubCategoryModel.copy(isPopular = event.isPopular)))
             }
             is Event.UpdateTitle -> setState {
-                copy(editState = EditState.Success(currentSubCategoryItem.copy(subCategoryName = event.title)))
+                copy(editState = EditState.Success(currentSubCategoryModel.copy(subCategoryName = event.title)))
             }
             is Event.UpdateDescription -> setState {
-                copy(editState = EditState.Success(currentSubCategoryItem.copy(description = event.description)))
+                copy(editState = EditState.Success(currentSubCategoryModel.copy(description = event.description)))
             }
         }
     }

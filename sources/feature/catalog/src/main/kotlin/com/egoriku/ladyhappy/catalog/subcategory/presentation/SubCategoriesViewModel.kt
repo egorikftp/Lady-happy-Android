@@ -2,12 +2,11 @@ package com.egoriku.ladyhappy.catalog.subcategory.presentation
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.egoriku.ladyhappy.catalog.subcategory.domain.model.SubCategoryItem
 import com.egoriku.ladyhappy.catalog.subcategory.domain.usecase.ICatalogUseCase
 import com.egoriku.ladyhappy.catalog.subcategory.presentation.screen.DetailPageScreen
-import com.egoriku.ladyhappy.catalog.subcategory.presentation.screen.EditSubCategoryScreen
 import com.egoriku.ladyhappy.core.IFeatureProvider
 import com.egoriku.ladyhappy.core.IRouter
+import com.egoriku.ladyhappy.core.sharedmodel.domain.SubCategoryModel
 import com.egoriku.ladyhappy.network.ResultOf
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -40,18 +39,12 @@ class SubCategoriesViewModel(
         }
     }
 
-    fun openDetailPage(subCategoryItem: SubCategoryItem) {
+    fun openDetailPage(subCategoryModel: SubCategoryModel) {
         router.addScreenFullscreen(
                 screen = DetailPageScreen(
                         featureProvider = featureProvider,
-                        subCategoryItem = subCategoryItem
+                        subCategoryModel = subCategoryModel
                 )
-        )
-    }
-
-    fun openEditPage(documentReference: String) {
-        router.addScreenFullscreen(
-                screen = EditSubCategoryScreen(documentReference = documentReference)
         )
     }
 }
