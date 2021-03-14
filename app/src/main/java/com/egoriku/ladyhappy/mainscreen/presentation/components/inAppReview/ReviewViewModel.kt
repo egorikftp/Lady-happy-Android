@@ -17,7 +17,6 @@ class ReviewViewModel(
 
     fun submitReview(callback: (reviewInfo: ReviewInfo, reviewManager: ReviewManager) -> Unit) {
         if (appPreferences.launchCount > 5 && isLastRequestOld()) {
-
             appPreferences.lastAskForReview = System.currentTimeMillis()
 
             viewModelScope.launch {

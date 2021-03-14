@@ -19,7 +19,6 @@ import org.koin.core.context.startKoin
 import org.koin.core.logger.Level
 
 fun Application.initKoin() {
-
     startKoin {
         androidContext(this@initKoin)
 
