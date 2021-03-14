@@ -554,7 +554,7 @@ style:
   ClassOrdering:
     active: true
   CollapsibleIfStatements:
-    active: false
+    active: true
   DataClassContainsFunctions:
     active: false
     conversionFunctionPrefix: 'to'
