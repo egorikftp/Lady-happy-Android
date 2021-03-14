@@ -559,7 +559,7 @@ style:
     active: true
     conversionFunctionPrefix: 'to'
   DataClassShouldBeImmutable:
-    active: false
+    active: true
   DestructuringDeclarationWithTooManyEntries:
     active: false
     maxDestructuringEntries: 3

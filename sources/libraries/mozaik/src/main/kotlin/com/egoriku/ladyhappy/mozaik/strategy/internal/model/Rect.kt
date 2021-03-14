@@ -1,5 +1,6 @@
 package com.egoriku.ladyhappy.mozaik.strategy.internal.model
 
+@Suppress("DataClassShouldBeImmutable")
 data class Rect(
         var left: Int = 0,
         var top: Int = 0,

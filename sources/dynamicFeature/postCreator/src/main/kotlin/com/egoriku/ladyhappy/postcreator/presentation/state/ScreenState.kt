@@ -7,7 +7,7 @@ import com.egoriku.ladyhappy.postcreator.domain.model.image.ImageSection
 
 data class ScreenState(
         val title: String = EMPTY,
-        var imagesSection: ImageSection = ImageSection(),
+        val imagesSection: ImageSection = ImageSection(),
         val category: ChooserType.Category = ChooserType.Category(state = ChooserState.Initial),
         val subCategory: ChooserType.SubCategory? = null,
         val color: ChooserType.Color = ChooserType.Color(state = ChooserState.Initial),
