@@ -26,18 +26,17 @@ fun Context.browseUrl(url: String, newTask: Boolean = false) {
     }
 }
 
-inline fun <reified T : Any> Fragment.intentFor(vararg params: Pair<String, Any?>): Intent =
+inline fun <reified T : Any> Fragment.intentFor(vararg params: Pair<String, Any>): Intent =
         createIntent(ctx = requireActivity(), clazz = T::class.java, params = params)
 
-fun <T> createIntent(ctx: Context, clazz: Class<out T>, params: Array<out Pair<String, Any?>>) =
+fun <T> createIntent(ctx: Context, clazz: Class<out T>, params: Array<out Pair<String, Any>>) =
         Intent(ctx, clazz).apply {
             if (params.isNotEmpty()) fillIntentArguments(this, params)
         }
 
-private fun fillIntentArguments(intent: Intent, params: Array<out Pair<String, Any?>>) {
+private fun fillIntentArguments(intent: Intent, params: Array<out Pair<String, Any>>) {
     params.forEach {
         when (val value = it.second) {
-            null -> intent.putExtra(it.first, null as Serializable?)
             is Int -> intent.putExtra(it.first, value)
             is Long -> intent.putExtra(it.first, value)
             is CharSequence -> intent.putExtra(it.first, value)
