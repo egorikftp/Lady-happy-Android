@@ -1,5 +1,6 @@
 package com.egoriku.ladyhappy.postcreator.domain.predefined
 
+@Suppress("StringLiteralDuplication")
 object PredefinedData {
 
     val allCategories = listOf(

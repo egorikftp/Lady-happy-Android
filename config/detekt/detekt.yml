@@ -47,28 +47,35 @@ output-reports:
   # - 'HtmlOutputReport'
 
 comments:
-  active: true
+  active: false
   excludes: ['**/test/**', '**/androidTest/**', '**/commonTest/**', '**/jvmTest/**', '**/jsTest/**', '**/iosTest/**']
   AbsentOrWrongFileLicense:
+    # Unnecessary
     active: false
     licenseTemplateFile: 'license.template'
     licenseTemplateIsRegex: false
   CommentOverPrivateFunction:
+    # Unnecessary
     active: false
   CommentOverPrivateProperty:
+    # Unnecessary
     active: false
   EndOfSentenceFormat:
+    # Unnecessary
     active: false
     endOfSentenceFormat: '([.?!][ \t\n\r\f<])|([.?!:]$)'
   UndocumentedPublicClass:
+    # Unnecessary
     active: false
     searchInNestedClass: true
     searchInInnerClass: true
     searchInInnerObject: true
     searchInInnerInterface: true
   UndocumentedPublicFunction:
+    # Unnecessary
     active: false
   UndocumentedPublicProperty:
+    # Unnecessary
     active: false
 
 complexity:
@@ -77,7 +84,7 @@ complexity:
     active: true
     threshold: 4
   ComplexInterface:
-    active: false
+    active: true
     threshold: 10
     includeStaticDeclarations: false
     includePrivateDeclarations: false
@@ -89,6 +96,7 @@ complexity:
     ignoreNestingFunctions: false
     nestingFunctions: [run, let, apply, with, also, use, forEach, isNotNull, ifNull]
   LabeledExpression:
+    # Unnecessary
     active: false
     ignoredLabels: []
   LargeClass:
@@ -105,18 +113,18 @@ complexity:
     ignoreDataClasses: true
     ignoreAnnotated: []
   MethodOverloading:
-    active: false
+    active: true
     threshold: 6
   NamedArguments:
-    active: false
+    active: true
     threshold: 2
   NestedBlockDepth:
     active: true
     threshold: 6
   ReplaceSafeCallChainWithRun:
-    active: false
+    active: true
   StringLiteralDuplication:
-    active: false
+    active: true
     excludes: ['**/test/**', '**/androidTest/**', '**/commonTest/**', '**/jvmTest/**', '**/jsTest/**', '**/iosTest/**']
     threshold: 3
     ignoreAnnotation: true
@@ -137,13 +145,14 @@ complexity:
 coroutines:
   active: true
   GlobalCoroutineUsage:
+    #TODO
     active: false
   RedundantSuspendModifier:
-    active: false
+    active: true
   SleepInsteadOfDelay:
-    active: false
+    active: true
   SuspendFunWithFlowReturnType:
-    active: false
+    active: true
 
 empty-blocks:
   active: true
@@ -210,7 +219,7 @@ exceptions:
   ThrowingExceptionFromFinally:
     active: true
   ThrowingExceptionInMain:
-    active: false
+    active: true
   ThrowingExceptionsWithoutMessageOrCause:
     active: true
     excludes: ['**/test/**', '**/androidTest/**', '**/commonTest/**', '**/jvmTest/**', '**/jsTest/**', '**/iosTest/**']
@@ -713,23 +722,25 @@ style:
   UseCheckOrError:
     active: true
   UseDataClass:
+    # Unnecessary
     active: false
     excludeAnnotatedClasses: []
     allowVars: false
   UseEmptyCounterpart:
-    active: false
+    active: true
   UseIfEmptyOrIfBlank:
-    active: false
+    active: true
   UseIfInsteadOfWhen:
+    # Unnecessary
     active: false
   UseIsNullOrEmpty:
-    active: false
+    active: true
   UseOrEmpty:
-    active: false
+    active: true
   UseRequire:
-    active: false
+    active: true
   UseRequireNotNull:
-    active: false
+    active: true
   UselessCallOnNotNull:
     active: true
   UtilityClassWithPublicConstructor:
