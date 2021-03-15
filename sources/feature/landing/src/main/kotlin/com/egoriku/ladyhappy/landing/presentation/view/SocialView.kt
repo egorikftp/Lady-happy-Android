@@ -127,7 +127,7 @@ internal class SocialView : LinearLayout, View.OnClickListener {
                     ofFloat(View.TRANSLATION_Y, VIEW_OFFSET_POSITION, VIEW_DEFAULT_POSITION)
             ).apply {
                 duration = ANIMATION_DURATION
-                startDelay = (ANIMATION_SHOW_OFFSET * viewPosition)
+                startDelay = ANIMATION_SHOW_OFFSET * viewPosition
             }
         } else {
             ObjectAnimator.ofPropertyValuesHolder(
@@ -136,7 +136,7 @@ internal class SocialView : LinearLayout, View.OnClickListener {
                     ofFloat(View.TRANSLATION_Y, VIEW_DEFAULT_POSITION, VIEW_OFFSET_POSITION)
             ).apply {
                 duration = ANIMATION_DURATION
-                startDelay = (ANIMATION_HIDE_OFFSET * viewPosition)
+                startDelay = ANIMATION_HIDE_OFFSET * viewPosition
             }
         }
     }
