@@ -274,7 +274,7 @@ class MainActivity : ScopeActivity(R.layout.activity_main) {
                                 this@MainActivity,
                                 INSTALL_CONFIRMATION_REQ_CODE
                         )
-                    else -> throw IllegalStateException("Event type not handled: $event")
+                    else -> error("Event type not handled: $event")
                 }
             }
         }
