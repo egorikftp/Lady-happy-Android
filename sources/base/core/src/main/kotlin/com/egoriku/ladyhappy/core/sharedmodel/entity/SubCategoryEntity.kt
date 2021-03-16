@@ -48,5 +48,5 @@ class SubCategoryEntity(
 
         @PropertyName(LAST_EDIT_TIME)
         @JvmField
-        val lastEditTime: Date = Date()
+        val lastEditTime: Date? = null
 )

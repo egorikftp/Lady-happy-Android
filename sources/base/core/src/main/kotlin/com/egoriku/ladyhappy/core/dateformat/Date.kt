@@ -1,4 +1,4 @@
-package com.egoriku.ladyhappy.ui.date
+package com.egoriku.ladyhappy.core.dateformat
 
 import com.egoriku.ladyhappy.extensions.common.Constants.UTC
 import java.util.*

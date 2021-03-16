@@ -3,6 +3,8 @@ package com.egoriku.ladyhappy.postcreator.presentation
 import android.net.Uri
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.egoriku.ladyhappy.core.dateformat.ddMMMyyyy
+import com.egoriku.ladyhappy.core.dateformat.year
 import com.egoriku.ladyhappy.network.ResultOf
 import com.egoriku.ladyhappy.network.successOr
 import com.egoriku.ladyhappy.postcreator.data.entity.UploadEntity
@@ -19,8 +21,6 @@ import com.egoriku.ladyhappy.postcreator.domain.usecase.UploadImagesUseCase
 import com.egoriku.ladyhappy.postcreator.presentation.common.MAX_IMAGES_SIZE
 import com.egoriku.ladyhappy.postcreator.presentation.state.ScreenState
 import com.egoriku.ladyhappy.postcreator.presentation.state.UploadEvents
-import com.egoriku.ladyhappy.ui.date.ddMMMyyyy
-import com.egoriku.ladyhappy.ui.date.year
 import com.google.firebase.Timestamp
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow

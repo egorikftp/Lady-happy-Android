@@ -1,13 +1,16 @@
 package com.egoriku.ladyhappy.catalog.subcategory.domain.usecase
 
 import com.egoriku.ladyhappy.catalog.subcategory.data.repository.ISubcategoryRepository
+import com.egoriku.ladyhappy.core.IStringResource
+import com.egoriku.ladyhappy.core.dateformat.ddMMMyyyy
 import com.egoriku.ladyhappy.core.sharedmodel.domain.SubCategoryModel
 import com.egoriku.ladyhappy.core.sharedmodel.entity.SubCategoryEntity
 import com.egoriku.ladyhappy.core.sharedmodel.mapper.ImageEntityMapper
 import com.egoriku.ladyhappy.network.ResultOf
 
 internal class CatalogUseCase(
-        private val subcategoryRepository: ISubcategoryRepository
+        private val subcategoryRepository: ISubcategoryRepository,
+        private val stringResource: IStringResource
 ) : ICatalogUseCase {
 
     private val entityTransform: (SubCategoryEntity) -> SubCategoryModel = { entity: SubCategoryEntity ->
@@ -19,7 +22,11 @@ internal class CatalogUseCase(
                 isPopular = entity.isPopular,
                 publishedCount = entity.publishedCount,
                 description = entity.description,
-                documentReference = entity.documentReference
+                documentReference = entity.documentReference,
+                lastEditTime  = when (val date = entity.lastEditTime) {
+                    null -> stringResource.notEdited
+                    else -> date.ddMMMyyyy()
+                }
         )
     }
 

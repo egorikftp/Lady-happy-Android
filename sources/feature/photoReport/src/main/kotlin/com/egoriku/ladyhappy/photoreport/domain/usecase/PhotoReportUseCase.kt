@@ -1,12 +1,12 @@
 package com.egoriku.ladyhappy.photoreport.domain.usecase
 
+import com.egoriku.ladyhappy.core.dateformat.ddMMMyyyy
 import com.egoriku.ladyhappy.core.sharedmodel.mapper.ImageEntityMapper
 import com.egoriku.ladyhappy.mozaik.model.MozaikItem
 import com.egoriku.ladyhappy.network.ResultOf
 import com.egoriku.ladyhappy.photoreport.data.entity.PhotoReportEntity
 import com.egoriku.ladyhappy.photoreport.data.repository.IPhotoReportRepository
 import com.egoriku.ladyhappy.photoreport.domain.model.PhotoReportModel
-import com.egoriku.ladyhappy.ui.date.ddMMMyyyy
 
 internal class PhotoReportUseCase(
         private val photoReportRepository: IPhotoReportRepository

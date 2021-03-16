@@ -10,5 +10,6 @@ data class SubCategoryModel(
         val publishedCount: Int,
         val images: List<MozaikItem>,
         val description: String,
-        val documentReference: String
+        val documentReference: String,
+        val lastEditTime: String
 )

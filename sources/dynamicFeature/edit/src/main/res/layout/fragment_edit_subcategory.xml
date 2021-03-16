@@ -96,19 +96,50 @@
             tools:textColor="@color/Gray" />
 
         <TextView
+            android:id="@+id/technicalInfo"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/material_padding_16"
+            android:layout_marginTop="40dp"
+            android:layout_marginEnd="@dimen/material_padding_16"
+            android:text="@string/edit_technical_information"
+            android:textAppearance="?textAppearanceHeadline6"
+            android:textColor="@color/Gray"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/descriptionView"
+            tools:textColor="@color/Gray"
+            tools:visibility="visible" />
+
+        <TextView
             android:id="@+id/documentReferenceView"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/material_padding_16"
             android:layout_marginTop="@dimen/material_padding_8"
             android:layout_marginEnd="@dimen/material_padding_16"
-            android:paddingTop="@dimen/material_padding_16"
+            android:textAppearance="?textAppearanceCaption"
             android:textColor="@color/Gray"
-            android:typeface="sans"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/descriptionView"
+            app:layout_constraintTop_toBottomOf="@+id/technicalInfo"
             tools:text="Document reference"
+            tools:textColor="@color/Gray" />
+
+        <TextView
+            android:id="@+id/lastEditTimeView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/material_padding_16"
+            android:layout_marginTop="@dimen/material_padding_8"
+            android:layout_marginEnd="@dimen/material_padding_16"
+            android:textAppearance="?textAppearanceCaption"
+            android:textColor="@color/Gray"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/documentReferenceView"
+            tools:text="16 March 2021"
             tools:textColor="@color/Gray" />
 
         <Button
@@ -152,7 +183,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:textColor="@color/RealBlack"
-            tools:visibility="visible" />
+            tools:textColor="@color/RealBlack" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>

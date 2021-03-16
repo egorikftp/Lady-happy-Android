@@ -109,7 +109,9 @@ class EditFragment : ScopeFragment(R.layout.fragment_edit_subcategory) {
             is EditState.Success -> {
                 contentLoadingProgressBar.gone()
                 errorText.gone()
+
                 popularSwitchView.visible()
+                technicalInfo.visible()
 
                 val model = editState.subCategoryModel
 
@@ -123,6 +125,7 @@ class EditFragment : ScopeFragment(R.layout.fragment_edit_subcategory) {
                 popularSwitchView.isChecked = model.isPopular
                 titleView.text = model.subCategoryName
                 descriptionView.text = model.description
+                lastEditTimeView.text = model.lastEditTime
                 documentReferenceView.text = model.documentReference
             }
         }

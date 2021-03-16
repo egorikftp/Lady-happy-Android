@@ -113,4 +113,7 @@
     <string name="edit_save_changes">Сохранить изменения</string>
     <string name="edit_popular_switch_text">Популярный</string>
     <string name="edit_screen_title">Редактирование</string>
+    <string name="edit_technical_information">Техническая информация</string>
+    <string name="edit_empty_description">Описание еще не добавлено</string>
+    <string name="edit_not_edited">Еще не редактировалось</string>
 </resources>

@@ -112,4 +112,7 @@
     <string name="edit_save_changes">Save changes</string>
     <string name="edit_popular_switch_text">Popular</string>
     <string name="edit_screen_title">Edit</string>
+    <string name="edit_technical_information">Technical information</string>
+    <string name="edit_empty_description">Empty description</string>
+    <string name="edit_not_edited">Not edited yet</string>
 </resources>

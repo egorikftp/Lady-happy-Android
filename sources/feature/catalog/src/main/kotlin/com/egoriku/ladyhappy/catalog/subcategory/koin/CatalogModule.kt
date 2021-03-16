@@ -17,7 +17,7 @@ val subcategoryModule = module {
 
         scoped<ISubcategoryRepository> { SubcategoryRepository(subcategoryDataSource = get()) }
 
-        scoped<ICatalogUseCase> { CatalogUseCase(subcategoryRepository = get()) }
+        scoped<ICatalogUseCase> { CatalogUseCase(subcategoryRepository = get(), stringResource = get()) }
 
         viewModel { (categoryId: Int) ->
             SubCategoriesViewModel(

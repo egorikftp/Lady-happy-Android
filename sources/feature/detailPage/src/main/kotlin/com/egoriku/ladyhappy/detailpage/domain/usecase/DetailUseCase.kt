@@ -2,12 +2,12 @@ package com.egoriku.ladyhappy.detailpage.domain.usecase
 
 import androidx.paging.PagingData
 import androidx.paging.map
+import com.egoriku.ladyhappy.core.dateformat.ddMMMyyyy
 import com.egoriku.ladyhappy.core.sharedmodel.mapper.ImageEntityMapper
 import com.egoriku.ladyhappy.core.sharedmodel.params.DetailPageParams
 import com.egoriku.ladyhappy.detailpage.data.IDetailPaginateRepository
 import com.egoriku.ladyhappy.detailpage.domain.model.DetailModel
 import com.egoriku.ladyhappy.network.usecase.FlowUseCase
-import com.egoriku.ladyhappy.ui.date.ddMMMyyyy
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
