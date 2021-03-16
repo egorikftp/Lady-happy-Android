@@ -51,7 +51,7 @@
         style="@style/Widget.MaterialComponents.Button.OutlinedButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/no_data_try_again"
+        android:text="@string/general_try_again"
         android:textAllCaps="false"
         app:cornerRadius="10dp"
         app:layout_constraintBottom_toBottomOf="parent"

@@ -1,33 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="application_name">Дамское счастье</string>
 
-    <string name="adapter_item_about_us">О нас</string>
-    <string name="adapter_item_header_quotes">Что нас вдохновляет</string>
+    <!-- General -->
+    <string name="general_whoops">Упс!</string>
+    <string name="general_try_again">Попробовать снова</string>
+    <string name="general_no_internet_connection">Нет соединения с интернетом. Проверьет Ваше подключение \n\nИли</string>
+    <string name="general_error_loading">Произошла ошибка во время загрузки</string>
 
-    <string name="lady_happy">Дамское счастье</string>
-    <string name="adapter_item_header_our_team">Наша команда</string>
-
-    <string name="no_data_whoops">Упс!</string>
-    <string name="no_data_try_again">Попробовать снова</string>
-    <string name="no_data_internet_connection">Нет соединения с интернетом. Проверьет Ваше подключение \n\nИли</string>
-
+    <!-- Navigation screen -->
     <string name="navigation_view_landing">O нас</string>
     <string name="navigation_view_landing_header">Краткая информация</string>
-
     <string name="navigation_view_photo_report">Фото</string>
     <string name="navigation_view_photo_report_header">Теплые моменты</string>
-
     <string name="navigation_view_catalog">Каталог</string>
     <string name="navigation_view_catalog_header">Наши товары</string>
-
     <string name="navigation_view_search_header">Поиск</string>
-
     <string name="navigation_view_settings">Настройки</string>
     <string name="navigation_view_settings_header">Доп. функции</string>
 
-    <string name="cc_adapter_item_main">Оливковая ветвь</string>
-    <string name="cd_adapter_item_photo_report">Фотография</string>
+    <!-- Landing screen -->
+    <string name="landing_adapter_item_about_us">О нас</string>
+    <string name="landing_app_name">Дамское счастье</string>
+    <string name="landing_adapter_item_header_quotes">Что нас вдохновляет</string>
+    <string name="landing_adapter_item_header_our_team">Наша команда</string>
 
     <!-- Main screen -->
     <string name="in_app_update_available">Доступно обновление</string>
@@ -41,7 +37,7 @@
 
     <!-- Catalog screen -->
     <string name="catalog_images_count_zero">Работы пока-что не добавлены</string>
-    <plurals name="catalog_images_count">
+    <plurals name="catalog_images_count" tools:ignore="UnusedQuantity">
         <item quantity="zero">Работы пока-что не добавлены</item>
         <item quantity="one">%1$d работа</item>
         <item quantity="two">%1$d работы</item>
@@ -49,7 +45,6 @@
         <item quantity="many">%1$d работ</item>
         <item quantity="other">%1$d работ</item>
     </plurals>
-    <string name="general_error_loading">Произошла ошибка во время загрузки</string>
     <string name="catalog_trending_hint">Популярная модель</string>
 
     <!-- Settings -->
@@ -87,15 +82,6 @@
     <string name="post_creator_categories_dialog_title">Выберите категорию</string>
     <string name="post_creator_subcategories_categories_dialog_title">Выберите подкатегорию</string>
     <string name="post_creator_color_dialog_title">Выберите цвет</string>
-
-    <!-- Used Libraries -->
-    <string name="used_libraries_prefix_the" />
-    <string name="used_libraries_prefix_open_source">это open source приложение,</string>
-    <string name="used_libraries_prefix_uses">и использует эти open source библиотеки</string>
-    <string name="used_libraries_follow_github">Мы на GitHub!</string>
-    <string name="used_libraries_error_loading">Open-source библиотеки не найдены</string>
-    <string name="deeplink_unknown_screen">Неизвестный экран</string>
-    <string name="dynamic_feature_post_creator_title">Создание поста</string>
     <string name="post_creator_chooser_hint_categories">Категория</string>
     <string name="post_creator_chooser_hint_subcategories">Подкатегория</string>
     <string name="post_creator_chooser_hint_color">Цвет</string>
@@ -106,10 +92,15 @@
     <string name="post_creator_images_section_title">Фотографии</string>
     <string name="post_creator_publish_button_text">Опубликовать запись</string>
     <string name="post_creator_screen_title">Создание записи</string>
-    <string name="proto_overlay_title_format">%1$d из %2$d</string>
-    <string name="detail_page_no_data_available">Похоже здесь еще пусто</string>
-    <string name="detail_page_error_loading">&#128552; &#x1f628; Упс %1$s</string>
-    <string name="dynamic_feature_edit_title">Редактирование</string>
+
+    <!-- Used Libraries -->
+    <string name="used_libraries_prefix_the" />
+    <string name="used_libraries_prefix_open_source">это open source приложение,</string>
+    <string name="used_libraries_prefix_uses">и использует эти open source библиотеки</string>
+    <string name="used_libraries_follow_github">Мы на GitHub!</string>
+    <string name="used_libraries_error_loading">Open-source библиотеки не найдены</string>
+
+    <!-- Edit -->
     <string name="edit_save_changes">Сохранить изменения</string>
     <string name="edit_popular_switch_text">Популярный</string>
     <string name="edit_screen_title">Редактирование</string>
@@ -118,4 +109,13 @@
     <string name="edit_not_edited">Еще не редактировалось</string>
     <string name="edit_dialog_header_edit_name">Редактирование названия</string>
     <string name="edit_dialog_header_edit_description">Редактирование описания</string>
+
+    <!-- Detail page -->
+    <string name="detail_page_no_data_available">Похоже здесь еще пусто</string>
+    <string name="detail_page_error_loading">&#128552; &#x1f628; Упс %1$s</string>
+
+    <string name="dynamic_feature_post_creator_title">Создание поста</string>
+    <string name="dynamic_feature_edit_title">Редактирование</string>
+    <string name="proto_overlay_title_format">%1$d из %2$d</string>
+    <string name="deeplink_unknown_screen">Неизвестный экран</string>
 </resources>
