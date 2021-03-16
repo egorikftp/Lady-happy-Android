@@ -115,4 +115,6 @@
     <string name="edit_technical_information">Technical information</string>
     <string name="edit_empty_description">Empty description</string>
     <string name="edit_not_edited">Not edited yet</string>
+    <string name="edit_dialog_header_edit_name">Edit name</string>
+    <string name="edit_dialog_header_edit_description">Edit description</string>
 </resources>

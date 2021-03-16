@@ -1,6 +1,8 @@
 package com.egoriku.ladyhappy.edit.presentation
 
 import android.os.Bundle
+import android.text.InputType.TYPE_CLASS_TEXT
+import android.text.InputType.TYPE_TEXT_FLAG_MULTI_LINE
 import android.view.View
 import androidx.core.os.bundleOf
 import androidx.fragment.app.setFragmentResult
@@ -24,6 +26,8 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.context.loadKoinModules
 import org.koin.core.context.unloadKoinModules
 import org.koin.core.parameter.parametersOf
+
+import com.egoriku.ladyhappy.localization.R as R_localization
 
 class EditFragment : ScopeFragment(R.layout.fragment_edit_subcategory) {
 
@@ -74,7 +78,7 @@ class EditFragment : ScopeFragment(R.layout.fragment_edit_subcategory) {
 
         titleView.setOnClickListener {
             showEditBottomSheetDialog(
-                    title = "Edit title",
+                    titleResId = R_localization.string.edit_dialog_header_edit_name,
                     predefinedInput = titleView.text.toString()
             ) {
                 viewModel.setEvent(Event.UpdateTitle(title = it))
@@ -83,7 +87,7 @@ class EditFragment : ScopeFragment(R.layout.fragment_edit_subcategory) {
 
         descriptionView.setOnClickListener {
             showEditBottomSheetDialog(
-                    title = "Edit description",
+                    titleResId = R_localization.string.edit_dialog_header_edit_description,
                     predefinedInput = descriptionView.text.toString()
             ) {
                 viewModel.setEvent(Event.UpdateDescription(description = it))
@@ -132,13 +136,14 @@ class EditFragment : ScopeFragment(R.layout.fragment_edit_subcategory) {
     }
 
     private fun showEditBottomSheetDialog(
-            title: String,
+            titleResId: Int,
             predefinedInput: String,
             onNewValue: (String) -> Unit
     ) {
         InputSheet().show(requireContext()) {
-            title(title)
+            title(titleResId)
             with(input = InputEditText {
+                inputType(TYPE_CLASS_TEXT or TYPE_TEXT_FLAG_MULTI_LINE)
                 defaultValue(predefinedInput)
             })
             onPositive { result ->

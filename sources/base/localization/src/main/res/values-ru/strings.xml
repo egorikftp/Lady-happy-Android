@@ -116,4 +116,6 @@
     <string name="edit_technical_information">Техническая информация</string>
     <string name="edit_empty_description">Описание еще не добавлено</string>
     <string name="edit_not_edited">Еще не редактировалось</string>
+    <string name="edit_dialog_header_edit_name">Редактирование названия</string>
+    <string name="edit_dialog_header_edit_description">Редактирование описания</string>
 </resources>

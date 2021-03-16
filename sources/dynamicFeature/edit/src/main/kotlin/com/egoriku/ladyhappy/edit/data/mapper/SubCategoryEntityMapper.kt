@@ -1,7 +1,7 @@
 package com.egoriku.ladyhappy.edit.data.mapper
 
 import com.egoriku.ladyhappy.core.IStringResource
-import com.egoriku.ladyhappy.core.dateformat.ddMMMyyyy
+import com.egoriku.ladyhappy.core.dateformat.ddMMMyyyyHHmm
 import com.egoriku.ladyhappy.core.sharedmodel.domain.SubCategoryModel
 import com.egoriku.ladyhappy.core.sharedmodel.entity.SubCategoryEntity
 import com.egoriku.ladyhappy.core.sharedmodel.mapper.ImageEntityMapper
@@ -24,7 +24,7 @@ class SubCategoryEntityMapper(
             documentReference = entity.documentReference,
             lastEditTime = when (val date = entity.lastEditTime) {
                 null -> stringResource.notEdited
-                else -> date.ddMMMyyyy()
+                else -> date.ddMMMyyyyHHmm()
             }
     )
 }
