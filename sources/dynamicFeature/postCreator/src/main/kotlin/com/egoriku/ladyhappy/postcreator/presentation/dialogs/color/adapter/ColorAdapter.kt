@@ -1,13 +1,16 @@
 package com.egoriku.ladyhappy.postcreator.presentation.dialogs.color.adapter
 
+import android.content.res.ColorStateList
 import android.view.MotionEvent
 import android.view.ViewGroup
 import androidx.core.graphics.toColorInt
+import androidx.core.widget.CompoundButtonCompat
 import androidx.recyclerview.selection.ItemDetailsLookup
 import androidx.recyclerview.selection.SelectionTracker
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.egoriku.ladyhappy.extensions.adjustForBackground
 import com.egoriku.ladyhappy.extensions.inflater
 import com.egoriku.ladyhappy.postcreator.R
 import com.egoriku.ladyhappy.postcreator.databinding.AdapterItemColorBinding
@@ -25,8 +28,8 @@ class ColorAdapter : ListAdapter<ColorModel, ColorAdapter.VH>(DiffCallback()) {
             VH(AdapterItemColorBinding.inflate(parent.inflater(), parent, false))
 
     override fun onBindViewHolder(holder: VH, position: Int) {
-        tracker?.let {
-            holder.bind(getItem(position), it.isSelected(position.toLong()))
+        tracker?.run {
+            holder.bind(getItem(position), isSelected(position.toLong()))
         }
     }
 
@@ -41,6 +44,11 @@ class ColorAdapter : ListAdapter<ColorModel, ColorAdapter.VH>(DiffCallback()) {
         private fun AdapterItemColorBinding.bind(colorModel: ColorModel, isSelected: Boolean) {
             colorName.text = colorModel.name
             colorImage.setBackgroundColor(colorModel.colorHex.toColorInt())
+
+            val adjustedColor = colorName.currentTextColor.adjustForBackground(backgroundColor = colorModel.colorHex.toColorInt())
+
+            colorName.setTextColor(adjustedColor)
+            CompoundButtonCompat.setButtonTintList(checkBox, ColorStateList.valueOf(adjustedColor))
 
             itemView.isActivated = isSelected
             binding.checkBox.isActivated = isSelected

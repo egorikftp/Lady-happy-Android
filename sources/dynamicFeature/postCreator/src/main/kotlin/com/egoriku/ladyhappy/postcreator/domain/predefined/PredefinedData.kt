@@ -250,30 +250,17 @@ object PredefinedData {
     )
 
     val colors = listOf(
-            ColorModel(colorId = 1, name = "Дрозд (темно-бежевый)", colorHex = "#78563D"),
-            ColorModel(colorId = 2, name = "Deep Taupe", colorHex = "#5F4B43"),
-            ColorModel(colorId = 3, name = "Темный бордо", colorHex = "#3A0A12"),
-            ColorModel(colorId = 4, name = "Морская волна", colorHex = "#154159"),
-            ColorModel(colorId = 5, name = "Шоколад", colorHex = "#1D0A0E"),
-            ColorModel(colorId = 6, name = "Цинк", colorHex = "#5C565D"),
-            ColorModel(colorId = 7, name = "Бордо", colorHex = "#57090E"),
-            ColorModel(colorId = 8, name = "Горчица", colorHex = "#CC7119"),
-            ColorModel(colorId = 9, name = "Меланж", colorHex = "#363438"),
-            ColorModel(colorId = 10, name = "Черный", colorHex = "#0E0C11"),
-            ColorModel(colorId = 11, name = "Белый", colorHex = "#C5B198"),
-            ColorModel(colorId = 12, name = "Молочный", colorHex = "#AF8376"),
-            ColorModel(colorId = 13, name = "Мятный", colorHex = "#3C8D78"),
-            ColorModel(colorId = 14, name = "Лаванда", colorHex = "#6A5662"),
-            ColorModel(colorId = 15, name = "Бледно-голубой", colorHex = "#5D5678"),
-            ColorModel(colorId = 16, name = "Розовый", colorHex = "#94567D"),
-            ColorModel(colorId = 17, name = "Красный", colorHex = "#670C1A"),
-            ColorModel(colorId = 18, name = "Малиновый", colorHex = "#9A0F4B"),
-            ColorModel(colorId = 19, name = "Баклажан", colorHex = "#39203D"),
-            ColorModel(colorId = 20, name = "Оранжевый", colorHex = "#DA360F"),
-            ColorModel(colorId = 21, name = "Бледно-розовый", colorHex = "#C07783"),
-            ColorModel(colorId = 22, name = "Античная роза", colorHex = "#66474F"),
-            ColorModel(colorId = 23, name = "Дробленая ягода", colorHex = "#55263C"),
-            ColorModel(colorId = 24, name = "Изумруд", colorHex = "#215435")
+            ColorModel(colorId = 1, name = "Молочный", colorHex = "#fff9f0"),
+            ColorModel(colorId = 2, name = "Черный", colorHex = "#0e0c11"),
+            ColorModel(colorId = 3, name = "Оранжевый", colorHex = "#ef5b11"),
+            ColorModel(colorId = 4, name = "Горчица", colorHex = "#f8b52d"),
+            ColorModel(colorId = 5, name = "Красный", colorHex = "#9e1212"),
+            ColorModel(colorId = 6, name = "Фиолетовый", colorHex = "#68396f"),
+            ColorModel(colorId = 7, name = "Розовый", colorHex = "#df89a8"),
+            ColorModel(colorId = 8, name = "Синий", colorHex = "#2b6596"),
+            ColorModel(colorId = 9, name = "Зеленый", colorHex = "#1b765b"),
+            ColorModel(colorId = 10, name = "Коричневый", colorHex = "#866041"),
+            ColorModel(colorId = 11, name = "Серый", colorHex = "#999999")
     )
 
     fun getCategoriesNames() = ArrayList(

@@ -9,6 +9,6 @@ data class UploadEntity(
         val title: String,
         val categoryId: Int,
         val subCategoryId: Int,
-        val colorId: Int,
+        val colors: List<Int>,
         val date: Timestamp,
 )

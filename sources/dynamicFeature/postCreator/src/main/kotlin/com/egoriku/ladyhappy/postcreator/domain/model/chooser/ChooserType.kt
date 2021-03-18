@@ -38,7 +38,7 @@ sealed class ChooserType {
             @StringRes
             override val hintResId: Int = R_localization.string.post_creator_chooser_hint_color,
             override val state: ChooserState,
-            val colorId: Int = -1,
+            val colors: List<Int> = emptyList(),
     ) : ChooserType()
 
     data class CreationDate(

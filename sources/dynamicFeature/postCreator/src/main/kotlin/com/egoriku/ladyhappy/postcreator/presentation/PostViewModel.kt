@@ -110,16 +110,12 @@ class PostViewModel(
         validateState()
     }
 
-    fun setColor(id: Int) {
-        val colorModel: ColorModel = requireNotNull(PredefinedData.colors.find {
-            it.colorId == id
-        })
-
+    fun setColor(colors: List<ColorModel>) {
         _screenState.value = _screenState.value.copy(
                 color = ChooserType.Color(
-                        title = colorModel.name,
+                        title = colors.joinToString { it.name },
                         state = ChooserState.Selected,
-                        colorId = colorModel.colorId
+                        colors = colors.map { it.colorId }
                 )
         )
 
@@ -168,7 +164,7 @@ class PostViewModel(
             val state = _screenState.value
             val categoryId = state.category.categoryId
             val subCategoryId = requireNotNull(state.subCategory).subCategoryId
-            val colorId = state.color.colorId
+            val colorId = state.color.colors
             val creationDate = requireNotNull(state.creationDate.date)
 
             val images = uploadImagesUseCase(
@@ -192,7 +188,7 @@ class PostViewModel(
                             title = state.title,
                             categoryId = categoryId,
                             subCategoryId = subCategoryId,
-                            colorId = colorId,
+                            colors = colorId,
                             date = Timestamp(creationDate)
                     )
             )
