@@ -26,6 +26,7 @@ withLibraries(
         Libs.coroutinesAndroid,
         Libs.firebaseFirestore,
         Libs.firebaseStorage,
+        Libs.playCore,
         Libs.recyclerView,
         Libs.viewModel
 )

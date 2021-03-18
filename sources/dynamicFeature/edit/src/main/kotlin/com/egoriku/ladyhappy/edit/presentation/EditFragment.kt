@@ -1,5 +1,6 @@
 package com.egoriku.ladyhappy.edit.presentation
 
+import android.content.Context
 import android.os.Bundle
 import android.text.InputType.TYPE_CLASS_TEXT
 import android.text.InputType.TYPE_TEXT_FLAG_MULTI_LINE
@@ -17,6 +18,7 @@ import com.egoriku.ladyhappy.edit.R
 import com.egoriku.ladyhappy.edit.databinding.FragmentEditSubcategoryBinding
 import com.egoriku.ladyhappy.edit.koin.editModule
 import com.egoriku.ladyhappy.extensions.*
+import com.google.android.play.core.splitcompat.SplitCompat
 import com.maxkeppeler.sheets.input.InputSheet
 import com.maxkeppeler.sheets.input.type.InputEditText
 import kotlinx.coroutines.flow.collect
@@ -43,6 +45,11 @@ class EditFragment : ScopeFragment(R.layout.fragment_edit_subcategory) {
 
     private val viewModel by viewModel<EditSubCategoryViewModel> {
         parametersOf(documentReferenceExtra)
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        SplitCompat.install(context)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
