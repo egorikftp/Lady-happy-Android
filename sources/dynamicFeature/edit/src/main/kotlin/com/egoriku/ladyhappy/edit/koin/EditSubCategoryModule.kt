@@ -21,7 +21,12 @@ val editModule = module {
         scoped { GetSubCategoryDataSource(firebase = get()) }
         scoped { UpdateSubCategoryDataSource(firebase = get()) }
 
-        scoped<IGetSubCategoryRepository> { GetSubCategoryRepository(getSubCategoryDataSource = get(), stringResource = get()) }
+        scoped<IGetSubCategoryRepository> {
+            GetSubCategoryRepository(
+                    getSubCategoryDataSource = get(),
+                    stringResource = get()
+            )
+        }
         scoped<IUpdateSubCategoryRepository> { UpdateSubCategoryRepository(updateSubCategoryDataSource = get()) }
 
         scoped<ILoadSubCategoryUseCase> { LoadSubCategoryUseCase(subCategoryRepository = get()) }

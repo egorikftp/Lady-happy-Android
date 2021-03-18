@@ -45,7 +45,9 @@ class ColorAdapter : ListAdapter<ColorModel, ColorAdapter.VH>(DiffCallback()) {
             colorName.text = colorModel.name
             colorImage.setBackgroundColor(colorModel.colorHex.toColorInt())
 
-            val adjustedColor = colorName.currentTextColor.adjustForBackground(backgroundColor = colorModel.colorHex.toColorInt())
+            val adjustedColor = colorName.currentTextColor.adjustForBackground(
+                    backgroundColor = colorModel.colorHex.toColorInt()
+            )
 
             colorName.setTextColor(adjustedColor)
             CompoundButtonCompat.setButtonTintList(checkBox, ColorStateList.valueOf(adjustedColor))

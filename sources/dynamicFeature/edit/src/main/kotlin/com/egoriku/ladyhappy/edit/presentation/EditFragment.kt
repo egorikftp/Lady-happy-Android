@@ -28,7 +28,6 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.context.loadKoinModules
 import org.koin.core.context.unloadKoinModules
 import org.koin.core.parameter.parametersOf
-
 import com.egoriku.ladyhappy.localization.R as R_localization
 
 class EditFragment : ScopeFragment(R.layout.fragment_edit_subcategory) {
@@ -149,10 +148,12 @@ class EditFragment : ScopeFragment(R.layout.fragment_edit_subcategory) {
     ) {
         InputSheet().show(requireContext()) {
             title(titleResId)
-            with(input = InputEditText {
-                inputType(TYPE_CLASS_TEXT or TYPE_TEXT_FLAG_MULTI_LINE)
-                defaultValue(predefinedInput)
-            })
+            with(
+                    input = InputEditText {
+                        inputType(TYPE_CLASS_TEXT or TYPE_TEXT_FLAG_MULTI_LINE)
+                        defaultValue(predefinedInput)
+                    }
+            )
             onPositive { result ->
                 onNewValue(result.getStringOrThrow("0"))
             }

@@ -19,4 +19,4 @@ data class ColorModel(
         val colorId: Int,
         val name: String,
         val colorHex: String
-): Parcelable
+) : Parcelable

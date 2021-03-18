@@ -23,7 +23,7 @@ internal class CatalogUseCase(
                 publishedCount = entity.publishedCount,
                 description = entity.description,
                 documentReference = entity.documentReference,
-                lastEditTime  = when (val date = entity.lastEditTime) {
+                lastEditTime = when (val date = entity.lastEditTime) {
                     null -> stringResource.notEdited
                     else -> date.ddMMMyyyy()
                 }
