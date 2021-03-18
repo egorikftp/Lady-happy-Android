@@ -1,4 +1,3 @@
-import com.egoriku.ext.withLibraries
 import com.egoriku.versions.ProjectVersion
 
 plugins {
@@ -12,4 +11,4 @@ android {
     }
 }
 
-withLibraries(Libs.annotation)
+withThirdPartyLibraries(Libs.annotation)

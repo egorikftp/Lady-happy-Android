@@ -1,6 +1,4 @@
 import Modules.Libraries
-import com.egoriku.ext.withLibraries
-import com.egoriku.ext.withProjects
 
 plugins {
     id("HappyXPlugin")
@@ -12,7 +10,7 @@ happyPlugin {
     kotlinParcelize = true
 }
 
-withLibraries(
+withThirdPartyLibraries(
         Libs.annotation,
         Libs.constraintLayout,
         Libs.fragment,
@@ -24,7 +22,7 @@ withLibraries(
         Libs.viewBindingDelegates
 )
 
-withProjects(
+withProjectLibraries(
         Libraries.extensions,
         Libraries.core,
         Libraries.navigation,

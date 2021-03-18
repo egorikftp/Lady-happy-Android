@@ -1,6 +1,4 @@
 import Modules.Libraries
-import com.egoriku.ext.withLibraries
-import com.egoriku.ext.withProjects
 
 plugins {
     id("HappyXPlugin")
@@ -15,13 +13,13 @@ dependencies {
     implementation(platform(Libs.firebaseBom))
 }
 
-withProjects(
+withProjectLibraries(
         Libraries.extensions,
         Libraries.mozaik,
         Libraries.navigation
 )
 
-withLibraries(
+withThirdPartyLibraries(
         Libs.appcompat,
         Libs.coroutinesAndroid,
         Libs.firebaseFirestore,

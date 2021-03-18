@@ -1,11 +1,15 @@
 import Modules.DynamicFeatures
 import Modules.Features
 import Modules.Libraries
-import com.egoriku.ext.*
+import com.egoriku.ext.debug
+import com.egoriku.ext.propertyInt
+import com.egoriku.ext.release
 import org.jetbrains.kotlin.konan.file.File
 import org.jetbrains.kotlin.konan.properties.Properties
 import org.jetbrains.kotlin.konan.properties.loadProperties
 import org.jetbrains.kotlin.konan.properties.saveToFile
+import kotlin.collections.mutableSetOf
+import kotlin.collections.set
 
 plugins {
     id("HappyXPlugin")
@@ -61,7 +65,7 @@ dependencies {
     implementation(platform(Libs.firebaseBom))
 }
 
-withProjects(
+withProjectLibraries(
         Features.catalog,
         Features.detailPage,
         Features.landing,
@@ -80,7 +84,7 @@ withProjects(
         Libraries.rendering
 )
 
-withLibraries(
+withThirdPartyLibraries(
         Libs.appcompat,
         Libs.balloon,
         Libs.constraintLayout,

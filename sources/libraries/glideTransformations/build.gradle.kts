@@ -1,11 +1,9 @@
-import com.egoriku.ext.withLibraries
-
 plugins {
     id("HappyXPlugin")
     id("com.android.library")
 }
 
-withLibraries(
+withThirdPartyLibraries(
         Libs.annotation,
         Libs.glide
 )

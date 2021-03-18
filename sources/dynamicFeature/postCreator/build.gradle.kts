@@ -1,7 +1,5 @@
 import Modules.Applications
 import Modules.Libraries
-import com.egoriku.ext.withLibraries
-import com.egoriku.ext.withProjects
 
 plugins {
     id("HappyXPlugin")
@@ -17,7 +15,7 @@ dependencies {
     implementation(platform(Libs.firebaseBom))
 }
 
-withProjects(
+withProjectLibraries(
         Applications.ladyHappy,
 
         Libraries.core,
@@ -27,7 +25,7 @@ withProjects(
         Libraries.ui
 )
 
-withLibraries(
+withThirdPartyLibraries(
         Libs.appcompat,
         Libs.coil,
         Libs.constraintLayout,

@@ -1,18 +1,16 @@
 import Modules.Libraries
-import com.egoriku.ext.withLibraries
-import com.egoriku.ext.withProjects
 
 plugins {
     id("HappyXPlugin")
     id("com.android.library")
 }
 
-withProjects(
+withProjectLibraries(
         Libraries.core,
         Libraries.ui
 )
 
-withLibraries(
+withThirdPartyLibraries(
         Libs.appcompat,
         Libs.koinAndroid,
         Libs.material
