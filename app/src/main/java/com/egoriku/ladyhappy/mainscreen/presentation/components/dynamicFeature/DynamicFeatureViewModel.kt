@@ -18,7 +18,7 @@ class DynamicFeatureViewModel(
 ) : ViewModel() {
 
     private val _events = MutableSharedFlow<DynamicFeatureEvent>()
-    val events: SharedFlow<DynamicFeatureEvent> = _events
+    val events: SharedFlow<DynamicFeatureEvent> = _events.asSharedFlow()
 
     val postCreatorModuleStatus: StateFlow<ModuleStatus> = getStatusFlowForModule(POST_CREATOR_DYNAMIC_FEATURE)
     val editModuleStatus: StateFlow<ModuleStatus> = getStatusFlowForModule(EDIT_DYNAMIC_FEATURE)
