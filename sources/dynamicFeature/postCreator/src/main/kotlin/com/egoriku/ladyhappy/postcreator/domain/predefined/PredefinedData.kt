@@ -218,7 +218,7 @@ object PredefinedData {
                     subCategoryId = 1
             ),
             SubCategoryModel(
-                    name = "Коробки",
+                    name = "Подарочные коробки",
                     categoryId = 8,
                     subCategoryId = 1
             ),
@@ -241,6 +241,11 @@ object PredefinedData {
                     name = "Чалма",
                     categoryId = 9,
                     subCategoryId = 4
+            ),
+            SubCategoryModel(
+                    name = "Панама",
+                    categoryId = 9,
+                    subCategoryId = 5
             ),
             SubCategoryModel(
                     name = "Картуз",
