@@ -12,7 +12,6 @@ import androidx.annotation.IdRes
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.lifecycleScope
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.bumptech.glide.manager.SupportRequestManagerFragment
 import com.egoriku.ladyhappy.R
@@ -52,7 +51,6 @@ import com.google.android.play.core.splitinstall.SplitInstallManager
 import com.skydoves.balloon.Balloon
 import com.skydoves.balloon.balloon
 import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.launch
 import org.koin.androidx.scope.ScopeActivity
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import kotlin.properties.Delegates
@@ -198,7 +196,7 @@ class MainActivity : ScopeActivity(R.layout.activity_main) {
     }
 
     private fun subscribeForInAppUpdate() {
-        lifecycleScope.launch {
+        repeatingJobOnStarted {
             inAppUpdateViewModel.updateStatus.collect { updateResult: AppUpdateResult ->
                 updateUpdateButton(updateResult)
 
@@ -210,7 +208,7 @@ class MainActivity : ScopeActivity(R.layout.activity_main) {
             }
         }
 
-        lifecycleScope.launch {
+        repeatingJobOnStarted {
             inAppUpdateViewModel.events.collect { event ->
                 when (event) {
                     is InAppUpdateEvent.ToastEvent -> toast(event.message)
@@ -246,7 +244,7 @@ class MainActivity : ScopeActivity(R.layout.activity_main) {
     }
 
     private fun subscribeForDynamicFeatureInstall() {
-        lifecycleScope.launch {
+        repeatingJobOnStarted {
             dynamicFeatureViewModel.events.collect { event ->
                 when (event) {
                     is DynamicFeatureEvent.ToastEvent -> toast(event.message)
@@ -279,13 +277,13 @@ class MainActivity : ScopeActivity(R.layout.activity_main) {
             }
         }
 
-        lifecycleScope.launch {
+        repeatingJobOnStarted {
             dynamicFeatureViewModel.postCreatorModuleStatus.collect { status ->
                 handleModuleStatus(status)
             }
         }
 
-        lifecycleScope.launch {
+        repeatingJobOnStarted {
             dynamicFeatureViewModel.editModuleStatus.collect { status ->
                 handleModuleStatus(status)
             }

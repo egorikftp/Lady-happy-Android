@@ -7,7 +7,6 @@ import android.text.InputType.TYPE_TEXT_FLAG_MULTI_LINE
 import android.view.View
 import androidx.core.os.bundleOf
 import androidx.fragment.app.setFragmentResult
-import androidx.lifecycle.lifecycleScope
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.bumptech.glide.Glide
 import com.egoriku.ladyhappy.core.IRouter
@@ -22,7 +21,6 @@ import com.google.android.play.core.splitcompat.SplitCompat
 import com.maxkeppeler.sheets.input.InputSheet
 import com.maxkeppeler.sheets.input.type.InputEditText
 import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.launch
 import org.koin.androidx.scope.ScopeFragment
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.context.loadKoinModules
@@ -56,13 +54,13 @@ class EditFragment : ScopeFragment(R.layout.fragment_edit_subcategory) {
 
         binding.initViews()
 
-        lifecycleScope.launch {
+        repeatingJobOnStarted {
             viewModel.uiState.collect {
                 binding.handleState(it)
             }
         }
 
-        lifecycleScope.launch {
+        repeatingJobOnStarted {
             viewModel.effect.collect {
                 when (it) {
                     is Effect.Exit -> {

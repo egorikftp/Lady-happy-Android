@@ -22,7 +22,7 @@ object LibrariesVersion {
     const val koin = "2.2.2"
     const val kotlin = "1.4.32"
     const val leakCanary = "2.7"
-    const val lifecycle = "2.3.1"
+    const val lifecycle = "2.4.0-alpha01"
     const val material = "1.3.0"
     const val paging = "3.0.0-beta03"
     const val playCore = "1.8.1"

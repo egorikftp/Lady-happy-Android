@@ -10,7 +10,7 @@ import kotlinx.coroutines.withContext
 import java.io.ByteArrayOutputStream
 import java.io.File
 
-private const val QUALITY = 100
+private const val QUALITY = 80
 
 class CompressImageRepository(private val context: Context) {
 

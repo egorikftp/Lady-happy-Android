@@ -4,7 +4,6 @@ import android.content.Context
 import android.os.Bundle
 import android.view.View
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.ConcatAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
 import by.kirich1409.viewbindingdelegate.viewBinding
@@ -28,7 +27,6 @@ import com.egoriku.ladyhappy.postcreator.presentation.sections.input.InputSectio
 import com.egoriku.ladyhappy.postcreator.presentation.state.UploadEvents
 import com.google.android.play.core.splitcompat.SplitCompat
 import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.launch
 import org.koin.androidx.scope.ScopeFragment
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.context.loadKoinModules
@@ -95,7 +93,7 @@ class PostCreatorFragment : ScopeFragment(R.layout.fragment_post_creator) {
 
         extractImagesFromExtra()
 
-        lifecycleScope.launch {
+        repeatingJobOnStarted {
             viewModel.screenState.collect { state ->
                 chooserSectionAdapter.submitList(state.chooserState)
                 imagesSectionAdapter.submitList(listOf(state.imagesSection))
@@ -103,13 +101,13 @@ class PostCreatorFragment : ScopeFragment(R.layout.fragment_post_creator) {
             }
         }
 
-        lifecycleScope.launch {
+        repeatingJobOnStarted {
             viewModel.publishButtonAvailability.collect {
                 binding.postPublishButton.isEnabled = it
             }
         }
 
-        lifecycleScope.launch {
+        repeatingJobOnStarted {
             viewModel.uploadEvents.collect {
                 when (it) {
                     is UploadEvents.Error -> {

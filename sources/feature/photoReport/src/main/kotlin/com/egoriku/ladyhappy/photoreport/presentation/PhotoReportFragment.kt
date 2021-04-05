@@ -2,20 +2,19 @@ package com.egoriku.ladyhappy.photoreport.presentation
 
 import android.os.Bundle
 import android.view.View
-import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.egoriku.ladyhappy.core.feature.PhotoReportsFeature
 import com.egoriku.ladyhappy.extensions.drawableCompat
 import com.egoriku.ladyhappy.extensions.gone
+import com.egoriku.ladyhappy.extensions.repeatingJobOnStarted
 import com.egoriku.ladyhappy.extensions.visible
 import com.egoriku.ladyhappy.photoreport.R
 import com.egoriku.ladyhappy.photoreport.databinding.FragmentPhotoReportBinding
 import com.egoriku.ladyhappy.photoreport.presentation.adapter.PhotoReportAdapter
 import com.egoriku.ladyhappy.photoreport.presentation.state.PhotoReportUiState
 import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.launch
 import org.koin.androidx.scope.ScopeFragment
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import kotlin.properties.Delegates
@@ -33,7 +32,7 @@ class PhotoReportFragment : ScopeFragment(R.layout.fragment_photo_report), Photo
 
         binding.initRecyclerView()
 
-        lifecycleScope.launch {
+        repeatingJobOnStarted {
             viewModel.uiState.collect { uiState ->
                 when (uiState) {
                     is PhotoReportUiState.Error -> processError()
