@@ -34,6 +34,7 @@ withThirdPartyLibraries(
         Libs.koinAndroid,
         Libs.koinViewModel,
         Libs.material,
+        Libs.playCore,
         Libs.sheetsInput,
         Libs.viewBindingDelegates,
         Libs.viewModel
