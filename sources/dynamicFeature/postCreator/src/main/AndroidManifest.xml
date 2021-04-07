@@ -13,8 +13,7 @@
 
     <application>
         <activity
-            android:name="com.egoriku.ladyhappy.mainscreen.presentation.MainActivity"
-            android:launchMode="singleTask">
+            android:name="com.egoriku.ladyhappy.mainscreen.presentation.MainActivity">
 
             <intent-filter>
                 <action android:name="android.intent.action.SEND" />

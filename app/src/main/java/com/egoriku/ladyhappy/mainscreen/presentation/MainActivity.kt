@@ -4,7 +4,6 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.graphics.Color
-import android.net.Uri
 import android.os.Bundle
 import android.widget.ProgressBar
 import android.widget.TextView
@@ -35,6 +34,7 @@ import com.egoriku.ladyhappy.mainscreen.presentation.components.dynamicFeature.M
 import com.egoriku.ladyhappy.mainscreen.presentation.components.inAppReview.ReviewViewModel
 import com.egoriku.ladyhappy.mainscreen.presentation.components.inAppUpdates.InAppUpdateEvent
 import com.egoriku.ladyhappy.mainscreen.presentation.components.inAppUpdates.InAppUpdateViewModel
+import com.egoriku.ladyhappy.mainscreen.presentation.components.receiveIntent.IntentActionSendHandler
 import com.egoriku.ladyhappy.mainscreen.presentation.deeplink.AssistanceDeepLinkParser
 import com.egoriku.ladyhappy.mainscreen.presentation.screen.*
 import com.egoriku.ladyhappy.mainscreen.presentation.screen.params.DeepLinkScreen
@@ -154,13 +154,13 @@ class MainActivity : ScopeActivity(R.layout.activity_main) {
         subscribeForDynamicFeatureRequest()
 
         intent?.handleGoogleAssistanceSearchIntent()
-        intent?.handleSendImageIntent()
+        intent?.handleSendImageIntent(isRestore = savedInstanceState != null)
     }
 
     override fun onNewIntent(intent: Intent?) {
         super.onNewIntent(intent)
         intent?.handleGoogleAssistanceSearchIntent()
-        intent?.handleSendImageIntent()
+        intent?.handleSendImageIntent(isRestore = false)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -361,26 +361,11 @@ class MainActivity : ScopeActivity(R.layout.activity_main) {
         }
     }
 
-    private fun Intent.handleSendImageIntent() {
-        when (action) {
-            Intent.ACTION_SEND -> if (intent.type?.startsWith("image/") == true) {
-                val imageUri = intent.getParcelableExtra<Uri>(Intent.EXTRA_STREAM)
-
-                check(imageUri != null)
-
-                dynamicFeatureViewModel.invokePostCreatorOrNoting(
-                        postCreatorParams = PostCreatorParams(images = listOf(imageUri))
-                )
-            }
-            Intent.ACTION_SEND_MULTIPLE -> if (intent.type?.startsWith("image/") == true) {
-                val imageUris = intent.getParcelableArrayListExtra<Uri>(Intent.EXTRA_STREAM)
-
-                check(imageUris != null)
-
-                dynamicFeatureViewModel.invokePostCreatorOrNoting(
-                        postCreatorParams = PostCreatorParams(images = imageUris)
-                )
-            }
+    private fun Intent.handleSendImageIntent(isRestore: Boolean) {
+        IntentActionSendHandler().extract(intent = this, isRestore = isRestore) {
+            dynamicFeatureViewModel.invokePostCreatorOrNoting(
+                    postCreatorParams = PostCreatorParams(images = it)
+            )
         }
     }
 
