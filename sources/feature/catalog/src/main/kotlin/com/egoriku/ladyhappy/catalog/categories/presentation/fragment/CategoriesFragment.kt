@@ -41,7 +41,10 @@ class CategoriesFragment : ScopeFragment(R.layout.fragment_categories), CatalogF
             viewModel.updateTabs(categoryId)
         }
 
-        catalogViewPagerAdapter = CatalogViewPagerAdapter(requireActivity())
+        catalogViewPagerAdapter = CatalogViewPagerAdapter(
+                fragmentManager = childFragmentManager,
+                lifecycle = viewLifecycleOwner.lifecycle
+        )
         binding.viewPager.adapter = catalogViewPagerAdapter
         binding.viewPager.offscreenPageLimit = OFFSET_PAGE_LIMIT
 
