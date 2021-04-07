@@ -17,7 +17,7 @@ object PredefinedData {
                     categoryId = 3
             ),
             CategoryModel(
-                    name = "Кринолин",
+                    name = "Регилин",
                     categoryId = 4
             ),
             CategoryModel(
