@@ -28,7 +28,7 @@ object LibrariesVersion {
     const val paging = "3.0.0-beta03"
     const val playCore = "1.8.1"
     const val playServicesAuth = "19.0.0"
-    const val recyclerView = "1.2.0-rc01"
+    const val recyclerView = "1.2.0"
     const val recyclerViewSelection = "1.1.0"
     const val stfalconImageViewer = "1.0.10"
     const val sheets = "2.1.4"
