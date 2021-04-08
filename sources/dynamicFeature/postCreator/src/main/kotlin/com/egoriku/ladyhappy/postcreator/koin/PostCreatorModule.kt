@@ -8,6 +8,7 @@ import com.egoriku.ladyhappy.postcreator.domain.usecase.PublishPostUseCase
 import com.egoriku.ladyhappy.postcreator.domain.usecase.UploadImagesUseCase
 import com.egoriku.ladyhappy.postcreator.presentation.PostCreatorFragment
 import com.egoriku.ladyhappy.postcreator.presentation.PostViewModel
+import org.koin.android.ext.koin.androidApplication
 import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
@@ -33,6 +34,7 @@ val postModule = module {
 
         viewModel {
             PostViewModel(
+                    application = androidApplication(),
                     uploadImagesUseCase = get(),
                     publishPostUseCase = get()
             )

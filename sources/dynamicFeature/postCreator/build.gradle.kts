@@ -32,6 +32,7 @@ withThirdPartyLibraries(
         Libs.core,
         Libs.coroutinesAndroid,
         Libs.coroutinesPlayServices,
+        Libs.exifInterface,
         Libs.firebaseFirestore,
         Libs.firebaseStorage,
         Libs.fragment,

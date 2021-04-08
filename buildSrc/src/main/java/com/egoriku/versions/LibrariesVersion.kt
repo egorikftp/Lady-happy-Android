@@ -13,6 +13,7 @@ object LibrariesVersion {
     const val coroutines = "1.4.2"
     const val circleImageView = "3.1.0"
     const val easyAdapter = "6.6.6"
+    const val exifInterface = "1.3.2"
     const val firebaseBom = "26.8.0"
     const val fragment = "1.3.2"
     const val glide = "4.12.0"

@@ -6,6 +6,7 @@ plugins {
 withThirdPartyLibraries(
         Libs.appcompat,
         Libs.core,
+        Libs.exifInterface,
         Libs.fragment,
         Libs.lifecycleRuntime,
         Libs.material,

@@ -1,10 +1,13 @@
 package com.egoriku.ladyhappy.postcreator.presentation
 
+import android.app.Application
 import android.net.Uri
-import androidx.lifecycle.ViewModel
+import androidx.exifinterface.media.ExifInterface
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
 import com.egoriku.ladyhappy.core.dateformat.ddMMMyyyy
 import com.egoriku.ladyhappy.core.dateformat.year
+import com.egoriku.ladyhappy.extensions.imageCreationDate
 import com.egoriku.ladyhappy.network.ResultOf
 import com.egoriku.ladyhappy.network.successOr
 import com.egoriku.ladyhappy.postcreator.data.entity.UploadEntity
@@ -22,17 +25,20 @@ import com.egoriku.ladyhappy.postcreator.presentation.common.MAX_IMAGES_SIZE
 import com.egoriku.ladyhappy.postcreator.presentation.state.ScreenState
 import com.egoriku.ladyhappy.postcreator.presentation.state.UploadEvents
 import com.google.firebase.Timestamp
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import java.util.*
 
 class PostViewModel(
+        application: Application,
         private val uploadImagesUseCase: UploadImagesUseCase,
         private val publishPostUseCase: PublishPostUseCase,
-) : ViewModel() {
+) : AndroidViewModel(application) {
 
     private val _screenState = MutableStateFlow(ScreenState())
     val screenState: StateFlow<ScreenState> = _screenState
@@ -52,6 +58,8 @@ class PostViewModel(
         )
 
         validateState()
+
+        tryToExtractImageDate()
     }
 
     fun removeAttachedImage(item: ImageItem) {
@@ -210,6 +218,18 @@ class PostViewModel(
             state.color.state == ChooserState.Initial -> false
             state.creationDate.date == null -> false
             else -> true
+        }
+    }
+
+    private fun tryToExtractImageDate() {
+        viewModelScope.launch {
+            val uri = _screenState.value.imagesSection.images.first().uri
+
+            withContext(Dispatchers.IO) {
+                getApplication<Application>().contentResolver.openInputStream(uri)?.use {
+                    setDate(ExifInterface(it).imageCreationDate)
+                }
+            }
         }
     }
 }

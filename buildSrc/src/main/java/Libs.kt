@@ -17,6 +17,7 @@ object Libs {
     const val coroutinesPlayServices = "org.jetbrains.kotlinx:kotlinx-coroutines-play-services:${LibrariesVersion.coroutines}"
 
     const val easyAdapter = "ru.surfstudio.android:easyadapter:${LibrariesVersion.easyAdapter}"
+    const val exifInterface = "androidx.exifinterface:exifinterface:${LibrariesVersion.exifInterface}"
 
     const val firebaseBom = "com.google.firebase:firebase-bom:${LibrariesVersion.firebaseBom}"
 
