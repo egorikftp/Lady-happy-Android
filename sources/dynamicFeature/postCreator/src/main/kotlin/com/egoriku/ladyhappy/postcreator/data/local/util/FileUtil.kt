@@ -2,9 +2,9 @@ package com.egoriku.ladyhappy.postcreator.data.local.util
 
 import android.content.Context
 import android.net.Uri
-import android.provider.OpenableColumns
 import android.util.Log
 import com.egoriku.ladyhappy.extensions.common.Constants.EMPTY
+import com.egoriku.ladyhappy.extensions.getFileName
 import java.io.*
 
 object FileUtil {
@@ -44,30 +44,6 @@ object FileUtil {
         }
 
         return arrayOf(name, extension)
-    }
-
-    private fun Context.getFileName(uri: Uri): String {
-        var name: String? = null
-
-        if (uri.scheme == "content") {
-            contentResolver.query(uri, null, null, null, null).use { cursor ->
-                if (cursor != null && cursor.moveToFirst()) {
-                    name = cursor.getString(cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME))
-                }
-            }
-        }
-
-        if (name.isNullOrEmpty()) {
-            name = uri.path
-
-            val cut = name?.lastIndexOf(File.separator) ?: -1
-
-            if (cut != -1) {
-                name = name?.substring(cut + 1)
-            }
-        }
-
-        return requireNotNull(name)
     }
 
     private fun rename(file: File, newName: String): File {

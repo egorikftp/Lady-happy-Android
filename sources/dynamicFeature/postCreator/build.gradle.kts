@@ -6,12 +6,6 @@ plugins {
     id("com.android.dynamic-feature")
 }
 
-android {
-    lintOptions {
-        isAbortOnError = false
-    }
-}
-
 happyPlugin {
     kotlinParcelize = true
     viewBindingEnabled = true
