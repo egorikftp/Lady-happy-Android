@@ -15,8 +15,8 @@
     <a href="https://www.codacy.com/manual/egorikftp/Lady-happy?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=egorikftp/Lady-happy&amp;utm_campaign=Badge_Grade"><img src="https://api.codacy.com/project/badge/Grade/a5b356b07d4e42a6bc7f72e4cae6831e"/></a>
 </p>
 
-Project characteristics 🚀
--------
+# Project characteristics 🚀
+
 This project brings to the table set of best practices, tools, and solutions:
 
 * 100% [Kotlin](https://kotlinlang.org/)
@@ -29,8 +29,8 @@ This project brings to the table set of best practices, tools, and solutions:
 * Dark Theme
 
 
-Built With 🛠
--------
+# Built With 🛠
+
 - [Kotlin](https://kotlinlang.org/) - First class and official programming language for Android development.
 - [Coroutines](https://kotlinlang.org/docs/reference/coroutines-overview.html) - Kotlin's way of way of writing asynchronous, non-blocking code
   - [StateFlow](https://developer.android.com/kotlin/flow/stateflow-and-sharedflow#stateflow) - notify views when the underlying data changes
@@ -54,47 +54,41 @@ Built With 🛠
   - [Firebase Storage](https://firebase.google.com/docs/storage) - Storage for images and files
 
 
-Try without building sources
--------
+# Try without building sources
 <a href='https://play.google.com/store/apps/details?id=com.egoriku.ladyhappy'><img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png' width="200"/></a>
 
 
-How to build
--------
+# How to build
 
 //TODO :)
 
-Find this repository useful? :heart:
--------
+# Find this repository useful? :heart:
+
 Support it by joining __[stargazers](https://github.com/egorikftp/lady-happy/stargazers)__ for this repository. :star: <br>
 And __[follow](https://github.com/egorikftp)__ me for my next creations! 🤩
 
 
-Structure 🔍
--------
+# Structure 🔍
+
 This project follows multi-module structure: 
 
 <div align="center">
     <img alt="Icon" src="assets/modules/modules_structure.png" width="700" />
 </div>
 
-App screenshots
--------
+# App screenshots
 
-Public features
-----
+##### Public features
 
 <img alt="Icon" src="assets/images/Screenshot_20200831-220313.png" width="300" /><img alt="Icon" src="assets/images/Screenshot_20200831-220329.png" width="300" /><img alt="Icon" src="assets/images/Screenshot_20200831-220337.png" width="300" /><img alt="Icon" src="assets/images/Screenshot_20200831-220344.png" width="300" />
 <img alt="Icon" src="assets/images/Screenshot_20200831-220357.png" width="300" />
 
-Dynamic features
-----
+##### Dynamic features
 
 <img alt="Icon" src="assets/images/dynamic_feature_create_post.png" width="300" /><img alt="Icon" src="assets/images/dynamic_feature_edit.png" width="300" />
 
 
-License
--------
+# License
 
      Copyright 2021 Yahor Urbanovich
 
