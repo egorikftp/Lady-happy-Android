@@ -2,8 +2,10 @@ package com.egoriku.ladyhappy.koin
 
 import android.app.Application
 import com.egoriku.ladyhappy.BuildConfig
+import com.egoriku.ladyhappy.auth.koin.authModule
 import com.egoriku.ladyhappy.catalog.categories.koin.categoriesModule
 import com.egoriku.ladyhappy.catalog.subcategory.koin.subcategoryModule
+import com.egoriku.ladyhappy.detailpage.koin.detailModule
 import com.egoriku.ladyhappy.landing.koin.landingModule
 import com.egoriku.ladyhappy.login.koin.loginModule
 import com.egoriku.ladyhappy.mainscreen.koin.mainActivityModule
@@ -17,7 +19,6 @@ import org.koin.core.context.startKoin
 import org.koin.core.logger.Level
 
 fun Application.initKoin() {
-
     startKoin {
         androidContext(this@initKoin)
 
@@ -33,7 +34,9 @@ fun Application.initKoin() {
 
 val koinModules = listOf(
         applicationScopeModule,
+        authModule,
         categoriesModule,
+        detailModule,
         landingModule,
         loginModule,
         mainActivityModule,

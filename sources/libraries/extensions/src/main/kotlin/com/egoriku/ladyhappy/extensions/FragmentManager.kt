@@ -9,7 +9,9 @@ fun FragmentManager.setFragmentResultListenerWrapper(
         lifecycleOwner: LifecycleOwner,
         listener: ((requestKey: String, bundle: Bundle) -> Unit)
 ) {
-    setFragmentResultListener(requestKey, lifecycleOwner, { s: String, bundle: Bundle ->
-        listener.invoke(s, bundle)
-    })
+    setFragmentResultListener(
+            requestKey,
+            lifecycleOwner,
+            { s, bundle -> listener.invoke(s, bundle) }
+    )
 }

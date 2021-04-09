@@ -1,8 +1,5 @@
 import Modules.Applications
 import Modules.Libraries
-import com.egoriku.ext.implementation
-import com.egoriku.ext.withLibraries
-import com.egoriku.ext.withProjects
 
 plugins {
     id("HappyXPlugin")
@@ -18,7 +15,7 @@ dependencies {
     implementation(platform(Libs.firebaseBom))
 }
 
-withProjects(
+withProjectLibraries(
         Applications.ladyHappy,
 
         Libraries.core,
@@ -28,13 +25,14 @@ withProjects(
         Libraries.ui
 )
 
-withLibraries(
+withThirdPartyLibraries(
         Libs.appcompat,
         Libs.coil,
         Libs.constraintLayout,
         Libs.core,
         Libs.coroutinesAndroid,
         Libs.coroutinesPlayServices,
+        Libs.exifInterface,
         Libs.firebaseFirestore,
         Libs.firebaseStorage,
         Libs.fragment,
@@ -44,12 +42,7 @@ withLibraries(
         Libs.material,
         Libs.playCore,
         Libs.recyclerView,
+        Libs.recyclerViewSelection,
         Libs.viewBindingDelegates,
         Libs.viewModel
 )
-
-dependencies {
-    implementation(Libs.recyclerViewSelection) {
-        exclude("recyclerview", "recyclerview")
-    }
-}

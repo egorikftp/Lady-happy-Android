@@ -1,13 +1,12 @@
+@file:Suppress("NOTHING_TO_INLINE")
+
 package com.egoriku.ladyhappy.extensions
 
 import android.content.Context
 import android.content.res.ColorStateList
-import android.graphics.Bitmap
-import android.graphics.ImageDecoder
-import android.net.Uri
-import android.provider.MediaStore
+import android.graphics.drawable.Drawable
 import android.util.TypedValue
-import android.view.inputmethod.InputMethodManager
+import android.view.LayoutInflater
 import androidx.annotation.*
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.content.ContextCompat
@@ -27,36 +26,34 @@ fun Context.colorCompat(@ColorRes colorInt: Int) = ContextCompat.getColor(this, 
 fun Context.colorStateListCompat(@ColorRes resId: Int): ColorStateList? =
         AppCompatResources.getColorStateList(this, resId)
 
-fun Context.drawableCompat(@DrawableRes drawableRes: Int) = ContextCompat.getDrawable(this, drawableRes)
+inline fun Context.drawableCompat(@DrawableRes drawableRes: Int) = AppCompatResources.getDrawable(this, drawableRes)
+
+inline fun Context.drawableCompatWithTint(
+        @DrawableRes resId: Int,
+        @ColorRes tint: Int,
+): Drawable? = drawableCompat(resId)?.apply {
+    mutate()
+    when (tint) {
+        0 -> setTintList(null)
+        else -> setTint(colorCompat(tint))
+    }
+}
 
 fun Context.findColorIdByName(name: String): Int = getResourceId(name, type = "color")
 
 fun Context.getResourceId(name: String, type: String): Int =
         resources.getIdentifier(name, type, packageName)
 
-val Context.inputWindowManager: InputMethodManager
-    get() = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-
-fun Context.bitmapFromUri(uri: Uri): Bitmap {
-    val contentResolver = contentResolver
-
-    return if (hasP()) {
-        ImageDecoder.createSource(contentResolver, uri).run {
-            ImageDecoder.decodeBitmap(this)
-        }
-    } else {
-        MediaStore.Images.Media.getBitmap(contentResolver, uri)
-    }
-}
-
 fun Context.getQuantityStringZero(
         @PluralsRes
         pluralResId: Int,
         @StringRes
         zeroResId: Int = -1,
-        quantity: Int
+        quantity: Int,
 ): String = if (zeroResId != -1 && quantity == 0) {
     resources.getString(zeroResId)
 } else {
     resources.getQuantityString(pluralResId, quantity, quantity)
 }
+
+fun Context.inflater(): LayoutInflater = LayoutInflater.from(this)

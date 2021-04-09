@@ -6,6 +6,7 @@ object Modules {
 
     object Features {
         const val catalog = ":catalog"
+        const val detailPage = ":detailPage"
         const val landing = ":landing"
         const val launchScreen = ":launchScreen"
         const val login = ":login"
@@ -15,6 +16,7 @@ object Modules {
     }
 
     object DynamicFeatures {
+        const val edit = ":edit"
         const val postCreator = ":postCreator"
     }
 
@@ -23,6 +25,7 @@ object Modules {
         const val core = ":core"
         const val easyAdapter = ":easyAdapter"
         const val extensions = ":extensions"
+        const val glideTransformations = ":glideTransformations"
         const val localization = ":localization"
         const val mozaik = ":mozaik"
         const val network = ":network"

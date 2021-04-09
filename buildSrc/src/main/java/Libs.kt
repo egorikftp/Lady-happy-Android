@@ -17,6 +17,7 @@ object Libs {
     const val coroutinesPlayServices = "org.jetbrains.kotlinx:kotlinx-coroutines-play-services:${LibrariesVersion.coroutines}"
 
     const val easyAdapter = "ru.surfstudio.android:easyadapter:${LibrariesVersion.easyAdapter}"
+    const val exifInterface = "androidx.exifinterface:exifinterface:${LibrariesVersion.exifInterface}"
 
     const val firebaseBom = "com.google.firebase:firebase-bom:${LibrariesVersion.firebaseBom}"
 
@@ -32,6 +33,7 @@ object Libs {
     const val fragment = "androidx.fragment:fragment-ktx:${LibrariesVersion.fragment}"
 
     const val glide = "com.github.bumptech.glide:glide:${LibrariesVersion.glide}"
+    const val glideTransformation = "jp.wasabeef:glide-transformations:${LibrariesVersion.glideTransformations}"
 
     const val junit = "junit:junit:${LibrariesVersion.junit}"
 
@@ -47,16 +49,19 @@ object Libs {
 
     const val material = "com.google.android.material:material:${LibrariesVersion.material}"
 
+    const val paging = "androidx.paging:paging-runtime-ktx:${LibrariesVersion.paging}"
     const val playCore = "com.google.android.play:core-ktx:${LibrariesVersion.playCore}"
     const val playServicesAuth = "com.google.android.gms:play-services-auth:${LibrariesVersion.playServicesAuth}"
 
     const val recyclerView = "androidx.recyclerview:recyclerview:${LibrariesVersion.recyclerView}"
     const val recyclerViewSelection = "androidx.recyclerview:recyclerview-selection:${LibrariesVersion.recyclerViewSelection}"
 
+    const val sheetsCore = "com.maxkeppeler.sheets:core:${LibrariesVersion.sheets}"
+    const val sheetsInput = "com.maxkeppeler.sheets:input:${LibrariesVersion.sheets}"
     const val stfalconImageViewer = "com.github.stfalcon:stfalcon-imageviewer:${LibrariesVersion.stfalconImageViewer}"
 
     const val vectorDrawable = "androidx.vectordrawable:vectordrawable:${LibrariesVersion.vectorDrawable}"
-    const val viewBindingDelegates = "com.kirich1409.viewbindingpropertydelegate:vbpd-noreflection:${LibrariesVersion.viewBindingDelegates}"
+    const val viewBindingDelegates = "com.github.kirich1409:viewbindingpropertydelegate-noreflection:${LibrariesVersion.viewBindingDelegates}"
     const val viewBinding = "androidx.databinding:viewbinding:${LibrariesVersion.viewBinding}"
     const val viewModel = "androidx.lifecycle:lifecycle-viewmodel-ktx:${LibrariesVersion.lifecycle}"
     const val viewPager2 = "androidx.viewpager2:viewpager2:${LibrariesVersion.viewPager2}"

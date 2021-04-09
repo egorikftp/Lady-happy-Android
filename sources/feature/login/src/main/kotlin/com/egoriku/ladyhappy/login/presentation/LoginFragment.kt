@@ -4,10 +4,10 @@ import android.os.Bundle
 import android.view.View
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.StringRes
+import androidx.browser.customtabs.CustomTabColorSchemeParams
 import androidx.browser.customtabs.CustomTabsIntent
 import androidx.core.net.toUri
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.lifecycleScope
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.egoriku.ladyhappy.extensions.*
 import com.egoriku.ladyhappy.login.R
@@ -109,15 +109,11 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
             }
         }
 
-        lifecycleScope.launchWhenStarted {
+        repeatingJobOnStarted {
             viewModel.events.collect {
                 when (it) {
-                    is LoginEvent.OneTap -> {
-                        requestSignInWithOneTap.launch(it.eventSenderRequest)
-                    }
-                    is LoginEvent.SignWithGoogle -> {
-                        requestSignInWithGoogle.launch(it.signInIntent)
-                    }
+                    is LoginEvent.OneTap -> requestSignInWithOneTap.launch(it.eventSenderRequest)
+                    is LoginEvent.SignWithGoogle -> requestSignInWithGoogle.launch(it.signInIntent)
                 }
             }
         }
@@ -132,8 +128,13 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
             textInputEmail.validateEmail() && textInputPassword.validatePassword()
 
     private fun initCustomTab(@StringRes urlRes: Int) = CustomTabsIntent.Builder()
-            .setToolbarColor(colorCompat(R.color.RoseTaupe))
-            .build().run {
+            .setDefaultColorSchemeParams(
+                    CustomTabColorSchemeParams.Builder()
+                            .setToolbarColor(colorCompat(R.color.RoseTaupe))
+                            .build()
+            )
+            .build()
+            .run {
                 launchUrl(requireContext(), getString(urlRes).toUri())
             }
 }

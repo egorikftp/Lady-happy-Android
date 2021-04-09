@@ -3,6 +3,8 @@ package com.egoriku.ladyhappy.mozaik.strategy.internal
 import com.egoriku.ladyhappy.mozaik.strategy.IStrategy
 import com.egoriku.ladyhappy.mozaik.strategy.internal.model.Proportion
 import com.egoriku.ladyhappy.mozaik.strategy.internal.model.StrategyData
+import com.egoriku.ladyhappy.mozaik.strategy.internal.model.height
+import com.egoriku.ladyhappy.mozaik.strategy.internal.model.updateWith
 
 class StrategyFor1 : IStrategy {
 
@@ -17,10 +19,10 @@ class StrategyFor1 : IStrategy {
                 mozaikItem = strategyData.mozaikItems[0],
                 divider = 0
         ).getRect(width = strategyData.parentWidth).also {
-            strategyData.rect[0].set(it)
+            strategyData.rect[0].updateWith(it)
         }
 
-        strategyData.parentHeight = rect.height()
+        strategyData.parentHeight = rect.height
     }
 
     companion object {

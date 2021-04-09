@@ -1,6 +1,4 @@
 import Modules.Libraries
-import com.egoriku.ext.withLibraries
-import com.egoriku.ext.withProjects
 
 plugins {
     id("HappyXPlugin")
@@ -11,7 +9,7 @@ happyPlugin {
     viewBindingEnabled = true
 }
 
-withProjects(
+withProjectLibraries(
         Libraries.auth,
         Libraries.core,
         Libraries.extensions,
@@ -20,7 +18,7 @@ withProjects(
         Libraries.ui
 )
 
-withLibraries(
+withThirdPartyLibraries(
         Libs.appcompat,
         Libs.browser,
         Libs.constraintLayout,

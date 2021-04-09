@@ -1,14 +1,16 @@
 package com.egoriku.ladyhappy.catalog.subcategory.data.repository
 
-import com.egoriku.ladyhappy.catalog.subcategory.data.datasource.SubcategoryDataSource
-import com.egoriku.ladyhappy.catalog.subcategory.data.entity.SubCategoryEntity
+import com.egoriku.ladyhappy.catalog.subcategory.data.datasource.ISubcategoryDataSource
+import com.egoriku.ladyhappy.core.sharedmodel.entity.SubCategoryEntity
 import com.egoriku.ladyhappy.network.ResultOf
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
-class SubcategoryRepository(private val subcategoryDataSource: SubcategoryDataSource) {
+internal class SubcategoryRepository(
+        private val subcategoryDataSource: ISubcategoryDataSource
+) : ISubcategoryRepository {
 
-    suspend fun fetchSubCategories(categoryId: Int): ResultOf<List<SubCategoryEntity>> = withContext(Dispatchers.IO) {
+    override suspend fun fetchSubCategories(categoryId: Int) = withContext(Dispatchers.IO) {
         runCatching {
             val value = subcategoryDataSource.fetch(categoryId)
 
@@ -21,4 +23,9 @@ class SubcategoryRepository(private val subcategoryDataSource: SubcategoryDataSo
             ResultOf.Failure(it)
         }
     }
+}
+
+interface ISubcategoryRepository {
+
+    suspend fun fetchSubCategories(categoryId: Int): ResultOf<List<SubCategoryEntity>>
 }

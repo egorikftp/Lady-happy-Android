@@ -37,7 +37,8 @@ class AvailableFeaturesSectionAdapter(
                 adapter = featureAdapter
                 addItemDecoration(
                         MarginItemDecoration(
-                                binding.context.resources.getDimensionPixelOffset(R.dimen.material_padding_16))
+                                binding.context.resources.getDimensionPixelOffset(R.dimen.material_padding_16)
+                        )
                 )
             }
         }

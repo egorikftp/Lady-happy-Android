@@ -1,32 +1,28 @@
 <resources>
     <string name="application_name">Lady Happy</string>
 
-    <string name="adapter_item_about_us">About us</string>
-    <string name="lady_happy">Lady Happy</string>
+    <!-- General -->
+    <string name="general_whoops">Whoops!</string>
+    <string name="general_try_again">Try again</string>
+    <string name="general_no_internet_connection">No Internet connection found. Check your connection \n\nOr</string>
+    <string name="general_error_loading">An error occurred while loading</string>
 
-    <string name="adapter_item_header_quotes">What inspires us</string>
-    <string name="adapter_item_header_our_team">Our team</string>
-
-    <string name="no_data_whoops">Whoops!</string>
-    <string name="no_data_try_again">Try again</string>
-    <string name="no_data_internet_connection">No Internet connection found. Check your connection \n\nOr</string>
-
+    <!-- Navigation screen -->
     <string name="navigation_view_landing">About</string>
     <string name="navigation_view_landing_header">Brief information</string>
-
     <string name="navigation_view_photo_report">Photos</string>
     <string name="navigation_view_photo_report_header">Heartwarming moments</string>
-
     <string name="navigation_view_catalog">Catalog</string>
     <string name="navigation_view_catalog_header">Our goods</string>
-
     <string name="navigation_view_search_header">Search</string>
-
     <string name="navigation_view_settings">Settings</string>
     <string name="navigation_view_settings_header">Additional options</string>
 
-    <string name="cc_adapter_item_main">Olive Branch</string>
-    <string name="cd_adapter_item_photo_report">Photo</string>
+    <!-- Landing screen -->
+    <string name="landing_adapter_item_about_us">About us</string>
+    <string name="landing_app_name">Lady Happy</string>
+    <string name="landing_adapter_item_header_quotes">What inspires us</string>
+    <string name="landing_adapter_item_header_our_team">Our team</string>
 
     <!-- Main screen -->
     <string name="in_app_update_available">Update available</string>
@@ -48,7 +44,6 @@
         <item quantity="many">%1$d items</item>
         <item quantity="other">%1$d items</item>
     </plurals>
-    <string name="catalog_error_response">An error occurred while loading</string>
     <string name="catalog_trending_hint">Popular category</string>
 
     <!-- Settings -->
@@ -86,6 +81,16 @@
     <string name="post_creator_categories_dialog_title">Choose category</string>
     <string name="post_creator_subcategories_categories_dialog_title">Choose subcategory</string>
     <string name="post_creator_color_dialog_title">Choose color</string>
+    <string name="post_creator_chooser_hint_categories">Category</string>
+    <string name="post_creator_chooser_hint_subcategories">Subcategory</string>
+    <string name="post_creator_chooser_hint_color">Color</string>
+    <string name="post_creator_chooser_hint_creation_date">Creation date</string>
+    <string name="post_creator_upload_error">Error occurred during publication</string>
+    <string name="post_creator_upload_success">Post successfully published</string>
+    <string name="post_creator_input_hint">Description (can be empty)</string>
+    <string name="post_creator_images_section_title">Photos</string>
+    <string name="post_creator_publish_button_text">Publish post</string>
+    <string name="post_creator_screen_title">Create new post</string>
 
     <!-- Used Libraries -->
     <string name="used_libraries_prefix_the">The</string>
@@ -93,15 +98,24 @@
     <string name="used_libraries_prefix_uses">and uses these open source libraries</string>
     <string name="used_libraries_follow_github">Follow us on GitHub!</string>
     <string name="used_libraries_error_loading">Open-source libraries not found</string>
+
+    <!-- Edit -->
+    <string name="edit_save_changes">Save changes</string>
+    <string name="edit_popular_switch_text">Popular</string>
+    <string name="edit_screen_title">Edit</string>
+    <string name="edit_technical_information">Technical information</string>
+    <string name="edit_empty_description">Empty description</string>
+    <string name="edit_not_edited">Not edited yet</string>
+    <string name="edit_dialog_header_edit_name">Edit name</string>
+    <string name="edit_dialog_header_edit_description">Edit description</string>
+    <string name="edit_dialog_header_edit_count">Edit count</string>
+
+    <!-- Detail page -->
+    <string name="detail_page_no_data_available">Looks like it\'s still empty</string>
+    <string name="detail_page_error_loading">&#128552; &#x1f628; Wooops %1$s</string>
+
     <string name="deeplink_unknown_screen">Unknown screen</string>
-    <string name="post_creator_chooser_hint_categories">Category</string>
-    <string name="post_creator_chooser_hint_subcategories">Subcategory</string>
-    <string name="post_creator_chooser_hint_color">Color</string>
-    <string name="post_creator_chooser_hint_creation_date">Creation date</string>
-    <string name="post_creator_upload_error">Error occurred during publication</string>
-    <string name="post_creator_upload_success">Post successfully published</string>
-    <string name="post_creator_input_hint">Post caption</string>
-    <string name="post_creator_images_section_title">Photos</string>
-    <string name="post_creator_publish_button_text">Publish post</string>
-    <string name="post_creator_screen_title">Create new post</string>
+    <string name="proto_overlay_title_format">%1$d of %2$d</string>
+    <string name="dynamic_feature_post_creator_title">Post creator feature</string>
+    <string name="dynamic_feature_edit_title">Edit</string>
 </resources>

@@ -16,10 +16,9 @@ import com.egoriku.ladyhappy.postcreator.R
 import com.egoriku.ladyhappy.postcreator.databinding.AdapterItemImagesSectionBinding
 import com.egoriku.ladyhappy.postcreator.domain.model.image.ImageItem
 import com.egoriku.ladyhappy.postcreator.domain.model.image.ImageSection
+import com.egoriku.ladyhappy.postcreator.presentation.common.MAX_IMAGES_SIZE
 import com.egoriku.ladyhappy.ui.decorator.VerticalMarginItemDecoration
 import com.egoriku.ladyhappy.localization.R as R_localization
-
-private const val MAX_IMAGES_SIZE = 10
 
 class ImagesSectionAdapter(
         private val onChooseImage: () -> Unit,

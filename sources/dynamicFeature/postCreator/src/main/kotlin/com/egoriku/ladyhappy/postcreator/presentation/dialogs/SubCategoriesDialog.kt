@@ -38,7 +38,7 @@ class SubCategoriesDialog : BaseDialogFragment() {
         private const val EXTRA_SUB_CATEGORIES = "EXTRA_SUB_CATEGORIES"
 
         private fun getCategories(bundle: Bundle) = bundle.getStringArrayList(EXTRA_SUB_CATEGORIES)?.toTypedArray()
-                ?: throw IllegalArgumentException()
+                ?: throw IllegalArgumentException("Sub categories shouldn't be null")
 
         fun newInstance(subCategories: ArrayList<String>) = SubCategoriesDialog().apply {
             arguments = Bundle().apply {

@@ -14,7 +14,9 @@ import com.egoriku.ladyhappy.postcreator.databinding.ViewChooserBinding
 import com.egoriku.ladyhappy.ui.R as R_ui
 
 class ChooserView @JvmOverloads constructor(
-        context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
+        context: Context,
+        attrs: AttributeSet? = null,
+        defStyleAttr: Int = 0
 ) : ConstraintLayout(context, attrs, defStyleAttr) {
 
     private val binding = ViewChooserBinding.inflate(inflater(), this)

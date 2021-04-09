@@ -11,17 +11,13 @@ import com.egoriku.ladyhappy.extensions.fromApi
 import com.egoriku.ladyhappy.extensions.toApi
 import com.egoriku.ladyhappy.ui.R
 
-class HatsProgressView : AppCompatImageView {
-
-    constructor(context: Context) : super(context)
-    constructor(context: Context, attrs: AttributeSet) : super(context, attrs)
-    constructor(context: Context, attrs: AttributeSet, defStyleAttr: Int) : super(context, attrs, defStyleAttr)
+class HatsProgressView @JvmOverloads constructor(
+        context: Context,
+        attrs: AttributeSet? = null,
+        defStyleAttr: Int = 0
+) : AppCompatImageView(context, attrs, defStyleAttr) {
 
     private var animatedVectorDrawable = AnimatedVectorDrawableCompat.create(context, R.drawable.avd_hats_animation)
-
-    init {
-        setImageDrawable(animatedVectorDrawable)
-    }
 
     private val animationCallback = object : Animatable2Compat.AnimationCallback() {
         override fun onAnimationEnd(dr: Drawable?) {
@@ -33,6 +29,10 @@ class HatsProgressView : AppCompatImageView {
                 post(null)
             }
         }
+    }
+
+    init {
+        setImageDrawable(animatedVectorDrawable)
     }
 
     fun startAnimation() {

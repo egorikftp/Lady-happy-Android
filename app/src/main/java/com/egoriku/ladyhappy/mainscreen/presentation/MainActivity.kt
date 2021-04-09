@@ -10,14 +10,18 @@ import android.widget.TextView
 import androidx.annotation.IdRes
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.os.bundleOf
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import by.kirich1409.viewbindingdelegate.viewBinding
+import com.bumptech.glide.manager.SupportRequestManagerFragment
 import com.egoriku.ladyhappy.R
 import com.egoriku.ladyhappy.core.IFeatureProvider
 import com.egoriku.ladyhappy.core.INavigationHolder
-import com.egoriku.ladyhappy.core.constant.REQUEST_KEY_DYNAMIC_FEATURE
-import com.egoriku.ladyhappy.core.constant.RESULT_KEY_DYNAMIC_FEATURE
 import com.egoriku.ladyhappy.core.feature.*
+import com.egoriku.ladyhappy.core.sharedmodel.key.DYNAMIC_FEATURE_BUNDLE_RESULT_KEY
+import com.egoriku.ladyhappy.core.sharedmodel.key.DYNAMIC_FEATURE_REQUEST_KEY
+import com.egoriku.ladyhappy.core.sharedmodel.key.FULL_PERCENT
+import com.egoriku.ladyhappy.core.sharedmodel.params.PostCreatorParams
 import com.egoriku.ladyhappy.core.sharedmodel.toNightMode
 import com.egoriku.ladyhappy.databinding.ActivityMainBinding
 import com.egoriku.ladyhappy.extensions.*
@@ -25,10 +29,12 @@ import com.egoriku.ladyhappy.mainscreen.common.Constants.Tracking
 import com.egoriku.ladyhappy.mainscreen.presentation.balloon.DynamicFeatureBalloonFactory
 import com.egoriku.ladyhappy.mainscreen.presentation.components.dynamicFeature.DynamicFeatureEvent
 import com.egoriku.ladyhappy.mainscreen.presentation.components.dynamicFeature.DynamicFeatureViewModel
+import com.egoriku.ladyhappy.mainscreen.presentation.components.dynamicFeature.DynamicScreen
 import com.egoriku.ladyhappy.mainscreen.presentation.components.dynamicFeature.ModuleStatus
 import com.egoriku.ladyhappy.mainscreen.presentation.components.inAppReview.ReviewViewModel
 import com.egoriku.ladyhappy.mainscreen.presentation.components.inAppUpdates.InAppUpdateEvent
 import com.egoriku.ladyhappy.mainscreen.presentation.components.inAppUpdates.InAppUpdateViewModel
+import com.egoriku.ladyhappy.mainscreen.presentation.components.receiveIntent.IntentActionSendHandler
 import com.egoriku.ladyhappy.mainscreen.presentation.deeplink.AssistanceDeepLinkParser
 import com.egoriku.ladyhappy.mainscreen.presentation.screen.*
 import com.egoriku.ladyhappy.mainscreen.presentation.screen.params.DeepLinkScreen
@@ -46,6 +52,7 @@ import com.google.android.play.core.splitinstall.SplitInstallManager
 import com.skydoves.balloon.Balloon
 import com.skydoves.balloon.balloon
 import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 import org.koin.androidx.scope.ScopeActivity
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import kotlin.properties.Delegates
@@ -86,8 +93,6 @@ class MainActivity : ScopeActivity(R.layout.activity_main) {
     private val Balloon.balloonProgressBar: ProgressBar
         get() = getContentView().findViewById(R.id.progressBar)
 
-    private var isOpenDynamicFeatureWhenReady = false
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
@@ -118,10 +123,8 @@ class MainActivity : ScopeActivity(R.layout.activity_main) {
                             trackingScreenName = Tracking.TRACKING_FRAGMENT_CATALOG
                     )
             )
-            else -> {
-                with(savedInstanceState.getInt(KEY_SELECTED_MENU_ITEM)) {
-                    binding.bottomNavigation.selectedItemId = this
-                }
+            else -> with(savedInstanceState.getInt(KEY_SELECTED_MENU_ITEM)) {
+                binding.bottomNavigation.selectedItemId = this
             }
         }
 
@@ -151,23 +154,23 @@ class MainActivity : ScopeActivity(R.layout.activity_main) {
         subscribeForDynamicFeatureRequest()
 
         intent?.handleGoogleAssistanceSearchIntent()
+        intent?.handleSendImageIntent(isRestore = savedInstanceState != null)
     }
 
     override fun onNewIntent(intent: Intent?) {
         super.onNewIntent(intent)
         intent?.handleGoogleAssistanceSearchIntent()
+        intent?.handleSendImageIntent(isRestore = false)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
         when (requestCode) {
-            UPDATE_CONFIRMATION_REQ_CODE -> {
-                when (resultCode) {
-                    Activity.RESULT_OK -> viewModel.trackInAppUpdateSuccess()
-                    Activity.RESULT_CANCELED -> viewModel.trackInAppUpdateCanceled()
-                    ActivityResult.RESULT_IN_APP_UPDATE_FAILED -> viewModel.trackInAppUpdateFailed()
-                }
+            UPDATE_CONFIRMATION_REQ_CODE -> when (resultCode) {
+                Activity.RESULT_OK -> viewModel.trackInAppUpdateSuccess()
+                Activity.RESULT_CANCELED -> viewModel.trackInAppUpdateCanceled()
+                ActivityResult.RESULT_IN_APP_UPDATE_FAILED -> viewModel.trackInAppUpdateFailed()
             }
         }
     }
@@ -195,27 +198,19 @@ class MainActivity : ScopeActivity(R.layout.activity_main) {
     }
 
     private fun subscribeForInAppUpdate() {
-        lifecycleScope.launchWhenResumed {
+        repeatingJobOnStarted {
             inAppUpdateViewModel.updateStatus.collect { updateResult: AppUpdateResult ->
                 updateUpdateButton(updateResult)
 
                 // If it's an immediate update, launch it immediately and finish Activity
                 // to prevent the user from using the app until they update.
-                if (updateResult is AppUpdateResult.Available) {
-                    if (inAppUpdateViewModel.shouldLaunchImmediateUpdate(updateResult.updateInfo)) {
-                        if (appUpdateManager.startUpdateFlowForResult(
-                                        updateResult.updateInfo,
-                                        AppUpdateType.IMMEDIATE,
-                                        this@MainActivity,
-                                        UPDATE_CONFIRMATION_REQ_CODE)) {
-                            finish()
-                        }
-                    }
+                when (updateResult) {
+                    is AppUpdateResult.Available -> handleImmediateUpdate(updateResult)
                 }
             }
         }
 
-        lifecycleScope.launchWhenResumed {
+        repeatingJobOnStarted {
             inAppUpdateViewModel.events.collect { event ->
                 when (event) {
                     is InAppUpdateEvent.ToastEvent -> toast(event.message)
@@ -236,106 +231,141 @@ class MainActivity : ScopeActivity(R.layout.activity_main) {
         }
     }
 
-    @OptIn(ExperimentalTime::class)
+    private fun handleImmediateUpdate(updateResult: AppUpdateResult.Available) {
+        if (inAppUpdateViewModel.shouldLaunchImmediateUpdate(updateResult.updateInfo)) {
+            val isStartUpdateFlowForResultSuccess = appUpdateManager.startUpdateFlowForResult(
+                    updateResult.updateInfo,
+                    AppUpdateType.IMMEDIATE,
+                    this@MainActivity,
+                    UPDATE_CONFIRMATION_REQ_CODE
+            )
+            if (isStartUpdateFlowForResultSuccess) {
+                finish()
+            }
+        }
+    }
+
     private fun subscribeForDynamicFeatureInstall() {
-        lifecycleScope.launchWhenResumed {
+        lifecycleScope.launch {
             dynamicFeatureViewModel.events.collect { event ->
                 when (event) {
                     is DynamicFeatureEvent.ToastEvent -> toast(event.message)
-                    is DynamicFeatureEvent.NavigationEvent -> {
-                        viewModel.navigateTo(screen = DynamicFeatureScreen(event.fragmentClass))
+                    is DynamicFeatureEvent.NavigationEvent -> when (val screen = event.screen) {
+                        is DynamicScreen.PostCreator -> {
+                            viewModel.navigateTo(
+                                    screen = PostCreatorScreen(
+                                            className = screen.className,
+                                            params = screen.params
+                                    )
+                            )
+                        }
+                        is DynamicScreen.Edit -> {
+                            viewModel.navigateTo(
+                                    screen = EditScreen(
+                                            className = screen.className,
+                                            params = screen.editParams
+                                    )
+                            )
+                        }
                     }
-                    is DynamicFeatureEvent.InstallConfirmationEvent -> {
+                    is DynamicFeatureEvent.InstallConfirmationEvent ->
                         splitInstallManager.startConfirmationDialogForResult(
                                 event.status,
                                 this@MainActivity,
                                 INSTALL_CONFIRMATION_REQ_CODE
                         )
-                    }
-                    else -> throw IllegalStateException("Event type not handled: $event")
+                    else -> error("Event type not handled: $event")
                 }
             }
         }
 
-        lifecycleScope.launchWhenResumed {
+        repeatingJobOnStarted {
             dynamicFeatureViewModel.postCreatorModuleStatus.collect { status ->
-                when (status) {
-                    is ModuleStatus.Installing -> {
-                        with(dynamicFeatureBalloon) {
-                            showAlignTop(binding.bottomNavigation)
+                handleModuleStatus(status)
+            }
+        }
 
-                            val progress = (status.progress * 100).toInt()
+        repeatingJobOnStarted {
+            dynamicFeatureViewModel.editModuleStatus.collect { status ->
+                handleModuleStatus(status)
+            }
+        }
+    }
 
-                            balloonTitleTextView.text = getString(R.string.dynamic_delivery_installing, progress)
-                            balloonProgressBar.apply {
-                                isIndeterminate = false
-                                setProgress(progress)
-                            }
-                        }
-                    }
-                    is ModuleStatus.Unavailable -> {
-                        with(dynamicFeatureBalloon) {
-                            balloonTitleTextView.setText(R.string.dynamic_delivery_feature_not_available)
-                            balloonProgressBar.isIndeterminate = false
-                        }
+    @OptIn(ExperimentalTime::class)
+    private fun handleModuleStatus(status: ModuleStatus) {
+        when (status) {
+            is ModuleStatus.Installing -> with(dynamicFeatureBalloon) {
+                showAlignTop(binding.bottomNavigation)
 
-                        dynamicFeatureBalloon.dismissWithDelay(1.seconds.toLongMilliseconds())
-                    }
-                    is ModuleStatus.Installed -> {
-                        if (isOpenDynamicFeatureWhenReady) {
-                            isOpenDynamicFeatureWhenReady = false
-                            dynamicFeatureViewModel.invokePostCreator()
-                        }
+                val progress = (status.progress * FULL_PERCENT).toInt()
 
-                        dynamicFeatureBalloon.dismissWithDelay(1.seconds.toLongMilliseconds())
-                    }
-                    is ModuleStatus.NeedsConfirmation -> {
-                        splitInstallManager.startConfirmationDialogForResult(
-                                status.state,
-                                this@MainActivity,
-                                UPDATE_CONFIRMATION_REQ_CODE
-                        )
-                    }
-                    ModuleStatus.None -> {
-                    }
+                balloonTitleTextView.text = getString(R.string.dynamic_delivery_installing, progress)
+                balloonProgressBar.apply {
+                    isIndeterminate = false
+                    setProgress(progress)
                 }
+            }
+            is ModuleStatus.Unavailable -> {
+                with(dynamicFeatureBalloon) {
+                    balloonTitleTextView.setText(R.string.dynamic_delivery_feature_not_available)
+                    balloonProgressBar.isIndeterminate = false
+                }
+
+                dynamicFeatureBalloon.dismissWithDelay(1.seconds.toLongMilliseconds())
+            }
+            is ModuleStatus.Installed -> {
+                dynamicFeatureViewModel.invokePostCreatorOrInstall()
+
+                dynamicFeatureBalloon.dismissWithDelay(1.seconds.toLongMilliseconds())
+            }
+            is ModuleStatus.NeedsConfirmation ->
+                splitInstallManager.startConfirmationDialogForResult(
+                        status.state,
+                        this@MainActivity,
+                        UPDATE_CONFIRMATION_REQ_CODE
+                )
+            ModuleStatus.None -> {
             }
         }
     }
 
     private fun subscribeForDynamicFeatureRequest() {
         supportFragmentManager.setFragmentResultListenerWrapper(
-                requestKey = REQUEST_KEY_DYNAMIC_FEATURE,
-                lifecycleOwner = this,
-                listener = { _, bundle ->
-                    when (bundle.getParcelable<DynamicFeature>(RESULT_KEY_DYNAMIC_FEATURE)) {
-                        is DynamicFeature.PostCreator -> {
-                            isOpenDynamicFeatureWhenReady = true
-                            dynamicFeatureViewModel.invokePostCreator()
-                        }
-                    }
-                }
-        )
+                requestKey = DYNAMIC_FEATURE_REQUEST_KEY,
+                lifecycleOwner = this
+        ) { _, bundle ->
+            when (val feature = bundle.getParcelable<DynamicFeature>(DYNAMIC_FEATURE_BUNDLE_RESULT_KEY)) {
+                is DynamicFeature.PostCreator -> dynamicFeatureViewModel.invokePostCreatorOrInstall()
+                is DynamicFeature.Edit -> dynamicFeatureViewModel.invokeEditOrInstall(feature.editParams)
+            }
+        }
     }
 
     private fun Intent.handleGoogleAssistanceSearchIntent() {
         AssistanceDeepLinkParser().process(intent = this) { featureScreen ->
             when (featureScreen) {
-                is DeepLinkScreen.Search -> {
-                    viewModel.replaceWith(
-                            screen = SearchScreen(featureProvider, featureScreen.searchQuery),
-                            params = ScreenParams(
-                                    screenNameResId = R.string.navigation_view_search_header,
-                                    trackingScreenName = Tracking.TRACKING_FRAGMENT_SEARCH
-                            )
-                    )
-                }
+                is DeepLinkScreen.Search -> viewModel.replaceWith(
+                        screen = SearchScreen(featureProvider, featureScreen.searchQuery),
+                        params = ScreenParams(
+                                screenNameResId = R.string.navigation_view_search_header,
+                                trackingScreenName = Tracking.TRACKING_FRAGMENT_SEARCH
+                        )
+                )
                 is DeepLinkScreen.Catalog -> preselectAndNavigate(R.id.menuCatalog)
                 is DeepLinkScreen.About -> preselectAndNavigate(R.id.menuLanding)
                 is DeepLinkScreen.News -> preselectAndNavigate(R.id.menuPhotoReport)
                 is DeepLinkScreen.Settings -> preselectAndNavigate(R.id.menuSettings)
                 is DeepLinkScreen.Unknown -> toast(getString(R.string.deeplink_unknown_screen))
             }
+        }
+    }
+
+    private fun Intent.handleSendImageIntent(isRestore: Boolean) {
+        IntentActionSendHandler().extract(intent = this, isRestore = isRestore) {
+            dynamicFeatureViewModel.invokePostCreatorOrNoting(
+                    postCreatorParams = PostCreatorParams(images = it)
+            )
         }
     }
 
@@ -378,11 +408,27 @@ class MainActivity : ScopeActivity(R.layout.activity_main) {
     }
 
     private fun expandAppBarLayoutInPage() {
+        supportFragmentManager.addOnBackStackChangedListener {
+            val fragments = supportFragmentManager.fragments
+                    .filterNot { it is SupportRequestManagerFragment }
+
+            if (fragments.isNotEmpty()) {
+                changeAppBarState(fragments.last())
+            }
+        }
+
         supportFragmentManager.addFragmentOnAttachListener { _, fragment ->
-            when (fragment) {
-                is CatalogFeature, is AboutUsFeature, is PhotoReportsFeature, is SettingsFeature -> {
-                    binding.appBarLayout.setExpanded(true)
-                }
+            changeAppBarState(fragment)
+        }
+    }
+
+    private fun changeAppBarState(fragment: Fragment) {
+        when (fragment) {
+            is CatalogFeature,
+            is AboutUsFeature,
+            is PhotoReportsFeature,
+            is SettingsFeature -> with(binding) {
+                appBarLayout.setExpanded(true)
             }
         }
     }
@@ -400,33 +446,29 @@ class MainActivity : ScopeActivity(R.layout.activity_main) {
                 }
                 show()
             }
-            is AppUpdateResult.InProgress -> {
-                with(snackBar) {
-                    val updateProgress: Int = calculateUpdateProgress(updateResult)
+            is AppUpdateResult.InProgress -> with(snackBar) {
+                val updateProgress: Int = calculateUpdateProgress(updateResult)
 
-                    setText(getString(R.string.in_app_update_downloading, updateProgress))
-                    setAction(null) {}
-                    show()
-                }
+                setText(getString(R.string.in_app_update_downloading, updateProgress))
+                setAction(null) {}
+                show()
             }
-            is AppUpdateResult.Downloaded -> {
-                with(snackBar) {
-                    setText(R.string.in_app_update_download_finished)
-                    setAction(R.string.in_app_update_complete) {
-                        inAppUpdateViewModel.invokeUpdate()
-                    }
-                    show()
+            is AppUpdateResult.Downloaded -> with(snackBar) {
+                setText(R.string.in_app_update_download_finished)
+                setAction(R.string.in_app_update_complete) {
+                    inAppUpdateViewModel.invokeUpdate()
                 }
+                show()
             }
         }
     }
 
-    private fun calculateUpdateProgress(updateResult: AppUpdateResult.InProgress): Int =
-            when (updateResult.installState.totalBytesToDownload) {
-                0L -> 0
-                else -> {
-                    (updateResult.installState.bytesDownloaded * 100 /
-                            updateResult.installState.totalBytesToDownload).toInt()
-                }
-            }
+    private fun calculateUpdateProgress(updateResult: AppUpdateResult.InProgress): Int {
+        val installState = updateResult.installState
+
+        return when (installState.totalBytesToDownload) {
+            0L -> 0
+            else -> (installState.bytesDownloaded / installState.totalBytesToDownload * FULL_PERCENT).toInt()
+        }
+    }
 }

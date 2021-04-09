@@ -4,6 +4,7 @@ import com.egoriku.ladyhappy.mozaik.strategy.IStrategy
 import com.egoriku.ladyhappy.mozaik.strategy.internal.extension.half
 import com.egoriku.ladyhappy.mozaik.strategy.internal.model.Proportion
 import com.egoriku.ladyhappy.mozaik.strategy.internal.model.StrategyData
+import com.egoriku.ladyhappy.mozaik.strategy.internal.model.updateWith
 
 class StrategyFor4 : IStrategy {
 
@@ -23,7 +24,7 @@ class StrategyFor4 : IStrategy {
                 width = halfScreen,
                 rightDivider = true
         ).also {
-            strategyData.rect[0].set(it)
+            strategyData.rect[0].updateWith(it)
         }
 
         Proportion(
@@ -34,7 +35,7 @@ class StrategyFor4 : IStrategy {
                 offsetHorizontal = rect0.offsetHorizontal,
                 leftDivider = true
         ).also {
-            strategyData.rect[1].set(it)
+            strategyData.rect[1].updateWith(it)
         }
 
         val rect2 = Proportion(
@@ -46,7 +47,7 @@ class StrategyFor4 : IStrategy {
                 topDivider = true,
                 rightDivider = true
         ).also {
-            strategyData.rect[2].set(it)
+            strategyData.rect[2].updateWith(it)
         }
 
         Proportion(
@@ -59,7 +60,7 @@ class StrategyFor4 : IStrategy {
                 topDivider = true,
                 leftDivider = true
         ).also {
-            strategyData.rect[3].set(it)
+            strategyData.rect[3].updateWith(it)
         }
 
         strategyData.parentHeight = rect2.offsetVertical

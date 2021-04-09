@@ -1,3 +1,11 @@
+dependencyResolutionManagement {
+    repositories {
+        google()
+        jcenter()
+        maven(url = "https://jitpack.io")
+    }
+}
+
 registerModules(
         *Modules.applications,
         *Modules.dynamicFeatures,
@@ -28,6 +36,7 @@ object Modules {
 
     object Features {
         const val catalog = ":catalog"
+        const val detailPage = ":detailPage"
         const val landing = ":landing"
         const val launchScreen = ":launchScreen"
         const val login = ":login"
@@ -37,6 +46,7 @@ object Modules {
     }
 
     object DynamicFeatures {
+        const val edit = ":edit"
         const val postCreator = ":postCreator"
     }
 
@@ -45,6 +55,7 @@ object Modules {
         const val core = ":core"
         const val easyAdapter = ":easyAdapter"
         const val extensions = ":extensions"
+        const val glideTransformations = ":glideTransformations"
         const val localization = ":localization"
         const val mozaik = ":mozaik"
         const val network = ":network"
@@ -60,12 +71,14 @@ object Modules {
 
     val dynamicFeatures
         get() = arrayOf(
+                ProjectBean(DynamicFeatures.edit, "sources/dynamicFeature/edit"),
                 ProjectBean(DynamicFeatures.postCreator, "sources/dynamicFeature/postCreator")
         )
 
     val features
         get() = arrayOf(
                 ProjectBean(Features.catalog, "sources/feature/catalog"),
+                ProjectBean(Features.detailPage, "sources/feature/detailPage"),
                 ProjectBean(Features.landing, "sources/feature/landing"),
                 ProjectBean(Features.launchScreen, "sources/feature/launchScreen"),
                 ProjectBean(Features.login, "sources/feature/login"),
@@ -79,6 +92,7 @@ object Modules {
                 ProjectBean(Libraries.auth, "sources/base/auth"),
                 ProjectBean(Libraries.core, "sources/base/core"),
                 ProjectBean(Libraries.extensions, "sources/libraries/extensions"),
+                ProjectBean(Libraries.glideTransformations, "sources/libraries/glideTransformations"),
                 ProjectBean(Libraries.localization, "sources/base/localization"),
                 ProjectBean(Libraries.mozaik, "sources/libraries/mozaik"),
                 ProjectBean(Libraries.network, "sources/base/network"),

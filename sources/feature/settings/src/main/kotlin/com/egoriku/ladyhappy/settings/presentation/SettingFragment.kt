@@ -1,6 +1,5 @@
 package com.egoriku.ladyhappy.settings.presentation
 
-import android.content.ActivityNotFoundException
 import android.os.Bundle
 import android.view.View
 import androidx.core.os.bundleOf
@@ -8,10 +7,10 @@ import androidx.recyclerview.widget.ConcatAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.egoriku.ladyhappy.core.IFeatureProvider
-import com.egoriku.ladyhappy.core.constant.REQUEST_KEY_DYNAMIC_FEATURE
-import com.egoriku.ladyhappy.core.constant.RESULT_KEY_DYNAMIC_FEATURE
 import com.egoriku.ladyhappy.core.feature.DynamicFeature
 import com.egoriku.ladyhappy.core.feature.SettingsFeature
+import com.egoriku.ladyhappy.core.sharedmodel.key.DYNAMIC_FEATURE_BUNDLE_RESULT_KEY
+import com.egoriku.ladyhappy.core.sharedmodel.key.DYNAMIC_FEATURE_REQUEST_KEY
 import com.egoriku.ladyhappy.extensions.browseUrl
 import com.egoriku.ladyhappy.settings.R
 import com.egoriku.ladyhappy.settings.databinding.FragmentSettingsBinding
@@ -56,12 +55,10 @@ class SettingFragment : ScopeFragment(R.layout.fragment_settings), SettingsFeatu
 
         availableFeaturesAdapter = AvailableFeaturesSectionAdapter {
             when (it) {
-                is Feature.PublishPosts -> {
-                    parentFragmentManager.setFragmentResult(
-                            REQUEST_KEY_DYNAMIC_FEATURE,
-                            bundleOf(RESULT_KEY_DYNAMIC_FEATURE to DynamicFeature.PostCreator)
-                    )
-                }
+                is Feature.PublishPosts -> parentFragmentManager.setFragmentResult(
+                        DYNAMIC_FEATURE_REQUEST_KEY,
+                        bundleOf(DYNAMIC_FEATURE_BUNDLE_RESULT_KEY to DynamicFeature.PostCreator())
+                )
                 is Feature.Stub -> TODO()
             }
         }
@@ -69,12 +66,8 @@ class SettingFragment : ScopeFragment(R.layout.fragment_settings), SettingsFeatu
         settingsAdapter = SettingItemAdapter {
             when (it) {
                 is SettingItem.Theme -> ThemeSettingDialogFragment().show(childFragmentManager, null)
-                is SettingItem.UsedLibraries -> {
-                    settingsViewModel.navigateTo(UsedLibrariesScreen(featureProvider))
-                }
-                is SettingItem.Review -> {
-                    openPlayStore()
-                }
+                is SettingItem.UsedLibraries -> settingsViewModel.navigateTo(UsedLibrariesScreen(featureProvider))
+                is SettingItem.Review -> openPlayStore()
                 is SettingItem.Header -> TODO()
                 is SettingItem.NonClickable -> TODO()
             }
@@ -98,9 +91,9 @@ class SettingFragment : ScopeFragment(R.layout.fragment_settings), SettingsFeatu
     private fun openPlayStore() {
         val appPackageName: String = requireContext().packageName
 
-        try {
+        runCatching {
             browseUrl("market://details?id=$appPackageName")
-        } catch (exception: ActivityNotFoundException) {
+        }.getOrElse {
             browseUrl("https://play.google.com/store/apps/details?id=$appPackageName")
         }
     }

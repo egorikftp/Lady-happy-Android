@@ -1,6 +1,4 @@
 import Modules.Libraries
-import com.egoriku.ext.withLibraries
-import com.egoriku.ext.withProjects
 
 plugins {
     id("HappyXPlugin")
@@ -17,7 +15,7 @@ android {
     }
 }
 
-withProjects(
+withProjectLibraries(
         Libraries.auth,
         Libraries.core,
         Libraries.extensions,
@@ -27,12 +25,11 @@ withProjects(
         Libraries.ui
 )
 
-withLibraries(
+withThirdPartyLibraries(
         Libs.coil,
         Libs.constraintLayout,
         Libs.core,
         Libs.circleImageView,
-        Libs.easyAdapter,
         Libs.firebaseFirestore,
         Libs.koinAndroid,
         Libs.koinViewModel,

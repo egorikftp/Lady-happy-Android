@@ -1,20 +1,19 @@
 package com.egoriku.ladyhappy.photoreport.presentation.adapter
 
-import android.graphics.drawable.ColorDrawable
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
-import com.bumptech.glide.request.RequestOptions
 import com.egoriku.ladyhappy.core.adapter.BaseListAdapter
 import com.egoriku.ladyhappy.core.adapter.BaseViewHolder
-import com.egoriku.ladyhappy.extensions.colorFromAttr
+import com.egoriku.ladyhappy.core.sharedmodel.key.CROSSFADE_DURATION
+import com.egoriku.ladyhappy.extensions.context
 import com.egoriku.ladyhappy.extensions.inflater
 import com.egoriku.ladyhappy.mozaik.OnItemClick
 import com.egoriku.ladyhappy.mozaik.model.MozaikItem
-import com.egoriku.ladyhappy.photoreport.R
 import com.egoriku.ladyhappy.photoreport.databinding.AdapterItemPhotoReportBinding
 import com.egoriku.ladyhappy.photoreport.domain.model.PhotoReportModel
+import com.egoriku.ladyhappy.ui.view.PhotoOverlayActions
 import com.stfalcon.imageviewer.StfalconImageViewer
 
 class PhotoReportAdapter : BaseListAdapter<PhotoReportModel, PhotoReportAdapter.Holder>(DiffCallback()) {
@@ -34,16 +33,11 @@ class PhotoReportAdapter : BaseListAdapter<PhotoReportModel, PhotoReportAdapter.
 
         private var stfalconImageViewer: StfalconImageViewer<MozaikItem>? = null
 
-        private val colorDrawable = ColorDrawable(itemView.colorFromAttr(R.attr.colorPlaceholder))
-        private val options = RequestOptions().centerCrop()
-
         init {
             binding.mozaikLayout.onViewReady = { view, url ->
                 Glide.with(itemView.context)
                         .load(url)
-                        .placeholder(colorDrawable)
-                        .transition(DrawableTransitionOptions.withCrossFade(100))
-                        .apply(options)
+                        .transition(DrawableTransitionOptions.withCrossFade(CROSSFADE_DURATION))
                         .into(view)
             }
         }
@@ -56,14 +50,23 @@ class PhotoReportAdapter : BaseListAdapter<PhotoReportModel, PhotoReportAdapter.
 
             mozaikLayout.setItems(data.images)
             mozaikLayout.onItemClick = OnItemClick { position, mozaikItems, transitionVew ->
+                val photoOverlayActions = PhotoOverlayActions(binding.context)
+
+                photoOverlayActions.setTitle(position = position + 1, count = mozaikItems.size)
+                photoOverlayActions.onCloseClick = {
+                    stfalconImageViewer?.close()
+                }
+
                 stfalconImageViewer = StfalconImageViewer.Builder(itemView.context, mozaikItems) { view, image ->
                     Glide.with(view.context).load(image.url).into(view)
                 }.withStartPosition(position)
-                        .withImageChangeListener {
-                            stfalconImageViewer?.updateTransitionImage(mozaikLayout.getItemByPosition(it))
-                        }
                         .withDismissListener {
                             stfalconImageViewer = null
+                        }
+                        .withOverlayView(photoOverlayActions)
+                        .withImageChangeListener {
+                            photoOverlayActions.setTitle(position = it + 1, count = mozaikItems.size)
+                            stfalconImageViewer?.updateTransitionImage(mozaikLayout.getItemByPosition(it))
                         }
                         .withTransitionFrom(transitionVew)
                         .withHiddenStatusBar(false)

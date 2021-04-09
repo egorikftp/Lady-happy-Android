@@ -2,5 +2,6 @@
 <resources>
     <declare-styleable name="MozaikLayout">
         <attr name="isMozaikClickable" format="boolean" />
+        <attr name="placeholderColor" format="color|reference" />
     </declare-styleable>
 </resources>

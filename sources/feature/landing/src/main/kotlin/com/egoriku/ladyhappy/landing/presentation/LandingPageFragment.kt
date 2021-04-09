@@ -17,6 +17,7 @@ import org.koin.androidx.scope.ScopeFragment
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import ru.surfstudio.android.easyadapter.EasyAdapter
 import ru.surfstudio.android.easyadapter.ItemList
+import kotlin.properties.Delegates
 
 class LandingPageFragment : ScopeFragment(R.layout.fragment_landing), AboutUsFeature {
 
@@ -28,12 +29,12 @@ class LandingPageFragment : ScopeFragment(R.layout.fragment_landing), AboutUsFea
 
     private val landingAdapter = EasyAdapter()
 
-    private lateinit var headerController: HeaderController
-    private lateinit var noDataController: NoDataController
-    private lateinit var aboutController: AboutController
-    private lateinit var quotesController: QuotesController
-    private lateinit var ourTeamController: OurTeamController
-    private lateinit var sectionsHeaderController: SectionsHeaderController
+    private var headerController: HeaderController by Delegates.notNull()
+    private var noDataController: NoDataController by Delegates.notNull()
+    private var aboutController: AboutController by Delegates.notNull()
+    private var quotesController: QuotesController by Delegates.notNull()
+    private var ourTeamController: OurTeamController by Delegates.notNull()
+    private var sectionsHeaderController: SectionsHeaderController by Delegates.notNull()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -81,9 +82,17 @@ class LandingPageFragment : ScopeFragment(R.layout.fragment_landing), AboutUsFea
         screenModel.landingModel?.let {
             itemList.add(headerController)
                     .add(it.aboutInfo, aboutController)
-                    .addIf(it.quotes.isNotEmpty(), R.string.adapter_item_header_quotes, sectionsHeaderController)
+                    .addIf(
+                            it.quotes.isNotEmpty(),
+                            R.string.landing_adapter_item_header_quotes,
+                            sectionsHeaderController
+                    )
                     .addIf(it.quotes.isNotEmpty(), it.quotes, quotesController)
-                    .addIf(it.teamMembers.isNotEmpty(), R.string.adapter_item_header_our_team, sectionsHeaderController)
+                    .addIf(
+                            it.teamMembers.isNotEmpty(),
+                            R.string.landing_adapter_item_header_our_team,
+                            sectionsHeaderController
+                    )
                     .addAll(it.teamMembers, ourTeamController)
         }
 

@@ -36,7 +36,7 @@ inline val Context.appWidgetManager
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     get() = getSystemService(Context.APPWIDGET_SERVICE) as AppWidgetManager
 
-inline val Context.inputMethodManager
+inline val Context.inputWindowManager: InputMethodManager
     get() = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
 
 inline val Context.clipboardManager

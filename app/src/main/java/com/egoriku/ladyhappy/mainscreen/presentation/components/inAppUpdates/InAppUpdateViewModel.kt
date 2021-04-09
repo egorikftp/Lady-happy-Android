@@ -9,6 +9,8 @@ import com.google.android.play.core.ktx.*
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 
+private const val DAYS_IN_MONTH = 30
+
 class InAppUpdateViewModel(updateManager: AppUpdateManager) : ViewModel() {
 
     private val _events = MutableSharedFlow<InAppUpdateEvent>()
@@ -23,38 +25,36 @@ class InAppUpdateViewModel(updateManager: AppUpdateManager) : ViewModel() {
     fun shouldLaunchImmediateUpdate(updateInfo: AppUpdateInfo): Boolean {
         with(updateInfo) {
             return isImmediateUpdateAllowed &&
-                    (clientVersionStalenessDays ?: 0 > 30 || updatePriority > 4)
+                    (clientVersionStalenessDays ?: 0 > DAYS_IN_MONTH || updatePriority > 4)
         }
     }
 
     fun invokeUpdate() {
         when (val updateResult = updateStatus.value) {
             AppUpdateResult.NotAvailable -> logD("Update not available")
-            is AppUpdateResult.Available -> {
-                with(updateResult.updateInfo) {
-                    when {
-                        shouldLaunchImmediateUpdate(this) -> {
-                            viewModelScope.launch {
-                                _events.emit(
-                                        InAppUpdateEvent.StartUpdateEvent(
-                                                updateInfo = updateResult.updateInfo,
-                                                immediate = true
-                                        )
-                                )
-                            }
+            is AppUpdateResult.Available -> with(updateResult.updateInfo) {
+                when {
+                    shouldLaunchImmediateUpdate(this) -> {
+                        viewModelScope.launch {
+                            _events.emit(
+                                    InAppUpdateEvent.StartUpdateEvent(
+                                            updateInfo = updateResult.updateInfo,
+                                            immediate = true
+                                    )
+                            )
                         }
-                        isFlexibleUpdateAllowed -> {
-                            viewModelScope.launch {
-                                _events.emit(
-                                        InAppUpdateEvent.StartUpdateEvent(
-                                                updateInfo = updateResult.updateInfo,
-                                                immediate = false
-                                        )
-                                )
-                            }
-                        }
-                        else -> false
                     }
+                    isFlexibleUpdateAllowed -> {
+                        viewModelScope.launch {
+                            _events.emit(
+                                    InAppUpdateEvent.StartUpdateEvent(
+                                            updateInfo = updateResult.updateInfo,
+                                            immediate = false
+                                    )
+                            )
+                        }
+                    }
+                    else -> false
                 }
             }
             is AppUpdateResult.InProgress -> viewModelScope.launch {

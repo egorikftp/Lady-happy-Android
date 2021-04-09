@@ -1,9 +1,8 @@
-package com.egoriku.ext
-
+import com.egoriku.ext.implementation
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.dependencies
 
-fun Project.withLibraries(vararg libs: String) {
+fun Project.withThirdPartyLibraries(vararg libs: String) {
     dependencies {
         libs.forEach {
             implementation(it)
@@ -11,7 +10,7 @@ fun Project.withLibraries(vararg libs: String) {
     }
 }
 
-fun Project.withProjects(vararg projects: String) {
+fun Project.withProjectLibraries(vararg projects: String) {
     dependencies {
         projects.forEach {
             implementation(project(it))

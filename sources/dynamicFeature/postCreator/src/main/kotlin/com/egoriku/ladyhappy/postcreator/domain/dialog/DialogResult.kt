@@ -1,6 +1,7 @@
 package com.egoriku.ladyhappy.postcreator.domain.dialog
 
 import android.os.Parcelable
+import com.egoriku.ladyhappy.postcreator.domain.predefined.ColorModel
 import kotlinx.parcelize.Parcelize
 
 sealed class DialogResult : Parcelable {
@@ -12,7 +13,7 @@ sealed class DialogResult : Parcelable {
     data class SubCategory(val subCategory: String) : DialogResult()
 
     @Parcelize
-    data class Color(val colorId: Int) : DialogResult()
+    data class Color(val colorIds: List<ColorModel>) : DialogResult()
 
     @Parcelize
     data class CreationDate(val dateInMilliseconds: Long) : DialogResult()

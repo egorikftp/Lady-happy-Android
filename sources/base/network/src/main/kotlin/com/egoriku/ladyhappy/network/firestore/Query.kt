@@ -33,7 +33,8 @@ private suspend fun <T> awaitTaskQueryList(task: Task<QuerySnapshot>, type: Clas
                 } else {
                     continuation.resumeWithException(
                             task.exception
-                                    ?: FirestoreParseException("Failed to read task list: $task of type: $type"))
+                                    ?: FirestoreParseException("Failed to read task list: $task of type: $type")
+                    )
                 }
             }
         }

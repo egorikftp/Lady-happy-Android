@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MotionScene xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <Transition
+        app:constraintSetEnd="@+id/end"
+        app:constraintSetStart="@+id/start">
+
+        <KeyFrameSet>
+            <KeyAttribute
+                android:alpha="0"
+                app:framePosition="50"
+                app:motionTarget="@+id/closeView" />
+
+            <KeyAttribute
+                android:alpha="0"
+                app:framePosition="80"
+                app:motionTarget="@+id/productTitleToolbar" />
+        </KeyFrameSet>
+    </Transition>
+
+    <ConstraintSet android:id="@+id/start">
+        <Constraint
+            android:id="@+id/productImage"
+            android:layout_width="250dp"
+            android:layout_height="250dp"
+            android:layout_marginTop="16dp">
+
+            <Layout
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </Constraint>
+
+        <Constraint
+            android:id="@+id/productTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Layout
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                app:layout_constraintVertical_chainStyle="packed"
+                app:layout_constraintBottom_toTopOf="@id/productDescription"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/productImage" />
+        </Constraint>
+
+        <Constraint
+            android:id="@+id/productDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="8dp">
+
+            <Layout
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/productTitle" />
+        </Constraint>
+
+        <Constraint
+            android:id="@+id/closeView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <Layout
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="8dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <CustomAttribute
+                app:attributeName="ColorFilter"
+                app:customColorValue="@color/RealWhite" />
+        </Constraint>
+
+        <Constraint
+            android:id="@+id/productTitleToolbar"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content">
+
+            <Layout
+                android:layout_marginStart="32dp"
+                app:layout_constraintBottom_toBottomOf="@id/closeView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/closeView"
+                app:layout_constraintTop_toTopOf="@id/closeView" />
+
+            <PropertySet android:alpha="0" />
+        </Constraint>
+
+    </ConstraintSet>
+
+    <ConstraintSet android:id="@+id/end">
+        <Constraint
+            android:id="@+id/productImage"
+            android:layout_width="1dp"
+            android:layout_height="1dp">
+
+            <Layout
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.9" />
+
+            <PropertySet android:visibility="invisible" />
+        </Constraint>
+
+        <Constraint
+            android:id="@+id/productTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Layout
+                android:layout_marginLeft="16dp"
+                android:layout_marginEnd="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/productImage" />
+
+            <PropertySet android:visibility="invisible" />
+
+        </Constraint>
+
+        <Constraint
+            android:id="@+id/productDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp">
+
+            <Layout
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/productTitle" />
+
+            <PropertySet android:visibility="invisible" />
+        </Constraint>
+
+        <Constraint
+            android:id="@+id/headerBackground"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <PropertySet android:alpha="0" />
+        </Constraint>
+
+        <Constraint
+            android:id="@+id/closeView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <Layout
+                android:layout_marginLeft="16dp"
+                android:layout_marginBottom="8dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent" />
+
+            <CustomAttribute
+                app:attributeName="ColorFilter"
+                app:customColorValue="?attr/colorOnBackground" />
+        </Constraint>
+
+        <Constraint
+            android:id="@+id/productTitleToolbar"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content">
+
+            <Layout
+                android:layout_marginLeft="32dp"
+                app:layout_constraintBottom_toBottomOf="@id/closeView"
+                app:layout_constraintLeft_toRightOf="@id/closeView"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="@id/closeView" />
+
+            <PropertySet android:alpha="1" />
+        </Constraint>
+    </ConstraintSet>
+</MotionScene>

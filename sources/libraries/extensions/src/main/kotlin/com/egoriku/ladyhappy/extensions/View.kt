@@ -6,6 +6,7 @@ import android.content.res.ColorStateList
 import android.content.res.TypedArray
 import android.util.AttributeSet
 import android.view.View
+import android.widget.ImageView
 import androidx.annotation.AttrRes
 import androidx.annotation.ColorRes
 import androidx.annotation.DrawableRes
@@ -89,3 +90,5 @@ inline fun View.activated() {
 inline fun View.resetActivated() {
     isActivated = false
 }
+
+inline fun View.toImageView() = this as ImageView

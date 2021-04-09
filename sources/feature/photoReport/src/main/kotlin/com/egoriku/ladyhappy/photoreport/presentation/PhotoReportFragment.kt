@@ -2,13 +2,13 @@ package com.egoriku.ladyhappy.photoreport.presentation
 
 import android.os.Bundle
 import android.view.View
-import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.egoriku.ladyhappy.core.feature.PhotoReportsFeature
 import com.egoriku.ladyhappy.extensions.drawableCompat
 import com.egoriku.ladyhappy.extensions.gone
+import com.egoriku.ladyhappy.extensions.repeatingJobOnStarted
 import com.egoriku.ladyhappy.extensions.visible
 import com.egoriku.ladyhappy.photoreport.R
 import com.egoriku.ladyhappy.photoreport.databinding.FragmentPhotoReportBinding
@@ -32,7 +32,7 @@ class PhotoReportFragment : ScopeFragment(R.layout.fragment_photo_report), Photo
 
         binding.initRecyclerView()
 
-        lifecycleScope.launchWhenStarted {
+        repeatingJobOnStarted {
             viewModel.uiState.collect { uiState ->
                 when (uiState) {
                     is PhotoReportUiState.Error -> processError()
@@ -49,9 +49,11 @@ class PhotoReportFragment : ScopeFragment(R.layout.fragment_photo_report), Photo
         recyclerViewNews.apply {
             layoutManager = LinearLayoutManager(context)
             adapter = photoReportAdapter
-            addItemDecoration(DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL).apply {
-                setDrawable(drawableCompat(R.drawable.bg_photoreport_divider))
-            })
+            addItemDecoration(
+                    DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL).apply {
+                        setDrawable(drawableCompat(R.drawable.bg_photoreport_divider))
+                    }
+            )
         }
 
         noDataLayout.retryButton.setOnClickListener {

@@ -1,6 +1,4 @@
 import Modules.Libraries
-import com.egoriku.ext.withLibraries
-import com.egoriku.ext.withProjects
 
 plugins {
     id("HappyXPlugin")
@@ -11,16 +9,17 @@ happyPlugin {
     viewBindingEnabled = true
 }
 
-withProjects(
+withProjectLibraries(
         Libraries.extensions,
         Libraries.localization
 )
 
-withLibraries(
+withThirdPartyLibraries(
         Libs.appcompat,
         Libs.constraintLayout,
         Libs.easyAdapter,
         Libs.material,
         Libs.recyclerView,
-        Libs.vectorDrawable
+        Libs.vectorDrawable,
+        Libs.viewBindingDelegates
 )

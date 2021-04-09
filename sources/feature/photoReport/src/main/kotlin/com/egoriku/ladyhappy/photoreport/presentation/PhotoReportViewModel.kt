@@ -8,14 +8,14 @@ import com.egoriku.ladyhappy.network.ResultOf
 import com.egoriku.ladyhappy.network.exception.FirestoreNetworkException
 import com.egoriku.ladyhappy.network.exception.FirestoreParseException
 import com.egoriku.ladyhappy.network.exception.NoSuchDocumentException
-import com.egoriku.ladyhappy.photoreport.domain.usecase.PhotoReportUseCase
+import com.egoriku.ladyhappy.photoreport.domain.usecase.IPhotoReportUseCase
 import com.egoriku.ladyhappy.photoreport.presentation.state.PhotoReportUiState
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
 class PhotoReportViewModel(
-        private val photoReportUseCase: PhotoReportUseCase,
+        private val photoReportUseCase: IPhotoReportUseCase,
         private val analytics: IAnalytics
 ) : ViewModel() {
 
@@ -31,9 +31,7 @@ class PhotoReportViewModel(
             _uiState.value = PhotoReportUiState.Loading
 
             when (val resultOf = photoReportUseCase.getPhotoReportInfo()) {
-                is ResultOf.Success -> {
-                    _uiState.value = PhotoReportUiState.Success(resultOf.value)
-                }
+                is ResultOf.Success -> _uiState.value = PhotoReportUiState.Success(resultOf.value)
                 is ResultOf.Failure -> {
                     when (resultOf.throwable) {
                         is FirestoreNetworkException -> {

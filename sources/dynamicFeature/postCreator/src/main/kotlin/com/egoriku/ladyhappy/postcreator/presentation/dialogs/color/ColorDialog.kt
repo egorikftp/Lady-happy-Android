@@ -15,7 +15,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.egoriku.ladyhappy.extensions.getDimen
 import com.egoriku.ladyhappy.postcreator.R
 import com.egoriku.ladyhappy.postcreator.domain.dialog.DialogResult
-import com.egoriku.ladyhappy.postcreator.domain.predefined.ColorModel
 import com.egoriku.ladyhappy.postcreator.domain.predefined.PredefinedData
 import com.egoriku.ladyhappy.postcreator.presentation.KEY_CHOOSER_FRAGMENT_RESULT
 import com.egoriku.ladyhappy.postcreator.presentation.KEY_FRAGMENT_RESULT_BUNDLE
@@ -51,7 +50,7 @@ class ColorDialog : BaseDialogFragment() {
                 MyItemDetailsLookup(recyclerView),
                 StorageStrategy.createLongStorage()
         ).withSelectionPredicate(
-                SelectionPredicates.createSelectSingleAnything()
+                SelectionPredicates.createSelectAnything()
         ).build()
 
         colorAdapter.tracker = selectionTracker
@@ -63,18 +62,20 @@ class ColorDialog : BaseDialogFragment() {
     }
 
     override fun onPositiveButtonClick() {
-        val selectionTracker = selectionTracker ?: throw Exception("Selection tracker null")
-        val iterator = selectionTracker.selection.iterator()
-
-        if (iterator.hasNext()) {
-            val selectedPosition = iterator.next().toInt()
-            val colorModel: ColorModel = colorAdapter.currentList[selectedPosition]
-
-            setFragmentResult(
-                    KEY_CHOOSER_FRAGMENT_RESULT,
-                    bundleOf(KEY_FRAGMENT_RESULT_BUNDLE to DialogResult.Color(colorId = colorModel.colorId))
-            )
+        val selectionTracker = checkNotNull(selectionTracker) {
+            "Selection tracker null"
         }
+
+        val colorIds = selectionTracker.selection
+                .iterator()
+                .asSequence()
+                .map { position -> colorAdapter.currentList[position.toInt()] }
+                .toList()
+
+        setFragmentResult(
+                KEY_CHOOSER_FRAGMENT_RESULT,
+                bundleOf(KEY_FRAGMENT_RESULT_BUNDLE to DialogResult.Color(colorIds = colorIds))
+        )
     }
 
     override fun onSaveInstanceState(outState: Bundle) {

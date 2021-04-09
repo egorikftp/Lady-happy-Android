@@ -1,28 +1,35 @@
 package com.egoriku.ladyhappy.landing.data.repository
 
 import com.egoriku.ladyhappy.core.IFirebase
+import com.egoriku.ladyhappy.core.sharedmodel.key.CollectionPath.LANDING
 import com.egoriku.ladyhappy.landing.data.entity.LandingEntity
 import com.egoriku.ladyhappy.network.ResultOf
 import com.egoriku.ladyhappy.network.firestore.awaitGet
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
-private const val LANDING_PATH = "landingInfo"
 private const val DOCUMENT_PATH = "MCwd73rZNcwDE4yjP3bj"
 
-class LandingRepository(private val firebase: IFirebase) {
+internal class LandingRepository(
+        private val firebase: IFirebase
+) : ILandingRepository {
 
-    suspend fun getLanding(): ResultOf<LandingEntity> = withContext(Dispatchers.IO) {
+    override suspend fun getLanding() = withContext(Dispatchers.IO) {
         runCatching {
-            val value: LandingEntity = firebase
+            val value = firebase
                     .firebaseFirestore
-                    .collection(LANDING_PATH)
+                    .collection(LANDING)
                     .document(DOCUMENT_PATH)
-                    .awaitGet()
+                    .awaitGet<LandingEntity>()
 
             ResultOf.Success(value)
         }.getOrElse {
             ResultOf.Failure(it)
         }
     }
+}
+
+interface ILandingRepository {
+
+    suspend fun getLanding(): ResultOf<LandingEntity>
 }

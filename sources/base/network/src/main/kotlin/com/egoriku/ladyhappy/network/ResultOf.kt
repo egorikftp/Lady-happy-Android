@@ -17,6 +17,4 @@ inline fun <reified T> ResultOf<T>.doIfSuccess(callback: (value: T) -> Unit) {
     }
 }
 
-fun <T> ResultOf<T>.successOr(fallback: T): T {
-    return (this as? ResultOf.Success<T>)?.value ?: fallback
-}
+fun <T> ResultOf<T>.successOr(fallback: T): T = (this as? ResultOf.Success<T>)?.value ?: fallback

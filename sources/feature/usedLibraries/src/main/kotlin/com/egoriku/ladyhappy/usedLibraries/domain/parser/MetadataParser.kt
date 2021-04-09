@@ -8,6 +8,8 @@ import java.io.InputStream
 import java.io.UnsupportedEncodingException
 import kotlin.math.min
 
+private const val ONE_KB = 1024
+
 class MetadataParser(private val context: Context) {
 
     fun getLicenses(): List<License> {
@@ -30,7 +32,7 @@ class MetadataParser(private val context: Context) {
 
                     License(libraryName = libraryName, libraryLicense = licenseText)
                 }
-                .sortedWith(Comparator { o1, o2 -> o1.libraryName.compareTo(o2.libraryName, ignoreCase = true) })
+                .sortedWith { o1, o2 -> o1.libraryName.compareTo(o2.libraryName, ignoreCase = true) }
     }
 
     private fun Context.openFile(name: String): InputStream =
@@ -38,7 +40,7 @@ class MetadataParser(private val context: Context) {
 
     private fun readFromFile(inputStream: InputStream, skipBytes: Long = 0, length: Int = -1): String {
         var lengthOffset = length
-        val bytes = ByteArray(1024)
+        val bytes = ByteArray(ONE_KB)
         val byteArrayOutputStream = ByteArrayOutputStream()
 
         return byteArrayOutputStream.use {
@@ -51,7 +53,7 @@ class MetadataParser(private val context: Context) {
                     }
 
                     while (lengthOffset > 0) {
-                        val read = inputStream.read(bytes, 0, min(lengthOffset, 1024))
+                        val read = inputStream.read(bytes, 0, min(lengthOffset, ONE_KB))
                         if (read == -1) {
                             break
                         }

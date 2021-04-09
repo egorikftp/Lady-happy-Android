@@ -1,32 +1,36 @@
 package com.egoriku.ladyhappy.catalog.subcategory.domain.usecase
 
-import com.egoriku.ladyhappy.catalog.subcategory.data.entity.SubCategoryEntity
-import com.egoriku.ladyhappy.catalog.subcategory.data.repository.SubcategoryRepository
-import com.egoriku.ladyhappy.catalog.subcategory.domain.model.SubCategoryItem
-import com.egoriku.ladyhappy.core.sharedmodel.ImageEntity
-import com.egoriku.ladyhappy.mozaik.model.MozaikItem
+import com.egoriku.ladyhappy.catalog.subcategory.data.repository.ISubcategoryRepository
+import com.egoriku.ladyhappy.core.IStringResource
+import com.egoriku.ladyhappy.core.dateformat.ddMMMyyyy
+import com.egoriku.ladyhappy.core.sharedmodel.domain.SubCategoryModel
+import com.egoriku.ladyhappy.core.sharedmodel.entity.SubCategoryEntity
+import com.egoriku.ladyhappy.core.sharedmodel.mapper.ImageEntityMapper
 import com.egoriku.ladyhappy.network.ResultOf
 
-class CatalogUseCase(private val subcategoryRepository: SubcategoryRepository) {
+internal class CatalogUseCase(
+        private val subcategoryRepository: ISubcategoryRepository,
+        private val stringResource: IStringResource
+) : ICatalogUseCase {
 
-    private val entityTransform: (SubCategoryEntity) -> SubCategoryItem = { entity: SubCategoryEntity ->
-        SubCategoryItem(
-                images = entity.images.map(imageTransform),
-                name = entity.subCategoryName,
+    private val entityTransform: (SubCategoryEntity) -> SubCategoryModel = { entity: SubCategoryEntity ->
+        SubCategoryModel(
+                categoryId = entity.categoryId,
+                subCategoryId = entity.subCategoryId,
+                images = entity.images.map(ImageEntityMapper()),
+                subCategoryName = entity.subCategoryName,
                 isPopular = entity.isPopular,
-                publishedCount = entity.publishedCount
+                publishedCount = entity.publishedCount,
+                description = entity.description,
+                documentReference = entity.documentReference,
+                lastEditTime = when (val date = entity.lastEditTime) {
+                    null -> stringResource.notEdited
+                    else -> date.ddMMMyyyy()
+                }
         )
     }
 
-    private val imageTransform: (ImageEntity) -> MozaikItem = { image: ImageEntity ->
-        MozaikItem(
-                width = image.width,
-                height = image.height,
-                url = image.url
-        )
-    }
-
-    suspend fun loadSubCategories(categoryId: Int): ResultOf<List<SubCategoryItem>> =
+    override suspend fun loadSubCategories(categoryId: Int) =
             when (val subcategories = subcategoryRepository.fetchSubCategories(categoryId)) {
                 is ResultOf.Failure -> ResultOf.Failure(Exception("Response empty"))
                 is ResultOf.Success -> ResultOf.Success(
@@ -35,4 +39,9 @@ class CatalogUseCase(private val subcategoryRepository: SubcategoryRepository) {
                                 .map(entityTransform)
                 )
             }
+}
+
+interface ICatalogUseCase {
+
+    suspend fun loadSubCategories(categoryId: Int): ResultOf<List<SubCategoryModel>>
 }

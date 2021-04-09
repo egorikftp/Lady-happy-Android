@@ -18,5 +18,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.50"
-        tools:text="@string/adapter_item_header_quotes" />
+        tools:text="@string/landing_adapter_item_header_quotes" />
 </androidx.constraintlayout.widget.ConstraintLayout>

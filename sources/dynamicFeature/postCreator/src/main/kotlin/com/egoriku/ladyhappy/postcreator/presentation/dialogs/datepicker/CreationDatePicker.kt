@@ -10,14 +10,17 @@ import com.google.android.material.datepicker.CalendarConstraints
 import com.google.android.material.datepicker.MaterialDatePicker
 import java.util.*
 
+private const val START_YEAR = 2015
+private const val END_YEAR = 2025
+
 class CreationDatePicker {
 
     private val startDate: Calendar = Calendar.getInstance(TimeZone.getTimeZone(UTC)).apply {
-        set(Calendar.YEAR, 2015)
+        set(Calendar.YEAR, START_YEAR)
     }
 
     private val endDate: Calendar = Calendar.getInstance(TimeZone.getTimeZone(UTC)).apply {
-        set(Calendar.YEAR, 2025)
+        set(Calendar.YEAR, END_YEAR)
     }
 
     fun getDatePicker(): MaterialDatePicker<Long> {

@@ -22,40 +22,18 @@ import com.egoriku.ladyhappy.extensions.setImageTintList
 import com.egoriku.ladyhappy.landing.R
 import com.egoriku.ladyhappy.landing.common.PredefinedResources
 import com.egoriku.ladyhappy.landing.domain.model.SocialModel
+import kotlin.properties.Delegates
 
 internal class SocialView : LinearLayout, View.OnClickListener {
 
-    enum class AnimationState {
-        NEED_SHOW, NEED_HIDE
-    }
-
-    operator fun AnimationState.not() = when (this) {
-        AnimationState.NEED_HIDE -> AnimationState.NEED_SHOW
-        AnimationState.NEED_SHOW -> AnimationState.NEED_HIDE
-    }
-
-    private companion object DefaultValues {
-        const val DEFAULT_MAX_PADDING = 30
-        const val DEFAULT_ITEM_SIDE_SIZE = 120
-        const val ANIMATION_DURATION = 300L
-        const val ANIMATION_SHOW_OFFSET = 100L
-        const val ANIMATION_HIDE_OFFSET = 50L
-
-        const val VIEW_DEFAULT_POSITION = 0f
-        const val VIEW_OFFSET_POSITION = -300f
-
-        const val MIN_ALPHA = 0f
-        const val MAX_ALPHA = 1f
-    }
-
     private var animationState = AnimationState.NEED_SHOW
 
-    private lateinit var animatorSet: AnimatorSet
+    private var animatorSet: AnimatorSet by Delegates.notNull()
 
     private var itemPadding = 0
     private var itemSideSize = 0
 
-    private lateinit var onClickListener: (url: String) -> Unit
+    var socialClickListener: ((url: String) -> Unit)? = null
 
     constructor(context: Context) : this(context, null)
     constructor(context: Context, attrs: AttributeSet?) : this(context, attrs, 0)
@@ -143,21 +121,23 @@ internal class SocialView : LinearLayout, View.OnClickListener {
 
     private fun getAnimation(view: View, viewPosition: Int): Animator {
         return if (animationState == AnimationState.NEED_SHOW) {
-            ObjectAnimator.ofPropertyValuesHolder(view,
+            ObjectAnimator.ofPropertyValuesHolder(
+                    view,
                     ofFloat(View.ALPHA, MIN_ALPHA, MAX_ALPHA),
-                    ofFloat(View.TRANSLATION_Y, VIEW_OFFSET_POSITION, VIEW_DEFAULT_POSITION))
-                    .apply {
-                        duration = ANIMATION_DURATION
-                        startDelay = (ANIMATION_SHOW_OFFSET * viewPosition)
-                    }
+                    ofFloat(View.TRANSLATION_Y, VIEW_OFFSET_POSITION, VIEW_DEFAULT_POSITION)
+            ).apply {
+                duration = ANIMATION_DURATION
+                startDelay = ANIMATION_SHOW_OFFSET * viewPosition
+            }
         } else {
-            ObjectAnimator.ofPropertyValuesHolder(view,
+            ObjectAnimator.ofPropertyValuesHolder(
+                    view,
                     ofFloat(View.ALPHA, MAX_ALPHA, MIN_ALPHA),
-                    ofFloat(View.TRANSLATION_Y, VIEW_DEFAULT_POSITION, VIEW_OFFSET_POSITION))
-                    .apply {
-                        duration = ANIMATION_DURATION
-                        startDelay = (ANIMATION_HIDE_OFFSET * viewPosition)
-                    }
+                    ofFloat(View.TRANSLATION_Y, VIEW_DEFAULT_POSITION, VIEW_OFFSET_POSITION)
+            ).apply {
+                duration = ANIMATION_DURATION
+                startDelay = ANIMATION_HIDE_OFFSET * viewPosition
+            }
         }
     }
 
@@ -174,12 +154,14 @@ internal class SocialView : LinearLayout, View.OnClickListener {
             val animation = AlphaAnimation(MAX_ALPHA, MIN_ALPHA).apply {
                 duration = ANIMATION_DURATION * 2
                 fillAfter = true
-                setAnimationListener(object : SimpleAnimationListener {
-                    override fun onAnimationEnd(animation: Animation?) {
-                        super.onAnimationEnd(animation)
-                        background = ColorDrawable(context.colorCompat(R.color.transparent))
-                    }
-                })
+                setAnimationListener(
+                        object : SimpleAnimationListener {
+                            override fun onAnimationEnd(animation: Animation?) {
+                                super.onAnimationEnd(animation)
+                                background = ColorDrawable(context.colorCompat(R.color.transparent))
+                            }
+                        }
+                )
             }
 
             startAnimation(animation)
@@ -195,23 +177,45 @@ internal class SocialView : LinearLayout, View.OnClickListener {
     }
 
     override fun onClick(v: View) {
-        onClickListener(v.tag.toString())
+        socialClickListener?.invoke(v.tag.toString())
     }
 
     fun setSocialModel(list: List<SocialModel>) {
         list.forEach {
-            addView(AppCompatImageButton(context).apply {
-                alpha = MIN_ALPHA
-                tag = it.socialUrl
-                scaleType = ImageView.ScaleType.FIT_CENTER
-                setImageResource(PredefinedResources.getDrawableByType(it.type))
-                setBackgroundResource(R.drawable.bg_social_view)
-                setImageTintList(R.color.selector_social_icon)
-            }, LayoutParams.WRAP_CONTENT)
+            addView(
+                    AppCompatImageButton(context).apply {
+                        alpha = MIN_ALPHA
+                        tag = it.socialUrl
+                        scaleType = ImageView.ScaleType.FIT_CENTER
+                        setImageResource(PredefinedResources.getDrawableByType(it.type))
+                        setBackgroundResource(R.drawable.bg_social_view)
+                        setImageTintList(R.color.selector_social_icon)
+                    },
+                    LayoutParams.WRAP_CONTENT
+            )
         }
     }
 
-    fun setOnSocialIconClickListener(onClickListener: (url: String) -> Unit) {
-        this.onClickListener = onClickListener
+    enum class AnimationState {
+        NEED_SHOW, NEED_HIDE
+    }
+
+    operator fun AnimationState.not() = when (this) {
+        AnimationState.NEED_HIDE -> AnimationState.NEED_SHOW
+        AnimationState.NEED_SHOW -> AnimationState.NEED_HIDE
+    }
+
+    companion object DefaultValues {
+        const val DEFAULT_MAX_PADDING = 30
+        const val DEFAULT_ITEM_SIDE_SIZE = 120
+        const val ANIMATION_DURATION = 300L
+        const val ANIMATION_SHOW_OFFSET = 100L
+        const val ANIMATION_HIDE_OFFSET = 50L
+
+        const val VIEW_DEFAULT_POSITION = 0f
+        const val VIEW_OFFSET_POSITION = -300f
+
+        const val MIN_ALPHA = 0f
+        const val MAX_ALPHA = 1f
     }
 }

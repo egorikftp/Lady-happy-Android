@@ -2,10 +2,12 @@ package com.egoriku.ladyhappy.mainscreen.presentation.components.dynamicFeature
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.egoriku.ladyhappy.core.constant.DYNAMIC_FEATURE_POST_CREATOR
+import com.egoriku.ladyhappy.core.sharedmodel.key.EDIT_DYNAMIC_FEATURE
+import com.egoriku.ladyhappy.core.sharedmodel.key.POST_CREATOR_DYNAMIC_FEATURE
+import com.egoriku.ladyhappy.core.sharedmodel.params.EditParams
+import com.egoriku.ladyhappy.core.sharedmodel.params.PostCreatorParams
 import com.egoriku.ladyhappy.extensions.logD
 import com.google.android.play.core.ktx.*
-import com.google.android.play.core.splitinstall.SplitInstallException
 import com.google.android.play.core.splitinstall.SplitInstallManager
 import com.google.android.play.core.splitinstall.model.SplitInstallSessionStatus
 import kotlinx.coroutines.flow.*
@@ -16,9 +18,10 @@ class DynamicFeatureViewModel(
 ) : ViewModel() {
 
     private val _events = MutableSharedFlow<DynamicFeatureEvent>()
-    val events: SharedFlow<DynamicFeatureEvent> = _events
+    val events: SharedFlow<DynamicFeatureEvent> = _events.asSharedFlow()
 
-    val postCreatorModuleStatus: StateFlow<ModuleStatus> = getStatusFlowForModule(DYNAMIC_FEATURE_POST_CREATOR)
+    val postCreatorModuleStatus: StateFlow<ModuleStatus> = getStatusFlowForModule(POST_CREATOR_DYNAMIC_FEATURE)
+    val editModuleStatus: StateFlow<ModuleStatus> = getStatusFlowForModule(EDIT_DYNAMIC_FEATURE)
 
     private fun getStatusFlowForModule(moduleName: String): StateFlow<ModuleStatus> {
         return splitInstallManager.requestProgressFlow()
@@ -50,29 +53,47 @@ class DynamicFeatureViewModel(
                     }
                 }.catch {
                     viewModelScope.launch {
-                        _events.emit(DynamicFeatureEvent.ToastEvent(
-                                "Something went wrong. No install progress will be reported."
-                        ))
+                        _events.emit(
+                                DynamicFeatureEvent.ToastEvent(
+                                        "Something went wrong. No install progress will be reported."
+                                )
+                        )
                     }
                     emit(ModuleStatus.Unavailable)
                 }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(), ModuleStatus.None)
     }
 
-    fun invokePostCreator() {
-        tryToOpenDynamicFeature(
-                moduleName = DYNAMIC_FEATURE_POST_CREATOR,
-                fragmentName = "com.egoriku.ladyhappy.postcreator.presentation.PostCreatorFragment"
-        )
+    fun invokePostCreatorOrNoting(postCreatorParams: PostCreatorParams) {
+        if (splitInstallManager.installedModules.contains(POST_CREATOR_DYNAMIC_FEATURE)) {
+            viewModelScope.launch {
+                _events.emit(
+                        DynamicFeatureEvent.NavigationEvent(
+                                screen = DynamicScreen.PostCreator(params = postCreatorParams)
+                        )
+                )
+            }
+        }
     }
 
-    private fun tryToOpenDynamicFeature(moduleName: String, fragmentName: String) {
+    fun invokeEditOrInstall(editParams: EditParams) = tryToOpenDynamicFeature(
+            moduleName = EDIT_DYNAMIC_FEATURE,
+            dynamicScreen = DynamicScreen.Edit(editParams = editParams)
+    )
+
+    fun invokePostCreatorOrInstall() = tryToOpenDynamicFeature(
+            moduleName = POST_CREATOR_DYNAMIC_FEATURE,
+            dynamicScreen = DynamicScreen.PostCreator()
+    )
+
+    private fun tryToOpenDynamicFeature(moduleName: String, dynamicScreen: DynamicScreen) {
         if (splitInstallManager.installedModules.contains(moduleName)) {
             viewModelScope.launch {
-                _events.emit(DynamicFeatureEvent.NavigationEvent(fragmentName))
+                _events.emit(DynamicFeatureEvent.NavigationEvent(dynamicScreen))
             }
         } else {
             val status = when (moduleName) {
-                DYNAMIC_FEATURE_POST_CREATOR -> postCreatorModuleStatus.value
+                POST_CREATOR_DYNAMIC_FEATURE -> postCreatorModuleStatus.value
+                EDIT_DYNAMIC_FEATURE -> editModuleStatus.value
                 else -> throw IllegalArgumentException("State not implemented")
             }
             if (status is ModuleStatus.NeedsConfirmation) {
@@ -87,9 +108,9 @@ class DynamicFeatureViewModel(
 
     private fun requestModuleInstallation(moduleName: String) {
         viewModelScope.launch {
-            try {
+            runCatching {
                 splitInstallManager.requestInstall(listOf(moduleName))
-            } catch (e: SplitInstallException) {
+            }.getOrElse {
                 _events.emit(DynamicFeatureEvent.ToastEvent("Failed starting installation of $moduleName"))
             }
         }

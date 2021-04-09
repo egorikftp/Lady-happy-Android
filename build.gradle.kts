@@ -9,6 +9,7 @@ plugins {
 buildscript {
     repositories {
         google()
+        mavenCentral()
         jcenter()
         maven(url = "https://jitpack.io")
     }
@@ -20,14 +21,6 @@ buildscript {
         classpath(GradlePlugins.googleOssLicenses)
         classpath(GradlePlugins.gradleTools)
         classpath(GradlePlugins.kotlinGradle)
-    }
-}
-
-allprojects {
-    repositories {
-        google()
-        jcenter()
-        maven(url = "https://jitpack.io")
     }
 }
 
@@ -64,6 +57,7 @@ subprojects {
 
     detekt {
         buildUponDefaultConfig = true
+        autoCorrect = true
 
         reports {
             html.enabled = true

@@ -13,7 +13,9 @@ import com.egoriku.ladyhappy.settings.presentation.view.State.ANON
 import com.egoriku.ladyhappy.settings.presentation.view.State.LOGGED_IN
 
 internal class LoginView @JvmOverloads constructor(
-        context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
+        context: Context,
+        attrs: AttributeSet? = null,
+        defStyleAttr: Int = 0
 ) : ConstraintLayout(context, attrs, defStyleAttr) {
 
     private val binding = ViewLoginBinding.inflate(inflater(), this)
@@ -32,20 +34,16 @@ internal class LoginView @JvmOverloads constructor(
     }
 
     private fun setState() = when (state) {
-        LOGGED_IN -> {
-            with(binding) {
-                loginHint.gone()
-                loginButton.text = getString(R.string.settings_log_out)
-                userName.visible()
-            }
+        LOGGED_IN -> with(binding) {
+            loginHint.gone()
+            loginButton.text = getString(R.string.settings_log_out)
+            userName.visible()
         }
 
-        ANON -> {
-            with(binding) {
-                userName.gone()
-                loginHint.visible()
-                loginButton.text = getString(R.string.settings_login)
-            }
+        ANON -> with(binding) {
+            userName.gone()
+            loginHint.visible()
+            loginButton.text = getString(R.string.settings_login)
         }
     }
 
