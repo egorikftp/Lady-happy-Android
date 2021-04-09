@@ -258,12 +258,12 @@ object PredefinedData {
             ColorModel(colorId = 1, name = "Молочный", colorHex = "#fff9f0"),
             ColorModel(colorId = 2, name = "Черный", colorHex = "#0e0c11"),
             ColorModel(colorId = 3, name = "Оранжевый", colorHex = "#ef5b11"),
-            ColorModel(colorId = 4, name = "Горчица", colorHex = "#f8b52d"),
+            ColorModel(colorId = 4, name = "Желтый", colorHex = "#f8b52d"),
             ColorModel(colorId = 5, name = "Красный", colorHex = "#9e1212"),
             ColorModel(colorId = 6, name = "Фиолетовый", colorHex = "#68396f"),
             ColorModel(colorId = 7, name = "Розовый", colorHex = "#df89a8"),
             ColorModel(colorId = 8, name = "Синий", colorHex = "#2b6596"),
-            ColorModel(colorId = 9, name = "Зеленый", colorHex = "#1b765b"),
+            ColorModel(colorId = 9, name = "Зеленый", colorHex = "#38761d"),
             ColorModel(colorId = 10, name = "Коричневый", colorHex = "#866041"),
             ColorModel(colorId = 11, name = "Серый", colorHex = "#999999")
     )
