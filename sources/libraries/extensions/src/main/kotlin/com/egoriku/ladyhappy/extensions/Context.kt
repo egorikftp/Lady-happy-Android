@@ -5,11 +5,15 @@ package com.egoriku.ladyhappy.extensions
 import android.content.Context
 import android.content.res.ColorStateList
 import android.graphics.drawable.Drawable
+import android.net.Uri
+import android.provider.OpenableColumns
 import android.util.TypedValue
 import android.view.LayoutInflater
 import androidx.annotation.*
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.content.ContextCompat
+import java.io.File
+import java.util.*
 
 fun Context.colorFromAttr(@AttrRes attribute: Int) = with(TypedValue()) {
     theme.resolveAttribute(attribute, this, true)
@@ -57,3 +61,30 @@ fun Context.getQuantityStringZero(
 }
 
 fun Context.inflater(): LayoutInflater = LayoutInflater.from(this)
+
+inline fun Context.getFileName(uri: Uri): String {
+    var name: String? = when (uri.scheme?.toLowerCase(Locale.US)) {
+        "content" -> {
+            contentResolver.query(uri, null, null, null, null)?.use { cursor ->
+                if (cursor.moveToFirst()) {
+                    cursor.getString(cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME))
+                } else {
+                    null
+                }
+            }
+        }
+        else -> null
+    }
+
+    if (name.isNullOrEmpty()) {
+        name = uri.path
+
+        val cut = name?.lastIndexOf(File.separator) ?: -1
+
+        if (cut != -1) {
+            name = name?.substring(cut + 1)
+        }
+    }
+
+    return requireNotNull(name)
+}
