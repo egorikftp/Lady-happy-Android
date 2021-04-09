@@ -23,11 +23,23 @@ This project brings to the table set of best practices, tools, and solutions:
 * Modern architecture (Clean Architecture, Multi-Module setup, Model-View-ViewModel)
 * [Android Jetpack](https://developer.android.com/jetpack)
 * Single-activity architecture
-* CI/CD ([AppCenter](https://appcenter.ms/users/egorikftp/apps/Lady-Happy-Beta))
+* CI/CD ([AppCenter](https://appcenter.ms/users/egorikftp/apps/Lady-Happy-Beta)) and [GitHub Actions](https://docs.github.com/en/actions)
 * Dependency Injection ([Koin](https://github.com/InsertKoinIO/))
 * Material Design
 * Dark Theme
 
+
+# Integration with Google Assistance 🧏‍
+
+Currently available commands in production:
+* [actions.intent.GET_THING](https://developers.google.com/assistant/app/reference/built-in-intents/common/get-thing) - Easter egg in application, the real feature with search functionality will be available in the next feature drop. 
+
+	**Command example**: *Hey Google, search **[felt hats]** on lady happy*
+
+* [actions.intent.OPEN_APP_FEATURE](https://developers.google.com/assistant/app/reference/built-in-intents/common/open-app-feature) - voice intent for opening main application screens:
+
+	**Command example**: *Hey Google, open **[catalog, about, news, settings]** screen on lady happy*
+  
 
 # Built With 🛠
 
@@ -57,9 +69,15 @@ This project brings to the table set of best practices, tools, and solutions:
 # Try without building sources
 <a href='https://play.google.com/store/apps/details?id=com.egoriku.ladyhappy'><img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png' width="200"/></a>
 
+Future plans
+-------
+- Step by step migration to Jetpack Compose, please follow <b>compose</b> branch
+- Allow everyone to build project with demo keystore
+- Allow to try Dynamic delivery with demo credentials
+
+Other things please request using issues
 
 # How to build
-
 //TODO :)
 
 # Find this repository useful? :heart:
