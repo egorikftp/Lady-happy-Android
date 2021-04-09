@@ -96,6 +96,21 @@
             tools:textColor="@color/Gray" />
 
         <TextView
+            android:id="@+id/countView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/material_padding_16"
+            android:layout_marginTop="@dimen/material_padding_8"
+            android:layout_marginEnd="@dimen/material_padding_16"
+            android:textColor="?attr/colorOnSurface"
+            android:typeface="sans"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/descriptionView"
+            tools:text="Hats description"
+            tools:textColor="@color/Gray" />
+
+        <TextView
             android:id="@+id/technicalInfo"
             android:layout_width="0dp"
             android:layout_height="wrap_content"

@@ -108,6 +108,7 @@
     <string name="edit_not_edited">Not edited yet</string>
     <string name="edit_dialog_header_edit_name">Edit name</string>
     <string name="edit_dialog_header_edit_description">Edit description</string>
+    <string name="edit_dialog_header_edit_count">Edit count</string>
 
     <!-- Detail page -->
     <string name="detail_page_no_data_available">Looks like it\'s still empty</string>

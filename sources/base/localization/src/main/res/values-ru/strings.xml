@@ -109,6 +109,7 @@
     <string name="edit_not_edited">Еще не редактировалось</string>
     <string name="edit_dialog_header_edit_name">Редактирование названия</string>
     <string name="edit_dialog_header_edit_description">Редактирование описания</string>
+    <string name="edit_dialog_header_edit_count">Редактирование количества</string>
 
     <!-- Detail page -->
     <string name="detail_page_no_data_available">Похоже здесь еще пусто</string>

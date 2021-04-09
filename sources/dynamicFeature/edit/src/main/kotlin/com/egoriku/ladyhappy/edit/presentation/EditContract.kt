@@ -12,6 +12,7 @@ sealed class Event : UiEvent {
     data class UpdatePopular(val isPopular: Boolean) : Event()
     data class UpdateTitle(val title: String) : Event()
     data class UpdateDescription(val description: String) : Event()
+    data class UpdateCount(val count: Int) : Event()
 }
 
 data class State(val editState: EditState) : UiState

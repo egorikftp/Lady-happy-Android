@@ -5,6 +5,7 @@ import com.egoriku.ladyhappy.core.sharedmodel.key.DocumentField.DESCRIPTION
 import com.egoriku.ladyhappy.core.sharedmodel.key.DocumentField.IS_POPULAR
 import com.egoriku.ladyhappy.core.sharedmodel.key.DocumentField.LAST_EDIT_TIME
 import com.egoriku.ladyhappy.core.sharedmodel.key.DocumentField.NAME
+import com.egoriku.ladyhappy.core.sharedmodel.key.DocumentField.PUBLISHED_COUNT
 import com.egoriku.ladyhappy.edit.data.datasource.UpdateSubCategoryDataSource
 import com.egoriku.ladyhappy.edit.domain.repository.IUpdateSubCategoryRepository
 import com.egoriku.ladyhappy.network.ResultOf
@@ -19,7 +20,8 @@ internal class UpdateSubCategoryRepository(
                 LAST_EDIT_TIME to FieldValue.serverTimestamp(),
                 NAME to subCategoryModel.subCategoryName,
                 IS_POPULAR to subCategoryModel.isPopular,
-                DESCRIPTION to subCategoryModel.description
+                DESCRIPTION to subCategoryModel.description,
+                PUBLISHED_COUNT to subCategoryModel.publishedCount
         )
 
         return updateSubCategoryDataSource.update(

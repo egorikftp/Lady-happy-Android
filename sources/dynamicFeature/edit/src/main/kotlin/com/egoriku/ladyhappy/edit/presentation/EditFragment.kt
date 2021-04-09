@@ -2,8 +2,7 @@ package com.egoriku.ladyhappy.edit.presentation
 
 import android.content.Context
 import android.os.Bundle
-import android.text.InputType.TYPE_CLASS_TEXT
-import android.text.InputType.TYPE_TEXT_FLAG_MULTI_LINE
+import android.text.InputType.*
 import android.view.View
 import androidx.core.os.bundleOf
 import androidx.fragment.app.setFragmentResult
@@ -17,6 +16,7 @@ import com.egoriku.ladyhappy.edit.R
 import com.egoriku.ladyhappy.edit.databinding.FragmentEditSubcategoryBinding
 import com.egoriku.ladyhappy.edit.koin.editModule
 import com.egoriku.ladyhappy.extensions.*
+import com.egoriku.ladyhappy.extensions.common.Constants.EMPTY
 import com.google.android.play.core.splitcompat.SplitCompat
 import com.maxkeppeler.sheets.input.InputSheet
 import com.maxkeppeler.sheets.input.type.InputEditText
@@ -83,7 +83,8 @@ class EditFragment : ScopeFragment(R.layout.fragment_edit_subcategory) {
         titleView.setOnClickListener {
             showEditBottomSheetDialog(
                     titleResId = R_localization.string.edit_dialog_header_edit_name,
-                    predefinedInput = titleView.text.toString()
+                    predefinedValue = titleView.text.toString(),
+                    inputType = TYPE_CLASS_TEXT or TYPE_TEXT_FLAG_MULTI_LINE
             ) {
                 viewModel.setEvent(Event.UpdateTitle(title = it))
             }
@@ -92,9 +93,20 @@ class EditFragment : ScopeFragment(R.layout.fragment_edit_subcategory) {
         descriptionView.setOnClickListener {
             showEditBottomSheetDialog(
                     titleResId = R_localization.string.edit_dialog_header_edit_description,
-                    predefinedInput = descriptionView.text.toString()
+                    predefinedValue = descriptionView.text.toString(),
+                    inputType = TYPE_CLASS_TEXT or TYPE_TEXT_FLAG_MULTI_LINE
             ) {
                 viewModel.setEvent(Event.UpdateDescription(description = it))
+            }
+        }
+
+        countView.setOnClickListener {
+            showEditBottomSheetDialog(
+                    titleResId = R_localization.string.edit_dialog_header_edit_count,
+                    predefinedValue = countView.text.toString(),
+                    inputType = TYPE_CLASS_NUMBER or TYPE_TEXT_FLAG_MULTI_LINE
+            ) {
+                viewModel.setEvent(Event.UpdateCount(count = it.toInt()))
             }
         }
 
@@ -133,6 +145,7 @@ class EditFragment : ScopeFragment(R.layout.fragment_edit_subcategory) {
                 popularSwitchView.isChecked = model.isPopular
                 titleView.text = model.subCategoryName
                 descriptionView.text = model.description
+                countView.text = model.publishedCount.toString()
                 lastEditTimeView.text = model.lastEditTime
                 documentReferenceView.text = model.documentReference
             }
@@ -141,17 +154,19 @@ class EditFragment : ScopeFragment(R.layout.fragment_edit_subcategory) {
 
     private fun showEditBottomSheetDialog(
             titleResId: Int,
-            predefinedInput: String,
+            predefinedValue: String,
+            inputType: Int,
             onNewValue: (String) -> Unit
     ) {
         InputSheet().show(requireContext()) {
             title(titleResId)
-            with(
-                    input = InputEditText {
-                        inputType(TYPE_CLASS_TEXT or TYPE_TEXT_FLAG_MULTI_LINE)
-                        defaultValue(predefinedInput)
-                    }
-            )
+            with(InputEditText {
+                // TODO: 4/9/21 remove label after library fix
+                label(EMPTY)
+                required()
+                inputType(inputType)
+                defaultValue(predefinedValue)
+            })
             onPositive { result ->
                 onNewValue(result.getStringOrThrow("0"))
             }

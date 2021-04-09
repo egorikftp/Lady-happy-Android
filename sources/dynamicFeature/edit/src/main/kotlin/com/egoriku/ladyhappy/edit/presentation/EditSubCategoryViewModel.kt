@@ -53,6 +53,9 @@ class EditSubCategoryViewModel(
             is Event.UpdateDescription -> setState {
                 copy(editState = EditState.Success(currentSubCategoryModel.copy(description = event.description)))
             }
+            is Event.UpdateCount -> setState {
+                copy(editState = EditState.Success(currentSubCategoryModel.copy(publishedCount = event.count)))
+            }
         }
     }
 }
