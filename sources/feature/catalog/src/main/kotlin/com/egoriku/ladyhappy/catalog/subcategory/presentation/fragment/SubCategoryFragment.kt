@@ -61,7 +61,7 @@ class SubCategoryFragment : ScopeFragment(R.layout.fragment_catalog) {
                 },
                 onLongPressListener = {
                     if (permissions.isAbleToEditPosts) {
-                        setFragmentResult(
+                        requireParentFragment().setFragmentResult(
                                 requestKey = DYNAMIC_FEATURE_REQUEST_KEY,
                                 result = bundleOf(
                                         DYNAMIC_FEATURE_BUNDLE_RESULT_KEY to DynamicFeature.Edit(
