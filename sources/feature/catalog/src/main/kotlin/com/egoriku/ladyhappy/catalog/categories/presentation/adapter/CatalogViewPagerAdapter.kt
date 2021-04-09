@@ -2,8 +2,6 @@ package com.egoriku.ladyhappy.catalog.categories.presentation.adapter
 
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
-import androidx.lifecycle.Lifecycle
 import androidx.recyclerview.widget.DiffUtil
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.adapter.FragmentViewHolder
@@ -11,10 +9,7 @@ import com.egoriku.ladyhappy.catalog.categories.domain.model.TabItem
 import com.egoriku.ladyhappy.catalog.subcategory.presentation.fragment.ARGUMENT_CATEGORY_ID
 import com.egoriku.ladyhappy.catalog.subcategory.presentation.fragment.SubCategoryFragment
 
-class CatalogViewPagerAdapter(
-        private val fragmentManager: FragmentManager,
-        lifecycle: Lifecycle
-) : FragmentStateAdapter(fragmentManager, lifecycle) {
+class CatalogViewPagerAdapter(private val fragment: Fragment) : FragmentStateAdapter(fragment) {
 
     private val categories = mutableListOf<TabItem>()
 
@@ -37,7 +32,7 @@ class CatalogViewPagerAdapter(
     ) {
         if (payloads.isNotEmpty()) {
             val tag = "f" + holder.itemId
-            val fragment = fragmentManager.findFragmentByTag(tag)
+            val fragment = fragment.childFragmentManager.findFragmentByTag(tag)
 
             when {
                 fragment != null -> (fragment as SubCategoryFragment).forceUpdate()
