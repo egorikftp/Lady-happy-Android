@@ -49,11 +49,14 @@ class PostViewModel(
     private val _uploadEvents = MutableSharedFlow<UploadEvents>()
     val uploadEvents: SharedFlow<UploadEvents> = _uploadEvents
 
+    private val _currentScreenState
+        get() = _screenState.value
+
     fun processImageResult(list: List<Uri>) {
-        val images = _screenState.value.imagesSection.images
+        val images = _currentScreenState.imagesSection.images
         val newImages = list.map { ImageItem(uri = it) }
 
-        _screenState.value = _screenState.value.copy(
+        _screenState.value = _currentScreenState.copy(
                 imagesSection = ImageSection(images + newImages)
         )
 
@@ -63,16 +66,16 @@ class PostViewModel(
     }
 
     fun removeAttachedImage(item: ImageItem) {
-        val images = _screenState.value.imagesSection.images.toMutableList()
+        val images = _currentScreenState.imagesSection.images.toMutableList()
         images.remove(item)
 
-        _screenState.value = _screenState.value.copy(imagesSection = ImageSection(images))
+        _screenState.value = _currentScreenState.copy(imagesSection = ImageSection(images))
 
         validateState()
     }
 
     fun setTitle(text: String) {
-        _screenState.value = _screenState.value.copy(title = text)
+        _screenState.value = _currentScreenState.copy(title = text)
 
         validateState()
     }
@@ -84,7 +87,7 @@ class PostViewModel(
                 }
         )
 
-        _screenState.value = _screenState.value.copy(
+        _screenState.value = _currentScreenState.copy(
                 category = ChooserType.Category(
                         title = categoryModel.name,
                         state = ChooserState.Selected,
@@ -102,11 +105,11 @@ class PostViewModel(
     fun setSubCategory(subCategory: String?) {
         val subCategoryModel = requireNotNull(
                 PredefinedData.allSubCategories
-                        .filter { it.categoryId == _screenState.value.category.categoryId }
+                        .filter { it.categoryId == _currentScreenState.category.categoryId }
                         .find { it.name == subCategory }
         )
 
-        _screenState.value = _screenState.value.copy(
+        _screenState.value = _currentScreenState.copy(
                 subCategory = ChooserType.SubCategory(
                         title = subCategoryModel.name,
                         state = ChooserState.Selected,
@@ -119,7 +122,7 @@ class PostViewModel(
     }
 
     fun setColor(colors: List<ColorModel>) {
-        _screenState.value = _screenState.value.copy(
+        _screenState.value = _currentScreenState.copy(
                 color = ChooserType.Color(
                         title = colors.joinToString { it.name },
                         state = ChooserState.Selected,
@@ -133,7 +136,7 @@ class PostViewModel(
     fun setDate(dateInMillis: Long) {
         val date = Date(dateInMillis)
 
-        _screenState.value = _screenState.value.copy(
+        _screenState.value = _currentScreenState.copy(
                 creationDate = ChooserType.CreationDate(
                         date = date,
                         title = date.ddMMMyyyy(),
@@ -146,20 +149,20 @@ class PostViewModel(
 
     fun resetByChooserType(type: ChooserType) {
         _screenState.value = when (type) {
-            is ChooserType.Category -> _screenState.value.copy(
+            is ChooserType.Category -> _currentScreenState.copy(
                     category = ChooserType.Category(state = ChooserState.Initial),
                     subCategory = null
             )
-            is ChooserType.SubCategory -> _screenState.value.copy(
+            is ChooserType.SubCategory -> _currentScreenState.copy(
                     subCategory = ChooserType.SubCategory(
                             state = ChooserState.Initial,
-                            categoryId = _screenState.value.category.categoryId
+                            categoryId = _currentScreenState.category.categoryId
                     )
             )
-            is ChooserType.Color -> _screenState.value.copy(
+            is ChooserType.Color -> _currentScreenState.copy(
                     color = ChooserType.Color(state = ChooserState.Initial)
             )
-            is ChooserType.CreationDate -> _screenState.value.copy(
+            is ChooserType.CreationDate -> _currentScreenState.copy(
                     creationDate = ChooserType.CreationDate(state = ChooserState.Initial)
             )
         }
@@ -223,11 +226,15 @@ class PostViewModel(
 
     private fun tryToExtractImageDate() {
         viewModelScope.launch {
-            val uri = _screenState.value.imagesSection.images.first().uri
+            val images = _currentScreenState.imagesSection.images
 
-            withContext(Dispatchers.IO) {
-                getApplication<Application>().contentResolver.openInputStream(uri)?.use {
-                    setDate(ExifInterface(it).imageCreationDate)
+            if (images.isNotEmpty()) {
+                val uri = images.first().uri
+
+                withContext(Dispatchers.IO) {
+                    getApplication<Application>().contentResolver.openInputStream(uri)?.use {
+                        setDate(ExifInterface(it).imageCreationDate)
+                    }
                 }
             }
         }
