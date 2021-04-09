@@ -73,10 +73,6 @@ class DetailPageFragment : ScopeFragment(R.layout.fragment_detail), DetailPage {
             initAdapter()
             initAppBarScrollListener()
 
-            fab.setOnClickListener {
-                toast("Filter click")
-            }
-
             closeView.setOnClickListener {
                 router.back()
             }
@@ -95,13 +91,8 @@ class DetailPageFragment : ScopeFragment(R.layout.fragment_detail), DetailPage {
                     loadState.append.endOfPaginationReached &&
                     detailAdapter.itemCount < 1
             ) {
-                fab.hide()
-                bottomAppBar.performHide()
-
                 placeholderContainer.emptyStateImage.visible()
                 placeholderContainer.emptyStateMessage.visible()
-            } else {
-                fab.show()
             }
 
             recyclerView.isVisible = loadState.source.refresh is LoadState.NotLoading
@@ -115,9 +106,6 @@ class DetailPageFragment : ScopeFragment(R.layout.fragment_detail), DetailPage {
                     ?: loadState.source.refresh as? LoadState.Error
             errorState?.let {
                 toast(getString(R.string.detail_page_error_loading, it.error.toString()))
-
-                fab.hide()
-                bottomAppBar.performHide()
             }
         }
 
