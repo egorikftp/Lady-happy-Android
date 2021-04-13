@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/contentFullScreen"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -52,4 +53,30 @@
             app:labelVisibilityMode="labeled"
             app:menu="@menu/menu_main_navigation" />
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+    <LinearLayout
+        android:id="@+id/dynamicFeatureStatusContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="?android:colorBackground"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/material_padding_16"
+        android:paddingRight="@dimen/material_padding_16"
+        android:visibility="gone"
+        tools:background="@color/RealWhite80"
+        tools:visibility="visible">
+
+        <TextView
+            android:id="@+id/dynamicFeatureStatus"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="8dp"
+            tools:text="Installing" />
+
+        <com.google.android.material.progressindicator.LinearProgressIndicator
+            android:id="@+id/dynamicFeatureProgress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

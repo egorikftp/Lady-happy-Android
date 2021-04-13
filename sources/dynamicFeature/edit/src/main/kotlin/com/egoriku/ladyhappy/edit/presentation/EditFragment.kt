@@ -152,6 +152,7 @@ class EditFragment : ScopeFragment(R.layout.fragment_edit_subcategory) {
         }
     }
 
+    @Suppress("ForbiddenComment")
     private fun showEditBottomSheetDialog(
             titleResId: Int,
             predefinedValue: String,
@@ -160,13 +161,15 @@ class EditFragment : ScopeFragment(R.layout.fragment_edit_subcategory) {
     ) {
         InputSheet().show(requireContext()) {
             title(titleResId)
-            with(InputEditText {
-                // TODO: 4/9/21 remove label after library fix
-                label(EMPTY)
-                required()
-                inputType(inputType)
-                defaultValue(predefinedValue)
-            })
+            with(
+                    InputEditText {
+                        // TODO: 4/9/21 remove label after library fix
+                        label(EMPTY)
+                        required()
+                        inputType(inputType)
+                        defaultValue(predefinedValue)
+                    }
+            )
             onPositive { result ->
                 onNewValue(result.getStringOrThrow("0"))
             }

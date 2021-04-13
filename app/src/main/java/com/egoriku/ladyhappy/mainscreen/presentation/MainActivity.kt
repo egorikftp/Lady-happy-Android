@@ -5,8 +5,6 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
-import android.widget.ProgressBar
-import android.widget.TextView
 import androidx.annotation.IdRes
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.os.bundleOf
@@ -26,11 +24,9 @@ import com.egoriku.ladyhappy.core.sharedmodel.toNightMode
 import com.egoriku.ladyhappy.databinding.ActivityMainBinding
 import com.egoriku.ladyhappy.extensions.*
 import com.egoriku.ladyhappy.mainscreen.common.Constants.Tracking
-import com.egoriku.ladyhappy.mainscreen.presentation.balloon.DynamicFeatureBalloonFactory
-import com.egoriku.ladyhappy.mainscreen.presentation.components.dynamicFeature.DynamicFeatureEvent
-import com.egoriku.ladyhappy.mainscreen.presentation.components.dynamicFeature.DynamicFeatureViewModel
-import com.egoriku.ladyhappy.mainscreen.presentation.components.dynamicFeature.DynamicScreen
-import com.egoriku.ladyhappy.mainscreen.presentation.components.dynamicFeature.ModuleStatus
+import com.egoriku.ladyhappy.mainscreen.presentation.components.dynamicDelivery.DynamicFeatureEvent
+import com.egoriku.ladyhappy.mainscreen.presentation.components.dynamicDelivery.DynamicFeatureViewModel
+import com.egoriku.ladyhappy.mainscreen.presentation.components.dynamicDelivery.DynamicScreen
 import com.egoriku.ladyhappy.mainscreen.presentation.components.inAppReview.ReviewViewModel
 import com.egoriku.ladyhappy.mainscreen.presentation.components.inAppUpdates.InAppUpdateEvent
 import com.egoriku.ladyhappy.mainscreen.presentation.components.inAppUpdates.InAppUpdateViewModel
@@ -49,23 +45,17 @@ import com.google.android.play.core.ktx.bytesDownloaded
 import com.google.android.play.core.ktx.totalBytesToDownload
 import com.google.android.play.core.splitcompat.SplitCompat
 import com.google.android.play.core.splitinstall.SplitInstallManager
-import com.skydoves.balloon.Balloon
-import com.skydoves.balloon.balloon
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import org.koin.androidx.scope.ScopeActivity
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import kotlin.properties.Delegates
-import kotlin.time.ExperimentalTime
-import kotlin.time.seconds
 
 private const val INSTALL_CONFIRMATION_REQ_CODE = 1
 private const val UPDATE_CONFIRMATION_REQ_CODE = 2
 private const val KEY_SELECTED_MENU_ITEM = "selected_item"
 
 class MainActivity : ScopeActivity(R.layout.activity_main) {
-
-    private val dynamicFeatureBalloon by balloon<DynamicFeatureBalloonFactory>()
 
     private val binding by viewBinding(ActivityMainBinding::bind, R.id.contentFullScreen)
 
@@ -86,12 +76,6 @@ class MainActivity : ScopeActivity(R.layout.activity_main) {
     )
 
     private var snackBar: Snackbar by Delegates.notNull()
-
-    private val Balloon.balloonTitleTextView: TextView
-        get() = getContentView().findViewById(R.id.title)
-
-    private val Balloon.balloonProgressBar: ProgressBar
-        get() = getContentView().findViewById(R.id.progressBar)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -149,7 +133,7 @@ class MainActivity : ScopeActivity(R.layout.activity_main) {
         expandAppBarLayoutInPage()
 
         subscribeForInAppUpdate()
-        subscribeForDynamicFeatureInstall()
+        subscribeForDynamicFeatureEvents()
 
         subscribeForDynamicFeatureRequest()
 
@@ -245,27 +229,31 @@ class MainActivity : ScopeActivity(R.layout.activity_main) {
         }
     }
 
-    private fun subscribeForDynamicFeatureInstall() {
+    @Suppress("OptionalWhenBraces")
+    private fun subscribeForDynamicFeatureEvents() {
         lifecycleScope.launch {
             dynamicFeatureViewModel.events.collect { event ->
                 when (event) {
-                    is DynamicFeatureEvent.ToastEvent -> toast(event.message)
-                    is DynamicFeatureEvent.NavigationEvent -> when (val screen = event.screen) {
-                        is DynamicScreen.PostCreator -> {
-                            viewModel.navigateTo(
-                                    screen = PostCreatorScreen(
-                                            className = screen.className,
-                                            params = screen.params
-                                    )
-                            )
-                        }
-                        is DynamicScreen.Edit -> {
-                            viewModel.navigateTo(
-                                    screen = EditScreen(
-                                            className = screen.className,
-                                            params = screen.editParams
-                                    )
-                            )
+                    is DynamicFeatureEvent.NavigationEvent -> {
+                        binding.dynamicFeatureStatusContainer.gone()
+
+                        when (val screen = event.screen) {
+                            is DynamicScreen.PostCreator -> {
+                                viewModel.navigateTo(
+                                        screen = PostCreatorScreen(
+                                                className = screen.className,
+                                                params = screen.params
+                                        )
+                                )
+                            }
+                            is DynamicScreen.Edit -> {
+                                viewModel.navigateTo(
+                                        screen = EditScreen(
+                                                className = screen.className,
+                                                params = screen.editParams
+                                        )
+                                )
+                            }
                         }
                     }
                     is DynamicFeatureEvent.InstallConfirmationEvent ->
@@ -274,58 +262,20 @@ class MainActivity : ScopeActivity(R.layout.activity_main) {
                                 this@MainActivity,
                                 INSTALL_CONFIRMATION_REQ_CODE
                         )
-                    else -> error("Event type not handled: $event")
+                    is DynamicFeatureEvent.Downloading -> {
+                        binding.dynamicFeatureStatusContainer.visible()
+                        binding.dynamicFeatureStatus.text = getString(R.string.dynamic_delivery_downloading)
+                        binding.dynamicFeatureProgress.setProgressCompat(event.progress, true)
+                    }
+                    is DynamicFeatureEvent.Installing -> {
+                        binding.dynamicFeatureStatus.text = getString(R.string.dynamic_delivery_installing)
+                    }
+                    is DynamicFeatureEvent.InstallErrorEvent -> {
+                        binding.dynamicFeatureStatusContainer.gone()
+
+                        toast(getString(R.string.dynamic_delivery_feature_not_available))
+                    }
                 }
-            }
-        }
-
-        repeatingJobOnStarted {
-            dynamicFeatureViewModel.postCreatorModuleStatus.collect { status ->
-                handleModuleStatus(status)
-            }
-        }
-
-        repeatingJobOnStarted {
-            dynamicFeatureViewModel.editModuleStatus.collect { status ->
-                handleModuleStatus(status)
-            }
-        }
-    }
-
-    @OptIn(ExperimentalTime::class)
-    private fun handleModuleStatus(status: ModuleStatus) {
-        when (status) {
-            is ModuleStatus.Installing -> with(dynamicFeatureBalloon) {
-                showAlignTop(binding.bottomNavigation)
-
-                val progress = (status.progress * FULL_PERCENT).toInt()
-
-                balloonTitleTextView.text = getString(R.string.dynamic_delivery_installing, progress)
-                balloonProgressBar.apply {
-                    isIndeterminate = false
-                    setProgress(progress)
-                }
-            }
-            is ModuleStatus.Unavailable -> {
-                with(dynamicFeatureBalloon) {
-                    balloonTitleTextView.setText(R.string.dynamic_delivery_feature_not_available)
-                    balloonProgressBar.isIndeterminate = false
-                }
-
-                dynamicFeatureBalloon.dismissWithDelay(1.seconds.toLongMilliseconds())
-            }
-            is ModuleStatus.Installed -> {
-                dynamicFeatureViewModel.invokePostCreatorOrInstall()
-
-                dynamicFeatureBalloon.dismissWithDelay(1.seconds.toLongMilliseconds())
-            }
-            is ModuleStatus.NeedsConfirmation ->
-                splitInstallManager.startConfirmationDialogForResult(
-                        status.state,
-                        this@MainActivity,
-                        UPDATE_CONFIRMATION_REQ_CODE
-                )
-            ModuleStatus.None -> {
             }
         }
     }
@@ -336,8 +286,8 @@ class MainActivity : ScopeActivity(R.layout.activity_main) {
                 lifecycleOwner = this
         ) { _, bundle ->
             when (val feature = bundle.getParcelable<DynamicFeature>(DYNAMIC_FEATURE_BUNDLE_RESULT_KEY)) {
-                is DynamicFeature.PostCreator -> dynamicFeatureViewModel.invokePostCreatorOrInstall()
-                is DynamicFeature.Edit -> dynamicFeatureViewModel.invokeEditOrInstall(feature.editParams)
+                is DynamicFeature.PostCreator -> dynamicFeatureViewModel.invokePostCreator(feature.postCreatorParams)
+                is DynamicFeature.Edit -> dynamicFeatureViewModel.invokeEdit(feature.editParams)
             }
         }
     }
@@ -363,7 +313,7 @@ class MainActivity : ScopeActivity(R.layout.activity_main) {
 
     private fun Intent.handleSendImageIntent(isRestore: Boolean) {
         IntentActionSendHandler().extract(intent = this, isRestore = isRestore) {
-            dynamicFeatureViewModel.invokePostCreatorOrNoting(
+            dynamicFeatureViewModel.invokePostCreator(
                     postCreatorParams = PostCreatorParams(images = it)
             )
         }
