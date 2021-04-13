@@ -14,7 +14,7 @@ private const val DAYS_IN_MONTH = 30
 class InAppUpdateViewModel(updateManager: AppUpdateManager) : ViewModel() {
 
     private val _events = MutableSharedFlow<InAppUpdateEvent>()
-    val events: SharedFlow<InAppUpdateEvent> = _events
+    val events: SharedFlow<InAppUpdateEvent> = _events.asSharedFlow()
 
     val updateStatus: StateFlow<AppUpdateResult> = updateManager.requestUpdateFlow()
             .catch {
