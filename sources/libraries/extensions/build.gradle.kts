@@ -3,6 +3,12 @@ plugins {
     id("com.android.library")
 }
 
+android {
+    lintOptions {
+        isAbortOnError = false
+    }
+}
+
 withThirdPartyLibraries(
         Libs.appcompat,
         Libs.core,
