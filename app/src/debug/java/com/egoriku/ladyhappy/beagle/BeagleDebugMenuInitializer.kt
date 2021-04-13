@@ -20,8 +20,10 @@ class BeagleDebugMenuInitializer {
         Beagle.initialize(
                 application = this,
                 behavior = Behavior(
-                        shouldAddDebugMenu = {
-                            !javaClass.canonicalName.startsWith("com.google")
+                        shouldAddDebugMenu = { fragmentActivity ->
+                            val canonicalName = requireNotNull(fragmentActivity.javaClass.canonicalName)
+
+                            !canonicalName.startsWith("com.google")
                         }
                 ))
         Beagle.set(
