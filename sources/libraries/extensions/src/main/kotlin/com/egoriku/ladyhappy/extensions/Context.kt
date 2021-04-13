@@ -64,13 +64,11 @@ fun Context.inflater(): LayoutInflater = LayoutInflater.from(this)
 
 inline fun Context.getFileName(uri: Uri): String {
     var name: String? = when (uri.scheme?.toLowerCase(Locale.US)) {
-        "content" -> {
-            contentResolver.query(uri, null, null, null, null)?.use { cursor ->
-                if (cursor.moveToFirst()) {
-                    cursor.getString(cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME))
-                } else {
-                    null
-                }
+        "content" -> contentResolver.query(uri, null, null, null, null)?.use { cursor ->
+            if (cursor.moveToFirst()) {
+                cursor.getString(cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME))
+            } else {
+                null
             }
         }
         else -> null
