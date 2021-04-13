@@ -11,6 +11,12 @@ happyPlugin {
     viewBindingEnabled = true
 }
 
+android {
+    lintOptions {
+        isAbortOnError = false
+    }
+}
+
 dependencies {
     implementation(platform(Libs.firebaseBom))
 }
