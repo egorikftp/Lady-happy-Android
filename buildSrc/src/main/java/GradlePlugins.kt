@@ -6,7 +6,7 @@ object GradlePluginsVersion {
     const val detekt = "1.16.0"
     const val googleServices = "4.3.5"
     const val gradleTools = "4.1.3"
-    const val ossLicenses = "0.10.3"
+    const val ossLicenses = "0.10.4"
     const val versionPlugin = "0.38.0"
 }
 

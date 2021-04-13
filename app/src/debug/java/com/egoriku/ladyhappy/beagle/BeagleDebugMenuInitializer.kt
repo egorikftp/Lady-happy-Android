@@ -19,8 +19,13 @@ class BeagleDebugMenuInitializer {
 
         Beagle.initialize(
                 application = this,
-                behavior = Behavior(excludedPackageNames = listOf("com.google"))
-        )
+                behavior = Behavior(
+                        shouldAddDebugMenu = { fragmentActivity ->
+                            val canonicalName = requireNotNull(fragmentActivity.javaClass.canonicalName)
+
+                            !canonicalName.startsWith("com.google")
+                        }
+                ))
         Beagle.set(
                 HeaderModule(
                         title = getString(R.string.application_name),
