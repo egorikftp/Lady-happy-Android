@@ -49,11 +49,15 @@ class UploadImagesUseCase(
         }
     }
 
-    private fun getImageSize(uri: Uri): Pair<Int, Int> {
-        val options = BitmapFactory.Options()
-        options.inJustDecodeBounds = true
-        BitmapFactory.decodeFile(File(uri.path).absolutePath, options)
+    private fun getImageSize(uri: Uri) = when (val path = uri.path) {
+        null -> 0 to 0
+        else -> {
+            val options = BitmapFactory.Options().apply {
+                inJustDecodeBounds = true
+            }
+            BitmapFactory.decodeFile(File(path).absolutePath, options)
 
-        return options.outWidth to options.outHeight
+            options.outWidth to options.outHeight
+        }
     }
 }

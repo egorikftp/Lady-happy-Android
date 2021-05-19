@@ -14,14 +14,11 @@ import com.egoriku.plugin.extension.MyPluginExtension
 import com.egoriku.plugin.internal.appExtension
 import com.egoriku.plugin.internal.libraryExtension
 import com.egoriku.versions.ProjectVersion
-import org.gradle.api.JavaVersion
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.api.plugins.JavaPlugin
 import org.gradle.kotlin.dsl.create
 import org.gradle.kotlin.dsl.dependencies
-import org.jetbrains.kotlin.gradle.plugin.KotlinBasePluginWrapper
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 open class HappyXPlugin : Plugin<Project> {
 
@@ -44,14 +41,6 @@ open class HappyXPlugin : Plugin<Project> {
                         addCommonPlugins()
                         addAndroidDynamicSection()
                         addCommonDependencies()
-                    }
-                    is KotlinBasePluginWrapper -> {
-                        tasks.withType(KotlinCompile::class.java).configureEach {
-                            kotlinOptions {
-                                jvmTarget = "1.8"
-                                useIR = true
-                            }
-                        }
                     }
                 }
             }
@@ -99,11 +88,6 @@ private fun Project.addAndroidApplicationSection() = appExtension.run {
         resConfigs("en", "ru")
     }
 
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
-    }
-
     buildTypes {
         release {
             isDebuggable = false
@@ -129,11 +113,6 @@ private fun Project.addAndroidDynamicSection() = appExtension.run {
         versionCode = provideVersionCode()
         versionName = provideVersionName()
         consumerProguardFiles("consumer-rules.pro")
-    }
-
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
     }
 
     sourceSets {
@@ -166,11 +145,6 @@ private fun Project.addAndroidLibrarySection() = libraryExtension.run {
         main {
             java.srcDirs("src/main/kotlin")
         }
-    }
-
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
     }
 }
 

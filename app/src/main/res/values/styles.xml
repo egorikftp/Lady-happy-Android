@@ -38,10 +38,6 @@
         <item name="colorPlaceholder">@color/colorPlaceholder</item>
 
         <item name="materialAlertDialogTheme">@style/MaterialAlertDialog</item>
-
-        <!-- BottomSheet colors -->
-        <item name="sheetBackgroundColor">@color/colorSurface.Light</item>
-        <item name="sheetTitleColor">@color/colorOnSurface</item>
     </style>
 
     <style name="MaterialAlertDialog" parent="ThemeOverlay.MaterialComponents.MaterialAlertDialog">

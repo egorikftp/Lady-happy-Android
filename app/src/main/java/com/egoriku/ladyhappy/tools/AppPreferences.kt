@@ -33,13 +33,13 @@ internal class AppPreferences(context: Context) : IAppPreferences {
 
     private val selectedThemeChannel: ConflatedBroadcastChannel<String> by lazy {
         ConflatedBroadcastChannel<String>().also { channel ->
-            channel.offer(selectedTheme)
+            channel.trySend(selectedTheme)
         }
     }
 
     private val changeListener = SharedPreferences.OnSharedPreferenceChangeListener { _, key ->
         when (key) {
-            PREF_DARK_MODE_ENABLED -> selectedThemeChannel.offer(selectedTheme)
+            PREF_DARK_MODE_ENABLED -> selectedThemeChannel.trySend(selectedTheme)
         }
     }
 
