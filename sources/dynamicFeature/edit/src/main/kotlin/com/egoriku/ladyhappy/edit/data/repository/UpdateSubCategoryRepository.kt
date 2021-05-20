@@ -12,21 +12,21 @@ import com.egoriku.ladyhappy.network.ResultOf
 import com.google.firebase.firestore.FieldValue
 
 internal class UpdateSubCategoryRepository(
-        private val updateSubCategoryDataSource: UpdateSubCategoryDataSource
+    private val updateSubCategoryDataSource: UpdateSubCategoryDataSource
 ) : IUpdateSubCategoryRepository {
 
     override suspend fun upload(subCategoryModel: SubCategoryModel): ResultOf<Void> {
         val updatedFields = hashMapOf(
-                LAST_EDIT_TIME to FieldValue.serverTimestamp(),
-                NAME to subCategoryModel.subCategoryName,
-                IS_POPULAR to subCategoryModel.isPopular,
-                DESCRIPTION to subCategoryModel.description,
-                PUBLISHED_COUNT to subCategoryModel.publishedCount
+            LAST_EDIT_TIME to FieldValue.serverTimestamp(),
+            NAME to subCategoryModel.subCategoryName,
+            IS_POPULAR to subCategoryModel.isPopular,
+            DESCRIPTION to subCategoryModel.description,
+            PUBLISHED_COUNT to subCategoryModel.publishedCount
         )
 
         return updateSubCategoryDataSource.update(
-                documentReference = subCategoryModel.documentReference,
-                data = updatedFields
+            documentReference = subCategoryModel.documentReference,
+            data = updatedFields
         )
     }
 }

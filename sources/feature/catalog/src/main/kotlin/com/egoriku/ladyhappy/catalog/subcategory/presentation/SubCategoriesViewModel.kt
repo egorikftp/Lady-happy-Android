@@ -13,13 +13,14 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
 class SubCategoriesViewModel(
-        private val categoryId: Int,
-        private val featureProvider: IFeatureProvider,
-        private val router: IRouter,
-        private val catalogUseCase: ICatalogUseCase,
+    private val categoryId: Int,
+    private val featureProvider: IFeatureProvider,
+    private val router: IRouter,
+    private val catalogUseCase: ICatalogUseCase,
 ) : ViewModel() {
 
-    private val _subcategoryItems = MutableStateFlow<SubcategoryScreenState>(SubcategoryScreenState.Loading)
+    private val _subcategoryItems =
+        MutableStateFlow<SubcategoryScreenState>(SubcategoryScreenState.Loading)
     val subcategoryItems: StateFlow<SubcategoryScreenState> = _subcategoryItems
 
     init {
@@ -33,7 +34,8 @@ class SubCategoriesViewModel(
             _subcategoryItems.value = SubcategoryScreenState.Loading
 
             when (val result = catalogUseCase.loadSubCategories(categoryId)) {
-                is ResultOf.Success -> _subcategoryItems.value = SubcategoryScreenState.Success(result.value)
+                is ResultOf.Success -> _subcategoryItems.value =
+                    SubcategoryScreenState.Success(result.value)
                 is ResultOf.Failure -> _subcategoryItems.value = SubcategoryScreenState.Error
             }
         }
@@ -41,10 +43,10 @@ class SubCategoriesViewModel(
 
     fun openDetailPage(subCategoryModel: SubCategoryModel) {
         router.addScreenFullscreen(
-                screen = DetailPageScreen(
-                        featureProvider = featureProvider,
-                        subCategoryModel = subCategoryModel
-                )
+            screen = DetailPageScreen(
+                featureProvider = featureProvider,
+                subCategoryModel = subCategoryModel
+            )
         )
     }
 }

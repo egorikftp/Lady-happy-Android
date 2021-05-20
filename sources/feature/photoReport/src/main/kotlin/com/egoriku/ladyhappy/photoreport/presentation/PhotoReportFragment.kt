@@ -50,9 +50,9 @@ class PhotoReportFragment : ScopeFragment(R.layout.fragment_photo_report), Photo
             layoutManager = LinearLayoutManager(context)
             adapter = photoReportAdapter
             addItemDecoration(
-                    DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL).apply {
-                        setDrawable(drawableCompat(R.drawable.bg_photoreport_divider))
-                    }
+                DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL).apply {
+                    setDrawable(drawableCompat(R.drawable.bg_photoreport_divider))
+                }
             )
         }
 

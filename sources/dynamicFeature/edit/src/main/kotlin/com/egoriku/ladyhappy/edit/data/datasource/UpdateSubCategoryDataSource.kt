@@ -10,13 +10,13 @@ import kotlinx.coroutines.withContext
 internal class UpdateSubCategoryDataSource(private val firebase: IFirebase) {
 
     suspend fun update(
-            documentReference: String,
-            data: HashMap<String, Any>
+        documentReference: String,
+        data: HashMap<String, Any>
     ) = withContext(Dispatchers.IO) {
         firebase.firebaseFirestore
-                .collection(SUBCATEGORIES)
-                .document(documentReference)
-                .set(data, SetOptions.merge())
-                .awaitResult<Void>()
+            .collection(SUBCATEGORIES)
+            .document(documentReference)
+            .set(data, SetOptions.merge())
+            .awaitResult<Void>()
     }
 }

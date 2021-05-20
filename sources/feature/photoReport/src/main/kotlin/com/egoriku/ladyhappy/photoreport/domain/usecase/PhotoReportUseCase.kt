@@ -9,16 +9,17 @@ import com.egoriku.ladyhappy.photoreport.data.repository.IPhotoReportRepository
 import com.egoriku.ladyhappy.photoreport.domain.model.PhotoReportModel
 
 internal class PhotoReportUseCase(
-        private val photoReportRepository: IPhotoReportRepository
+    private val photoReportRepository: IPhotoReportRepository
 ) : IPhotoReportUseCase {
 
-    private val transformToModel: (PhotoReportEntity) -> PhotoReportModel = { entity: PhotoReportEntity ->
-        PhotoReportModel(
+    private val transformToModel: (PhotoReportEntity) -> PhotoReportModel =
+        { entity: PhotoReportEntity ->
+            PhotoReportModel(
                 date = entity.date.ddMMMyyyy(),
                 description = entity.description,
                 images = extractPhotos(entity)
-        )
-    }
+            )
+        }
 
     @Deprecated("Remove after implementation MozaikLayout 6+ items")
     private fun extractPhotos(entity: PhotoReportEntity): List<MozaikItem> {
@@ -31,10 +32,10 @@ internal class PhotoReportUseCase(
     }
 
     override suspend fun getPhotoReportInfo() =
-            when (val photoReportResult = photoReportRepository.getPhotoReport()) {
-                is ResultOf.Failure -> photoReportResult
-                is ResultOf.Success -> ResultOf.Success(photoReportResult.value.map(transformToModel))
-            }
+        when (val photoReportResult = photoReportRepository.getPhotoReport()) {
+            is ResultOf.Failure -> photoReportResult
+            is ResultOf.Success -> ResultOf.Success(photoReportResult.value.map(transformToModel))
+        }
 }
 
 interface IPhotoReportUseCase {

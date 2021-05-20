@@ -19,14 +19,14 @@ private const val CENTER_POSITION = 0.5f
 private const val BOTTOM_POSITION = 1f
 
 class GradientOverlayTransformation(
-        @ColorRes
-        private val startColor: Int,
+    @ColorRes
+    private val startColor: Int,
 
-        @ColorRes
-        private val centerColor: Int,
+    @ColorRes
+    private val centerColor: Int,
 
-        @ColorRes
-        private val endColor: Int
+    @ColorRes
+    private val endColor: Int
 ) : BitmapTransformation() {
 
     override fun equals(other: Any?) = other is GradientOverlayTransformation &&
@@ -46,15 +46,20 @@ class GradientOverlayTransformation(
         messageDigest.update(ID_BYTES)
 
         val radiusData = ByteBuffer
-                .allocate(CAPACITY)
-                .putInt(startColor)
-                .putInt(centerColor)
-                .putInt(endColor)
-                .array()
+            .allocate(CAPACITY)
+            .putInt(startColor)
+            .putInt(centerColor)
+            .putInt(endColor)
+            .array()
         messageDigest.update(radiusData)
     }
 
-    override fun transform(pool: BitmapPool, toTransform: Bitmap, outWidth: Int, outHeight: Int): Bitmap {
+    override fun transform(
+        pool: BitmapPool,
+        toTransform: Bitmap,
+        outWidth: Int,
+        outHeight: Int
+    ): Bitmap {
         val bitmap = pool[toTransform.width, toTransform.height, Bitmap.Config.ARGB_8888]
 
         val canvas = Canvas(bitmap).apply {
@@ -62,13 +67,13 @@ class GradientOverlayTransformation(
         }
 
         val shader = LinearGradient(
-                toTransform.width / 2f,
-                0f,
-                bitmap.width / 2f,
-                bitmap.height.toFloat(),
-                intArrayOf(startColor, centerColor, endColor),
-                floatArrayOf(TOP_POSITION, CENTER_POSITION, BOTTOM_POSITION),
-                TileMode.CLAMP
+            toTransform.width / 2f,
+            0f,
+            bitmap.width / 2f,
+            bitmap.height.toFloat(),
+            intArrayOf(startColor, centerColor, endColor),
+            floatArrayOf(TOP_POSITION, CENTER_POSITION, BOTTOM_POSITION),
+            TileMode.CLAMP
         )
 
         val paint = Paint().apply {
@@ -76,11 +81,11 @@ class GradientOverlayTransformation(
         }
 
         canvas.drawRect(
-                0f,
-                0f,
-                bitmap.width.toFloat(),
-                bitmap.height.toFloat(),
-                paint
+            0f,
+            0f,
+            bitmap.width.toFloat(),
+            bitmap.height.toFloat(),
+            paint
         )
 
         return bitmap

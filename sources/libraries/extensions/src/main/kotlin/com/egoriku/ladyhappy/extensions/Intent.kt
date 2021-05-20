@@ -8,18 +8,19 @@ import android.os.Parcelable
 import androidx.fragment.app.Fragment
 import java.io.Serializable
 
-fun Fragment.browseUrl(url: String, newTask: Boolean = false) = requireContext().browseUrl(url, newTask)
+fun Fragment.browseUrl(url: String, newTask: Boolean = false) =
+    requireContext().browseUrl(url, newTask)
 
 fun Context.browseUrl(url: String, newTask: Boolean = false) {
     runCatching {
         startActivity(
-                Intent(Intent.ACTION_VIEW).apply {
-                    data = Uri.parse(url)
+            Intent(Intent.ACTION_VIEW).apply {
+                data = Uri.parse(url)
 
-                    if (newTask) {
-                        addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                    }
+                if (newTask) {
+                    addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                 }
+            }
         )
     }.getOrElse {
         logD(it.message)
@@ -27,12 +28,12 @@ fun Context.browseUrl(url: String, newTask: Boolean = false) {
 }
 
 inline fun <reified T : Any> Fragment.intentFor(vararg params: Pair<String, Any>): Intent =
-        createIntent(ctx = requireActivity(), clazz = T::class.java, params = params)
+    createIntent(ctx = requireActivity(), clazz = T::class.java, params = params)
 
 fun <T> createIntent(ctx: Context, clazz: Class<out T>, params: Array<out Pair<String, Any>>) =
-        Intent(ctx, clazz).apply {
-            if (params.isNotEmpty()) fillIntentArguments(this, params)
-        }
+    Intent(ctx, clazz).apply {
+        if (params.isNotEmpty()) fillIntentArguments(this, params)
+    }
 
 private fun fillIntentArguments(intent: Intent, params: Array<out Pair<String, Any>>) {
     params.forEach {
@@ -54,7 +55,7 @@ private fun fillIntentArguments(intent: Intent, params: Array<out Pair<String, A
                 value.isArrayOf<String>() -> intent.putExtra(it.first, value)
                 value.isArrayOf<Parcelable>() -> intent.putExtra(it.first, value)
                 else -> throw IllegalArgumentException(
-                        "Intent extra ${it.first} has wrong type ${value.javaClass.name}"
+                    "Intent extra ${it.first} has wrong type ${value.javaClass.name}"
                 )
             }
             is IntArray -> intent.putExtra(it.first, value)
@@ -65,7 +66,7 @@ private fun fillIntentArguments(intent: Intent, params: Array<out Pair<String, A
             is ShortArray -> intent.putExtra(it.first, value)
             is BooleanArray -> intent.putExtra(it.first, value)
             else -> throw IllegalArgumentException(
-                    "Intent extra ${it.first} has wrong type ${value.javaClass.name}"
+                "Intent extra ${it.first} has wrong type ${value.javaClass.name}"
             )
         }
         return@forEach

@@ -20,8 +20,8 @@ import com.stfalcon.imageviewer.StfalconImageViewer
 class DetailAdapter : PagingDataAdapter<DetailModel, DetailAdapter.VH>(DiffCallback()) {
 
     override fun onCreateViewHolder(
-            parent: ViewGroup,
-            viewType: Int,
+        parent: ViewGroup,
+        viewType: Int,
     ) = VH(AdapterItemDetailBinding.inflate(parent.inflater(), parent, false))
 
     override fun onBindViewHolder(holder: VH, position: Int) {
@@ -30,7 +30,7 @@ class DetailAdapter : PagingDataAdapter<DetailModel, DetailAdapter.VH>(DiffCallb
     }
 
     inner class VH(
-            private val binding: AdapterItemDetailBinding,
+        private val binding: AdapterItemDetailBinding,
     ) : BaseViewHolder<DetailModel>(binding.root) {
 
         private var stfalconImageViewer: StfalconImageViewer<MozaikItem>? = null
@@ -38,9 +38,9 @@ class DetailAdapter : PagingDataAdapter<DetailModel, DetailAdapter.VH>(DiffCallb
         init {
             binding.mozaikLayout.onViewReady = { view, url ->
                 Glide.with(itemView.context)
-                        .load(url)
-                        .transition(DrawableTransitionOptions.withCrossFade(CROSSFADE_DURATION))
-                        .into(view)
+                    .load(url)
+                    .transition(DrawableTransitionOptions.withCrossFade(CROSSFADE_DURATION))
+                    .into(view)
             }
         }
 
@@ -61,9 +61,10 @@ class DetailAdapter : PagingDataAdapter<DetailModel, DetailAdapter.VH>(DiffCallb
                     stfalconImageViewer?.close()
                 }
 
-                stfalconImageViewer = StfalconImageViewer.Builder(itemView.context, images) { view, image ->
-                    Glide.with(view.context).load(image.url).into(view)
-                }.withStartPosition(position)
+                stfalconImageViewer =
+                    StfalconImageViewer.Builder(itemView.context, images) { view, image ->
+                        Glide.with(view.context).load(image.url).into(view)
+                    }.withStartPosition(position)
                         .withDismissListener {
                             stfalconImageViewer = null
                         }
@@ -71,7 +72,11 @@ class DetailAdapter : PagingDataAdapter<DetailModel, DetailAdapter.VH>(DiffCallb
                         .withTransitionFrom(transitionVew)
                         .withImageChangeListener {
                             photoOverlayActions.setTitle(position = it + 1, count = images.size)
-                            stfalconImageViewer?.updateTransitionImage(mozaikLayout.getItemByPosition(it))
+                            stfalconImageViewer?.updateTransitionImage(
+                                mozaikLayout.getItemByPosition(
+                                    it
+                                )
+                            )
                         }
                         .show()
             }
@@ -80,8 +85,10 @@ class DetailAdapter : PagingDataAdapter<DetailModel, DetailAdapter.VH>(DiffCallb
 
     internal class DiffCallback : DiffUtil.ItemCallback<DetailModel>() {
 
-        override fun areItemsTheSame(oldItem: DetailModel, newItem: DetailModel) = oldItem == newItem
+        override fun areItemsTheSame(oldItem: DetailModel, newItem: DetailModel) =
+            oldItem == newItem
 
-        override fun areContentsTheSame(oldItem: DetailModel, newItem: DetailModel) = oldItem == newItem
+        override fun areContentsTheSame(oldItem: DetailModel, newItem: DetailModel) =
+            oldItem == newItem
     }
 }

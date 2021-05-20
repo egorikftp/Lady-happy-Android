@@ -6,5 +6,5 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class EditParams(
-        val documentReference: String = EMPTY
+    val documentReference: String = EMPTY
 ) : Parcelable

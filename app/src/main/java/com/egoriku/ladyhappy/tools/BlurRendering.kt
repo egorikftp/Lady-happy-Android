@@ -10,7 +10,7 @@ internal class BlurRendering(context: Context) : IBlurRendering {
     private val gaussianBlur = RenderScriptGaussianBlur(context)
 
     override fun applyBlur(
-            radius: Float,
-            bitmap: Bitmap
+        radius: Float,
+        bitmap: Bitmap
     ): Bitmap = gaussianBlur.gaussianBlur(radius, bitmap)
 }

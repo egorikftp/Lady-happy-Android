@@ -26,9 +26,9 @@ class CatalogViewPagerAdapter(private val fragment: Fragment) : FragmentStateAda
     }
 
     override fun onBindViewHolder(
-            holder: FragmentViewHolder,
-            position: Int,
-            payloads: MutableList<Any>
+        holder: FragmentViewHolder,
+        position: Int,
+        payloads: MutableList<Any>
     ) {
         if (payloads.isNotEmpty()) {
             val tag = "f" + holder.itemId

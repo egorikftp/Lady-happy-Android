@@ -6,7 +6,7 @@ import com.egoriku.ladyhappy.navigation.screen.FragmentScreen
 import com.google.android.material.transition.MaterialSharedAxis
 
 class UsedLibrariesScreen(
-        private val featureProvider: IFeatureProvider
+    private val featureProvider: IFeatureProvider
 ) : FragmentScreen() {
 
     override val fragment: Fragment

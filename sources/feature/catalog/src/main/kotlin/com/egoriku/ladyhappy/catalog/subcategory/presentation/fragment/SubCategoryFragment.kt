@@ -53,24 +53,24 @@ class SubCategoryFragment : ScopeFragment(R.layout.fragment_catalog) {
         super.onViewCreated(view, savedInstanceState)
 
         subCategoriesAdapter = SubCategoriesAdapter(
-                onCatalogItemClick = {
-                    catalogViewModel.openDetailPage(it)
-                },
-                onTrendingClick = {
-                    viewHolderBalloon.showAlignLeft(it)
-                },
-                onLongPressListener = {
-                    if (permissions.isAbleToEditPosts) {
-                        requireParentFragment().setFragmentResult(
-                                requestKey = DYNAMIC_FEATURE_REQUEST_KEY,
-                                result = bundleOf(
-                                        DYNAMIC_FEATURE_BUNDLE_RESULT_KEY to DynamicFeature.Edit(
-                                                editParams = EditParams(documentReference = it)
-                                        )
-                                )
+            onCatalogItemClick = {
+                catalogViewModel.openDetailPage(it)
+            },
+            onTrendingClick = {
+                viewHolderBalloon.showAlignLeft(it)
+            },
+            onLongPressListener = {
+                if (permissions.isAbleToEditPosts) {
+                    requireParentFragment().setFragmentResult(
+                        requestKey = DYNAMIC_FEATURE_REQUEST_KEY,
+                        result = bundleOf(
+                            DYNAMIC_FEATURE_BUNDLE_RESULT_KEY to DynamicFeature.Edit(
+                                editParams = EditParams(documentReference = it)
+                            )
                         )
-                    }
+                    )
                 }
+            }
         )
 
         binding.catalogRecyclerView.apply {

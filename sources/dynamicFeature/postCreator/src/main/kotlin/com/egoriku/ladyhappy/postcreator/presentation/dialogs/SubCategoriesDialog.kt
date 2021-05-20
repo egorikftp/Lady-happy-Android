@@ -15,29 +15,31 @@ class SubCategoriesDialog : BaseDialogFragment() {
 
     private var selectedItemPosition = -1
 
-    override val dialogTitleResId: Int = R_localization.string.post_creator_subcategories_categories_dialog_title
+    override val dialogTitleResId: Int =
+        R_localization.string.post_creator_subcategories_categories_dialog_title
 
     override fun onBuildDialog(
-            builder: MaterialAlertDialogBuilder,
-            savedInstanceState: Bundle?,
+        builder: MaterialAlertDialogBuilder,
+        savedInstanceState: Bundle?,
     ): MaterialAlertDialogBuilder =
-            builder.setSingleChoiceItems(getCategories(requireArguments()), 0) { _, which ->
-                selectedItemPosition = which
-            }
+        builder.setSingleChoiceItems(getCategories(requireArguments()), 0) { _, which ->
+            selectedItemPosition = which
+        }
 
     override fun onPositiveButtonClick() {
         val checkedItemName = dataBySelectedPosition<String>()
 
         setFragmentResult(
-                KEY_CHOOSER_FRAGMENT_RESULT,
-                bundleOf(KEY_FRAGMENT_RESULT_BUNDLE to DialogResult.SubCategory(checkedItemName))
+            KEY_CHOOSER_FRAGMENT_RESULT,
+            bundleOf(KEY_FRAGMENT_RESULT_BUNDLE to DialogResult.SubCategory(checkedItemName))
         )
     }
 
     companion object {
         private const val EXTRA_SUB_CATEGORIES = "EXTRA_SUB_CATEGORIES"
 
-        private fun getCategories(bundle: Bundle) = bundle.getStringArrayList(EXTRA_SUB_CATEGORIES)?.toTypedArray()
+        private fun getCategories(bundle: Bundle) =
+            bundle.getStringArrayList(EXTRA_SUB_CATEGORIES)?.toTypedArray()
                 ?: throw IllegalArgumentException("Sub categories shouldn't be null")
 
         fun newInstance(subCategories: ArrayList<String>) = SubCategoriesDialog().apply {

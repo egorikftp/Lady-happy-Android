@@ -13,7 +13,7 @@ fun Int.adjustForBackground(backgroundColor: Int) = when {
 }
 
 fun Int.canDisplayOnBackground(
-        @ColorInt background: Int
+    @ColorInt background: Int
 ) = ColorUtils.calculateContrast(this, background) > CONTRAST_THRESHOLD
 
 fun Int.adjustLightness(lightnessFactor: Float): Int {

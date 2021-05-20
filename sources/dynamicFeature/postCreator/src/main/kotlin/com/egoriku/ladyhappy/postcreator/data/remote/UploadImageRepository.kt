@@ -10,12 +10,12 @@ class UploadImageRepository(firebase: IFirebase) {
     private val reference = firebase.firebaseStorage.reference
 
     suspend fun upload(
-            storagePath: String,
-            fileName: String,
-            bytes: ByteArray,
+        storagePath: String,
+        fileName: String,
+        bytes: ByteArray,
     ): String = withContext(Dispatchers.IO) {
         reference.child(storagePath + fileName)
-                .putBytes(bytes).await()
-                .storage.downloadUrl.await().toString()
+            .putBytes(bytes).await()
+            .storage.downloadUrl.await().toString()
     }
 }

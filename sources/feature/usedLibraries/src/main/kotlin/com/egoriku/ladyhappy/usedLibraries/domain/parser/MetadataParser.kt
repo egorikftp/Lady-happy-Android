@@ -14,31 +14,35 @@ class MetadataParser(private val context: Context) {
 
     fun getLicenses(): List<License> {
         return readFromFile(inputStream = context.openFile("third_party_license_metadata"))
-                .split("\n".toRegex())
-                .filter { it.isNotEmpty() }
-                .map { str ->
-                    val indexOfSpace = str.indexOf(" ")
-                    val licenseRegion = str
-                            .substring(0, indexOfSpace)
-                            .split(":".toRegex())
-                            .toTypedArray()
+            .split("\n".toRegex())
+            .filter { it.isNotEmpty() }
+            .map { str ->
+                val indexOfSpace = str.indexOf(" ")
+                val licenseRegion = str
+                    .substring(0, indexOfSpace)
+                    .split(":".toRegex())
+                    .toTypedArray()
 
-                    val libraryName = str.substring(indexOfSpace + 1)
-                    val licenseText = readFromFile(
-                            inputStream = context.openFile("third_party_licenses"),
-                            skipBytes = licenseRegion[0].toLong(),
-                            length = licenseRegion[1].toInt()
-                    )
+                val libraryName = str.substring(indexOfSpace + 1)
+                val licenseText = readFromFile(
+                    inputStream = context.openFile("third_party_licenses"),
+                    skipBytes = licenseRegion[0].toLong(),
+                    length = licenseRegion[1].toInt()
+                )
 
-                    License(libraryName = libraryName, libraryLicense = licenseText)
-                }
-                .sortedWith { o1, o2 -> o1.libraryName.compareTo(o2.libraryName, ignoreCase = true) }
+                License(libraryName = libraryName, libraryLicense = licenseText)
+            }
+            .sortedWith { o1, o2 -> o1.libraryName.compareTo(o2.libraryName, ignoreCase = true) }
     }
 
     private fun Context.openFile(name: String): InputStream =
-            resources.openRawResource(resources.getIdentifier(name, "raw", context.packageName))
+        resources.openRawResource(resources.getIdentifier(name, "raw", context.packageName))
 
-    private fun readFromFile(inputStream: InputStream, skipBytes: Long = 0, length: Int = -1): String {
+    private fun readFromFile(
+        inputStream: InputStream,
+        skipBytes: Long = 0,
+        length: Int = -1
+    ): String {
         var lengthOffset = length
         val bytes = ByteArray(ONE_KB)
         val byteArrayOutputStream = ByteArrayOutputStream()
@@ -64,7 +68,10 @@ class MetadataParser(private val context: Context) {
                     try {
                         byteArrayOutputStream.toString("UTF-8")
                     } catch (e: UnsupportedEncodingException) {
-                        throw RuntimeException("Unsupported encoding UTF8. This should always be supported.", e)
+                        throw RuntimeException(
+                            "Unsupported encoding UTF8. This should always be supported.",
+                            e
+                        )
                     }
                 } catch (ioException: IOException) {
                     throw RuntimeException("Failed to read license or metadata text.", ioException)

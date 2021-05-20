@@ -17,35 +17,35 @@ sealed class ChooserType {
     abstract val title: String
 
     data class Category(
-            override val title: String = EMPTY,
-            @StringRes
-            override val hintResId: Int = R_localization.string.post_creator_chooser_hint_categories,
-            override val state: ChooserState,
-            val categoryId: Int = -1,
+        override val title: String = EMPTY,
+        @StringRes
+        override val hintResId: Int = R_localization.string.post_creator_chooser_hint_categories,
+        override val state: ChooserState,
+        val categoryId: Int = -1,
     ) : ChooserType()
 
     data class SubCategory(
-            override val title: String = EMPTY,
-            @StringRes
-            override val hintResId: Int = R_localization.string.post_creator_chooser_hint_subcategories,
-            override val state: ChooserState,
-            val subCategoryId: Int = -1,
-            val categoryId: Int = -1,
+        override val title: String = EMPTY,
+        @StringRes
+        override val hintResId: Int = R_localization.string.post_creator_chooser_hint_subcategories,
+        override val state: ChooserState,
+        val subCategoryId: Int = -1,
+        val categoryId: Int = -1,
     ) : ChooserType()
 
     data class Color(
-            override val title: String = EMPTY,
-            @StringRes
-            override val hintResId: Int = R_localization.string.post_creator_chooser_hint_color,
-            override val state: ChooserState,
-            val colors: List<Int> = emptyList(),
+        override val title: String = EMPTY,
+        @StringRes
+        override val hintResId: Int = R_localization.string.post_creator_chooser_hint_color,
+        override val state: ChooserState,
+        val colors: List<Int> = emptyList(),
     ) : ChooserType()
 
     data class CreationDate(
-            override val title: String = EMPTY,
-            @StringRes
-            override val hintResId: Int = R_localization.string.post_creator_chooser_hint_creation_date,
-            override val state: ChooserState,
-            val date: Date? = null,
+        override val title: String = EMPTY,
+        @StringRes
+        override val hintResId: Int = R_localization.string.post_creator_chooser_hint_creation_date,
+        override val state: ChooserState,
+        val date: Date? = null,
     ) : ChooserType()
 }

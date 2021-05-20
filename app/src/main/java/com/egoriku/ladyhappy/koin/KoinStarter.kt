@@ -33,15 +33,15 @@ fun Application.initKoin() {
 }
 
 val koinModules = listOf(
-        applicationScopeModule,
-        authModule,
-        categoriesModule,
-        detailModule,
-        landingModule,
-        loginModule,
-        mainActivityModule,
-        photoReportModule,
-        settingsModule,
-        subcategoryModule,
-        usedLibrariesModule
+    applicationScopeModule,
+    authModule,
+    categoriesModule,
+    detailModule,
+    landingModule,
+    loginModule,
+    mainActivityModule,
+    photoReportModule,
+    settingsModule,
+    subcategoryModule,
+    usedLibrariesModule
 )

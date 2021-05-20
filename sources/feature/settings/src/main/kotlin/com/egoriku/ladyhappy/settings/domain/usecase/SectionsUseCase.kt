@@ -14,8 +14,8 @@ import kotlinx.coroutines.launch
 private const val SHIMMING_DELAY = 500L
 
 internal class SectionsUseCase(
-        private val stringResource: IStringResource,
-        private val userPermission: IUserPermission
+    private val stringResource: IStringResource,
+    private val userPermission: IUserPermission
 ) : ISectionsUseCase {
 
     override suspend fun load(): Flow<Section> = channelFlow {
@@ -35,15 +35,15 @@ internal class SectionsUseCase(
     }
 
     private fun settingsSection(): Section.Settings = Section.Settings(
-            listOf(
-                    SettingItem.Header(stringResource = R.string.settings_section_app_settings),
-                    SettingItem.Theme(stringResource = R.string.settings_theme_title),
+        listOf(
+            SettingItem.Header(stringResource = R.string.settings_section_app_settings),
+            SettingItem.Theme(stringResource = R.string.settings_theme_title),
 
-                    SettingItem.Header(stringResource = R.string.settings_section_about),
-                    SettingItem.UsedLibraries(stringResource = R.string.settings_used_libraries),
-                    SettingItem.Review(stringResource = R.string.settings_review),
-                    SettingItem.NonClickable(resource = stringResource.currentVersion)
-            )
+            SettingItem.Header(stringResource = R.string.settings_section_about),
+            SettingItem.UsedLibraries(stringResource = R.string.settings_used_libraries),
+            SettingItem.Review(stringResource = R.string.settings_review),
+            SettingItem.NonClickable(resource = stringResource.currentVersion)
+        )
     )
 
     private suspend fun featuresSection(): List<Feature.PublishPosts> {
@@ -56,14 +56,14 @@ internal class SectionsUseCase(
     }
 
     private fun stubFeatures() = Section.AvailableFeatures(
-            features = listOf(
-                    Feature.Stub(),
-                    Feature.Stub(),
-                    Feature.Stub(),
-                    Feature.Stub(),
-                    Feature.Stub(),
-                    Feature.Stub()
-            )
+        features = listOf(
+            Feature.Stub(),
+            Feature.Stub(),
+            Feature.Stub(),
+            Feature.Stub(),
+            Feature.Stub(),
+            Feature.Stub()
+        )
     )
 }
 

@@ -8,5 +8,5 @@ abstract class AbstractDynamicFeature(private val splitInstallHelper: ISplitInst
     abstract val moduleName: String
 
     fun installModule(moduleInstallListener: ModuleInstallListener) =
-            splitInstallHelper.installModule(moduleName, moduleInstallListener)
+        splitInstallHelper.installModule(moduleName, moduleInstallListener)
 }

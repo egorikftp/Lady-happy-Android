@@ -9,20 +9,20 @@ import com.egoriku.ladyhappy.core.sharedmodel.params.DetailPageParams
 import com.egoriku.ladyhappy.navigation.screen.FragmentScreen
 
 class DetailPageScreen(
-        private val featureProvider: IFeatureProvider,
-        private val subCategoryModel: SubCategoryModel
+    private val featureProvider: IFeatureProvider,
+    private val subCategoryModel: SubCategoryModel
 ) : FragmentScreen() {
 
     override val fragment: Fragment
         get() = featureProvider.detailPage.apply {
             arguments = bundleOf(
-                    KEY_DETAIL_PAGE_EXTRA to DetailPageParams(
-                            categoryId = subCategoryModel.categoryId,
-                            subCategoryId = subCategoryModel.subCategoryId,
-                            productName = subCategoryModel.subCategoryName,
-                            productLogoUrl = subCategoryModel.images.first().url,
-                            productDescription = subCategoryModel.description
-                    )
+                KEY_DETAIL_PAGE_EXTRA to DetailPageParams(
+                    categoryId = subCategoryModel.categoryId,
+                    subCategoryId = subCategoryModel.subCategoryId,
+                    productName = subCategoryModel.subCategoryName,
+                    productLogoUrl = subCategoryModel.images.first().url,
+                    productDescription = subCategoryModel.description
+                )
             )
         }
 }

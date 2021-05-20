@@ -16,8 +16,8 @@ class StrategyFor1 : IStrategy {
         }
 
         val rect = Proportion(
-                mozaikItem = strategyData.mozaikItems[0],
-                divider = 0
+            mozaikItem = strategyData.mozaikItems[0],
+            divider = 0
         ).getRect(width = strategyData.parentWidth).also {
             strategyData.rect[0].updateWith(it)
         }

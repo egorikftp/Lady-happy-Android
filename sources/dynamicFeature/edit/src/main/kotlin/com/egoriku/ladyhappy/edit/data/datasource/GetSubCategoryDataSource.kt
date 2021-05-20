@@ -11,8 +11,8 @@ internal class GetSubCategoryDataSource(private val firebase: IFirebase) {
 
     suspend fun load(documentReference: String) = withContext(Dispatchers.IO) {
         firebase.firebaseFirestore
-                .collection(SUBCATEGORIES)
-                .document(documentReference)
-                .awaitResult<SubCategoryEntity>()
+            .collection(SUBCATEGORIES)
+            .document(documentReference)
+            .awaitResult<SubCategoryEntity>()
     }
 }

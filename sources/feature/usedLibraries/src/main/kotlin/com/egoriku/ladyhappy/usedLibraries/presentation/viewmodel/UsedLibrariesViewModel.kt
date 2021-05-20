@@ -8,7 +8,7 @@ import com.egoriku.ladyhappy.usedLibraries.domain.usecase.LicenseUseCase
 import com.egoriku.ladyhappy.usedLibraries.presentation.state.ScreenState
 
 class UsedLibrariesViewModel(
-        private val licenseUseCase: LicenseUseCase
+    private val licenseUseCase: LicenseUseCase
 ) : ViewModel() {
 
     val licenses: LiveData<ScreenState> = liveData {

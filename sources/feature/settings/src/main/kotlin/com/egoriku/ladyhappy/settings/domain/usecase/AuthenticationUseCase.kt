@@ -7,7 +7,7 @@ import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.flow
 
 internal class AuthenticationUseCase(
-        private val authentication: Authentication
+    private val authentication: Authentication
 ) : IAuthenticationUseCase {
 
     override suspend fun subscribeAuthEvents() = flow {

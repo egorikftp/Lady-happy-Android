@@ -6,7 +6,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
 internal class UserPermissionsRepository(
-        private val userDataSource: IUserDataSource
+    private val userDataSource: IUserDataSource
 ) : IUserPermissionsRepository {
 
     private val transformation: (String) -> Permission? = { permission: String ->
@@ -20,7 +20,7 @@ internal class UserPermissionsRepository(
     override suspend fun getPermissionsBy(userId: String) = withContext(Dispatchers.IO) {
         runCatching {
             val entity = userDataSource.fetch(userId = userId) // Legacy user without necessary data
-                    ?: return@withContext emptyList()
+                ?: return@withContext emptyList()
 
             when (entity.userId) {
                 userId -> entity.permissions.mapNotNull(transformation)

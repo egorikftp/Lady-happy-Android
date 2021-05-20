@@ -35,9 +35,9 @@ import kotlinx.coroutines.withContext
 import java.util.*
 
 class PostViewModel(
-        application: Application,
-        private val uploadImagesUseCase: UploadImagesUseCase,
-        private val publishPostUseCase: PublishPostUseCase,
+    application: Application,
+    private val uploadImagesUseCase: UploadImagesUseCase,
+    private val publishPostUseCase: PublishPostUseCase,
 ) : AndroidViewModel(application) {
 
     private val _screenState = MutableStateFlow(ScreenState())
@@ -57,7 +57,7 @@ class PostViewModel(
         val newImages = list.map { ImageItem(uri = it) }
 
         _screenState.value = _currentScreenState.copy(
-                imagesSection = ImageSection(images + newImages)
+            imagesSection = ImageSection(images + newImages)
         )
 
         validateState()
@@ -82,21 +82,21 @@ class PostViewModel(
 
     fun setCategory(category: String) {
         val categoryModel: CategoryModel = requireNotNull(
-                PredefinedData.allCategories.find {
-                    it.name == category
-                }
+            PredefinedData.allCategories.find {
+                it.name == category
+            }
         )
 
         _screenState.value = _currentScreenState.copy(
-                category = ChooserType.Category(
-                        title = categoryModel.name,
-                        state = ChooserState.Selected,
-                        categoryId = categoryModel.categoryId
-                ),
-                subCategory = ChooserType.SubCategory(
-                        state = ChooserState.Initial,
-                        categoryId = categoryModel.categoryId
-                )
+            category = ChooserType.Category(
+                title = categoryModel.name,
+                state = ChooserState.Selected,
+                categoryId = categoryModel.categoryId
+            ),
+            subCategory = ChooserType.SubCategory(
+                state = ChooserState.Initial,
+                categoryId = categoryModel.categoryId
+            )
         )
 
         validateState()
@@ -104,18 +104,18 @@ class PostViewModel(
 
     fun setSubCategory(subCategory: String?) {
         val subCategoryModel = requireNotNull(
-                PredefinedData.allSubCategories
-                        .filter { it.categoryId == _currentScreenState.category.categoryId }
-                        .find { it.name == subCategory }
+            PredefinedData.allSubCategories
+                .filter { it.categoryId == _currentScreenState.category.categoryId }
+                .find { it.name == subCategory }
         )
 
         _screenState.value = _currentScreenState.copy(
-                subCategory = ChooserType.SubCategory(
-                        title = subCategoryModel.name,
-                        state = ChooserState.Selected,
-                        categoryId = subCategoryModel.categoryId,
-                        subCategoryId = subCategoryModel.subCategoryId
-                )
+            subCategory = ChooserType.SubCategory(
+                title = subCategoryModel.name,
+                state = ChooserState.Selected,
+                categoryId = subCategoryModel.categoryId,
+                subCategoryId = subCategoryModel.subCategoryId
+            )
         )
 
         validateState()
@@ -123,11 +123,11 @@ class PostViewModel(
 
     fun setColor(colors: List<ColorModel>) {
         _screenState.value = _currentScreenState.copy(
-                color = ChooserType.Color(
-                        title = colors.joinToString { it.name },
-                        state = ChooserState.Selected,
-                        colors = colors.map { it.colorId }
-                )
+            color = ChooserType.Color(
+                title = colors.joinToString { it.name },
+                state = ChooserState.Selected,
+                colors = colors.map { it.colorId }
+            )
         )
 
         validateState()
@@ -137,11 +137,11 @@ class PostViewModel(
         val date = Date(dateInMillis)
 
         _screenState.value = _currentScreenState.copy(
-                creationDate = ChooserType.CreationDate(
-                        date = date,
-                        title = date.ddMMMyyyy(),
-                        state = ChooserState.Selected
-                )
+            creationDate = ChooserType.CreationDate(
+                date = date,
+                title = date.ddMMMyyyy(),
+                state = ChooserState.Selected
+            )
         )
 
         validateState()
@@ -150,20 +150,20 @@ class PostViewModel(
     fun resetByChooserType(type: ChooserType) {
         _screenState.value = when (type) {
             is ChooserType.Category -> _currentScreenState.copy(
-                    category = ChooserType.Category(state = ChooserState.Initial),
-                    subCategory = null
+                category = ChooserType.Category(state = ChooserState.Initial),
+                subCategory = null
             )
             is ChooserType.SubCategory -> _currentScreenState.copy(
-                    subCategory = ChooserType.SubCategory(
-                            state = ChooserState.Initial,
-                            categoryId = _currentScreenState.category.categoryId
-                    )
+                subCategory = ChooserType.SubCategory(
+                    state = ChooserState.Initial,
+                    categoryId = _currentScreenState.category.categoryId
+                )
             )
             is ChooserType.Color -> _currentScreenState.copy(
-                    color = ChooserType.Color(state = ChooserState.Initial)
+                color = ChooserType.Color(state = ChooserState.Initial)
             )
             is ChooserType.CreationDate -> _currentScreenState.copy(
-                    creationDate = ChooserType.CreationDate(state = ChooserState.Initial)
+                creationDate = ChooserType.CreationDate(state = ChooserState.Initial)
             )
         }
     }
@@ -179,12 +179,12 @@ class PostViewModel(
             val creationDate = requireNotNull(state.creationDate.date)
 
             val images = uploadImagesUseCase(
-                    parameters = UploadImagesParams(
-                            images = state.imagesSection.images,
-                            category = categoryId,
-                            year = creationDate.year()
+                parameters = UploadImagesParams(
+                    images = state.imagesSection.images,
+                    category = categoryId,
+                    year = creationDate.year()
 
-                    )
+                )
             ).successOr(emptyList())
 
             if (images.isEmpty()) {
@@ -194,14 +194,14 @@ class PostViewModel(
             }
 
             val resultOf = publishPostUseCase(
-                    parameters = UploadEntity(
-                            images = images,
-                            title = state.title,
-                            categoryId = categoryId,
-                            subCategoryId = subCategoryId,
-                            colors = colorId,
-                            date = Timestamp(creationDate)
-                    )
+                parameters = UploadEntity(
+                    images = images,
+                    title = state.title,
+                    categoryId = categoryId,
+                    subCategoryId = subCategoryId,
+                    colors = colorId,
+                    date = Timestamp(creationDate)
+                )
             )
 
             when (resultOf) {

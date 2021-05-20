@@ -5,11 +5,11 @@ import com.egoriku.ladyhappy.landing.R
 object PredefinedResources {
 
     private val iconDrawables = hashMapOf(
-            "VK" to R.drawable.ic_vk,
-            "TELEGRAM" to R.drawable.ic_telegram,
-            "GITHUB" to R.drawable.ic_github,
-            "ODNOKLASSNIKI" to R.drawable.ic_odnoklassniki,
-            "INSTAGRAM" to R.drawable.ic_instagram
+        "VK" to R.drawable.ic_vk,
+        "TELEGRAM" to R.drawable.ic_telegram,
+        "GITHUB" to R.drawable.ic_github,
+        "ODNOKLASSNIKI" to R.drawable.ic_odnoklassniki,
+        "INSTAGRAM" to R.drawable.ic_instagram
     )
 
     fun getDrawableByType(type: String): Int {

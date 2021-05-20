@@ -18,19 +18,19 @@ class ThemeSettingDialogFragment : ScopeDialogFragment() {
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         listAdapter = ArrayAdapter(
-                requireContext(),
-                android.R.layout.simple_list_item_single_choice
+            requireContext(),
+            android.R.layout.simple_list_item_single_choice
         )
 
         return MaterialAlertDialogBuilder(requireContext())
-                .setTitle(R.string.settings_theme_title)
-                .setSingleChoiceItems(listAdapter, 0) { dialog, position ->
-                    listAdapter.getItem(position)?.theme?.run {
-                        viewModel.setTheme(this)
-                    }
-                    dialog.dismiss()
+            .setTitle(R.string.settings_theme_title)
+            .setSingleChoiceItems(listAdapter, 0) { dialog, position ->
+                listAdapter.getItem(position)?.theme?.run {
+                    viewModel.setTheme(this)
                 }
-                .create()
+                dialog.dismiss()
+            }
+            .create()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

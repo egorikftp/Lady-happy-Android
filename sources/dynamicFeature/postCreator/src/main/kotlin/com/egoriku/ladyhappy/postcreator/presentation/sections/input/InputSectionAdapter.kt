@@ -8,14 +8,14 @@ import com.egoriku.ladyhappy.extensions.listeners.SimpleTextWatcher
 import com.egoriku.ladyhappy.postcreator.databinding.AdapterItemInputBinding
 
 class InputSectionAdapter(
-        private val onTextChanges: (title: String) -> Unit,
+    private val onTextChanges: (title: String) -> Unit,
 ) : RecyclerView.Adapter<InputSectionAdapter.VH>() {
 
     var currentText: String = EMPTY
 
     override fun onCreateViewHolder(
-            parent: ViewGroup,
-            viewType: Int,
+        parent: ViewGroup,
+        viewType: Int,
     ) = VH(AdapterItemInputBinding.inflate(parent.inflater(), parent, false))
 
     override fun onBindViewHolder(holder: VH, position: Int) = holder.bind(currentText)
@@ -23,11 +23,16 @@ class InputSectionAdapter(
     override fun getItemCount(): Int = 1
 
     inner class VH(
-            private val binding: AdapterItemInputBinding,
+        private val binding: AdapterItemInputBinding,
     ) : RecyclerView.ViewHolder(binding.root) {
 
         private val textWatcher = object : SimpleTextWatcher {
-            override fun onTextChanged(charSequence: CharSequence?, start: Int, before: Int, count: Int) {
+            override fun onTextChanged(
+                charSequence: CharSequence?,
+                start: Int,
+                before: Int,
+                count: Int
+            ) {
                 currentText = charSequence.toString()
                 onTextChanges(charSequence.toString())
             }

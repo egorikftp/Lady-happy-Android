@@ -12,9 +12,9 @@ import com.egoriku.ladyhappy.settings.domain.usecase.theme.SetThemeUseCase
 import kotlinx.coroutines.launch
 
 class ThemeViewModel(
-        private val themeUseCase: GetThemeUseCase,
-        private val availableThemesUseCase: GetAvailableThemesUseCase,
-        private val setThemeUseCase: SetThemeUseCase
+    private val themeUseCase: GetThemeUseCase,
+    private val availableThemesUseCase: GetAvailableThemesUseCase,
+    private val setThemeUseCase: SetThemeUseCase
 ) : ViewModel() {
 
     val theme: LiveData<Theme> = liveData {

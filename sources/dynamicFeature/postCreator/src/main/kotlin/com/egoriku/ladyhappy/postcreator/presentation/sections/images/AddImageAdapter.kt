@@ -10,13 +10,13 @@ import com.egoriku.ladyhappy.postcreator.databinding.AdapterItemAddImageBinding
 import com.egoriku.ladyhappy.postcreator.domain.model.image.ImageItem
 
 class AddImageAdapter(
-        private val onAddImageClick: () -> Unit
+    private val onAddImageClick: () -> Unit
 ) : RecyclerView.Adapter<AddImageAdapter.VH>() {
 
     private val list = listOf(ImageItem(EMPTY.toUri()))
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
-            VH(AdapterItemAddImageBinding.inflate(parent.inflater(), parent, false))
+        VH(AdapterItemAddImageBinding.inflate(parent.inflater(), parent, false))
 
     override fun onBindViewHolder(holder: VH, position: Int) = Unit
 

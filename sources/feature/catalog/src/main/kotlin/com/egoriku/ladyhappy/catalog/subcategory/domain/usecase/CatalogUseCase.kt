@@ -9,12 +9,13 @@ import com.egoriku.ladyhappy.core.sharedmodel.mapper.ImageEntityMapper
 import com.egoriku.ladyhappy.network.ResultOf
 
 internal class CatalogUseCase(
-        private val subcategoryRepository: ISubcategoryRepository,
-        private val stringResource: IStringResource
+    private val subcategoryRepository: ISubcategoryRepository,
+    private val stringResource: IStringResource
 ) : ICatalogUseCase {
 
-    private val entityTransform: (SubCategoryEntity) -> SubCategoryModel = { entity: SubCategoryEntity ->
-        SubCategoryModel(
+    private val entityTransform: (SubCategoryEntity) -> SubCategoryModel =
+        { entity: SubCategoryEntity ->
+            SubCategoryModel(
                 categoryId = entity.categoryId,
                 subCategoryId = entity.subCategoryId,
                 images = entity.images.map(ImageEntityMapper()),
@@ -27,18 +28,18 @@ internal class CatalogUseCase(
                     null -> stringResource.notEdited
                     else -> date.ddMMMyyyy()
                 }
-        )
-    }
+            )
+        }
 
     override suspend fun loadSubCategories(categoryId: Int) =
-            when (val subcategories = subcategoryRepository.fetchSubCategories(categoryId)) {
-                is ResultOf.Failure -> ResultOf.Failure(Exception("Response empty"))
-                is ResultOf.Success -> ResultOf.Success(
-                        subcategories.value
-                                .filterNot { it.images.isEmpty() }
-                                .map(entityTransform)
-                )
-            }
+        when (val subcategories = subcategoryRepository.fetchSubCategories(categoryId)) {
+            is ResultOf.Failure -> ResultOf.Failure(Exception("Response empty"))
+            is ResultOf.Success -> ResultOf.Success(
+                subcategories.value
+                    .filterNot { it.images.isEmpty() }
+                    .map(entityTransform)
+            )
+        }
 }
 
 interface ICatalogUseCase {

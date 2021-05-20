@@ -13,17 +13,18 @@ class PublishPostRepository(firebase: IFirebase) {
 
     private val reference = firebase.firebaseFirestore
 
-    suspend fun publish(uploadEntity: UploadEntity): ResultOf<Boolean> = withContext(Dispatchers.IO) {
-        runCatching {
-            reference.collection(ALL_HATS)
+    suspend fun publish(uploadEntity: UploadEntity): ResultOf<Boolean> =
+        withContext(Dispatchers.IO) {
+            runCatching {
+                reference.collection(ALL_HATS)
                     .document()
                     .set(uploadEntity)
                     .addOnFailureListener { e -> logDm("Error adding document $e") }
                     .await()
 
-            ResultOf.Success(true)
-        }.getOrElse {
-            ResultOf.Failure(it)
+                ResultOf.Success(true)
+            }.getOrElse {
+                ResultOf.Failure(it)
+            }
         }
-    }
 }

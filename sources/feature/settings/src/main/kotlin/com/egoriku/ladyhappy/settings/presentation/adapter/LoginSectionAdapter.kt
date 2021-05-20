@@ -13,17 +13,18 @@ import com.egoriku.ladyhappy.settings.domain.model.Section.Login
 import com.egoriku.ladyhappy.settings.presentation.view.State
 
 internal class LoginSectionAdapter(
-        private val onItemClick: (loginState: State) -> Unit
+    private val onItemClick: (loginState: State) -> Unit
 ) : ListAdapter<Login, LoginSectionAdapter.VH>(DiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
-            VH(AdapterItemLoginBinding.inflate(parent.inflater(), parent, false))
+        VH(AdapterItemLoginBinding.inflate(parent.inflater(), parent, false))
 
     override fun onBindViewHolder(holder: VH, position: Int) = holder.bind(getItem(position))
 
     override fun getItemViewType(position: Int) = R.layout.adapter_item_login
 
-    inner class VH(private val binding: AdapterItemLoginBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class VH(private val binding: AdapterItemLoginBinding) :
+        RecyclerView.ViewHolder(binding.root) {
 
         fun bind(model: Login) {
             when (model.state) {
@@ -50,7 +51,8 @@ internal class LoginSectionAdapter(
 
     internal class DiffCallback : DiffUtil.ItemCallback<Login>() {
 
-        override fun areItemsTheSame(oldItem: Login, newItem: Login) = oldItem.state == newItem.state
+        override fun areItemsTheSame(oldItem: Login, newItem: Login) =
+            oldItem.state == newItem.state
 
         override fun areContentsTheSame(oldItem: Login, newItem: Login) = oldItem == newItem
     }

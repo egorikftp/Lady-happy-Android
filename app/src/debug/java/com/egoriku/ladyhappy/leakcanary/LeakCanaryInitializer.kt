@@ -6,7 +6,7 @@ class LeakCanaryInitializer {
 
     fun init() {
         LeakCanary.config = LeakCanary.config.copy(
-                dumpHeap = false
+            dumpHeap = false
         )
     }
 }

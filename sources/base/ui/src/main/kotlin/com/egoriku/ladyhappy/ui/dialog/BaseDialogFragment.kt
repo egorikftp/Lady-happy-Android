@@ -8,21 +8,21 @@ import androidx.appcompat.app.AppCompatDialogFragment
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 abstract class BaseDialogFragment : AppCompatDialogFragment(),
-        DialogInterface.OnClickListener {
+    DialogInterface.OnClickListener {
 
     abstract val dialogTitleResId: Int
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val builder = MaterialAlertDialogBuilder(requireContext())
-                .setTitle(dialogTitleResId)
+            .setTitle(dialogTitleResId)
 
         return onBuildDialog(builder, savedInstanceState)
-                .setOnKeyListener { _, keyCode, event ->
-                    return@setOnKeyListener keyCode == KeyEvent.KEYCODE_BACK && event.action == KeyEvent.ACTION_UP
-                }
-                .setPositiveButton(android.R.string.ok, this)
-                .setNegativeButton(android.R.string.cancel, this)
-                .create()
+            .setOnKeyListener { _, keyCode, event ->
+                return@setOnKeyListener keyCode == KeyEvent.KEYCODE_BACK && event.action == KeyEvent.ACTION_UP
+            }
+            .setPositiveButton(android.R.string.ok, this)
+            .setNegativeButton(android.R.string.cancel, this)
+            .create()
     }
 
     override fun onClick(dialog: DialogInterface?, which: Int) {
@@ -33,8 +33,8 @@ abstract class BaseDialogFragment : AppCompatDialogFragment(),
     }
 
     abstract fun onBuildDialog(
-            builder: MaterialAlertDialogBuilder,
-            savedInstanceState: Bundle?
+        builder: MaterialAlertDialogBuilder,
+        savedInstanceState: Bundle?
     ): MaterialAlertDialogBuilder
 
     open fun onPositiveButtonClick() {}

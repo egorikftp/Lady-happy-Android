@@ -11,8 +11,8 @@ import kotlin.time.ExperimentalTime
 import kotlin.time.days
 
 class ReviewViewModel(
-        private val reviewManager: ReviewManager,
-        private val appPreferences: IAppPreferences
+    private val reviewManager: ReviewManager,
+    private val appPreferences: IAppPreferences
 ) : ViewModel() {
 
     fun submitReview(callback: (reviewInfo: ReviewInfo, reviewManager: ReviewManager) -> Unit) {

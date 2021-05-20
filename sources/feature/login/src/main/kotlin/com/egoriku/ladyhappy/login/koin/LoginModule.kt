@@ -8,9 +8,9 @@ import org.koin.dsl.module
 val loginModule = module {
     viewModel {
         LoginViewModel(
-                context = androidContext(),
-                authentication = get(),
-                router = get()
+            context = androidContext(),
+            authentication = get(),
+            router = get()
         )
     }
 }

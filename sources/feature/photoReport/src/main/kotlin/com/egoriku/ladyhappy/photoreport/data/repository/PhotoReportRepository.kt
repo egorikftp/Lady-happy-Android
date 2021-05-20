@@ -12,16 +12,16 @@ private const val COLLECTION_KEY_NEWS = "news_v2"
 private const val QUERY_DATE = "date"
 
 internal class PhotoReportRepository(
-        private val firebase: IFirebase
+    private val firebase: IFirebase
 ) : IPhotoReportRepository {
 
     override suspend fun getPhotoReport() = withContext(Dispatchers.IO) {
         runCatching {
             val value = firebase
-                    .firebaseFirestore
-                    .collection(COLLECTION_KEY_NEWS)
-                    .orderBy(QUERY_DATE, Query.Direction.DESCENDING)
-                    .awaitGet<PhotoReportEntity>()
+                .firebaseFirestore
+                .collection(COLLECTION_KEY_NEWS)
+                .orderBy(QUERY_DATE, Query.Direction.DESCENDING)
+                .awaitGet<PhotoReportEntity>()
 
             if (value.isEmpty()) {
                 ResultOf.Failure(Exception("Empty response"))

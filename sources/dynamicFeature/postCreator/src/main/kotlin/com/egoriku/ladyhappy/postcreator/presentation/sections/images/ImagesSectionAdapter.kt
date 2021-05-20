@@ -21,25 +21,25 @@ import com.egoriku.ladyhappy.ui.decorator.VerticalMarginItemDecoration
 import com.egoriku.ladyhappy.localization.R as R_localization
 
 class ImagesSectionAdapter(
-        private val onChooseImage: () -> Unit,
-        private val onRemoveImage: (item: ImageItem) -> Unit,
+    private val onChooseImage: () -> Unit,
+    private val onRemoveImage: (item: ImageItem) -> Unit,
 ) : BaseListAdapter<ImageSection, ImagesSectionAdapter.VH>(DiffCallback()) {
 
     override fun onCreateViewHolder(
-            parent: ViewGroup,
-            viewType: Int,
+        parent: ViewGroup,
+        viewType: Int,
     ) = VH(AdapterItemImagesSectionBinding.inflate(parent.inflater(), parent, false))
 
     override fun onBindViewHolder(
-            holder: VH,
-            position: Int,
-            model: ImageSection,
+        holder: VH,
+        position: Int,
+        model: ImageSection,
     ) = holder.bind(model)
 
     override fun getItemViewType(position: Int): Int = R.layout.adapter_item_images_section
 
     inner class VH(
-            private val binding: AdapterItemImagesSectionBinding,
+        private val binding: AdapterItemImagesSectionBinding,
     ) : BaseViewHolder<ImageSection>(binding.root) {
 
         private val imagesAdapter = ImagesAdapter {
@@ -56,7 +56,7 @@ class ImagesSectionAdapter(
                 layoutManager = LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
                 adapter = concatAdapter
                 addItemDecoration(
-                        VerticalMarginItemDecoration(resources.getDimensionPixelSize(R.dimen.posts_images_margin))
+                    VerticalMarginItemDecoration(resources.getDimensionPixelSize(R.dimen.posts_images_margin))
                 )
             }
         }
@@ -83,8 +83,8 @@ class ImagesSectionAdapter(
             }
 
             postImagesCount.text = String.format(
-                    context.getString(R_localization.string.post_creator_images_count),
-                    images.size
+                context.getString(R_localization.string.post_creator_images_count),
+                images.size
             )
         }
     }
@@ -92,9 +92,9 @@ class ImagesSectionAdapter(
     internal class DiffCallback : DiffUtil.ItemCallback<ImageSection>() {
 
         override fun areItemsTheSame(oldItem: ImageSection, newItem: ImageSection): Boolean =
-                newItem.images == oldItem.images
+            newItem.images == oldItem.images
 
         override fun areContentsTheSame(oldItem: ImageSection, newItem: ImageSection): Boolean =
-                newItem.images.size == oldItem.images.size
+            newItem.images.size == oldItem.images.size
     }
 }

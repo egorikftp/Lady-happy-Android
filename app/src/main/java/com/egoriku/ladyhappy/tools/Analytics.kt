@@ -10,9 +10,11 @@ internal class Analytics(context: Context) : IAnalytics {
 
     override fun trackPageView(view: String) = firebaseAnalytics.logEvent(view, null)
 
-    override fun trackNoInternetLanding() = firebaseAnalytics.logEvent(ERROR_NO_INTERNET_LANDING, null)
+    override fun trackNoInternetLanding() =
+        firebaseAnalytics.logEvent(ERROR_NO_INTERNET_LANDING, null)
 
-    override fun trackNoInternetPhotoReports() = firebaseAnalytics.logEvent(ERROR_NO_INTERNET_PHOTO_REPORTS, null)
+    override fun trackNoInternetPhotoReports() =
+        firebaseAnalytics.logEvent(ERROR_NO_INTERNET_PHOTO_REPORTS, null)
 
     override fun inAppUpdateCanceled() = firebaseAnalytics.logEvent(IN_APP_UPDATE_CANCELED, null)
 

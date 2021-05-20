@@ -27,26 +27,27 @@ internal class BeagleLifecycleListener : SimpleActivityLifecycleCallbacks(), Koi
     private val fragmentLifecycleCallbacks = object : FragmentManager.FragmentLifecycleCallbacks() {
 
         override fun onFragmentViewCreated(
-                fm: FragmentManager,
-                fragment: Fragment,
-                view: View,
-                savedInstanceState: Bundle?
+            fm: FragmentManager,
+            fragment: Fragment,
+            view: View,
+            savedInstanceState: Bundle?
         ) {
             if (fragment is LoginFragment && !Beagle.contains(ID_LOGIN_SECTION)) {
                 Beagle.add(
-                        ItemListModule(
-                                id = ID_LOGIN_SECTION,
-                                title = "Test accounts",
-                                items = accountProvider.accounts,
-                                isExpandedInitially = true,
-                                onItemSelected = { account ->
-                                    view.findViewById<EditText>(R.id.loginEmail)?.setText(account.email)
-                                    view.findViewById<EditText>(R.id.loginPassword)?.setText(account.password)
+                    ItemListModule(
+                        id = ID_LOGIN_SECTION,
+                        title = "Test accounts",
+                        items = accountProvider.accounts,
+                        isExpandedInitially = true,
+                        onItemSelected = { account ->
+                            view.findViewById<EditText>(R.id.loginEmail)?.setText(account.email)
+                            view.findViewById<EditText>(R.id.loginPassword)
+                                ?.setText(account.password)
 
-                                    Beagle.hide()
-                                }
-                        ),
-                        lifecycleOwner = fragment
+                            Beagle.hide()
+                        }
+                    ),
+                    lifecycleOwner = fragment
                 )
             }
         }
@@ -55,7 +56,7 @@ internal class BeagleLifecycleListener : SimpleActivityLifecycleCallbacks(), Koi
     override fun onActivityResumed(activity: Activity) {
         if (activity is FragmentActivity) {
             activity.supportFragmentManager
-                    .registerFragmentLifecycleCallbacks(fragmentLifecycleCallbacks, true)
+                .registerFragmentLifecycleCallbacks(fragmentLifecycleCallbacks, true)
         }
     }
 }

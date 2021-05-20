@@ -24,8 +24,8 @@ internal class AppPreferences(context: Context) : IAppPreferences {
 
     private val prefs: Lazy<SharedPreferences> = lazy { // Lazy to prevent IO access to main thread.
         context.applicationContext.getSharedPreferences(
-                PREFERENCES_NAME,
-                MODE_PRIVATE
+            PREFERENCES_NAME,
+            MODE_PRIVATE
         ).apply {
             registerOnSharedPreferenceChangeListener(changeListener)
         }
@@ -47,21 +47,25 @@ internal class AppPreferences(context: Context) : IAppPreferences {
 
     override var lastAskForReview: Long by LongPreference(prefs, "last_ask_for_review", 0L)
 
-    override var selectedTheme by StringPreference(prefs, PREF_DARK_MODE_ENABLED, Theme.SYSTEM.storageKey)
+    override var selectedTheme by StringPreference(
+        prefs,
+        PREF_DARK_MODE_ENABLED,
+        Theme.SYSTEM.storageKey
+    )
 
     override val observableSelectedTheme: Flow<String>
         get() = selectedThemeChannel.asFlow()
 }
 
 class StringPreference(
-        private val preferences: Lazy<SharedPreferences>,
-        private val name: String,
-        private val defaultValue: String
+    private val preferences: Lazy<SharedPreferences>,
+    private val name: String,
+    private val defaultValue: String
 ) : ReadWriteProperty<Any, String?> {
 
     @WorkerThread
     override fun getValue(thisRef: Any, property: KProperty<*>) =
-            preferences.value.getString(name, defaultValue) ?: defaultValue
+        preferences.value.getString(name, defaultValue) ?: defaultValue
 
     override fun setValue(thisRef: Any, property: KProperty<*>, value: String?) {
         preferences.value.edit { putString(name, value) }
@@ -69,14 +73,14 @@ class StringPreference(
 }
 
 class BooleanPreference(
-        private val preferences: Lazy<SharedPreferences>,
-        private val name: String,
-        private val defaultValue: Boolean
+    private val preferences: Lazy<SharedPreferences>,
+    private val name: String,
+    private val defaultValue: Boolean
 ) : ReadWriteProperty<Any, Boolean> {
 
     @WorkerThread
     override fun getValue(thisRef: Any, property: KProperty<*>) =
-            preferences.value.getBoolean(name, defaultValue)
+        preferences.value.getBoolean(name, defaultValue)
 
     override fun setValue(thisRef: Any, property: KProperty<*>, value: Boolean) {
         preferences.value.edit { putBoolean(name, value) }
@@ -84,14 +88,14 @@ class BooleanPreference(
 }
 
 class IntPreference(
-        private val preferences: Lazy<SharedPreferences>,
-        private val name: String,
-        private val defaultValue: Int
+    private val preferences: Lazy<SharedPreferences>,
+    private val name: String,
+    private val defaultValue: Int
 ) : ReadWriteProperty<Any, Int> {
 
     @WorkerThread
     override fun getValue(thisRef: Any, property: KProperty<*>) =
-            preferences.value.getInt(name, defaultValue)
+        preferences.value.getInt(name, defaultValue)
 
     override fun setValue(thisRef: Any, property: KProperty<*>, value: Int) {
         preferences.value.edit { putInt(name, value) }
@@ -99,14 +103,14 @@ class IntPreference(
 }
 
 class LongPreference(
-        private val preferences: Lazy<SharedPreferences>,
-        private val name: String,
-        private val defaultValue: Long
+    private val preferences: Lazy<SharedPreferences>,
+    private val name: String,
+    private val defaultValue: Long
 ) : ReadWriteProperty<Any, Long> {
 
     @WorkerThread
     override fun getValue(thisRef: Any, property: KProperty<*>) =
-            preferences.value.getLong(name, defaultValue)
+        preferences.value.getLong(name, defaultValue)
 
     override fun setValue(thisRef: Any, property: KProperty<*>, value: Long) {
         preferences.value.edit { putLong(name, value) }

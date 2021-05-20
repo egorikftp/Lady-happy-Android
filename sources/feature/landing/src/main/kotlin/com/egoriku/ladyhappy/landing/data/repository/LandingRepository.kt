@@ -11,16 +11,16 @@ import kotlinx.coroutines.withContext
 private const val DOCUMENT_PATH = "MCwd73rZNcwDE4yjP3bj"
 
 internal class LandingRepository(
-        private val firebase: IFirebase
+    private val firebase: IFirebase
 ) : ILandingRepository {
 
     override suspend fun getLanding() = withContext(Dispatchers.IO) {
         runCatching {
             val value = firebase
-                    .firebaseFirestore
-                    .collection(LANDING)
-                    .document(DOCUMENT_PATH)
-                    .awaitGet<LandingEntity>()
+                .firebaseFirestore
+                .collection(LANDING)
+                .document(DOCUMENT_PATH)
+                .awaitGet<LandingEntity>()
 
             ResultOf.Success(value)
         }.getOrElse {

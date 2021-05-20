@@ -29,50 +29,51 @@ inline fun View.visible() {
 
 fun View.colorCompat(@ColorRes colorInt: Int) = context.colorCompat(colorInt)
 
-fun View.colorStateListCompat(@ColorRes resId: Int): ColorStateList? = context.colorStateListCompat(resId)
+fun View.colorStateListCompat(@ColorRes resId: Int): ColorStateList? =
+    context.colorStateListCompat(resId)
 
 fun View.colorFromAttr(@AttrRes attribute: Int) = context.colorFromAttr(attribute)
 
 inline fun View.resIdFromAttr(@AttrRes attr: Int) = context.resIdFromAttr(attr)
 
 fun View.drawableCompat(@DrawableRes drawableRes: Int) = context.drawableCompat(drawableRes)
-        ?: throw IllegalArgumentException("Wrong drawable id $drawableRes")
+    ?: throw IllegalArgumentException("Wrong drawable id $drawableRes")
 
 fun View.withStyledAttributes(
-        attributeSet: AttributeSet? = null,
-        styleArray: IntArray,
-        defStyleAttr: Int = 0,
-        defStyleRes: Int = 0,
-        block: TypedArray.() -> Unit
+    attributeSet: AttributeSet? = null,
+    styleArray: IntArray,
+    defStyleAttr: Int = 0,
+    defStyleRes: Int = 0,
+    block: TypedArray.() -> Unit
 ) = context.withStyledAttributes(
-        set = attributeSet,
-        attrs = styleArray,
-        defStyleAttr = defStyleAttr,
-        defStyleRes = defStyleRes,
-        block = block
+    set = attributeSet,
+    attrs = styleArray,
+    defStyleAttr = defStyleAttr,
+    defStyleRes = defStyleRes,
+    block = block
 )
 
 inline fun View.indefiniteSnackBar(
-        @StringRes message: Int,
-        @StringRes actionText: Int,
-        anchorView: View = this,
-        noinline action: (View) -> Unit
+    @StringRes message: Int,
+    @StringRes actionText: Int,
+    anchorView: View = this,
+    noinline action: (View) -> Unit
 ) = Snackbar
-        .make(this, message, Snackbar.LENGTH_INDEFINITE)
-        .setAnchorView(anchorView)
-        .setAction(actionText, action)
-        .show()
+    .make(this, message, Snackbar.LENGTH_INDEFINITE)
+    .setAnchorView(anchorView)
+    .setAction(actionText, action)
+    .show()
 
 inline fun View.longSnackBar(
-        @StringRes message: Int,
-        @StringRes actionText: Int,
-        anchorView: View = this,
-        noinline action: (View) -> Unit
+    @StringRes message: Int,
+    @StringRes actionText: Int,
+    anchorView: View = this,
+    noinline action: (View) -> Unit
 ) = Snackbar
-        .make(this, message, Snackbar.LENGTH_LONG)
-        .setAnchorView(anchorView)
-        .setAction(actionText, action)
-        .show()
+    .make(this, message, Snackbar.LENGTH_LONG)
+    .setAnchorView(anchorView)
+    .setAction(actionText, action)
+    .show()
 
 inline fun View.addRipple() {
     isClickable = true
@@ -81,7 +82,7 @@ inline fun View.addRipple() {
 }
 
 fun View.pxToDp(value: Int): Int =
-        (value.toFloat() / context.resources.displayMetrics.density).roundToInt()
+    (value.toFloat() / context.resources.displayMetrics.density).roundToInt()
 
 inline fun View.activated() {
     isActivated = true

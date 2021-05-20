@@ -10,14 +10,14 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
 internal class TabRepository(
-        private val firebase: IFirebase
+    private val firebase: IFirebase
 ) : ITabRepository {
 
     override suspend fun load() = withContext(Dispatchers.IO) {
         firebase.firebaseFirestore
-                .collection(CATEGORIES)
-                .orderBy(ID)
-                .awaitResult<TabEntity>()
+            .collection(CATEGORIES)
+            .orderBy(ID)
+            .awaitResult<TabEntity>()
     }
 }
 

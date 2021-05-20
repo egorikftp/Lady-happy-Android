@@ -7,9 +7,9 @@ import com.egoriku.ladyhappy.postcreator.data.remote.PublishPostRepository
 import kotlinx.coroutines.Dispatchers
 
 class PublishPostUseCase(
-        private val publishPostRepository: PublishPostRepository,
+    private val publishPostRepository: PublishPostRepository,
 ) : UseCase<UploadEntity, ResultOf<Boolean>>(Dispatchers.IO) {
 
     override suspend fun execute(parameters: UploadEntity): ResultOf<Boolean> =
-            publishPostRepository.publish(uploadEntity = parameters)
+        publishPostRepository.publish(uploadEntity = parameters)
 }

@@ -15,21 +15,22 @@ import kotlin.math.max
 import kotlin.math.min
 
 internal class QuotesController(
-        private val parallaxScrollListener: ParallaxScrollListener?
+    private val parallaxScrollListener: ParallaxScrollListener?
 ) : BindableItemController<List<QuotesModel>, QuotesController.Holder>() {
 
     override fun createViewHolder(parent: ViewGroup) =
-            Holder(AdapterItemQuotesBinding.inflate(parent.inflater(), parent, false))
+        Holder(AdapterItemQuotesBinding.inflate(parent.inflater(), parent, false))
 
     override fun getItemId(data: List<QuotesModel>) = data.hashCode().toString()
 
     inner class Holder(
-            private val itemBinding: AdapterItemQuotesBinding
+        private val itemBinding: AdapterItemQuotesBinding
     ) : BindableViewHolder<List<QuotesModel>>(itemBinding.root),
-            ParallaxScrollStateListener {
+        ParallaxScrollStateListener {
 
         private val random = Random()
-        private var itemHeight = itemView.resources.getDimensionPixelSize(R.dimen.adapter_item_quotes_height)
+        private var itemHeight =
+            itemView.resources.getDimensionPixelSize(R.dimen.adapter_item_quotes_height)
 
         private var quotesList = emptyList<QuotesModel>()
 
@@ -64,13 +65,17 @@ internal class QuotesController(
             parallaxScrollListener?.let {
                 val recyclerViewHeight = it.recyclerViewHeight + itemHeight
 
-                val min = min(itemView.top + itemView.translationY.toInt() + itemHeight, recyclerViewHeight)
+                val min = min(
+                    itemView.top + itemView.translationY.toInt() + itemHeight,
+                    recyclerViewHeight
+                )
                 val intrinsicHeightDrawable = itemBinding.quotesBackground.drawable.intrinsicHeight
                 val max = (1.0f - max(0, min) * 1.0f / recyclerViewHeight) *
                         (-(intrinsicHeightDrawable - itemHeight)).toFloat()
 
                 val rectDrawable = itemBinding.quotesBackground.drawable.bounds
-                val leftOffset = (itemBinding.quotesBackground.measuredWidth - rectDrawable.width()) / 2f
+                val leftOffset =
+                    (itemBinding.quotesBackground.measuredWidth - rectDrawable.width()) / 2f
 
                 val matrix = Matrix()
                 matrix.setTranslate(0.0f, max)

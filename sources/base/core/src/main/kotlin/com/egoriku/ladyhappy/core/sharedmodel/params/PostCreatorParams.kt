@@ -6,5 +6,5 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class PostCreatorParams(
-        val images: List<Uri> = emptyList()
+    val images: List<Uri> = emptyList()
 ) : Parcelable

@@ -16,19 +16,20 @@ import com.egoriku.ladyhappy.photoreport.domain.model.PhotoReportModel
 import com.egoriku.ladyhappy.ui.view.PhotoOverlayActions
 import com.stfalcon.imageviewer.StfalconImageViewer
 
-class PhotoReportAdapter : BaseListAdapter<PhotoReportModel, PhotoReportAdapter.Holder>(DiffCallback()) {
+class PhotoReportAdapter :
+    BaseListAdapter<PhotoReportModel, PhotoReportAdapter.Holder>(DiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder =
-            Holder(AdapterItemPhotoReportBinding.inflate(parent.inflater(), parent, false))
+        Holder(AdapterItemPhotoReportBinding.inflate(parent.inflater(), parent, false))
 
     override fun onBindViewHolder(
-            holder: Holder,
-            position: Int,
-            model: PhotoReportModel
+        holder: Holder,
+        position: Int,
+        model: PhotoReportModel
     ) = holder.bind(model)
 
     inner class Holder(
-            private val binding: AdapterItemPhotoReportBinding
+        private val binding: AdapterItemPhotoReportBinding
     ) : BaseViewHolder<PhotoReportModel>(binding.root) {
 
         private var stfalconImageViewer: StfalconImageViewer<MozaikItem>? = null
@@ -36,9 +37,9 @@ class PhotoReportAdapter : BaseListAdapter<PhotoReportModel, PhotoReportAdapter.
         init {
             binding.mozaikLayout.onViewReady = { view, url ->
                 Glide.with(itemView.context)
-                        .load(url)
-                        .transition(DrawableTransitionOptions.withCrossFade(CROSSFADE_DURATION))
-                        .into(view)
+                    .load(url)
+                    .transition(DrawableTransitionOptions.withCrossFade(CROSSFADE_DURATION))
+                    .into(view)
             }
         }
 
@@ -57,16 +58,24 @@ class PhotoReportAdapter : BaseListAdapter<PhotoReportModel, PhotoReportAdapter.
                     stfalconImageViewer?.close()
                 }
 
-                stfalconImageViewer = StfalconImageViewer.Builder(itemView.context, mozaikItems) { view, image ->
-                    Glide.with(view.context).load(image.url).into(view)
-                }.withStartPosition(position)
+                stfalconImageViewer =
+                    StfalconImageViewer.Builder(itemView.context, mozaikItems) { view, image ->
+                        Glide.with(view.context).load(image.url).into(view)
+                    }.withStartPosition(position)
                         .withDismissListener {
                             stfalconImageViewer = null
                         }
                         .withOverlayView(photoOverlayActions)
                         .withImageChangeListener {
-                            photoOverlayActions.setTitle(position = it + 1, count = mozaikItems.size)
-                            stfalconImageViewer?.updateTransitionImage(mozaikLayout.getItemByPosition(it))
+                            photoOverlayActions.setTitle(
+                                position = it + 1,
+                                count = mozaikItems.size
+                            )
+                            stfalconImageViewer?.updateTransitionImage(
+                                mozaikLayout.getItemByPosition(
+                                    it
+                                )
+                            )
                         }
                         .withTransitionFrom(transitionVew)
                         .withHiddenStatusBar(false)
@@ -77,8 +86,10 @@ class PhotoReportAdapter : BaseListAdapter<PhotoReportModel, PhotoReportAdapter.
 
     class DiffCallback : DiffUtil.ItemCallback<PhotoReportModel>() {
 
-        override fun areItemsTheSame(oldItem: PhotoReportModel, newItem: PhotoReportModel) = oldItem == newItem
+        override fun areItemsTheSame(oldItem: PhotoReportModel, newItem: PhotoReportModel) =
+            oldItem == newItem
 
-        override fun areContentsTheSame(oldItem: PhotoReportModel, newItem: PhotoReportModel) = oldItem == newItem
+        override fun areContentsTheSame(oldItem: PhotoReportModel, newItem: PhotoReportModel) =
+            oldItem == newItem
     }
 }

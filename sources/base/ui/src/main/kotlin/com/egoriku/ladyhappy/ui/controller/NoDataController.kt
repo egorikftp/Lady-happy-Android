@@ -7,14 +7,14 @@ import ru.surfstudio.android.easyadapter.controller.NoDataItemController
 import ru.surfstudio.android.easyadapter.holder.BaseViewHolder
 
 class NoDataController(
-        private val retryListener: () -> Unit
+    private val retryListener: () -> Unit
 ) : NoDataItemController<NoDataController.Holder>() {
 
     override fun createViewHolder(parent: ViewGroup) =
-            Holder(AdapterItemNoDataBinding.inflate(parent.inflater(), parent, false))
+        Holder(AdapterItemNoDataBinding.inflate(parent.inflater(), parent, false))
 
     inner class Holder(
-            itemBinding: AdapterItemNoDataBinding
+        itemBinding: AdapterItemNoDataBinding
     ) : BaseViewHolder(itemBinding.root) {
 
         init {

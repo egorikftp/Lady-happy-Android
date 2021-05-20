@@ -12,17 +12,19 @@ import com.egoriku.ladyhappy.settings.databinding.AdapterItemFeatureBinding
 import com.egoriku.ladyhappy.settings.domain.model.Feature
 
 class FeatureAdapter(
-        private val onFeatureClick: (feature: Feature) -> Unit
+    private val onFeatureClick: (feature: Feature) -> Unit
 ) : ListAdapter<Feature, FeatureAdapter.VH>(DiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
-            VH(AdapterItemFeatureBinding.inflate(parent.inflater(), parent, false))
+        VH(AdapterItemFeatureBinding.inflate(parent.inflater(), parent, false))
 
-    override fun onBindViewHolder(holder: FeatureAdapter.VH, position: Int) = holder.bind(getItem(position))
+    override fun onBindViewHolder(holder: FeatureAdapter.VH, position: Int) =
+        holder.bind(getItem(position))
 
     override fun getItemViewType(position: Int) = R.layout.adapter_item_feature
 
-    inner class VH(private val binding: AdapterItemFeatureBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class VH(private val binding: AdapterItemFeatureBinding) :
+        RecyclerView.ViewHolder(binding.root) {
 
         fun bind(model: Feature) = binding.bind(model)
 
@@ -41,9 +43,9 @@ class FeatureAdapter(
     internal class DiffCallback : DiffUtil.ItemCallback<Feature>() {
 
         override fun areItemsTheSame(oldItem: Feature, newItem: Feature) =
-                oldItem.isAvailable == newItem.isAvailable
+            oldItem.isAvailable == newItem.isAvailable
 
         override fun areContentsTheSame(oldItem: Feature, newItem: Feature) =
-                oldItem == newItem
+            oldItem == newItem
     }
 }

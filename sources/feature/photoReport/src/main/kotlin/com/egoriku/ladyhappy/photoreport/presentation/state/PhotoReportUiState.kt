@@ -8,6 +8,6 @@ sealed class PhotoReportUiState {
     object Error : PhotoReportUiState()
 
     data class Success(
-            val photoReports: List<PhotoReportModel>
+        val photoReports: List<PhotoReportModel>
     ) : PhotoReportUiState()
 }

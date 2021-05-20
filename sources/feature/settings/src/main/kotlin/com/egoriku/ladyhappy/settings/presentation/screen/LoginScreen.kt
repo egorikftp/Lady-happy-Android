@@ -7,7 +7,7 @@ import com.egoriku.ladyhappy.core.IFeatureProvider
 import com.egoriku.ladyhappy.navigation.screen.FragmentScreen
 
 class LoginScreen(
-        private val featureProvider: IFeatureProvider
+    private val featureProvider: IFeatureProvider
 ) : FragmentScreen() {
 
     override val fragment: Fragment

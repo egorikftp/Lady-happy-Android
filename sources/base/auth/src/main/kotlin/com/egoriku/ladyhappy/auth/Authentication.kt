@@ -29,11 +29,11 @@ class Authentication {
         when (val user = auth.currentUser) {
             null -> _userLoginState.value = UserLoginState.Anon
             else -> _userLoginState.value = UserLoginState.LoggedIn(
-                    userId = user.uid,
-                    name = user.displayName ?: EMPTY,
-                    email = user.email ?: EMPTY,
-                    photoUrl = user.photoUrl?.toString() ?: EMPTY,
-                    isEmailVerified = user.isEmailVerified
+                userId = user.uid,
+                name = user.displayName ?: EMPTY,
+                email = user.email ?: EMPTY,
+                photoUrl = user.photoUrl?.toString() ?: EMPTY,
+                isEmailVerified = user.isEmailVerified
             )
         }
     }
@@ -45,10 +45,11 @@ class Authentication {
     }
 
     suspend fun authWithEmailAndPassword(
-            email: String,
-            password: String,
+        email: String,
+        password: String,
     ): ResultOf<AuthResult> = withContext(Dispatchers.IO) {
-        val resultOf: ResultOf<AuthResult> = auth.signInWithEmailAndPassword(email, password).awaitResult()
+        val resultOf: ResultOf<AuthResult> =
+            auth.signInWithEmailAndPassword(email, password).awaitResult()
 
         withContext(Dispatchers.Main) {
             invalidateUser()

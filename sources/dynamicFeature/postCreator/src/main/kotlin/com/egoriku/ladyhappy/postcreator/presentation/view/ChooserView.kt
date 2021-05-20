@@ -14,9 +14,9 @@ import com.egoriku.ladyhappy.postcreator.databinding.ViewChooserBinding
 import com.egoriku.ladyhappy.ui.R as R_ui
 
 class ChooserView @JvmOverloads constructor(
-        context: Context,
-        attrs: AttributeSet? = null,
-        defStyleAttr: Int = 0
+    context: Context,
+    attrs: AttributeSet? = null,
+    defStyleAttr: Int = 0
 ) : ConstraintLayout(context, attrs, defStyleAttr) {
 
     private val binding = ViewChooserBinding.inflate(inflater(), this)
@@ -37,13 +37,13 @@ class ChooserView @JvmOverloads constructor(
         addRipple()
 
         updatePadding(
-                left = getDimen(R_ui.dimen.material_padding_16),
-                right = getDimen(R_ui.dimen.material_padding_16)
+            left = getDimen(R_ui.dimen.material_padding_16),
+            right = getDimen(R_ui.dimen.material_padding_16)
         )
 
         withStyledAttributes(
-                attributeSet = attrs,
-                styleArray = R.styleable.ChooserView
+            attributeSet = attrs,
+            styleArray = R.styleable.ChooserView
         ) {
             hintText = getString(R.styleable.ChooserView_hintText)?.also {
                 binding.primaryTextView.text = it

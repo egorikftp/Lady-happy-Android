@@ -10,9 +10,9 @@ import com.egoriku.ladyhappy.network.ResultOf
 import kotlinx.coroutines.launch
 
 class EditSubCategoryViewModel(
-        private val documentReference: String,
-        private val loadSubCategoryUseCase: ILoadSubCategoryUseCase,
-        private val updateSubCategoryUseCase: IUpdateSubCategoryUseCase
+    private val documentReference: String,
+    private val loadSubCategoryUseCase: ILoadSubCategoryUseCase,
+    private val updateSubCategoryUseCase: IUpdateSubCategoryUseCase
 ) : BaseViewModel<Event, State, Effect>() {
 
     init {
@@ -29,7 +29,8 @@ class EditSubCategoryViewModel(
             is Event.LoadSubCategoryData -> viewModelScope.launch {
                 setState { copy(editState = EditState.Loading) }
 
-                when (val subcategoryModel = loadSubCategoryUseCase.load(documentReference = documentReference)) {
+                when (val subcategoryModel =
+                    loadSubCategoryUseCase.load(documentReference = documentReference)) {
                     null -> setEffect { Effect.ShowToast(message = "Error loading") }
                     else -> setState { copy(editState = EditState.Success(subcategoryModel)) }
                 }

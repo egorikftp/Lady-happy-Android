@@ -63,7 +63,10 @@ class EditFragment : ScopeFragment(R.layout.fragment_edit_subcategory) {
             viewModel.effect.collect {
                 when (it) {
                     is Effect.Exit -> {
-                        setFragmentResult(EDIT_REQUEST_KEY, bundleOf(EDIT_BUNDLE_RESULT_KEY to it.categoryId))
+                        setFragmentResult(
+                            EDIT_REQUEST_KEY,
+                            bundleOf(EDIT_BUNDLE_RESULT_KEY to it.categoryId)
+                        )
                         router.back()
                     }
                     is Effect.ShowToast -> toast(it.message)
@@ -81,9 +84,9 @@ class EditFragment : ScopeFragment(R.layout.fragment_edit_subcategory) {
 
         titleView.setOnClickListener {
             showEditBottomSheetDialog(
-                    titleResId = R_localization.string.edit_dialog_header_edit_name,
-                    predefinedValue = titleView.text.toString(),
-                    inputType = TYPE_CLASS_TEXT or TYPE_TEXT_FLAG_MULTI_LINE
+                titleResId = R_localization.string.edit_dialog_header_edit_name,
+                predefinedValue = titleView.text.toString(),
+                inputType = TYPE_CLASS_TEXT or TYPE_TEXT_FLAG_MULTI_LINE
             ) {
                 viewModel.setEvent(Event.UpdateTitle(title = it))
             }
@@ -91,9 +94,9 @@ class EditFragment : ScopeFragment(R.layout.fragment_edit_subcategory) {
 
         descriptionView.setOnClickListener {
             showEditBottomSheetDialog(
-                    titleResId = R_localization.string.edit_dialog_header_edit_description,
-                    predefinedValue = descriptionView.text.toString(),
-                    inputType = TYPE_CLASS_TEXT or TYPE_TEXT_FLAG_MULTI_LINE
+                titleResId = R_localization.string.edit_dialog_header_edit_description,
+                predefinedValue = descriptionView.text.toString(),
+                inputType = TYPE_CLASS_TEXT or TYPE_TEXT_FLAG_MULTI_LINE
             ) {
                 viewModel.setEvent(Event.UpdateDescription(description = it))
             }
@@ -101,9 +104,9 @@ class EditFragment : ScopeFragment(R.layout.fragment_edit_subcategory) {
 
         countView.setOnClickListener {
             showEditBottomSheetDialog(
-                    titleResId = R_localization.string.edit_dialog_header_edit_count,
-                    predefinedValue = countView.text.toString(),
-                    inputType = TYPE_CLASS_NUMBER or TYPE_TEXT_FLAG_MULTI_LINE
+                titleResId = R_localization.string.edit_dialog_header_edit_count,
+                predefinedValue = countView.text.toString(),
+                inputType = TYPE_CLASS_NUMBER or TYPE_TEXT_FLAG_MULTI_LINE
             ) {
                 viewModel.setEvent(Event.UpdateCount(count = it.toInt()))
             }
@@ -137,8 +140,8 @@ class EditFragment : ScopeFragment(R.layout.fragment_edit_subcategory) {
                 mozaikLayout.visible()
                 mozaikLayout.onViewReady = { view, url ->
                     Glide.with(view)
-                            .load(url)
-                            .into(view)
+                        .load(url)
+                        .into(view)
                 }
                 mozaikLayout.setItems(model.images)
                 popularSwitchView.isChecked = model.isPopular
@@ -153,19 +156,19 @@ class EditFragment : ScopeFragment(R.layout.fragment_edit_subcategory) {
 
     @Suppress("ForbiddenComment")
     private fun showEditBottomSheetDialog(
-            titleResId: Int,
-            predefinedValue: String,
-            inputType: Int,
-            onNewValue: (String) -> Unit
+        titleResId: Int,
+        predefinedValue: String,
+        inputType: Int,
+        onNewValue: (String) -> Unit
     ) {
         InputSheet().show(requireContext()) {
             title(titleResId)
             with(
-                    InputEditText {
-                        required()
-                        inputType(inputType)
-                        defaultValue(predefinedValue)
-                    }
+                InputEditText {
+                    required()
+                    inputType(inputType)
+                    defaultValue(predefinedValue)
+                }
             )
             onPositive { result ->
                 onNewValue(result.getStringOrThrow("0"))

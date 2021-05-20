@@ -15,11 +15,11 @@ sealed class DynamicFeature : Parcelable {
 
     @Parcelize
     data class PostCreator(
-            val postCreatorParams: PostCreatorParams = PostCreatorParams()
+        val postCreatorParams: PostCreatorParams = PostCreatorParams()
     ) : DynamicFeature()
 
     @Parcelize
     data class Edit(
-            val editParams: EditParams
+        val editParams: EditParams
     ) : DynamicFeature()
 }

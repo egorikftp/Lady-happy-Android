@@ -30,9 +30,9 @@ import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.launch
 
 class LoginViewModel(
-        context: Context,
-        private val authentication: Authentication,
-        private val router: IRouter
+    context: Context,
+    private val authentication: Authentication,
+    private val router: IRouter
 ) : ViewModel() {
 
     private val googleSignIn = GoogleSignInHelper(context)
@@ -50,7 +50,7 @@ class LoginViewModel(
             when (val result = authentication.authWithEmailAndPassword(email, password)) {
                 is Success -> _currentState.value = LoginState.Success()
                 is Failure -> _currentState.value = LoginState.Error(
-                        result.throwable.message ?: EMPTY
+                    result.throwable.message ?: EMPTY
                 )
             }
         }
@@ -63,7 +63,7 @@ class LoginViewModel(
             when (val result = authentication.authWithToken(token)) {
                 is Success -> _currentState.value = LoginState.Success()
                 is Failure -> _currentState.value = LoginState.Error(
-                        result.throwable.message ?: EMPTY
+                    result.throwable.message ?: EMPTY
                 )
             }
         }
@@ -104,44 +104,45 @@ class LoginViewModel(
         private val oneTapClient: SignInClient = Identity.getSignInClient(context)
 
         private val signInWithGoogleClient: GoogleSignInClient = GoogleSignIn.getClient(
-                context,
-                GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                        .requestIdToken(context.getString(R.string.server_client_id))
-                        .requestEmail()
-                        .build()
+            context,
+            GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken(context.getString(R.string.server_client_id))
+                .requestEmail()
+                .build()
         )
 
         private val signInRequest: BeginSignInRequest = BeginSignInRequest.builder()
-                .setPasswordRequestOptions(
-                        BeginSignInRequest.PasswordRequestOptions.builder()
-                                .setSupported(true)
-                                .build()
-                )
-                .setGoogleIdTokenRequestOptions(
-                        BeginSignInRequest.GoogleIdTokenRequestOptions.builder()
-                                .setSupported(true)
-                                .setServerClientId(context.getString(R.string.server_client_id))
-                                .setFilterByAuthorizedAccounts(true)
-                                .build()
-                ).setAutoSelectEnabled(false)
-                .build()
+            .setPasswordRequestOptions(
+                BeginSignInRequest.PasswordRequestOptions.builder()
+                    .setSupported(true)
+                    .build()
+            )
+            .setGoogleIdTokenRequestOptions(
+                BeginSignInRequest.GoogleIdTokenRequestOptions.builder()
+                    .setSupported(true)
+                    .setServerClientId(context.getString(R.string.server_client_id))
+                    .setFilterByAuthorizedAccounts(true)
+                    .build()
+            ).setAutoSelectEnabled(false)
+            .build()
 
         fun signIn() {
             oneTapClient.beginSignIn(signInRequest)
-                    .addOnSuccessListener { result ->
-                        val intentSenderRequest = IntentSenderRequest.Builder(result.pendingIntent.intentSender)
-                                .setFillInIntent(null)
-                                .build()
+                .addOnSuccessListener { result ->
+                    val intentSenderRequest =
+                        IntentSenderRequest.Builder(result.pendingIntent.intentSender)
+                            .setFillInIntent(null)
+                            .build()
 
-                        viewModelScope.launch {
-                            _events.emit(LoginEvent.OneTap(intentSenderRequest))
-                        }
+                    viewModelScope.launch {
+                        _events.emit(LoginEvent.OneTap(intentSenderRequest))
                     }
-                    .addOnFailureListener { e ->
-                        // No saved credentials found. Launch the One Tap sign-up flow, or
-                        // do nothing and continue presenting the signed-out UI.
-                        logD(e.message)
-                    }
+                }
+                .addOnFailureListener { e ->
+                    // No saved credentials found. Launch the One Tap sign-up flow, or
+                    // do nothing and continue presenting the signed-out UI.
+                    logD(e.message)
+                }
         }
 
         fun signWithGoogle() {
@@ -151,6 +152,6 @@ class LoginViewModel(
         }
 
         fun getCredentials(intent: Intent?): SignInCredential? =
-                oneTapClient.getSignInCredentialFromIntent(intent)
+            oneTapClient.getSignInCredentialFromIntent(intent)
     }
 }

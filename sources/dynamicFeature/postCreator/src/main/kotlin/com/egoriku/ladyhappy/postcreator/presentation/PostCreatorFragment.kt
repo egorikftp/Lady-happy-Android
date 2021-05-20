@@ -56,9 +56,10 @@ class PostCreatorFragment : ScopeFragment(R.layout.fragment_post_creator) {
     private var imagesSectionAdapter: ImagesSectionAdapter by Delegates.notNull()
     private var chooserSectionAdapter: ChooserSectionAdapter by Delegates.notNull()
 
-    private val imageChooserContract = registerForActivityResult(ActivityResultContracts.GetMultipleContents()) {
-        viewModel.processImageResult(it)
-    }
+    private val imageChooserContract =
+        registerForActivityResult(ActivityResultContracts.GetMultipleContents()) {
+            viewModel.processImageResult(it)
+        }
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -72,19 +73,19 @@ class PostCreatorFragment : ScopeFragment(R.layout.fragment_post_creator) {
 
         binding.initView()
         chooserSectionAdapter = ChooserSectionAdapter(
-                chooserItemClick = {
-                    processChooserItemClick(it)
-                },
-                resetItemClick = {
-                    processResetItemClick(it)
-                }
+            chooserItemClick = {
+                processChooserItemClick(it)
+            },
+            resetItemClick = {
+                processResetItemClick(it)
+            }
         )
 
         inputSectionAdapter = InputSectionAdapter { viewModel.setTitle(it) }
 
         imagesSectionAdapter = ImagesSectionAdapter(
-                onChooseImage = { imageChooserContract.launch("image/*") },
-                onRemoveImage = { viewModel.removeAttachedImage(it) }
+            onChooseImage = { imageChooserContract.launch("image/*") },
+            onRemoveImage = { viewModel.removeAttachedImage(it) }
         )
 
         concatAdapter.addAdapter(inputSectionAdapter)
@@ -135,10 +136,11 @@ class PostCreatorFragment : ScopeFragment(R.layout.fragment_post_creator) {
 
     private fun subscribeForFragmentResult() {
         childFragmentManager.setFragmentResultListenerWrapper(
-                requestKey = KEY_CHOOSER_FRAGMENT_RESULT,
-                lifecycleOwner = viewLifecycleOwner
+            requestKey = KEY_CHOOSER_FRAGMENT_RESULT,
+            lifecycleOwner = viewLifecycleOwner
         ) { _, result ->
-            when (val dialogResult = result.getParcelable<DialogResult>(KEY_FRAGMENT_RESULT_BUNDLE)) {
+            when (val dialogResult =
+                result.getParcelable<DialogResult>(KEY_FRAGMENT_RESULT_BUNDLE)) {
                 is DialogResult.Category -> viewModel.setCategory(dialogResult.category)
                 is DialogResult.SubCategory -> viewModel.setSubCategory(dialogResult.subCategory)
                 is DialogResult.Color -> viewModel.setColor(dialogResult.colorIds)
@@ -151,11 +153,11 @@ class PostCreatorFragment : ScopeFragment(R.layout.fragment_post_creator) {
     private fun processChooserItemClick(chooserState: ChooserType) = when (chooserState) {
         is ChooserType.Category -> {
             CategoriesDialog.newInstance(PredefinedData.getCategoriesNames())
-                    .show(childFragmentManager, null)
+                .show(childFragmentManager, null)
         }
         is ChooserType.SubCategory -> {
             SubCategoriesDialog.newInstance(PredefinedData.getSubCategoriesNames(chooserState.categoryId))
-                    .show(childFragmentManager, null)
+                .show(childFragmentManager, null)
         }
         is ChooserType.Color -> {
             ColorDialog().show(childFragmentManager, null)
