@@ -113,13 +113,13 @@ class MainActivity : ScopeActivity(R.layout.activity_main) {
         }
 
         with(binding.bottomNavigation) {
-            setOnNavigationItemSelectedListener { item ->
+            setOnItemSelectedListener { item ->
                 consume {
                     mapItemIdToScreen(item.itemId)
                 }
             }
 
-            setOnNavigationItemReselectedListener {}
+            setOnItemReselectedListener {}
         }
 
         viewModel.theme.observe(this) {
@@ -182,7 +182,7 @@ class MainActivity : ScopeActivity(R.layout.activity_main) {
     }
 
     private fun subscribeForInAppUpdate() {
-        repeatingJobOnStarted {
+        lifecycleScope.launch {
             inAppUpdateViewModel.updateStatus.collect { updateResult: AppUpdateResult ->
                 updateUpdateButton(updateResult)
 
@@ -194,7 +194,7 @@ class MainActivity : ScopeActivity(R.layout.activity_main) {
             }
         }
 
-        repeatingJobOnStarted {
+        lifecycleScope.launch {
             inAppUpdateViewModel.events.collect { event ->
                 when (event) {
                     is InAppUpdateEvent.ToastEvent -> toast(event.message)

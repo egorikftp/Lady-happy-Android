@@ -16,7 +16,6 @@ import com.egoriku.ladyhappy.edit.R
 import com.egoriku.ladyhappy.edit.databinding.FragmentEditSubcategoryBinding
 import com.egoriku.ladyhappy.edit.koin.editModule
 import com.egoriku.ladyhappy.extensions.*
-import com.egoriku.ladyhappy.extensions.common.Constants.EMPTY
 import com.google.android.play.core.splitcompat.SplitCompat
 import com.maxkeppeler.sheets.input.InputSheet
 import com.maxkeppeler.sheets.input.type.InputEditText
@@ -163,8 +162,6 @@ class EditFragment : ScopeFragment(R.layout.fragment_edit_subcategory) {
             title(titleResId)
             with(
                     InputEditText {
-                        // TODO: 4/9/21 remove label after library fix
-                        label(EMPTY)
                         required()
                         inputType(inputType)
                         defaultValue(predefinedValue)

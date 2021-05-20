@@ -21,81 +21,81 @@ class DynamicFeatureViewModel(private val splitInstallHelper: ISplitInstallHelpe
 
     fun invokePostCreator(postCreatorParams: PostCreatorParams) {
         PostCreatorDynamicFeatureFacade(splitInstallHelper).installModule(
-                object : ModuleInstallListener {
-                    override fun onSuccess() {
-                        viewModelScope.launch {
-                            _events.emit(
-                                    DynamicFeatureEvent.NavigationEvent(
-                                            screen = DynamicScreen.PostCreator(params = postCreatorParams)
-                                    )
+            object : ModuleInstallListener {
+                override fun onSuccess() {
+                    viewModelScope.launch {
+                        _events.emit(
+                            DynamicFeatureEvent.NavigationEvent(
+                                screen = DynamicScreen.PostCreator(params = postCreatorParams)
                             )
-                        }
-                    }
-
-                    override fun onFailure(exception: Exception?) {
-                        viewModelScope.launch {
-                            _events.emit(DynamicFeatureEvent.InstallErrorEvent)
-                        }
-                    }
-
-                    override fun onRequiresUserConfirmation(sessionState: SplitInstallSessionState) {
-                        viewModelScope.launch {
-                            _events.emit(DynamicFeatureEvent.InstallConfirmationEvent(sessionState))
-                        }
-                    }
-
-                    override fun onDownloadInProgress(progress: Long, totalBytes: Long) {
-                        viewModelScope.launch {
-                            DynamicFeatureEvent.Downloading(progress = (progress / totalBytes).toInt())
-                        }
-                    }
-
-                    override fun onInstalling() {
-                        viewModelScope.launch {
-                            DynamicFeatureEvent.Installing
-                        }
+                        )
                     }
                 }
+
+                override fun onRequiresUserConfirmation(sessionState: SplitInstallSessionState) {
+                    viewModelScope.launch {
+                        _events.emit(DynamicFeatureEvent.InstallConfirmationEvent(sessionState))
+                    }
+                }
+
+                override fun onFailure(exception: Exception?) {
+                    viewModelScope.launch {
+                        _events.emit(DynamicFeatureEvent.InstallErrorEvent)
+                    }
+                }
+
+                override fun onDownloadInProgress(progress: Long, totalBytes: Long) {
+                    viewModelScope.launch {
+                        DynamicFeatureEvent.Downloading(progress = (progress / totalBytes).toInt())
+                    }
+                }
+
+                override fun onInstalling() {
+                    viewModelScope.launch {
+                        DynamicFeatureEvent.Installing
+                    }
+                }
+            }
         )
     }
 
     fun invokeEdit(editParams: EditParams) {
         EditDynamicFeatureFacade(splitInstallHelper).installModule(
-                object : ModuleInstallListener {
-                    override fun onSuccess() {
-                        viewModelScope.launch {
-                            _events.emit(
-                                    DynamicFeatureEvent.NavigationEvent(
-                                            screen = DynamicScreen.Edit(editParams = editParams)
-                                    )
+            object : ModuleInstallListener {
+                override fun onSuccess() {
+                    viewModelScope.launch {
+                        _events.emit(
+                            DynamicFeatureEvent.NavigationEvent(
+                                screen = DynamicScreen.Edit(editParams = editParams)
                             )
-                        }
-                    }
-
-                    override fun onRequiresUserConfirmation(sessionState: SplitInstallSessionState) {
-                        viewModelScope.launch {
-                            _events.emit(DynamicFeatureEvent.InstallConfirmationEvent(sessionState))
-                        }
-                    }
-
-                    override fun onFailure(exception: Exception?) {
-                        viewModelScope.launch {
-                            _events.emit(DynamicFeatureEvent.InstallErrorEvent)
-                        }
-                    }
-
-                    override fun onDownloadInProgress(progress: Long, totalBytes: Long) {
-                        viewModelScope.launch {
-                            DynamicFeatureEvent.Downloading(progress = (progress / totalBytes).toInt())
-                        }
-                    }
-
-                    override fun onInstalling() {
-                        viewModelScope.launch {
-                            DynamicFeatureEvent.Installing
-                        }
+                        )
                     }
                 }
+
+                override fun onRequiresUserConfirmation(sessionState: SplitInstallSessionState) {
+                    viewModelScope.launch {
+                        _events.emit(DynamicFeatureEvent.InstallConfirmationEvent(sessionState))
+                    }
+                }
+
+                override fun onFailure(exception: Exception?) {
+                    viewModelScope.launch {
+                        _events.emit(DynamicFeatureEvent.InstallErrorEvent)
+                    }
+                }
+
+                override fun onDownloadInProgress(progress: Long, totalBytes: Long) {
+                    viewModelScope.launch {
+                        DynamicFeatureEvent.Downloading(progress = (progress / totalBytes).toInt())
+                    }
+                }
+
+                override fun onInstalling() {
+                    viewModelScope.launch {
+                        DynamicFeatureEvent.Installing
+                    }
+                }
+            }
         )
     }
 }
