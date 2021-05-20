@@ -60,10 +60,12 @@
         android:layout_height="match_parent"
         android:background="?android:colorBackground"
         android:gravity="center"
+        android:clickable="true"
+        android:focusable="true"
+        android:visibility="gone"
         android:orientation="vertical"
         android:paddingLeft="@dimen/material_padding_16"
         android:paddingRight="@dimen/material_padding_16"
-        android:visibility="gone"
         tools:background="@color/RealWhite80"
         tools:visibility="visible">
 
