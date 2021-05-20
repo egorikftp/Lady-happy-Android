@@ -13,9 +13,9 @@ class RenderScriptGaussianBlur(context: Context) {
     private val renderScript = RenderScript.create(context)
 
     fun gaussianBlur(
-            @FloatRange(from = 1.0, to = 25.0)
-            radius: Float,
-            original: Bitmap
+        @FloatRange(from = 1.0, to = 25.0)
+        radius: Float,
+        original: Bitmap
     ): Bitmap {
         val input = Allocation.createFromBitmap(renderScript, original)
         val output = Allocation.createTyped(renderScript, input.type)

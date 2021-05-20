@@ -11,11 +11,16 @@ object GradlePluginsVersion {
 }
 
 object GradlePlugins {
-    const val detektFormatting = "io.gitlab.arturbosch.detekt:detekt-formatting:${GradlePluginsVersion.detekt}"
-    const val firebaseCrashlytics = "com.google.firebase:firebase-crashlytics-gradle:${GradlePluginsVersion.firebaseCrashlytics}"
-    const val firebasePerformance = "com.google.firebase:perf-plugin:${GradlePluginsVersion.firebasePerformance}"
-    const val googleOssLicenses = "com.google.android.gms:oss-licenses-plugin:${GradlePluginsVersion.ossLicenses}"
-    const val googleServices = "com.google.gms:google-services:${GradlePluginsVersion.googleServices}"
+    const val detektFormatting =
+        "io.gitlab.arturbosch.detekt:detekt-formatting:${GradlePluginsVersion.detekt}"
+    const val firebaseCrashlytics =
+        "com.google.firebase:firebase-crashlytics-gradle:${GradlePluginsVersion.firebaseCrashlytics}"
+    const val firebasePerformance =
+        "com.google.firebase:perf-plugin:${GradlePluginsVersion.firebasePerformance}"
+    const val googleOssLicenses =
+        "com.google.android.gms:oss-licenses-plugin:${GradlePluginsVersion.ossLicenses}"
+    const val googleServices =
+        "com.google.gms:google-services:${GradlePluginsVersion.googleServices}"
     const val gradleTools = "com.android.tools.build:gradle:${GradlePluginsVersion.gradleTools}"
     const val kotlinGradle = "org.jetbrains.kotlin:kotlin-gradle-plugin:${LibrariesVersion.kotlin}"
 }

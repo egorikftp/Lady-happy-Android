@@ -6,15 +6,15 @@ import com.google.firebase.firestore.PropertyName
 import java.util.*
 
 class PhotoReportEntity(
-        @PropertyName("date")
-        @JvmField
-        val date: Date = Date(),
+    @PropertyName("date")
+    @JvmField
+    val date: Date = Date(),
 
-        @PropertyName("description")
-        @JvmField
-        val description: String = EMPTY,
+    @PropertyName("description")
+    @JvmField
+    val description: String = EMPTY,
 
-        @PropertyName("images")
-        @JvmField
-        val images: List<ImageEntity> = emptyList()
+    @PropertyName("images")
+    @JvmField
+    val images: List<ImageEntity> = emptyList()
 )

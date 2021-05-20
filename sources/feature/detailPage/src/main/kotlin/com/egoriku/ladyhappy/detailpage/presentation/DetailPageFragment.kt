@@ -51,12 +51,12 @@ class DetailPageFragment : ScopeFragment(R.layout.fragment_detail), DetailPage {
 
         if (enterTransition != null) {
             (enterTransition as Transition).addListener(
-                    object : TransitionListenerAdapter() {
-                        override fun onTransitionEnd(transition: Transition) {
-                            transition.removeListener(this)
-                            viewBinding.loadBackgroundHeader()
-                        }
+                object : TransitionListenerAdapter() {
+                    override fun onTransitionEnd(transition: Transition) {
+                        transition.removeListener(this)
+                        viewBinding.loadBackgroundHeader()
                     }
+                }
             )
         }
     }
@@ -88,22 +88,23 @@ class DetailPageFragment : ScopeFragment(R.layout.fragment_detail), DetailPage {
     private fun FragmentDetailBinding.initAdapter() {
         detailAdapter.addLoadStateListener { loadState ->
             if (loadState.source.refresh is LoadState.NotLoading &&
-                    loadState.append.endOfPaginationReached &&
-                    detailAdapter.itemCount < 1
+                loadState.append.endOfPaginationReached &&
+                detailAdapter.itemCount < 1
             ) {
                 placeholderContainer.emptyStateImage.visible()
                 placeholderContainer.emptyStateMessage.visible()
             }
 
             recyclerView.isVisible = loadState.source.refresh is LoadState.NotLoading
-            placeholderContainer.progressBar.isVisible = loadState.source.refresh is LoadState.Loading
+            placeholderContainer.progressBar.isVisible =
+                loadState.source.refresh is LoadState.Loading
             placeholderContainer.retryButton.isVisible = loadState.source.refresh is LoadState.Error
 
             val errorState = loadState.source.append as? LoadState.Error
-                    ?: loadState.source.prepend as? LoadState.Error
-                    ?: loadState.append as? LoadState.Error
-                    ?: loadState.prepend as? LoadState.Error
-                    ?: loadState.source.refresh as? LoadState.Error
+                ?: loadState.source.prepend as? LoadState.Error
+                ?: loadState.append as? LoadState.Error
+                ?: loadState.prepend as? LoadState.Error
+                ?: loadState.source.refresh as? LoadState.Error
             errorState?.let {
                 toast(getString(R.string.detail_page_error_loading, it.error.toString()))
             }
@@ -112,7 +113,7 @@ class DetailPageFragment : ScopeFragment(R.layout.fragment_detail), DetailPage {
         recyclerView.apply {
             layoutManager = LinearLayoutManager(requireContext())
             adapter = detailAdapter.withLoadStateFooter(
-                    footer = LoadingStateFooterAdapter(detailAdapter::retry)
+                footer = LoadingStateFooterAdapter(detailAdapter::retry)
             )
             addItemDecoration(EmptySpaceItemDecoration(top = getDimen(R.dimen.material_padding_16)))
         }
@@ -120,9 +121,9 @@ class DetailPageFragment : ScopeFragment(R.layout.fragment_detail), DetailPage {
 
     private fun FragmentDetailBinding.initPredefinedData() {
         Glide.with(productImage)
-                .load(detailPageParams.productLogoUrl)
-                .transform(CircleCrop())
-                .into(productImage)
+            .load(detailPageParams.productLogoUrl)
+            .transform(CircleCrop())
+            .into(productImage)
 
         productTitle.text = detailPageParams.productName
         productTitleToolbar.text = detailPageParams.productName
@@ -131,16 +132,16 @@ class DetailPageFragment : ScopeFragment(R.layout.fragment_detail), DetailPage {
 
     private fun FragmentDetailBinding.loadBackgroundHeader() {
         Glide.with(headerBackground)
-                .load(detailPageParams.productLogoUrl)
-                .transition(DrawableTransitionOptions.withCrossFade())
-                .transform(
-                        BlurTransformation(BLUR_RADIUS, 1),
-                        GradientOverlayTransformation(
-                                startColor = colorCompat(R.color.RealBlack0),
-                                centerColor = colorCompat(R.color.RealBlack30),
-                                endColor = colorCompat(R.color.RealBlack)
-                        )
-                ).into(headerBackground)
+            .load(detailPageParams.productLogoUrl)
+            .transition(DrawableTransitionOptions.withCrossFade())
+            .transform(
+                BlurTransformation(BLUR_RADIUS, 1),
+                GradientOverlayTransformation(
+                    startColor = colorCompat(R.color.RealBlack0),
+                    centerColor = colorCompat(R.color.RealBlack30),
+                    endColor = colorCompat(R.color.RealBlack)
+                )
+            ).into(headerBackground)
     }
 
     @Suppress("MagicNumber")

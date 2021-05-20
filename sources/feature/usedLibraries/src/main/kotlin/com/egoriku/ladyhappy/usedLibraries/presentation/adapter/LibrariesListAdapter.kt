@@ -10,11 +10,11 @@ import com.egoriku.ladyhappy.usedLibraries.databinding.AdapterItemLibraryBinding
 import com.egoriku.ladyhappy.usedLibraries.domain.model.License
 
 class LibrariesListAdapter(
-        private val onItemClick: (license: String) -> Unit
+    private val onItemClick: (license: String) -> Unit
 ) : ListAdapter<License, LibrariesListAdapter.VH>(DiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VH =
-            VH(AdapterItemLibraryBinding.inflate(parent.inflater(), parent, false))
+        VH(AdapterItemLibraryBinding.inflate(parent.inflater(), parent, false))
 
     override fun onBindViewHolder(holder: VH, position: Int) {
         holder.bind(getItem(position))
@@ -22,7 +22,8 @@ class LibrariesListAdapter(
 
     override fun getItemViewType(position: Int) = R.layout.adapter_item_library
 
-    inner class VH(private val binding: AdapterItemLibraryBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class VH(private val binding: AdapterItemLibraryBinding) :
+        RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: License) {
             binding.bind(item)
@@ -40,6 +41,7 @@ class LibrariesListAdapter(
 
         override fun areItemsTheSame(oldItem: License, newItem: License) = oldItem == newItem
 
-        override fun areContentsTheSame(oldItem: License, newItem: License) = oldItem.libraryName == newItem.libraryName
+        override fun areContentsTheSame(oldItem: License, newItem: License) =
+            oldItem.libraryName == newItem.libraryName
     }
 }

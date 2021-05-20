@@ -21,7 +21,11 @@ inline fun <reified T> T.logE(message: String? = null, throwable: Throwable? = n
     Log.e(T::class.java.simpleName, message, throwable)
 }
 
-inline fun <reified T> T.logE(tag: String? = null, message: String? = null, throwable: Throwable? = null) {
+inline fun <reified T> T.logE(
+    tag: String? = null,
+    message: String? = null,
+    throwable: Throwable? = null
+) {
     if (tag.isNullOrEmpty()) {
         Log.e(T::class.java.simpleName, message, throwable)
     } else {

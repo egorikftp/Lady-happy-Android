@@ -25,18 +25,18 @@ class CreationDatePicker {
 
     fun getDatePicker(): MaterialDatePicker<Long> {
         val materialDatePicker = MaterialDatePicker.Builder.datePicker()
-                .setCalendarConstraints(
-                        CalendarConstraints.Builder()
-                                .setStart(startDate.timeInMillis)
-                                .setEnd(endDate.timeInMillis)
-                                .build()
-                )
-                .build()
+            .setCalendarConstraints(
+                CalendarConstraints.Builder()
+                    .setStart(startDate.timeInMillis)
+                    .setEnd(endDate.timeInMillis)
+                    .build()
+            )
+            .build()
 
         materialDatePicker.addOnPositiveButtonClickListener {
             materialDatePicker.setFragmentResult(
-                    KEY_CHOOSER_FRAGMENT_RESULT,
-                    bundleOf(KEY_FRAGMENT_RESULT_BUNDLE to DialogResult.CreationDate(it))
+                KEY_CHOOSER_FRAGMENT_RESULT,
+                bundleOf(KEY_FRAGMENT_RESULT_BUNDLE to DialogResult.CreationDate(it))
             )
         }
 

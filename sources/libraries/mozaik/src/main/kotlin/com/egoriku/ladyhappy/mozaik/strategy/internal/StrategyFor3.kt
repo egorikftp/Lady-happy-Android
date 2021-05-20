@@ -19,35 +19,35 @@ class StrategyFor3 : IStrategy {
         val halfScreen = strategyData.parentWidth.half()
 
         val rect0 = Proportion(
-                mozaikItem = strategyData.mozaikItems[0],
-                divider = strategyData.dividerSize
+            mozaikItem = strategyData.mozaikItems[0],
+            divider = strategyData.dividerSize
         ).getRect(
-                width = strategyData.parentWidth
+            width = strategyData.parentWidth
         ).also {
             strategyData.rect[0].updateWith(it)
         }
 
         val rect1 = Proportion(
-                mozaikItem = strategyData.mozaikItems[1],
-                divider = strategyData.dividerSize
+            mozaikItem = strategyData.mozaikItems[1],
+            divider = strategyData.dividerSize
         ).getRect(
-                width = halfScreen,
-                offsetVertical = rect0.height,
-                rightDivider = true,
-                topDivider = true
+            width = halfScreen,
+            offsetVertical = rect0.height,
+            rightDivider = true,
+            topDivider = true
         ).also {
             strategyData.rect[1].updateWith(it)
         }
 
         val rect2 = Proportion(
-                mozaikItem = strategyData.mozaikItems[2],
-                divider = strategyData.dividerSize
+            mozaikItem = strategyData.mozaikItems[2],
+            divider = strategyData.dividerSize
         ).getRect(
-                width = halfScreen,
-                offsetHorizontal = rect1.offsetHorizontal,
-                offsetVertical = rect0.offsetVertical,
-                leftDivider = true,
-                topDivider = true
+            width = halfScreen,
+            offsetHorizontal = rect1.offsetHorizontal,
+            offsetVertical = rect0.offsetVertical,
+            leftDivider = true,
+            topDivider = true
         ).also {
             strategyData.rect[2].updateWith(it)
         }

@@ -5,11 +5,11 @@ import com.egoriku.ladyhappy.edit.domain.repository.IUpdateSubCategoryRepository
 import com.egoriku.ladyhappy.network.ResultOf
 
 internal class UpdateSubCategoryUseCase(
-        private val updateSubCategoryRepository: IUpdateSubCategoryRepository
+    private val updateSubCategoryRepository: IUpdateSubCategoryRepository
 ) : IUpdateSubCategoryUseCase {
 
     override suspend fun upload(subCategoryModel: SubCategoryModel) =
-            updateSubCategoryRepository.upload(subCategoryModel)
+        updateSubCategoryRepository.upload(subCategoryModel)
 }
 
 interface IUpdateSubCategoryUseCase {

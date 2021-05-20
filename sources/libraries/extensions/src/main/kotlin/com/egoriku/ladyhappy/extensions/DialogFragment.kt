@@ -7,6 +7,6 @@ import androidx.fragment.app.DialogFragment
 fun DialogFragment.colorCompat(@ColorRes colorInt: Int) = requireContext().colorCompat(colorInt)
 
 inline fun <reified T> DialogFragment.dataBySelectedPosition(): T =
-        (dialog as AlertDialog).listView.run {
-                adapter.getItem(checkedItemPosition) as T
-        }
+    (dialog as AlertDialog).listView.run {
+        adapter.getItem(checkedItemPosition) as T
+    }

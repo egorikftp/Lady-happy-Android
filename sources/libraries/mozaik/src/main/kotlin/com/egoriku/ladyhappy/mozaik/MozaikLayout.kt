@@ -22,9 +22,9 @@ fun interface OnItemClick {
 }
 
 class MozaikLayout @JvmOverloads constructor(
-        context: Context,
-        attrs: AttributeSet? = null,
-        defStyleAttr: Int = 0
+    context: Context,
+    attrs: AttributeSet? = null,
+    defStyleAttr: Int = 0
 ) : ViewGroup(context, attrs, defStyleAttr) {
 
     private val strategyData = StrategyData(dividerSize = pxToDp(DIVIDER_SIZE))
@@ -39,8 +39,8 @@ class MozaikLayout @JvmOverloads constructor(
         setWillNotDraw(false)
 
         withStyledAttributes(
-                attributeSet = attrs,
-                styleArray = R.styleable.MozaikLayout
+            attributeSet = attrs,
+            styleArray = R.styleable.MozaikLayout
         ) {
             isMozaikClickable = getBoolean(R.styleable.MozaikLayout_isMozaikClickable, true)
             placeholderColor = getColor(R.styleable.MozaikLayout_placeholderColor, -1)
@@ -55,16 +55,16 @@ class MozaikLayout @JvmOverloads constructor(
         strategyData.parentWidth = parentWidth
 
         StrategyResolver
-                .resolveBySize(childCount)
-                .calculateWith(strategyData)
+            .resolveBySize(childCount)
+            .calculateWith(strategyData)
 
         for (i in 0 until childCount) {
             val childAt = getChildAt(i)
             val rect = strategyData.rect[i]
 
             childAt.measure(
-                    MeasureSpec.makeMeasureSpec(rect.width, MeasureSpec.EXACTLY),
-                    MeasureSpec.makeMeasureSpec(rect.height, MeasureSpec.EXACTLY)
+                MeasureSpec.makeMeasureSpec(rect.width, MeasureSpec.EXACTLY),
+                MeasureSpec.makeMeasureSpec(rect.height, MeasureSpec.EXACTLY)
             )
         }
 
@@ -79,10 +79,10 @@ class MozaikLayout @JvmOverloads constructor(
                 val childImageView = getChildAt(i).toImageView()
 
                 childImageView.layout(
-                        rect.left + paddingLeft,
-                        rect.top + paddingTop,
-                        rect.right + paddingLeft,
-                        rect.bottom + paddingTop
+                    rect.left + paddingLeft,
+                    rect.top + paddingTop,
+                    rect.right + paddingLeft,
+                    rect.bottom + paddingTop
                 )
 
                 val url = strategyData.mozaikItems[i].url
@@ -94,9 +94,9 @@ class MozaikLayout @JvmOverloads constructor(
                 if (isMozaikClickable) {
                     childImageView.setOnClickListener {
                         onItemClick?.onClick(
-                                position = i,
-                                mozaikItems = strategyData.mozaikItems,
-                                transitionView = it.toImageView()
+                            position = i,
+                            mozaikItems = strategyData.mozaikItems,
+                            transitionView = it.toImageView()
                         )
                     }
                 }
@@ -109,13 +109,13 @@ class MozaikLayout @JvmOverloads constructor(
 
         items.forEachIndexed { _, _ ->
             addView(
-                    ImageView(context).apply {
-                        scaleType = ImageView.ScaleType.CENTER_CROP
+                ImageView(context).apply {
+                    scaleType = ImageView.ScaleType.CENTER_CROP
 
-                        if (placeholderColor != -1) {
-                            setBackgroundColor(placeholderColor)
-                        }
+                    if (placeholderColor != -1) {
+                        setBackgroundColor(placeholderColor)
                     }
+                }
             )
         }
 

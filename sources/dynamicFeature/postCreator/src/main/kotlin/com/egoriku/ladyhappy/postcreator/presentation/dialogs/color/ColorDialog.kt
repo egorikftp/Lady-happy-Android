@@ -33,8 +33,8 @@ class ColorDialog : BaseDialogFragment() {
     override val dialogTitleResId: Int = R_localization.string.post_creator_color_dialog_title
 
     override fun onBuildDialog(
-            builder: MaterialAlertDialogBuilder,
-            savedInstanceState: Bundle?,
+        builder: MaterialAlertDialogBuilder,
+        savedInstanceState: Bundle?,
     ): MaterialAlertDialogBuilder {
         val recyclerView = RecyclerView(requireContext()).apply {
             layoutManager = LinearLayoutManager(context)
@@ -44,13 +44,13 @@ class ColorDialog : BaseDialogFragment() {
         }
 
         selectionTracker = SelectionTracker.Builder(
-                "colorSelection",
-                recyclerView,
-                StableIdKeyProvider(recyclerView),
-                MyItemDetailsLookup(recyclerView),
-                StorageStrategy.createLongStorage()
+            "colorSelection",
+            recyclerView,
+            StableIdKeyProvider(recyclerView),
+            MyItemDetailsLookup(recyclerView),
+            StorageStrategy.createLongStorage()
         ).withSelectionPredicate(
-                SelectionPredicates.createSelectAnything()
+            SelectionPredicates.createSelectAnything()
         ).build()
 
         colorAdapter.tracker = selectionTracker
@@ -67,14 +67,14 @@ class ColorDialog : BaseDialogFragment() {
         }
 
         val colorIds = selectionTracker.selection
-                .iterator()
-                .asSequence()
-                .map { position -> colorAdapter.currentList[position.toInt()] }
-                .toList()
+            .iterator()
+            .asSequence()
+            .map { position -> colorAdapter.currentList[position.toInt()] }
+            .toList()
 
         setFragmentResult(
-                KEY_CHOOSER_FRAGMENT_RESULT,
-                bundleOf(KEY_FRAGMENT_RESULT_BUNDLE to DialogResult.Color(colorIds = colorIds))
+            KEY_CHOOSER_FRAGMENT_RESULT,
+            bundleOf(KEY_FRAGMENT_RESULT_BUNDLE to DialogResult.Color(colorIds = colorIds))
         )
     }
 

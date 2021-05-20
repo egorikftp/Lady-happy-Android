@@ -10,9 +10,11 @@ fun Fragment.colorFromAttr(@AttrRes attribute: Int) = requireContext().colorFrom
 
 fun Fragment.colorCompat(@ColorRes colorInt: Int) = requireContext().colorCompat(colorInt)
 
-fun Fragment.colorStateListCompat(@ColorRes resId: Int): ColorStateList? = requireContext().colorStateListCompat(resId)
+fun Fragment.colorStateListCompat(@ColorRes resId: Int): ColorStateList? =
+    requireContext().colorStateListCompat(resId)
 
-fun Fragment.drawableCompat(@DrawableRes drawableRes: Int) = requireContext().drawableCompat(drawableRes)
+fun Fragment.drawableCompat(@DrawableRes drawableRes: Int) =
+    requireContext().drawableCompat(drawableRes)
 
 fun Fragment.findColorIdByName(name: String): Int = requireContext().findColorIdByName(name)
 

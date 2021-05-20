@@ -23,20 +23,24 @@ val editModule = module {
 
         scoped<IGetSubCategoryRepository> {
             GetSubCategoryRepository(
-                    getSubCategoryDataSource = get(),
-                    stringResource = get()
+                getSubCategoryDataSource = get(),
+                stringResource = get()
             )
         }
-        scoped<IUpdateSubCategoryRepository> { UpdateSubCategoryRepository(updateSubCategoryDataSource = get()) }
+        scoped<IUpdateSubCategoryRepository> {
+            UpdateSubCategoryRepository(
+                updateSubCategoryDataSource = get()
+            )
+        }
 
         scoped<ILoadSubCategoryUseCase> { LoadSubCategoryUseCase(subCategoryRepository = get()) }
         scoped<IUpdateSubCategoryUseCase> { UpdateSubCategoryUseCase(updateSubCategoryRepository = get()) }
 
         viewModel { (documentReference: String) ->
             EditSubCategoryViewModel(
-                    documentReference = documentReference,
-                    loadSubCategoryUseCase = get(),
-                    updateSubCategoryUseCase = get()
+                documentReference = documentReference,
+                loadSubCategoryUseCase = get(),
+                updateSubCategoryUseCase = get()
             )
         }
     }

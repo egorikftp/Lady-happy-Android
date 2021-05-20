@@ -18,8 +18,8 @@ val photoReportModule = module {
 
         viewModel {
             PhotoReportViewModel(
-                    photoReportUseCase = get(),
-                    analytics = get()
+                photoReportUseCase = get(),
+                analytics = get()
             )
         }
     }

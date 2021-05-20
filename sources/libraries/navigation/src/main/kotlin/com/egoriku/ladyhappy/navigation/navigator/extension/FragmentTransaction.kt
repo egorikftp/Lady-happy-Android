@@ -4,8 +4,8 @@ import android.view.View
 import androidx.fragment.app.FragmentTransaction
 
 internal fun FragmentTransaction.addToBackStackIf(
-        condition: Boolean,
-        tag: () -> String
+    condition: Boolean,
+    tag: () -> String
 ): FragmentTransaction = when {
     condition -> addToBackStack(tag.invoke())
     else -> this

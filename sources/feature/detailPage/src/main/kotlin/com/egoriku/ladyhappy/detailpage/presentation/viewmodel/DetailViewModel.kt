@@ -13,7 +13,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 
 class DetailViewModel(
-        private val detailUseCase: IDetailUseCase
+    private val detailUseCase: IDetailUseCase
 ) : ViewModel() {
 
     private val _filterState = MutableStateFlow(FilterState.None)
@@ -30,8 +30,8 @@ class DetailViewModel(
         }
 
         val newDetailUseCaseResult = detailUseCase
-                .execute(detailParams)
-                .cachedIn(viewModelScope)
+            .execute(detailParams)
+            .cachedIn(viewModelScope)
 
         currentParams = detailParams
         detailUseCaseResult = newDetailUseCaseResult

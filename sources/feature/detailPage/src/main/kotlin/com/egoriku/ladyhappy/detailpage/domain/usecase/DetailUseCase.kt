@@ -13,20 +13,20 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
 internal class DetailUseCase(
-        private val repository: IDetailPaginateRepository
+    private val repository: IDetailPaginateRepository
 ) : FlowUseCase<DetailPageParams, PagingData<DetailModel>>(Dispatchers.IO), IDetailUseCase {
 
     override fun execute(parameters: DetailPageParams): Flow<PagingData<DetailModel>> {
         return repository.load(parameters)
-                .map { pagingData ->
-                    pagingData.map {
-                        DetailModel(
-                                images = it.images.map(ImageEntityMapper()),
-                                description = it.title,
-                                date = it.date.ddMMMyyyy()
-                        )
-                    }
+            .map { pagingData ->
+                pagingData.map {
+                    DetailModel(
+                        images = it.images.map(ImageEntityMapper()),
+                        description = it.title,
+                        date = it.date.ddMMMyyyy()
+                    )
                 }
+            }
     }
 }
 

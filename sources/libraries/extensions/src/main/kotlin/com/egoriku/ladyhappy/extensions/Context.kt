@@ -28,13 +28,14 @@ fun Context.resIdFromAttr(@AttrRes attribute: Int): Int = with(TypedValue()) {
 fun Context.colorCompat(@ColorRes colorInt: Int) = ContextCompat.getColor(this, colorInt)
 
 fun Context.colorStateListCompat(@ColorRes resId: Int): ColorStateList? =
-        AppCompatResources.getColorStateList(this, resId)
+    AppCompatResources.getColorStateList(this, resId)
 
-inline fun Context.drawableCompat(@DrawableRes drawableRes: Int) = AppCompatResources.getDrawable(this, drawableRes)
+inline fun Context.drawableCompat(@DrawableRes drawableRes: Int) =
+    AppCompatResources.getDrawable(this, drawableRes)
 
 inline fun Context.drawableCompatWithTint(
-        @DrawableRes resId: Int,
-        @ColorRes tint: Int,
+    @DrawableRes resId: Int,
+    @ColorRes tint: Int,
 ): Drawable? = drawableCompat(resId)?.apply {
     mutate()
     when (tint) {
@@ -46,14 +47,14 @@ inline fun Context.drawableCompatWithTint(
 fun Context.findColorIdByName(name: String): Int = getResourceId(name, type = "color")
 
 fun Context.getResourceId(name: String, type: String): Int =
-        resources.getIdentifier(name, type, packageName)
+    resources.getIdentifier(name, type, packageName)
 
 fun Context.getQuantityStringZero(
-        @PluralsRes
-        pluralResId: Int,
-        @StringRes
-        zeroResId: Int = -1,
-        quantity: Int,
+    @PluralsRes
+    pluralResId: Int,
+    @StringRes
+    zeroResId: Int = -1,
+    quantity: Int,
 ): String = if (zeroResId != -1 && quantity == 0) {
     resources.getString(zeroResId)
 } else {

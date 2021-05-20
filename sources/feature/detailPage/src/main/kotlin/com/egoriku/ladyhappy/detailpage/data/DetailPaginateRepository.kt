@@ -11,14 +11,14 @@ import kotlinx.coroutines.flow.Flow
 const val PAGE_SIZE = 10
 
 internal class DetailPaginateRepository(
-        private val firebase: IFirebase
+    private val firebase: IFirebase
 ) : IDetailPaginateRepository {
 
     override fun load(params: DetailPageParams) = Pager(
-            config = PagingConfig(pageSize = PAGE_SIZE, enablePlaceholders = false),
-            pagingSourceFactory = {
-                DetailDataSource(firebase = firebase, detailPageParams = params)
-            }
+        config = PagingConfig(pageSize = PAGE_SIZE, enablePlaceholders = false),
+        pagingSourceFactory = {
+            DetailDataSource(firebase = firebase, detailPageParams = params)
+        }
     ).flow
 }
 

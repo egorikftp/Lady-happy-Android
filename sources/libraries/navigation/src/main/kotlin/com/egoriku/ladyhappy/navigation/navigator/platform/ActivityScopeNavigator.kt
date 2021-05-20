@@ -14,10 +14,10 @@ import com.egoriku.ladyhappy.navigation.screen.ActivityScreen
 import com.egoriku.ladyhappy.navigation.screen.FragmentScreen
 
 class ActivityScopeNavigator(
-        private val activity: FragmentActivity,
-        private val containerId: Int,
-        private val fullScreenContainerId: Int,
-        private val fragmentManager: FragmentManager = activity.supportFragmentManager
+    private val activity: FragmentActivity,
+    private val containerId: Int,
+    private val fullScreenContainerId: Int,
+    private val fragmentManager: FragmentManager = activity.supportFragmentManager
 ) : INavigator {
 
     override fun applyCommands(commands: Array<out Command>) {

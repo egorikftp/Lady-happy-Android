@@ -93,7 +93,10 @@ private fun Project.addAndroidApplicationSection() = appExtension.run {
             isDebuggable = false
             multiDexEnabled = false
             isMinifyEnabled = true
-            proguardFiles("proguard-rules.pro", getDefaultProguardFile("proguard-android-optimize.txt"))
+            proguardFiles(
+                "proguard-rules.pro",
+                getDefaultProguardFile("proguard-android-optimize.txt")
+            )
         }
 
         debug {

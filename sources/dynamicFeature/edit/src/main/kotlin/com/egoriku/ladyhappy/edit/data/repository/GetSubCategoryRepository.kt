@@ -8,8 +8,8 @@ import com.egoriku.ladyhappy.edit.domain.repository.IGetSubCategoryRepository
 import com.egoriku.ladyhappy.network.ResultOf
 
 internal class GetSubCategoryRepository(
-        private val getSubCategoryDataSource: GetSubCategoryDataSource,
-        private val stringResource: IStringResource
+    private val getSubCategoryDataSource: GetSubCategoryDataSource,
+    private val stringResource: IStringResource
 ) : IGetSubCategoryRepository {
 
     override suspend fun load(documentReference: String): SubCategoryModel? {

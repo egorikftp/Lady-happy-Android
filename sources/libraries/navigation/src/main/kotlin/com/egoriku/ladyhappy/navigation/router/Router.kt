@@ -9,16 +9,16 @@ import com.egoriku.ladyhappy.navigation.screen.Screen
 class Router : BaseRouter() {
 
     fun replaceScreen(
-            screen: Screen,
-            navigationType: NavigationType = DEFAULT,
-            vararg sharedElements: Pair<View, String>
+        screen: Screen,
+        navigationType: NavigationType = DEFAULT,
+        vararg sharedElements: Pair<View, String>
     ) {
         executeCommands(
-                Replace(
-                        navigationType = navigationType,
-                        screen = screen,
-                        sharedElements = sharedElements.toMap()
-                )
+            Replace(
+                navigationType = navigationType,
+                screen = screen,
+                sharedElements = sharedElements.toMap()
+            )
         )
     }
 
@@ -28,10 +28,10 @@ class Router : BaseRouter() {
 
     fun addScreenFullscreen(screen: Screen) {
         executeCommands(
-                Add(
-                        screen = screen,
-                        navigationType = NavigationType.FULLSCREEN
-                )
+            Add(
+                screen = screen,
+                navigationType = NavigationType.FULLSCREEN
+            )
         )
     }
 

@@ -7,24 +7,24 @@ import com.egoriku.ladyhappy.core.sharedmodel.entity.SubCategoryEntity
 import com.egoriku.ladyhappy.core.sharedmodel.mapper.ImageEntityMapper
 
 class SubCategoryEntityMapper(
-        private val stringResource: IStringResource
+    private val stringResource: IStringResource
 ) : (SubCategoryEntity) -> SubCategoryModel? {
 
     override fun invoke(entity: SubCategoryEntity) = SubCategoryModel(
-            categoryId = entity.categoryId,
-            subCategoryId = entity.subCategoryId,
-            subCategoryName = entity.subCategoryName,
-            isPopular = entity.isPopular,
-            images = entity.images.map(ImageEntityMapper()),
-            publishedCount = entity.publishedCount,
-            description = when {
-                entity.description.isEmpty() -> stringResource.emptyDescription
-                else -> entity.description
-            },
-            documentReference = entity.documentReference,
-            lastEditTime = when (val date = entity.lastEditTime) {
-                null -> stringResource.notEdited
-                else -> date.ddMMMyyyyHHmm()
-            }
+        categoryId = entity.categoryId,
+        subCategoryId = entity.subCategoryId,
+        subCategoryName = entity.subCategoryName,
+        isPopular = entity.isPopular,
+        images = entity.images.map(ImageEntityMapper()),
+        publishedCount = entity.publishedCount,
+        description = when {
+            entity.description.isEmpty() -> stringResource.emptyDescription
+            else -> entity.description
+        },
+        documentReference = entity.documentReference,
+        lastEditTime = when (val date = entity.lastEditTime) {
+            null -> stringResource.notEdited
+            else -> date.ddMMMyyyyHHmm()
+        }
     )
 }

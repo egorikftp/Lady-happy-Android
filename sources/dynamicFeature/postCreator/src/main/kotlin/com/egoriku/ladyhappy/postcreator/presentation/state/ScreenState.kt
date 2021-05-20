@@ -6,12 +6,12 @@ import com.egoriku.ladyhappy.postcreator.domain.model.chooser.ChooserType.Choose
 import com.egoriku.ladyhappy.postcreator.domain.model.image.ImageSection
 
 data class ScreenState(
-        val title: String = EMPTY,
-        val imagesSection: ImageSection = ImageSection(),
-        val category: ChooserType.Category = ChooserType.Category(state = ChooserState.Initial),
-        val subCategory: ChooserType.SubCategory? = null,
-        val color: ChooserType.Color = ChooserType.Color(state = ChooserState.Initial),
-        val creationDate: ChooserType.CreationDate = ChooserType.CreationDate(state = ChooserState.Initial),
+    val title: String = EMPTY,
+    val imagesSection: ImageSection = ImageSection(),
+    val category: ChooserType.Category = ChooserType.Category(state = ChooserState.Initial),
+    val subCategory: ChooserType.SubCategory? = null,
+    val color: ChooserType.Color = ChooserType.Color(state = ChooserState.Initial),
+    val creationDate: ChooserType.CreationDate = ChooserType.CreationDate(state = ChooserState.Initial),
 ) {
 
     val chooserState: List<ChooserType>

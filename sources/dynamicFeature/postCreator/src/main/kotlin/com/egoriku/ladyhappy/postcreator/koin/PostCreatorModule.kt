@@ -23,9 +23,9 @@ val postModule = module {
 
         scoped {
             UploadImagesUseCase(
-                    createFileRepository = get(),
-                    compressImageRepository = get(),
-                    uploadImageRepository = get()
+                createFileRepository = get(),
+                compressImageRepository = get(),
+                uploadImageRepository = get()
             )
         }
         scoped {
@@ -34,9 +34,9 @@ val postModule = module {
 
         viewModel {
             PostViewModel(
-                    application = androidApplication(),
-                    uploadImagesUseCase = get(),
-                    publishPostUseCase = get()
+                application = androidApplication(),
+                uploadImagesUseCase = get(),
+                publishPostUseCase = get()
             )
         }
     }

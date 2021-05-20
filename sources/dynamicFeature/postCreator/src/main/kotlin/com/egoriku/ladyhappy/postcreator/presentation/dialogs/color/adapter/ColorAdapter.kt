@@ -25,7 +25,7 @@ class ColorAdapter : ListAdapter<ColorModel, ColorAdapter.VH>(DiffCallback()) {
     var tracker: SelectionTracker<Long>? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VH =
-            VH(AdapterItemColorBinding.inflate(parent.inflater(), parent, false))
+        VH(AdapterItemColorBinding.inflate(parent.inflater(), parent, false))
 
     override fun onBindViewHolder(holder: VH, position: Int) {
         tracker?.run {
@@ -46,7 +46,7 @@ class ColorAdapter : ListAdapter<ColorModel, ColorAdapter.VH>(DiffCallback()) {
             colorImage.setBackgroundColor(colorModel.colorHex.toColorInt())
 
             val adjustedColor = colorName.currentTextColor.adjustForBackground(
-                    backgroundColor = colorModel.colorHex.toColorInt()
+                backgroundColor = colorModel.colorHex.toColorInt()
             )
 
             colorName.setTextColor(adjustedColor)
@@ -57,20 +57,21 @@ class ColorAdapter : ListAdapter<ColorModel, ColorAdapter.VH>(DiffCallback()) {
         }
 
         fun getItemDetails(): ItemDetailsLookup.ItemDetails<Long> =
-                object : ItemDetailsLookup.ItemDetails<Long>() {
-                    override fun getPosition(): Int = bindingAdapterPosition
+            object : ItemDetailsLookup.ItemDetails<Long>() {
+                override fun getPosition(): Int = bindingAdapterPosition
 
-                    override fun getSelectionKey(): Long = itemId
+                override fun getSelectionKey(): Long = itemId
 
-                    override fun inSelectionHotspot(e: MotionEvent) = true
-                }
+                override fun inSelectionHotspot(e: MotionEvent) = true
+            }
     }
 
     internal class DiffCallback : DiffUtil.ItemCallback<ColorModel>() {
 
         override fun areItemsTheSame(oldItem: ColorModel, newItem: ColorModel) = oldItem == newItem
 
-        override fun areContentsTheSame(oldItem: ColorModel, newItem: ColorModel) = oldItem == newItem
+        override fun areContentsTheSame(oldItem: ColorModel, newItem: ColorModel) =
+            oldItem == newItem
     }
 }
 

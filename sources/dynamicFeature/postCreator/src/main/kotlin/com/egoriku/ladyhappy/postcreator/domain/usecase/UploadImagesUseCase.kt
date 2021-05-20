@@ -15,9 +15,9 @@ import kotlinx.coroutines.withContext
 import java.io.File
 
 class UploadImagesUseCase(
-        private val createFileRepository: CreateFileRepository,
-        private val compressImageRepository: CompressImageRepository,
-        private val uploadImageRepository: UploadImageRepository,
+    private val createFileRepository: CreateFileRepository,
+    private val compressImageRepository: CompressImageRepository,
+    private val uploadImageRepository: UploadImageRepository,
 ) : UseCase<UploadImagesParams, List<UploadedImageEntity>>(Dispatchers.IO) {
 
     override suspend fun execute(parameters: UploadImagesParams): List<UploadedImageEntity> {
@@ -32,17 +32,17 @@ class UploadImagesUseCase(
                     val resizedImageFile = compressImageRepository.resizeImage(file = imageFile)
 
                     val imageUrl = uploadImageRepository.upload(
-                            storagePath = storagePath,
-                            fileName = resizedImageFile.name,
-                            bytes = compressImageRepository.convertFileToByteArray(resizedImageFile)
+                        storagePath = storagePath,
+                        fileName = resizedImageFile.name,
+                        bytes = compressImageRepository.convertFileToByteArray(resizedImageFile)
                     )
 
                     val imageSize = getImageSize(resizedImageFile.toUri())
 
                     UploadedImageEntity(
-                            w = imageSize.first,
-                            h = imageSize.second,
-                            url = imageUrl
+                        w = imageSize.first,
+                        h = imageSize.second,
+                        url = imageUrl
                     )
                 }
             }

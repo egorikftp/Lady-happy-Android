@@ -18,26 +18,27 @@ class CategoriesDialog : BaseDialogFragment() {
     override val dialogTitleResId: Int = R_localization.string.post_creator_categories_dialog_title
 
     override fun onBuildDialog(
-            builder: MaterialAlertDialogBuilder,
-            savedInstanceState: Bundle?
+        builder: MaterialAlertDialogBuilder,
+        savedInstanceState: Bundle?
     ): MaterialAlertDialogBuilder =
-            builder.setSingleChoiceItems(getCategories(requireArguments()), 0) { _, which ->
-                selectedItemPosition = which
-            }
+        builder.setSingleChoiceItems(getCategories(requireArguments()), 0) { _, which ->
+            selectedItemPosition = which
+        }
 
     override fun onPositiveButtonClick() {
         val checkedItemName = dataBySelectedPosition<String>()
 
         setFragmentResult(
-                KEY_CHOOSER_FRAGMENT_RESULT,
-                bundleOf(KEY_FRAGMENT_RESULT_BUNDLE to DialogResult.Category(checkedItemName))
+            KEY_CHOOSER_FRAGMENT_RESULT,
+            bundleOf(KEY_FRAGMENT_RESULT_BUNDLE to DialogResult.Category(checkedItemName))
         )
     }
 
     companion object {
         private const val EXTRA_CATEGORIES = "EXTRA_CATEGORIES"
 
-        private fun getCategories(bundle: Bundle) = bundle.getStringArrayList(EXTRA_CATEGORIES)?.toTypedArray()
+        private fun getCategories(bundle: Bundle) =
+            bundle.getStringArrayList(EXTRA_CATEGORIES)?.toTypedArray()
                 ?: throw IllegalArgumentException("Categories shouldn't be null")
 
         fun newInstance(categoriesName: ArrayList<String>) = CategoriesDialog().apply {

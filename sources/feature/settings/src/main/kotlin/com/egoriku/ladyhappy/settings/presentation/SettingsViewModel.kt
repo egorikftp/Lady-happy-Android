@@ -14,9 +14,9 @@ import kotlinx.coroutines.launch
 import java.util.concurrent.ConcurrentHashMap
 
 class SettingsViewModel(
-        private val router: IRouter,
-        private val sectionsUseCase: ISectionsUseCase,
-        private val authenticationUseCase: IAuthenticationUseCase
+    private val router: IRouter,
+    private val sectionsUseCase: ISectionsUseCase,
+    private val authenticationUseCase: IAuthenticationUseCase
 ) : ViewModel() {
 
     private val cache = ConcurrentHashMap<Int, Section>()

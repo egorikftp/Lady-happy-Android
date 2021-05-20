@@ -11,23 +11,23 @@ import com.egoriku.ladyhappy.postcreator.domain.model.chooser.ChooserType
 import com.egoriku.ladyhappy.postcreator.domain.model.chooser.ChooserType.ChooserState
 
 class ChooserSectionAdapter(
-        private val chooserItemClick: (chooserState: ChooserType) -> Unit,
-        private val resetItemClick: (chooserState: ChooserType) -> Unit,
+    private val chooserItemClick: (chooserState: ChooserType) -> Unit,
+    private val resetItemClick: (chooserState: ChooserType) -> Unit,
 ) : BaseListAdapter<ChooserType, ChooserSectionAdapter.VH>(DiffCallback()) {
 
     override fun onCreateViewHolder(
-            parent: ViewGroup,
-            viewType: Int,
+        parent: ViewGroup,
+        viewType: Int,
     ): VH = VH(AdapterItemChooserSectionBinding.inflate(parent.inflater(), parent, false))
 
     override fun onBindViewHolder(
-            holder: VH,
-            position: Int,
-            model: ChooserType,
+        holder: VH,
+        position: Int,
+        model: ChooserType,
     ) = holder.bind(model)
 
     inner class VH(
-            private val binding: AdapterItemChooserSectionBinding,
+        private val binding: AdapterItemChooserSectionBinding,
     ) : BaseViewHolder<ChooserType>(binding.root) {
 
         override fun bind(item: ChooserType) = when (item.state) {
@@ -53,9 +53,9 @@ class ChooserSectionAdapter(
     internal class DiffCallback : DiffUtil.ItemCallback<ChooserType>() {
 
         override fun areItemsTheSame(oldItem: ChooserType, newItem: ChooserType): Boolean =
-                oldItem == newItem
+            oldItem == newItem
 
         override fun areContentsTheSame(oldItem: ChooserType, newItem: ChooserType): Boolean =
-                newItem == oldItem
+            newItem == oldItem
     }
 }

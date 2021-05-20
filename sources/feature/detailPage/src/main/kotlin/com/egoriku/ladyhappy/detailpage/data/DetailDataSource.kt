@@ -15,8 +15,8 @@ import com.google.firebase.firestore.ktx.toObjects
 import kotlinx.coroutines.tasks.await
 
 class DetailDataSource(
-        private val firebase: IFirebase,
-        private val detailPageParams: DetailPageParams
+    private val firebase: IFirebase,
+    private val detailPageParams: DetailPageParams
 ) : PagingSource<QuerySnapshot, DetailEntity>() {
 
     override suspend fun load(params: LoadParams<QuerySnapshot>): LoadResult<QuerySnapshot, DetailEntity> {
@@ -25,22 +25,22 @@ class DetailDataSource(
 
             return if (currentPage.documents.isEmpty()) {
                 LoadResult.Page(
-                        data = emptyList(),
-                        prevKey = null,
-                        nextKey = null
+                    data = emptyList(),
+                    prevKey = null,
+                    nextKey = null
                 )
             } else {
                 val snapshotOffset = currentPage.documents[currentPage.size() - 1]
 
                 val nextPage = query()
-                        .startAfter(snapshotOffset)
-                        .get()
-                        .await()
+                    .startAfter(snapshotOffset)
+                    .get()
+                    .await()
 
                 LoadResult.Page(
-                        data = currentPage.toObjects(),
-                        prevKey = null,
-                        nextKey = nextPage
+                    data = currentPage.toObjects(),
+                    prevKey = null,
+                    nextKey = nextPage
                 )
             }
         }.getOrElse {
@@ -49,11 +49,12 @@ class DetailDataSource(
     }
 
     private fun query() = firebase.firebaseFirestore
-            .collection(ALL_HATS)
-            .whereEqualTo(CATEGORY_ID, detailPageParams.categoryId)
-            .whereEqualTo(SUB_CATEGORY_ID, detailPageParams.subCategoryId)
-            .orderBy(DATE, Query.Direction.DESCENDING)
-            .limit(PAGE_SIZE.toLong())
+        .collection(ALL_HATS)
+        .whereEqualTo(CATEGORY_ID, detailPageParams.categoryId)
+        .whereEqualTo(SUB_CATEGORY_ID, detailPageParams.subCategoryId)
+        .orderBy(DATE, Query.Direction.DESCENDING)
+        .limit(PAGE_SIZE.toLong())
 
-    override fun getRefreshKey(state: PagingState<QuerySnapshot, DetailEntity>): QuerySnapshot? = null
+    override fun getRefreshKey(state: PagingState<QuerySnapshot, DetailEntity>): QuerySnapshot? =
+        null
 }

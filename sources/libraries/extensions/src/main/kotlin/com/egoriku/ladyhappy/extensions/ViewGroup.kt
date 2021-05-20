@@ -14,4 +14,5 @@ fun ViewGroup.inflater(): LayoutInflater = LayoutInflater.from(context)
 
 fun ViewGroup.getString(@StringRes resId: Int) = context.resources.getString(resId)
 
-inline fun ViewGroup.getDimen(@DimenRes resId: Int) = context.resources.getDimensionPixelOffset(resId)
+inline fun ViewGroup.getDimen(@DimenRes resId: Int) =
+    context.resources.getDimensionPixelOffset(resId)

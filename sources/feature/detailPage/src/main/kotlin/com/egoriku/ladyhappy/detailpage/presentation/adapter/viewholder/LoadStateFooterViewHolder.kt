@@ -8,8 +8,8 @@ import com.egoriku.ladyhappy.detailpage.databinding.AdapterItemLoadStateFooterBi
 import com.egoriku.ladyhappy.extensions.inflater
 
 class LoadStateFooterViewHolder(
-        private val binding: AdapterItemLoadStateFooterBinding,
-        retry: () -> Unit
+    private val binding: AdapterItemLoadStateFooterBinding,
+    retry: () -> Unit
 ) : RecyclerView.ViewHolder(binding.root) {
 
     init {
@@ -27,8 +27,8 @@ class LoadStateFooterViewHolder(
 
     companion object {
         fun create(parent: ViewGroup, retry: () -> Unit) = LoadStateFooterViewHolder(
-                binding = AdapterItemLoadStateFooterBinding.inflate(parent.inflater(), parent, false),
-                retry = retry
+            binding = AdapterItemLoadStateFooterBinding.inflate(parent.inflater(), parent, false),
+            retry = retry
         )
     }
 }

@@ -22,7 +22,13 @@ class LicenseUseCase(private val context: Context) : UseCase<Unit, List<License>
     private fun fileExistsAndNotEmpty(fileName: String): Boolean {
         val resources = context.resources
 
-        return resources.openRawResource(resources.getIdentifier(fileName, "raw", context.packageName)).use {
+        return resources.openRawResource(
+            resources.getIdentifier(
+                fileName,
+                "raw",
+                context.packageName
+            )
+        ).use {
             it.available() > 0
         }
     }

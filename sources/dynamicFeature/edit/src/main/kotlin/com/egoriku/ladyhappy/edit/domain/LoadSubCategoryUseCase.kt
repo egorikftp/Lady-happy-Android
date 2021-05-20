@@ -4,11 +4,11 @@ import com.egoriku.ladyhappy.core.sharedmodel.domain.SubCategoryModel
 import com.egoriku.ladyhappy.edit.domain.repository.IGetSubCategoryRepository
 
 class LoadSubCategoryUseCase(
-        private val subCategoryRepository: IGetSubCategoryRepository
+    private val subCategoryRepository: IGetSubCategoryRepository
 ) : ILoadSubCategoryUseCase {
 
     override suspend fun load(documentReference: String) =
-            subCategoryRepository.load(documentReference)
+        subCategoryRepository.load(documentReference)
 }
 
 interface ILoadSubCategoryUseCase {

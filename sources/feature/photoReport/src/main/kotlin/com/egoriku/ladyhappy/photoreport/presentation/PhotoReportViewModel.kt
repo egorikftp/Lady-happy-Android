@@ -15,8 +15,8 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
 class PhotoReportViewModel(
-        private val photoReportUseCase: IPhotoReportUseCase,
-        private val analytics: IAnalytics
+    private val photoReportUseCase: IPhotoReportUseCase,
+    private val analytics: IAnalytics
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow<PhotoReportUiState>(PhotoReportUiState.Loading)
@@ -38,8 +38,14 @@ class PhotoReportViewModel(
                             logE("FirestoreNetworkException", resultOf.throwable)
                             analytics.trackNoInternetPhotoReports()
                         }
-                        is FirestoreParseException -> logE("FirestoreParseException", resultOf.throwable)
-                        is NoSuchDocumentException -> logE("NoSuchDocumentException", resultOf.throwable)
+                        is FirestoreParseException -> logE(
+                            "FirestoreParseException",
+                            resultOf.throwable
+                        )
+                        is NoSuchDocumentException -> logE(
+                            "NoSuchDocumentException",
+                            resultOf.throwable
+                        )
                     }
 
                     _uiState.value = PhotoReportUiState.Error
