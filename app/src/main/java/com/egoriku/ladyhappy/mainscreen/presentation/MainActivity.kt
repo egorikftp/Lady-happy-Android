@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
+import android.util.Log
 import androidx.annotation.IdRes
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.os.bundleOf
@@ -231,10 +232,12 @@ class MainActivity : ScopeActivity(R.layout.activity_main) {
 
     @Suppress("OptionalWhenBraces")
     private fun subscribeForDynamicFeatureEvents() {
+        Log.d("kek", "subscribeForDynamicFeatureEvents: ")
         lifecycleScope.launch {
             dynamicFeatureViewModel.events.collect { event ->
                 when (event) {
                     is DynamicFeatureEvent.NavigationEvent -> {
+                        Log.d("kek", "subscribeForDynamicFeatureEvents: NavigationEvent")
                         binding.dynamicFeatureStatusContainer.gone()
 
                         when (val screen = event.screen) {
@@ -263,12 +266,15 @@ class MainActivity : ScopeActivity(R.layout.activity_main) {
                             INSTALL_CONFIRMATION_REQ_CODE
                         )
                     is DynamicFeatureEvent.Downloading -> {
+                        Log.d("kek", "subscribeForDynamicFeatureEvents: Downloading")
+
                         binding.dynamicFeatureStatusContainer.visible()
                         binding.dynamicFeatureStatus.text =
                             getString(R.string.dynamic_delivery_downloading)
                         binding.dynamicFeatureProgress.setProgressCompat(event.progress, true)
                     }
                     is DynamicFeatureEvent.Installing -> {
+                        Log.d("kek", "subscribeForDynamicFeatureEvents: Installing")
                         binding.dynamicFeatureStatus.text =
                             getString(R.string.dynamic_delivery_installing)
                     }
