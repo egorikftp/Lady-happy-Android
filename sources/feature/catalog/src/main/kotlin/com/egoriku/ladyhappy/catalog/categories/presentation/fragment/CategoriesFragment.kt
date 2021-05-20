@@ -33,8 +33,8 @@ class CategoriesFragment : ScopeFragment(R.layout.fragment_categories), CatalogF
     @SuppressLint("WrongConstant")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         parentFragmentManager.setFragmentResultListenerWrapper(
-                requestKey = EDIT_REQUEST_KEY,
-                lifecycleOwner = viewLifecycleOwner
+            requestKey = EDIT_REQUEST_KEY,
+            lifecycleOwner = viewLifecycleOwner
         ) { _, bundle ->
             val categoryId = bundle.getInt(EDIT_BUNDLE_RESULT_KEY)
 

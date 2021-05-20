@@ -20,17 +20,17 @@ val settingsModule = module {
     scope<SettingFragment> {
         scoped<ISectionsUseCase> {
             SectionsUseCase(
-                    userPermission = get(),
-                    stringResource = get()
+                userPermission = get(),
+                stringResource = get()
             )
         }
         scoped<IAuthenticationUseCase> { AuthenticationUseCase(authentication = get()) }
 
         viewModel {
             SettingsViewModel(
-                    router = get(),
-                    sectionsUseCase = get(),
-                    authenticationUseCase = get()
+                router = get(),
+                sectionsUseCase = get(),
+                authenticationUseCase = get()
             )
         }
     }
@@ -42,9 +42,9 @@ val settingsModule = module {
 
         viewModel {
             ThemeViewModel(
-                    themeUseCase = get(),
-                    availableThemesUseCase = get(),
-                    setThemeUseCase = get()
+                themeUseCase = get(),
+                availableThemesUseCase = get(),
+                setThemeUseCase = get()
             )
         }
     }

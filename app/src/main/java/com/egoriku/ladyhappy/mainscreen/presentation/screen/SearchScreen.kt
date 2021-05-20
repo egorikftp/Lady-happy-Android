@@ -5,8 +5,8 @@ import com.egoriku.ladyhappy.core.IFeatureProvider
 import com.egoriku.ladyhappy.navigation.screen.FragmentScreen
 
 class SearchScreen(
-        private val featureProvider: IFeatureProvider,
-        private val searchQuery: String
+    private val featureProvider: IFeatureProvider,
+    private val searchQuery: String
 ) : FragmentScreen() {
 
     override val fragment: Fragment

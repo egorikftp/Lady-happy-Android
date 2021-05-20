@@ -8,9 +8,9 @@ import com.egoriku.ladyhappy.navigation.screen.Screen
 interface IRouter {
 
     fun replaceScreen(
-            screen: Screen,
-            navigationType: NavigationType = DEFAULT,
-            vararg sharedElements: Pair<View, String>
+        screen: Screen,
+        navigationType: NavigationType = DEFAULT,
+        vararg sharedElements: Pair<View, String>
     )
 
     fun addScreen(screen: Screen)

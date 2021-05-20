@@ -16,7 +16,7 @@ enum class Theme(val storageKey: String) {
  * Returns the matching [Theme] for the given [storageKey] value.
  */
 fun themeFromStorageKey(storageKey: String): Theme? =
-        Theme.values().firstOrNull { it.storageKey == storageKey }
+    Theme.values().firstOrNull { it.storageKey == storageKey }
 
 fun Theme.toNightMode() = when (this) {
     Theme.DARK -> AppCompatDelegate.MODE_NIGHT_YES

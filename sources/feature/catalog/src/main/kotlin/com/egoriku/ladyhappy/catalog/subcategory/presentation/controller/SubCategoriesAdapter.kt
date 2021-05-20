@@ -15,24 +15,24 @@ import com.egoriku.ladyhappy.extensions.*
 import kotlin.properties.Delegates
 
 class SubCategoriesAdapter(
-        private val onCatalogItemClick: (model: SubCategoryModel) -> Unit,
-        private val onTrendingClick: (view: View) -> Unit,
-        private val onLongPressListener: (reference: String) -> Unit
+    private val onCatalogItemClick: (model: SubCategoryModel) -> Unit,
+    private val onTrendingClick: (view: View) -> Unit,
+    private val onLongPressListener: (reference: String) -> Unit
 ) : BaseListAdapter<SubCategoryModel, SubCategoriesAdapter.VH>(DiffCallback()) {
 
     override fun onCreateViewHolder(
-            parent: ViewGroup,
-            viewType: Int
+        parent: ViewGroup,
+        viewType: Int
     ) = VH(AdapterItemSubcategoryBinding.inflate(parent.inflater(), parent, false))
 
     override fun onBindViewHolder(
-            holder: VH,
-            position: Int,
-            model: SubCategoryModel
+        holder: VH,
+        position: Int,
+        model: SubCategoryModel
     ) = holder.bind(model)
 
     inner class VH(
-            private val binding: AdapterItemSubcategoryBinding
+        private val binding: AdapterItemSubcategoryBinding
     ) : BaseViewHolder<SubCategoryModel>(binding.root) {
 
         private var subCategoryModel: SubCategoryModel by Delegates.notNull()
@@ -40,9 +40,9 @@ class SubCategoriesAdapter(
         init {
             binding.mozaikLayout.onViewReady = { view, url ->
                 Glide.with(itemView.context)
-                        .load(url)
-                        .transition(DrawableTransitionOptions.withCrossFade(CROSSFADE_DURATION))
-                        .into(view)
+                    .load(url)
+                    .transition(DrawableTransitionOptions.withCrossFade(CROSSFADE_DURATION))
+                    .into(view)
             }
 
             itemView.setOnClickListener {
@@ -81,9 +81,9 @@ class SubCategoriesAdapter(
 
             subCategoryTitle.text = data.subCategoryName
             subCategorySize.text = context.getQuantityStringZero(
-                    pluralResId = R.plurals.catalog_images_count,
-                    zeroResId = R.string.catalog_images_count_zero,
-                    quantity = data.publishedCount
+                pluralResId = R.plurals.catalog_images_count,
+                zeroResId = R.string.catalog_images_count_zero,
+                quantity = data.publishedCount
             )
         }
     }
@@ -91,13 +91,13 @@ class SubCategoriesAdapter(
     internal class DiffCallback : DiffUtil.ItemCallback<SubCategoryModel>() {
 
         override fun areItemsTheSame(
-                oldModel: SubCategoryModel,
-                newModel: SubCategoryModel
+            oldModel: SubCategoryModel,
+            newModel: SubCategoryModel
         ) = oldModel == newModel
 
         override fun areContentsTheSame(
-                oldModel: SubCategoryModel,
-                newModel: SubCategoryModel
+            oldModel: SubCategoryModel,
+            newModel: SubCategoryModel
         ) = oldModel.subCategoryId == newModel.subCategoryId
     }
 }

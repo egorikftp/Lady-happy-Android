@@ -6,13 +6,13 @@ import com.egoriku.ladyhappy.core.sharedmodel.key.CollectionPath.USERS
 import com.egoriku.ladyhappy.network.firestore.awaitGet
 
 internal class UserDataSource(
-        private val firebase: IFirebase
+    private val firebase: IFirebase
 ) : IUserDataSource {
 
     override suspend fun fetch(userId: String) = firebase.firebaseFirestore
-            .collection(USERS)
-            .document(userId)
-            .awaitGet<UserEntity>()
+        .collection(USERS)
+        .document(userId)
+        .awaitGet<UserEntity>()
 }
 
 interface IUserDataSource {

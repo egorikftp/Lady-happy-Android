@@ -17,10 +17,10 @@ class InAppUpdateViewModel(updateManager: AppUpdateManager) : ViewModel() {
     val events: SharedFlow<InAppUpdateEvent> = _events.asSharedFlow()
 
     val updateStatus: StateFlow<AppUpdateResult> = updateManager.requestUpdateFlow()
-            .catch {
-                logD("Update info not available")
-            }
-            .stateIn(viewModelScope, SharingStarted.WhileSubscribed(), AppUpdateResult.NotAvailable)
+        .catch {
+            logD("Update info not available")
+        }
+        .stateIn(viewModelScope, SharingStarted.WhileSubscribed(), AppUpdateResult.NotAvailable)
 
     fun shouldLaunchImmediateUpdate(updateInfo: AppUpdateInfo): Boolean {
         with(updateInfo) {
@@ -37,20 +37,20 @@ class InAppUpdateViewModel(updateManager: AppUpdateManager) : ViewModel() {
                     shouldLaunchImmediateUpdate(this) -> {
                         viewModelScope.launch {
                             _events.emit(
-                                    InAppUpdateEvent.StartUpdateEvent(
-                                            updateInfo = updateResult.updateInfo,
-                                            immediate = true
-                                    )
+                                InAppUpdateEvent.StartUpdateEvent(
+                                    updateInfo = updateResult.updateInfo,
+                                    immediate = true
+                                )
                             )
                         }
                     }
                     isFlexibleUpdateAllowed -> {
                         viewModelScope.launch {
                             _events.emit(
-                                    InAppUpdateEvent.StartUpdateEvent(
-                                            updateInfo = updateResult.updateInfo,
-                                            immediate = false
-                                    )
+                                InAppUpdateEvent.StartUpdateEvent(
+                                    updateInfo = updateResult.updateInfo,
+                                    immediate = false
+                                )
                             )
                         }
                     }

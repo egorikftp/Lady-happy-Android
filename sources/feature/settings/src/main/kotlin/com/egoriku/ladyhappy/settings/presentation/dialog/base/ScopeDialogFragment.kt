@@ -23,9 +23,9 @@ open class ScopeDialogFragment : AppCompatDialogFragment(), KoinScopeComponent {
      * @param parameters - injection parameters
      */
     inline fun <reified T : Any> KoinScopeComponent.inject(
-            qualifier: Qualifier? = null,
-            mode: LazyThreadSafetyMode = LazyThreadSafetyMode.SYNCHRONIZED,
-            noinline parameters: ParametersDefinition? = null
+        qualifier: Qualifier? = null,
+        mode: LazyThreadSafetyMode = LazyThreadSafetyMode.SYNCHRONIZED,
+        noinline parameters: ParametersDefinition? = null
     ) = lazy(mode) { get<T>(qualifier, parameters) }
 
     /**
@@ -35,7 +35,7 @@ open class ScopeDialogFragment : AppCompatDialogFragment(), KoinScopeComponent {
      * @param parameters - injection parameters
      */
     inline fun <reified T : Any> KoinScopeComponent.get(
-            qualifier: Qualifier? = null,
-            noinline parameters: ParametersDefinition? = null
+        qualifier: Qualifier? = null,
+        noinline parameters: ParametersDefinition? = null
     ): T = scope.get(qualifier, parameters)
 }

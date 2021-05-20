@@ -8,15 +8,15 @@ import com.egoriku.ladyhappy.core.sharedmodel.key.DocumentField.SUB_CATEGORY_ID
 import com.egoriku.ladyhappy.network.firestore.awaitGet
 
 internal class SubcategoryDataSource(
-        private val firebase: IFirebase
+    private val firebase: IFirebase
 ) : ISubcategoryDataSource {
 
     override suspend fun fetch(categoryId: Int): List<SubCategoryEntity> {
         return firebase.firebaseFirestore
-                .collection(SUBCATEGORIES)
-                .whereEqualTo(CATEGORY_ID, categoryId)
-                .orderBy(SUB_CATEGORY_ID)
-                .awaitGet()
+            .collection(SUBCATEGORIES)
+            .whereEqualTo(CATEGORY_ID, categoryId)
+            .orderBy(SUB_CATEGORY_ID)
+            .awaitGet()
     }
 }
 

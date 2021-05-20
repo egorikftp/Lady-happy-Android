@@ -28,11 +28,13 @@ open class DebugApplication : Application() {
     }
 
     private fun enableStrictMode() {
-        StrictMode.setThreadPolicy(StrictMode.ThreadPolicy.Builder()
+        StrictMode.setThreadPolicy(
+            StrictMode.ThreadPolicy.Builder()
                 .detectAll()
                 .detectNetwork()
                 .penaltyLog()
                 .penaltyDeathOnNetwork()
-                .build())
+                .build()
+        )
     }
 }

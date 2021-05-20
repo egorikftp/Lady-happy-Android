@@ -15,8 +15,8 @@ import com.egoriku.ladyhappy.network.exception.NoSuchDocumentException
 import kotlinx.coroutines.launch
 
 class LandingViewModel(
-        private val analytics: IAnalytics,
-        private val landingUseCase: ILandingUseCase
+    private val analytics: IAnalytics,
+    private val landingUseCase: ILandingUseCase
 ) : ViewModel() {
 
     private val screenData = MutableLiveData<LandingScreenModel>()
@@ -40,8 +40,14 @@ class LandingViewModel(
                             logE("FirestoreNetworkException", resultOf.throwable)
                             analytics.trackNoInternetLanding()
                         }
-                        is FirestoreParseException -> logE("FirestoreParseException", resultOf.throwable)
-                        is NoSuchDocumentException -> logE("NoSuchDocumentException", resultOf.throwable)
+                        is FirestoreParseException -> logE(
+                            "FirestoreParseException",
+                            resultOf.throwable
+                        )
+                        is NoSuchDocumentException -> logE(
+                            "NoSuchDocumentException",
+                            resultOf.throwable
+                        )
                     }
 
                     processResult(LoadState.ERROR_LOADING)
@@ -54,8 +60,8 @@ class LandingViewModel(
 
     private fun processResult(loadState: LoadState = LoadState.NONE, model: LandingModel? = null) {
         screenData.value = LandingScreenModel(
-                loadState = loadState,
-                landingModel = model
+            loadState = loadState,
+            landingModel = model
         )
     }
 }

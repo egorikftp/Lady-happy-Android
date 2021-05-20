@@ -14,39 +14,39 @@ import com.google.firebase.firestore.PropertyName
 import java.util.*
 
 class SubCategoryEntity(
-        @PropertyName(CATEGORY_ID)
-        @JvmField
-        val categoryId: Int = -1,
+    @PropertyName(CATEGORY_ID)
+    @JvmField
+    val categoryId: Int = -1,
 
-        @PropertyName(SUB_CATEGORY_ID)
-        @JvmField
-        val subCategoryId: Int = -1,
+    @PropertyName(SUB_CATEGORY_ID)
+    @JvmField
+    val subCategoryId: Int = -1,
 
-        @PropertyName(NAME)
-        @JvmField
-        val subCategoryName: String = EMPTY,
+    @PropertyName(NAME)
+    @JvmField
+    val subCategoryName: String = EMPTY,
 
-        @PropertyName(IS_POPULAR)
-        @JvmField
-        val isPopular: Boolean = false,
+    @PropertyName(IS_POPULAR)
+    @JvmField
+    val isPopular: Boolean = false,
 
-        @PropertyName(IMAGES)
-        @JvmField
-        val images: List<ImageEntity> = emptyList(),
+    @PropertyName(IMAGES)
+    @JvmField
+    val images: List<ImageEntity> = emptyList(),
 
-        @PropertyName(PUBLISHED_COUNT)
-        @JvmField
-        val publishedCount: Int = 0,
+    @PropertyName(PUBLISHED_COUNT)
+    @JvmField
+    val publishedCount: Int = 0,
 
-        @PropertyName(DESCRIPTION)
-        @JvmField
-        val description: String = EMPTY,
+    @PropertyName(DESCRIPTION)
+    @JvmField
+    val description: String = EMPTY,
 
-        @PropertyName(DOCUMENT_REFERENCE)
-        @JvmField
-        val documentReference: String = EMPTY,
+    @PropertyName(DOCUMENT_REFERENCE)
+    @JvmField
+    val documentReference: String = EMPTY,
 
-        @PropertyName(LAST_EDIT_TIME)
-        @JvmField
-        val lastEditTime: Date? = null
+    @PropertyName(LAST_EDIT_TIME)
+    @JvmField
+    val lastEditTime: Date? = null
 )

@@ -12,7 +12,12 @@ import org.koin.dsl.module
 val authModule = module {
 
     single { Authentication() }
-    single<IUserPermission> { UserPermission(authentication = get(), userPermissionsRepository = get()) }
+    single<IUserPermission> {
+        UserPermission(
+            authentication = get(),
+            userPermissionsRepository = get()
+        )
+    }
 
     factory<IUserDataSource> {
         UserDataSource(firebase = get())

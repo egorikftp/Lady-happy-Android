@@ -40,17 +40,17 @@ val mainActivityModule = module {
 
         viewModel {
             MainActivityViewModel(
-                    savedStateHandle = get(),
-                    analytics = get(),
-                    router = get(),
-                    themedDelegate = get()
+                savedStateHandle = get(),
+                analytics = get(),
+                router = get(),
+                themedDelegate = get()
             )
         }
 
         viewModel {
             ReviewViewModel(
-                    reviewManager = get(),
-                    appPreferences = get()
+                reviewManager = get(),
+                appPreferences = get()
             )
         }
     }

@@ -12,12 +12,12 @@ import com.egoriku.ladyhappy.navigation.screen.Screen
 private const val KEY_SCREEN_TITLE = "KEY_SCREEN_TITLE"
 
 class MainActivityViewModel(
-        private val savedStateHandle: SavedStateHandle,
-        private val analytics: IAnalytics,
-        private val router: IRouter,
-        private val themedDelegate: IThemedActivityDelegate
+    private val savedStateHandle: SavedStateHandle,
+    private val analytics: IAnalytics,
+    private val router: IRouter,
+    private val themedDelegate: IThemedActivityDelegate
 ) : ViewModel(),
-        IThemedActivityDelegate by themedDelegate {
+    IThemedActivityDelegate by themedDelegate {
 
     val screenTitle: LiveData<Int> = savedStateHandle.getLiveData(KEY_SCREEN_TITLE)
 

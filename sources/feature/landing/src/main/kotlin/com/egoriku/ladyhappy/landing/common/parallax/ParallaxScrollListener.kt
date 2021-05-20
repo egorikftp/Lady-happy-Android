@@ -6,7 +6,8 @@ import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.OnLifecycleEvent
 import androidx.recyclerview.widget.RecyclerView
 
-open class ParallaxScrollListener : RecyclerView.OnScrollListener(), OnGlobalLayoutListener, LifecycleObserver {
+open class ParallaxScrollListener : RecyclerView.OnScrollListener(), OnGlobalLayoutListener,
+    LifecycleObserver {
 
     private val scrollListeners = mutableListOf<ParallaxScrollStateListener>()
     private var recyclerView: RecyclerView? = null

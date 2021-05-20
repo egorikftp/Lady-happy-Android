@@ -13,7 +13,7 @@ interface IThemedActivityDelegate {
 }
 
 class ThemedActivityDelegate(
-        private val observeThemeUseCase: ObserveThemeModeUseCase
+    private val observeThemeUseCase: ObserveThemeModeUseCase
 ) : IThemedActivityDelegate {
 
     override val theme: LiveData<Theme> = liveData {

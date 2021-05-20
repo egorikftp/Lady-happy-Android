@@ -8,7 +8,7 @@ import com.egoriku.ladyhappy.network.ResultOf.Failure
 import com.egoriku.ladyhappy.network.ResultOf.Success
 
 internal class TabUseCase(
-        private val tabRepository: ITabRepository
+    private val tabRepository: ITabRepository
 ) : ITabUseCase {
 
     override suspend fun loadTabs(): RootScreenModel = when (val result = tabRepository.load()) {
@@ -25,8 +25,8 @@ internal class TabUseCase(
 
     private fun TabEntity.mapOrNull() = if (id != -1 && name.isNotEmpty()) {
         TabItem(
-                categoryId = id,
-                categoryName = name
+            categoryId = id,
+            categoryName = name
         )
     } else null
 }

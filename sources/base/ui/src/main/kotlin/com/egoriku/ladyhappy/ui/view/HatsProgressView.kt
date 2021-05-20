@@ -12,12 +12,13 @@ import com.egoriku.ladyhappy.extensions.toApi
 import com.egoriku.ladyhappy.ui.R
 
 class HatsProgressView @JvmOverloads constructor(
-        context: Context,
-        attrs: AttributeSet? = null,
-        defStyleAttr: Int = 0
+    context: Context,
+    attrs: AttributeSet? = null,
+    defStyleAttr: Int = 0
 ) : AppCompatImageView(context, attrs, defStyleAttr) {
 
-    private var animatedVectorDrawable = AnimatedVectorDrawableCompat.create(context, R.drawable.avd_hats_animation)
+    private var animatedVectorDrawable =
+        AnimatedVectorDrawableCompat.create(context, R.drawable.avd_hats_animation)
 
     private val animationCallback = object : Animatable2Compat.AnimationCallback() {
         override fun onAnimationEnd(dr: Drawable?) {

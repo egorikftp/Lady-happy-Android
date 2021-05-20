@@ -14,18 +14,19 @@ import com.egoriku.ladyhappy.settings.domain.model.Section
 import com.egoriku.ladyhappy.settings.presentation.adapter.decorator.MarginItemDecoration
 
 class AvailableFeaturesSectionAdapter(
-        private val onFeatureClick: (feature: Feature) -> Unit
+    private val onFeatureClick: (feature: Feature) -> Unit
 ) : ListAdapter<Section.AvailableFeatures, AvailableFeaturesSectionAdapter.VH>(DiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
-            VH(AdapterItemFeaturesBinding.inflate(parent.inflater(), parent, false))
+        VH(AdapterItemFeaturesBinding.inflate(parent.inflater(), parent, false))
 
     override fun onBindViewHolder(holder: AvailableFeaturesSectionAdapter.VH, position: Int) =
-            holder.bind(getItem(position))
+        holder.bind(getItem(position))
 
     override fun getItemViewType(position: Int) = R.layout.adapter_item_features
 
-    inner class VH(private val binding: AdapterItemFeaturesBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class VH(private val binding: AdapterItemFeaturesBinding) :
+        RecyclerView.ViewHolder(binding.root) {
 
         private val featureAdapter = FeatureAdapter {
             onFeatureClick(it)
@@ -33,12 +34,13 @@ class AvailableFeaturesSectionAdapter(
 
         init {
             binding.featuresRecyclerView.apply {
-                layoutManager = LinearLayoutManager(binding.context, LinearLayoutManager.HORIZONTAL, false)
+                layoutManager =
+                    LinearLayoutManager(binding.context, LinearLayoutManager.HORIZONTAL, false)
                 adapter = featureAdapter
                 addItemDecoration(
-                        MarginItemDecoration(
-                                binding.context.resources.getDimensionPixelOffset(R.dimen.material_padding_16)
-                        )
+                    MarginItemDecoration(
+                        binding.context.resources.getDimensionPixelOffset(R.dimen.material_padding_16)
+                    )
                 )
             }
         }
@@ -53,13 +55,13 @@ class AvailableFeaturesSectionAdapter(
     internal class DiffCallback : DiffUtil.ItemCallback<Section.AvailableFeatures>() {
 
         override fun areItemsTheSame(
-                oldItem: Section.AvailableFeatures,
-                newItem: Section.AvailableFeatures
+            oldItem: Section.AvailableFeatures,
+            newItem: Section.AvailableFeatures
         ) = oldItem.features.size == newItem.features.size
 
         override fun areContentsTheSame(
-                oldItem: Section.AvailableFeatures,
-                newItem: Section.AvailableFeatures
+            oldItem: Section.AvailableFeatures,
+            newItem: Section.AvailableFeatures
         ) = oldItem.features == newItem.features
     }
 }

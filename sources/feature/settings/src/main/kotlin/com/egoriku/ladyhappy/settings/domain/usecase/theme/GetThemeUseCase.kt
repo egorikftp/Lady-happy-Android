@@ -8,16 +8,16 @@ import com.egoriku.ladyhappy.extensions.hasQ
 import com.egoriku.ladyhappy.network.usecase.UseCase
 
 class GetThemeUseCase(
-        private val preferences: IAppPreferences,
-        dispatchers: IDispatchers
+    private val preferences: IAppPreferences,
+    dispatchers: IDispatchers
 ) : UseCase<Unit, Theme>(dispatchers.io) {
 
     override suspend fun execute(parameters: Unit): Theme {
         val selectedTheme = preferences.selectedTheme
         return themeFromStorageKey(selectedTheme)
-                ?: when {
-                    hasQ() -> Theme.SYSTEM
-                    else -> Theme.BATTERY_SAVER
-                }
+            ?: when {
+                hasQ() -> Theme.SYSTEM
+                else -> Theme.BATTERY_SAVER
+            }
     }
 }

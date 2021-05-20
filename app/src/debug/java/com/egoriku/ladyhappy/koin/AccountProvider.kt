@@ -1,10 +1,10 @@
 package com.egoriku.ladyhappy.koin
 
 import android.content.Context
+import com.egoriku.ladyhappy.beagle.Account
 import com.egoriku.ladyhappy.extensions.common.Constants.EMPTY
 import com.egoriku.ladyhappy.extensions.logDm
 import com.egoriku.ladyhappy.extensions.second
-import com.egoriku.ladyhappy.beagle.Account
 import java.util.*
 
 @Suppress("UNCHECKED_CAST")
@@ -22,8 +22,8 @@ class AccountProvider(context: Context) {
                 context.assets.open(koinPropertyFile).use { koinProperties.load(it) }
 
                 val accountsFromProperties = (koinProperties.toMap() as Map<String, String>)
-                        .map { it.value.split(",") }
-                        .map { Account(it.first(), it.second()) }
+                    .map { it.value.split(",") }
+                    .map { Account(it.first(), it.second()) }
 
                 accounts.addAll(accountsFromProperties)
             }.getOrElse {

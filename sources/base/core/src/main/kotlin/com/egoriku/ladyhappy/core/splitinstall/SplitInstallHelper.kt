@@ -8,7 +8,7 @@ import com.google.android.play.core.splitinstall.model.SplitInstallSessionStatus
 
 @Suppress("OptionalWhenBraces")
 class SplitInstallHelper(
-        private val splitInstallManager: SplitInstallManager
+    private val splitInstallManager: SplitInstallManager
 ) : ISplitInstallHelper {
 
     override fun installModule(moduleName: String, moduleInstallListener: ModuleInstallListener) {
@@ -88,56 +88,60 @@ class SplitInstallHelper(
             splitInstallManager.registerListener(listener)
 
             splitInstallManager.startInstall(request)
-                    // When the platform accepts your request to download
-                    // an on demand module, it binds it to the following session ID.
-                    // You use this ID to track further status updates for the request.
-                    .addOnSuccessListener { sessionId -> mySessionId = sessionId }
-                    .addOnFailureListener { exception ->
-                        when ((exception as SplitInstallException).errorCode) {
-                            // The request is rejected because there is at least one existing request that is currently downloading.
-                            SplitInstallErrorCode.ACTIVE_SESSIONS_LIMIT_EXCEEDED -> {
-                                handleError(moduleName, exception, "ACTIVE_SESSIONS_LIMIT_EXCEEDED")
-                            }
-                            // Google Play is unable to find the requested module based on the current installed version of the app, device, and user’s Google Play account.
-                            SplitInstallErrorCode.MODULE_UNAVAILABLE -> {
-                                handleError(moduleName, exception, "MODULE_UNAVAILABLE")
-                            }
-                            // Google Play received the request, but the request is not valid.
-                            SplitInstallErrorCode.INVALID_REQUEST -> {
-                                handleError(moduleName, exception, "INVALID_REQUEST")
-                            }
-                            // A session for a given session ID was not found.
-                            SplitInstallErrorCode.SESSION_NOT_FOUND -> {
-                                handleError(moduleName, exception, "SESSION_NOT_FOUND")
-                            }
-                            // The Play Core Library is not supported on the current device. That is, the device is not able to download and install features on demand.
-                            SplitInstallErrorCode.API_NOT_AVAILABLE -> {
-                                handleError(moduleName, exception, "API_NOT_AVAILABLE")
-                            }
-                            // The app is unable to register the request because of insufficient permissions.
-                            // This typically occurs when the app is in the background. Attempt the request when the app returns to the foreground.
-                            SplitInstallErrorCode.ACCESS_DENIED -> {
-                                handleError(moduleName, exception, "ACCESS_DENIED")
-                            }
-                            // The request failed because of a network error.
-                            SplitInstallErrorCode.NETWORK_ERROR -> {
-                                handleError(moduleName, exception, "NETWORK_ERROR")
-                            }
-                            // The request contains one or more modules that have already been requested but have not yet been installed.
-                            SplitInstallErrorCode.INCOMPATIBLE_WITH_EXISTING_SESSION -> {
-                                handleError(moduleName, exception, "INCOMPATIBLE_WITH_EXISTING_SESSION")
-                            }
-                            // The service responsible for handling the request has died.
-                            SplitInstallErrorCode.SERVICE_DIED -> {
-                                handleError(moduleName, exception, "SERVICE_DIED")
-                            }
+                // When the platform accepts your request to download
+                // an on demand module, it binds it to the following session ID.
+                // You use this ID to track further status updates for the request.
+                .addOnSuccessListener { sessionId -> mySessionId = sessionId }
+                .addOnFailureListener { exception ->
+                    when ((exception as SplitInstallException).errorCode) {
+                        // The request is rejected because there is at least one existing request that is currently downloading.
+                        SplitInstallErrorCode.ACTIVE_SESSIONS_LIMIT_EXCEEDED -> {
+                            handleError(moduleName, exception, "ACTIVE_SESSIONS_LIMIT_EXCEEDED")
                         }
-                        moduleInstallListener.onFailure(exception)
+                        // Google Play is unable to find the requested module based on the current installed version of the app, device, and user’s Google Play account.
+                        SplitInstallErrorCode.MODULE_UNAVAILABLE -> {
+                            handleError(moduleName, exception, "MODULE_UNAVAILABLE")
+                        }
+                        // Google Play received the request, but the request is not valid.
+                        SplitInstallErrorCode.INVALID_REQUEST -> {
+                            handleError(moduleName, exception, "INVALID_REQUEST")
+                        }
+                        // A session for a given session ID was not found.
+                        SplitInstallErrorCode.SESSION_NOT_FOUND -> {
+                            handleError(moduleName, exception, "SESSION_NOT_FOUND")
+                        }
+                        // The Play Core Library is not supported on the current device. That is, the device is not able to download and install features on demand.
+                        SplitInstallErrorCode.API_NOT_AVAILABLE -> {
+                            handleError(moduleName, exception, "API_NOT_AVAILABLE")
+                        }
+                        // The app is unable to register the request because of insufficient permissions.
+                        // This typically occurs when the app is in the background. Attempt the request when the app returns to the foreground.
+                        SplitInstallErrorCode.ACCESS_DENIED -> {
+                            handleError(moduleName, exception, "ACCESS_DENIED")
+                        }
+                        // The request failed because of a network error.
+                        SplitInstallErrorCode.NETWORK_ERROR -> {
+                            handleError(moduleName, exception, "NETWORK_ERROR")
+                        }
+                        // The request contains one or more modules that have already been requested but have not yet been installed.
+                        SplitInstallErrorCode.INCOMPATIBLE_WITH_EXISTING_SESSION -> {
+                            handleError(moduleName, exception, "INCOMPATIBLE_WITH_EXISTING_SESSION")
+                        }
+                        // The service responsible for handling the request has died.
+                        SplitInstallErrorCode.SERVICE_DIED -> {
+                            handleError(moduleName, exception, "SERVICE_DIED")
+                        }
                     }
+                    moduleInstallListener.onFailure(exception)
+                }
         }
     }
 
     private fun handleError(moduleName: String, exception: Exception, error: String) {
-        logE("SplitInstallHelper", "Split install [$moduleName] installation failed. $error", exception)
+        logE(
+            "SplitInstallHelper",
+            "Split install [$moduleName] installation failed. $error",
+            exception
+        )
     }
 }

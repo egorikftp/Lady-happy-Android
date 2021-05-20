@@ -10,12 +10,12 @@ import ru.surfstudio.android.easyadapter.holder.BindableViewHolder
 internal class AboutController : BindableItemController<String, AboutController.Holder>() {
 
     override fun createViewHolder(parent: ViewGroup) =
-            Holder(AdapterItemAboutBinding.inflate(parent.inflater(), parent, false))
+        Holder(AdapterItemAboutBinding.inflate(parent.inflater(), parent, false))
 
     override fun getItemId(data: String) = data.hashCode().toString()
 
     inner class Holder(
-            private val itemBinding: AdapterItemAboutBinding
+        private val itemBinding: AdapterItemAboutBinding
     ) : BindableViewHolder<String>(itemBinding.root) {
 
         override fun bind(data: String) {

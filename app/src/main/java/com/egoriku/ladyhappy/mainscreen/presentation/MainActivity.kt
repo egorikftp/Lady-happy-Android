@@ -70,9 +70,9 @@ class MainActivity : ScopeActivity(R.layout.activity_main) {
     private val viewModel by viewModel<MainActivityViewModel>(state = { bundleOf() })
 
     private val navigator = ActivityScopeNavigator(
-            activity = this,
-            containerId = R.id.container,
-            fullScreenContainerId = R.id.contentFullScreen
+        activity = this,
+        containerId = R.id.container,
+        fullScreenContainerId = R.id.contentFullScreen
     )
 
     private var snackBar: Snackbar by Delegates.notNull()
@@ -88,9 +88,9 @@ class MainActivity : ScopeActivity(R.layout.activity_main) {
         setSupportActionBar(binding.toolbarMainActivity)
 
         snackBar = Snackbar.make(
-                binding.bottomNavigation,
-                R.string.in_app_update_available,
-                Snackbar.LENGTH_INDEFINITE
+            binding.bottomNavigation,
+            R.string.in_app_update_available,
+            Snackbar.LENGTH_INDEFINITE
         ).apply {
             anchorView = binding.bottomNavigation
         }
@@ -101,11 +101,11 @@ class MainActivity : ScopeActivity(R.layout.activity_main) {
 
         when (savedInstanceState) {
             null -> viewModel.replaceWith(
-                    screen = CatalogScreen(featureProvider),
-                    params = ScreenParams(
-                            screenNameResId = R.string.navigation_view_catalog_header,
-                            trackingScreenName = Tracking.TRACKING_FRAGMENT_CATALOG
-                    )
+                screen = CatalogScreen(featureProvider),
+                params = ScreenParams(
+                    screenNameResId = R.string.navigation_view_catalog_header,
+                    trackingScreenName = Tracking.TRACKING_FRAGMENT_CATALOG
+                )
             )
             else -> with(savedInstanceState.getInt(KEY_SELECTED_MENU_ITEM)) {
                 binding.bottomNavigation.selectedItemId = this
@@ -204,10 +204,10 @@ class MainActivity : ScopeActivity(R.layout.activity_main) {
                             else -> AppUpdateType.FLEXIBLE
                         }
                         appUpdateManager.startUpdateFlowForResult(
-                                event.updateInfo,
-                                updateType,
-                                this@MainActivity,
-                                UPDATE_CONFIRMATION_REQ_CODE
+                            event.updateInfo,
+                            updateType,
+                            this@MainActivity,
+                            UPDATE_CONFIRMATION_REQ_CODE
                         )
                     }
                 }
@@ -218,10 +218,10 @@ class MainActivity : ScopeActivity(R.layout.activity_main) {
     private fun handleImmediateUpdate(updateResult: AppUpdateResult.Available) {
         if (inAppUpdateViewModel.shouldLaunchImmediateUpdate(updateResult.updateInfo)) {
             val isStartUpdateFlowForResultSuccess = appUpdateManager.startUpdateFlowForResult(
-                    updateResult.updateInfo,
-                    AppUpdateType.IMMEDIATE,
-                    this@MainActivity,
-                    UPDATE_CONFIRMATION_REQ_CODE
+                updateResult.updateInfo,
+                AppUpdateType.IMMEDIATE,
+                this@MainActivity,
+                UPDATE_CONFIRMATION_REQ_CODE
             )
             if (isStartUpdateFlowForResultSuccess) {
                 finish()
@@ -240,35 +240,37 @@ class MainActivity : ScopeActivity(R.layout.activity_main) {
                         when (val screen = event.screen) {
                             is DynamicScreen.PostCreator -> {
                                 viewModel.navigateTo(
-                                        screen = PostCreatorScreen(
-                                                className = screen.className,
-                                                params = screen.params
-                                        )
+                                    screen = PostCreatorScreen(
+                                        className = screen.className,
+                                        params = screen.params
+                                    )
                                 )
                             }
                             is DynamicScreen.Edit -> {
                                 viewModel.navigateTo(
-                                        screen = EditScreen(
-                                                className = screen.className,
-                                                params = screen.editParams
-                                        )
+                                    screen = EditScreen(
+                                        className = screen.className,
+                                        params = screen.editParams
+                                    )
                                 )
                             }
                         }
                     }
                     is DynamicFeatureEvent.InstallConfirmationEvent ->
                         splitInstallManager.startConfirmationDialogForResult(
-                                event.status,
-                                this@MainActivity,
-                                INSTALL_CONFIRMATION_REQ_CODE
+                            event.status,
+                            this@MainActivity,
+                            INSTALL_CONFIRMATION_REQ_CODE
                         )
                     is DynamicFeatureEvent.Downloading -> {
                         binding.dynamicFeatureStatusContainer.visible()
-                        binding.dynamicFeatureStatus.text = getString(R.string.dynamic_delivery_downloading)
+                        binding.dynamicFeatureStatus.text =
+                            getString(R.string.dynamic_delivery_downloading)
                         binding.dynamicFeatureProgress.setProgressCompat(event.progress, true)
                     }
                     is DynamicFeatureEvent.Installing -> {
-                        binding.dynamicFeatureStatus.text = getString(R.string.dynamic_delivery_installing)
+                        binding.dynamicFeatureStatus.text =
+                            getString(R.string.dynamic_delivery_installing)
                     }
                     is DynamicFeatureEvent.InstallErrorEvent -> {
                         binding.dynamicFeatureStatusContainer.gone()
@@ -282,10 +284,11 @@ class MainActivity : ScopeActivity(R.layout.activity_main) {
 
     private fun subscribeForDynamicFeatureRequest() {
         supportFragmentManager.setFragmentResultListenerWrapper(
-                requestKey = DYNAMIC_FEATURE_REQUEST_KEY,
-                lifecycleOwner = this
+            requestKey = DYNAMIC_FEATURE_REQUEST_KEY,
+            lifecycleOwner = this
         ) { _, bundle ->
-            when (val feature = bundle.getParcelable<DynamicFeature>(DYNAMIC_FEATURE_BUNDLE_RESULT_KEY)) {
+            when (val feature =
+                bundle.getParcelable<DynamicFeature>(DYNAMIC_FEATURE_BUNDLE_RESULT_KEY)) {
                 is DynamicFeature.PostCreator -> dynamicFeatureViewModel.invokePostCreator(feature.postCreatorParams)
                 is DynamicFeature.Edit -> dynamicFeatureViewModel.invokeEdit(feature.editParams)
             }
@@ -296,11 +299,11 @@ class MainActivity : ScopeActivity(R.layout.activity_main) {
         AssistanceDeepLinkParser().process(intent = this) { featureScreen ->
             when (featureScreen) {
                 is DeepLinkScreen.Search -> viewModel.replaceWith(
-                        screen = SearchScreen(featureProvider, featureScreen.searchQuery),
-                        params = ScreenParams(
-                                screenNameResId = R.string.navigation_view_search_header,
-                                trackingScreenName = Tracking.TRACKING_FRAGMENT_SEARCH
-                        )
+                    screen = SearchScreen(featureProvider, featureScreen.searchQuery),
+                    params = ScreenParams(
+                        screenNameResId = R.string.navigation_view_search_header,
+                        trackingScreenName = Tracking.TRACKING_FRAGMENT_SEARCH
+                    )
                 )
                 is DeepLinkScreen.Catalog -> preselectAndNavigate(R.id.menuCatalog)
                 is DeepLinkScreen.About -> preselectAndNavigate(R.id.menuLanding)
@@ -314,7 +317,7 @@ class MainActivity : ScopeActivity(R.layout.activity_main) {
     private fun Intent.handleSendImageIntent(isRestore: Boolean) {
         IntentActionSendHandler().extract(intent = this, isRestore = isRestore) {
             dynamicFeatureViewModel.invokePostCreator(
-                    postCreatorParams = PostCreatorParams(images = it)
+                postCreatorParams = PostCreatorParams(images = it)
             )
         }
     }
@@ -327,32 +330,32 @@ class MainActivity : ScopeActivity(R.layout.activity_main) {
     private fun mapItemIdToScreen(@IdRes menuItemId: Int) {
         when (menuItemId) {
             R.id.menuLanding -> viewModel.replaceWith(
-                    screen = LandingScreen(featureProvider),
-                    params = ScreenParams(
-                            screenNameResId = R.string.navigation_view_landing_header,
-                            trackingScreenName = Tracking.TRACKING_FRAGMENT_LANDING
-                    )
+                screen = LandingScreen(featureProvider),
+                params = ScreenParams(
+                    screenNameResId = R.string.navigation_view_landing_header,
+                    trackingScreenName = Tracking.TRACKING_FRAGMENT_LANDING
+                )
             )
             R.id.menuPhotoReport -> viewModel.replaceWith(
-                    screen = PhotoReportScreen(featureProvider),
-                    params = ScreenParams(
-                            screenNameResId = R.string.navigation_view_photo_report_header,
-                            trackingScreenName = Tracking.TRACKING_FRAGMENT_PHOTO_REPORT
-                    )
+                screen = PhotoReportScreen(featureProvider),
+                params = ScreenParams(
+                    screenNameResId = R.string.navigation_view_photo_report_header,
+                    trackingScreenName = Tracking.TRACKING_FRAGMENT_PHOTO_REPORT
+                )
             )
             R.id.menuCatalog -> viewModel.replaceWith(
-                    screen = CatalogScreen(featureProvider),
-                    params = ScreenParams(
-                            screenNameResId = R.string.navigation_view_catalog_header,
-                            trackingScreenName = Tracking.TRACKING_FRAGMENT_CATALOG
-                    )
+                screen = CatalogScreen(featureProvider),
+                params = ScreenParams(
+                    screenNameResId = R.string.navigation_view_catalog_header,
+                    trackingScreenName = Tracking.TRACKING_FRAGMENT_CATALOG
+                )
             )
             R.id.menuSettings -> viewModel.replaceWith(
-                    screen = SettingsScreen(featureProvider),
-                    params = ScreenParams(
-                            screenNameResId = R.string.navigation_view_settings_header,
-                            trackingScreenName = Tracking.TRACKING_FRAGMENT_SETTINGS
-                    )
+                screen = SettingsScreen(featureProvider),
+                params = ScreenParams(
+                    screenNameResId = R.string.navigation_view_settings_header,
+                    trackingScreenName = Tracking.TRACKING_FRAGMENT_SETTINGS
+                )
             )
         }
     }
@@ -360,7 +363,7 @@ class MainActivity : ScopeActivity(R.layout.activity_main) {
     private fun expandAppBarLayoutInPage() {
         supportFragmentManager.addOnBackStackChangedListener {
             val fragments = supportFragmentManager.fragments
-                    .filterNot { it is SupportRequestManagerFragment }
+                .filterNot { it is SupportRequestManagerFragment }
 
             if (fragments.isNotEmpty()) {
                 changeAppBarState(fragments.last())

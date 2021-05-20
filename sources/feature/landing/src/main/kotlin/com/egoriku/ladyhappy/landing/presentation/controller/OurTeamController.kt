@@ -14,25 +14,26 @@ import ru.surfstudio.android.easyadapter.controller.BindableItemController
 import ru.surfstudio.android.easyadapter.holder.BindableViewHolder
 
 internal class OurTeamController(
-        private val parallaxScrollListener: ParallaxScrollListener?,
-        private val onSocialItemClick: (url: String) -> Unit
+    private val parallaxScrollListener: ParallaxScrollListener?,
+    private val onSocialItemClick: (url: String) -> Unit
 ) : BindableItemController<TeamMemberModel, OurTeamController.Holder>() {
 
     override fun createViewHolder(parent: ViewGroup) =
-            Holder(AdapterItemOurTeamBinding.inflate(parent.inflater(), parent, false))
+        Holder(AdapterItemOurTeamBinding.inflate(parent.inflater(), parent, false))
 
     override fun getItemId(data: TeamMemberModel) = data.hashCode().toString()
 
     inner class Holder(
-            private val itemBinding: AdapterItemOurTeamBinding
+        private val itemBinding: AdapterItemOurTeamBinding
     ) : BindableViewHolder<TeamMemberModel>(itemBinding.root),
-            ParallaxScrollStateListener {
+        ParallaxScrollStateListener {
 
         init {
             parallaxScrollListener?.addListener(this@Holder)
         }
 
-        private val placeholderDrawable = ColorDrawable(itemView.colorFromAttr(R.attr.colorPlaceholder))
+        private val placeholderDrawable =
+            ColorDrawable(itemView.colorFromAttr(R.attr.colorPlaceholder))
 
         private val socialViewContainer = itemBinding.socialView.apply {
             setOnClickListener { showView() }

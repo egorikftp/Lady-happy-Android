@@ -18,8 +18,8 @@ val landingModule = module {
 
         viewModel {
             LandingViewModel(
-                    analytics = get(),
-                    landingUseCase = get()
+                analytics = get(),
+                landingUseCase = get()
             )
         }
     }

@@ -11,17 +11,18 @@ import com.egoriku.ladyhappy.settings.databinding.AdapterItemSettingBinding
 import com.egoriku.ladyhappy.settings.domain.model.setting.SettingItem
 
 internal class SettingItemAdapter(
-        private val onItemClick: (settingItem: SettingItem) -> Unit
+    private val onItemClick: (settingItem: SettingItem) -> Unit
 ) : ListAdapter<SettingItem, SettingItemAdapter.VH>(DiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
-            VH(AdapterItemSettingBinding.inflate(parent.inflater(), parent, false))
+        VH(AdapterItemSettingBinding.inflate(parent.inflater(), parent, false))
 
     override fun onBindViewHolder(holder: VH, position: Int) = holder.bind(getItem(position))
 
     override fun getItemViewType(position: Int) = R.layout.adapter_item_setting
 
-    inner class VH(private val binding: AdapterItemSettingBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class VH(private val binding: AdapterItemSettingBinding) :
+        RecyclerView.ViewHolder(binding.root) {
 
         fun bind(model: SettingItem) = binding.bind(model)
 
@@ -49,8 +50,10 @@ internal class SettingItemAdapter(
 
     internal class DiffCallback : DiffUtil.ItemCallback<SettingItem>() {
 
-        override fun areItemsTheSame(oldItem: SettingItem, newItem: SettingItem) = oldItem == newItem
+        override fun areItemsTheSame(oldItem: SettingItem, newItem: SettingItem) =
+            oldItem == newItem
 
-        override fun areContentsTheSame(oldItem: SettingItem, newItem: SettingItem) = oldItem == newItem
+        override fun areContentsTheSame(oldItem: SettingItem, newItem: SettingItem) =
+            oldItem == newItem
     }
 }

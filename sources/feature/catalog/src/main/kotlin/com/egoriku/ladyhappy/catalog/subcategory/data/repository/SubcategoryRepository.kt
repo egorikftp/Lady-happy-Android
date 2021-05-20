@@ -7,7 +7,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
 internal class SubcategoryRepository(
-        private val subcategoryDataSource: ISubcategoryDataSource
+    private val subcategoryDataSource: ISubcategoryDataSource
 ) : ISubcategoryRepository {
 
     override suspend fun fetchSubCategories(categoryId: Int) = withContext(Dispatchers.IO) {

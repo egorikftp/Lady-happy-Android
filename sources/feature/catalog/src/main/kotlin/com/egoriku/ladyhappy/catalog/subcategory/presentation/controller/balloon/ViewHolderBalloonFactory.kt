@@ -18,8 +18,8 @@ private const val PADDING = 8
 class ViewHolderBalloonFactory : Balloon.Factory() {
 
     override fun create(
-            context: Context,
-            lifecycle: LifecycleOwner?
+        context: Context,
+        lifecycle: LifecycleOwner?
     ): Balloon = createBalloon(context) {
         setPaddingRight(PADDING)
         setPaddingLeft(PADDING)

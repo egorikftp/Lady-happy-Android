@@ -6,7 +6,7 @@ import com.egoriku.ladyhappy.extensions.hasQ
 import com.egoriku.ladyhappy.network.usecase.UseCase
 
 class GetAvailableThemesUseCase(
-        dispatcher: IDispatchers
+    dispatcher: IDispatchers
 ) : UseCase<Unit, List<Theme>>(dispatcher.mainImmediate) {
 
     override suspend fun execute(parameters: Unit): List<Theme> = when {

@@ -37,7 +37,11 @@ internal class SocialView : LinearLayout, View.OnClickListener {
 
     constructor(context: Context) : this(context, null)
     constructor(context: Context, attrs: AttributeSet?) : this(context, attrs, 0)
-    constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : super(context, attrs, defStyleAttr) {
+    constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : super(
+        context,
+        attrs,
+        defStyleAttr
+    ) {
         init(attrs)
     }
 
@@ -49,8 +53,12 @@ internal class SocialView : LinearLayout, View.OnClickListener {
 
         try {
             typedArray.apply {
-                itemPadding = getDimensionPixelSize(R.styleable.SocialView_itemPadding, DEFAULT_MAX_PADDING)
-                itemSideSize = getDimensionPixelSize(R.styleable.SocialView_itemSideSize, DEFAULT_ITEM_SIDE_SIZE)
+                itemPadding =
+                    getDimensionPixelSize(R.styleable.SocialView_itemPadding, DEFAULT_MAX_PADDING)
+                itemSideSize = getDimensionPixelSize(
+                    R.styleable.SocialView_itemSideSize,
+                    DEFAULT_ITEM_SIDE_SIZE
+                )
             }
         } finally {
             typedArray.recycle()
@@ -122,18 +130,18 @@ internal class SocialView : LinearLayout, View.OnClickListener {
     private fun getAnimation(view: View, viewPosition: Int): Animator {
         return if (animationState == AnimationState.NEED_SHOW) {
             ObjectAnimator.ofPropertyValuesHolder(
-                    view,
-                    ofFloat(View.ALPHA, MIN_ALPHA, MAX_ALPHA),
-                    ofFloat(View.TRANSLATION_Y, VIEW_OFFSET_POSITION, VIEW_DEFAULT_POSITION)
+                view,
+                ofFloat(View.ALPHA, MIN_ALPHA, MAX_ALPHA),
+                ofFloat(View.TRANSLATION_Y, VIEW_OFFSET_POSITION, VIEW_DEFAULT_POSITION)
             ).apply {
                 duration = ANIMATION_DURATION
                 startDelay = ANIMATION_SHOW_OFFSET * viewPosition
             }
         } else {
             ObjectAnimator.ofPropertyValuesHolder(
-                    view,
-                    ofFloat(View.ALPHA, MAX_ALPHA, MIN_ALPHA),
-                    ofFloat(View.TRANSLATION_Y, VIEW_DEFAULT_POSITION, VIEW_OFFSET_POSITION)
+                view,
+                ofFloat(View.ALPHA, MAX_ALPHA, MIN_ALPHA),
+                ofFloat(View.TRANSLATION_Y, VIEW_DEFAULT_POSITION, VIEW_OFFSET_POSITION)
             ).apply {
                 duration = ANIMATION_DURATION
                 startDelay = ANIMATION_HIDE_OFFSET * viewPosition
@@ -155,12 +163,12 @@ internal class SocialView : LinearLayout, View.OnClickListener {
                 duration = ANIMATION_DURATION * 2
                 fillAfter = true
                 setAnimationListener(
-                        object : SimpleAnimationListener {
-                            override fun onAnimationEnd(animation: Animation?) {
-                                super.onAnimationEnd(animation)
-                                background = ColorDrawable(context.colorCompat(R.color.transparent))
-                            }
+                    object : SimpleAnimationListener {
+                        override fun onAnimationEnd(animation: Animation?) {
+                            super.onAnimationEnd(animation)
+                            background = ColorDrawable(context.colorCompat(R.color.transparent))
                         }
+                    }
                 )
             }
 
@@ -183,15 +191,15 @@ internal class SocialView : LinearLayout, View.OnClickListener {
     fun setSocialModel(list: List<SocialModel>) {
         list.forEach {
             addView(
-                    AppCompatImageButton(context).apply {
-                        alpha = MIN_ALPHA
-                        tag = it.socialUrl
-                        scaleType = ImageView.ScaleType.FIT_CENTER
-                        setImageResource(PredefinedResources.getDrawableByType(it.type))
-                        setBackgroundResource(R.drawable.bg_social_view)
-                        setImageTintList(R.color.selector_social_icon)
-                    },
-                    LayoutParams.WRAP_CONTENT
+                AppCompatImageButton(context).apply {
+                    alpha = MIN_ALPHA
+                    tag = it.socialUrl
+                    scaleType = ImageView.ScaleType.FIT_CENTER
+                    setImageResource(PredefinedResources.getDrawableByType(it.type))
+                    setBackgroundResource(R.drawable.bg_social_view)
+                    setImageTintList(R.color.selector_social_icon)
+                },
+                LayoutParams.WRAP_CONTENT
             )
         }
     }

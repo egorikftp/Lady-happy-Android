@@ -28,7 +28,7 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
     private val viewModel: LoginViewModel by viewModel()
 
     private val requestSignInWithGoogle = registerForActivityResult(
-            ActivityResultContracts.StartActivityForResult()
+        ActivityResultContracts.StartActivityForResult()
     ) {
         val task = GoogleSignIn.getSignedInAccountFromIntent(it.data)
         try {
@@ -44,7 +44,7 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
     }
 
     private val requestSignInWithOneTap = registerForActivityResult(
-            ActivityResultContracts.StartIntentSenderForResult()
+        ActivityResultContracts.StartIntentSenderForResult()
     ) {
         viewModel.processOneTapResult(it.data)
     }
@@ -69,8 +69,8 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
         signInButton.setOnClickListener {
             if (binding.isInputsValid()) {
                 viewModel.authWithEmailAndPassword(
-                        email = loginEmail.text.toString(),
-                        password = loginPassword.text.toString()
+                    email = loginEmail.text.toString(),
+                    password = loginPassword.text.toString()
                 )
             }
 
@@ -125,16 +125,16 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
     }
 
     private fun FragmentLoginBinding.isInputsValid(): Boolean =
-            textInputEmail.validateEmail() && textInputPassword.validatePassword()
+        textInputEmail.validateEmail() && textInputPassword.validatePassword()
 
     private fun initCustomTab(@StringRes urlRes: Int) = CustomTabsIntent.Builder()
-            .setDefaultColorSchemeParams(
-                    CustomTabColorSchemeParams.Builder()
-                            .setToolbarColor(colorCompat(R.color.RoseTaupe))
-                            .build()
-            )
-            .build()
-            .run {
-                launchUrl(requireContext(), getString(urlRes).toUri())
-            }
+        .setDefaultColorSchemeParams(
+            CustomTabColorSchemeParams.Builder()
+                .setToolbarColor(colorCompat(R.color.RoseTaupe))
+                .build()
+        )
+        .build()
+        .run {
+            launchUrl(requireContext(), getString(urlRes).toUri())
+        }
 }

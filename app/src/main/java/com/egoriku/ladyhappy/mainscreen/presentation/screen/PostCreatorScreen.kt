@@ -8,8 +8,8 @@ import com.egoriku.ladyhappy.extensions.getClassByName
 import com.egoriku.ladyhappy.navigation.screen.FragmentScreen
 
 class PostCreatorScreen(
-        private val className: String,
-        private val params: PostCreatorParams
+    private val className: String,
+    private val params: PostCreatorParams
 ) : FragmentScreen() {
 
     override val fragment: Fragment

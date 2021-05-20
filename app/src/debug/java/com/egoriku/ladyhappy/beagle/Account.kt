@@ -4,8 +4,8 @@ import com.pandulapeter.beagle.common.configuration.Text
 import com.pandulapeter.beagle.common.contracts.BeagleListItemContract
 
 data class Account(
-        val email: String,
-        val password: String
+    val email: String,
+    val password: String
 ) : BeagleListItemContract {
 
     override val id: String = email

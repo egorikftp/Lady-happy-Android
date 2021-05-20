@@ -18,35 +18,35 @@ class BeagleDebugMenuInitializer {
         registerActivityLifecycleCallbacks(BeagleLifecycleListener())
 
         Beagle.initialize(
-                application = this,
-                behavior = Behavior(
-                        shouldAddDebugMenu = { fragmentActivity ->
-                            val canonicalName = requireNotNull(fragmentActivity.javaClass.canonicalName)
+            application = this,
+            behavior = Behavior(
+                shouldAddDebugMenu = { fragmentActivity ->
+                    val canonicalName = requireNotNull(fragmentActivity.javaClass.canonicalName)
 
-                            !canonicalName.startsWith("com.google")
-                        }
-                ))
+                    !canonicalName.startsWith("com.google")
+                }
+            ))
         Beagle.set(
-                HeaderModule(
-                        title = getString(R.string.application_name),
-                        subtitle = "v${BuildConfig.VERSION_NAME} (${BuildConfig.VERSION_CODE})"
-                ),
-                AppInfoButtonModule(),
-                DeveloperOptionsButtonModule(),
-                TextModule(
-                        type = TextModule.Type.BUTTON,
-                        text = "Clear App Data",
-                        onItemSelected = {
-                            application.activityManager.clearApplicationUserData()
-                        }
-                ),
-                TextModule(
-                        type = TextModule.Type.BUTTON,
-                        text = "Dump Leaks",
-                        onItemSelected = {
-                            LeakCanary.dumpHeap()
-                        }
-                )
+            HeaderModule(
+                title = getString(R.string.application_name),
+                subtitle = "v${BuildConfig.VERSION_NAME} (${BuildConfig.VERSION_CODE})"
+            ),
+            AppInfoButtonModule(),
+            DeveloperOptionsButtonModule(),
+            TextModule(
+                type = TextModule.Type.BUTTON,
+                text = "Clear App Data",
+                onItemSelected = {
+                    application.activityManager.clearApplicationUserData()
+                }
+            ),
+            TextModule(
+                type = TextModule.Type.BUTTON,
+                text = "Dump Leaks",
+                onItemSelected = {
+                    LeakCanary.dumpHeap()
+                }
+            )
         )
     }
 }

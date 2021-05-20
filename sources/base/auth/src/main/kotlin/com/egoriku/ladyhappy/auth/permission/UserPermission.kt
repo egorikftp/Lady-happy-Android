@@ -8,8 +8,8 @@ import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 internal class UserPermission(
-        private val authentication: Authentication,
-        private val userPermissionsRepository: IUserPermissionsRepository
+    private val authentication: Authentication,
+    private val userPermissionsRepository: IUserPermissionsRepository
 ) : IUserPermission {
 
     private val permissions = mutableListOf<Permission>()
@@ -20,7 +20,8 @@ internal class UserPermission(
                 when (it) {
                     is UserLoginState.Anon -> permissions.clear()
                     is UserLoginState.LoggedIn -> {
-                        val newPermissions = userPermissionsRepository.getPermissionsBy(userId = it.userId)
+                        val newPermissions =
+                            userPermissionsRepository.getPermissionsBy(userId = it.userId)
 
                         permissions.addAll(newPermissions)
                     }

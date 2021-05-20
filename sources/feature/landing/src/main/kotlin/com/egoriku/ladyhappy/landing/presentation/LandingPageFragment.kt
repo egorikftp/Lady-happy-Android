@@ -77,23 +77,26 @@ class LandingPageFragment : ScopeFragment(R.layout.fragment_landing), AboutUsFea
             else -> hideProgress()
         }
 
-        itemList.addIf(screenModel.isEmpty() && screenModel.loadState == LoadState.ERROR_LOADING, noDataController)
+        itemList.addIf(
+            screenModel.isEmpty() && screenModel.loadState == LoadState.ERROR_LOADING,
+            noDataController
+        )
 
         screenModel.landingModel?.let {
             itemList.add(headerController)
-                    .add(it.aboutInfo, aboutController)
-                    .addIf(
-                            it.quotes.isNotEmpty(),
-                            R.string.landing_adapter_item_header_quotes,
-                            sectionsHeaderController
-                    )
-                    .addIf(it.quotes.isNotEmpty(), it.quotes, quotesController)
-                    .addIf(
-                            it.teamMembers.isNotEmpty(),
-                            R.string.landing_adapter_item_header_our_team,
-                            sectionsHeaderController
-                    )
-                    .addAll(it.teamMembers, ourTeamController)
+                .add(it.aboutInfo, aboutController)
+                .addIf(
+                    it.quotes.isNotEmpty(),
+                    R.string.landing_adapter_item_header_quotes,
+                    sectionsHeaderController
+                )
+                .addIf(it.quotes.isNotEmpty(), it.quotes, quotesController)
+                .addIf(
+                    it.teamMembers.isNotEmpty(),
+                    R.string.landing_adapter_item_header_our_team,
+                    sectionsHeaderController
+                )
+                .addAll(it.teamMembers, ourTeamController)
         }
 
         landingAdapter.setItems(itemList)

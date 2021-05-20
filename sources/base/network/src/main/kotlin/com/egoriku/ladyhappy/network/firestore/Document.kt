@@ -10,32 +10,33 @@ import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
 
 suspend inline fun <reified T> DocumentReference.awaitResult(): ResultOf<T> =
-        wrapIntoResult {
-            awaitGet(T::class.java)
-        }
+    wrapIntoResult {
+        awaitGet(T::class.java)
+    }
 
 suspend inline fun <reified T> DocumentReference.awaitGet(): T = awaitGet(T::class.java)
 
-suspend fun <T> DocumentReference.awaitGet(type: Class<T>): T = suspendCancellableCoroutine { continuation ->
-    get().addOnSuccessListener { snapshot ->
-        if (snapshot.exists()) {
-            try {
-                val data: T? = snapshot.toObject(type)
+suspend fun <T> DocumentReference.awaitGet(type: Class<T>): T =
+    suspendCancellableCoroutine { continuation ->
+        get().addOnSuccessListener { snapshot ->
+            if (snapshot.exists()) {
+                try {
+                    val data: T? = snapshot.toObject(type)
 
-                if (data == null) {
-                    continuation.resumeWithException(
+                    if (data == null) {
+                        continuation.resumeWithException(
                             FirestoreParseException("Failed to get document from $this of type: $type")
-                    )
-                } else {
-                    continuation.resume(data)
+                        )
+                    } else {
+                        continuation.resume(data)
+                    }
+                } catch (exception: Exception) {
+                    continuation.resumeWithException(exception)
                 }
-            } catch (exception: Exception) {
-                continuation.resumeWithException(exception)
+            } else {
+                continuation.resumeWithException(NoSuchDocumentException())
             }
-        } else {
-            continuation.resumeWithException(NoSuchDocumentException())
+        }.addOnFailureListener {
+            continuation.resumeWithException(it)
         }
-    }.addOnFailureListener {
-        continuation.resumeWithException(it)
     }
-}
