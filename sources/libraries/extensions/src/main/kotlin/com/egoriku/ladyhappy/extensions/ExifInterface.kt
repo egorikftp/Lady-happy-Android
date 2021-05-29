@@ -15,4 +15,4 @@ inline val ExifInterface.imageCreationDate
         val attribute = requireNotNull(getAttribute(ExifInterface.TAG_DATETIME))
 
         exifInterfaceDateFormat.parse(attribute).time
-    }.getOrDefault(0L)
+    }.getOrDefault(System.currentTimeMillis())

@@ -46,13 +46,15 @@ class DynamicFeatureViewModel(private val splitInstallHelper: ISplitInstallHelpe
 
                 override fun onDownloadInProgress(progress: Long, totalBytes: Long) {
                     viewModelScope.launch {
-                        DynamicFeatureEvent.Downloading(progress = (progress / totalBytes).toInt())
+                        _events.emit(
+                            DynamicFeatureEvent.Downloading(progress = (progress / totalBytes).toInt())
+                        )
                     }
                 }
 
                 override fun onInstalling() {
                     viewModelScope.launch {
-                        DynamicFeatureEvent.Installing
+                        _events.emit(DynamicFeatureEvent.Installing)
                     }
                 }
             }
@@ -86,13 +88,15 @@ class DynamicFeatureViewModel(private val splitInstallHelper: ISplitInstallHelpe
 
                 override fun onDownloadInProgress(progress: Long, totalBytes: Long) {
                     viewModelScope.launch {
-                        DynamicFeatureEvent.Downloading(progress = (progress / totalBytes).toInt())
+                        _events.emit(
+                            DynamicFeatureEvent.Downloading(progress = (progress / totalBytes).toInt())
+                        )
                     }
                 }
 
                 override fun onInstalling() {
                     viewModelScope.launch {
-                        DynamicFeatureEvent.Installing
+                        _events.emit(DynamicFeatureEvent.Installing)
                     }
                 }
             }
