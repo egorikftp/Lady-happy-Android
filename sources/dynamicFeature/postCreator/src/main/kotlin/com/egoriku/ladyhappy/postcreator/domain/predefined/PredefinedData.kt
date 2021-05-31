@@ -248,6 +248,11 @@ object PredefinedData {
             subCategoryId = 5
         ),
         SubCategoryModel(
+            name = "Шопер",
+            categoryId = 9,
+            subCategoryId = 6
+        ),
+        SubCategoryModel(
             name = "Картуз",
             categoryId = 10,
             subCategoryId = 1
