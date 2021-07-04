@@ -5,6 +5,9 @@ import android.view.View
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.isVisible
 import androidx.core.view.updateLayoutParams
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
 import by.kirich1409.viewbindingdelegate.viewBinding
@@ -26,6 +29,8 @@ import com.egoriku.ladyhappy.ui.decorator.EmptySpaceItemDecoration
 import com.google.android.material.appbar.AppBarLayout
 import jp.wasabeef.glide.transformations.BlurTransformation
 import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
+import org.koin.android.ext.android.inject
 import org.koin.androidx.scope.ScopeFragment
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -57,9 +62,11 @@ class DetailPageFragment : ScopeFragment(R.layout.fragment_detail), DetailPage {
             }
         }
 
-        repeatingJobOnStarted {
-            viewModel.getDetailFlow(detailParams = detailPageParams).collect {
-                detailAdapter.submitData(it)
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.getDetailFlow(detailParams = detailPageParams).collect {
+                    detailAdapter.submitData(it)
+                }
             }
         }
     }

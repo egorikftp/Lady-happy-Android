@@ -6,6 +6,9 @@ import android.text.InputType.*
 import android.view.View
 import androidx.core.os.bundleOf
 import androidx.fragment.app.setFragmentResult
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.bumptech.glide.Glide
 import com.egoriku.ladyhappy.core.IRouter
@@ -20,6 +23,8 @@ import com.google.android.play.core.splitcompat.SplitCompat
 import com.maxkeppeler.sheets.input.InputSheet
 import com.maxkeppeler.sheets.input.type.InputEditText
 import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
+import org.koin.android.ext.android.inject
 import org.koin.androidx.scope.ScopeFragment
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.context.loadKoinModules
@@ -53,23 +58,27 @@ class EditFragment : ScopeFragment(R.layout.fragment_edit_subcategory) {
 
         binding.initViews()
 
-        repeatingJobOnStarted {
-            viewModel.uiState.collect {
-                binding.handleState(it)
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.uiState.collect {
+                    binding.handleState(it)
+                }
             }
         }
 
-        repeatingJobOnStarted {
-            viewModel.effect.collect {
-                when (it) {
-                    is Effect.Exit -> {
-                        setFragmentResult(
-                            EDIT_REQUEST_KEY,
-                            bundleOf(EDIT_BUNDLE_RESULT_KEY to it.categoryId)
-                        )
-                        router.back()
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.effect.collect {
+                    when (it) {
+                        is Effect.Exit -> {
+                            setFragmentResult(
+                                EDIT_REQUEST_KEY,
+                                bundleOf(EDIT_BUNDLE_RESULT_KEY to it.categoryId)
+                            )
+                            router.back()
+                        }
+                        is Effect.ShowToast -> toast(it.message)
                     }
-                    is Effect.ShowToast -> toast(it.message)
                 }
             }
         }

@@ -32,7 +32,6 @@ withThirdPartyLibraries(
         Libs.circleImageView,
         Libs.firebaseFirestore,
         Libs.koinAndroid,
-        Libs.koinViewModel,
         Libs.liveDataKtx,
         Libs.material,
         Libs.playCore,

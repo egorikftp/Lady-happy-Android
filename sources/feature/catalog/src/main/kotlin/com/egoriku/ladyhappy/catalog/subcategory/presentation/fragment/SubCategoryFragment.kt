@@ -4,6 +4,9 @@ import android.os.Bundle
 import android.view.View
 import androidx.core.os.bundleOf
 import androidx.fragment.app.setFragmentResult
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.DividerItemDecoration.VERTICAL
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -21,10 +24,11 @@ import com.egoriku.ladyhappy.core.sharedmodel.key.DYNAMIC_FEATURE_REQUEST_KEY
 import com.egoriku.ladyhappy.core.sharedmodel.params.EditParams
 import com.egoriku.ladyhappy.extensions.extraNotNull
 import com.egoriku.ladyhappy.extensions.gone
-import com.egoriku.ladyhappy.extensions.repeatingJobOnStarted
 import com.egoriku.ladyhappy.extensions.visible
 import com.skydoves.balloon.balloon
 import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
+import org.koin.android.ext.android.inject
 import org.koin.androidx.scope.ScopeFragment
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
@@ -82,9 +86,11 @@ class SubCategoryFragment : ScopeFragment(R.layout.fragment_catalog) {
             addItemDecoration(DividerItemDecoration(requireContext(), VERTICAL))
         }
 
-        repeatingJobOnStarted {
-            catalogViewModel.subcategoryItems.collect {
-                binding.render(it)
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                catalogViewModel.subcategoryItems.collect {
+                    binding.render(it)
+                }
             }
         }
     }

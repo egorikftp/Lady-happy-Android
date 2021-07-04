@@ -8,6 +8,7 @@ import com.egoriku.ladyhappy.core.sharedmodel.Theme
 import com.egoriku.ladyhappy.settings.R
 import com.egoriku.ladyhappy.settings.presentation.dialog.base.ScopeDialogFragment
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import org.koin.android.ext.android.inject
 import kotlin.properties.Delegates
 
 class ThemeSettingDialogFragment : ScopeDialogFragment() {

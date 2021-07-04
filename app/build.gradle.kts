@@ -8,8 +8,6 @@ import org.jetbrains.kotlin.konan.file.File
 import org.jetbrains.kotlin.konan.properties.Properties
 import org.jetbrains.kotlin.konan.properties.loadProperties
 import org.jetbrains.kotlin.konan.properties.saveToFile
-import kotlin.collections.mutableSetOf
-import kotlin.collections.set
 
 plugins {
     id("HappyXPlugin")
@@ -102,7 +100,6 @@ withThirdPartyLibraries(
         Libs.glide,
         Libs.liveDataKtx,
         Libs.koinAndroid,
-        Libs.koinViewModel,
         Libs.material,
         Libs.playCore,
         Libs.sheetsCore,

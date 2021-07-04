@@ -4,6 +4,9 @@ import android.content.Context
 import android.os.Bundle
 import android.view.View
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.ConcatAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
 import by.kirich1409.viewbindingdelegate.viewBinding
@@ -27,12 +30,13 @@ import com.egoriku.ladyhappy.postcreator.presentation.sections.input.InputSectio
 import com.egoriku.ladyhappy.postcreator.presentation.state.UploadEvents
 import com.google.android.play.core.splitcompat.SplitCompat
 import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
+import org.koin.android.ext.android.inject
 import org.koin.androidx.scope.ScopeFragment
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.context.loadKoinModules
 import org.koin.core.context.unloadKoinModules
 import kotlin.properties.Delegates
-import com.egoriku.ladyhappy.localization.R as R_localization
 
 const val KEY_CHOOSER_FRAGMENT_RESULT = "chooserKey"
 const val KEY_FRAGMENT_RESULT_BUNDLE = "bundleKey"
@@ -94,36 +98,42 @@ class PostCreatorFragment : ScopeFragment(R.layout.fragment_post_creator) {
 
         extractImagesFromExtra()
 
-        repeatingJobOnStarted {
-            viewModel.screenState.collect { state ->
-                chooserSectionAdapter.submitList(state.chooserState)
-                imagesSectionAdapter.submitList(listOf(state.imagesSection))
-                inputSectionAdapter.currentText = state.title
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.screenState.collect { state ->
+                    chooserSectionAdapter.submitList(state.chooserState)
+                    imagesSectionAdapter.submitList(listOf(state.imagesSection))
+                    inputSectionAdapter.currentText = state.title
+                }
             }
         }
 
-        repeatingJobOnStarted {
-            viewModel.publishButtonAvailability.collect {
-                binding.postPublishButton.isEnabled = it
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.publishButtonAvailability.collect {
+                    binding.postPublishButton.isEnabled = it
+                }
             }
         }
 
-        repeatingJobOnStarted {
-            viewModel.uploadEvents.collect {
-                when (it) {
-                    is UploadEvents.Error -> {
-                        binding.parentProgress.gone()
-                        binding.contentLoadingProgressBar.hide()
-                        toast(getString(R_localization.string.post_creator_upload_error))
-                    }
-                    is UploadEvents.InProgress -> {
-                        binding.parentProgress.visible()
-                        binding.contentLoadingProgressBar.show()
-                    }
-                    is UploadEvents.Success -> {
-                        binding.contentLoadingProgressBar.hide()
-                        toast(getString(R_localization.string.post_creator_upload_success))
-                        router.back()
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.uploadEvents.collect {
+                    when (it) {
+                        is UploadEvents.Error -> {
+                            binding.parentProgress.gone()
+                            binding.contentLoadingProgressBar.hide()
+                            toast(getString(com.egoriku.ladyhappy.localization.R.string.post_creator_upload_error))
+                        }
+                        is UploadEvents.InProgress -> {
+                            binding.parentProgress.visible()
+                            binding.contentLoadingProgressBar.show()
+                        }
+                        is UploadEvents.Success -> {
+                            binding.contentLoadingProgressBar.hide()
+                            toast(getString(com.egoriku.ladyhappy.localization.R.string.post_creator_upload_success))
+                            router.back()
+                        }
                     }
                 }
             }

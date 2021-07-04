@@ -8,6 +8,9 @@ import androidx.browser.customtabs.CustomTabColorSchemeParams
 import androidx.browser.customtabs.CustomTabsIntent
 import androidx.core.net.toUri
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.egoriku.ladyhappy.extensions.*
 import com.egoriku.ladyhappy.login.R
@@ -19,6 +22,7 @@ import com.egoriku.ladyhappy.login.presentation.util.validatePassword
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.common.api.ApiException
 import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class LoginFragment : Fragment(R.layout.fragment_login) {
@@ -109,11 +113,13 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
             }
         }
 
-        repeatingJobOnStarted {
-            viewModel.events.collect {
-                when (it) {
-                    is LoginEvent.OneTap -> requestSignInWithOneTap.launch(it.eventSenderRequest)
-                    is LoginEvent.SignWithGoogle -> requestSignInWithGoogle.launch(it.signInIntent)
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.events.collect {
+                    when (it) {
+                        is LoginEvent.OneTap -> requestSignInWithOneTap.launch(it.eventSenderRequest)
+                        is LoginEvent.SignWithGoogle -> requestSignInWithGoogle.launch(it.signInIntent)
+                    }
                 }
             }
         }

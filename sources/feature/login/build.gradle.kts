@@ -24,7 +24,7 @@ withThirdPartyLibraries(
         Libs.constraintLayout,
         Libs.core,
         Libs.koinAndroid,
-        Libs.koinViewModel,
+        Libs.lifecycleRuntime,
         Libs.liveDataKtx,
         Libs.material,
         Libs.playServicesAuth,

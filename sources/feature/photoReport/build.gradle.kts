@@ -26,7 +26,7 @@ withThirdPartyLibraries(
         Libs.firebaseFirestore,
         Libs.glide,
         Libs.koinAndroid,
-        Libs.koinViewModel,
+        Libs.lifecycleRuntime,
         Libs.material,
         Libs.recyclerView,
         Libs.stfalconImageViewer,

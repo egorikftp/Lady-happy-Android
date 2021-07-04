@@ -27,7 +27,7 @@ withThirdPartyLibraries(
         Libs.glide,
         Libs.glideTransformation,
         Libs.koinAndroid,
-        Libs.koinViewModel,
+        Libs.lifecycleRuntime,
         Libs.material,
         Libs.paging,
         Libs.recyclerView,

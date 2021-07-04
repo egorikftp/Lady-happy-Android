@@ -32,7 +32,6 @@ withThirdPartyLibraries(
         Libs.firebaseFirestore,
         Libs.fragment,
         Libs.koinAndroid,
-        Libs.koinViewModel,
         Libs.material,
         Libs.playCore,
         Libs.sheetsInput,
