@@ -12,8 +12,9 @@
     <a href="https://github.com/egorikftp/Lady-happy/network"><img alt="API" src="https://img.shields.io/github/forks/egorikftp/Lady-happy.svg"/></a>
     <a target="_blank" href="https://github.com/egorikftp/Lady-happy/blob/dev/LICENSE"><img src="https://img.shields.io/github/license/egorikftp/Lady-happy.svg"></a>
     <a target="_blank" href="https://appcenter.ms"><img src="https://build.appcenter.ms/v0.1/apps/5c717ffd-1796-4c51-9ec5-c40fa19ed472/branches/dev/badge"></a>
-    <a href="https://www.codacy.com/manual/egorikftp/Lady-happy?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=egorikftp/Lady-happy&amp;utm_campaign=Badge_Grade"><img src="https://api.codacy.com/project/badge/Grade/a5b356b07d4e42a6bc7f72e4cae6831e"/></a>
+    <a href="https://www.codacy.com/gh/egorikftp/Lady-happy-Android/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=egorikftp/Lady-happy-Android&amp;utm_campaign=Badge_Grade"><img src="https://app.codacy.com/project/badge/Grade/a7df6f4e41734df48ef1a4ece56265b5"/></a>
 </p>
+
 
 # Project characteristics 🚀
 
