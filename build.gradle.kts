@@ -1,5 +1,4 @@
 import com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask
-import io.gitlab.arturbosch.detekt.Detekt
 
 plugins {
     id("com.github.ben-manes.versions") version GradlePluginsVersion.versionPlugin
@@ -10,7 +9,6 @@ buildscript {
     repositories {
         google()
         mavenCentral()
-        jcenter()
         maven(url = "https://jitpack.io")
     }
 
@@ -49,10 +47,6 @@ tasks {
 subprojects {
     apply {
         plugin("io.gitlab.arturbosch.detekt")
-    }
-
-    tasks.withType<Detekt>().configureEach {
-        jvmTarget = "1.8"
     }
 
     detekt {

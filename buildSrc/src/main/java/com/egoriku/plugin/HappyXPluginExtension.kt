@@ -1,6 +1,6 @@
-package com.egoriku.plugin.extension
+package com.egoriku.plugin
 
-open class MyPluginExtension {
+open class HappyXPluginExtension {
 
     open var kotlinParcelize = false
     open var viewBindingEnabled = false
