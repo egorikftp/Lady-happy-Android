@@ -16,7 +16,6 @@ jobs:
       uses: actions/setup-java@v1
       with:
         java-version: 11
-  
     - name: Copy google-services.json
       run: echo ${{ secrets.GOOGLE_SERVICES_JSON }} | base64 --decode > app/google-services.json
     
