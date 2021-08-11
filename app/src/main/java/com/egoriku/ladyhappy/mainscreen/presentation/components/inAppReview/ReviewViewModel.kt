@@ -7,8 +7,9 @@ import com.google.android.play.core.ktx.requestReview
 import com.google.android.play.core.review.ReviewInfo
 import com.google.android.play.core.review.ReviewManager
 import kotlinx.coroutines.launch
+import kotlin.time.Duration
+import kotlin.time.DurationUnit
 import kotlin.time.ExperimentalTime
-import kotlin.time.days
 
 class ReviewViewModel(
     private val reviewManager: ReviewManager,
@@ -28,10 +29,11 @@ class ReviewViewModel(
     }
 
     @OptIn(ExperimentalTime::class)
+    @Suppress("MagicNumber")
     private fun isLastRequestOld(): Boolean {
         val lastAskForReview = appPreferences.lastAskForReview
 
         return lastAskForReview == 0L ||
-                System.currentTimeMillis() - lastAskForReview >= 7.days.inMilliseconds
+                System.currentTimeMillis() - lastAskForReview >= Duration.days(7).toDouble(DurationUnit.MILLISECONDS)
     }
 }

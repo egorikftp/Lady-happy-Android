@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    lintOptions {
+    lint {
         isAbortOnError = false
     }
 }

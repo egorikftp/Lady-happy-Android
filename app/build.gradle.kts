@@ -1,7 +1,5 @@
-import Modules.DynamicFeatures
 import Modules.Features
 import Modules.Libraries
-import com.egoriku.ext.debug
 import com.egoriku.ext.propertyInt
 import com.egoriku.ext.release
 import org.jetbrains.kotlin.konan.file.File
@@ -13,6 +11,7 @@ plugins {
     id("HappyXPlugin")
     id("com.android.application")
     id("com.google.firebase.firebase-perf")
+    id("com.google.gms.google-services")
     id("com.google.firebase.crashlytics")
     id("com.google.android.gms.oss-licenses-plugin")
 }
@@ -22,7 +21,7 @@ happyPlugin {
 }
 
 android {
-    dynamicFeatures = mutableSetOf(DynamicFeatures.edit, DynamicFeatures.postCreator)
+    dynamicFeatures += setOf(Modules.DynamicFeatures.edit, Modules.DynamicFeatures.postCreator)
 
     signingConfigs {
         release {
@@ -112,10 +111,6 @@ dependencies {
     debugImplementation(Libs.leakCanary)
 
     testImplementation(Libs.junit)
-}
-
-apply {
-    plugin("com.google.gms.google-services")
 }
 
 fun autoIncrementBuildVersionNumber() {

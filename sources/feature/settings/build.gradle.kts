@@ -10,7 +10,7 @@ happyPlugin {
 }
 
 android {
-    lintOptions {
+    lint {
         isAbortOnError = false
     }
 }

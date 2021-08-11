@@ -34,11 +34,11 @@ object LibrariesVersion {
     const val sheets = "2.2.4"
     const val vectorDrawable = "1.1.0"
     const val viewBindingDelegates = "1.4.6"
-    const val viewBinding = "4.2.2"
+    const val viewBinding = "7.0.0"
     const val viewPager2 = "1.0.0"
 }
 
 object ProjectVersion {
-    const val compileSdkVersion = 30
+    const val compileSdkVersion = 31
     const val minSdkVersion = 21
 }
