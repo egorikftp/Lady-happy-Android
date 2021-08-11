@@ -29,6 +29,7 @@ class ReviewViewModel(
     }
 
     @OptIn(ExperimentalTime::class)
+    @Suppress("MagicNumber")
     private fun isLastRequestOld(): Boolean {
         val lastAskForReview = appPreferences.lastAskForReview
 
