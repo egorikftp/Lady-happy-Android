@@ -1,6 +1,6 @@
 package com.egoriku.ladyhappy.core.splitinstall
 
-import com.egoriku.ladyhappy.extensions.logDm
+import com.egoriku.ladyhappy.extensions.logD
 import com.egoriku.ladyhappy.extensions.logE
 import com.google.android.play.core.splitinstall.*
 import com.google.android.play.core.splitinstall.model.SplitInstallErrorCode
@@ -13,7 +13,7 @@ class SplitInstallHelper(
 
     override fun installModule(moduleName: String, moduleInstallListener: ModuleInstallListener) {
         if (splitInstallManager.installedModules.contains(moduleName)) {
-            logDm("Split install [$moduleName] already installed")
+            logD("Split install: $moduleName already installed")
             moduleInstallListener.onSuccess()
         } else {
             val request = SplitInstallRequest.newBuilder().addModule(moduleName).build()
@@ -30,53 +30,53 @@ class SplitInstallHelper(
                         when (state.status()) {
                             // The request has been accepted and the download should start soon.
                             SplitInstallSessionStatus.PENDING -> {
-                                logDm("Split install [$moduleName] pending")
+                                logD("Split install: $moduleName pending")
                             }
                             // The download requires user confirmation. This is most likely due to the size of the download being larger than 10 MB.
                             SplitInstallSessionStatus.REQUIRES_USER_CONFIRMATION -> {
-                                logDm("Split install [$moduleName] requires user confirmation")
+                                logD("Split install: $moduleName requires user confirmation")
                                 moduleInstallListener.onRequiresUserConfirmation(state)
                             }
                             // Download is in progress.
                             SplitInstallSessionStatus.DOWNLOADING -> {
                                 val totalBytes = state.totalBytesToDownload()
                                 val progress = state.bytesDownloaded()
-                                logDm("Split install [$moduleName] downloading $progress/$totalBytes bytes")
+                                logD("Split install: $moduleName downloading $progress/$totalBytes bytes")
                                 moduleInstallListener.onDownloadInProgress(progress, totalBytes)
                             }
                             // The device has downloaded the module but installation has no yet begun.
                             SplitInstallSessionStatus.DOWNLOADED -> {
-                                logDm("Split install [$moduleName] downloaded")
+                                logD("Split install: $moduleName downloaded")
                             }
                             // The device is currently installing the module.
                             SplitInstallSessionStatus.INSTALLING -> {
-                                logDm("Split install [$moduleName] installing")
+                                logD("Split install: $moduleName installing")
                                 moduleInstallListener.onInstalling()
                             }
                             // The module is installed on the device.
                             SplitInstallSessionStatus.INSTALLED -> {
-                                logDm("Split install [$moduleName] installed")
+                                logD("Split install: $moduleName installed")
                                 moduleInstallListener.onSuccess()
                                 splitInstallManager.unregisterListener(this)
                             }
                             // The request failed before the module was installed on the device.
                             SplitInstallSessionStatus.FAILED -> {
-                                logDm("Split install [$moduleName] failed: " + state.errorCode())
+                                logD("Split install: $moduleName failed: " + state.errorCode())
                                 moduleInstallListener.onFailure()
                                 splitInstallManager.unregisterListener(this)
                             }
                             // The device is in the process of cancelling the request.
                             SplitInstallSessionStatus.CANCELING -> {
-                                logDm("Split install [$moduleName] cancelling")
+                                logD("Split install: $moduleName cancelling")
                             }
                             // The request has been cancelled.
                             SplitInstallSessionStatus.CANCELED -> {
-                                logDm("Split install [$moduleName] canceled")
+                                logD("Split install: $moduleName canceled")
                                 moduleInstallListener.onFailure()
                                 splitInstallManager.unregisterListener(this)
                             }
                             SplitInstallSessionStatus.UNKNOWN -> {
-                                logDm("Split install [$moduleName] unknown status")
+                                logD("Split install: $moduleName unknown status")
                                 moduleInstallListener.onFailure()
                                 splitInstallManager.unregisterListener(this)
                             }

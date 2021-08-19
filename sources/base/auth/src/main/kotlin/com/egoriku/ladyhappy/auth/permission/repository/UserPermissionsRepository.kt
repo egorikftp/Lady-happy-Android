@@ -13,6 +13,7 @@ internal class UserPermissionsRepository(
         when (permission) {
             Permission.Admin.name -> Permission.Admin
             Permission.User.name -> Permission.User
+            Permission.DemoMode.name -> Permission.DemoMode
             else -> null
         }
     }
