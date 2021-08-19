@@ -43,6 +43,10 @@ object PredefinedData {
         CategoryModel(
             name = "Меховые",
             categoryId = 10
+        ),
+        CategoryModel(
+            name = "Соломка риторто",
+            categoryId = 11
         )
     )
 
@@ -253,8 +257,18 @@ object PredefinedData {
             subCategoryId = 6
         ),
         SubCategoryModel(
+            name = "Кепи",
+            categoryId = 9,
+            subCategoryId = 7
+        ),
+        SubCategoryModel(
             name = "Картуз",
             categoryId = 10,
+            subCategoryId = 1
+        ),
+        SubCategoryModel(
+            name = "Соломка риторто (вискоза)",
+            categoryId = 11,
             subCategoryId = 1
         )
     )
