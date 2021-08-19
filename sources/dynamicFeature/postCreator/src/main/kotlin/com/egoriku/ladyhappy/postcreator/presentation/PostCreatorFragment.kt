@@ -7,6 +7,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.recyclerview.widget.ConcatAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
 import by.kirich1409.viewbindingdelegate.viewBinding
+import com.egoriku.ladyhappy.auth.permission.IUserPermission
 import com.egoriku.ladyhappy.core.IRouter
 import com.egoriku.ladyhappy.core.sharedmodel.key.KEY_POST_CREATOR_EXTRA
 import com.egoriku.ladyhappy.core.sharedmodel.params.PostCreatorParams
@@ -44,6 +45,7 @@ class PostCreatorFragment : ScopeFragment(R.layout.fragment_post_creator) {
     }
 
     private val router: IRouter by inject()
+    private val userPermission: IUserPermission by inject()
 
     private val viewModel by viewModel<PostViewModel>()
 
@@ -184,7 +186,10 @@ class PostCreatorFragment : ScopeFragment(R.layout.fragment_post_creator) {
         }
 
         postPublishButton.setOnClickListener {
-            viewModel.publishPost()
+            when {
+                userPermission.isDemoMode -> toast(text = "You are in demo mode")
+                else -> viewModel.publishPost()
+            }
         }
     }
 

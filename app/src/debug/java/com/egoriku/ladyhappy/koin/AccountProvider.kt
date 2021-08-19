@@ -3,7 +3,7 @@ package com.egoriku.ladyhappy.koin
 import android.content.Context
 import com.egoriku.ladyhappy.beagle.Account
 import com.egoriku.ladyhappy.extensions.common.Constants.EMPTY
-import com.egoriku.ladyhappy.extensions.logDm
+import com.egoriku.ladyhappy.extensions.logD
 import com.egoriku.ladyhappy.extensions.second
 import java.util.*
 
@@ -27,7 +27,7 @@ class AccountProvider(context: Context) {
 
                 accounts.addAll(accountsFromProperties)
             }.getOrElse {
-                logDm(it.message)
+                logD("${it.message}")
             }
         }
     }
