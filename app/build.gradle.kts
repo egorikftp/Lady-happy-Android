@@ -99,7 +99,6 @@ withThirdPartyLibraries(
         Libs.glide,
         Libs.liveDataKtx,
         Libs.koinAndroid,
-        Libs.koinViewModel,
         Libs.material,
         Libs.playCore,
         Libs.sheetsCore,

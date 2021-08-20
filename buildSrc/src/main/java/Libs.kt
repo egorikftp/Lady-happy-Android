@@ -40,7 +40,6 @@ object Libs {
     const val imageCompressor = "id.zelory:compressor:${LibrariesVersion.imageCompressor}"
 
     const val koinAndroid = "io.insert-koin:koin-android:${LibrariesVersion.koin}"
-    const val koinViewModel = "io.insert-koin:koin-androidx-viewmodel:${LibrariesVersion.koin}"
     const val kotlin = "org.jetbrains.kotlin:kotlin-stdlib:${LibrariesVersion.kotlin}"
 
     const val leakCanary = "com.squareup.leakcanary:leakcanary-android:${LibrariesVersion.leakCanary}"

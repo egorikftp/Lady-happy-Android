@@ -13,13 +13,11 @@ import com.egoriku.ladyhappy.koin.AccountProvider
 import com.egoriku.ladyhappy.login.presentation.LoginFragment
 import com.pandulapeter.beagle.Beagle
 import com.pandulapeter.beagle.modules.ItemListModule
-import org.koin.core.component.KoinApiExtension
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 
 private const val ID_LOGIN_SECTION = "id_login_section"
 
-@KoinApiExtension
 internal class BeagleLifecycleListener : SimpleActivityLifecycleCallbacks(), KoinComponent {
 
     private val accountProvider: AccountProvider by inject()

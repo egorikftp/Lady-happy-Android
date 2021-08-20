@@ -20,7 +20,7 @@ object LibrariesVersion {
     const val glideTransformations = "4.3.0"
     const val junit = "4.13.2"
     const val imageCompressor = "3.0.1"
-    const val koin = "2.2.3"
+    const val koin = "3.1.2"
     const val kotlin = "1.5.20"
     const val leakCanary = "2.7"
     const val lifecycle = "2.4.0-alpha02"
