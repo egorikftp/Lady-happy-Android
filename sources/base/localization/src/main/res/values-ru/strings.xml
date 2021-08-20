@@ -116,8 +116,10 @@
     <string name="detail_page_no_data_available">Похоже здесь еще пусто</string>
     <string name="detail_page_error_loading">&#128552; &#x1f628; Упс %1$s</string>
 
+    <string name="deeplink_unknown_screen">Неизвестный экран</string>
+    <string name="proto_overlay_title_format">%1$d из %2$d</string>
+
     <string name="dynamic_feature_post_creator_title">Создание поста</string>
     <string name="dynamic_feature_edit_title">Редактирование</string>
-    <string name="proto_overlay_title_format">%1$d из %2$d</string>
-    <string name="deeplink_unknown_screen">Неизвестный экран</string>
+    <string name="dynamic_feature_adminconsole">Админ консоль</string>
 </resources>

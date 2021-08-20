@@ -1,6 +1,3 @@
-import Modules.Applications
-import Modules.Libraries
-
 plugins {
     id("HappyXPlugin")
     id("com.android.dynamic-feature")
@@ -18,6 +15,16 @@ android {
 }
 
 dependencies {
+    implementation(projects.app)
+
+    implementation(projects.sources.base.auth)
+    implementation(projects.sources.base.core)
+    implementation(projects.sources.base.localization)
+    implementation(projects.sources.base.network)
+    implementation(projects.sources.base.ui)
+
+    implementation(projects.sources.libraries.extensions)
+
     implementation(platform(libs.firebase.bom))
 
     implementation(libs.android.material)
@@ -39,14 +46,3 @@ dependencies {
     implementation(libs.koin.viewmodel)
     implementation(libs.viewbinding.delegates)
 }
-
-withProjectLibraries(
-    Applications.ladyHappy,
-
-    Libraries.auth,
-    Libraries.core,
-    Libraries.extensions,
-    Libraries.localization,
-    Libraries.network,
-    Libraries.ui
-)

@@ -1,5 +1,3 @@
-import Modules.Libraries
-
 plugins {
     id("HappyXPlugin")
     id("com.android.library")
@@ -10,6 +8,15 @@ happyPlugin {
 }
 
 dependencies {
+    implementation(projects.sources.base.auth)
+    implementation(projects.sources.base.core)
+    implementation(projects.sources.base.network)
+    implementation(projects.sources.base.ui)
+
+    implementation(projects.sources.libraries.extensions)
+    implementation(projects.sources.libraries.mozaik)
+    implementation(projects.sources.libraries.navigation)
+
     implementation(platform(libs.firebase.bom))
 
     implementation(libs.android.material)
@@ -31,13 +38,3 @@ dependencies {
     implementation(libs.koin.viewmodel)
     implementation(libs.viewbinding.delegates)
 }
-
-withProjectLibraries(
-    Libraries.auth,
-    Libraries.core,
-    Libraries.extensions,
-    Libraries.mozaik,
-    Libraries.navigation,
-    Libraries.network,
-    Libraries.ui
-)

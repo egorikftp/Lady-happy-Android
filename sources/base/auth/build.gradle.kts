@@ -1,17 +1,13 @@
-import Modules.Libraries
-
 plugins {
     id("HappyXPlugin")
     id("com.android.library")
 }
 
-withProjectLibraries(
-        Libraries.core,
-        Libraries.extensions,
-        Libraries.network
-)
-
 dependencies {
+    implementation(projects.sources.base.core)
+    implementation(projects.sources.base.network)
+    implementation(projects.sources.libraries.extensions)
+
     implementation(platform(libs.firebase.bom))
 
     implementation(libs.coroutines.android)

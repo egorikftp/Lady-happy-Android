@@ -9,6 +9,7 @@ import com.egoriku.plugin.configure.configureAndroidLibrary
 import com.egoriku.plugin.internal.applicationExtension
 import com.egoriku.plugin.internal.dynamicFeatureExtension
 import com.egoriku.plugin.internal.libraryExtension
+import com.egoriku.plugin.internal.libs
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.api.plugins.JavaPlugin
@@ -36,6 +37,14 @@ open class HappyXPlugin : Plugin<Project> {
                     is LibraryPlugin -> {
                         libraryExtension.run {
                             buildFeatures.viewBinding = config.viewBindingEnabled
+
+                            if (config.composeEnabled) {
+                                buildFeatures.compose = config.composeEnabled
+
+                                composeOptions {
+                                    kotlinCompilerExtensionVersion = libs.versions.compose.get()
+                                }
+                            }
                         }
 
                         enableParcelize(config)
@@ -44,6 +53,14 @@ open class HappyXPlugin : Plugin<Project> {
                     is AppPlugin -> {
                         applicationExtension.run {
                             buildFeatures.viewBinding = config.viewBindingEnabled
+
+                            if (config.composeEnabled) {
+                                buildFeatures.compose = config.composeEnabled
+
+                                composeOptions {
+                                    kotlinCompilerExtensionVersion = libs.versions.compose.get()
+                                }
+                            }
                         }
                     }
 
@@ -52,6 +69,14 @@ open class HappyXPlugin : Plugin<Project> {
 
                         dynamicFeatureExtension.run {
                             buildFeatures.viewBinding = config.viewBindingEnabled
+
+                            if (config.composeEnabled) {
+                                buildFeatures.compose = config.composeEnabled
+
+                                composeOptions {
+                                    kotlinCompilerExtensionVersion = libs.versions.compose.get()
+                                }
+                            }
                         }
                     }
                 }

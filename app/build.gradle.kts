@@ -1,5 +1,3 @@
-import Modules.Features
-import Modules.Libraries
 import com.egoriku.ext.propertyInt
 import com.egoriku.ext.release
 import org.jetbrains.kotlin.konan.file.File
@@ -18,10 +16,15 @@ plugins {
 
 happyPlugin {
     viewBindingEnabled = true
+    composeEnabled = true
 }
 
 android {
-    dynamicFeatures += setOf(Modules.DynamicFeatures.edit, Modules.DynamicFeatures.postCreator)
+    dynamicFeatures += setOf(
+        projects.sources.dynamicFeature.adminConsole.name,
+        projects.sources.dynamicFeature.edit.name,
+        projects.sources.dynamicFeature.postCreator.name
+    )
 
     signingConfigs {
         release {
@@ -58,25 +61,23 @@ android {
     }
 }
 
-withProjectLibraries(
-        Features.catalog,
-        Features.detailPage,
-        Features.landing,
-        Features.launchScreen,
-        Features.login,
-        Features.photoReport,
-        Features.settings,
-        Features.usedLibraries,
-
-        Libraries.auth,
-        Libraries.core,
-        Libraries.extensions,
-        Libraries.mozaik,
-        Libraries.navigation,
-        Libraries.network
-)
-
 dependencies {
+    implementation(projects.sources.base.auth)
+    implementation(projects.sources.base.core)
+    implementation(projects.sources.base.network)
+
+    implementation(projects.sources.feature.catalog)
+    implementation(projects.sources.feature.detailPage)
+    implementation(projects.sources.feature.landing)
+    implementation(projects.sources.feature.launchScreen)
+    implementation(projects.sources.feature.login)
+    implementation(projects.sources.feature.photoReport)
+    implementation(projects.sources.feature.settings)
+    implementation(projects.sources.feature.usedLibraries)
+
+    implementation(projects.sources.libraries.extensions)
+    implementation(projects.sources.libraries.navigation)
+
     implementation(platform(libs.firebase.bom))
 
     implementation(libs.android.material)

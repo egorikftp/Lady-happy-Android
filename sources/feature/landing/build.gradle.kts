@@ -1,5 +1,3 @@
-import Modules.Libraries
-
 plugins {
     id("HappyXPlugin")
     id("com.android.library")
@@ -9,14 +7,13 @@ happyPlugin {
     viewBindingEnabled = true
 }
 
-withProjectLibraries(
-    Libraries.core,
-    Libraries.extensions,
-    Libraries.network,
-    Libraries.ui
-)
-
 dependencies {
+    implementation(projects.sources.base.core)
+    implementation(projects.sources.base.network)
+    implementation(projects.sources.base.ui)
+
+    implementation(projects.sources.libraries.extensions)
+
     implementation(libs.android.material)
     implementation(libs.androidx.appcompat)
     implementation(libs.androidx.constraintlayout)
