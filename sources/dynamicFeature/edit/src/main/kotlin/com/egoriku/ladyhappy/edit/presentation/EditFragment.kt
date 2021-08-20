@@ -11,6 +11,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.bumptech.glide.Glide
+import com.egoriku.ladyhappy.auth.permission.IUserPermission
 import com.egoriku.ladyhappy.core.IRouter
 import com.egoriku.ladyhappy.core.sharedmodel.key.EDIT_BUNDLE_RESULT_KEY
 import com.egoriku.ladyhappy.core.sharedmodel.key.EDIT_REQUEST_KEY
@@ -39,6 +40,7 @@ class EditFragment : ScopeFragment(R.layout.fragment_edit_subcategory) {
     }
 
     private val router: IRouter by inject()
+    private val userPermission: IUserPermission by inject()
 
     private val binding by viewBinding(FragmentEditSubcategoryBinding::bind)
 
@@ -122,7 +124,10 @@ class EditFragment : ScopeFragment(R.layout.fragment_edit_subcategory) {
         }
 
         updateButton.setOnClickListener {
-            viewModel.setEvent(Event.SaveEditChanges)
+            when {
+                userPermission.isDemoMode -> toast(text = "You are in demo mode")
+                else -> viewModel.setEvent(Event.SaveEditChanges)
+            }
         }
     }
 

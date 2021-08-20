@@ -17,6 +17,7 @@ dependencies {
 withProjectLibraries(
         Applications.ladyHappy,
 
+        Libraries.auth,
         Libraries.core,
         Libraries.extensions,
         Libraries.localization,

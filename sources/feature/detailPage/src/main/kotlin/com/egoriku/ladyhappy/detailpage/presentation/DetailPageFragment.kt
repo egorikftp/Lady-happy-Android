@@ -1,5 +1,6 @@
 package com.egoriku.ladyhappy.detailpage.presentation
 
+import android.content.Context
 import android.os.Bundle
 import android.view.View
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -10,6 +11,8 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.transition.Transition
+import androidx.transition.TransitionListenerAdapter
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CircleCrop
@@ -48,11 +51,29 @@ class DetailPageFragment : ScopeFragment(R.layout.fragment_detail), DetailPage {
 
     private var detailAdapter = DetailAdapter()
 
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+
+        if (enterTransition != null) {
+            (enterTransition as Transition).addListener(
+                object : TransitionListenerAdapter() {
+                    override fun onTransitionEnd(transition: Transition) {
+                        transition.removeListener(this)
+                        viewBinding.loadBackgroundHeader()
+                    }
+                }
+            )
+        }
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        if (savedInstanceState != null) {
+            viewBinding.loadBackgroundHeader()
+        }
+
         with(viewBinding) {
-            loadBackgroundHeader()
             initPredefinedData()
             initAdapter()
             initAppBarScrollListener()

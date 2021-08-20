@@ -7,6 +7,8 @@ import com.egoriku.ladyhappy.core.sharedmodel.domain.SubCategoryModel
 import com.egoriku.ladyhappy.core.sharedmodel.key.KEY_DETAIL_PAGE_EXTRA
 import com.egoriku.ladyhappy.core.sharedmodel.params.DetailPageParams
 import com.egoriku.ladyhappy.navigation.screen.FragmentScreen
+import com.google.android.material.transition.MaterialFade
+import com.google.android.material.transition.MaterialFadeThrough
 
 class DetailPageScreen(
     private val featureProvider: IFeatureProvider,
@@ -15,6 +17,9 @@ class DetailPageScreen(
 
     override val fragment: Fragment
         get() = featureProvider.detailPage.apply {
+            enterTransition = MaterialFadeThrough()
+            returnTransition = MaterialFade()
+
             arguments = bundleOf(
                 KEY_DETAIL_PAGE_EXTRA to DetailPageParams(
                     categoryId = subCategoryModel.categoryId,

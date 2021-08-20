@@ -64,7 +64,7 @@ class SubCategoryFragment : ScopeFragment(R.layout.fragment_catalog) {
                 viewHolderBalloon.showAlignLeft(it)
             },
             onLongPressListener = {
-                if (permissions.isAbleToEditPosts) {
+                if (permissions.isAdminMode || permissions.isDemoMode) {
                     requireParentFragment().setFragmentResult(
                         requestKey = DYNAMIC_FEATURE_REQUEST_KEY,
                         result = bundleOf(

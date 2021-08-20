@@ -2,7 +2,7 @@ package com.egoriku.versions
 
 object LibrariesVersion {
     const val annotation = "1.2.0"
-    const val appcompat = "1.3.0"
+    const val appcompat = "1.3.1"
     const val balloon = "1.3.5"
     const val beagle = "2.6.1"
     const val browser = "1.3.0"
@@ -15,7 +15,7 @@ object LibrariesVersion {
     const val easyAdapter = "7.0.1"
     const val exifInterface = "1.3.2"
     const val firebaseBom = "28.2.0"
-    const val fragment = "1.3.5"
+    const val fragment = "1.3.6"
     const val glide = "4.12.0"
     const val glideTransformations = "4.3.0"
     const val junit = "4.13.2"

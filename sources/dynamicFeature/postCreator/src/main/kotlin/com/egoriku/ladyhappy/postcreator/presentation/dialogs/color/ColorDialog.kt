@@ -54,7 +54,7 @@ class ColorDialog : BaseDialogFragment() {
         ).build()
 
         colorAdapter.tracker = selectionTracker
-        colorAdapter.submitList(PredefinedData.colors)
+        colorAdapter.submitList(PredefinedData.structure.hatColors)
 
         selectionTracker?.onRestoreInstanceState(savedInstanceState)
 
@@ -74,7 +74,7 @@ class ColorDialog : BaseDialogFragment() {
 
         setFragmentResult(
             KEY_CHOOSER_FRAGMENT_RESULT,
-            bundleOf(KEY_FRAGMENT_RESULT_BUNDLE to DialogResult.Color(colorIds = colorIds))
+            bundleOf(KEY_FRAGMENT_RESULT_BUNDLE to DialogResult.Color(hatColorIds = colorIds))
         )
     }
 

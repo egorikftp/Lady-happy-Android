@@ -50,7 +50,9 @@ internal class SectionsUseCase(
         delay(SHIMMING_DELAY)
 
         return when {
-            userPermission.isAbleToCreatePosts -> listOf(Feature.PublishPosts(isAvailable = true))
+            userPermission.isAdminMode || userPermission.isDemoMode -> listOf(
+                Feature.PublishPosts(isAvailable = true)
+            )
             else -> emptyList()
         }
     }

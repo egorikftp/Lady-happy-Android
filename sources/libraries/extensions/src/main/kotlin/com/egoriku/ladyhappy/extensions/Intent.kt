@@ -23,7 +23,7 @@ fun Context.browseUrl(url: String, newTask: Boolean = false) {
             }
         )
     }.getOrElse {
-        logD(it.message)
+        logD("${it.message}")
     }
 }
 

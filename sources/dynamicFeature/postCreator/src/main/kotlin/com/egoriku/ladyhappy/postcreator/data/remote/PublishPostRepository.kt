@@ -2,7 +2,7 @@ package com.egoriku.ladyhappy.postcreator.data.remote
 
 import com.egoriku.ladyhappy.core.IFirebase
 import com.egoriku.ladyhappy.core.sharedmodel.key.CollectionPath.ALL_HATS
-import com.egoriku.ladyhappy.extensions.logDm
+import com.egoriku.ladyhappy.extensions.logD
 import com.egoriku.ladyhappy.network.ResultOf
 import com.egoriku.ladyhappy.postcreator.data.entity.UploadEntity
 import kotlinx.coroutines.Dispatchers
@@ -19,7 +19,7 @@ class PublishPostRepository(firebase: IFirebase) {
                 reference.collection(ALL_HATS)
                     .document()
                     .set(uploadEntity)
-                    .addOnFailureListener { e -> logDm("Error adding document $e") }
+                    .addOnFailureListener { e -> logD("Error adding document $e") }
                     .await()
 
                 ResultOf.Success(true)
