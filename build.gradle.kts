@@ -2,7 +2,7 @@ import com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask
 
 plugins {
     id("com.github.ben-manes.versions") version GradlePluginsVersion.versionPlugin
-    id("io.gitlab.arturbosch.detekt") version GradlePluginsVersion.detekt
+    id("io.gitlab.arturbosch.detekt") version libs.versions.gradleDetekt.get()
 }
 
 buildscript {
@@ -62,6 +62,6 @@ subprojects {
 
 allprojects {
     dependencies {
-        detektPlugins(GradlePlugins.detektFormatting)
+        detektPlugins(rootProject.project.libs.gradle.plugin.detekt.formatting)
     }
 }

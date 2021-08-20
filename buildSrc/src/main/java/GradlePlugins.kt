@@ -3,7 +3,6 @@ import com.egoriku.versions.LibrariesVersion
 object GradlePluginsVersion {
     const val firebaseCrashlytics = "2.7.1"
     const val firebasePerformance = "1.4.0"
-    const val detekt = "1.17.0"
     const val googleServices = "4.3.10"
     const val gradleTools = "7.0.0"
     const val ossLicenses = "0.10.4"
@@ -11,7 +10,6 @@ object GradlePluginsVersion {
 }
 
 object GradlePlugins {
-    const val detektFormatting = "io.gitlab.arturbosch.detekt:detekt-formatting:${GradlePluginsVersion.detekt}"
     const val firebaseCrashlytics = "com.google.firebase:firebase-crashlytics-gradle:${GradlePluginsVersion.firebaseCrashlytics}"
     const val firebasePerformance = "com.google.firebase:perf-plugin:${GradlePluginsVersion.firebasePerformance}"
     const val googleOssLicenses = "com.google.android.gms:oss-licenses-plugin:${GradlePluginsVersion.ossLicenses}"

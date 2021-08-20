@@ -1,0 +1,8 @@
+[versions]
+gradleDetekt = "1.18.0"
+
+[libraries]
+gradle-plugin-detekt = { module = "io.gitlab.arturbosch.detekt:detekt-gradle-plugin", version.ref = "gradleDetekt" }
+gradle-plugin-detekt-formatting = { module = "io.gitlab.arturbosch.detekt:detekt-formatting", version.ref = "gradleDetekt" }
+
+[bundles]
