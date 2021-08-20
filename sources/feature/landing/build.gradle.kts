@@ -24,6 +24,7 @@ withThirdPartyLibraries(
         Libs.easyAdapter,
         Libs.firebaseFirestore,
         Libs.koinAndroid,
+        Libs.koinViewModel,
         Libs.material,
         Libs.recyclerView,
         Libs.viewBindingDelegates,

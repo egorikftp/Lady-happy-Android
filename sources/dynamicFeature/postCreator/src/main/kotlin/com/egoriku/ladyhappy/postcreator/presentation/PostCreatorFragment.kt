@@ -31,7 +31,6 @@ import com.egoriku.ladyhappy.postcreator.presentation.state.UploadEvents
 import com.google.android.play.core.splitcompat.SplitCompat
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
-import org.koin.android.ext.android.inject
 import org.koin.androidx.scope.ScopeFragment
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.context.loadKoinModules

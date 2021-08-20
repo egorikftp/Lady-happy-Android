@@ -15,6 +15,7 @@ withThirdPartyLibraries(
         Libs.constraintLayout,
         Libs.fragment,
         Libs.koinAndroid,
+        Libs.koinViewModel,
         Libs.liveDataKtx,
         Libs.material,
         Libs.recyclerView,

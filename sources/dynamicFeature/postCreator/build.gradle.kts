@@ -44,6 +44,7 @@ withThirdPartyLibraries(
         Libs.fragment,
         Libs.imageCompressor,
         Libs.koinAndroid,
+        Libs.koinViewModel,
         Libs.material,
         Libs.playCore,
         Libs.recyclerView,

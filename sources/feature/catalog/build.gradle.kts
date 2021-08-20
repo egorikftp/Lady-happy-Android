@@ -35,7 +35,7 @@ withThirdPartyLibraries(
         Libs.fragment,
         Libs.glide,
         Libs.koinAndroid,
-        Libs.lifecycleRuntime,
+        Libs.koinViewModel,
         Libs.liveDataKtx,
         Libs.material,
         Libs.recyclerView,

@@ -48,9 +48,7 @@ import com.google.android.play.core.splitcompat.SplitCompat
 import com.google.android.play.core.splitinstall.SplitInstallManager
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
-import org.koin.android.ext.android.inject
 import org.koin.androidx.scope.ScopeActivity
-import org.koin.androidx.viewmodel.ext.android.stateViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import kotlin.properties.Delegates
 
@@ -70,7 +68,7 @@ class MainActivity : ScopeActivity(R.layout.activity_main) {
     private val dynamicFeatureViewModel by viewModel<DynamicFeatureViewModel>()
     private val inAppUpdateViewModel by viewModel<InAppUpdateViewModel>()
     private val reviewViewModel by viewModel<ReviewViewModel>()
-    private val viewModel by stateViewModel<MainActivityViewModel>(state = { bundleOf() })
+    private val viewModel by viewModel<MainActivityViewModel>(state = { bundleOf() })
 
     private val navigator = ActivityScopeNavigator(
         activity = this,
