@@ -145,7 +145,7 @@ class PostCreatorFragment : ScopeFragment(R.layout.fragment_post_creator) {
                 result.getParcelable<DialogResult>(KEY_FRAGMENT_RESULT_BUNDLE)) {
                 is DialogResult.Category -> viewModel.setCategory(dialogResult.category)
                 is DialogResult.SubCategory -> viewModel.setSubCategory(dialogResult.subCategory)
-                is DialogResult.Color -> viewModel.setColor(dialogResult.colorIds)
+                is DialogResult.Color -> viewModel.setColor(dialogResult.hatColorIds)
                 is DialogResult.CreationDate -> viewModel.setDate(dialogResult.dateInMilliseconds)
             }
         }
