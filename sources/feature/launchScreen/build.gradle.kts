@@ -12,6 +12,6 @@ withProjectLibraries(
 
 dependencies {
     implementation(libs.android.material)
-    implementation(libs.appcompat)
+    implementation(libs.androidx.appcompat)
     implementation(libs.koin.android)
 }

@@ -27,15 +27,15 @@ withProjectLibraries(
 
 dependencies {
     implementation(libs.android.material)
-    implementation(libs.android.play.core)
-    implementation(libs.coil)
-    implementation(libs.constraintlayout)
-    implementation(libs.core)
+    implementation(libs.android.play.core.ktx)
+    implementation(libs.androidx.constraintlayout)
+    implementation(libs.androidx.core.ktx)
+    implementation(libs.androidx.livedata.ktx)
+    implementation(libs.androidx.viewmodel.ktx)
     implementation(libs.circleImageView)
+    implementation(libs.coil)
     implementation(libs.firebase.firestore)
     implementation(libs.koin.android)
     implementation(libs.koin.viewmodel)
-    implementation(libs.livedata.ktx)
     implementation(libs.viewbinding.delegates)
-    implementation(libs.viewmodel)
 }

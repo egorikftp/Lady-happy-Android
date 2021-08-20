@@ -14,18 +14,18 @@ dependencies {
     implementation(platform(libs.firebase.bom))
 
     implementation(libs.android.material)
-    implementation(libs.android.play.core)
-    implementation(libs.appcompat)
+    implementation(libs.android.play.core.ktx)
+    implementation(libs.androidx.appcompat)
+    implementation(libs.androidx.constraintlayout)
+    implementation(libs.androidx.fragment.ktx)
+    implementation(libs.androidx.viewmodel.ktx)
     implementation(libs.glide)
-    implementation(libs.constraintlayout)
     implementation(libs.coroutines.android)
     implementation(libs.firebase.firestore)
-    implementation(libs.fragment)
     implementation(libs.koin.android)
     implementation(libs.koin.viewmodel)
     implementation(libs.sheets.input)
     implementation(libs.viewbinding.delegates)
-    implementation(libs.viewmodel)
 }
 
 withProjectLibraries(

@@ -4,6 +4,6 @@ plugins {
 }
 
 dependencies {
-    implementation(libs.annotation)
+    implementation(libs.androidx.annotation)
     implementation(libs.glide)
 }

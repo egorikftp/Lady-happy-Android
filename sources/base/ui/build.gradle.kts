@@ -16,10 +16,10 @@ withProjectLibraries(
 
 dependencies {
     implementation(libs.android.material)
-    implementation(libs.appcompat)
-    implementation(libs.constraintlayout)
+    implementation(libs.androidx.appcompat)
+    implementation(libs.androidx.constraintlayout)
+    implementation(libs.androidx.recyclerview)
+    implementation(libs.androidx.vectordrawable)
     implementation(libs.easyadapter)
-    implementation(libs.recyclerview)
-    implementation(libs.vectordrawable)
     implementation(libs.viewbinding.delegates)
 }

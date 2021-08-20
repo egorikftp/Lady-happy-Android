@@ -12,13 +12,12 @@ happyPlugin {
 
 dependencies {
     implementation(libs.android.material)
-    implementation(libs.annotation)
-    implementation(libs.constraintlayout)
-    implementation(libs.fragment)
+    implementation(libs.androidx.constraintlayout)
+    implementation(libs.androidx.fragment.ktx)
+    implementation(libs.androidx.livedata.ktx)
+    implementation(libs.androidx.recyclerview)
     implementation(libs.koin.android)
     implementation(libs.koin.viewmodel)
-    implementation(libs.livedata.ktx)
-    implementation(libs.recyclerview)
     implementation(libs.viewbinding.delegates)
 }
 

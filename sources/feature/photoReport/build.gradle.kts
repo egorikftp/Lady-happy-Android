@@ -20,16 +20,16 @@ withProjectLibraries(
 
 dependencies {
     implementation(libs.android.material)
-    implementation(libs.appcompat)
-    implementation(libs.cardview)
-    implementation(libs.constraintlayout)
+    implementation(libs.androidx.appcompat)
+    implementation(libs.androidx.cardview)
+    implementation(libs.androidx.constraintlayout)
+    implementation(libs.androidx.recyclerview)
+    implementation(libs.androidx.viewmodel.ktx)
     implementation(libs.coroutines.android)
     implementation(libs.firebase.firestore)
     implementation(libs.glide)
     implementation(libs.koin.android)
     implementation(libs.koin.viewmodel)
-    implementation(libs.recyclerview)
     implementation(libs.stfalcon.imageviewer)
     implementation(libs.viewbinding.delegates)
-    implementation(libs.viewmodel)
 }

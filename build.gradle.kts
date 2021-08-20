@@ -14,11 +14,11 @@ buildscript {
     }
 
     dependencies {
+        classpath(libs.gradle.plugin.buildtools)
         classpath(libs.gradle.plugin.firebase.crashlytics)
         classpath(libs.gradle.plugin.firebase.performance)
         classpath(libs.gradle.plugin.googleservices)
         classpath(libs.gradle.plugin.google.osslicenses)
-        classpath(libs.gradle.plugin.buildtools)
         classpath(libs.gradle.plugin.kotlin)
     }
 }

@@ -20,18 +20,18 @@ withProjectLibraries(
 
 dependencies {
     implementation(libs.android.material)
-    implementation(libs.constraintlayout)
+    implementation(libs.androidx.constraintlayout)
+    implementation(libs.androidx.fragment.ktx)
+    implementation(libs.androidx.paging.ktx)
+    implementation(libs.androidx.recyclerview)
+    implementation(libs.androidx.viewmodel.ktx)
     implementation(libs.coroutines.android)
     implementation(libs.coroutines.playservices)
     implementation(libs.firebase.firestore)
-    implementation(libs.fragment)
     implementation(libs.glide)
     implementation(libs.glide.transformation)
     implementation(libs.koin.android)
     implementation(libs.koin.viewmodel)
-    implementation(libs.paging)
-    implementation(libs.recyclerview)
     implementation(libs.stfalcon.imageviewer)
     implementation(libs.viewbinding.delegates)
-    implementation(libs.viewmodel)
 }

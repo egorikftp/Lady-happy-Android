@@ -11,12 +11,12 @@ android {
 
 dependencies {
     implementation(libs.android.material)
-    implementation(libs.appcompat)
-    implementation(libs.core)
-    implementation(libs.exifinterface)
-    implementation(libs.fragment)
-    implementation(libs.lifecycle.runtime.ktx)
-    implementation(libs.recyclerview)
-    implementation(libs.viewbinding)
-    implementation(libs.viewmodel)
+    implementation(libs.androidx.appcompat)
+    implementation(libs.androidx.core.ktx)
+    implementation(libs.androidx.exifinterface)
+    implementation(libs.androidx.fragment.ktx)
+    implementation(libs.androidx.lifecycle.runtime.ktx)
+    implementation(libs.androidx.recyclerview)
+    implementation(libs.androidx.viewbinding)
+    implementation(libs.androidx.viewmodel.ktx)
 }

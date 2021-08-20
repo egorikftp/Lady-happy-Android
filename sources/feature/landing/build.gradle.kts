@@ -18,15 +18,15 @@ withProjectLibraries(
 
 dependencies {
     implementation(libs.android.material)
-    implementation(libs.appcompat)
+    implementation(libs.androidx.appcompat)
+    implementation(libs.androidx.constraintlayout)
+    implementation(libs.androidx.recyclerview)
+    implementation(libs.androidx.viewmodel.ktx)
     implementation(libs.coil)
-    implementation(libs.constraintlayout)
     implementation(libs.coroutines.android)
     implementation(libs.easyadapter)
     implementation(libs.firebase.firestore)
     implementation(libs.koin.android)
     implementation(libs.koin.viewmodel)
-    implementation(libs.recyclerview)
     implementation(libs.viewbinding.delegates)
-    implementation(libs.viewmodel)
 }

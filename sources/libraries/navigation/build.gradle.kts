@@ -4,7 +4,7 @@ plugins {
 }
 
 dependencies {
-    implementation(libs.appcompat)
-    implementation(libs.core)
-    implementation(libs.fragment)
+    implementation(libs.androidx.appcompat)
+    implementation(libs.androidx.core.ktx)
+    implementation(libs.androidx.fragment.ktx)
 }
