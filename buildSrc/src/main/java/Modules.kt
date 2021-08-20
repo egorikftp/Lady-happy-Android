@@ -30,7 +30,6 @@ object Modules {
         const val mozaik = ":mozaik"
         const val network = ":network"
         const val navigation = ":navigation"
-        const val rendering = ":rendering"
         const val ui = ":ui"
     }
 }

@@ -6,14 +6,12 @@ plugins {
 }
 
 dependencies {
-    implementation(platform(Libs.firebaseBom))
+    implementation(platform(libs.firebase.bom))
+
+    implementation(libs.coroutines.android)
+    implementation(libs.coroutines.playservices)
+    implementation(libs.firebase.firestore)
+    implementation(libs.firebase.storage)
 }
 
 withProjectLibraries(Libraries.extensions)
-
-withThirdPartyLibraries(
-        Libs.coroutinesAndroid,
-        Libs.coroutinesPlayServices,
-        Libs.firebaseFirestore,
-        Libs.firebaseStorage
-)

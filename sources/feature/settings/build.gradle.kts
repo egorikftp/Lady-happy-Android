@@ -16,26 +16,26 @@ android {
 }
 
 withProjectLibraries(
-        Libraries.auth,
-        Libraries.core,
-        Libraries.extensions,
-        Libraries.localization,
-        Libraries.navigation,
-        Libraries.network,
-        Libraries.ui
+    Libraries.auth,
+    Libraries.core,
+    Libraries.extensions,
+    Libraries.localization,
+    Libraries.navigation,
+    Libraries.network,
+    Libraries.ui
 )
 
-withThirdPartyLibraries(
-        Libs.coil,
-        Libs.constraintLayout,
-        Libs.core,
-        Libs.circleImageView,
-        Libs.firebaseFirestore,
-        Libs.koinAndroid,
-        Libs.koinViewModel,
-        Libs.liveDataKtx,
-        Libs.material,
-        Libs.playCore,
-        Libs.viewBindingDelegates,
-        Libs.viewModel
-)
+dependencies {
+    implementation(libs.android.material)
+    implementation(libs.android.play.core)
+    implementation(libs.coil)
+    implementation(libs.constraintlayout)
+    implementation(libs.core)
+    implementation(libs.circleImageView)
+    implementation(libs.firebase.firestore)
+    implementation(libs.koin.android)
+    implementation(libs.koin.viewmodel)
+    implementation(libs.livedata.ktx)
+    implementation(libs.viewbinding.delegates)
+    implementation(libs.viewmodel)
+}

@@ -11,32 +11,30 @@ happyPlugin {
 }
 
 dependencies {
-    implementation(platform(Libs.firebaseBom))
+    implementation(platform(libs.firebase.bom))
+
+    implementation(libs.android.material)
+    implementation(libs.android.play.core)
+    implementation(libs.appcompat)
+    implementation(libs.glide)
+    implementation(libs.constraintlayout)
+    implementation(libs.coroutines.android)
+    implementation(libs.firebase.firestore)
+    implementation(libs.fragment)
+    implementation(libs.koin.android)
+    implementation(libs.koin.viewmodel)
+    implementation(libs.sheets.input)
+    implementation(libs.viewbinding.delegates)
+    implementation(libs.viewmodel)
 }
 
 withProjectLibraries(
-        Applications.ladyHappy,
+    Applications.ladyHappy,
 
-        Libraries.auth,
-        Libraries.core,
-        Libraries.extensions,
-        Libraries.localization,
-        Libraries.mozaik,
-        Libraries.network
-)
-
-withThirdPartyLibraries(
-        Libs.appcompat,
-        Libs.glide,
-        Libs.constraintLayout,
-        Libs.coroutinesAndroid,
-        Libs.firebaseFirestore,
-        Libs.fragment,
-        Libs.koinAndroid,
-        Libs.koinViewModel,
-        Libs.material,
-        Libs.playCore,
-        Libs.sheetsInput,
-        Libs.viewBindingDelegates,
-        Libs.viewModel
+    Libraries.auth,
+    Libraries.core,
+    Libraries.extensions,
+    Libraries.localization,
+    Libraries.mozaik,
+    Libraries.network
 )

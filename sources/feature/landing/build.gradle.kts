@@ -10,23 +10,23 @@ happyPlugin {
 }
 
 withProjectLibraries(
-        Libraries.core,
-        Libraries.extensions,
-        Libraries.network,
-        Libraries.ui
+    Libraries.core,
+    Libraries.extensions,
+    Libraries.network,
+    Libraries.ui
 )
 
-withThirdPartyLibraries(
-        Libs.appcompat,
-        Libs.coil,
-        Libs.constraintLayout,
-        Libs.coroutinesAndroid,
-        Libs.easyAdapter,
-        Libs.firebaseFirestore,
-        Libs.koinAndroid,
-        Libs.koinViewModel,
-        Libs.material,
-        Libs.recyclerView,
-        Libs.viewBindingDelegates,
-        Libs.viewModel
-)
+dependencies {
+    implementation(libs.android.material)
+    implementation(libs.appcompat)
+    implementation(libs.coil)
+    implementation(libs.constraintlayout)
+    implementation(libs.coroutines.android)
+    implementation(libs.easyadapter)
+    implementation(libs.firebase.firestore)
+    implementation(libs.koin.android)
+    implementation(libs.koin.viewmodel)
+    implementation(libs.recyclerview)
+    implementation(libs.viewbinding.delegates)
+    implementation(libs.viewmodel)
+}

@@ -5,19 +5,17 @@ plugins {
     id("com.android.library")
 }
 
-dependencies {
-    implementation(platform(Libs.firebaseBom))
-}
-
 withProjectLibraries(
         Libraries.core,
         Libraries.extensions,
         Libraries.network
 )
 
-withThirdPartyLibraries(
-        Libs.coroutinesAndroid,
-        Libs.firebaseAuth,
-        Libs.firebaseFirestore,
-        Libs.koinAndroid
-)
+dependencies {
+    implementation(platform(libs.firebase.bom))
+
+    implementation(libs.coroutines.android)
+    implementation(libs.firebase.auth)
+    implementation(libs.firebase.firestore)
+    implementation(libs.koin.android)
+}

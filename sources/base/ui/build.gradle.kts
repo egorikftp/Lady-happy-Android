@@ -10,16 +10,16 @@ happyPlugin {
 }
 
 withProjectLibraries(
-        Libraries.extensions,
-        Libraries.localization
+    Libraries.extensions,
+    Libraries.localization
 )
 
-withThirdPartyLibraries(
-        Libs.appcompat,
-        Libs.constraintLayout,
-        Libs.easyAdapter,
-        Libs.material,
-        Libs.recyclerView,
-        Libs.vectorDrawable,
-        Libs.viewBindingDelegates
-)
+dependencies {
+    implementation(libs.android.material)
+    implementation(libs.appcompat)
+    implementation(libs.constraintlayout)
+    implementation(libs.easyadapter)
+    implementation(libs.recyclerview)
+    implementation(libs.vectordrawable)
+    implementation(libs.viewbinding.delegates)
+}

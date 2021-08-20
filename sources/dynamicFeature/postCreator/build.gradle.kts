@@ -18,38 +18,36 @@ android {
 }
 
 dependencies {
-    implementation(platform(Libs.firebaseBom))
+    implementation(platform(libs.firebase.bom))
+
+    implementation(libs.android.material)
+    implementation(libs.android.play.core)
+    implementation(libs.appcompat)
+    implementation(libs.coil)
+    implementation(libs.constraintlayout)
+    implementation(libs.core)
+    implementation(libs.coroutines.android)
+    implementation(libs.coroutines.playservices)
+    implementation(libs.exifinterface)
+    implementation(libs.firebase.firestore)
+    implementation(libs.firebase.storage)
+    implementation(libs.fragment)
+    implementation(libs.imagecompressor)
+    implementation(libs.koin.android)
+    implementation(libs.koin.viewmodel)
+    implementation(libs.recyclerview)
+    implementation(libs.recyclerview.selection)
+    implementation(libs.viewbinding.delegates)
+    implementation(libs.viewmodel)
 }
 
 withProjectLibraries(
-        Applications.ladyHappy,
+    Applications.ladyHappy,
 
-        Libraries.auth,
-        Libraries.core,
-        Libraries.extensions,
-        Libraries.localization,
-        Libraries.network,
-        Libraries.ui
-)
-
-withThirdPartyLibraries(
-        Libs.appcompat,
-        Libs.coil,
-        Libs.constraintLayout,
-        Libs.core,
-        Libs.coroutinesAndroid,
-        Libs.coroutinesPlayServices,
-        Libs.exifInterface,
-        Libs.firebaseFirestore,
-        Libs.firebaseStorage,
-        Libs.fragment,
-        Libs.imageCompressor,
-        Libs.koinAndroid,
-        Libs.koinViewModel,
-        Libs.material,
-        Libs.playCore,
-        Libs.recyclerView,
-        Libs.recyclerViewSelection,
-        Libs.viewBindingDelegates,
-        Libs.viewModel
+    Libraries.auth,
+    Libraries.core,
+    Libraries.extensions,
+    Libraries.localization,
+    Libraries.network,
+    Libraries.ui
 )

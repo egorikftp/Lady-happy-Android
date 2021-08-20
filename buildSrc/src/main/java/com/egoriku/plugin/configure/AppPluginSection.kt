@@ -1,11 +1,10 @@
 package com.egoriku.plugin.configure
 
-import Libs
 import com.egoriku.application.provideVersionCode
 import com.egoriku.application.provideVersionName
 import com.egoriku.ext.implementation
 import com.egoriku.plugin.internal.applicationExtension
-import com.egoriku.versions.ProjectVersion
+import com.egoriku.plugin.internal.libs
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.dependencies
 
@@ -14,8 +13,8 @@ internal fun Project.configureAndroidApplication() = applicationExtension.run {
 
     defaultConfig {
         applicationId = "com.egoriku.ladyhappy"
-        compileSdk = ProjectVersion.compileSdkVersion
-        minSdk = ProjectVersion.minSdkVersion
+        compileSdk = libs.versions.compileSdk.get().toInt()
+        minSdk = libs.versions.minSdk.get().toInt()
         versionCode = provideVersionCode()
         versionName = provideVersionName()
         resourceConfigurations + listOf("en", "ru")
@@ -42,6 +41,6 @@ internal fun Project.configureAndroidApplication() = applicationExtension.run {
     }
 
     dependencies {
-        implementation(Libs.kotlin)
+        implementation(libs.kotlin)
     }
 }

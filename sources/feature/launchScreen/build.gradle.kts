@@ -6,12 +6,12 @@ plugins {
 }
 
 withProjectLibraries(
-        Libraries.core,
-        Libraries.ui
+    Libraries.core,
+    Libraries.ui
 )
 
-withThirdPartyLibraries(
-        Libs.appcompat,
-        Libs.koinAndroid,
-        Libs.material
-)
+dependencies {
+    implementation(libs.android.material)
+    implementation(libs.appcompat)
+    implementation(libs.koin.android)
+}

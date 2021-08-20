@@ -1,10 +1,9 @@
 package com.egoriku.plugin.configure
 
-import Libs
 import com.egoriku.ext.implementation
 import com.egoriku.ext.main
 import com.egoriku.plugin.internal.dynamicFeatureExtension
-import com.egoriku.versions.ProjectVersion
+import com.egoriku.plugin.internal.libs
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.dependencies
 
@@ -12,8 +11,8 @@ internal fun Project.configureAndroidDynamicFeature() = dynamicFeatureExtension.
     plugins.apply("kotlin-android")
 
     defaultConfig {
-        minSdk = ProjectVersion.minSdkVersion
-        compileSdk = ProjectVersion.compileSdkVersion
+        minSdk = libs.versions.minSdk.get().toInt()
+        compileSdk = libs.versions.compileSdk.get().toInt()
         proguardFiles("proguard-rules-dynamic-features.pro")
     }
 
@@ -24,6 +23,6 @@ internal fun Project.configureAndroidDynamicFeature() = dynamicFeatureExtension.
     }
 
     dependencies {
-        implementation(Libs.kotlin)
+        implementation(libs.kotlin)
     }
 }

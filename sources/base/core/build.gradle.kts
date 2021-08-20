@@ -10,21 +10,19 @@ happyPlugin {
 }
 
 dependencies {
-    implementation(platform(Libs.firebaseBom))
+    implementation(platform(libs.firebase.bom))
+
+    implementation(libs.android.play.core)
+    implementation(libs.appcompat)
+    implementation(libs.coroutines.android)
+    implementation(libs.firebase.firestore)
+    implementation(libs.firebase.storage)
+    implementation(libs.recyclerview)
+    implementation(libs.viewmodel)
 }
 
 withProjectLibraries(
         Libraries.extensions,
         Libraries.mozaik,
         Libraries.navigation
-)
-
-withThirdPartyLibraries(
-        Libs.appcompat,
-        Libs.coroutinesAndroid,
-        Libs.firebaseFirestore,
-        Libs.firebaseStorage,
-        Libs.playCore,
-        Libs.recyclerView,
-        Libs.viewModel
 )

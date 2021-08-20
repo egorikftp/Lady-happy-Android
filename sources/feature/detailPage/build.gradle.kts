@@ -10,28 +10,28 @@ happyPlugin {
 }
 
 withProjectLibraries(
-        Libraries.core,
-        Libraries.extensions,
-        Libraries.glideTransformations,
-        Libraries.mozaik,
-        Libraries.network,
-        Libraries.ui
+    Libraries.core,
+    Libraries.extensions,
+    Libraries.glideTransformations,
+    Libraries.mozaik,
+    Libraries.network,
+    Libraries.ui
 )
 
-withThirdPartyLibraries(
-        Libs.constraintLayout,
-        Libs.coroutinesAndroid,
-        Libs.coroutinesPlayServices,
-        Libs.firebaseFirestore,
-        Libs.fragment,
-        Libs.glide,
-        Libs.glideTransformation,
-        Libs.koinAndroid,
-        Libs.koinViewModel,
-        Libs.material,
-        Libs.paging,
-        Libs.recyclerView,
-        Libs.stfalconImageViewer,
-        Libs.viewBindingDelegates,
-        Libs.viewModel
-)
+dependencies {
+    implementation(libs.android.material)
+    implementation(libs.constraintlayout)
+    implementation(libs.coroutines.android)
+    implementation(libs.coroutines.playservices)
+    implementation(libs.firebase.firestore)
+    implementation(libs.fragment)
+    implementation(libs.glide)
+    implementation(libs.glide.transformation)
+    implementation(libs.koin.android)
+    implementation(libs.koin.viewmodel)
+    implementation(libs.paging)
+    implementation(libs.recyclerview)
+    implementation(libs.stfalcon.imageviewer)
+    implementation(libs.viewbinding.delegates)
+    implementation(libs.viewmodel)
+}

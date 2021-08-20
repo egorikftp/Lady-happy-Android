@@ -10,24 +10,24 @@ happyPlugin {
 }
 
 withProjectLibraries(
-        Libraries.auth,
-        Libraries.core,
-        Libraries.extensions,
-        Libraries.navigation,
-        Libraries.network,
-        Libraries.ui
+    Libraries.auth,
+    Libraries.core,
+    Libraries.extensions,
+    Libraries.navigation,
+    Libraries.network,
+    Libraries.ui
 )
 
-withThirdPartyLibraries(
-        Libs.appcompat,
-        Libs.browser,
-        Libs.constraintLayout,
-        Libs.core,
-        Libs.koinAndroid,
-        Libs.koinViewModel,
-        Libs.liveDataKtx,
-        Libs.material,
-        Libs.playServicesAuth,
-        Libs.viewBindingDelegates,
-        Libs.viewModel
-)
+dependencies {
+    implementation(libs.android.material)
+    implementation(libs.android.playservices.auth)
+    implementation(libs.appcompat)
+    implementation(libs.browser)
+    implementation(libs.constraintlayout)
+    implementation(libs.core)
+    implementation(libs.koin.android)
+    implementation(libs.koin.viewmodel)
+    implementation(libs.livedata.ktx)
+    implementation(libs.viewbinding.delegates)
+    implementation(libs.viewmodel)
+}

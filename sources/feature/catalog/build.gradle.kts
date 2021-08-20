@@ -10,36 +10,34 @@ happyPlugin {
 }
 
 dependencies {
-    implementation(platform(Libs.firebaseBom))
+    implementation(platform(libs.firebase.bom))
+
+    implementation(libs.android.material)
+    implementation(libs.appcompat)
+    implementation(libs.balloon)
+    implementation(libs.cardview)
+    implementation(libs.circleImageView)
+    implementation(libs.constraintlayout)
+    implementation(libs.core)
+    implementation(libs.coroutines.android)
+    implementation(libs.firebase.firestore)
+    implementation(libs.fragment)
+    implementation(libs.glide)
+    implementation(libs.koin.android)
+    implementation(libs.koin.viewmodel)
+    implementation(libs.livedata.ktx)
+    implementation(libs.recyclerview)
+    implementation(libs.viewbinding.delegates)
+    implementation(libs.viewmodel)
+    implementation(libs.viewpager2)
 }
 
 withProjectLibraries(
-        Libraries.auth,
-        Libraries.core,
-        Libraries.extensions,
-        Libraries.mozaik,
-        Libraries.navigation,
-        Libraries.network,
-        Libraries.ui
-)
-
-withThirdPartyLibraries(
-        Libs.appcompat,
-        Libs.balloon,
-        Libs.cardView,
-        Libs.circleImageView,
-        Libs.constraintLayout,
-        Libs.core,
-        Libs.coroutinesAndroid,
-        Libs.firebaseFirestore,
-        Libs.fragment,
-        Libs.glide,
-        Libs.koinAndroid,
-        Libs.koinViewModel,
-        Libs.liveDataKtx,
-        Libs.material,
-        Libs.recyclerView,
-        Libs.viewBindingDelegates,
-        Libs.viewModel,
-        Libs.viewPager2
+    Libraries.auth,
+    Libraries.core,
+    Libraries.extensions,
+    Libraries.mozaik,
+    Libraries.navigation,
+    Libraries.network,
+    Libraries.ui
 )

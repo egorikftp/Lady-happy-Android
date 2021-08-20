@@ -58,10 +58,6 @@ android {
     }
 }
 
-dependencies {
-    implementation(platform(Libs.firebaseBom))
-}
-
 withProjectLibraries(
         Features.catalog,
         Features.detailPage,
@@ -77,41 +73,40 @@ withProjectLibraries(
         Libraries.extensions,
         Libraries.mozaik,
         Libraries.navigation,
-        Libraries.network,
-        Libraries.rendering
-)
-
-withThirdPartyLibraries(
-        Libs.appcompat,
-        Libs.balloon,
-        Libs.constraintLayout,
-        Libs.core,
-        Libs.coroutinesAndroid,
-        Libs.firebaseAuth,
-        Libs.firebaseAnalytics,
-        Libs.firebaseCore,
-        Libs.firebaseCrashlytics,
-        Libs.firebaseFirestore,
-        Libs.firebasePerformance,
-        Libs.firebaseRemoteConfig,
-        Libs.firebaseStorage,
-        Libs.fragment,
-        Libs.glide,
-        Libs.liveDataKtx,
-        Libs.koinAndroid,
-        Libs.koinViewModel,
-        Libs.material,
-        Libs.playCore,
-        Libs.sheetsCore,
-        Libs.viewBindingDelegates,
-        Libs.viewModel
+        Libraries.network
 )
 
 dependencies {
-    debugImplementation(Libs.beagle)
-    debugImplementation(Libs.leakCanary)
+    implementation(platform(libs.firebase.bom))
 
-    testImplementation(Libs.junit)
+    implementation(libs.android.material)
+    implementation(libs.android.play.core)
+    implementation(libs.appcompat)
+    implementation(libs.balloon)
+    implementation(libs.constraintlayout)
+    implementation(libs.core)
+    implementation(libs.coroutines.android)
+    implementation(libs.firebase.analytics)
+    implementation(libs.firebase.auth)
+    implementation(libs.firebase.core)
+    implementation(libs.firebase.crashlytics)
+    implementation(libs.firebase.firestore)
+    implementation(libs.firebase.performance)
+    implementation(libs.firebase.remoteConfig)
+    implementation(libs.firebase.storage)
+    implementation(libs.fragment)
+    implementation(libs.glide)
+    implementation(libs.livedata.ktx)
+    implementation(libs.koin.android)
+    implementation(libs.koin.viewmodel)
+    implementation(libs.sheets.core)
+    implementation(libs.viewbinding.delegates)
+    implementation(libs.viewmodel)
+
+    debugImplementation(libs.beagle)
+    debugImplementation(libs.leakcanary)
+
+    testImplementation(libs.junit)
 }
 
 fun autoIncrementBuildVersionNumber() {

@@ -99,7 +99,6 @@ object Modules {
                 ProjectBean(Libraries.mozaik, "sources/libraries/mozaik"),
                 ProjectBean(Libraries.network, "sources/base/network"),
                 ProjectBean(Libraries.navigation, "sources/libraries/navigation"),
-                ProjectBean(Libraries.rendering, "sources/libraries/rendering"),
                 ProjectBean(Libraries.ui, "sources/base/ui")
         )
 }

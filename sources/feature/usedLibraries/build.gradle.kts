@@ -10,22 +10,22 @@ happyPlugin {
     kotlinParcelize = true
 }
 
-withThirdPartyLibraries(
-        Libs.annotation,
-        Libs.constraintLayout,
-        Libs.fragment,
-        Libs.koinAndroid,
-        Libs.koinViewModel,
-        Libs.liveDataKtx,
-        Libs.material,
-        Libs.recyclerView,
-        Libs.viewBindingDelegates
-)
+dependencies {
+    implementation(libs.android.material)
+    implementation(libs.annotation)
+    implementation(libs.constraintlayout)
+    implementation(libs.fragment)
+    implementation(libs.koin.android)
+    implementation(libs.koin.viewmodel)
+    implementation(libs.livedata.ktx)
+    implementation(libs.recyclerview)
+    implementation(libs.viewbinding.delegates)
+}
 
 withProjectLibraries(
-        Libraries.extensions,
-        Libraries.core,
-        Libraries.navigation,
-        Libraries.network,
-        Libraries.ui
+    Libraries.extensions,
+    Libraries.core,
+    Libraries.navigation,
+    Libraries.network,
+    Libraries.ui
 )
