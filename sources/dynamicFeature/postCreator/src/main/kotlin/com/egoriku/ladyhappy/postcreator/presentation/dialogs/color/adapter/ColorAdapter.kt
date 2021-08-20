@@ -14,9 +14,9 @@ import com.egoriku.ladyhappy.extensions.adjustForBackground
 import com.egoriku.ladyhappy.extensions.inflater
 import com.egoriku.ladyhappy.postcreator.R
 import com.egoriku.ladyhappy.postcreator.databinding.AdapterItemColorBinding
-import com.egoriku.ladyhappy.postcreator.domain.predefined.ColorModel
+import com.egoriku.ladyhappy.postcreator.domain.predefined.HatColor
 
-class ColorAdapter : ListAdapter<ColorModel, ColorAdapter.VH>(DiffCallback()) {
+class ColorAdapter : ListAdapter<HatColor, ColorAdapter.VH>(DiffCallback()) {
 
     init {
         setHasStableIds(true)
@@ -39,14 +39,14 @@ class ColorAdapter : ListAdapter<ColorModel, ColorAdapter.VH>(DiffCallback()) {
 
     class VH(private val binding: AdapterItemColorBinding) : RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(colorModel: ColorModel, isSelected: Boolean) = binding.bind(colorModel, isSelected)
+        fun bind(hatColor: HatColor, isSelected: Boolean) = binding.bind(hatColor, isSelected)
 
-        private fun AdapterItemColorBinding.bind(colorModel: ColorModel, isSelected: Boolean) {
-            colorName.text = colorModel.name
-            colorImage.setBackgroundColor(colorModel.colorHex.toColorInt())
+        private fun AdapterItemColorBinding.bind(hatColor: HatColor, isSelected: Boolean) {
+            colorName.text = hatColor.name
+            colorImage.setBackgroundColor(hatColor.colorHex.toColorInt())
 
             val adjustedColor = colorName.currentTextColor.adjustForBackground(
-                backgroundColor = colorModel.colorHex.toColorInt()
+                backgroundColor = hatColor.colorHex.toColorInt()
             )
 
             colorName.setTextColor(adjustedColor)
@@ -66,11 +66,11 @@ class ColorAdapter : ListAdapter<ColorModel, ColorAdapter.VH>(DiffCallback()) {
             }
     }
 
-    internal class DiffCallback : DiffUtil.ItemCallback<ColorModel>() {
+    internal class DiffCallback : DiffUtil.ItemCallback<HatColor>() {
 
-        override fun areItemsTheSame(oldItem: ColorModel, newItem: ColorModel) = oldItem == newItem
+        override fun areItemsTheSame(oldItem: HatColor, newItem: HatColor) = oldItem == newItem
 
-        override fun areContentsTheSame(oldItem: ColorModel, newItem: ColorModel) =
+        override fun areContentsTheSame(oldItem: HatColor, newItem: HatColor) =
             oldItem == newItem
     }
 }

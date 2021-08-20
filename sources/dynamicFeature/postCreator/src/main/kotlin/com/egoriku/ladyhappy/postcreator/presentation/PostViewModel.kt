@@ -16,8 +16,7 @@ import com.egoriku.ladyhappy.postcreator.domain.model.chooser.ChooserType.Choose
 import com.egoriku.ladyhappy.postcreator.domain.model.image.ImageItem
 import com.egoriku.ladyhappy.postcreator.domain.model.image.ImageSection
 import com.egoriku.ladyhappy.postcreator.domain.model.image.UploadImagesParams
-import com.egoriku.ladyhappy.postcreator.domain.predefined.CategoryModel
-import com.egoriku.ladyhappy.postcreator.domain.predefined.ColorModel
+import com.egoriku.ladyhappy.postcreator.domain.predefined.HatColor
 import com.egoriku.ladyhappy.postcreator.domain.predefined.PredefinedData
 import com.egoriku.ladyhappy.postcreator.domain.usecase.PublishPostUseCase
 import com.egoriku.ladyhappy.postcreator.domain.usecase.UploadImagesUseCase
@@ -81,10 +80,8 @@ class PostViewModel(
     }
 
     fun setCategory(category: String) {
-        val categoryModel: CategoryModel = requireNotNull(
-            PredefinedData.allCategories.find {
-                it.name == category
-            }
+        val categoryModel = requireNotNull(
+            PredefinedData.findCategory(name = category)
         )
 
         _screenState.value = _currentScreenState.copy(
@@ -102,31 +99,32 @@ class PostViewModel(
         validateState()
     }
 
-    fun setSubCategory(subCategory: String?) {
-        val subCategoryModel = requireNotNull(
-            PredefinedData.allSubCategories
-                .filter { it.categoryId == _currentScreenState.category.categoryId }
-                .find { it.name == subCategory }
+    fun setSubCategory(subCategoryName: String) {
+        val subCategory = requireNotNull(
+            PredefinedData.findSubCategory(
+                categoryId = _currentScreenState.category.categoryId,
+                name = subCategoryName
+            )
         )
 
         _screenState.value = _currentScreenState.copy(
             subCategory = ChooserType.SubCategory(
-                title = subCategoryModel.name,
+                title = subCategory.name,
                 state = ChooserState.Selected,
-                categoryId = subCategoryModel.categoryId,
-                subCategoryId = subCategoryModel.subCategoryId
+                categoryId = subCategory.categoryId,
+                subCategoryId = subCategory.subCategoryId
             )
         )
 
         validateState()
     }
 
-    fun setColor(colors: List<ColorModel>) {
+    fun setColor(hatColors: List<HatColor>) {
         _screenState.value = _currentScreenState.copy(
             color = ChooserType.Color(
-                title = colors.joinToString { it.name },
+                title = hatColors.joinToString { it.name },
                 state = ChooserState.Selected,
-                colors = colors.map { it.colorId }
+                colors = hatColors.map { it.colorId }
             )
         )
 
