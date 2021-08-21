@@ -21,9 +21,9 @@ happyPlugin {
 
 android {
     dynamicFeatures += setOf(
-        projects.sources.dynamicFeature.adminConsole.name,
-        projects.sources.dynamicFeature.edit.name,
-        projects.sources.dynamicFeature.postCreator.name
+        ":sources:dynamicFeature:adminConsole",
+        ":sources:dynamicFeature:edit",
+        ":sources:dynamicFeature:postCreator",
     )
 
     signingConfigs {
@@ -81,8 +81,10 @@ dependencies {
     implementation(platform(libs.firebase.bom))
 
     implementation(libs.android.material)
+    implementation(libs.android.material.compose.adapter)
     implementation(libs.android.play.core.ktx)
     implementation(libs.androidx.appcompat)
+    implementation(libs.androidx.compose.runtime)
     implementation(libs.androidx.constraintlayout)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.fragment.ktx)

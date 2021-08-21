@@ -1,0 +1,1 @@
+-keep class com.egoriku.ladyhappy.adminconsole.AdminConsoleFragment
