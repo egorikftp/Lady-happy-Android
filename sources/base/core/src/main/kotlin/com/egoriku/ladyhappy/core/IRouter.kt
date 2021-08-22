@@ -16,6 +16,4 @@ interface IRouter {
     fun addScreen(screen: Screen)
 
     fun addScreenFullscreen(screen: Screen)
-
-    fun back()
 }

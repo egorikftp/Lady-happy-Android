@@ -23,6 +23,4 @@ internal class AppRouter(
     override fun addScreen(screen: Screen) = router.addScreen(screen)
 
     override fun addScreenFullscreen(screen: Screen) = router.addScreenFullscreen(screen)
-
-    override fun back() = router.back()
 }

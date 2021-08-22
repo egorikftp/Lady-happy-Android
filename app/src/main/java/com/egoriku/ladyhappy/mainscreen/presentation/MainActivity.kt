@@ -170,8 +170,6 @@ class MainActivity : ScopeActivity(R.layout.activity_main) {
         super.onPause()
     }
 
-    override fun onBackPressed() = viewModel.onBackPressed()
-
     override fun onSaveInstanceState(outState: Bundle) {
         outState.putInt(KEY_SELECTED_MENU_ITEM, binding.bottomNavigation.selectedItemId)
         super.onSaveInstanceState(outState)

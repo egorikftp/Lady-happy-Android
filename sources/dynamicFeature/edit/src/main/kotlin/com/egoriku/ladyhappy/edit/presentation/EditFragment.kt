@@ -12,7 +12,6 @@ import androidx.lifecycle.repeatOnLifecycle
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.bumptech.glide.Glide
 import com.egoriku.ladyhappy.auth.permission.IUserPermission
-import com.egoriku.ladyhappy.core.IRouter
 import com.egoriku.ladyhappy.core.sharedmodel.key.EDIT_BUNDLE_RESULT_KEY
 import com.egoriku.ladyhappy.core.sharedmodel.key.EDIT_REQUEST_KEY
 import com.egoriku.ladyhappy.core.sharedmodel.key.KEY_DOCUMENT_REFERENCE
@@ -25,7 +24,6 @@ import com.maxkeppeler.sheets.input.InputSheet
 import com.maxkeppeler.sheets.input.type.InputEditText
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
-import org.koin.android.ext.android.inject
 import org.koin.androidx.scope.ScopeFragment
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.context.loadKoinModules
@@ -39,7 +37,6 @@ class EditFragment : ScopeFragment(R.layout.fragment_edit_subcategory) {
         loadKoinModules(editModule)
     }
 
-    private val router: IRouter by inject()
     private val userPermission: IUserPermission by inject()
 
     private val binding by viewBinding(FragmentEditSubcategoryBinding::bind)
@@ -77,7 +74,7 @@ class EditFragment : ScopeFragment(R.layout.fragment_edit_subcategory) {
                                 EDIT_REQUEST_KEY,
                                 bundleOf(EDIT_BUNDLE_RESULT_KEY to it.categoryId)
                             )
-                            router.back()
+                            requireActivity().onBackPressed()
                         }
                         is Effect.ShowToast -> toast(it.message)
                     }
@@ -87,7 +84,7 @@ class EditFragment : ScopeFragment(R.layout.fragment_edit_subcategory) {
     }
 
     private fun FragmentEditSubcategoryBinding.initViews() {
-        editToolbar.setNavigationOnClickListener { router.back() }
+        editToolbar.setNavigationOnClickListener { requireActivity().onBackPressed() }
 
         popularSwitchView.setOnCheckedChangeListener { isChecked ->
             viewModel.setEvent(Event.UpdatePopular(isPopular = isChecked))

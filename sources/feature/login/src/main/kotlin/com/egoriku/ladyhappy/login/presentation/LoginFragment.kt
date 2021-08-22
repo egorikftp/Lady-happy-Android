@@ -63,7 +63,7 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
 
     private fun FragmentLoginBinding.bind() {
         closeView.setOnClickListener {
-            viewModel.processBack()
+            requireActivity().onBackPressed()
         }
 
         forgotPassword.setOnClickListener {
@@ -103,7 +103,7 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
                     parentProgress.gone()
                     contentLoadingProgressBar.hide()
 
-                    viewModel.processBack()
+                    requireActivity().onBackPressed()
                 }
                 is LoginState.Error -> {
                     parentProgress.gone()

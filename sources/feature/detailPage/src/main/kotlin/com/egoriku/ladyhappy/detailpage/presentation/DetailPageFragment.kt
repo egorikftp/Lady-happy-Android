@@ -17,7 +17,6 @@ import by.kirich1409.viewbindingdelegate.viewBinding
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CircleCrop
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
-import com.egoriku.ladyhappy.core.IRouter
 import com.egoriku.ladyhappy.core.feature.DetailPage
 import com.egoriku.ladyhappy.core.sharedmodel.key.KEY_DETAIL_PAGE_EXTRA
 import com.egoriku.ladyhappy.core.sharedmodel.params.DetailPageParams
@@ -33,15 +32,12 @@ import com.google.android.material.appbar.AppBarLayout
 import jp.wasabeef.glide.transformations.BlurTransformation
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
-import org.koin.android.ext.android.inject
 import org.koin.androidx.scope.ScopeFragment
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 private const val BLUR_RADIUS = 25
 
 class DetailPageFragment : ScopeFragment(R.layout.fragment_detail), DetailPage {
-
-    private val router: IRouter by inject()
 
     private val viewModel by viewModel<DetailViewModel>()
 
@@ -79,7 +75,7 @@ class DetailPageFragment : ScopeFragment(R.layout.fragment_detail), DetailPage {
             initAppBarScrollListener()
 
             closeView.setOnClickListener {
-                router.back()
+                requireActivity().onBackPressed()
             }
         }
 

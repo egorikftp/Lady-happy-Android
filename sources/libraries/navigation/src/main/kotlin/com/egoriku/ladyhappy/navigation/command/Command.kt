@@ -15,8 +15,6 @@ sealed class Command {
         val screen: Screen,
         val navigationType: NavigationType = DEFAULT
     ) : Command()
-
-    object Back : Command()
 }
 
 enum class NavigationType {

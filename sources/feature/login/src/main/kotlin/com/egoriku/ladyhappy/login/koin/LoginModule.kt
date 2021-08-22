@@ -9,8 +9,7 @@ val loginModule = module {
     viewModel {
         LoginViewModel(
             context = androidContext(),
-            authentication = get(),
-            router = get()
+            authentication = get()
         )
     }
 }

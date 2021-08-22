@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.ConcatAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.egoriku.ladyhappy.auth.permission.IUserPermission
-import com.egoriku.ladyhappy.core.IRouter
 import com.egoriku.ladyhappy.core.sharedmodel.key.KEY_POST_CREATOR_EXTRA
 import com.egoriku.ladyhappy.core.sharedmodel.params.PostCreatorParams
 import com.egoriku.ladyhappy.extensions.*
@@ -47,7 +46,6 @@ class PostCreatorFragment : ScopeFragment(R.layout.fragment_post_creator) {
         loadKoinModules(postModule)
     }
 
-    private val router: IRouter by inject()
     private val userPermission: IUserPermission by inject()
 
     private val viewModel by viewModel<PostViewModel>()
@@ -133,7 +131,7 @@ class PostCreatorFragment : ScopeFragment(R.layout.fragment_post_creator) {
                         is UploadEvents.Success -> {
                             binding.contentLoadingProgressBar.hide()
                             toast(getString(com.egoriku.ladyhappy.localization.R.string.post_creator_upload_success))
-                            router.back()
+                            requireActivity().onBackPressed()
                         }
                     }
                 }
@@ -186,7 +184,7 @@ class PostCreatorFragment : ScopeFragment(R.layout.fragment_post_creator) {
 
     private fun FragmentPostCreatorBinding.initView() {
         postToolbar.setNavigationOnClickListener {
-            router.back()
+            requireActivity().onBackPressed()
         }
 
         postRecycler.apply {
