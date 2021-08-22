@@ -2,6 +2,7 @@
 compileSdk = "31"
 minSdk = "21"
 
+accompanist = "0.17.0"
 activityCompose = "1.3.0"
 annotation = "1.2.0"
 appcompat = "1.3.1"
@@ -55,6 +56,8 @@ gradle-plugin-firebase-performance = { module = "com.google.firebase:perf-plugin
 gradle-plugin-google-osslicenses = { module = "com.google.android.gms:oss-licenses-plugin", version.ref = "gradleOssLicenses" }
 gradle-plugin-googleservices = { module = "com.google.gms:google-services", version.ref = "gradleGoogleServices" }
 gradle-plugin-kotlin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
+
+accompanist-navigation-animation = { module = "com.google.accompanist:accompanist-navigation-animation", version.ref = "accompanist"}
 
 android-material-compose-adapter = { module = "com.google.android.material:compose-theme-adapter", version.ref = "compose" }
 android-material = { module = "com.google.android.material:material", version.ref = "material" }

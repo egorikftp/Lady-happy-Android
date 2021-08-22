@@ -4,59 +4,47 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.compose.foundation.layout.*
-import androidx.compose.material.*
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
+import androidx.compose.animation.ExperimentalAnimationApi
+import androidx.compose.material.Surface
 import androidx.fragment.app.Fragment
 import com.egoriku.ladyhappy.adminconsole.extension.setThemeContent
+import com.egoriku.ladyhappy.adminconsole.screen.NavScreen
+import com.egoriku.ladyhappy.adminconsole.screen.console.ConsoleScreen
+import com.egoriku.ladyhappy.adminconsole.screen.manageusers.ManageUsersScreen
+import com.egoriku.ladyhappy.adminconsole.screen.publishnews.PublishNewsScreen
+import com.egoriku.ladyhappy.adminconsole.screen.publishproduct.PublishProductScreen
+import com.google.accompanist.navigation.animation.AnimatedNavHost
+import com.google.accompanist.navigation.animation.composable
+import com.google.accompanist.navigation.animation.rememberAnimatedNavController
 
 class AdminConsoleFragment : Fragment() {
 
+    @OptIn(ExperimentalAnimationApi::class)
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View = setThemeContent {
         Surface {
-            ConsoleScreen()
-        }
-    }
-}
+            val navController = rememberAnimatedNavController()
 
-@Preview
-@Composable
-fun ConsoleScreen() {
-    Column(
-        modifier = Modifier.fillMaxSize(),
-        verticalArrangement = Arrangement.Center
-    ) {
-        FeatureItem(onClick = {}, name = "Publish news")
-        FeatureItem(onClick = {}, name = "Publish product")
-        FeatureItem(onClick = {}, name = "Manage users and permissions")
-    }
-}
-
-@OptIn(ExperimentalMaterialApi::class)
-@Composable
-fun FeatureItem(
-    modifier: Modifier = Modifier,
-    onClick: () -> Unit,
-    name: String
-) {
-    Card(
-        elevation = 3.dp,
-        onClick = onClick,
-        modifier = modifier
-            .fillMaxWidth()
-            .defaultMinSize(minHeight = 100.dp)
-            .padding(all = 16.dp)
-    ) {
-        Box(contentAlignment = Alignment.Center) {
-            Text(text = name, style = MaterialTheme.typography.h6)
+            AnimatedNavHost(
+                navController = navController,
+                startDestination = NavScreen.ConsoleScreen.route
+            ) {
+                composable(NavScreen.ConsoleScreen.route) {
+                    ConsoleScreen(navController = navController)
+                }
+                composable(NavScreen.PublishNewsScreen.route) {
+                    PublishNewsScreen()
+                }
+                composable(NavScreen.PublishProductScreen.route) {
+                    PublishProductScreen()
+                }
+                composable(NavScreen.ManageUsersScreen.route) {
+                    ManageUsersScreen()
+                }
+            }
         }
     }
 }

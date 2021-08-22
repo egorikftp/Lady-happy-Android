@@ -4,13 +4,15 @@ plugins {
 }
 
 happyPlugin {
-    viewBindingEnabled = true
     composeEnabled = true
 }
 
 dependencies {
     implementation(projects.app)
 
+    implementation(projects.sources.libraries.extensions)
+
+    implementation(libs.accompanist.navigation.animation)
     implementation(libs.android.material.compose.adapter)
     implementation(libs.androidx.compose.material)
     implementation(libs.androidx.compose.runtime)
