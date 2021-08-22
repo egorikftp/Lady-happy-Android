@@ -44,7 +44,7 @@ recyclerViewSelection = "1.1.0"
 stfalconImageViewer = "1.0.10"
 sheets = "2.2.5"
 vectorDrawable = "1.1.0"
-viewBindingDelegates = "1.4.7"
+viewBindingDelegates = "1.5.0-beta02"
 viewPager2 = "1.0.0"
 
 [libraries]
