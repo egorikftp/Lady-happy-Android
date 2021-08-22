@@ -75,6 +75,7 @@ dependencies {
     implementation(projects.sources.feature.settings)
     implementation(projects.sources.feature.usedLibraries)
 
+    implementation(projects.sources.libraries.datastoreDelegates)
     implementation(projects.sources.libraries.extensions)
     implementation(projects.sources.libraries.navigation)
 
@@ -87,6 +88,7 @@ dependencies {
     implementation(libs.androidx.compose.runtime)
     implementation(libs.androidx.constraintlayout)
     implementation(libs.androidx.core.ktx)
+    implementation(libs.androidx.datastore.preferences)
     implementation(libs.androidx.fragment.ktx)
     implementation(libs.androidx.livedata.ktx)
     implementation(libs.androidx.viewmodel.ktx)

@@ -32,6 +32,7 @@ include("sources:base:localization")
 include("sources:base:network")
 include("sources:base:ui")
 
+include("sources:libraries:datastoreDelegates")
 include("sources:libraries:extensions")
 include("sources:libraries:glideTransformations")
 include("sources:libraries:mozaik")

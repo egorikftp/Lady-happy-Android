@@ -16,7 +16,7 @@ class ObserveThemeModeUseCase(
 ) : FlowResultUseCase<Unit, Theme>(dispatchers.default) {
 
     override fun execute(parameters: Unit): Flow<ResultOf<Theme>> =
-        preferences.observableSelectedTheme.map {
+        preferences.selectedThemeFlow.map {
             val theme = themeFromStorageKey(it)
                 ?: when {
                     hasQ() -> Theme.SYSTEM
