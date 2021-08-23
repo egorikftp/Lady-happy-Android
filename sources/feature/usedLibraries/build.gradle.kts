@@ -4,8 +4,8 @@ plugins {
 }
 
 happyPlugin {
-    viewBindingEnabled = true
     kotlinParcelize = true
+    viewBinding = true
 }
 
 dependencies {

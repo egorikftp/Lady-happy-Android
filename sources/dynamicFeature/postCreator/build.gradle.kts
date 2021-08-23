@@ -5,7 +5,7 @@ plugins {
 
 happyPlugin {
     kotlinParcelize = true
-    viewBindingEnabled = true
+    viewBinding = true
 }
 
 android {

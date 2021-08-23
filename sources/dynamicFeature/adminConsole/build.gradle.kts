@@ -4,7 +4,7 @@ plugins {
 }
 
 happyPlugin {
-    composeEnabled = true
+    compose = true
 }
 
 dependencies {

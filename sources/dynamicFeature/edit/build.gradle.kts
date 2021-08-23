@@ -4,7 +4,7 @@ plugins {
 }
 
 happyPlugin {
-    viewBindingEnabled = true
+    viewBinding = true
 }
 
 dependencies {

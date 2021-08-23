@@ -15,8 +15,9 @@ plugins {
 }
 
 happyPlugin {
-    viewBindingEnabled = true
-    composeEnabled = true
+    buildConfigGeneration = true
+    compose = true
+    viewBinding = true
 }
 
 android {
