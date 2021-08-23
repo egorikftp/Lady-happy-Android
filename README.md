@@ -15,6 +15,7 @@
     <a href="https://www.codacy.com/gh/egorikftp/Lady-happy-Android/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=egorikftp/Lady-happy-Android&amp;utm_campaign=Badge_Grade"><img src="https://app.codacy.com/project/badge/Grade/a7df6f4e41734df48ef1a4ece56265b5"/></a>
 </p>
 
+![Download Status](https://playbadges.pavi2410.me/badge/downloads?id=com.egoriku.ladyhappy) ![Rating Status](https://PlayBadges.pavi2410.me/badge/ratings?id=com.egoriku.ladyhappy)
 
 # Project characteristics 🚀
 
