@@ -9,6 +9,7 @@ import android.util.Log
 import androidx.annotation.IdRes
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.os.bundleOf
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import by.kirich1409.viewbindingdelegate.viewBinding
@@ -56,7 +57,7 @@ private const val INSTALL_CONFIRMATION_REQ_CODE = 1
 private const val UPDATE_CONFIRMATION_REQ_CODE = 2
 private const val KEY_SELECTED_MENU_ITEM = "selected_item"
 
-class MainActivity : ScopeActivity(R.layout.activity_main) {
+class MainActivity : ScopeActivity() {
 
     private val binding by viewBinding(ActivityMainBinding::bind, R.id.contentFullScreen)
 
@@ -80,7 +81,9 @@ class MainActivity : ScopeActivity(R.layout.activity_main) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(binding.root)
+
+        installSplashScreen()
+        setContentView(R.layout.activity_main)
 
         if (!hasM()) {
             window.statusBarColor = Color.BLACK
