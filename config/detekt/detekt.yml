@@ -117,11 +117,11 @@ complexity:
     threshold: 600
   LongMethod:
     active: true
-    threshold: 63
+    threshold: 100
     ignoreAnnotated: [ ]
   LongParameterList:
     active: true
-    functionThreshold: 7
+    functionThreshold: 8
     constructorThreshold: 10
     ignoreDefaultParameters: false
     ignoreDataClasses: true
@@ -242,7 +242,6 @@ exceptions:
     excludes: [ '**/test/**', '**/androidTest/**', '**/commonTest/**', '**/jvmTest/**', '**/jsTest/**', '**/iosTest/**' ]
     exceptions:
       - 'ArrayIndexOutOfBoundsException'
-      - 'Error'
       - 'Exception'
       - 'IllegalArgumentException'
       - 'IllegalMonitorStateException'
@@ -631,7 +630,6 @@ style:
     values:
       - 'FIXME:'
       - 'STOPSHIP:'
-      - 'TODO:'
     allowedPatterns: ''
   ForbiddenImport:
     active: true
