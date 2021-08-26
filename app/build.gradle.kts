@@ -65,6 +65,7 @@ android {
 dependencies {
     implementation(projects.sources.base.auth)
     implementation(projects.sources.base.core)
+    implementation(projects.sources.base.composeUi)
     implementation(projects.sources.base.network)
 
     implementation(projects.sources.feature.catalog)
@@ -86,7 +87,12 @@ dependencies {
     implementation(libs.android.material.compose.adapter)
     implementation(libs.android.play.core.ktx)
     implementation(libs.androidx.appcompat)
+    implementation(libs.androidx.compose.activity)
+    implementation(libs.androidx.compose.material.icons)
     implementation(libs.androidx.compose.runtime)
+    implementation(libs.androidx.compose.ui)
+    implementation(libs.androidx.compose.ui.tooling)
+    implementation(libs.androidx.compose.ui.tooling.preview)
     implementation(libs.androidx.constraintlayout)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.core.splashscreen)
@@ -95,6 +101,7 @@ dependencies {
     implementation(libs.androidx.livedata.ktx)
     implementation(libs.androidx.viewmodel.ktx)
     implementation(libs.balloon)
+    implementation(libs.coil.compose)
     implementation(libs.coroutines.android)
     implementation(libs.firebase.analytics)
     implementation(libs.firebase.auth)

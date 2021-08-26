@@ -28,6 +28,7 @@ include("sources:feature:usedLibraries")
 
 include("sources:base:auth")
 include("sources:base:core")
+include("sources:base:compose-ui")
 include("sources:base:localization")
 include("sources:base:network")
 include("sources:base:ui")

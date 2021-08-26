@@ -78,22 +78,6 @@
     <string name="login_error_email_empty">Пожалуйста введите Email</string>
     <string name="login_error_password_empty">Пожалуйста введите пароль</string>
 
-    <!-- Post Creator -->
-    <string name="post_creator_images_count">%1$s из 10</string>
-    <string name="post_creator_categories_dialog_title">Выберите категорию</string>
-    <string name="post_creator_subcategories_categories_dialog_title">Выберите подкатегорию</string>
-    <string name="post_creator_color_dialog_title">Выберите цвет</string>
-    <string name="post_creator_chooser_hint_categories">Категория</string>
-    <string name="post_creator_chooser_hint_subcategories">Подкатегория</string>
-    <string name="post_creator_chooser_hint_color">Цвет</string>
-    <string name="post_creator_chooser_hint_creation_date">Дата создания</string>
-    <string name="post_creator_upload_error">Произошла ошибка во время публикации</string>
-    <string name="post_creator_upload_success">Запись успешно опубликована</string>
-    <string name="post_creator_input_hint">Подпись (может быть пустой)</string>
-    <string name="post_creator_images_section_title">Фотографии</string>
-    <string name="post_creator_publish_button_text">Опубликовать запись</string>
-    <string name="post_creator_screen_title">Создание записи</string>
-
     <!-- Used Libraries -->
     <string name="used_libraries_prefix_the" />
     <string name="used_libraries_prefix_open_source">это open source приложение,</string>

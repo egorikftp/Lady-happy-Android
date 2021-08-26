@@ -4,6 +4,7 @@ plugins {
 }
 
 happyPlugin {
+    compose = true
     kotlinParcelize = true
     viewBinding = true
 }
@@ -19,7 +20,7 @@ dependencies {
 
     implementation(projects.sources.base.auth)
     implementation(projects.sources.base.core)
-    implementation(projects.sources.base.localization)
+    implementation(projects.sources.base.composeUi)
     implementation(projects.sources.base.network)
     implementation(projects.sources.base.ui)
 
@@ -28,8 +29,16 @@ dependencies {
     implementation(platform(libs.firebase.bom))
 
     implementation(libs.android.material)
+    implementation(libs.android.material.compose.adapter)
     implementation(libs.android.play.core.ktx)
     implementation(libs.androidx.appcompat)
+    implementation(libs.androidx.compose.activity)
+    implementation(libs.androidx.compose.material)
+    implementation(libs.androidx.compose.material.icons)
+    implementation(libs.androidx.compose.runtime)
+    implementation(libs.androidx.compose.ui)
+    implementation(libs.androidx.compose.ui.tooling)
+    implementation(libs.androidx.compose.ui.tooling.preview)
     implementation(libs.androidx.constraintlayout)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.exifinterface)

@@ -7,12 +7,11 @@ import android.view.ViewGroup
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.material.Surface
 import androidx.fragment.app.Fragment
-import com.egoriku.ladyhappy.adminconsole.extension.setThemeContent
 import com.egoriku.ladyhappy.adminconsole.screen.NavScreen
 import com.egoriku.ladyhappy.adminconsole.screen.console.ConsoleScreen
 import com.egoriku.ladyhappy.adminconsole.screen.manageusers.ManageUsersScreen
 import com.egoriku.ladyhappy.adminconsole.screen.publishnews.PublishNewsScreen
-import com.egoriku.ladyhappy.adminconsole.screen.publishproduct.PublishProductScreen
+import com.egoriku.ladyhappy.compose.ui.setThemeContent
 import com.google.accompanist.navigation.animation.AnimatedNavHost
 import com.google.accompanist.navigation.animation.composable
 import com.google.accompanist.navigation.animation.rememberAnimatedNavController
@@ -37,9 +36,6 @@ class AdminConsoleFragment : Fragment() {
                 }
                 composable(NavScreen.PublishNewsScreen.route) {
                     PublishNewsScreen()
-                }
-                composable(NavScreen.PublishProductScreen.route) {
-                    PublishProductScreen()
                 }
                 composable(NavScreen.ManageUsersScreen.route) {
                     ManageUsersScreen()
