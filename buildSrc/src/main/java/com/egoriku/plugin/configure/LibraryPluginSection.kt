@@ -1,11 +1,8 @@
 package com.egoriku.plugin.configure
 
-import com.egoriku.ext.implementation
-import com.egoriku.ext.main
 import com.egoriku.plugin.internal.libraryExtension
 import com.egoriku.plugin.internal.libs
 import org.gradle.api.Project
-import org.gradle.kotlin.dsl.dependencies
 
 internal fun Project.configureAndroidLibrary() = libraryExtension.run {
     plugins.apply("kotlin-android")
@@ -24,15 +21,5 @@ internal fun Project.configureAndroidLibrary() = libraryExtension.run {
         debug {
             isMinifyEnabled = false
         }
-    }
-
-    sourceSets {
-        main {
-            java.srcDirs("src/main/kotlin")
-        }
-    }
-
-    dependencies {
-        implementation(libs.kotlin)
     }
 }

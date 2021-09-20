@@ -2,11 +2,9 @@ package com.egoriku.plugin.configure
 
 import com.egoriku.application.provideVersionCode
 import com.egoriku.application.provideVersionName
-import com.egoriku.ext.implementation
 import com.egoriku.plugin.internal.applicationExtension
 import com.egoriku.plugin.internal.libs
 import org.gradle.api.Project
-import org.gradle.kotlin.dsl.dependencies
 
 internal fun Project.configureAndroidApplication() = applicationExtension.run {
     plugins.apply("kotlin-android")
@@ -38,9 +36,5 @@ internal fun Project.configureAndroidApplication() = applicationExtension.run {
             isMinifyEnabled = false
             multiDexEnabled = true
         }
-    }
-
-    dependencies {
-        implementation(libs.kotlin)
     }
 }
