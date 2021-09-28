@@ -1,3 +1,4 @@
+import com.egoriku.ext.debug
 import com.egoriku.ext.propertyInt
 import com.egoriku.ext.release
 import org.jetbrains.kotlin.konan.file.File
@@ -28,11 +29,18 @@ android {
     )
 
     signingConfigs {
+        debug {
+            storeFile = keyStoreFile("debug.keystore")
+            storePassword = "android"
+            keyAlias = "androiddebugkey"
+            keyPassword = "android"
+        }
+
         release {
-            storeFile = file("lady_happy_key_store.jks")
-            storePassword = System.getenv("KEY_STORE_PASSWORD")
-            keyAlias = System.getenv("KEY_ALIAS")
-            keyPassword = System.getenv("KEY_PASSWORD")
+            storeFile = keyStoreFile("lady_happy_key_store.jks", "debug.keystore")
+            storePassword = System.getenv("KEY_STORE_PASSWORD") ?: "android"
+            keyAlias = System.getenv("KEY_ALIAS") ?: "androiddebugkey"
+            keyPassword = System.getenv("KEY_PASSWORD") ?: "android"
         }
     }
 
@@ -138,4 +146,16 @@ fun autoIncrementBuildVersionNumber() {
     }
 
     properties.saveToFile(File("$rootDir/app/version.properties"))
+}
+
+fun keyStoreFile(vararg fileNames: String): java.io.File? {
+    for (path in fileNames) {
+        val file = project.file(path)
+
+        if (file.exists()) {
+            return file
+        }
+    }
+
+    return null
 }

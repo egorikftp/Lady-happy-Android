@@ -73,17 +73,17 @@ Currently available commands in production:
 
 Future plans
 -------
-- Step by step migration to Jetpack Compose, please follow <b>compose</b> branch
-- Allow everyone to build project with demo keystore
-- Allow to try Dynamic delivery with demo credentials
+- Step by step migration to Jetpack Compose
+- Allow everyone to try Dynamic delivery with demo credentials
 
-Other things please request using issues
+Other things feel free to request using issues
+
 
 # How to build
-//TODO :)
+Just checkout the repository and build with gradle, necessary debug key stored inside the repository.
+
 
 # Find this repository useful? :heart:
-
 Support it by joining __[stargazers](https://github.com/egorikftp/lady-happy/stargazers)__ for this repository. :star: <br>
 And __[follow](https://github.com/egorikftp)__ me for my next creations! 🤩
 
