@@ -1,3 +1,6 @@
+enableFeaturePreview("VERSION_CATALOGS")
+enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
+
 dependencyResolutionManagement {
     repositories {
         google()
@@ -6,98 +9,32 @@ dependencyResolutionManagement {
     }
 }
 
-registerModules(
-        *Modules.applications,
-        *Modules.dynamicFeatures,
-        *Modules.features,
-        *Modules.libraries
-)
+rootProject.name = "LadyHappy"
 
-fun Settings.registerModules(vararg libs: ProjectBean) {
-    libs.forEach {
-        include(it.name)
+include("app")
 
-        if (it.path.isNotEmpty()) {
-            project(it.name).projectDir = File(rootDir, it.path)
-        }
-    }
-}
+include("sources:dynamicFeature:edit")
+include("sources:dynamicFeature:postCreator")
+include("sources:dynamicFeature:adminConsole")
 
-class ProjectBean(
-        val name: String,
-        val path: String = ""
-)
+include("sources:feature:catalog")
+include("sources:feature:detailPage")
+include("sources:feature:landing")
+include("sources:feature:launchScreen")
+include("sources:feature:login")
+include("sources:feature:photoReport")
+include("sources:feature:settings")
+include("sources:feature:usedLibraries")
 
-object Modules {
+include("sources:base:auth")
+include("sources:base:core")
+include("sources:base:compose-ui")
+include("sources:base:localization")
+include("sources:base:network")
+include("sources:base:ui")
 
-    object Applications {
-        const val ladyHappy = ":app"
-    }
-
-    object Features {
-        const val catalog = ":catalog"
-        const val detailPage = ":detailPage"
-        const val landing = ":landing"
-        const val launchScreen = ":launchScreen"
-        const val login = ":login"
-        const val photoReport = ":photoReport"
-        const val settings = ":settings"
-        const val usedLibraries = ":usedLibraries"
-    }
-
-    object DynamicFeatures {
-        const val edit = ":edit"
-        const val postCreator = ":postCreator"
-    }
-
-    object Libraries {
-        const val auth = ":auth"
-        const val core = ":core"
-        const val easyAdapter = ":easyAdapter"
-        const val extensions = ":extensions"
-        const val glideTransformations = ":glideTransformations"
-        const val localization = ":localization"
-        const val mozaik = ":mozaik"
-        const val network = ":network"
-        const val navigation = ":navigation"
-        const val rendering = ":rendering"
-        const val ui = ":ui"
-    }
-
-    val applications
-        get() = arrayOf(
-                ProjectBean(Applications.ladyHappy)
-        )
-
-    val dynamicFeatures
-        get() = arrayOf(
-                ProjectBean(DynamicFeatures.edit, "sources/dynamicFeature/edit"),
-                ProjectBean(DynamicFeatures.postCreator, "sources/dynamicFeature/postCreator")
-        )
-
-    val features
-        get() = arrayOf(
-                ProjectBean(Features.catalog, "sources/feature/catalog"),
-                ProjectBean(Features.detailPage, "sources/feature/detailPage"),
-                ProjectBean(Features.landing, "sources/feature/landing"),
-                ProjectBean(Features.launchScreen, "sources/feature/launchScreen"),
-                ProjectBean(Features.login, "sources/feature/login"),
-                ProjectBean(Features.photoReport, "sources/feature/photoReport"),
-                ProjectBean(Features.settings, "sources/feature/settings"),
-                ProjectBean(Features.usedLibraries, "sources/feature/usedLibraries")
-        )
-
-    val libraries
-        get() = arrayOf(
-                ProjectBean(Libraries.auth, "sources/base/auth"),
-                ProjectBean(Libraries.core, "sources/base/core"),
-                ProjectBean(Libraries.extensions, "sources/libraries/extensions"),
-                ProjectBean(Libraries.glideTransformations, "sources/libraries/glideTransformations"),
-                ProjectBean(Libraries.localization, "sources/base/localization"),
-                ProjectBean(Libraries.mozaik, "sources/libraries/mozaik"),
-                ProjectBean(Libraries.network, "sources/base/network"),
-                ProjectBean(Libraries.navigation, "sources/libraries/navigation"),
-                ProjectBean(Libraries.rendering, "sources/libraries/rendering"),
-                ProjectBean(Libraries.ui, "sources/base/ui")
-        )
-}
+include("sources:libraries:datastoreDelegates")
+include("sources:libraries:extensions")
+include("sources:libraries:glideTransformations")
+include("sources:libraries:mozaik")
+include("sources:libraries:navigation")

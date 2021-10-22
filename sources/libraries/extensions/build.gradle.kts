@@ -9,14 +9,14 @@ android {
     }
 }
 
-withThirdPartyLibraries(
-        Libs.appcompat,
-        Libs.core,
-        Libs.exifInterface,
-        Libs.fragment,
-        Libs.lifecycleRuntime,
-        Libs.material,
-        Libs.recyclerView,
-        Libs.viewBinding,
-        Libs.viewModel
-)
+dependencies {
+    implementation(libs.android.material)
+    implementation(libs.androidx.appcompat)
+    implementation(libs.androidx.core.ktx)
+    implementation(libs.androidx.exifinterface)
+    implementation(libs.androidx.fragment.ktx)
+    implementation(libs.androidx.lifecycle.runtime.ktx)
+    implementation(libs.androidx.recyclerview)
+    implementation(libs.androidx.viewbinding)
+    implementation(libs.androidx.viewmodel.ktx)
+}

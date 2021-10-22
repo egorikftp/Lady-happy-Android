@@ -6,6 +6,7 @@ import com.android.build.gradle.internal.plugins.DynamicFeaturePlugin
 import com.egoriku.plugin.configure.configureAndroidApplication
 import com.egoriku.plugin.configure.configureAndroidDynamicFeature
 import com.egoriku.plugin.configure.configureAndroidLibrary
+import com.egoriku.plugin.configure.configureBuildFeatures
 import com.egoriku.plugin.internal.applicationExtension
 import com.egoriku.plugin.internal.dynamicFeatureExtension
 import com.egoriku.plugin.internal.libraryExtension
@@ -28,40 +29,28 @@ open class HappyXPlugin : Plugin<Project> {
             }
         }
 
-        val config = project.extensions.create<HappyXPluginExtension>("happyPlugin")
+        val pluginExtension = project.extensions.create<HappyXPluginExtension>("happyPlugin")
 
         project.afterEvaluate {
             plugins.all {
                 when (this) {
-                    is LibraryPlugin -> {
-                        libraryExtension.run {
-                            buildFeatures.viewBinding = config.viewBindingEnabled
-                        }
-
-                        enableParcelize(config)
-                    }
-
-                    is AppPlugin -> {
-                        applicationExtension.run {
-                            buildFeatures.viewBinding = config.viewBindingEnabled
-                        }
-                    }
-
-                    is DynamicFeaturePlugin -> {
-                        enableParcelize(config)
-
-                        dynamicFeatureExtension.run {
-                            buildFeatures.viewBinding = config.viewBindingEnabled
-                        }
-                    }
+                    is LibraryPlugin -> libraryExtension
+                        .configureBuildFeatures(
+                            project = project,
+                            pluginExtension = pluginExtension
+                        )
+                    is AppPlugin -> applicationExtension
+                        .configureBuildFeatures(
+                            project = project,
+                            pluginExtension = pluginExtension
+                        )
+                    is DynamicFeaturePlugin -> dynamicFeatureExtension
+                        .configureBuildFeatures(
+                            project = project,
+                            pluginExtension = pluginExtension
+                        )
                 }
             }
         }
-    }
-}
-
-private fun Project.enableParcelize(config: HappyXPluginExtension) {
-    if (config.kotlinParcelize) {
-        plugins.apply("kotlin-parcelize")
     }
 }

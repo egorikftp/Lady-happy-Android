@@ -30,7 +30,6 @@ class ActivityScopeNavigator(
         when (command) {
             is Replace -> processReplace(command)
             is Add -> processAdd(command)
-            is Command.Back -> processBack()
         }
     }
 
@@ -44,14 +43,6 @@ class ActivityScopeNavigator(
     private fun processAdd(command: Add) {
         when (val screen = command.screen) {
             is FragmentScreen -> addFragment(screen, command)
-        }
-    }
-
-    private fun processBack() {
-        if (fragmentManager.backStackEntryCount > 0) {
-            fragmentManager.popBackStack()
-        } else {
-            activity.finish()
         }
     }
 

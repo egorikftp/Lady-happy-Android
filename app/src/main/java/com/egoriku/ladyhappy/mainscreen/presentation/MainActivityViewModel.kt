@@ -30,8 +30,6 @@ class MainActivityViewModel(
 
     fun navigateTo(screen: Screen) = router.addScreenFullscreen(screen)
 
-    fun onBackPressed() = router.back()
-
     fun trackInAppUpdateCanceled() = analytics.inAppUpdateCanceled()
 
     fun trackInAppUpdateFailed() = analytics.inAppUpdateFailed()

@@ -32,7 +32,8 @@ class SplitInstallHelper(
                             SplitInstallSessionStatus.PENDING -> {
                                 logD("Split install: $moduleName pending")
                             }
-                            // The download requires user confirmation. This is most likely due to the size of the download being larger than 10 MB.
+                            // The download requires user confirmation.
+                            // This is most likely due to the size of the download being larger than 10 MB.
                             SplitInstallSessionStatus.REQUIRES_USER_CONFIRMATION -> {
                                 logD("Split install: $moduleName requires user confirmation")
                                 moduleInstallListener.onRequiresUserConfirmation(state)
@@ -94,11 +95,13 @@ class SplitInstallHelper(
                 .addOnSuccessListener { sessionId -> mySessionId = sessionId }
                 .addOnFailureListener { exception ->
                     when ((exception as SplitInstallException).errorCode) {
-                        // The request is rejected because there is at least one existing request that is currently downloading.
+                        // The request is rejected because there is at least one existing request
+                        // that is currently downloading.
                         SplitInstallErrorCode.ACTIVE_SESSIONS_LIMIT_EXCEEDED -> {
                             handleError(moduleName, exception, "ACTIVE_SESSIONS_LIMIT_EXCEEDED")
                         }
-                        // Google Play is unable to find the requested module based on the current installed version of the app, device, and user’s Google Play account.
+                        // Google Play is unable to find the requested module based on
+                        // the current installed version of the app, device, and user’s Google Play account.
                         SplitInstallErrorCode.MODULE_UNAVAILABLE -> {
                             handleError(moduleName, exception, "MODULE_UNAVAILABLE")
                         }
@@ -110,12 +113,14 @@ class SplitInstallHelper(
                         SplitInstallErrorCode.SESSION_NOT_FOUND -> {
                             handleError(moduleName, exception, "SESSION_NOT_FOUND")
                         }
-                        // The Play Core Library is not supported on the current device. That is, the device is not able to download and install features on demand.
+                        // The Play Core Library is not supported on the current device.
+                        // That is, the device is not able to download and install features on demand.
                         SplitInstallErrorCode.API_NOT_AVAILABLE -> {
                             handleError(moduleName, exception, "API_NOT_AVAILABLE")
                         }
                         // The app is unable to register the request because of insufficient permissions.
-                        // This typically occurs when the app is in the background. Attempt the request when the app returns to the foreground.
+                        // This typically occurs when the app is in the background.
+                        // Attempt the request when the app returns to the foreground.
                         SplitInstallErrorCode.ACCESS_DENIED -> {
                             handleError(moduleName, exception, "ACCESS_DENIED")
                         }
@@ -123,7 +128,8 @@ class SplitInstallHelper(
                         SplitInstallErrorCode.NETWORK_ERROR -> {
                             handleError(moduleName, exception, "NETWORK_ERROR")
                         }
-                        // The request contains one or more modules that have already been requested but have not yet been installed.
+                        // The request contains one or more modules
+                        // that have already been requested but have not yet been installed.
                         SplitInstallErrorCode.INCOMPATIBLE_WITH_EXISTING_SESSION -> {
                             handleError(moduleName, exception, "INCOMPATIBLE_WITH_EXISTING_SESSION")
                         }

@@ -1,19 +1,15 @@
 package com.egoriku.plugin.configure
 
-import Libs
-import com.egoriku.ext.implementation
-import com.egoriku.ext.main
 import com.egoriku.plugin.internal.libraryExtension
-import com.egoriku.versions.ProjectVersion
+import com.egoriku.plugin.internal.libs
 import org.gradle.api.Project
-import org.gradle.kotlin.dsl.dependencies
 
 internal fun Project.configureAndroidLibrary() = libraryExtension.run {
     plugins.apply("kotlin-android")
 
     defaultConfig {
-        minSdk = ProjectVersion.minSdkVersion
-        compileSdk = ProjectVersion.compileSdkVersion
+        minSdk = libs.versions.minSdk.get().toInt()
+        compileSdk = libs.versions.compileSdk.get().toInt()
         consumerProguardFiles("consumer-rules.pro")
     }
 
@@ -25,15 +21,5 @@ internal fun Project.configureAndroidLibrary() = libraryExtension.run {
         debug {
             isMinifyEnabled = false
         }
-    }
-
-    sourceSets {
-        main {
-            java.srcDirs("src/main/kotlin")
-        }
-    }
-
-    dependencies {
-        implementation(Libs.kotlin)
     }
 }

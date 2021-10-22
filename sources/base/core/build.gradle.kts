@@ -1,5 +1,3 @@
-import Modules.Libraries
-
 plugins {
     id("HappyXPlugin")
     id("com.android.library")
@@ -10,21 +8,17 @@ happyPlugin {
 }
 
 dependencies {
-    implementation(platform(Libs.firebaseBom))
+    implementation(projects.sources.libraries.extensions)
+    implementation(projects.sources.libraries.mozaik)
+    implementation(projects.sources.libraries.navigation)
+
+    implementation(platform(libs.firebase.bom))
+
+    implementation(libs.android.play.core.ktx)
+    implementation(libs.androidx.appcompat)
+    implementation(libs.androidx.recyclerview)
+    implementation(libs.androidx.viewmodel.ktx)
+    implementation(libs.coroutines.android)
+    implementation(libs.firebase.firestore)
+    implementation(libs.firebase.storage)
 }
-
-withProjectLibraries(
-        Libraries.extensions,
-        Libraries.mozaik,
-        Libraries.navigation
-)
-
-withThirdPartyLibraries(
-        Libs.appcompat,
-        Libs.coroutinesAndroid,
-        Libs.firebaseFirestore,
-        Libs.firebaseStorage,
-        Libs.playCore,
-        Libs.recyclerView,
-        Libs.viewModel
-)

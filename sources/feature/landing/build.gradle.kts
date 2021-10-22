@@ -1,31 +1,28 @@
-import Modules.Libraries
-
 plugins {
     id("HappyXPlugin")
     id("com.android.library")
 }
 
 happyPlugin {
-    viewBindingEnabled = true
+    viewBinding = true
 }
 
-withProjectLibraries(
-        Libraries.core,
-        Libraries.extensions,
-        Libraries.network,
-        Libraries.ui
-)
+dependencies {
+    implementation(projects.sources.base.core)
+    implementation(projects.sources.base.network)
+    implementation(projects.sources.base.ui)
 
-withThirdPartyLibraries(
-        Libs.appcompat,
-        Libs.coil,
-        Libs.constraintLayout,
-        Libs.coroutinesAndroid,
-        Libs.easyAdapter,
-        Libs.firebaseFirestore,
-        Libs.koinAndroid,
-        Libs.material,
-        Libs.recyclerView,
-        Libs.viewBindingDelegates,
-        Libs.viewModel
-)
+    implementation(projects.sources.libraries.extensions)
+
+    implementation(libs.android.material)
+    implementation(libs.androidx.appcompat)
+    implementation(libs.androidx.constraintlayout)
+    implementation(libs.androidx.recyclerview)
+    implementation(libs.androidx.viewmodel.ktx)
+    implementation(libs.coil)
+    implementation(libs.coroutines.android)
+    implementation(libs.easyadapter)
+    implementation(libs.firebase.firestore)
+    implementation(libs.koin.android)
+    implementation(libs.viewbinding.delegates)
+}

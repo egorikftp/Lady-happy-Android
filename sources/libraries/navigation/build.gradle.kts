@@ -3,8 +3,8 @@ plugins {
     id("com.android.library")
 }
 
-withThirdPartyLibraries(
-        Libs.appcompat,
-        Libs.core,
-        Libs.fragment
-)
+dependencies {
+    implementation(libs.androidx.appcompat)
+    implementation(libs.androidx.core.ktx)
+    implementation(libs.androidx.fragment.ktx)
+}

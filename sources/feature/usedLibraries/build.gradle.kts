@@ -1,30 +1,26 @@
-import Modules.Libraries
-
 plugins {
     id("HappyXPlugin")
     id("com.android.library")
 }
 
 happyPlugin {
-    viewBindingEnabled = true
     kotlinParcelize = true
+    viewBinding = true
 }
 
-withThirdPartyLibraries(
-        Libs.annotation,
-        Libs.constraintLayout,
-        Libs.fragment,
-        Libs.koinAndroid,
-        Libs.liveDataKtx,
-        Libs.material,
-        Libs.recyclerView,
-        Libs.viewBindingDelegates
-)
+dependencies {
+    implementation(projects.sources.base.core)
+    implementation(projects.sources.base.network)
+    implementation(projects.sources.base.ui)
 
-withProjectLibraries(
-        Libraries.extensions,
-        Libraries.core,
-        Libraries.navigation,
-        Libraries.network,
-        Libraries.ui
-)
+    implementation(projects.sources.libraries.extensions)
+    implementation(projects.sources.libraries.navigation)
+
+    implementation(libs.android.material)
+    implementation(libs.androidx.constraintlayout)
+    implementation(libs.androidx.fragment.ktx)
+    implementation(libs.androidx.livedata.ktx)
+    implementation(libs.androidx.recyclerview)
+    implementation(libs.koin.android)
+    implementation(libs.viewbinding.delegates)
+}

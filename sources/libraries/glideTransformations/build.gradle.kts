@@ -3,7 +3,7 @@ plugins {
     id("com.android.library")
 }
 
-withThirdPartyLibraries(
-        Libs.annotation,
-        Libs.glide
-)
+dependencies {
+    implementation(libs.androidx.annotation)
+    implementation(libs.glide)
+}

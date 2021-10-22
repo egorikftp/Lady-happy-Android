@@ -1,41 +1,35 @@
-import Modules.Applications
-import Modules.Libraries
-
 plugins {
     id("HappyXPlugin")
     id("com.android.dynamic-feature")
 }
 
 happyPlugin {
-    viewBindingEnabled = true
+    viewBinding = true
 }
 
 dependencies {
-    implementation(platform(Libs.firebaseBom))
+    implementation(projects.app)
+
+    implementation(projects.sources.base.auth)
+    implementation(projects.sources.base.core)
+    implementation(projects.sources.base.localization)
+    implementation(projects.sources.base.network)
+
+    implementation(projects.sources.libraries.extensions)
+    implementation(projects.sources.libraries.mozaik)
+
+    implementation(platform(libs.firebase.bom))
+
+    implementation(libs.android.material)
+    implementation(libs.android.play.core.ktx)
+    implementation(libs.androidx.appcompat)
+    implementation(libs.androidx.constraintlayout)
+    implementation(libs.androidx.fragment.ktx)
+    implementation(libs.androidx.viewmodel.ktx)
+    implementation(libs.glide)
+    implementation(libs.coroutines.android)
+    implementation(libs.firebase.firestore)
+    implementation(libs.koin.android)
+    implementation(libs.sheets.input)
+    implementation(libs.viewbinding.delegates)
 }
-
-withProjectLibraries(
-        Applications.ladyHappy,
-
-        Libraries.auth,
-        Libraries.core,
-        Libraries.extensions,
-        Libraries.localization,
-        Libraries.mozaik,
-        Libraries.network
-)
-
-withThirdPartyLibraries(
-        Libs.appcompat,
-        Libs.glide,
-        Libs.constraintLayout,
-        Libs.coroutinesAndroid,
-        Libs.firebaseFirestore,
-        Libs.fragment,
-        Libs.koinAndroid,
-        Libs.material,
-        Libs.playCore,
-        Libs.sheetsInput,
-        Libs.viewBindingDelegates,
-        Libs.viewModel
-)

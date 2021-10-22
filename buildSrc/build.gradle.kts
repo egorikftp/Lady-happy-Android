@@ -20,6 +20,7 @@ dependencies {
     implementation(gradleApi())
     implementation(localGroovy())
 
-    implementation("com.android.tools.build:gradle:7.0.0")
-    implementation(kotlin("gradle-plugin", "1.5.20"))
+    implementation(libs.gradle.plugin.buildtools)
+    implementation(libs.gradle.plugin.kotlin)
+    implementation(files(libs.javaClass.superclass.protectionDomain.codeSource.location))
 }

@@ -8,7 +8,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.egoriku.ladyhappy.auth.Authentication
-import com.egoriku.ladyhappy.core.IRouter
 import com.egoriku.ladyhappy.extensions.common.Constants.EMPTY
 import com.egoriku.ladyhappy.extensions.logD
 import com.egoriku.ladyhappy.login.R
@@ -31,8 +30,7 @@ import kotlinx.coroutines.launch
 
 class LoginViewModel(
     context: Context,
-    private val authentication: Authentication,
-    private val router: IRouter
+    private val authentication: Authentication
 ) : ViewModel() {
 
     private val googleSignIn = GoogleSignInHelper(context)
@@ -68,8 +66,6 @@ class LoginViewModel(
             }
         }
     }
-
-    fun processBack() = router.back()
 
     fun trySignIn() = googleSignIn.signIn()
 

@@ -21,13 +21,14 @@
         android:label="@string/application_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/SplashTheme">
 
         <meta-data
             android:name="com.google.android.actions"
             android:resource="@xml/actions" />
 
         <activity
+            android:theme="@style/AppTheme"
             android:name="com.egoriku.ladyhappy.mainscreen.presentation.MainActivity"
             android:launchMode="singleTask">
 

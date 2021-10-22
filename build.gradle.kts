@@ -1,8 +1,8 @@
 import com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask
 
 plugins {
-    id("com.github.ben-manes.versions") version GradlePluginsVersion.versionPlugin
-    id("io.gitlab.arturbosch.detekt") version GradlePluginsVersion.detekt
+    id("com.github.ben-manes.versions") version libs.versions.gradleVersionPlugin.get()
+    id("io.gitlab.arturbosch.detekt") version libs.versions.gradleDetekt.get()
 }
 
 buildscript {
@@ -10,16 +10,15 @@ buildscript {
         google()
         mavenCentral()
         gradlePluginPortal()
-        maven(url = "https://jitpack.io")
     }
 
     dependencies {
-        classpath(GradlePlugins.firebaseCrashlytics)
-        classpath(GradlePlugins.firebasePerformance)
-        classpath(GradlePlugins.googleServices)
-        classpath(GradlePlugins.googleOssLicenses)
-        classpath(GradlePlugins.gradleTools)
-        classpath(GradlePlugins.kotlinGradle)
+        classpath(libs.gradle.plugin.buildtools)
+        classpath(libs.gradle.plugin.firebase.crashlytics)
+        classpath(libs.gradle.plugin.firebase.performance)
+        classpath(libs.gradle.plugin.googleservices)
+        classpath(libs.gradle.plugin.google.osslicenses)
+        classpath(libs.gradle.plugin.kotlin)
     }
 }
 
@@ -62,6 +61,6 @@ subprojects {
 
 allprojects {
     dependencies {
-        detektPlugins(GradlePlugins.detektFormatting)
+        detektPlugins(rootProject.project.libs.gradle.plugin.detekt.formatting)
     }
 }

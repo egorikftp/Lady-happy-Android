@@ -1,12 +1,10 @@
-import Modules.Libraries
-
 plugins {
     id("HappyXPlugin")
     id("com.android.library")
 }
 
 happyPlugin {
-    viewBindingEnabled = true
+    viewBinding = true
 }
 
 android {
@@ -15,26 +13,25 @@ android {
     }
 }
 
-withProjectLibraries(
-        Libraries.auth,
-        Libraries.core,
-        Libraries.extensions,
-        Libraries.localization,
-        Libraries.navigation,
-        Libraries.network,
-        Libraries.ui
-)
+dependencies {
+    implementation(projects.sources.base.auth)
+    implementation(projects.sources.base.core)
+    implementation(projects.sources.base.localization)
+    implementation(projects.sources.base.network)
+    implementation(projects.sources.base.ui)
 
-withThirdPartyLibraries(
-        Libs.coil,
-        Libs.constraintLayout,
-        Libs.core,
-        Libs.circleImageView,
-        Libs.firebaseFirestore,
-        Libs.koinAndroid,
-        Libs.liveDataKtx,
-        Libs.material,
-        Libs.playCore,
-        Libs.viewBindingDelegates,
-        Libs.viewModel
-)
+    implementation(projects.sources.libraries.extensions)
+    implementation(projects.sources.libraries.navigation)
+
+    implementation(libs.android.material)
+    implementation(libs.android.play.core.ktx)
+    implementation(libs.androidx.constraintlayout)
+    implementation(libs.androidx.core.ktx)
+    implementation(libs.androidx.livedata.ktx)
+    implementation(libs.androidx.viewmodel.ktx)
+    implementation(libs.circleImageView)
+    implementation(libs.coil)
+    implementation(libs.firebase.firestore)
+    implementation(libs.koin.android)
+    implementation(libs.viewbinding.delegates)
+}

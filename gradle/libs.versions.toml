@@ -1,0 +1,140 @@
+[versions]
+compileSdk = "31"
+minSdk = "21"
+
+accompanist = "0.17.0"
+activityCompose = "1.3.0"
+annotation = "1.2.0"
+appcompat = "1.3.1"
+balloon = "1.3.6"
+beagle = "2.6.3"
+browser = "1.3.0"
+cardView = "1.0.0"
+constraintLayout = "2.1.0"
+coil = "1.3.2"
+compose = "1.0.1"
+composeMaterialDialogs = "0.5.1"
+core = "1.6.0"
+coreSplashscreen = "1.0.0-alpha01"
+coroutines = "1.5.1"
+circleImageView = "3.1.0"
+datastore = "1.0.0"
+easyAdapter = "7.0.1"
+exifInterface = "1.3.3"
+firebaseBom = "28.4.0"
+fragment = "1.3.6"
+glide = "4.12.0"
+glideTransformations = "4.3.0"
+gradleFirebaseCrashlytics = "2.7.1"
+gradleFirebasePerformance = "1.4.0"
+gradleDetekt = "1.18.0"
+gradleGoogleServices = "4.3.10"
+gradleBuildTools = "7.0.2"
+gradleOssLicenses = "0.10.4"
+gradleVersionPlugin = "0.39.0"
+junit = "4.13.2"
+imageCompressor = "3.0.1"
+koin = "2.2.3"
+kotlin = "1.5.21"
+leakCanary = "2.7"
+lifecycle = "2.4.0-alpha03"
+material = "1.4.0"
+paging = "3.0.1"
+playCore = "1.8.1"
+playServicesAuth = "19.2.0"
+recyclerView = "1.2.1"
+recyclerViewSelection = "1.1.0"
+stfalconImageViewer = "1.0.10"
+sheets = "2.2.5"
+vectorDrawable = "1.1.0"
+viewBindingDelegates = "1.5.0-beta02"
+viewPager2 = "1.0.0"
+
+[libraries]
+gradle-plugin-buildtools = { module = "com.android.tools.build:gradle", version.ref = "gradleBuildTools" }
+gradle-plugin-detekt = { module = "io.gitlab.arturbosch.detekt:detekt-gradle-plugin", version.ref = "gradleDetekt" }
+gradle-plugin-detekt-formatting = { module = "io.gitlab.arturbosch.detekt:detekt-formatting", version.ref = "gradleDetekt" }
+gradle-plugin-firebase-crashlytics = { module = "com.google.firebase:firebase-crashlytics-gradle", version.ref = "gradleFirebaseCrashlytics" }
+gradle-plugin-firebase-performance = { module = "com.google.firebase:perf-plugin", version.ref = "gradleFirebasePerformance" }
+gradle-plugin-google-osslicenses = { module = "com.google.android.gms:oss-licenses-plugin", version.ref = "gradleOssLicenses" }
+gradle-plugin-googleservices = { module = "com.google.gms:google-services", version.ref = "gradleGoogleServices" }
+gradle-plugin-kotlin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
+
+accompanist-navigation-animation = { module = "com.google.accompanist:accompanist-navigation-animation", version.ref = "accompanist" }
+
+android-material-compose-adapter = { module = "com.google.android.material:compose-theme-adapter", version.ref = "compose" }
+android-material = { module = "com.google.android.material:material", version.ref = "material" }
+android-play-core-ktx = { module = "com.google.android.play:core-ktx", version.ref = "playCore" }
+android-playservices-auth = { module = "com.google.android.gms:play-services-auth", version.ref = "playServicesAuth" }
+
+androidx-annotation = { module = "androidx.annotation:annotation", version.ref = "annotation" }
+androidx-appcompat = { module = "androidx.appcompat:appcompat", version.ref = "appcompat" }
+androidx-browser = { module = "androidx.browser:browser", version.ref = "browser" }
+androidx-cardview = { module = "androidx.cardview:cardview", version.ref = "cardView" }
+androidx-compose-activity = { module = "androidx.activity:activity-compose", version.ref = "activityCompose" }
+androidx-compose-material = { module = "androidx.compose.material:material", version.ref = "compose" }
+androidx-compose-material-icons = { module = "androidx.compose.material:material-icons-extended", version.ref = "compose" }
+androidx-compose-runtime = { module = "androidx.compose.runtime:runtime", version.ref = "compose" }
+androidx-compose-ui = { module = "androidx.compose.ui:ui", version.ref = "compose" }
+androidx-compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling", version.ref = "compose" }
+androidx-compose-ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview", version.ref = "compose" }
+androidx-constraintlayout = { module = "androidx.constraintlayout:constraintlayout", version.ref = "constraintLayout" }
+androidx-core-ktx = { module = "androidx.core:core-ktx", version.ref = "core" }
+androidx-core-splashscreen = { module = "androidx.core:core-splashscreen", version.ref = "coreSplashscreen" }
+androidx-datastore-preferences = { module = "androidx.datastore:datastore-preferences", version.ref = "datastore" }
+androidx-exifinterface = { module = "androidx.exifinterface:exifinterface", version.ref = "exifInterface" }
+androidx-fragment-ktx = { module = "androidx.fragment:fragment-ktx", version.ref = "fragment" }
+androidx-lifecycle-runtime-ktx = { module = "androidx.lifecycle:lifecycle-runtime-ktx", version.ref = "lifecycle" }
+androidx-livedata-ktx = { module = "androidx.lifecycle:lifecycle-livedata-ktx", version.ref = "lifecycle" }
+androidx-paging-ktx = { module = "androidx.paging:paging-runtime-ktx", version.ref = "paging" }
+androidx-recyclerview = { module = "androidx.recyclerview:recyclerview", version.ref = "recyclerView" }
+androidx-recyclerview-selection = { module = "androidx.recyclerview:recyclerview-selection", version.ref = "recyclerViewSelection" }
+androidx-vectordrawable = { module = "androidx.vectordrawable:vectordrawable", version.ref = "vectorDrawable" }
+androidx-viewbinding = { module = "androidx.databinding:viewbinding", version.ref = "gradleBuildTools" }
+androidx-viewmodel-ktx = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "lifecycle" }
+androidx-viewpager2 = { module = "androidx.viewpager2:viewpager2", version.ref = "viewPager2" }
+
+balloon = { module = "com.github.skydoves:balloon", version.ref = "balloon" }
+beagle = { module = "com.github.pandulapeter.beagle:ui-drawer", version.ref = "beagle" }
+
+circleImageView = { module = "de.hdodenhof:circleimageview", version.ref = "circleImageView" }
+coil = { module = "io.coil-kt:coil", version.ref = "coil" }
+coil-compose = { module = "io.coil-kt:coil-compose", version.ref = "coil" }
+compose-material-dialogs-core = { module = "io.github.vanpra.compose-material-dialogs:core", version.ref = "composeMaterialDialogs" }
+compose-material-dialogs-datetime = { module = "io.github.vanpra.compose-material-dialogs:datetime", version.ref = "composeMaterialDialogs" }
+coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "coroutines" }
+coroutines-playservices = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-play-services", version.ref = "coroutines" }
+
+easyadapter = { module = "ru.surfstudio.android:easyadapter", version.ref = "easyAdapter" }
+
+firebase-bom = { module = "com.google.firebase:firebase-bom", version.ref = "firebaseBom" }
+
+firebase-analytics = { module = "com.google.firebase:firebase-analytics-ktx" }
+firebase-auth = { module = "com.google.firebase:firebase-auth" }
+firebase-core = { module = "com.google.firebase:firebase-core" }
+firebase-crashlytics = { module = "com.google.firebase:firebase-crashlytics" }
+firebase-firestore = { module = "com.google.firebase:firebase-firestore-ktx" }
+firebase-performance = { module = "com.google.firebase:firebase-perf" }
+firebase-remoteConfig = { module = "com.google.firebase:firebase-config-ktx" }
+firebase-storage = { module = "com.google.firebase:firebase-storage-ktx" }
+
+glide = { module = "com.github.bumptech.glide:glide", version.ref = "glide" }
+glide-transformation = { module = "jp.wasabeef:glide-transformations", version.ref = "glideTransformations" }
+
+imagecompressor = { module = "id.zelory:compressor", version.ref = "imageCompressor" }
+
+junit = { module = "junit:junit", version.ref = "junit" }
+
+koin-android = { module = "io.insert-koin:koin-android", version.ref = "koin" }
+koin-viewmodel = { module = "io.insert-koin:koin-androidx-viewmodel", version.ref = "koin" }
+kotlin = { module = "org.jetbrains.kotlin:kotlin-stdlib", version.ref = "kotlin" }
+
+leakcanary = { module = "com.squareup.leakcanary:leakcanary-android", version.ref = "leakCanary" }
+
+sheets-core = { module = "com.maxkeppeler.sheets:core", version.ref = "sheets" }
+sheets-input = { module = "com.maxkeppeler.sheets:input", version.ref = "sheets" }
+stfalcon-imageviewer = { module = "com.github.stfalcon:stfalcon-imageviewer", version.ref = "stfalconImageViewer" }
+
+viewbinding-delegates = { module = "com.github.kirich1409:viewbindingpropertydelegate-noreflection", version.ref = "viewBindingDelegates" }
+
+[bundles]

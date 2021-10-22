@@ -1,7 +1,8 @@
 package com.egoriku.ladyhappy.navigation.router
 
 import android.view.View
-import com.egoriku.ladyhappy.navigation.command.Command.*
+import com.egoriku.ladyhappy.navigation.command.Command.Add
+import com.egoriku.ladyhappy.navigation.command.Command.Replace
 import com.egoriku.ladyhappy.navigation.command.NavigationType
 import com.egoriku.ladyhappy.navigation.command.NavigationType.DEFAULT
 import com.egoriku.ladyhappy.navigation.screen.Screen
@@ -34,6 +35,4 @@ class Router : BaseRouter() {
             )
         )
     }
-
-    fun back() = executeCommands(Back)
 }
