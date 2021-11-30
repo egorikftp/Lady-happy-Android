@@ -21,6 +21,7 @@ dependencies {
     implementation(libs.androidx.cardview)
     implementation(libs.androidx.constraintlayout)
     implementation(libs.androidx.recyclerview)
+    implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.viewmodel.ktx)
     implementation(libs.coroutines.android)
     implementation(libs.firebase.firestore)

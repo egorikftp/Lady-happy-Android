@@ -8,7 +8,6 @@ import android.os.Bundle
 import android.util.Log
 import androidx.annotation.IdRes
 import androidx.appcompat.app.AppCompatDelegate
-import androidx.core.os.bundleOf
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
@@ -22,6 +21,7 @@ import com.egoriku.ladyhappy.core.sharedmodel.key.DYNAMIC_FEATURE_BUNDLE_RESULT_
 import com.egoriku.ladyhappy.core.sharedmodel.key.DYNAMIC_FEATURE_REQUEST_KEY
 import com.egoriku.ladyhappy.core.sharedmodel.key.FULL_PERCENT
 import com.egoriku.ladyhappy.core.sharedmodel.params.PostCreatorParams
+import com.egoriku.ladyhappy.core.sharedmodel.toNightMode
 import com.egoriku.ladyhappy.databinding.ActivityMainBinding
 import com.egoriku.ladyhappy.extensions.*
 import com.egoriku.ladyhappy.mainscreen.common.Constants.Tracking
@@ -46,9 +46,11 @@ import com.google.android.play.core.ktx.bytesDownloaded
 import com.google.android.play.core.ktx.totalBytesToDownload
 import com.google.android.play.core.splitcompat.SplitCompat
 import com.google.android.play.core.splitinstall.SplitInstallManager
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
+import org.koin.android.ext.android.inject
 import org.koin.androidx.scope.ScopeActivity
-import org.koin.androidx.viewmodel.ext.android.stateViewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import kotlin.properties.Delegates
 
 private const val INSTALL_CONFIRMATION_REQ_CODE = 1
@@ -67,7 +69,7 @@ class MainActivity : ScopeActivity() {
     private val dynamicFeatureViewModel by viewModel<DynamicFeatureViewModel>()
     private val inAppUpdateViewModel by viewModel<InAppUpdateViewModel>()
     private val reviewViewModel by viewModel<ReviewViewModel>()
-    private val viewModel by stateViewModel<MainActivityViewModel>(state = { bundleOf() })
+    private val viewModel by viewModel<MainActivityViewModel>()
 
     private val navigator = ActivityScopeNavigator(
         activity = this,
