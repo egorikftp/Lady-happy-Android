@@ -121,7 +121,6 @@ dependencies {
     implementation(libs.firebase.storage)
     implementation(libs.glide)
     implementation(libs.koin.android)
-    implementation(libs.koin.viewmodel)
     implementation(libs.sheets.core)
     implementation(libs.viewbinding.delegates)
 

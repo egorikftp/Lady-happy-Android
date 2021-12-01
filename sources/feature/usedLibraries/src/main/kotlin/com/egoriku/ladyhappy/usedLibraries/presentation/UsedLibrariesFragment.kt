@@ -15,6 +15,7 @@ import com.egoriku.ladyhappy.usedLibraries.presentation.adapter.LibrariesListAda
 import com.egoriku.ladyhappy.usedLibraries.presentation.screen.LicenseFragmentScreen
 import com.egoriku.ladyhappy.usedLibraries.presentation.state.ScreenState
 import com.egoriku.ladyhappy.usedLibraries.presentation.viewmodel.UsedLibrariesViewModel
+import org.koin.android.ext.android.inject
 import org.koin.androidx.scope.ScopeFragment
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import kotlin.properties.Delegates

@@ -22,9 +22,9 @@ dependencies {
     implementation(libs.androidx.browser)
     implementation(libs.androidx.constraintlayout)
     implementation(libs.androidx.core.ktx)
+    implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.livedata.ktx)
     implementation(libs.androidx.viewmodel.ktx)
     implementation(libs.koin.android)
-    implementation(libs.koin.viewmodel)
     implementation(libs.viewbinding.delegates)
 }

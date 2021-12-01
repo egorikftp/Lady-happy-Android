@@ -28,7 +28,6 @@ dependencies {
     implementation(libs.glide)
     implementation(libs.glide.transformation)
     implementation(libs.koin.android)
-    implementation(libs.koin.viewmodel)
     implementation(libs.stfalcon.imageviewer)
     implementation(libs.viewbinding.delegates)
 }

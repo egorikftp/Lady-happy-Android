@@ -24,6 +24,5 @@ dependencies {
     implementation(libs.easyadapter)
     implementation(libs.firebase.firestore)
     implementation(libs.koin.android)
-    implementation(libs.koin.viewmodel)
     implementation(libs.viewbinding.delegates)
 }

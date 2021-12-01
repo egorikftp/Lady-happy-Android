@@ -30,7 +30,6 @@ dependencies {
     implementation(libs.coroutines.android)
     implementation(libs.firebase.firestore)
     implementation(libs.koin.android)
-    implementation(libs.koin.viewmodel)
     implementation(libs.sheets.input)
     implementation(libs.viewbinding.delegates)
 }

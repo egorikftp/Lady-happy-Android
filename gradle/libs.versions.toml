@@ -34,7 +34,7 @@ gradleOssLicenses = "0.10.4"
 gradleVersionPlugin = "0.39.0"
 junit = "4.13.2"
 imageCompressor = "3.0.1"
-koin = "2.2.3"
+koin = "3.1.4"
 kotlin = "1.5.21"
 leakCanary = "2.7"
 lifecycle = "2.4.0-alpha03"
@@ -126,7 +126,6 @@ imagecompressor = { module = "id.zelory:compressor", version.ref = "imageCompres
 junit = { module = "junit:junit", version.ref = "junit" }
 
 koin-android = { module = "io.insert-koin:koin-android", version.ref = "koin" }
-koin-viewmodel = { module = "io.insert-koin:koin-androidx-viewmodel", version.ref = "koin" }
 kotlin = { module = "org.jetbrains.kotlin:kotlin-stdlib", version.ref = "kotlin" }
 
 leakcanary = { module = "com.squareup.leakcanary:leakcanary-android", version.ref = "leakCanary" }
