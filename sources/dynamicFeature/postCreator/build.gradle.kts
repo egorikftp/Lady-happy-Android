@@ -52,6 +52,5 @@ dependencies {
     implementation(libs.firebase.storage)
     implementation(libs.imagecompressor)
     implementation(libs.koin.android)
-    implementation(libs.koin.viewmodel)
     implementation(libs.viewbinding.delegates)
 }

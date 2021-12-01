@@ -38,9 +38,9 @@ val mainActivityModule = module {
             InAppUpdateViewModel(updateManager = get())
         }
 
-        viewModel {
+        viewModel { params ->
             MainActivityViewModel(
-                savedStateHandle = get(),
+                savedStateHandle = params.get(),
                 analytics = get(),
                 router = get(),
                 themedDelegate = get()

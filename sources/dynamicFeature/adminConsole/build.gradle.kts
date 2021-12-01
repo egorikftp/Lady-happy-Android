@@ -23,5 +23,4 @@ dependencies {
     implementation(libs.androidx.compose.ui.tooling.preview)
     implementation(libs.androidx.fragment.ktx)
     implementation(libs.koin.android)
-    implementation(libs.koin.viewmodel)
 }

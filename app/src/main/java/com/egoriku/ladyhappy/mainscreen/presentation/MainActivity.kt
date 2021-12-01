@@ -8,7 +8,6 @@ import android.os.Bundle
 import android.util.Log
 import androidx.annotation.IdRes
 import androidx.appcompat.app.AppCompatDelegate
-import androidx.core.os.bundleOf
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
@@ -49,6 +48,7 @@ import com.google.android.play.core.splitcompat.SplitCompat
 import com.google.android.play.core.splitinstall.SplitInstallManager
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
+import org.koin.android.ext.android.inject
 import org.koin.androidx.scope.ScopeActivity
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import kotlin.properties.Delegates
@@ -69,7 +69,7 @@ class MainActivity : ScopeActivity() {
     private val dynamicFeatureViewModel by viewModel<DynamicFeatureViewModel>()
     private val inAppUpdateViewModel by viewModel<InAppUpdateViewModel>()
     private val reviewViewModel by viewModel<ReviewViewModel>()
-    private val viewModel by viewModel<MainActivityViewModel>(state = { bundleOf() })
+    private val viewModel by viewModel<MainActivityViewModel>()
 
     private val navigator = ActivityScopeNavigator(
         activity = this,

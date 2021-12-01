@@ -22,6 +22,5 @@ dependencies {
     implementation(libs.androidx.livedata.ktx)
     implementation(libs.androidx.recyclerview)
     implementation(libs.koin.android)
-    implementation(libs.koin.viewmodel)
     implementation(libs.viewbinding.delegates)
 }

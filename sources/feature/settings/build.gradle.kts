@@ -33,6 +33,5 @@ dependencies {
     implementation(libs.coil)
     implementation(libs.firebase.firestore)
     implementation(libs.koin.android)
-    implementation(libs.koin.viewmodel)
     implementation(libs.viewbinding.delegates)
 }
