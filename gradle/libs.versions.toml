@@ -2,52 +2,54 @@
 compileSdk = "31"
 minSdk = "21"
 
-accompanist = "0.20.2"
+gradleFirebaseCrashlytics = "2.8.1"
+gradleFirebasePerformance = "1.4.1"
+gradleDetekt = "1.18.0"
+gradleGoogleServices = "4.3.10"
+gradleBuildTools = "7.1.0"
+gradleOssLicenses = "0.10.4"
+gradleVersionPlugin = "0.42.0"
+
+accompanist = "0.20.3"
 activityCompose = "1.4.0"
 annotation = "1.3.0"
-appcompat = "1.4.0"
-balloon = "1.4.0"
+appcompat = "1.4.1"
+balloon = "1.4.1"
 beagle = "2.6.5"
-browser = "1.3.0"
+browser = "1.4.0"
 cardView = "1.0.0"
-constraintLayout = "2.1.2"
+constraintLayout = "2.1.3"
 coil = "1.4.0"
-compose = "1.0.5"
+compose = "1.1.0-rc03"
+composeThemeAdapter = "1.1.3"
 composeMaterialDialogs = "0.5.1"
 core = "1.7.0"
-coreSplashscreen = "1.0.0-alpha01"
-coroutines = "1.5.2"
+coreSplashscreen = "1.0.0-beta01"
+coroutines = "1.6.0"
 circleImageView = "3.1.0"
 datastore = "1.0.0"
 easyAdapter = "7.0.1"
 exifInterface = "1.3.3"
-firebaseBom = "29.0.0"
-fragment = "1.4.0"
+firebaseBom = "29.0.4"
+fragment = "1.4.1"
 glide = "4.12.0"
 glideTransformations = "4.3.0"
-gradleFirebaseCrashlytics = "2.8.0"
-gradleFirebasePerformance = "1.4.0"
-gradleDetekt = "1.18.0"
-gradleGoogleServices = "4.3.10"
-gradleBuildTools = "7.0.3"
-gradleOssLicenses = "0.10.4"
-gradleVersionPlugin = "0.39.0"
-junit = "4.13.2"
+gson = "2.8.9"
 imageCompressor = "3.0.1"
-koin = "3.1.4"
-kotlin = "1.5.31"
-leakCanary = "2.7"
+koin = "3.1.5"
+kotlin = "1.6.10"
+leakCanary = "2.8.1"
 lifecycle = "2.4.0"
-material = "1.4.0"
-paging = "3.0.1"
+material = "1.5.0"
+paging = "3.1.0"
 playCore = "1.8.1"
-playServicesAuth = "19.2.0"
+playServicesAuth = "20.1.0"
 recyclerView = "1.2.1"
 recyclerViewSelection = "1.1.0"
 stfalconImageViewer = "1.0.10"
 sheets = "2.2.6"
 vectorDrawable = "1.1.0"
-viewBindingDelegates = "1.5.3"
+viewBindingDelegates = "1.5.6"
 viewPager2 = "1.0.0"
 
 [libraries]
@@ -62,7 +64,7 @@ gradle-plugin-kotlin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", v
 
 accompanist-navigation-animation = { module = "com.google.accompanist:accompanist-navigation-animation", version.ref = "accompanist" }
 
-android-material-compose-adapter = { module = "com.google.android.material:compose-theme-adapter", version.ref = "compose" }
+android-material-compose-adapter = { module = "com.google.android.material:compose-theme-adapter", version.ref = "composeThemeAdapter" }
 android-material = { module = "com.google.android.material:material", version.ref = "material" }
 android-play-core-ktx = { module = "com.google.android.play:core-ktx", version.ref = "playCore" }
 android-playservices-auth = { module = "com.google.android.gms:play-services-auth", version.ref = "playServicesAuth" }
@@ -120,10 +122,8 @@ firebase-storage = { module = "com.google.firebase:firebase-storage-ktx" }
 
 glide = { module = "com.github.bumptech.glide:glide", version.ref = "glide" }
 glide-transformation = { module = "jp.wasabeef:glide-transformations", version.ref = "glideTransformations" }
-
+gson = { module = "com.google.code.gson:gson", version.ref = "gson" }
 imagecompressor = { module = "id.zelory:compressor", version.ref = "imageCompressor" }
-
-junit = { module = "junit:junit", version.ref = "junit" }
 
 koin-android = { module = "io.insert-koin:koin-android", version.ref = "koin" }
 kotlin = { module = "org.jetbrains.kotlin:kotlin-stdlib", version.ref = "kotlin" }

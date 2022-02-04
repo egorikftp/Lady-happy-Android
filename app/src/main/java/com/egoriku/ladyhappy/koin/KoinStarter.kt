@@ -23,7 +23,7 @@ fun Application.initKoin() {
         androidContext(this@initKoin)
 
         if (BuildConfig.DEBUG) {
-            androidLogger(Level.DEBUG)
+            androidLogger(Level.ERROR)
         }
 
         androidFileProperties()

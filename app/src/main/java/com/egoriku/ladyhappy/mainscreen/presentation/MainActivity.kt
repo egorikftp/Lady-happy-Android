@@ -46,7 +46,6 @@ import com.google.android.play.core.ktx.bytesDownloaded
 import com.google.android.play.core.ktx.totalBytesToDownload
 import com.google.android.play.core.splitcompat.SplitCompat
 import com.google.android.play.core.splitinstall.SplitInstallManager
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
 import org.koin.androidx.scope.ScopeActivity
@@ -192,6 +191,7 @@ class MainActivity : ScopeActivity() {
                 // to prevent the user from using the app until they update.
                 when (updateResult) {
                     is AppUpdateResult.Available -> handleImmediateUpdate(updateResult)
+                    else -> {}
                 }
             }
         }
@@ -298,6 +298,7 @@ class MainActivity : ScopeActivity() {
                 bundle.getParcelable<DynamicFeature>(DYNAMIC_FEATURE_BUNDLE_RESULT_KEY)) {
                 is DynamicFeature.PostCreator -> dynamicFeatureViewModel.invokePostCreator(feature.postCreatorParams)
                 is DynamicFeature.Edit -> dynamicFeatureViewModel.invokeEdit(feature.editParams)
+                else -> {}
             }
         }
     }
