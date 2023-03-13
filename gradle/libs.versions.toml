@@ -4,7 +4,7 @@ minSdk = "21"
 
 gradleFirebaseCrashlytics = "2.8.1"
 gradleFirebasePerformance = "1.4.1"
-gradleDetekt = "1.18.0"
+gradleDetekt = "1.22.0"
 gradleGoogleServices = "4.3.10"
 gradleBuildTools = "7.1.0"
 gradleOssLicenses = "0.10.4"
