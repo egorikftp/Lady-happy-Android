@@ -10,7 +10,7 @@ gradleBuildTools = "7.1.0"
 gradleOssLicenses = "0.10.4"
 gradleVersionPlugin = "0.42.0"
 
-accompanist = "0.20.3"
+accompanist = "0.28.0"
 activityCompose = "1.4.0"
 annotation = "1.3.0"
 appcompat = "1.4.1"
